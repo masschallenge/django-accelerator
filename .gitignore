@@ -102,3 +102,6 @@ ENV/
 
 # virtualenv
 venv
+
+# Emacs ~ files
+*~
