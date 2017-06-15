@@ -37,7 +37,7 @@ help:
 	    echo $$t; done
 	@echo
 
-PIP_PACKAGES = Django ipython factory-boy django-mptt
+PIP_PACKAGES = Django ipython factory-boy django-mptt pep8 flake8 coverage
 
 $(SETUP_ENV):
 	@pip install virtualenv
@@ -47,17 +47,21 @@ $(SETUP_ENV):
 clean:
 	@rm -rf venv django_accelerator.egg-info dist
 
-code-check:
-	@echo $@ not yet implemented
+code-check: $(SETUP_ENV)
+	@. $(SETUP_ENV); \
+	git diff --name-only development | grep __init__.py | \
+	  xargs pep8 --ignore E902; \
+	git diff --name-only development | grep "\.py" | \
+	  grep -v __init__.py | xargs flake8
 
-coverage:
+coverage: $(SETUP_ENV)
 	@echo $@ not yet implemented
 
 coverage-html:
 	@echo $@ not yet implemented
 
 migrations: $(SETUP_ENV)
-	@. $(SETUP_ENV) ; python makemigrations.py
+	@. $(SETUP_ENV); python makemigrations.py
 
 test: $(SETUP_ENV)
 	@. $(SETUP_ENV); python runtests.py
