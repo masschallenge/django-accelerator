@@ -1,27 +1,32 @@
 targets = \
-  build \
   clean \
   code-check \
   coverage \
   coverage-html \
   help \
+  install \
   package \
   test \
+  uninstall \
+
 
 .PHONY: $(targets)
 
 
 target_help = \
-  "build - Build (or rebuild) docker environment. Refreshes dependencies." \
   "clean - Shutdown all running containers and removes data files." \
   "code-check - Runs Flake8 and pep8 on the files changed between the current branch and and a given BRANCH (defaults to development)" \
   "coverage - Run coverage and generate text report." \
   "coverage-html - Run coverage and generate HTML report." \
   "help - Prints this help message." \
-  "package - Create python package for this library." \
-  "test - Run tests. To run a single test:"
+  "install - Builds package and installs it in the local virtualenv." \
+  "package - Create python package for this library (default)." \
+  "test - Run tests." \
+  "uninstall - Removes the package from the local virtuanlenv." \
+  "" \
+  "Note: various targets automatically create a python virtualenv if needed."
 
-
+# TODO: Figure out if we can run a single test:
 #  "\tmake test TESTS='impact.tests.test_api_routes.TestApiRoute.test_api_object_get impact.tests.test_api_routes.TestApiRoute.test_api_object_delete'"
 
 
@@ -60,6 +65,12 @@ coverage: $(SETUP_ENV)
 
 coverage-html:
 	@echo $@ not yet implemented
+
+install: package uninstall
+	pip install dist/*
+
+uninstall:
+	-pip uninstall -qy django-accelerator
 
 migrations: $(SETUP_ENV)
 	@. $(SETUP_ENV); python makemigrations.py
