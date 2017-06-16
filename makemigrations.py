@@ -5,28 +5,7 @@ import sys
 import django
 
 from django.conf import settings
-
-
-DEFAULT_SETTINGS = dict(
-    INSTALLED_APPS=[
-        "django.contrib.auth",
-        "django.contrib.contenttypes",
-        "django.contrib.sites",
-        "accelerator",
-        "accelerator.tests"
-    ],
-    MIDDLEWARE_CLASSES=[],
-    DATABASES={
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": ":memory:",
-        }
-    },
-    SITE_ID=1,
-    ROOT_URLCONF="acceleratortests.urls",
-    SECRET_KEY="notasecret",
-    ACCELERATOR_MODELS_ARE_MANAGED = True,
-)
+from shared_settings import DEFAULT_SETTINGS
 
 
 def run(*args):

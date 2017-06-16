@@ -37,7 +37,8 @@ help:
 	    echo $$t; done
 	@echo
 
-PIP_PACKAGES = Django ipython factory-boy django-mptt pep8 flake8 coverage
+PIP_PACKAGES = Django django-mptt sorl-thumbnail django-embed-video pillow \
+   ipython factory-boy pep8 flake8  # Development packages
 
 $(SETUP_ENV):
 	@pip install virtualenv
