@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+# This script is derived from:
+# https://github.com/pinax/pinax-notifications/blob/master/runtests.py
+# which is copyright (c) 2012-2016 James Tauber and contributors and
+# available under the MIT license.
+# All changes that are copyrighted by MassChallenge, Inc. are also
+# made available under the MIT license.
 import os
 import sys
 
