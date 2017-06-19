@@ -7,6 +7,7 @@ from mptt.models import (
 )
 
 
+@python_2_unicode_compatible
 class Industry(models.Model):
     name = models.CharField(max_length=255)
     icon = models.CharField(max_length=50, blank=True)

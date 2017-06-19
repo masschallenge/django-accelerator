@@ -1,4 +1,5 @@
 from embed_video.fields import EmbedVideoField
+from sorl.thumbnail import ImageField
 
 from simpleuser.models import User
 from django.conf import settings
@@ -7,9 +8,6 @@ from django.core.validators import (
     RegexValidator,
     validate_slug
 )
-
-from sorl.thumbnail import ImageField
-HAS_SORL = True
 
 from accelerator.models.accelerator_model import AcceleratorModel
 from accelerator.models.industry import Industry
@@ -30,6 +28,7 @@ STARTUP_COMMUNITIES = (
 )
 
 
+@python_2_unicode_compatible
 class Startup(AcceleratorModel):
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User)
@@ -64,13 +63,10 @@ class Startup(AcceleratorModel):
     linked_in_url = models.URLField(max_length=100, blank=True)
     facebook_url = models.URLField(max_length=100, blank=True)
 
-    if HAS_SORL:
-        high_resolution_logo = ImageField(
-            upload_to="startup_pics",
-            verbose_name="High Resolution Logo",
-            blank=True)
-    else:
-        high_resolution_logo = models.CharField(max_length=100, null=True)
+    high_resolution_logo = ImageField(
+        upload_to="startup_pics",
+        verbose_name="High Resolution Logo",
+        blank=True)
 
     twitter_handle = models.CharField(
         max_length=40,

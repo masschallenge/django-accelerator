@@ -4,6 +4,7 @@ from django.db import models
 from accelerator.models.accelerator_model import AcceleratorModel
 
 
+@python_2_unicode_compatible
 class RecommendationTag(AcceleratorModel):
 
     """

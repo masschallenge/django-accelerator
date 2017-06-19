@@ -12,6 +12,7 @@ JOB_TYPE_VALUES = (('NONE', 'None'),
                    ('FULL_TIME_CONTRACT', 'A full-time contract position'))
 
 
+@python_2_unicode_compatible
 class JobPosting(AcceleratorModel):
     startup = models.ForeignKey(Startup)
     postdate = models.DateTimeField(blank=False)

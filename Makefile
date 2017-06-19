@@ -54,7 +54,7 @@ clean:
 	@rm -rf venv django_accelerator.egg-info dist
 
 code-check: $(SETUP_ENV)
-	@. $(SETUP_ENV); \
+	-@. $(SETUP_ENV); \
 	git diff --name-only development | grep __init__.py | \
 	  xargs pep8 --ignore E902; \
 	git diff --name-only development | grep "\.py" | \

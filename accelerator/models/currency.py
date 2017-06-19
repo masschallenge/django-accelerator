@@ -4,6 +4,7 @@ from django.db import models
 from accelerator.models.accelerator_model import AcceleratorModel
 
 
+@python_2_unicode_compatible
 class Currency(AcceleratorModel):
     name = models.CharField(max_length=64, unique=True)
     abbr = models.CharField(max_length=3, unique=True)
