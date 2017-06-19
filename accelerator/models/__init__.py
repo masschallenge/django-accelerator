@@ -1,5 +1,9 @@
 from .currency import Currency
 from .industry import Industry
+from .job_posting import (
+    JobPosting,
+    JOB_TYPE_VALUES
+)
 from .recommendation_tag import RecommendationTag
 from .startup import (
     Startup,
