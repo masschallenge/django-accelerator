@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+from django.utils.encoding import python_2_unicode_compatible
 from django.conf import settings
 from django.db import models
 
@@ -8,7 +10,7 @@ from mptt.models import (
 
 
 @python_2_unicode_compatible
-class Industry(models.Model):
+class Industry(MPTTModel):
     name = models.CharField(max_length=255)
     icon = models.CharField(max_length=50, blank=True)
     parent = TreeForeignKey('self',
