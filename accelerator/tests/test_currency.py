@@ -1,3 +1,6 @@
+# MIT License
+# Copyright (c) 2017 MassChallenge, Inc.
+
 from django.test import TestCase
 from accelerator.models import Currency
 from .factories.currency_factory import CurrencyFactory

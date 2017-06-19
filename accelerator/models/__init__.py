@@ -1,3 +1,6 @@
+# MIT License
+# Copyright (c) 2017 MassChallenge, Inc.
+
 from .currency import Currency
 from .industry import Industry
 from .job_posting import (

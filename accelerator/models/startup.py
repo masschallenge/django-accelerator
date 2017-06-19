@@ -1,3 +1,6 @@
+# MIT License
+# Copyright (c) 2017 MassChallenge, Inc.
+
 from __future__ import unicode_literals
 from embed_video.fields import EmbedVideoField
 from sorl.thumbnail import ImageField
