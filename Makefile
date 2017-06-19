@@ -34,7 +34,7 @@ ENVIRONMENT_NAME = venv
 SETUP_ENV = $(ENVIRONMENT_NAME)/bin/activate
 
 package: $(SETUP_ENV)
-	@$(SETUP_ENV); python setup.py sdist
+	@. $(SETUP_ENV); python setup.py sdist
 
 help:
 	@echo "Valid targets are:\n"
