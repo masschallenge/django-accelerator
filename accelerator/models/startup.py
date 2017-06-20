@@ -39,9 +39,8 @@ class Startup(AcceleratorModel):
     user = models.ForeignKey(User)
     is_visible = models.BooleanField(
         default=True,
-        help_text="Public Profiles will be published on the MassChallenge web "
-                  "site. Stealth profiles will only be shared with judges.",
-    )
+        help_text=("Startup Profiles will be published to external websites "
+                   "through the the API."))
     primary_industry = models.ForeignKey(
         Industry,
         verbose_name="Primary Industry categorization",
@@ -81,21 +80,15 @@ class Startup(AcceleratorModel):
         verbose_name="Email address",
         max_length=100,
         blank=True,
-        help_text=(
-            "This email will be posted on the public MassChallenge website "
-            "if your startup is not in stealth mode as a way for people to "
-            "contact you outside of MassChallenge."))
+        help_text=("This email will be published to external websites "
+                   "through the API."))
     video_elevator_pitch_url = EmbedVideoField(
         max_length=100,
         blank=True,
-        help_text=(
-            "The Startup Profile video is great way to show off your "
-            "startup to the judges and the broader MassChallenge "
-            "community (if you're not in stealth mode). Brevity is "
-            "recommended and videos should not be longer than 1-3 "
-            "minutes. Please submit YouTube or Vimeo URLs.")
-    )
-
+        help_text=("The Startup Profile video is great way to show off your "
+                   "startup to the judges and the broader community. Brevity "
+                   "is recommended and videos should not be longer than 1-3 "
+                   "minutes. Please submit YouTube or Vimeo URLs."))
     created_datetime = models.DateTimeField(blank=True, null=True)
     last_updated_datetime = models.DateTimeField(blank=True, null=True)
     community = models.CharField(
@@ -110,8 +103,7 @@ class Startup(AcceleratorModel):
         unique=True,
         validators=[RegexValidator(".*\D.*",
                                    "Slug must contain a non-numeral."),
-                    validate_slug, ]
-    )
+                    validate_slug, ])
 
     # profile color fields are deprecated - do not delete until we know
     # what the marketing site is doing with startup display
@@ -123,17 +115,14 @@ class Startup(AcceleratorModel):
         validators=[RegexValidator(
             "^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|)$",
             "Color must be 3 or 6-digit hexecimal number, "
-            "such as FF0000 for red."), ]
-    )
+            "such as FF0000 for red."), ])
     profile_text_color = models.CharField(
         max_length=7,
         blank=True,
         default=DEFAULT_PROFILE_TEXT_COLOR,
         validators=[RegexValidator("^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|)$",
                                    "Color must be 3 or 6-digit hexecimal "
-                                   "number, such as FF0000 for red."), ]
-    )
-
+                                   "number, such as FF0000 for red."), ])
     recommendation_tags = models.ManyToManyField(RecommendationTag,
                                                  blank=True)
     currency = models.ForeignKey(Currency, blank=True, null=True)
@@ -143,29 +132,26 @@ class Startup(AcceleratorModel):
         blank=True,
         default="",
         help_text=("Please specify the country where your main office "
-                   "(headquarters) is located")
-    )
+                   "(headquarters) is located"))
     location_regional = models.CharField(
         max_length=100,
         blank=True,
         default="",
         help_text=("Please specify the state, region or province where your "
-                   "main office (headquarters) is located (if applicable).")
-    )
+                   "main office (headquarters) is located (if applicable)."))
     location_city = models.CharField(
         max_length=100,
         blank=True,
         default="",
         help_text=("Please specify the city where your main "
-                   "office (headquarters) is located. (e.g. Boston)")
-    )
+                   "office (headquarters) is located. (e.g. Boston)"))
     location_postcode = models.CharField(
         max_length=100,
         blank=True,
         default="",
         help_text=("Please specify the postal code for your main office "
-                   "(headquarters). (ZIP code, Postcode, codigo postal, etc.)")
-    )
+                   "(headquarters). (ZIP code, Postcode, codigo postal, "
+                   "etc.)"))
     date_founded = models.CharField(
         max_length=100,
         blank=True,
