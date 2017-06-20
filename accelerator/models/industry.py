@@ -26,7 +26,7 @@ class Industry(MPTTModel):
         verbose_name_plural = 'Industries'
 
     class Meta:
-        db_table = 'mc_industry'
+        db_table = 'accelerator_industry'
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
         verbose_name_plural = "Industries"
 

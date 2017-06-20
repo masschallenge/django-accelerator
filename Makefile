@@ -42,13 +42,14 @@ help:
 	    echo $$t; done
 	@echo
 
-PIP_PACKAGES = Django django-mptt sorl-thumbnail django-embed-video pillow \
-   ipython factory-boy pep8 flake8  # Development packages
+DEV_PACKAGES = ipython pep8 flake8 \
+  factory-boy # factory-boy is in setup.py, but is not getting loaded
 
 $(SETUP_ENV):
 	@pip install virtualenv
 	@virtualenv -p `which python3` $(ENVIRONMENT_NAME)
-	@. venv/bin/activate ; pip install $(PIP_PACKAGES)
+	@. venv/bin/activate ; pip install -r requirements.txt; \
+	  pip install $(DEV_PACKAGES)
 
 clean:
 	@rm -rf venv django_accelerator.egg-info dist
