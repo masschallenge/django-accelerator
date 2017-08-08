@@ -1,4 +1,11 @@
 #!/usr/bin/env python
+# This script is derived from:
+# https://github.com/pinax/pinax-notifications/blob/master/runtests.py
+# which is copyright (c) 2012-2016 James Tauber and contributors and
+# available under the MIT license.
+# All changes that are copyrighted by MassChallenge, Inc. are also
+# made available under the MIT license.
+
 import os
 import sys
 
@@ -6,51 +13,7 @@ import django
 
 from django.conf import settings
 
-PACKAGE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                            "accelerator"))
-
-DEFAULT_SETTINGS = dict(
-    INSTALLED_APPS=[
-        "django.contrib.auth",
-        "django.contrib.contenttypes",
-        "django.contrib.sites",
-        "accelerator",
-        "accelerator.tests"
-    ],
-    MIDDLEWARE_CLASSES=[],
-    DATABASES={
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": ":memory:",
-        }
-    },
-    SITE_ID=1,
-    ROOT_URLCONF="accelerator.tests.urls",
-    SECRET_KEY="notasecret",
-    TEMPLATES=[
-        {
-            "BACKEND": "django.template.backends.django.DjangoTemplates",
-            "DIRS": [
-                os.path.join(PACKAGE_ROOT, "templates"),
-            ],
-            "APP_DIRS": True,
-            "OPTIONS": {
-                "debug": True,
-                "context_processors": [
-                    "django.contrib.auth.context_processors.auth",
-                    "django.template.context_processors.debug",
-                    "django.template.context_processors.i18n",
-                    "django.template.context_processors.media",
-                    "django.template.context_processors.static",
-                    "django.template.context_processors.tz",
-                    "django.template.context_processors.request",
-                    "django.contrib.messages.context_processors.messages",
-                ],
-            },
-        },
-    ],
-    ACCELERATOR_MODELS_ARE_MANAGED = True,
-)
+from shared_settings import DEFAULT_SETTINGS
 
 
 def runtests(*test_args):

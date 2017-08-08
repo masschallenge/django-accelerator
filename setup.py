@@ -1,3 +1,6 @@
+# MIT License
+# Copyright (c) 2017 MassChallenge, Inc.
+
 import os
 from setuptools import find_packages, setup
 
@@ -34,5 +37,15 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+    ],
+    install_requires=[
+        "django>=1.8",
+        "django-mptt",
+        "sorl-thumbnail",
+        "django-embed-video",
+        "pillow",
+    ],
+    tests_require=[
+        "factory_boy",
     ],
 )
