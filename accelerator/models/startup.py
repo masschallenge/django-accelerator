@@ -4,7 +4,6 @@
 from __future__ import unicode_literals
 from embed_video.fields import EmbedVideoField
 from sorl.thumbnail import ImageField
-from simpleuser.models import User
 
 from django.utils.encoding import python_2_unicode_compatible
 from django.conf import settings
@@ -36,7 +35,7 @@ STARTUP_COMMUNITIES = (
 @python_2_unicode_compatible
 class Startup(AcceleratorModel):
     name = models.CharField(max_length=255)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="acc_startups")
     is_visible = models.BooleanField(
         default=True,
         help_text=("Startup Profiles will be published to external websites "
