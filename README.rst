@@ -61,17 +61,10 @@ steps:
 
 - Run `make migrations`
 
-- Run `source venv/bin/activate`
+- Run `make migrate`
+
+- Run `make test`
 
 - Run `make install`
-
-- Go to `test-django-accelerator/mysite` and run `./manage.py
-  migrate`.  Confirm that the new model is available in the Django
-  shell:
-
-  `./manage.py shell`
-  `from accelerator.models import <ModelName>`
-
-- Return to django-accelerator and run `make test`.
 
 - Add the new files and checkin the changes.

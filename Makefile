@@ -15,11 +15,17 @@ targets = \
 
 target_help = \
   "clean - Shutdown all running containers and removes data files." \
-  "code-check - Runs Flake8 and pep8 on the files changed between the current branch and and a given BRANCH (defaults to development)" \
+  "code-check - Runs Flake8 and pep8 on the files changed between the " \
+  "    current branch and and a given BRANCH (defaults to development)" \
   "coverage - Run coverage and generate text report." \
   "coverage-html - Run coverage and generate HTML report." \
   "help - Prints this help message." \
   "install - Builds package and installs it in the local virtualenv." \
+  "migrate - Runs migrations. If MIGRATION is given then then that " \
+  "    migration is targeted in the accelerator package unless another " \
+  "    APPLICATION is given. The migrations are run on a temporary" \
+  "    database that is destroyed immediately afterwords." \
+  "migrations - Creates an needed migrations due to model changes." \
   "package - Create python package for this library (default)." \
   "test - Run tests." \
   "uninstall - Removes the package from the local virtuanlenv." \
@@ -32,6 +38,11 @@ target_help = \
 
 ENVIRONMENT_NAME = venv
 SETUP_ENV = $(ENVIRONMENT_NAME)/bin/activate
+ifdef MIGRATION
+ifndef APPLICATION
+APPLICATION = accelerator
+endif
+endif
 
 package: $(SETUP_ENV)
 	@. $(SETUP_ENV); python setup.py sdist
@@ -75,6 +86,9 @@ uninstall:
 
 migrations: $(SETUP_ENV)
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py makemigrations
+
+migrate: $(SETUP_ENV)
+	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py migrate $(APPLICATION) $(MIGRATION)
 
 test: $(SETUP_ENV)
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py test
