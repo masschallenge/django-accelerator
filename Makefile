@@ -74,7 +74,7 @@ uninstall:
 	-pip uninstall -qy django-accelerator
 
 migrations: $(SETUP_ENV)
-	@. $(SETUP_ENV); python makemigrations.py
+	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py makemigrations
 
 test: $(SETUP_ENV)
-	@. $(SETUP_ENV); python runtests.py
+	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py test
