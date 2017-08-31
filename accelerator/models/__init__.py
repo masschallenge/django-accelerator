@@ -7,6 +7,7 @@ from .job_posting import (
     JobPosting,
     JOB_TYPE_VALUES
 )
+from .organization import Organization
 from .recommendation_tag import RecommendationTag
 from .startup import (
     Startup,

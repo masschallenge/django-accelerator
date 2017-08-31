@@ -15,6 +15,7 @@ from django.core.validators import (
 
 from accelerator.models.accelerator_model import AcceleratorModel
 from accelerator.models.industry import Industry
+from accelerator.models.organization import Organization
 from accelerator.models.recommendation_tag import RecommendationTag
 from accelerator.models.currency import Currency
 
@@ -34,7 +35,7 @@ STARTUP_COMMUNITIES = (
 
 @python_2_unicode_compatible
 class Startup(AcceleratorModel):
-    name = models.CharField(max_length=255)
+    organization = models.ForeignKey(Organization, blank=True, null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="acc_startups")
     is_visible = models.BooleanField(
         default=True,
@@ -60,34 +61,23 @@ class Startup(AcceleratorModel):
         max_length=500,
         blank=False,
         help_text="Your startup in 500 characters or less.")
-    website_url = models.CharField(
-        max_length=100,
-        blank=True)
     linked_in_url = models.URLField(max_length=100, blank=True)
     facebook_url = models.URLField(max_length=100, blank=True)
-
     high_resolution_logo = ImageField(
         upload_to="startup_pics",
         verbose_name="High Resolution Logo",
         blank=True)
-
-    twitter_handle = models.CharField(
-        max_length=40,
-        blank=True,
-        help_text="Omit the \"@\". We'll add it.")
-    public_inquiry_email = models.EmailField(
-        verbose_name="Email address",
-        max_length=100,
-        blank=True,
-        help_text=("This email will be published to external websites "
-                   "through the API."))
     video_elevator_pitch_url = EmbedVideoField(
         max_length=100,
         blank=True,
-        help_text=("The Startup Profile video is great way to show off your "
-                   "startup to the judges and the broader community. Brevity "
-                   "is recommended and videos should not be longer than 1-3 "
-                   "minutes. Please submit YouTube or Vimeo URLs."))
+        help_text=(
+            "The Startup Profile video is great way to show off your "
+            "startup to the judges and the broader MassChallenge "
+            "community (if you're not in stealth mode). Brevity is "
+            "recommended and videos should not be longer than 1-3 "
+            "minutes. Please submit YouTube or Vimeo URLs.")
+    )
+
     created_datetime = models.DateTimeField(blank=True, null=True)
     last_updated_datetime = models.DateTimeField(blank=True, null=True)
     community = models.CharField(
@@ -95,14 +85,6 @@ class Startup(AcceleratorModel):
         choices=STARTUP_COMMUNITIES,
         blank=True,
     )
-    url_slug = models.CharField(
-        max_length=64,
-        blank=True,
-        default="",  # This actually gets replaced by a real slug.
-        unique=True,
-        validators=[RegexValidator(".*\D.*",
-                                   "Slug must contain a non-numeral."),
-                    validate_slug, ])
 
     # profile color fields are deprecated - do not delete until we know
     # what the marketing site is doing with startup display
@@ -162,7 +144,7 @@ class Startup(AcceleratorModel):
         db_table = 'accelerator_startup'
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
         verbose_name_plural = "Startups"
-        ordering = ["name"]
+        ordering = ["organization__name"]
 
     def __str__(self):
-        return self.name
+        return self.organization.name

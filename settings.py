@@ -6,6 +6,9 @@ import os
 PACKAGE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                             "accelerator"))
 
+TIME_ZONE = 'America/New_York'
+USE_TZ = True
+
 INSTALLED_APPS=[
     "django.contrib.auth",
     "simpleuser",
@@ -57,3 +60,5 @@ TEMPLATES=[
             },
         },
     ]
+
+TEST_RUNNER = 'accelerator.test_runner.UnManagedModelTestRunner'

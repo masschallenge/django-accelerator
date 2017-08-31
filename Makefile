@@ -53,7 +53,7 @@ help:
 	    echo $$t; done
 	@echo
 
-DEV_PACKAGES = ipython pep8 flake8 \
+DEV_PACKAGES = ipython pep8 flake8 coverage \
   factory-boy # factory-boy is in setup.py, but is not getting loaded
 
 $(SETUP_ENV):
@@ -72,11 +72,24 @@ code-check: $(SETUP_ENV)
 	git diff --name-only development | grep "\.py" | \
 	  grep -v __init__.py | xargs flake8
 
-coverage: $(SETUP_ENV)
-	@echo $@ not yet implemented
+coverage: coverage-run coverage-report coverage-html
+
+coverage-run:
+	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings coverage run --omit="*/tests/*,*/venv/*" --source='.' /usr/local/bin/django-admin.py test
+
+coverage-report: DIFFBRANCH?=$(shell if [ "${BRANCH}" == "" ]; \
+   then echo "development"; else echo "${BRANCH}"; fi;)
+coverage-report: diff_files:=$(shell git diff --name-only $(DIFFBRANCH))
+coverage-report: diff_sed:=$(shell echo $(diff_files)| sed s:web/impact/::g)
+coverage-report: diff_grep:=$(shell echo $(diff_sed) | tr ' ' '\n' | grep \.py | grep -v /tests/ | grep -v /venv/ | grep -v /django_migrations/ | tr '\n' ' ' )
+coverage-report:
+	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings coverage report --skip-covered $(diff_grep) | grep -v "NoSource:"
 
 coverage-html:
-	@echo $@ not yet implemented
+	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings coverage html --omit="*/tests/*,*/venv/*"
+
+coverage-html-open: coverage-html
+	@open htmlcov/index.html
 
 install: package uninstall
 	pip install dist/*
