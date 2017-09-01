@@ -29,4 +29,4 @@ class UserFactory(DjangoModelFactory):
         else:
             kwargs['password'] = make_password('password!')
 
-        return super()._prepare(create, **kwargs)
+        return super(UserFactory, self)._prepare(create, **kwargs)
