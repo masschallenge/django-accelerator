@@ -18,3 +18,7 @@ class TestOrganization(TestCase):
         org1 = OrganizationFactory(name="Foo")
         org2 = OrganizationFactory(name="Foo")
         self.assertNotEqual(org1.url_slug, org2.url_slug)
+
+    def test_str(self):
+        org = OrganizationFactory()
+        self.assertTrue(org.name in str(org))
