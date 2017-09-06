@@ -19,14 +19,36 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Organization',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True, null=True)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
+                ('created_at', models.DateTimeField(auto_now_add=True,
+                                                    null=True)),
                 ('updated_at', models.DateTimeField(auto_now=True, null=True)),
                 ('name', models.CharField(max_length=255)),
                 ('website_url', models.URLField(blank=True, max_length=100)),
-                ('twitter_handle', models.CharField(blank=True, help_text='Omit the "@". We\'ll add it.', max_length=40)),
-                ('public_inquiry_email', models.EmailField(blank=True, max_length=100, verbose_name='Email address')),
-                ('url_slug', models.CharField(blank=True, default='', max_length=64, unique=True, validators=[django.core.validators.RegexValidator('.*\\D.*', 'Slug must contain a non-numeral.'), django.core.validators.RegexValidator(re.compile('^[-a-zA-Z0-9_]+\\Z', 32), "Enter a valid 'slug' consisting of letters, numbers, underscores or hyphens.", 'invalid')])),
+                ('twitter_handle', models.CharField(
+                        blank=True,
+                        help_text='Omit the "@". We\'ll add it.',
+                        max_length=40)),
+                ('public_inquiry_email', models.EmailField(
+                        blank=True,
+                        max_length=100,
+                        verbose_name='Email address')),
+                ('url_slug', models.CharField(
+                        blank=True,
+                        default='',
+                        max_length=64,
+                        unique=True,
+                        validators=[
+                            django.core.validators.RegexValidator(
+                                '.*\\D.*', 'Slug must contain a non-numeral.'),
+                            django.core.validators.RegexValidator(
+                                re.compile('^[-a-zA-Z0-9_]+\\Z', 32),
+                                ("Enter a valid 'slug' consisting of letters, "
+                                 "numbers, underscores or hyphens."),
+                                'invalid')])),
             ],
             options={
                 'verbose_name_plural': 'Organizations',
@@ -38,7 +60,9 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='startup',
-            options={'managed': True, 'ordering': ['organization__name'], 'verbose_name_plural': 'Startups'},
+            options={'managed': True,
+                     'ordering': ['organization__name'],
+                     'verbose_name_plural': 'Startups'},
         ),
         migrations.RemoveField(
             model_name='startup',
@@ -63,11 +87,23 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='startup',
             name='video_elevator_pitch_url',
-            field=embed_video.fields.EmbedVideoField(blank=True, help_text="The Startup Profile video is great way to show off your startup to the judges and the broader MassChallenge community (if you're not in stealth mode). Brevity is recommended and videos should not be longer than 1-3 minutes. Please submit YouTube or Vimeo URLs.", max_length=100),
+            field=embed_video.fields.EmbedVideoField(
+                blank=True,
+                help_text=("The Startup Profile video is great way to show "
+                           "off your startup to the judges and the broader "
+                           "MassChallenge community (if you're not in stealth "
+                           "mode). Brevity is recommended and videos should "
+                           "not be longer than 1-3 minutes. Please submit "
+                           "YouTube or Vimeo URLs."),
+                max_length=100),
         ),
         migrations.AddField(
             model_name='startup',
             name='organization',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='accelerator.Organization'),
+            field=models.ForeignKey(
+                    blank=True,
+                    null=True,
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to='accelerator.Organization'),
         ),
     ]

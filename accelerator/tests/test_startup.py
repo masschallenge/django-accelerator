@@ -3,7 +3,6 @@
 
 from django.test import TestCase
 from .factories.startup_factory import StartupFactory
-from unittest import skip
 
 
 class TestStartup(TestCase):

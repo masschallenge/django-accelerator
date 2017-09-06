@@ -15,6 +15,7 @@ from django.core.validators import (
 from accelerator.models.accelerator_model import AcceleratorModel
 
 
+@python_2_unicode_compatible
 class Organization(AcceleratorModel):
     name = models.CharField(max_length=255)
     website_url = models.URLField(max_length=100, blank=True)

@@ -8,10 +8,7 @@ from sorl.thumbnail import ImageField
 from django.utils.encoding import python_2_unicode_compatible
 from django.conf import settings
 from django.db import models
-from django.core.validators import (
-    RegexValidator,
-    validate_slug
-)
+from django.core.validators import RegexValidator
 
 from accelerator.models.accelerator_model import AcceleratorModel
 from accelerator.models.industry import Industry
@@ -36,7 +33,8 @@ STARTUP_COMMUNITIES = (
 @python_2_unicode_compatible
 class Startup(AcceleratorModel):
     organization = models.ForeignKey(Organization, blank=True, null=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="acc_startups")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             related_name="acc_startups")
     is_visible = models.BooleanField(
         default=True,
         help_text=("Startup Profiles will be published to external websites "
