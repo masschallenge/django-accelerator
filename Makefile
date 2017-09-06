@@ -28,7 +28,8 @@ target_help = \
   "migrations - Creates an needed migrations due to model changes." \
   "package - Create python package for this library (default)." \
   "test - Run tests. To run a subset of tests:" \
-  "\tmake test TESTS='accelerator.tests.test_currency accelerator.tests.test_startup'"
+  "\tmake test TESTS='accelerator.tests.test_currency accelerator.tests.test_startup'" \
+  "tox - Run tox to run tests on all supported configurations." \
   "uninstall - Removes the package from the local virtuanlenv." \
   "" \
   "Note: various targets automatically create a python virtualenv if needed."
@@ -45,16 +46,16 @@ APPLICATION = accelerator
 endif
 endif
 
-package: $(SETUP_ENV)
-	@. $(SETUP_ENV); python setup.py sdist
-
 help:
 	@echo "Valid targets are:\n"
 	@for t in $(target_help) ; do \
 	    echo $$t; done
 	@echo
 
-DEV_PACKAGES = ipython pep8 flake8 coverage \
+package: $(SETUP_ENV)
+	@. $(SETUP_ENV); python setup.py sdist
+
+DEV_PACKAGES = ipython pep8 flake8 coverage tox \
   factory-boy # factory-boy is in setup.py, but is not getting loaded
 
 $(SETUP_ENV):
@@ -106,3 +107,6 @@ migrate: $(SETUP_ENV)
 
 test: $(SETUP_ENV)
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py test $(TESTS)
+
+tox: $(SETUP_ENV)
+	@. $(SETUP_ENV); tox
