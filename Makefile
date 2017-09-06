@@ -32,7 +32,8 @@ target_help = \
   "tox - Run tox to run tests on all supported configurations." \
   "uninstall - Removes the package from the local virtuanlenv." \
   "" \
-  "Note: various targets automatically create a python virtualenv if needed."
+  "Note: various targets automatically create a python virtualenv, venv." \
+  "You can us it in your shell by running: 'source venv/bin/activate'"
 
 # TODO: Figure out if we can run a single test:
 #  "\tmake test TESTS='impact.tests.test_api_routes.TestApiRoute.test_api_object_get impact.tests.test_api_routes.TestApiRoute.test_api_object_delete'"
