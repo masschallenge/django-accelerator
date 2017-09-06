@@ -27,7 +27,8 @@ target_help = \
   "\tdatabase that is destroyed immediately afterwords." \
   "migrations - Creates an needed migrations due to model changes." \
   "package - Create python package for this library (default)." \
-  "test - Run tests." \
+  "test - Run tests. To run a subset of tests:" \
+  "\tmake test TESTS='accelerator.tests.test_currency accelerator.tests.test_startup'"
   "uninstall - Removes the package from the local virtuanlenv." \
   "" \
   "Note: various targets automatically create a python virtualenv if needed."
@@ -104,4 +105,4 @@ migrate: $(SETUP_ENV)
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py migrate $(APPLICATION) $(MIGRATION)
 
 test: $(SETUP_ENV)
-	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py test
+	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py test $(TESTS)
