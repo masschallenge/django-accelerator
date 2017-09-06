@@ -35,9 +35,6 @@ target_help = \
   "Note: various targets automatically create a python virtualenv, venv." \
   "You can us it in your shell by running: 'source venv/bin/activate'"
 
-# TODO: Figure out if we can run a single test:
-#  "\tmake test TESTS='impact.tests.test_api_routes.TestApiRoute.test_api_object_get impact.tests.test_api_routes.TestApiRoute.test_api_object_delete'"
-
 
 ENVIRONMENT_NAME = venv
 SETUP_ENV = $(ENVIRONMENT_NAME)/bin/activate
