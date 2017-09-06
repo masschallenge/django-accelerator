@@ -4,7 +4,9 @@ from factory import (
 )
 
 from django.contrib.auth.hashers import make_password
-from simpleuser.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class UserFactory(DjangoModelFactory):
@@ -27,4 +29,4 @@ class UserFactory(DjangoModelFactory):
         else:
             kwargs['password'] = make_password('password!')
 
-        return super()._prepare(create, **kwargs)
+        return super(UserFactory, cls)._prepare(create, **kwargs)

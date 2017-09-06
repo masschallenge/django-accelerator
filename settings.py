@@ -6,7 +6,10 @@ import os
 PACKAGE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                             "accelerator"))
 
-INSTALLED_APPS=[
+TIME_ZONE = 'America/New_York'
+USE_TZ = True
+
+INSTALLED_APPS = [
     "django.contrib.auth",
     "simpleuser",
     "django.contrib.contenttypes",
@@ -16,26 +19,26 @@ INSTALLED_APPS=[
     "embed_video",
 ]
 
-MIDDLEWARE_CLASSES=[]
+MIDDLEWARE_CLASSES = []
 
-DATABASES={
+DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": ":memory:",
     }
 }
 
-SITE_ID=1
+SITE_ID = 1
 
-ROOT_URLCONF="accelerator.tests.urls"
+ROOT_URLCONF = "accelerator.tests.urls"
 
-SECRET_KEY="notasecret"
+SECRET_KEY = "notasecret"
 
-AUTH_USER_MODEL='simpleuser.User'
+AUTH_USER_MODEL = 'simpleuser.User'
 
-ACCELERATOR_MODELS_ARE_MANAGED=True
+ACCELERATOR_MODELS_ARE_MANAGED = True
 
-TEMPLATES=[
+TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
@@ -57,3 +60,5 @@ TEMPLATES=[
             },
         },
     ]
+
+TEST_RUNNER = 'accelerator.test_runner.UnManagedModelTestRunner'
