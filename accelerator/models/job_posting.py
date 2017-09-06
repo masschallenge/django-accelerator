@@ -36,4 +36,4 @@ class JobPosting(AcceleratorModel):
         verbose_name_plural = 'Job postings for startups'
 
     def __str__(self):
-        return "%s at %s" % (self.title, self.startup.name)
+        return "%s at %s" % (self.title, self.startup.organization.name)

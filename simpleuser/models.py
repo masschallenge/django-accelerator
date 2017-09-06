@@ -110,4 +110,4 @@ class User(AbstractUser):
 
     def save(self, *args, **kwargs):
         self.username = self.email
-        return super().save(*args, **kwargs)
+        return super(User, self).save(*args, **kwargs)
