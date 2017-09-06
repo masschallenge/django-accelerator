@@ -2,7 +2,6 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from django.test import TestCase
-from .factories.user_factory import UserFactory
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
