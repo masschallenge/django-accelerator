@@ -35,6 +35,11 @@ target_help = \
   "Note: various targets automatically create a python virtualenv, venv." \
   "You can us it in your shell by running: 'source venv/bin/activate'"
 
+OS = $(shell uname)
+
+ifeq ($(OS), Linux)
+	XARGS_FLAG = -r
+endif
 
 ENVIRONMENT_NAME = venv
 SETUP_ENV = $(ENVIRONMENT_NAME)/bin/activate
@@ -65,12 +70,14 @@ $(SETUP_ENV):
 clean:
 	@rm -rf venv django_accelerator.egg-info dist
 
+
+
 code-check: $(SETUP_ENV)
 	-@. $(SETUP_ENV); \
 	git diff --name-only development | grep __init__.py | \
-	grep accelerator | xargs -r pep8 --filename accelerator/ --ignore E902; \
+	grep accelerator | xargs $(XARGS_FLAG) pep8 --filename accelerator/ --ignore E902; \
 	git diff --name-only development | grep accelerator | grep "\.py" | \
-	  grep -v __init__.py | xargs -r flake8 --filename accelerator/
+	  grep -v __init__.py | xargs $(XARGS_FLAG) flake8 --filename accelerator/
 
 coverage: coverage-run coverage-report coverage-html
 
