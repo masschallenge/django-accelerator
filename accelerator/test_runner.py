@@ -21,8 +21,6 @@ class UnManagedModelTestRunner(DiscoverRunner):
             UnManagedModelTestRunner,
             self).setup_test_environment(*args, **kwargs)
 
-
-
     def teardown_test_environment(self, *args, **kwargs):
         super(
             UnManagedModelTestRunner,
