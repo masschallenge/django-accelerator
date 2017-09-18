@@ -1,11 +1,28 @@
 sudo: false
 dist: trusty
 language: python
+python:
+  - "2.7"
+  - "3.6"
+    # PyPy versions
+  - "pypy"
+  - "pypy3"
+cache: pip
+
+
 services:
 - mysql
 
 install:
 - make install
+
+
+before_script:
+- export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
+- git remote set-branches origin $BRANCH
+- git fetch
+- git checkout $BRANCH
+
 
 script:
 - make tox
