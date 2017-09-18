@@ -28,4 +28,7 @@ before_script:
 
 script:
 - make test
-- make code-check
+- git diff --name-only development | grep __init__.py | \
+  grep accelerator | xargs pep8 --filename accelerator/ --ignore E902; \
+  git diff --name-only development | grep accelerator | grep "\.py" | \
+  grep -v __init__.py | xargs flake8 --filename accelerator/
