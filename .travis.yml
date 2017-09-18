@@ -18,7 +18,8 @@ before_script:
 - git remote set-branches origin $BRANCH
 - git fetch
 - git checkout $BRANCH
-
+- git diff --name-only HEAD...$TRAVIS_BRANCH
+- git diff --name-only development
 
 script:
 - make test
