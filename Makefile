@@ -73,7 +73,7 @@ clean:
 
 
 code-check: $(SETUP_ENV)
-	-@. $(SETUP_ENV); \
+	@. $(SETUP_ENV); \
 	git diff --name-only development | grep __init__.py | \
 	grep accelerator | xargs $(XARGS_FLAG) pep8 --filename accelerator/ --ignore E902; \
 	git diff --name-only development | grep accelerator | grep "\.py" | \
