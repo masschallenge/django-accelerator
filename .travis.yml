@@ -4,9 +4,6 @@ language: python
 python:
   - "2.7"
   - "3.6"
-    # PyPy versions
-  - "pypy"
-  - "pypy3"
 cache: pip
 
 
@@ -25,5 +22,5 @@ before_script:
 
 
 script:
-- make tox
+- make test
 - make code-check
