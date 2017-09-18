@@ -13,7 +13,9 @@ install:
 - make install
 
 
-before_script:
+#before_script:
+
+script:
 - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
 - echo $TRAVIS_BRANCH
 - echo $TRAVIS_PULL_REQUEST_BRANCH
@@ -25,7 +27,5 @@ before_script:
 - git checkout -b $BRANCH || git checkout $BRANCH
 - git pull origin $BRANCH
 - git checkout $CURRENT_HEAD
-
-script:
 - make test
 - make code-check
