@@ -1,0 +1,12 @@
+sudo: false
+dist: trusty
+language: python
+services:
+- mysql
+
+install:
+- make install
+
+script:
+- make tox
+- make code-check
