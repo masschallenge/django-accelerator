@@ -68,9 +68,9 @@ clean:
 code-check: $(SETUP_ENV)
 	-@. $(SETUP_ENV); \
 	git diff --name-only development | grep __init__.py | \
-	grep accelerator | xargs pep8 --ignore E902; \
+	grep accelerator | xargs pep8 --filename accelerator/ --ignore E902; \
 	git diff --name-only development | grep accelerator | grep "\.py" | \
-	  grep -v __init__.py | xargs flake8
+	  grep -v __init__.py | xargs flake8 --filename accelerator/
 
 coverage: coverage-run coverage-report coverage-html
 
