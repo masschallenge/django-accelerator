@@ -20,11 +20,11 @@ before_script:
 - echo $TRAVIS_PULL_REQUEST
 - echo $BRANCH
 - export CURRENT_HEAD=$(git rev-parse HEAD)
-- git checkout -b development|| git checkout development
+- git checkout -b development || git checkout development
 - git pull origin development
+- git checkout -b $BRANCH || git checkout $BRANCH
+- git pull origin $BRANCH
 - git checkout $CURRENT_HEAD
-- git diff --name-only HEAD...$TRAVIS_BRANCH
-- git diff --name-only development
 
 script:
 - make test
