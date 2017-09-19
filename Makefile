@@ -84,9 +84,10 @@ coverage: coverage-run coverage-report coverage-html
 coverage-run:
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings coverage run --omit="*/tests/*,*/venv/*" --source='.' /usr/local/bin/django-admin.py test
 
-coverage-report: DIFFBRANCH?=$(shell if [ "${BRANCH}" == "" ]; \
-   then echo "development"; else echo "${BRANCH}"; fi;)
-coverage-report: diff_files:=$(shell git diff --name-only $(DIFFBRANCH))
+
+BRANCH ?= development
+
+coverage-report: diff_files:=$(shell git diff --name-only $(BRANCH))
 coverage-report: diff_sed:=$(shell echo $(diff_files)| sed s:web/impact/::g)
 coverage-report: diff_grep:=$(shell echo $(diff_sed) | tr ' ' '\n' | grep \.py | grep -v /tests/ | grep -v /venv/ | grep -v /django_migrations/ | tr '\n' ' ' )
 coverage-report:
