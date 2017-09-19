@@ -23,8 +23,6 @@ install:
 - git pull origin $BRANCH
 - git checkout $CURRENT_HEAD
 
-#before_script:
-
 script:
 
 - make test
