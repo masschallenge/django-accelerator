@@ -7,10 +7,6 @@ from .factories.currency_factory import CurrencyFactory
 
 
 class TestCurrency(TestCase):
-
-
-
-
     def test_currency(self):
         CurrencyFactory(name="US Dollars",
                         abbr="USD")
