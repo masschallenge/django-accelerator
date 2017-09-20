@@ -29,3 +29,7 @@ class TestCurrency(TestCase):
         choices = Currency.choices()
         assert (pounds.id, pounds.name) in choices
         assert (us_dollars.id, us_dollars.name) in choices
+
+    # Checking AC-4819
+    def test_fail(self):
+        self.fail()
