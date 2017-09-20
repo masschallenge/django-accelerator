@@ -4,7 +4,8 @@
 from django.test import TestCase
 from accelerator.models import Currency
 from .factories.currency_factory import CurrencyFactory
-
+# unused
+from functools import partial
 
 class TestCurrency(TestCase):
     def test_currency(self):
