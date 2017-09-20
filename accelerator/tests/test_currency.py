@@ -4,7 +4,8 @@
 from django.test import TestCase
 from accelerator.models import Currency
 from .factories.currency_factory import CurrencyFactory
-
+# unused
+from functools import partial
 
 class TestCurrency(TestCase):
     def test_currency(self):
@@ -29,7 +30,3 @@ class TestCurrency(TestCase):
         choices = Currency.choices()
         assert (pounds.id, pounds.name) in choices
         assert (us_dollars.id, us_dollars.name) in choices
-
-    # Checking AC-4819
-    def test_fail(self):
-        self.fail()
