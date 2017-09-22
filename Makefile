@@ -26,9 +26,9 @@ target_help = \
   "\tmigration is targeted in the accelerator package unless another " \
   "\tAPPLICATION is given. The migrations are run on a temporary" \
   "\tdatabase that is destroyed immediately afterwords." \
-  "migrations - Creates an needed migrations due to model changes." \
+  "migrations - Create any needed migrations due to model changes." \
   "package - Create python package for this library (default)." \
-  "shell - Access to Django shell." \
+  "shell - Start Django shell that can load this package." \
   "test - Run tests. To run a subset of tests:" \
   "\tmake test TESTS='accelerator.tests.test_currency accelerator.tests.test_startup'" \
   "tox - Run tox to run tests on all supported configurations." \
