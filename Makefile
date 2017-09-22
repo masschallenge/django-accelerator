@@ -1,3 +1,4 @@
+# Adding comment to trigger Travis
 targets = \
   clean \
   code-check \
