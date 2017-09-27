@@ -43,9 +43,9 @@ class Startup(AcceleratorModel):
         Industry,
         verbose_name="Primary Industry categorization",
         related_name="startups")
-    additional_industry_categories = models.ManyToManyField(
+    additional_industries = models.ManyToManyField(
         Industry,
-        verbose_name="Related Industries",
+        verbose_name="Additional Industries",
         related_name="secondary_startups",
         db_table="accelerator_startup_related_industry",
         blank=True,
