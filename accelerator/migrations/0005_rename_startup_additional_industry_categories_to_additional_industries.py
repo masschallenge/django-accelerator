@@ -19,6 +19,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='startup',
             name='additional_industries',
-            field=models.ManyToManyField(blank=True, db_table='accelerator_startup_related_industry', help_text='You may select up to 5 related industries.', related_name='secondary_startups', to='accelerator.Industry', verbose_name='Additional Industries'),
+            field=models.ManyToManyField(
+                blank=True,
+                db_table='accelerator_startup_related_industry',
+                help_text='You may select up to 5 related industries.',
+                related_name='secondary_startups',
+                to='accelerator.Industry',
+                verbose_name='Additional Industries'
+            ),
         ),
     ]
