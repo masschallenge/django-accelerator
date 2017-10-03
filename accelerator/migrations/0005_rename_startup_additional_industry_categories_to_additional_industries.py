@@ -12,11 +12,12 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='startup',
-            name='additional_industry_categories',
+            old_name='additional_industry_categories',
+            new_name='additional_industries',
         ),
-        migrations.AddField(
+        migrations.AlterField(
             model_name='startup',
             name='additional_industries',
             field=models.ManyToManyField(
