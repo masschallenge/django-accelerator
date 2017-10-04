@@ -63,8 +63,9 @@ package: $(SETUP_ENV)
 DEV_PACKAGES = ipython pep8 flake8 coverage tox \
   factory-boy # factory-boy is in setup.py, but is not getting loaded
 
-$(SETUP_ENV):
+$(SETUP_ENV): Makefile requirements.txt
 	@pip install virtualenv
+	@touch venv/bin/activate
 	@virtualenv -p `which python3` $(ENVIRONMENT_NAME)
 	@. venv/bin/activate ; pip install -r requirements.txt; \
 	  pip install $(DEV_PACKAGES)
@@ -83,7 +84,7 @@ code-check: $(SETUP_ENV)
 
 coverage: coverage-run coverage-report coverage-html
 
-coverage-run:
+coverage-run: $(SETUP_ENV)
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings coverage run --omit="*/tests/*,*/venv/*" --source='.' /usr/local/bin/django-admin.py test
 
 
@@ -92,10 +93,10 @@ BRANCH ?= development
 coverage-report: diff_files:=$(shell git diff --name-only $(BRANCH))
 coverage-report: diff_sed:=$(shell echo $(diff_files)| sed s:web/impact/::g)
 coverage-report: diff_grep:=$(shell echo $(diff_sed) | tr ' ' '\n' | grep \.py | grep -v /tests/ | grep -v /venv/ | grep -v /django_migrations/ | tr '\n' ' ' )
-coverage-report:
+coverage-report: $(SETUP_ENV)
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings coverage report --skip-covered $(diff_grep) | grep -v "NoSource:"
 
-coverage-html:
+coverage-html: $(SETUP_ENV)
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings coverage html --omit="*/tests/*,*/venv/*"
 
 coverage-html-open: coverage-html
