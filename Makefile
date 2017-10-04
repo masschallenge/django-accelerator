@@ -65,8 +65,8 @@ DEV_PACKAGES = ipython pep8 flake8 coverage tox \
 
 $(SETUP_ENV): Makefile requirements.txt
 	@pip install virtualenv
-	@touch venv/bin/activate
 	@virtualenv -p `which python3` $(ENVIRONMENT_NAME)
+	@touch venv/bin/activate
 	@. venv/bin/activate ; pip install -r requirements.txt; \
 	  pip install $(DEV_PACKAGES)
 
