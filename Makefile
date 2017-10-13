@@ -64,11 +64,11 @@ DEV_PACKAGES = ipython pep8 flake8 coverage tox \
   factory-boy # factory-boy is in setup.py, but is not getting loaded
 
 $(SETUP_ENV): Makefile requirements.txt
-	@pip install virtualenv
+	@pip3 install virtualenv
 	@virtualenv -p `which python3` $(ENVIRONMENT_NAME)
 	@touch venv/bin/activate
-	@. venv/bin/activate ; pip install -r requirements.txt; \
-	  pip install $(DEV_PACKAGES)
+	@. venv/bin/activate ; pip3 install -r requirements.txt; \
+	  pip3 install $(DEV_PACKAGES)
 
 clean:
 	@rm -rf venv django_accelerator.egg-info dist
@@ -103,10 +103,10 @@ coverage-html-open: coverage-html
 	@open htmlcov/index.html
 
 install: package uninstall
-	pip install dist/*
+	pip3 install dist/*
 
 uninstall:
-	-pip uninstall -qy django-accelerator
+	-pip3 uninstall -qy django-accelerator
 
 migrations: $(SETUP_ENV)
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py makemigrations
