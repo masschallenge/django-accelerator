@@ -6,6 +6,7 @@ targets = \
   help \
   install \
   package \
+  shell \
   test \
   uninstall \
 
@@ -27,6 +28,7 @@ target_help = \
   "\tdatabase that is destroyed immediately afterwords." \
   "migrations - Creates an needed migrations due to model changes." \
   "package - Create python package for this library (default)." \
+  "shell - Start Django shell that can load this package." \
   "test - Run tests. To run a subset of tests:" \
   "\tmake test TESTS='accelerator.tests.test_currency accelerator.tests.test_startup'" \
   "tox - Run tox to run tests on all supported configurations." \
@@ -35,6 +37,11 @@ target_help = \
   "Note: various targets automatically create a python virtualenv, venv." \
   "You can us it in your shell by running: 'source venv/bin/activate'"
 
+OS = $(shell uname)
+
+ifeq ($(OS), Linux)
+	XARGS_FLAG = -r
+endif
 
 ENVIRONMENT_NAME = venv
 SETUP_ENV = $(ENVIRONMENT_NAME)/bin/activate
@@ -56,36 +63,40 @@ package: $(SETUP_ENV)
 DEV_PACKAGES = ipython pep8 flake8 coverage tox \
   factory-boy # factory-boy is in setup.py, but is not getting loaded
 
-$(SETUP_ENV):
+$(SETUP_ENV): Makefile requirements.txt
 	@pip install virtualenv
 	@virtualenv -p `which python3` $(ENVIRONMENT_NAME)
+	@touch venv/bin/activate
 	@. venv/bin/activate ; pip install -r requirements.txt; \
 	  pip install $(DEV_PACKAGES)
 
 clean:
 	@rm -rf venv django_accelerator.egg-info dist
 
+
+
 code-check: $(SETUP_ENV)
-	-@. $(SETUP_ENV); \
+	@. $(SETUP_ENV); \
 	git diff --name-only development | grep __init__.py | \
-	  xargs pep8 --ignore E902; \
-	git diff --name-only development | grep "\.py" | \
-	  grep -v __init__.py | xargs flake8
+	grep accelerator | xargs $(XARGS_FLAG) pep8 --filename accelerator/ --ignore E902; \
+	git diff --name-only development | grep accelerator | grep "\.py" | \
+	  grep -v __init__.py | xargs $(XARGS_FLAG) flake8 --filename accelerator/
 
 coverage: coverage-run coverage-report coverage-html
 
-coverage-run:
+coverage-run: $(SETUP_ENV)
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings coverage run --omit="*/tests/*,*/venv/*" --source='.' /usr/local/bin/django-admin.py test
 
-coverage-report: DIFFBRANCH?=$(shell if [ "${BRANCH}" == "" ]; \
-   then echo "development"; else echo "${BRANCH}"; fi;)
-coverage-report: diff_files:=$(shell git diff --name-only $(DIFFBRANCH))
+
+BRANCH ?= development
+
+coverage-report: diff_files:=$(shell git diff --name-only $(BRANCH))
 coverage-report: diff_sed:=$(shell echo $(diff_files)| sed s:web/impact/::g)
 coverage-report: diff_grep:=$(shell echo $(diff_sed) | tr ' ' '\n' | grep \.py | grep -v /tests/ | grep -v /venv/ | grep -v /django_migrations/ | tr '\n' ' ' )
-coverage-report:
+coverage-report: $(SETUP_ENV)
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings coverage report --skip-covered $(diff_grep) | grep -v "NoSource:"
 
-coverage-html:
+coverage-html: $(SETUP_ENV)
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings coverage html --omit="*/tests/*,*/venv/*"
 
 coverage-html-open: coverage-html
@@ -102,6 +113,9 @@ migrations: $(SETUP_ENV)
 
 migrate: $(SETUP_ENV)
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py migrate $(APPLICATION) $(MIGRATION)
+
+shell: $(SETUP_ENV)
+	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py shell
 
 test: $(SETUP_ENV)
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py test $(TESTS)
