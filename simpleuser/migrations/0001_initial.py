@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import models, migrations
+from django.db import migrations, models
 import django.utils.timezone
 import simpleuser.models
 import django.core.validators
@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                 'db_table': 'auth_user',
             },
             managers=[
-                (b'objects', simpleuser.models.UserManager()),
+                ('objects', simpleuser.models.UserManager()),
             ],
         ),
     ]
