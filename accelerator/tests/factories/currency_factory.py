@@ -5,8 +5,10 @@ from factory import (
     DjangoModelFactory,
     Sequence,
 )
-from accelerator.models import Currency
 
+import swapper
+
+Currency = swapper.load_model("accelerator", "Currency")
 
 def _char_range(start, end):
     return [chr(i) for i in range(ord(start), ord(end) + 1)]

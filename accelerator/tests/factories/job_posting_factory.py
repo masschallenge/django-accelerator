@@ -13,9 +13,13 @@ from factory import (
     SubFactory,
 )
 
-from accelerator.models import JobPosting
 
 from accelerator.tests.factories.startup_factory import StartupFactory
+
+import swapper
+
+
+JobPosting = swapper.load_model("accelerator", "JobPosting")
 
 
 class JobPostingFactory(DjangoModelFactory):

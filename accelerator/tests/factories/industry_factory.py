@@ -6,7 +6,10 @@ from factory import (
     Sequence,
 )
 
-from accelerator.models import Industry
+
+import swapper
+
+Industry = swapper.load_model("accelerator", "Industry")
 
 
 class IndustryFactory(DjangoModelFactory):

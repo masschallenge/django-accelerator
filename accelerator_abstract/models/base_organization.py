@@ -43,6 +43,5 @@ class BaseOrganization(AcceleratorModel):
         ordering = ['name', ]
         abstract = True
 
-
     def __str__(self):
         return self.name
