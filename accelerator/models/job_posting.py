@@ -15,5 +15,6 @@ class JobPosting(BaseJobPosting):
         db_table = 'accelerator_jobposting'
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
         verbose_name_plural = 'Job postings for startups'
-        swappable = swapper.swappable_setting('accelerator',
+        app_label = 'accelerator'
+        swappable = swapper.swappable_setting(app_label,
                                               'JobPosting')

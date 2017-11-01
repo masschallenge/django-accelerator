@@ -14,7 +14,8 @@ class Organization(BaseOrganization):
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
         verbose_name_plural = 'Organizations'
         ordering = ['name', ]
-        swappable = swapper.swappable_setting('accelerator',
+        app_label = 'accelerator'
+        swappable = swapper.swappable_setting(app_label,
                                               'Organization')
         abstract = False
 

@@ -11,5 +11,6 @@ class RecommendationTag(BaseRecommendationTag):
     class Meta:
         db_table = 'accelerator_recommendationtag'
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
-        swappable = swapper.swappable_setting('accelerator',
+        app_label = 'accelerator'
+        swappable = swapper.swappable_setting(app_label,
                                               'RecommendationTag')

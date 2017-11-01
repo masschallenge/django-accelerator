@@ -12,5 +12,6 @@ class Industry(BaseIndustry):
         db_table = 'accelerator_industry'
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
         verbose_name_plural = "Industries"
-        swappable = swapper.swappable_setting('accelerator',
+        app_label = 'accelerator'
+        swappable = swapper.swappable_setting(app_label,
                                               'Industry')

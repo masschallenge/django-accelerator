@@ -10,6 +10,7 @@ import swapper
 class Currency(BaseCurrency):
     class Meta:
         db_table = 'accelerator_currency'
+        app_label = 'accelerator'
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
-        swappable = swapper.swappable_setting('accelerator',
+        swappable = swapper.swappable_setting(app_label,
                                               'Currency')

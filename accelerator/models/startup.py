@@ -18,5 +18,6 @@ class Startup(BaseStartup):
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
         verbose_name_plural = "Startups"
         ordering = ["organization__name"]
-        swappable = swapper.swappable_setting('accelerator',
+        app_label = 'accelerator'
+        swappable = swapper.swappable_setting(app_label,
                                               'Startup')
