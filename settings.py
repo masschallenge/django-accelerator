@@ -3,6 +3,8 @@
 
 import os
 
+from django import get_version
+
 PACKAGE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                             "accelerator"))
 

@@ -2,6 +2,7 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 import os
+
 from setuptools import find_packages, setup
 
 with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
@@ -9,6 +10,17 @@ with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
 
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
+
+DJANGO_VERSION = os.environ["DJANGO_VERSION"]
+
+INSTALL_REQUIRES = [
+    "django=={}".format(DJANGO_VERSION),
+    "django-mptt",
+    "sorl-thumbnail",
+    "django-embed-video",
+    "pillow",
+    "pytz",
+]
 
 setup(
     name='django-accelerator',
@@ -38,13 +50,7 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
-    install_requires=[
-        "django<1.9",
-        "django-mptt",
-        "sorl-thumbnail",
-        "django-embed-video",
-        "pillow",
-    ],
+    install_requires=INSTALL_REQUIRES,
     tests_require=[
         "factory_boy",
     ],
