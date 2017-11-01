@@ -14,6 +14,7 @@ INSTALLED_APPS = [
     "simpleuser",
     "django.contrib.contenttypes",
     "django.contrib.sites",
+    "accelerator_abstract",
     "accelerator",
     "accelerator.tests",
     "embed_video",
@@ -62,3 +63,4 @@ TEMPLATES = [
     ]
 
 TEST_RUNNER = 'accelerator.test_runner.UnManagedModelTestRunner'
+

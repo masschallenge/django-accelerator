@@ -114,6 +114,9 @@ migrations: $(SETUP_ENV)
 migrate: $(SETUP_ENV)
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py migrate $(APPLICATION) $(MIGRATION)
 
+makemigrations: $(SETUP_ENV)
+	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py makemigrations
+
 shell: $(SETUP_ENV)
 	@. $(SETUP_ENV); DJANGO_SETTINGS_MODULE=settings django-admin.py shell
 

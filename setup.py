@@ -44,6 +44,7 @@ setup(
         "sorl-thumbnail",
         "django-embed-video",
         "pillow",
+        "swapper",
     ],
     tests_require=[
         "factory_boy",
