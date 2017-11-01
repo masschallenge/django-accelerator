@@ -11,10 +11,12 @@ with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
-DJANGO_VERSION = os.environ["DJANGO_VERSION"]
+DJANGO_SPEC = ">=1.8"
+if "DJANGO_VERSION" in os.environ:
+    DJANGO_SPEC = "=={}".format(os.environ["DJANGO_VERSION"])
 
 INSTALL_REQUIRES = [
-    "django=={}".format(DJANGO_VERSION),
+    "django{}".format(DJANGO_SPEC),
     "django-mptt",
     "sorl-thumbnail",
     "django-embed-video",
