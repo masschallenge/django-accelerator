@@ -36,6 +36,3 @@ class Organization(BaseOrganization):
         if self.url_slug == "":
             self.url_slug = Organization.slug_from_instance(self)
         super(Organization, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return self.name

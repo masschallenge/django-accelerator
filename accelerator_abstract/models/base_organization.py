@@ -42,3 +42,7 @@ class BaseOrganization(AcceleratorModel):
         verbose_name_plural = 'Organizations'
         ordering = ['name', ]
         abstract = True
+
+
+    def __str__(self):
+        return self.name
