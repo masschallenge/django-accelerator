@@ -32,7 +32,7 @@ STARTUP_COMMUNITIES = (
 class BaseStartup(AcceleratorModel):
     organization = models.ForeignKey(swapper.get_model_name(
         "accelerator", "Organization"), blank=True,
-        null=True)
+        null=True, related_name="startups")
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              related_name="acc_startups")
     is_visible = models.BooleanField(
