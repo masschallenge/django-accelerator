@@ -44,10 +44,10 @@ class BaseStartup(AcceleratorModel):
         verbose_name="Primary Industry categorization",
         related_name="startups")
     additional_industries = models.ManyToManyField(
-        swapper.get_model_name("accelerator", "Industry"),
+        settings.MPTT_SWAPPABLE_INDUSTRY_MODEL,
         verbose_name="Additional Industries",
         related_name="secondary_startups",
-        db_table="accelerator_startup_related_industry",
+        db_table=settings.MPTT_SWAPPABLE_INDUSTRY_DB_TABLE_NAME,
         blank=True,
         help_text="You may select up to 5 related industries.",
     )
@@ -146,6 +146,7 @@ class BaseStartup(AcceleratorModel):
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
         verbose_name_plural = "Startups"
         ordering = ["organization__name"]
+        app_label = 'accelerator'
         abstract = True
 
     def __str__(self):
