@@ -31,6 +31,7 @@ class BaseIndustry(MPTTModel):
         verbose_name_plural = "Industries"
         abstract = True
 
+
     def __str__(self):
         parent_name = ''
         if self.parent:

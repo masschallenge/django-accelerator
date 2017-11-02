@@ -13,5 +13,7 @@ class Industry(BaseIndustry):
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
         verbose_name_plural = "Industries"
         app_label = 'accelerator'
-        swappable = swapper.swappable_setting(app_label,
-                                              'Industry')
+        swappable = 'MPTT_SWAPPABLE_INDUSTRY_MODEL'
+
+        # swappable = swapper.swappable_setting(app_label,
+        #                                       'Industry')
