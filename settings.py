@@ -64,5 +64,5 @@ TEMPLATES = [
 
 TEST_RUNNER = 'accelerator.test_runner.UnManagedModelTestRunner'
 
-MPTT_SWAPPABLE_INDUSTRY_MODEL = "accelerator.Industry"
+MPTT_SWAPPABLE_INDUSTRY_MODEL_ADDITIONAL = "accelerator.Industry"
 MPTT_SWAPPABLE_INDUSTRY_DB_TABLE_NAME = "accelerator_startup_related_industry"
