@@ -20,7 +20,7 @@ class Organization(BaseOrganization):
         abstract = False
 
     @classmethod
-    def slug_from_instance(cls, instance):  # todo: move back to BaseOrganization
+    def slug_from_instance(cls, instance):
         slug = slugify(instance.name)
         if slug == "":
             slug = "organization"
@@ -28,7 +28,7 @@ class Organization(BaseOrganization):
         slugbase = slug
         i = 0
         while (cls.objects.filter(url_slug=slug).exists() and
-                   (i < 100 or slugbase == "organization")):
+               (i < 100 or slugbase == "organization")):
             i += 1
             slug = slugbase + "-" + str(i)
         return slug

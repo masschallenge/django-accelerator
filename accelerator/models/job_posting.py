@@ -3,10 +3,7 @@
 
 from __future__ import unicode_literals
 import swapper
-from accelerator_abstract.models import (
-    BaseJobPosting,
-    JOB_TYPE_VALUES,
-)
+from accelerator_abstract.models import BaseJobPosting
 from django.conf import settings
 
 

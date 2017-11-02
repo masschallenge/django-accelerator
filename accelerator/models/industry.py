@@ -3,7 +3,6 @@
 
 from __future__ import unicode_literals
 from accelerator_abstract.models import BaseIndustry
-import swapper
 from django.conf import settings
 
 
@@ -14,6 +13,3 @@ class Industry(BaseIndustry):
         verbose_name_plural = "Industries"
         app_label = 'accelerator'
         swappable = 'MPTT_SWAPPABLE_INDUSTRY_MODEL'
-
-        # swappable = swapper.swappable_setting(app_label,
-        #                                       'Industry')

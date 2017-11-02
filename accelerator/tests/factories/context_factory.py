@@ -23,4 +23,3 @@ class LeafContextFactory(BaseContextFactory):
 class RootContextFactory(BaseContextFactory):
     left = factory.SubFactory(LeafContextFactory)
     right = factory.SubFactory(LeafContextFactory)
-

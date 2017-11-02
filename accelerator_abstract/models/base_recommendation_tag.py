@@ -8,6 +8,7 @@ from django.db import models
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
+
 @python_2_unicode_compatible
 class BaseRecommendationTag(AcceleratorModel):
     """

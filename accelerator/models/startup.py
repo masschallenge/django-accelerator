@@ -3,12 +3,7 @@
 
 from __future__ import unicode_literals
 import swapper
-from accelerator_abstract.models import (
-    BaseStartup,
-    DEFAULT_PROFILE_BACKGROUND_COLOR,
-    DEFAULT_PROFILE_TEXT_COLOR,
-    STARTUP_COMMUNITIES,
-)
+from accelerator_abstract.models import BaseStartup
 from django.conf import settings
 
 

@@ -14,3 +14,15 @@ class Currency(BaseCurrency):
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
         swappable = swapper.swappable_setting(app_label,
                                               'Currency')
+
+    @classmethod
+    def choices(cls):
+        return [(c["id"], c["name"])
+                for c in cls.objects.all().values("id", "name")]
+
+    @classmethod
+    def default_currency(cls):
+        usd = cls.objects.filter(abbr="USD")
+        if usd:
+            return usd[0]
+        return cls.objects.all()[0]
