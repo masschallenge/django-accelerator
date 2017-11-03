@@ -17,7 +17,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='startup',
             name='user',
-            field=models.ForeignKey(related_name='acc_startups', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(related_name='acc_startups',
+                                    to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='jobposting',
@@ -27,6 +28,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='industry',
             name='parent',
-            field=mptt.fields.TreeForeignKey(related_name='children', blank=True, to='accelerator.Industry', null=True),
+            field=mptt.fields.TreeForeignKey(related_name='children',
+                                             blank=True,
+                                             to='accelerator.Industry',
+                                             null=True),
         ),
     ]
