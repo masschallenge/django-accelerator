@@ -2,10 +2,12 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 import uuid
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import BaseUserManager
 from django.utils import timezone
+from django.utils.encoding import python_2_unicode_compatible
 
 
 class UserManager(BaseUserManager):
@@ -40,6 +42,7 @@ class UserManager(BaseUserManager):
                                  **extra_fields)
 
 
+@python_2_unicode_compatible
 class User(AbstractUser):
     objects = UserManager()
 
