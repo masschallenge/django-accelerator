@@ -83,7 +83,7 @@ code-check: $(VENV)
 	grep accelerator | \
 	xargs $(XARGS_FLAG) pep8 --filename accelerator/ --ignore E902; \
 	git diff --name-only development | grep accelerator | grep "\.py" | \
-	grep -v __init__.py | \
+	grep -v __init__.py | grep -v 0001_initial.py | \
 	xargs $(XARGS_FLAG) flake8 --filename accelerator/
 
 coverage: coverage-run coverage-report coverage-html
