@@ -25,7 +25,14 @@ class UserManager(BaseUserManager):
         if "is_active" not in extra_fields:
             extra_fields["is_active"] = True
         if "username" not in extra_fields:
-            extra_fields["username"] = uuid.uuid4()
+            # For now we need to have a unique id that is at
+            # most 30 characters long.  Using uuid and truncating.
+            # Ideally username goes away entirely at some point
+            # since we're really using email.  If we have to keep
+            # username for some reason then we could switch over
+            # to a string version of the pk which is guaranteed
+            # be unique.
+            extra_fields["username"] = str(uuid.uuid4())[:30]
         user = self.model(email=email,
                           is_staff=is_staff, is_superuser=is_superuser,
                           last_login=now, date_joined=now, **extra_fields)
