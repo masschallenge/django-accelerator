@@ -62,9 +62,6 @@ DJANGO_VERSION = 1.8.18
 VENV = venv
 ACTIVATE = $(VENV)/bin/activate
 
-package: $(VENV)
-	@. $(activate $(VENV)); python setup.py sdist
-
 $(VENV): Makefile requirements.txt
 	@pip install virtualenv
 	@rm -rf $(VENV)
@@ -73,6 +70,9 @@ $(VENV): Makefile requirements.txt
 	@. $(ACTIVATE) ; \
 	DJANGO_VERSION=$(DJANGO_VERSION) pip install -r requirements.txt; \
 	  pip install $(DEV_PACKAGES)
+
+package: $(VENV)
+	@. $(ACTIVATE); python setup.py sdist
 
 clean:
 	@rm -rf $(VENV) django_accelerator.egg-info dist
