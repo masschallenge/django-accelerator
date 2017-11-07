@@ -9,4 +9,3 @@ class TestUser(TestCase):
     def test_str(self):
         user = UserFactory()
         assert user.email in str(user)
-
