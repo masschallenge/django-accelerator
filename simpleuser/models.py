@@ -8,6 +8,8 @@ from django.contrib.auth.models import BaseUserManager
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 
+MAX_USERNAME_LENGTH = 30
+
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -31,7 +33,7 @@ class UserManager(BaseUserManager):
             # username for some reason then we could switch over
             # to a string version of the pk which is guaranteed
             # be unique.
-            extra_fields["username"] = str(uuid.uuid4())[:30]
+            extra_fields["username"] = str(uuid.uuid4())[:MAX_USERNAME_LENGTH]
         user = self.model(email=email,
                           is_staff=is_staff, is_superuser=is_superuser,
                           last_login=now, date_joined=now, **extra_fields)

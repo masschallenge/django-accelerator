@@ -8,4 +8,3 @@ from accelerator.tests.factories.organization_factory import (
     OrganizationFactory
 )
 from accelerator.tests.factories.startup_factory import StartupFactory
-from accelerator.tests.factories.user_factory import UserFactory
