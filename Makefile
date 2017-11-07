@@ -119,10 +119,10 @@ uninstall:
 	-pip uninstall -qy django-accelerator
 
 migrations: $(VENV)
-	. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
+	@. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
 	DJANGO_SETTINGS_MODULE=settings \
 	django-admin.py makemigrations accelerator
-	. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
+	@. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
 	DJANGO_SETTINGS_MODULE=settings \
 	django-admin.py makemigrations simpleuser
 
