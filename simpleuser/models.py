@@ -1,20 +1,15 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
 
-"""
-Code from this app is taken from JamBon SW's internal best-practices
-user model.  JamBon SW is planning to open source this code before March
-under a BSD 2-clause license. This will allow for this entire app to be
-removed by MC, if so desired.
-"""
-from django.contrib.auth.models import (
-    BaseUserManager,
-    AbstractBaseUser,
-    PermissionsMixin
-)
-from django.db import models
+import uuid
+
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import BaseUserManager
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import python_2_unicode_compatible
+
+MAX_USERNAME_LENGTH = 30
 
 
 class UserManager(BaseUserManager):
@@ -31,6 +26,15 @@ class UserManager(BaseUserManager):
         email = self.normalize_email(email)
         if "is_active" not in extra_fields:
             extra_fields["is_active"] = True
+        if "username" not in extra_fields:
+            # For now we need to have a unique id that is at
+            # most 30 characters long.  Using uuid and truncating.
+            # Ideally username goes away entirely at some point
+            # since we're really using email.  If we have to keep
+            # username for some reason then we could switch over
+            # to a string version of the pk which is guaranteed
+            # be unique.
+            extra_fields["username"] = str(uuid.uuid4())[:MAX_USERNAME_LENGTH]
         user = self.model(email=email,
                           is_staff=is_staff, is_superuser=is_superuser,
                           last_login=now, date_joined=now, **extra_fields)
@@ -47,67 +51,13 @@ class UserManager(BaseUserManager):
                                  **extra_fields)
 
 
-class SimpleIdentityMixin(models.Model):
-    """
-    A mixin class that provides a simple first name/last name
-    representation of user identity.
-    """
-    full_name = models.CharField(
-        _('full name'),
-        max_length=200,
-        blank=True,
-        db_column='first_name')
-    short_name = models.CharField(
-        _('short name'),
-        max_length=50,
-        db_column='last_name')
-    is_staff = models.BooleanField(
-        _('staff status'),
-        default=False,
-        help_text=_(
-            'Designates whether the user can log into the admin site.'))
-    is_active = models.BooleanField(
-        _('active'),
-        default=True,
-        help_text=_('Designates whether this user should be treated as '
-                    'active. Unselect this instead of deleting accounts.'))
-    date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
-
-    class Meta:
-        abstract = True
-
-
-class AbstractUser(SimpleIdentityMixin, PermissionsMixin, AbstractBaseUser):
-    """
-    An abstract base class implementing a fully featured User model with
-    admin-compliant permissions, using email as a username.
-
-    All fields other than email and password are optional.
-    """
-    email = models.EmailField(_('email address'), max_length=254, unique=True)
-
+@python_2_unicode_compatible
+class User(AbstractUser):
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['full_name', 'short_name']
-
     class Meta:
-        verbose_name = _('user')
-        verbose_name_plural = _('users')
-        abstract = True
-
-
-class User(AbstractUser):
-    """
-    The abstract base class exists so that it can be easily extended,
-    but this class is the one that should be instantiated.
-    """
-    username = models.CharField(_('username'), max_length=150, blank=True)
-
-    class Meta:
-        managed = False
         db_table = 'auth_user'
+        managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
 
-    def save(self, *args, **kwargs):
-        self.username = self.email
-        return super(User, self).save(*args, **kwargs)
+    def __str__(self):
+        return self.email
