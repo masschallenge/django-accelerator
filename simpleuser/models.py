@@ -3,6 +3,7 @@
 
 import uuid
 
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import BaseUserManager
 from django.utils import timezone
@@ -56,6 +57,7 @@ class User(AbstractUser):
 
     class Meta:
         db_table = 'auth_user'
+        managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
 
     def __str__(self):
         return self.email
