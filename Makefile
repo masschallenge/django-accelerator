@@ -62,7 +62,7 @@ DJANGO_VERSION = 1.8.18
 VENV = venv
 ACTIVATE = $(VENV)/bin/activate
 
-$(VENV): requirements.txt  # Makefile
+$(VENV): requirements.txt Makefile
 	@pip install virtualenv
 	@rm -rf $(VENV)
 	@virtualenv -p `which python2` $@
