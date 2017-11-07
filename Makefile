@@ -78,7 +78,7 @@ clean:
 	@rm -rf $(VENV) django_accelerator.egg-info dist
 
 code-check: $(VENV)
-	. $(ACTIVATE); \
+	@. $(ACTIVATE); \
 	git diff --name-only development | grep __init__.py | \
 	xargs $(XARGS_FLAG) pycodestyle --ignore E902; \
 	git diff --name-only development | grep "\.py" | \
