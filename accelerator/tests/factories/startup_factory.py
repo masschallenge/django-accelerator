@@ -20,7 +20,7 @@ from accelerator.models import (
 from .currency_factory import CurrencyFactory
 from .industry_factory import IndustryFactory
 from .organization_factory import OrganizationFactory
-from .user_factory import UserFactory
+from simpleuser.tests.factories.user_factory import UserFactory
 
 
 class StartupFactory(DjangoModelFactory):
