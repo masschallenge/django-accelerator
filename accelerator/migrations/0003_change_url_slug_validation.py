@@ -9,13 +9,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0005_rename_startup_additional_industry_categories_to_additional_industries'),
+        ('accelerator', '0002_joins'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='organization',
             name='url_slug',
-            field=models.CharField(blank=True, default='', max_length=64, unique=True, validators=[django.core.validators.RegexValidator(message='Alphanumeric characters and dashes only.', regex='^[\\w-]+$')]),
+            field=models.CharField(
+                blank=True,
+                default='',
+                max_length=64,
+                unique=True,
+                validators=[django.core.validators.RegexValidator(
+                    message='Alphanumeric characters and dashes only.',
+                    regex='^[\\w-]+$')]),
         ),
     ]
