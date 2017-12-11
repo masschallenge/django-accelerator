@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 max_length=64,
                 unique=True,
                 validators=[django.core.validators.RegexValidator(
-                    message='Alphanumeric characters and dashes only.',
+                    message='Letters, numbers, and dashes only.',
                     regex='^[\\w-]+$')]),
         ),
     ]
