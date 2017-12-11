@@ -26,7 +26,7 @@ INSTALL_REQUIRES = [
 
 setup(
     name='django-accelerator',
-    version='0.2',
+    version='0.2.1',
     packages=find_packages(),
     include_package_data=True,
     license='MIT License',  # example license
