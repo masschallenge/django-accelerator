@@ -37,8 +37,7 @@ class Startup(AcceleratorModel):
                              related_name="acc_startups")
     is_visible = models.BooleanField(
         default=True,
-        help_text=("Startup Profiles will be published to external websites "
-                   "through the the API."))
+        help_text=("this is a test."))
     primary_industry = models.ForeignKey(
         Industry,
         verbose_name="Primary Industry categorization",
