@@ -58,14 +58,14 @@ help:
 DEV_PACKAGES = ipython pycodestyle flake8 coverage tox \
   factory-boy # factory-boy is in setup.py, but is not getting loaded
 
-DJANGO_VERSION = 1.8.18
+DJANGO_VERSION = 1.10.3
 VENV = venv
 ACTIVATE = $(VENV)/bin/activate
 
 $(VENV): requirements.txt Makefile
 	@pip install virtualenv
 	@rm -rf $(VENV)
-	@virtualenv -p `which python2` $@
+	@virtualenv -p `which python3` $@
 	@touch $(ACTIVATE)
 	@. $(ACTIVATE) ; \
 	DJANGO_VERSION=$(DJANGO_VERSION) pip install -r requirements.txt; \
