@@ -5,7 +5,10 @@ from factory import (
     DjangoModelFactory,
     Sequence,
 )
-from accelerator.models import RecommendationTag
+
+import swapper
+
+RecommendationTag = swapper.load_model("accelerator", "RecommendationTag")
 
 
 class RecommendationTagFactory(DjangoModelFactory):

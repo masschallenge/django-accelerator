@@ -5,7 +5,11 @@ from factory import (
     DjangoModelFactory,
     Sequence,
 )
-from accelerator.models import Organization
+
+import swapper
+
+
+Organization = swapper.load_model("accelerator", "Organization")
 
 
 class OrganizationFactory(DjangoModelFactory):

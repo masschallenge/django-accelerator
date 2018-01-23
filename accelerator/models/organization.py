@@ -2,43 +2,22 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
-
+import swapper
+from accelerator_abstract.models import BaseOrganization
 from django.conf import settings
-from django.core.validators import RegexValidator
-from django.db import models
 from django.template.defaultfilters import slugify
-from django.utils.encoding import python_2_unicode_compatible
-
-from accelerator.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
-class Organization(AcceleratorModel):
-    name = models.CharField(max_length=255)
-    website_url = models.URLField(max_length=100, blank=True)
-    twitter_handle = models.CharField(
-        max_length=40,
-        blank=True,
-        help_text='Omit the "@". We\'ll add it.')
-    public_inquiry_email = models.EmailField(verbose_name="Email address",
-                                             max_length=100,
-                                             blank=True)
-    url_slug = models.CharField(
-        max_length=64,
-        blank=True,
-        default="",  # This actually gets replaced by a real slug.
-        unique=True,
-        validators=[
-            RegexValidator(regex="^[\w-]+$",
-                           message="Letters, numbers, and dashes only.")
-        ]
-    )
-
-    class Meta(AcceleratorModel.Meta):
+class Organization(BaseOrganization):
+    class Meta:
         db_table = 'accelerator_organization'
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
         verbose_name_plural = 'Organizations'
         ordering = ['name', ]
+        app_label = 'accelerator'
+        swappable = swapper.swappable_setting(app_label,
+                                              'Organization')
+        abstract = False
 
     @classmethod
     def slug_from_instance(cls, instance):
@@ -58,6 +37,3 @@ class Organization(AcceleratorModel):
         if self.url_slug == "":
             self.url_slug = Organization.slug_from_instance(self)
         super(Organization, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return self.name
