@@ -8,6 +8,8 @@ import mptt.fields
 from django.conf import settings
 import django.core.validators
 
+import swapper
+
 
 class Migration(migrations.Migration):
 
@@ -27,9 +29,10 @@ class Migration(migrations.Migration):
                 ('usd_exchange', models.FloatField()),
             ],
             options={
-                'swappable': 'ACCELERATOR_CURRENCY_MODEL',
                 'db_table': 'accelerator_currency',
                 'managed': True,
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'Currency'),
             },
         ),
         migrations.CreateModel(
@@ -42,10 +45,13 @@ class Migration(migrations.Migration):
                 ('rght', models.PositiveIntegerField(editable=False, db_index=True)),
                 ('tree_id', models.PositiveIntegerField(editable=False, db_index=True)),
                 ('level', models.PositiveIntegerField(editable=False, db_index=True)),
-                ('parent', mptt.fields.TreeForeignKey(related_name='children', blank=True, to=settings.MPTT_SWAPPABLE_INDUSTRY_MODEL, null=True)),
+                ('parent', mptt.fields.TreeForeignKey(
+                    related_name='children', blank=True,
+                    to=swapper.get_model_name('accelerator', 'Industry'), null=True)),
             ],
             options={
-                'swappable': 'MPTT_SWAPPABLE_INDUSTRY_MODEL',
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'Industry'),
                 'db_table': 'accelerator_industry',
                 'managed': True,
                 'verbose_name_plural': 'Industries',
@@ -65,7 +71,8 @@ class Migration(migrations.Migration):
                 ('more_info_url', models.URLField(max_length=100, null=True, blank=True)),
             ],
             options={
-                'swappable': 'ACCELERATOR_JOBPOSTING_MODEL',
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'JobPosting'),
                 'db_table': 'accelerator_jobposting',
                 'managed': True,
                 'verbose_name_plural': 'Job postings for startups',
@@ -89,7 +96,8 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'verbose_name_plural': 'Organizations',
                 'db_table': 'accelerator_organization',
-                'swappable': 'ACCELERATOR_ORGANIZATION_MODEL',
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'Organization'),
             },
         ),
         migrations.CreateModel(
@@ -101,7 +109,8 @@ class Migration(migrations.Migration):
                 ('text', models.TextField()),
             ],
             options={
-                'swappable': 'ACCELERATOR_RECOMMENDATIONTAG_MODEL',
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'RecommendationTag'),
                 'db_table': 'accelerator_recommendationtag',
                 'managed': True,
             },
@@ -130,16 +139,17 @@ class Migration(migrations.Migration):
                 ('location_postcode', models.CharField(default='', help_text='Please specify the postal code for your main office (headquarters). (ZIP code, Postcode, codigo postal, etc.)', max_length=100, blank=True)),
                 ('date_founded', models.CharField(help_text='Month and Year when your startup was founded.', max_length=100, blank=True)),
                 ('landing_page', models.CharField(max_length=255, null=True, blank=True)),
-                ('additional_industries', models.ManyToManyField(related_name='secondary_startups', to=settings.MPTT_SWAPPABLE_INDUSTRY_MODEL, db_table=b'accelerator_startup_related_industry', blank=True, help_text='You may select up to 5 related industries.', verbose_name='Additional Industries')),
-                ('currency', models.ForeignKey(blank=True, to=settings.ACCELERATOR_CURRENCY_MODEL, null=True)),
-                ('organization', models.ForeignKey(related_name='startups', blank=True, to=settings.ACCELERATOR_ORGANIZATION_MODEL, null=True)),
-                ('primary_industry', models.ForeignKey(related_name='startups', verbose_name='Primary Industry categorization', to=settings.MPTT_SWAPPABLE_INDUSTRY_MODEL)),
-                ('recommendation_tags', models.ManyToManyField(to=settings.ACCELERATOR_RECOMMENDATIONTAG_MODEL, blank=True)),
+                ('additional_industries', models.ManyToManyField(related_name='secondary_startups', to=swapper.get_model_name('accelerator', 'Industry'), db_table=b'accelerator_startup_related_industry', blank=True, help_text='You may select up to 5 related industries.', verbose_name='Additional Industries')),
+                ('currency', models.ForeignKey(blank=True, to=swapper.get_model_name('accelerator', 'Currency'), null=True)),
+                ('organization', models.ForeignKey(related_name='startups', blank=True, to=swapper.get_model_name('accelerator', 'Organization'), null=True)),
+                ('primary_industry', models.ForeignKey(related_name='startups', verbose_name='Primary Industry categorization', to=swapper.get_model_name('accelerator', 'Industry'))),
+                ('recommendation_tags', models.ManyToManyField(to=swapper.get_model_name('accelerator', 'RecommendationTag'), blank=True)),
                 ('user', models.ForeignKey(related_name='acc_startups', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ['organization__name'],
-                'swappable': 'ACCELERATOR_STARTUP_MODEL',
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'Startup'),
                 'db_table': 'accelerator_startup',
                 'managed': True,
                 'verbose_name_plural': 'Startups',
@@ -148,6 +158,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='jobposting',
             name='startup',
-            field=models.ForeignKey(to=settings.ACCELERATOR_STARTUP_MODEL),
+            field=models.ForeignKey(to=swapper.get_model_name('accelerator', 'Startup')),
         ),
     ]
