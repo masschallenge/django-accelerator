@@ -18,7 +18,7 @@ class EmailModelBackend(object):
             return None
         except User.MultipleObjectsReturned:
             logger.error(MULTIPLE_USERS_FOUND % email)
-            return None
+            raise User.AuthenticationException
         if user.check_password(password):
             return user
 

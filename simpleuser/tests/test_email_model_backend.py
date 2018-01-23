@@ -3,6 +3,7 @@
 
 from mock import patch
 
+from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django.test import TestCase
 from .factories.user_factory import UserFactory
@@ -10,6 +11,7 @@ from simpleuser.email_model_backend import (
     EmailModelBackend,
     MULTIPLE_USERS_FOUND,
 )
+User = get_user_model()
 
 BAD_EMAIL = "nosuch@user.com"
 BAD_PASSWORD = "bad password"
@@ -63,6 +65,6 @@ class TestEmailModelBackend(TestCase):
                             password="password",
                             username="user2")
         backend = EmailModelBackend()
-        backend.authenticate(user2)
+        with self.assertRaises(User.AuthenticationException):
+            backend.authenticate(user2)
         mock_logger.error.assert_called_with(MULTIPLE_USERS_FOUND % email)
-        
