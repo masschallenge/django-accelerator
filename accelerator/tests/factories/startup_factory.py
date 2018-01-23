@@ -14,13 +14,16 @@ from accelerator.models import (
     DEFAULT_PROFILE_BACKGROUND_COLOR,
     DEFAULT_PROFILE_TEXT_COLOR,
     STARTUP_COMMUNITIES,
-    Startup,
 )
 
 from .currency_factory import CurrencyFactory
 from .industry_factory import IndustryFactory
 from .organization_factory import OrganizationFactory
 from simpleuser.tests.factories.user_factory import UserFactory
+
+
+import swapper
+Startup = swapper.load_model("accelerator", "Startup")
 
 
 class StartupFactory(DjangoModelFactory):

@@ -14,6 +14,7 @@ INSTALLED_APPS = [
     "simpleuser",
     "django.contrib.contenttypes",
     "django.contrib.sites",
+    "accelerator_abstract",
     "accelerator",
     "accelerator.tests",
     "embed_video",
@@ -43,7 +44,7 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             os.path.join(PACKAGE_ROOT, "templates"),
-            ],
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "debug": True,
@@ -56,9 +57,13 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.template.context_processors.request",
                 "django.contrib.messages.context_processors.messages",
-                ],
-            },
+            ],
         },
-    ]
+    },
+]
 
 TEST_RUNNER = 'accelerator.test_runner.UnManagedModelTestRunner'
+
+MPTT_SWAPPABLE_INDUSTRY_MODEL = "accelerator.Industry"
+MPTT_SWAPPABLE_INDUSTRY_MODEL_ADDITIONAL = "accelerator.Industry"
+MPTT_SWAPPABLE_INDUSTRY_DB_TABLE_NAME = "accelerator_startup_related_industry"

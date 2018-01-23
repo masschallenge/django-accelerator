@@ -22,6 +22,7 @@ INSTALL_REQUIRES = [
     "django-embed-video",
     "pillow",
     "pytz",
+    "swapper",
 ]
 
 setup(

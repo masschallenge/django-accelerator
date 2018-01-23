@@ -2,18 +2,26 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
+from django.utils.encoding import python_2_unicode_compatible
 from django.conf import settings
-from accelerator_abstract.models import BaseCurrency
-import swapper
+from django.db import models
+
+from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-class Currency(BaseCurrency):
-    class Meta:
+@python_2_unicode_compatible
+class BaseCurrency(AcceleratorModel):
+    name = models.CharField(max_length=64, unique=True)
+    abbr = models.CharField(max_length=3, unique=True)
+    usd_exchange = models.FloatField()
+
+    class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_currency'
-        app_label = 'accelerator'
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
-        swappable = swapper.swappable_setting(app_label,
-                                              'Currency')
+        abstract = True
+
+    def __str__(self):
+        return self.name
 
     @classmethod
     def choices(cls):

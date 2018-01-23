@@ -4,13 +4,15 @@ from __future__ import unicode_literals
 from django.db import migrations, models
 import sorl.thumbnail.fields
 import embed_video.fields
-import re
+import mptt.fields
+from django.conf import settings
 import django.core.validators
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -25,7 +27,7 @@ class Migration(migrations.Migration):
                 ('usd_exchange', models.FloatField()),
             ],
             options={
-                'abstract': False,
+                'swappable': 'ACCELERATOR_CURRENCY_MODEL',
                 'db_table': 'accelerator_currency',
                 'managed': True,
             },
@@ -40,8 +42,10 @@ class Migration(migrations.Migration):
                 ('rght', models.PositiveIntegerField(editable=False, db_index=True)),
                 ('tree_id', models.PositiveIntegerField(editable=False, db_index=True)),
                 ('level', models.PositiveIntegerField(editable=False, db_index=True)),
+                ('parent', mptt.fields.TreeForeignKey(related_name='children', blank=True, to=settings.MPTT_SWAPPABLE_INDUSTRY_MODEL, null=True)),
             ],
             options={
+                'swappable': 'MPTT_SWAPPABLE_INDUSTRY_MODEL',
                 'db_table': 'accelerator_industry',
                 'managed': True,
                 'verbose_name_plural': 'Industries',
@@ -61,7 +65,7 @@ class Migration(migrations.Migration):
                 ('more_info_url', models.URLField(max_length=100, null=True, blank=True)),
             ],
             options={
-                'abstract': False,
+                'swappable': 'ACCELERATOR_JOBPOSTING_MODEL',
                 'db_table': 'accelerator_jobposting',
                 'managed': True,
                 'verbose_name_plural': 'Job postings for startups',
@@ -77,14 +81,15 @@ class Migration(migrations.Migration):
                 ('website_url', models.URLField(max_length=100, blank=True)),
                 ('twitter_handle', models.CharField(help_text='Omit the "@". We\'ll add it.', max_length=40, blank=True)),
                 ('public_inquiry_email', models.EmailField(max_length=100, verbose_name='Email address', blank=True)),
-                ('url_slug', models.CharField(default='', unique=True, max_length=64, blank=True, validators=[django.core.validators.RegexValidator('.*\\D.*', 'Slug must contain a non-numeral.'), django.core.validators.RegexValidator(re.compile('^[-a-zA-Z0-9_]+\\Z'), "Enter a valid 'slug' consisting of letters, numbers, underscores or hyphens.", 'invalid')])),
+                ('url_slug', models.CharField(default='', unique=True, max_length=64, blank=True, validators=[django.core.validators.RegexValidator(regex='^[\\w-]+$', message='Letters, numbers, and dashes only.')])),
             ],
             options={
+                'managed': True,
                 'ordering': ['name'],
                 'abstract': False,
-                'db_table': 'accelerator_organization',
-                'managed': True,
                 'verbose_name_plural': 'Organizations',
+                'db_table': 'accelerator_organization',
+                'swappable': 'ACCELERATOR_ORGANIZATION_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -96,7 +101,7 @@ class Migration(migrations.Migration):
                 ('text', models.TextField()),
             ],
             options={
-                'abstract': False,
+                'swappable': 'ACCELERATOR_RECOMMENDATIONTAG_MODEL',
                 'db_table': 'accelerator_recommendationtag',
                 'managed': True,
             },
@@ -125,18 +130,24 @@ class Migration(migrations.Migration):
                 ('location_postcode', models.CharField(default='', help_text='Please specify the postal code for your main office (headquarters). (ZIP code, Postcode, codigo postal, etc.)', max_length=100, blank=True)),
                 ('date_founded', models.CharField(help_text='Month and Year when your startup was founded.', max_length=100, blank=True)),
                 ('landing_page', models.CharField(max_length=255, null=True, blank=True)),
-                ('additional_industries', models.ManyToManyField(related_name='secondary_startups', to='accelerator.Industry', db_table='accelerator_startup_related_industry', blank=True, help_text='You may select up to 5 related industries.', verbose_name='Additional Industries')),
-                ('currency', models.ForeignKey(blank=True, to='accelerator.Currency', null=True)),
-                ('organization', models.ForeignKey(blank=True, to='accelerator.Organization', null=True)),
-                ('primary_industry', models.ForeignKey(related_name='startups', verbose_name='Primary Industry categorization', to='accelerator.Industry')),
-                ('recommendation_tags', models.ManyToManyField(to='accelerator.RecommendationTag', blank=True)),
+                ('additional_industries', models.ManyToManyField(related_name='secondary_startups', to=settings.MPTT_SWAPPABLE_INDUSTRY_MODEL, db_table=b'accelerator_startup_related_industry', blank=True, help_text='You may select up to 5 related industries.', verbose_name='Additional Industries')),
+                ('currency', models.ForeignKey(blank=True, to=settings.ACCELERATOR_CURRENCY_MODEL, null=True)),
+                ('organization', models.ForeignKey(related_name='startups', blank=True, to=settings.ACCELERATOR_ORGANIZATION_MODEL, null=True)),
+                ('primary_industry', models.ForeignKey(related_name='startups', verbose_name='Primary Industry categorization', to=settings.MPTT_SWAPPABLE_INDUSTRY_MODEL)),
+                ('recommendation_tags', models.ManyToManyField(to=settings.ACCELERATOR_RECOMMENDATIONTAG_MODEL, blank=True)),
+                ('user', models.ForeignKey(related_name='acc_startups', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ['organization__name'],
-                'abstract': False,
+                'swappable': 'ACCELERATOR_STARTUP_MODEL',
                 'db_table': 'accelerator_startup',
                 'managed': True,
                 'verbose_name_plural': 'Startups',
             },
+        ),
+        migrations.AddField(
+            model_name='jobposting',
+            name='startup',
+            field=models.ForeignKey(to=settings.ACCELERATOR_STARTUP_MODEL),
         ),
     ]
