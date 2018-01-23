@@ -12,13 +12,14 @@ User = get_user_model()
 
 
 class TestEmailModelBackend(TestCase):
-    
+
     @patch('simpleuser.email_model_backend.logger')
     def test_multiple_users_with_same_email(self, mock_logger):
         email = "user@example.com"
-        user1 = User.objects.create(email=email, password="password", username="user1")
-        user2 = User.objects.create(email=email, password="password", username="user2")
+        User.objects.create(email=email, password="password", username="user1")
+        user2 = User.objects.create(email=email,
+                                    password="password",
+                                    username="user2")
         backend = EmailModelBackend()
         backend.authenticate(user2)
         mock_logger.error.assert_called_with(MULTIPLE_USERS_FOUND % email)
- 
