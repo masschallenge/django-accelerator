@@ -67,3 +67,11 @@ TEST_RUNNER = 'accelerator.test_runner.UnManagedModelTestRunner'
 MPTT_SWAPPABLE_INDUSTRY_MODEL = "accelerator.Industry"
 MPTT_SWAPPABLE_INDUSTRY_MODEL_ADDITIONAL = "accelerator.Industry"
 MPTT_SWAPPABLE_INDUSTRY_DB_TABLE_NAME = "accelerator_startup_related_industry"
+
+# Django-Accelerator's Swappable Models configuration
+ACCELERATOR_STARTUP_MODEL = "accelerator.Startup"
+ACCELERATOR_JOBPOSTING_MODEL = "accelerator.JobPosting"
+ACCELERATOR_ORGANIZATION_MODEL = "accelerator.Organization"
+ACCELERATOR_RECOMMENDATIONTAG_MODEL = "accelerator.RecommendationTag"
+ACCELERATOR_CURRENCY_MODEL = "accelerator.Currency"
+ACCELERATOR_INDUSTRY_MODEL = "accelerator.Industry"
