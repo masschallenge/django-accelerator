@@ -7,10 +7,7 @@ from django.conf import settings
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.encoding import python_2_unicode_compatible
-from django.core.validators import (
-    RegexValidator,
-    validate_slug
-)
+from django.core.validators import RegexValidator
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -31,9 +28,10 @@ class BaseOrganization(AcceleratorModel):
         blank=True,
         default="",  # This actually gets replaced by a real slug.
         unique=True,
-        validators=[RegexValidator(".*\D.*",
-                                   "Slug must contain a non-numeral."),
-                    validate_slug, ]
+        validators=[
+            RegexValidator(regex="^[\w-]+$",
+                           message="Letters, numbers, and dashes only.")
+        ]
     )
 
     class Meta(AcceleratorModel.Meta):
