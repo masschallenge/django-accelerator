@@ -36,7 +36,6 @@ class BaseOrganization(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_organization'
-        managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
         verbose_name_plural = 'Organizations'
         ordering = ['name', ]
         abstract = True

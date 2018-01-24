@@ -143,10 +143,8 @@ class BaseStartup(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_startup'
-        managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
         verbose_name_plural = "Startups"
         ordering = ["organization__name"]
-        app_label = 'accelerator'
         abstract = True
 
     def __str__(self):

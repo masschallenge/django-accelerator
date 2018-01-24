@@ -17,7 +17,6 @@ class BaseCurrency(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_currency'
-        managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
         abstract = True
 
     def __str__(self):

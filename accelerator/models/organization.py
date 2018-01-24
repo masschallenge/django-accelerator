@@ -9,15 +9,9 @@ from django.template.defaultfilters import slugify
 
 
 class Organization(BaseOrganization):
-    class Meta:
-        db_table = 'accelerator_organization'
-        managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
-        verbose_name_plural = 'Organizations'
-        ordering = ['name', ]
-        app_label = 'accelerator'
-        swappable = swapper.swappable_setting(app_label,
+    class Meta(BaseOrganization.Meta):
+        swappable = swapper.swappable_setting(BaseOrganization.Meta.app_label,
                                               'Organization')
-        abstract = False
 
     @classmethod
     def slug_from_instance(cls, instance):

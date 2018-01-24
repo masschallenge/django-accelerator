@@ -1,6 +1,7 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
 
+from django.conf import settings
 from django.db import models
 
 
@@ -10,3 +11,5 @@ class AcceleratorModel(models.Model):
 
     class Meta(object):
         abstract = True
+        app_label = "accelerator"
+        managed = settings.ACCELERATOR_MODELS_ARE_MANAGED

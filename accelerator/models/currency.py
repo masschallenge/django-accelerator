@@ -2,17 +2,13 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
-from django.conf import settings
 from accelerator_abstract.models import BaseCurrency
 import swapper
 
 
 class Currency(BaseCurrency):
-    class Meta:
-        db_table = 'accelerator_currency'
-        app_label = 'accelerator'
-        managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
-        swappable = swapper.swappable_setting(app_label,
+    class Meta(BaseCurrency.Meta):
+        swappable = swapper.swappable_setting(BaseCurrency.Meta.app_label,
                                               'Currency')
 
     @classmethod

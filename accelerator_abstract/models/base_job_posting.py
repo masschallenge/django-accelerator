@@ -33,7 +33,6 @@ class BaseJobPosting(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_jobposting'
-        managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
         verbose_name_plural = 'Job postings for startups'
         abstract = True
 

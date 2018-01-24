@@ -7,9 +7,5 @@ from django.conf import settings
 
 
 class Industry(BaseIndustry):
-    class Meta:
-        db_table = 'accelerator_industry'
-        managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
-        verbose_name_plural = "Industries"
-        app_label = 'accelerator'
+    class Meta(BaseIndustry.Meta):
         swappable = 'MPTT_SWAPPABLE_INDUSTRY_MODEL'

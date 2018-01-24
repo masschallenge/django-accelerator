@@ -8,11 +8,6 @@ from django.conf import settings
 
 
 class Startup(BaseStartup):
-    class Meta:
-        db_table = 'accelerator_startup'
-        managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
-        verbose_name_plural = "Startups"
-        ordering = ["organization__name"]
-        app_label = 'accelerator'
-        swappable = swapper.swappable_setting(app_label,
+    class Meta(BaseStartup.Meta):
+        swappable = swapper.swappable_setting(BaseStartup.Meta.app_label,
                                               'Startup')

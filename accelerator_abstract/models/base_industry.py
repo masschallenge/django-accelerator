@@ -27,7 +27,6 @@ class BaseIndustry(MPTTModel):
 
     class Meta:
         db_table = 'accelerator_industry'
-        managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
         verbose_name_plural = "Industries"
         abstract = True
 
