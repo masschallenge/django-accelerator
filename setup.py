@@ -55,8 +55,4 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     install_requires=INSTALL_REQUIRES,
-    tests_require=[
-        "factory_boy",
-        "mock",
-    ],
 )
