@@ -11,11 +11,11 @@ from accelerator_abstract.models.label_model import LabelModel
 
 @python_2_unicode_compatible
 class BaseNamedGroup(LabelModel):
-    name = models.CharField(max_length=LabelModel.LABEL_LENGTH, default="")
+    name = models.CharField(max_length=LabelModel.LABEL_LENGTH, default='')
 
     class Meta(LabelModel.Meta):
-        ordering = ["name"]
-        db_table = "accelerator_namedgroup"
+        ordering = ['name']
+        db_table = '{}_namedgroup'.format(LabelModel.Meta.app_label)
         abstract = True
 
     def __str__(self):

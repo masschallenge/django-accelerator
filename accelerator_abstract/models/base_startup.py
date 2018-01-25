@@ -142,7 +142,7 @@ class BaseStartup(AcceleratorModel):
     landing_page = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_startup'
+        db_table = '{}_startup'.format(AcceleratorModel.Meta.app_label)
         verbose_name_plural = "Startups"
         ordering = ["organization__name"]
         abstract = True

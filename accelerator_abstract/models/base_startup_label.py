@@ -13,12 +13,12 @@ from accelerator_abstract.models.label_model import LabelModel
 class BaseStartupLabel(LabelModel):
     label = models.CharField(max_length=LabelModel.LABEL_LENGTH)
     startups = models.ManyToManyField(
-        swapper.get_model_name(LabelModel.Meta.app_label, "Startup"),
+        swapper.get_model_name(LabelModel.Meta.app_label, 'Startup'),
         blank=True)
 
     class Meta(LabelModel.Meta):
-        ordering = ["label", ]
-        db_table = "accelerator_startuplabel"
+        ordering = ['label', ]
+        db_table = '{}_startuplabel'.format(LabelModel.Meta.app_label)
         abstract = True
 
     def __str__(self):

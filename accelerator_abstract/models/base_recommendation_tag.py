@@ -18,7 +18,7 @@ class BaseRecommendationTag(AcceleratorModel):
     text = models.TextField()
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_recommendationtag'
+        db_table = '{}_recommendationtag'.format(AcceleratorModel.Meta.app_label)
         abstract = True
 
     def __str__(self):

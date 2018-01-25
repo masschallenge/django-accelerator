@@ -43,7 +43,7 @@ class BaseProgramCycle(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = "program cycles"
-        db_table = 'accelerator_programcycle'
+        db_table = '{}_programcycle'.format(AcceleratorModel.Meta.app_label)
         abstract = True
 
     def __str__(self):

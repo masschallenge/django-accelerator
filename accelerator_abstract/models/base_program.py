@@ -123,7 +123,7 @@ class BaseProgram(AcceleratorModel):
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Programs'
         abstract = True
-        db_table = 'accelerator_program'
+        db_table = '{}_program'.format(AcceleratorModel.Meta.app_label)
 
     def __str__(self):
         return self.name

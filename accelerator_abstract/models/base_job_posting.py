@@ -32,7 +32,7 @@ class BaseJobPosting(AcceleratorModel):
     more_info_url = models.URLField(max_length=100, null=True, blank=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_jobposting'
+        db_table = '{}_jobposting'.format(AcceleratorModel.Meta.app_label)
         verbose_name_plural = 'Job postings for startups'
         abstract = True
 

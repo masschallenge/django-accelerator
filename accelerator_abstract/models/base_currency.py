@@ -16,7 +16,7 @@ class BaseCurrency(AcceleratorModel):
     usd_exchange = models.FloatField()
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_currency'
+        db_table = '{}_currency'.format(AcceleratorModel.Meta.app_label)
         abstract = True
 
     def __str__(self):

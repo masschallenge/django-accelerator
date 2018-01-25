@@ -49,7 +49,7 @@ class BaseProgramFamily(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = "program families"
-        db_table = 'accelerator_programfamily'
+        db_table = '{}_programfamily'.format(AcceleratorModel.Meta.app_label)
         abstract = True
 
     def __str__(self):

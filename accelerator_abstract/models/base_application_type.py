@@ -21,7 +21,8 @@ class BaseApplicationType(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Application Types'
-        db_table = 'accelerator_applicationtype'
+        db_table = '{}_applicationtype'.format(
+            AcceleratorModel.Meta.app_label)
         abstract = True
 
     def __str__(self):

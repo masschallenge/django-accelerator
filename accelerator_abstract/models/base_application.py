@@ -59,7 +59,7 @@ class BaseApplication(AcceleratorModel):
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Applications'
         ordering = ['startup']
-        db_table = 'accelerator_application'
+        db_table = '{}_application'.format(AcceleratorModel.Meta.app_label)
         abstract = True
 
     def __str__(self):

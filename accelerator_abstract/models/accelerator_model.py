@@ -11,5 +11,5 @@ class AcceleratorModel(models.Model):
 
     class Meta(object):
         abstract = True
-        app_label = "accelerator"
+        app_label = 'accelerator'
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
