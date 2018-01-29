@@ -55,8 +55,9 @@ help:
 	    echo $$t; done
 	@echo
 
-DEV_PACKAGES = ipython pycodestyle flake8 coverage tox \
+DEV_PACKAGES = ipython pycodestyle flake8 coverage tox mock \
   factory-boy # factory-boy is in setup.py, but is not getting loaded
+  
 
 DJANGO_VERSION = 1.10.3
 VENV = venv
