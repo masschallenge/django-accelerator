@@ -59,5 +59,8 @@ class User(AbstractUser):
         db_table = 'auth_user'
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
 
+    class AuthenticationException(Exception):
+        pass
+
     def __str__(self):
         return self.email
