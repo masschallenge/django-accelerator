@@ -23,6 +23,9 @@ INSTALL_REQUIRES = [
     "pillow",
     "pytz",
     "swapper",
+    "django-ordered-model==1.1.0",
+    "django-paypal==0.2.7",
+    "django-fluent-pages==1.1.2",
 ]
 
 setup(

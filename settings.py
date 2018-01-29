@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     "accelerator",
     "accelerator.tests",
     "embed_video",
+    "paypal.pro",
 ]
 
 MIDDLEWARE_CLASSES = []
@@ -67,21 +68,35 @@ TEST_RUNNER = 'accelerator.test_runner.UnManagedModelTestRunner'
 MPTT_SWAPPABLE_INDUSTRY_MODEL = "accelerator.Industry"
 MPTT_SWAPPABLE_INDUSTRY_MODEL_ADDITIONAL = "accelerator.Industry"
 MPTT_SWAPPABLE_INDUSTRY_DB_TABLE_NAME = "accelerator_startup_related_industry"
+MPTT_SWAPPABLE_FUNCTIONALEXPERTISE_MODEL = "accelerator.FunctionalExpertise"
 
 # Django-Accelerator's Swappable Models configuration
 ACCELERATOR_APPLICATION_MODEL = "accelerator.Application"
 ACCELERATOR_APPLICATIONANSWER_MODEL = "accelerator.ApplicationAnswer"
+ACCELERATOR_APPLICATIONPANELASSIGNMENT_MODEL = (
+    "accelerator.ApplicationPanelAssignment")
 ACCELERATOR_APPLICATIONQUESTION_MODEL = "accelerator.ApplicationQuestion"
 ACCELERATOR_APPLICATIONTYPE_MODEL = "accelerator.ApplicationType"
 ACCELERATOR_CURRENCY_MODEL = "accelerator.Currency"
 ACCELERATOR_INDUSTRY_MODEL = "accelerator.Industry"
+ACCELERATOR_INTERESTCATEGORY_MODEL = "accelerator.InterestCategory"
 ACCELERATOR_JOBPOSTING_MODEL = "accelerator.JobPosting"
 ACCELERATOR_NAMEDGROUP_MODEL = "accelerator.NamedGroup"
 ACCELERATOR_ORGANIZATION_MODEL = "accelerator.Organization"
+ACCELERATOR_PANEL_MODEL = "accelerator.Panel"
+ACCELERATOR_PANELTIME_MODEL = "accelerator.PanelTime"
+ACCELERATOR_PANELTYPE_MODEL = "accelerator.PanelType"
+ACCELERATOR_PANELLOCATION_MODEL = "accelerator.PanelLocation"
 ACCELERATOR_PROGRAM_MODEL = "accelerator.Program"
 ACCELERATOR_PROGRAMCYCLE_MODEL = "accelerator.ProgramCycle"
 ACCELERATOR_PROGRAMFAMILY_MODEL = "accelerator.ProgramFamily"
 ACCELERATOR_QUESTION_MODEL = "accelerator.Question"
 ACCELERATOR_RECOMMENDATIONTAG_MODEL = "accelerator.RecommendationTag"
 ACCELERATOR_STARTUP_MODEL = "accelerator.Startup"
+ACCELERATOR_SCENARIO_MODEL = "accelerator.Scenario"
 ACCELERATOR_STARTUPLABEL_MODEL = "accelerator.StartupLabel"
+
+
+PAYPAL_WPP_USER = ""
+PAYPAL_WPP_PASSWORD = ""
+PAYPAL_WPP_SIGNATURE = ""
