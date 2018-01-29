@@ -12,11 +12,6 @@ from accelerator_abstract.models import (
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
-CHARACTERS_UNIT_NAME = "Characters"
-WORDS_UNIT_NAME = "Words"
-TEXT_LIMIT_UNITS = ((CHARACTERS_UNIT_NAME.lower(), CHARACTERS_UNIT_NAME),
-                    (WORDS_UNIT_NAME.lower(), WORDS_UNIT_NAME))
-
 
 class ApplicationQuestion(BaseApplicationQuestion):
     class Meta(AcceleratorModel.Meta):

@@ -3,7 +3,6 @@
 
 from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
-from django.conf import settings
 from django.db import models
 
 from mptt.models import (
@@ -11,9 +10,11 @@ from mptt.models import (
     TreeForeignKey,
 )
 
+from accelerator_abstract.models.accelerator_model import AcceleratorModel
+
 
 @python_2_unicode_compatible
-class BaseIndustry(MPTTModel):
+class BaseIndustry(MPTTModel, AcceleratorModel):
     name = models.CharField(max_length=255)
     icon = models.CharField(max_length=50, blank=True)
     parent = TreeForeignKey('self',

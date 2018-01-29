@@ -2,10 +2,11 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
+
 import swapper
-from accelerator_abstract.models import BaseOrganization
-from django.conf import settings
 from django.template.defaultfilters import slugify
+
+from accelerator_abstract.models import BaseOrganization
 
 
 class Organization(BaseOrganization):
