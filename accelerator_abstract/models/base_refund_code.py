@@ -2,28 +2,31 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
+
+import swapper
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-import swapper
-
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from django.db import models
+
+
 # DO NOT DELETE NEXT LINE:
 # It is necessary to be able to mock out PayPalWPP
-import paypal.pro.helpers  # NOQA
 
 @python_2_unicode_compatible
 class BaseRefundCode(AcceleratorModel):
     unique_code = models.CharField(max_length=100, unique=True)
-    programs = models.ManyToManyField(swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Program'),
+    programs = models.ManyToManyField(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Program'),
         help_text=("Which programs is this refund code valid for? "
                    "If no programs are given, then this code can be "
                    "applied to any program."),
         related_name="refund_codes",
         blank=True
-    )
-    issued_to = models.ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label, "Partner"), blank=True, null=True)
+        )
+    issued_to = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Partner"),
+        blank=True, null=True)
     discount = models.IntegerField(default=0)
     maximum_uses = models.PositiveIntegerField(
         verbose_name='Maximum Uses',

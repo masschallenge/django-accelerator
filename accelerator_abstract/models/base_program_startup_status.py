@@ -2,15 +2,13 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 import swapper
+from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
+from sorl.thumbnail import ImageField
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from django.db import models
-
-from sorl.thumbnail import ImageField
 
 STARTUP_BADGE_DISPLAY_VALUES = (
     ('NONE', 'None'),
@@ -18,14 +16,17 @@ STARTUP_BADGE_DISPLAY_VALUES = (
     ('STARTUP_PROFILE', 'Only on startup profile'),
     ('STARTUP_LIST_AND_PROFILE', 'Startup list and profile'))
 
+
 @python_2_unicode_compatible
 class BaseProgramStartupStatus(AcceleratorModel):
-    program = models.ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"))
+    program = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"))
     startup_status = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True, null=True)
-    startup_role = models.ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label, "StartupRole"),
-                                     null=True,
-                                     blank=True)
+    startup_role = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "StartupRole"),
+        null=True,
+        blank=True)
     startup_list_include = models.BooleanField(
         default=False,
         help_text=("Include this startup status as a tab "
@@ -51,7 +52,7 @@ class BaseProgramStartupStatus(AcceleratorModel):
         blank=True,
         null=True,
         help_text="Only one status is shown from the same status group; "
-        "which one is determined by sort order")
+                  "which one is determined by sort order")
     sort_order = models.IntegerField(
         blank=True,
         null=True,
@@ -66,4 +67,4 @@ class BaseProgramStartupStatus(AcceleratorModel):
 
     def __str__(self):
         return "%s (Program Startup Status for %s)" % (self.startup_status,
-                                                        self.program)
+                                                       self.program)

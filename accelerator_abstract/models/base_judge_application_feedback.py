@@ -2,19 +2,15 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
+
+import logging
+
+import swapper
+from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-import swapper
-
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from django.conf import settings
-from django.db import models
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
-
-
-import logging
 
 logger = logging.getLogger(__file__)
 
@@ -36,12 +32,16 @@ JUDGING_STATUS_ENUM = (
     (JUDGING_STATUS_CONFLICT, 'Not Judged - Conflict of Interest'),
     (JUDGING_STATUS_OTHER, 'Not Judged - Other (eg., no show)'),)
 
+
 @python_2_unicode_compatible
 class BaseJudgeApplicationFeedback(AcceleratorModel):
-    application = models.ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label, "Application"))
-    form_type = models.ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label, "JudgingForm"))
+    application = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Application"))
+    form_type = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "JudgingForm"))
     judge = models.ForeignKey(settings.AUTH_USER_MODEL)
-    panel = models.ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label, "Panel"))
+    panel = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Panel"))
     judging_status = models.IntegerField(
         null=True,
         blank=True,

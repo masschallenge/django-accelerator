@@ -2,16 +2,16 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
+
+import swapper
+from django.conf import settings
+from django.core.validators import RegexValidator
+from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 from embed_video.fields import EmbedVideoField
 from sorl.thumbnail import ImageField
 
-from django.utils.encoding import python_2_unicode_compatible
-from django.conf import settings
-from django.db import models
-from django.core.validators import RegexValidator
-
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-import swapper
 
 DEFAULT_PROFILE_BACKGROUND_COLOR = '217181'  # default dark blue
 

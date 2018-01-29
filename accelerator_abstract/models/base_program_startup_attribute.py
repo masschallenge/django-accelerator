@@ -2,19 +2,19 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
-from django.utils.encoding import python_2_unicode_compatible
 
 import swapper
-
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
+
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.utils import (
-    convert_to_integer,
-    convert_from_integer,
-    convert_to_float,
-    convert_from_float,
-    convert_to_boolean,
     convert_from_boolean,
+    convert_from_float,
+    convert_from_integer,
+    convert_to_boolean,
+    convert_to_float,
+    convert_to_integer,
 )
 
 PROGRAM_STARTUP_ATTRIBUTE_TYPES = (

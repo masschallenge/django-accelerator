@@ -28,12 +28,11 @@ class SecureFileSystemStorage(FileSystemStorage):
         as uploaded.
         """
         try:
-            if isinstance(name, unicode):
+            if isinstance(name, str):
                 name = name.encode('utf-8')
             encoded_name = base64.urlsafe_b64encode(name)
             url = reverse('mc.views.AdminFilePageDownloadView',
                           args=(encoded_name,))
-        except TypeError as err:
-            NoReverseMatch = err
+        except TypeError:
             raise ValueError("This file is not accessible via a URL.")
         return url

@@ -2,16 +2,13 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
+
+import swapper
+from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-import swapper
-
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from django.conf import settings
-from django.db import models
-
-
 
 CONFIRMED_RELATIONSHIP = "Confirmed"
 DESIRED_RELATIONSHIP = "Desired"
@@ -20,9 +17,12 @@ RELATIONSHIP_CHOICES = ((DESIRED_RELATIONSHIP, DESIRED_RELATIONSHIP),
                         (DISCUSSING_RELATIONSHIP, DISCUSSING_RELATIONSHIP),
                         (CONFIRMED_RELATIONSHIP, CONFIRMED_RELATIONSHIP))
 
+
 @python_2_unicode_compatible
 class BaseStartupMentorRelationship(AcceleratorModel):
-    startup_mentor_tracking = models.ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label, "StartupMentorTrackingRecord"))
+    startup_mentor_tracking = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+                               "StartupMentorTrackingRecord"))
     mentor = models.ForeignKey(settings.AUTH_USER_MODEL)
     status = models.CharField(
         max_length=32,

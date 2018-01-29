@@ -8,9 +8,9 @@ import decimal
 import swapper
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from accelerator_abstract.models.base_application import REFUND_STATUSES
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from accelerator_abstract.models.base_application import REFUND_STATUSES
 
 CREDIT_CODE_NOT_AVAILABLE = ("Apologies, credit code %s "
                              "is no longer available")
@@ -50,4 +50,4 @@ class BaseRefundCodeRedemption(AcceleratorModel):
 
     def __str__(self):
         return "{} redeemed by {}".format(self.refund_code.unique_code,
-                                           self.startup)
+                                          self.startup)

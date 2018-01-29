@@ -32,4 +32,3 @@ class BaseStartupRole(AcceleratorModel):
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_startuprole'.format(AcceleratorModel.Meta.app_label)
         abstract = True
-

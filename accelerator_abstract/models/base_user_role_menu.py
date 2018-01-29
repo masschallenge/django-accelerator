@@ -5,8 +5,8 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from fluent_pages.models import Page
 from django.utils.encoding import python_2_unicode_compatible
+from fluent_pages.models import Page
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_program import PROGRAM_STATUSES

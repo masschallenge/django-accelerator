@@ -12,6 +12,7 @@ from django.db.models.query import QuerySet
 
 from accelerator.models import MemberProfile
 from accelerator_abstract.models import (
+    BaseBaseProfile,
     BaseEntrepreneurProfile,
     BaseExpertProfile,
 )
@@ -70,8 +71,8 @@ class ProfileQuerySet(QuerySet):
 
     def _profile_manager_by_user_type(self):
         try:
-            self.base_profile = BaseProfile.manager.get(user=self.user)
-        except BaseProfile.DoesNotExist:
+            self.base_profile = BaseBaseProfile.manager.get(user=self.user)
+        except BaseBaseProfile.DoesNotExist:
             self.base_profile = None
             return None
         profile_managers = {user_type: kls.objects for
@@ -86,7 +87,7 @@ class ProfileQuerySet(QuerySet):
     def _add_base_profile_if_missing(self):
         if not self.base_profile:
             logger.warning(MISSING_BASE_PROFILE_TEMPLATE.format(self.user))
-            self.base_profile = BaseProfile.manager.create(user=self.user)
+            self.base_profile = BaseBaseProfile.manager.create(user=self.user)
 
     def _get_or_create_profile(self):
         return (self._get_profile_from_existing_profile_types() or

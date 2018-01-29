@@ -2,18 +2,17 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
-from django.utils.encoding import python_2_unicode_compatible
 
 import swapper
-
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
-
 from django.conf import settings
 from django.db.models import (
     CharField,
-    ManyToManyField,
     ForeignKey,
+    ManyToManyField,
 )
+from django.utils.encoding import python_2_unicode_compatible
+
+from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 ACTIVE_PANEL_STATUS = "ACTIVE"
 COMPLETED_PANEL_STATUS = "COMPLETED"

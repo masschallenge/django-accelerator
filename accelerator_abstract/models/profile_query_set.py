@@ -1,18 +1,19 @@
+import logging
+
 from django.contrib.auth import get_user_model
 from django.db.models.query import QuerySet
 
-from accelerator_abstract.models.base_base_profile import BaseBaseProfile
-from accelerator_abstract.models.base_member_profile import BaseMemberProfile
-from accelerator_abstract.models.base_expert_profile import BaseExpertProfile
-from accelerator_abstract.models.base_entrepreneur_profile import (
-    BaseEntrepreneurProfile
-)
 from accelerator_abstract.models.base_base_profile import (
+    BaseBaseProfile,
     ENTREPRENEUR_USER_TYPE,
     EXPERT_USER_TYPE,
     MEMBER_USER_TYPE,
 )
-import logging
+from accelerator_abstract.models.base_entrepreneur_profile import (
+    BaseEntrepreneurProfile
+)
+from accelerator_abstract.models.base_expert_profile import BaseExpertProfile
+from accelerator_abstract.models.base_member_profile import BaseMemberProfile
 
 User = get_user_model()
 

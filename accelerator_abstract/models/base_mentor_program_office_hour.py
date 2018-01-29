@@ -2,17 +2,13 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
+
+import swapper
+from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-import swapper
-
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from datetime import datetime
-
-from django.conf import settings
-from django.core.exceptions import ValidationError
-from django.db import models
 
 MC_BOS_LOCATION = "MassChallenge Boston"
 MC_CH_LOCATION = "MassChallenge Switzerland"

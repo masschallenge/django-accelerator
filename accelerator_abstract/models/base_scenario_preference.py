@@ -2,15 +2,12 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
+
+import swapper
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-import swapper
-
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from django.db import models
-
-
 
 ALL_JUDGES = "all"
 JUDGE_GROUP_1 = "group_1"
@@ -41,12 +38,10 @@ SIMPLE_JUDGE_CATEGORIES = [
     (JUDGE_NOT_RELIABLE, 'Judges that are not reliable'),
 ]
 
-
 JUDGE_IS_UNASSIGNED = "is_unassigned"
 SPECIAL_JUDGE_CATEGORIES = [
     (JUDGE_IS_UNASSIGNED, 'Judges that were not assigned this round'),
 ]
-
 
 JUDGE_ALSO_KNOWS_INDUSTRY = "also_knows_industry"
 JUDGE_IN_INDUSTRY = "expert_in_industry"
@@ -57,7 +52,6 @@ INDUSTRY_JUDGE_CATEGORIES = [
      'Judges w/ secondary expertise in the startup\'s primary industry'),
 ]
 
-
 JUDGE_IN_PROGRAM = "in_program"
 JUDGE_OUTSIDE_PROGRAM = "outside_program"
 PROGRAM_JUDGE_CATEGORIES = [
@@ -67,12 +61,10 @@ PROGRAM_JUDGE_CATEGORIES = [
      'Judges not in program startup is applying to'),
 ]
 
-
 JUDGE_CATEGORIES = (SIMPLE_JUDGE_CATEGORIES +
                     SPECIAL_JUDGE_CATEGORIES +
                     INDUSTRY_JUDGE_CATEGORIES +
                     PROGRAM_JUDGE_CATEGORIES)
-
 
 MAX_PREFERENCE = "max"
 MIN_PREFERENCE = "min"
@@ -81,16 +73,17 @@ PREFERENCE_CONSTRAINT_TYPES = (
     (MIN_PREFERENCE, 'Minimum number of'),
 )
 
-
 JUDGE_ENTITY = "JUDGE"
 APPLICATION_ENTITY = "APPLICATION"
 ENTITY_TYPES = (
     (JUDGE_ENTITY, 'judge'),
     (APPLICATION_ENTITY, 'application'))
 
+
 @python_2_unicode_compatible
 class BaseScenarioPreference(AcceleratorModel):
-    scenario = models.ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label, "Scenario"))
+    scenario = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Scenario"))
     priority = models.PositiveIntegerField(null=False)
     constraint_type = models.CharField(max_length=16,
                                        null=False,

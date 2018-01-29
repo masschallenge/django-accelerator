@@ -2,14 +2,13 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+
+import decimal
 
 import swapper
+from django.db import models
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-import decimal
-from django.db import models
 
 
 # Conforming to the django-paypal convention of using

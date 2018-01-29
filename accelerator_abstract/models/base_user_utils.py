@@ -2,12 +2,7 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
-import swapper
-
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 from judging_round import (
@@ -15,9 +10,9 @@ from judging_round import (
     RECRUIT_ANYONE,
     RECRUIT_APPROVED_ONLY,
 )
-from user_role import UserRole
-from program_role import ProgramRole
 from program import ACTIVE_PROGRAM_STATUS
+from program_role import ProgramRole
+from user_role import UserRole
 
 
 def _has_user_type(obj, user_type):

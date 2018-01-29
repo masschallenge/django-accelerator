@@ -2,14 +2,13 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 import swapper
+from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
+from sorl.thumbnail import ImageField
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from django.db import models
-from sorl.thumbnail import ImageField
 
 PARTNER_BADGE_DISPLAY_VALUES = (
     ('NONE', 'None'),
@@ -17,9 +16,11 @@ PARTNER_BADGE_DISPLAY_VALUES = (
     ('PARTNER_PROFILE', 'Only on partner profile'),
     ('PARTNER_LIST_AND_PROFILE', 'Partner list and profile'))
 
+
 @python_2_unicode_compatible
 class BaseProgramPartnerType(AcceleratorModel):
-    program = models.ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"))
+    program = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"))
     partner_type = models.CharField(max_length=50)
     description = models.CharField(max_length=200, blank=True)
     feature_in_footer = models.BooleanField(default=False)
@@ -41,4 +42,4 @@ class BaseProgramPartnerType(AcceleratorModel):
 
     def __str__(self):
         return "Partner type %s for %s" % (self.partner_type,
-                                            self.program.name)
+                                           self.program.name)

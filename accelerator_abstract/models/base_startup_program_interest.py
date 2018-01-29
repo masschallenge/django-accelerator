@@ -2,15 +2,15 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+
+import logging
 
 import swapper
+from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
+from ordered_model.models import OrderedModel
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from django.db import models
-from ordered_model.models import OrderedModel
-import logging
 
 logger = logging.getLogger(__file__)
 

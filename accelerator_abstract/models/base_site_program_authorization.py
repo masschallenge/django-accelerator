@@ -2,17 +2,20 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
+
+import swapper
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-import swapper
-
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from django.db import models
+
+
 @python_2_unicode_compatible
 class BaseSiteProgramAuthorization(AcceleratorModel):
-    site = models.ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label, "Site"))
-    program = models.ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"))
+    site = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Site"))
+    program = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"))
     startup_profile_base_url = models.URLField()
     sponsor_profile_base_url = models.URLField()
     video_base_url = models.URLField()
@@ -31,7 +34,7 @@ class BaseSiteProgramAuthorization(AcceleratorModel):
         db_table = '{}_siteprogramauthorization'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
-        unique_together = (("site", "program"), )
+        unique_together = (("site", "program"),)
         verbose_name_plural = 'Site Program Authorizations'
 
     def __str__(self):

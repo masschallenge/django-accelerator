@@ -4,7 +4,6 @@
 from __future__ import unicode_literals
 
 import swapper
-from django.conf import settings
 
 from accelerator_abstract.models import BaseApplicationAnswer
 

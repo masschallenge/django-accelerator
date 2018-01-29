@@ -2,13 +2,14 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
+
+import swapper
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-import swapper
-
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from django.db import models
+
+
 @python_2_unicode_compatible
 class BaseObserver(AcceleratorModel):
     first_name = models.CharField(max_length=50, blank=True, null=True)
@@ -16,7 +17,8 @@ class BaseObserver(AcceleratorModel):
     email = models.EmailField(verbose_name="Email address", max_length=100)
     title = models.CharField(max_length=50, blank=True)
     company = models.CharField(max_length=50, blank=True)
-    newsletter_cc_roles = models.ManyToManyField(swapper.get_model_name(AcceleratorModel.Meta.app_label, 'ProgramRole'),
+    newsletter_cc_roles = models.ManyToManyField(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'ProgramRole'),
         blank=True)
     newsletter_sender = models.BooleanField(default=False)
 

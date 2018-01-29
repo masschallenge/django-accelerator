@@ -46,4 +46,4 @@ class BaseStartupTeamMember(AcceleratorModel):
         verbose_name_plural = 'Startup Team Members'
 
     def __str__(self):
-        return "%s of %s" % (unicode(self.user), unicode(self.startup))
+        return "%s of %s" % (str(self.user), str(self.startup))

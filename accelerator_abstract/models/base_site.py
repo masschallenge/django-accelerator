@@ -2,18 +2,15 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
+
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-import swapper
-
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-import re
-from django.db import models
-from django.core.exceptions import ObjectDoesNotExist
+
+
 @python_2_unicode_compatible
 class BaseSite(AcceleratorModel):
-
     name = models.CharField(max_length=50, unique=True)
     security_key = models.CharField(max_length=100)
     description = models.CharField(max_length=500, blank=True)

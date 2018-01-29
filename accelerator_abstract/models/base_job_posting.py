@@ -2,12 +2,12 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
-from django.utils.encoding import python_2_unicode_compatible
-from django.conf import settings
+
+import swapper
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-import swapper
 
 JOB_TYPE_VALUES = (('NONE', 'None'),
                    ('INTERNSHIP', 'An internship'),

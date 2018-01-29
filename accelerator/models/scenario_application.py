@@ -5,7 +5,9 @@ from __future__ import unicode_literals
 
 import swapper
 
-from accelerator_abstract.models.base_scenario_application import BaseScenarioApplication
+from accelerator_abstract.models.base_scenario_application import (
+    BaseScenarioApplication
+)
 
 
 class ScenarioApplication(BaseScenarioApplication):

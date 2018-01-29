@@ -3,6 +3,7 @@
 
 from __future__ import unicode_literals
 
+import swapper
 from django.core.exceptions import ValidationError
 from django.db.models import (
     BooleanField,
@@ -13,7 +14,7 @@ from django.db.models import (
     TextField,
 )
 from django.utils.encoding import python_2_unicode_compatible
-import swapper
+
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 ONLINE_JUDGING_ROUND_TYPE = 'Online'

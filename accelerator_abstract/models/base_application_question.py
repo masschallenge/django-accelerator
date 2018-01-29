@@ -2,16 +2,16 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
-from django.utils.encoding import python_2_unicode_compatible
-import swapper
 
+import swapper
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
+
+from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_question import (
     CHOICE_LAYOUTS,
     QUESTION_TYPES,
 )
-
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 CHARACTERS_UNIT_NAME = "Characters"
 WORDS_UNIT_NAME = "Words"

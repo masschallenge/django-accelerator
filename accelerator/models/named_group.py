@@ -4,6 +4,7 @@
 from __future__ import unicode_literals
 
 import swapper
+
 from accelerator_abstract.models.base_named_group import BaseNamedGroup
 
 

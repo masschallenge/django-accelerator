@@ -2,25 +2,25 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 import swapper
+from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
+from sorl.thumbnail import ImageField
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from django.db import models
-from django.core.exceptions import ObjectDoesNotExist
 
-from sorl.thumbnail import ImageField
 
 @python_2_unicode_compatible
 class BasePartner(AcceleratorModel):
-    organization = models.ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label, "Organization"), null=True, blank=True)
+    organization = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+                               "Organization"), null=True, blank=True)
     description = models.TextField(
         max_length=1000,
         blank=True,
         help_text='This is the generic description of the Partner, shared '
-        'across all Programs.')
+                  'across all Programs.')
     partner_logo = ImageField(
         upload_to='startup_pics',
         verbose_name="Partner Logo",
