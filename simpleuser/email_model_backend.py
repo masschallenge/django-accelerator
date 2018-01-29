@@ -1,6 +1,10 @@
 from django.contrib.auth import get_user_model
+import logging
+logger = logging.getLogger(__name__)
 
 User = get_user_model()
+
+MULTIPLE_USERS_FOUND = "django-accelerator: Multiple users found for email %s"
 
 
 class EmailModelBackend(object):
@@ -10,10 +14,13 @@ class EmailModelBackend(object):
             if not email:
                 email = username
             user = User.objects.get(email=email)
-            if user.check_password(password):
-                return user
         except User.DoesNotExist:
             return None
+        except User.MultipleObjectsReturned:
+            logger.error(MULTIPLE_USERS_FOUND % email)
+            raise User.AuthenticationException
+        if user.check_password(password):
+            return user
 
     def get_user(self, user_id):
         try:
