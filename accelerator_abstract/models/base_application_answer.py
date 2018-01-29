@@ -9,9 +9,10 @@ import swapper
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
+
 @python_2_unicode_compatible
 class BaseApplicationAnswer(AcceleratorModel):
-    application = models.ForeignKey(swapper.get_model_name(
+    application = models.ForeignKey(to=swapper.get_model_name(
         AcceleratorModel.Meta.app_label, "Application"))
     application_question = models.ForeignKey(swapper.get_model_name(
         AcceleratorModel.Meta.app_label, 'ApplicationQuestion'))

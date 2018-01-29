@@ -20,7 +20,7 @@ class BasePanelLocation(AcceleratorModel):
         verbose_name_plural = 'Panel Locations'
         ordering = ['judging_round', 'description']
         abstract = True
-        db_table = '{}_program'.format(AcceleratorModel.Meta.app_label)
+        db_table = '{}_panellocation'.format(AcceleratorModel.Meta.app_label)
 
     def __str__(self):
         return self.description

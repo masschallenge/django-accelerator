@@ -83,7 +83,7 @@ class BaseExpertProfile(BaseCoreProfile):
         settings.MPTT_SWAPPABLE_INDUSTRY_MODEL,
         verbose_name="Additional Industries",
         related_name="secondary_experts",
-        db_table="mc_expert_related_industry")
+        db_table="accelerator_expert_related_industry")
     privacy_email = models.CharField(
         max_length=64,
         verbose_name="Privacy - Email",
@@ -137,7 +137,7 @@ class BaseExpertProfile(BaseCoreProfile):
         swapper.get_model_name(BaseCoreProfile.Meta.app_label,
                                'MentoringSpecialties'),
         verbose_name="Mentoring Specialties",
-        db_table="mc_expert_related_mentoringspecialty",
+        db_table="accelerator_expert_related_mentoringspecialty",
         related_name="experts",
         blank=True)
     expert_group = models.CharField(
