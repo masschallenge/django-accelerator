@@ -83,7 +83,7 @@ class BaseExpertProfile(BaseCoreProfile):
         settings.MPTT_SWAPPABLE_INDUSTRY_MODEL,
         verbose_name="Additional Industries",
         related_name="secondary_experts",
-        db_table="accelerator_expert_related_industry")
+        db_table=settings.MPTT_SWAPPABLE_INDUSTRY_DB_TABLE_NAME)
     privacy_email = models.CharField(
         max_length=64,
         verbose_name="Privacy - Email",

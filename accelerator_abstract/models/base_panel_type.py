@@ -15,7 +15,7 @@ class BasePanelType(AcceleratorModel):
     panel_type = models.CharField(max_length=225, primary_key=True)
     description = models.CharField(max_length=225)
     judging_round = models.ForeignKey(swapper.get_model_name(
-        'accelerator', 'JudgingRound'), blank=True, null=True)
+        AcceleratorModel.Meta.app_label, 'JudgingRound'), blank=True, null=True)
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Panel Types'

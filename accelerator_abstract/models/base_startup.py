@@ -27,7 +27,7 @@ STARTUP_COMMUNITIES = (
 @python_2_unicode_compatible
 class BaseStartup(AcceleratorModel):
     organization = models.ForeignKey(swapper.get_model_name(
-        'accelerator', 'Organization'), blank=True,
+        AcceleratorModel.Meta.app_label, 'Organization'), blank=True,
         null=True, related_name='startups')
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              related_name='acc_startups')
@@ -36,11 +36,11 @@ class BaseStartup(AcceleratorModel):
         help_text=('Startup Profiles will be published to external websites '
                    'through the the API.'))
     primary_industry = models.ForeignKey(
-        swapper.get_model_name('accelerator', 'Industry'),
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Industry'),
         verbose_name='Primary Industry categorization',
         related_name='startups')
     additional_industries = models.ManyToManyField(
-        settings.MPTT_SWAPPABLE_INDUSTRY_MODEL_ADDITIONAL,
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Industry'),
         verbose_name='Additional Industries',
         related_name='secondary_startups',
         db_table=settings.MPTT_SWAPPABLE_INDUSTRY_DB_TABLE_NAME,
