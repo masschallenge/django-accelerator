@@ -18,6 +18,9 @@ USER_TYPES = ((EXPERT_USER_TYPE, 'Expert'),
               (ENTREPRENEUR_USER_TYPE, 'Entrepreneur'),
               (MEMBER_USER_TYPE, 'Member'))
 
+TWITTER_HANDLE_MAX_LENGTH = 16
+PHONE_MAX_LENGTH = 20
+
 
 @python_2_unicode_compatible
 class BaseBaseProfile(AcceleratorModel):

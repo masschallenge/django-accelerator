@@ -10,7 +10,11 @@ from .program_cycle import ProgramCycle
 from .base_profile import (
     BaseProfile,
 )
-from accelerator_abstract.models.base_base_profile import USER_TYPES
+from accelerator_abstract.models.base_base_profile import (
+    PHONE_MAX_LENGTH,
+    TWITTER_HANDLE_MAX_LENGTH,
+    USER_TYPES,
+)
 from .currency import Currency
 from .program import Program
 from accelerator_abstract.models.base_program import (
@@ -32,6 +36,7 @@ from accelerator_abstract.models.base_startup_program_interest import (
 from .startup_cycle_interest import StartupCycleInterest
 from .recommendation_tag import RecommendationTag
 
+from .site import Site
 from .site_program_authorization import SiteProgramAuthorization
 from .mentor_program_office_hour import MentorProgramOfficeHour
 
