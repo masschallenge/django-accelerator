@@ -2573,6 +2573,32 @@ class Migration(migrations.Migration):
                 'managed': True,
             },
         ),
+        migrations.CreateModel(
+            name='BaseProfile',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
+                ('created_at',
+                 models.DateTimeField(auto_now_add=True, null=True)),
+                ('updated_at', models.DateTimeField(auto_now=True, null=True)),
+                ('user_type', models.CharField(choices=[('EXPERT', 'Expert'), (
+                    'ENTREPRENEUR', 'Entrepreneur'), ('MEMBER', 'Member')],
+                                               max_length=16)),
+                (
+                    'privacy_policy_accepted',
+                    models.BooleanField(default=False)),
+                ('user', models.OneToOneField(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='baseprofile', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'db_table': 'accelerator_baseprofile',
+                'abstract': False,
+                'managed': True,
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'BaseProfile'),
+            },
+        ),
         migrations.AddField(
             model_name='industry',
             name='created_at',
