@@ -30,7 +30,8 @@ class BaseBaseProfile(AcceleratorModel):
     """
     objects = ProfileManager()
     manager = models.Manager()
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                related_name="baseprofile")
     user_type = models.CharField(max_length=16, choices=USER_TYPES)
     privacy_policy_accepted = models.BooleanField(
         default=False,
