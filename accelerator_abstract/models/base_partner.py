@@ -36,7 +36,6 @@ class BasePartner(AcceleratorModel):
     def __str__(self):
         return self.organization.name
 
-
     @property
     def name(self):
         return self.organization.name
@@ -72,8 +71,3 @@ class BasePartner(AcceleratorModel):
     def public_inquiry_email(self, public_inquiry_email):
         self.organization.public_inquiry_email = public_inquiry_email
         self.organization.save()
-
-    def user_is_team_member(self, user_id):
-        if self.partnerteammember_set.filter(team_member__pk=user_id).exists():
-            return True
-        return False
