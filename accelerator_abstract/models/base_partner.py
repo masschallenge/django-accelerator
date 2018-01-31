@@ -35,3 +35,45 @@ class BasePartner(AcceleratorModel):
 
     def __str__(self):
         return self.organization.name
+
+
+    @property
+    def name(self):
+        return self.organization.name
+
+    @name.setter
+    def name(self, name):
+        self.organization.name = name
+        self.organization.save()
+
+    @property
+    def website_url(self):
+        return self.organization.website_url
+
+    @website_url.setter
+    def website_url(self, website_url):
+        self.organization.website_url = website_url
+        self.organization.save()
+
+    @property
+    def twitter_handle(self):
+        return self.organization.twitter_handle
+
+    @twitter_handle.setter
+    def twitter_handle(self, twitter_handle):
+        self.organization.twitter_handle = twitter_handle
+        self.organization.save()
+
+    @property
+    def public_inquiry_email(self):
+        return self.organization.public_inquiry_email
+
+    @public_inquiry_email.setter
+    def public_inquiry_email(self, public_inquiry_email):
+        self.organization.public_inquiry_email = public_inquiry_email
+        self.organization.save()
+
+    def user_is_team_member(self, user_id):
+        if self.partnerteammember_set.filter(team_member__pk=user_id).exists():
+            return True
+        return False
