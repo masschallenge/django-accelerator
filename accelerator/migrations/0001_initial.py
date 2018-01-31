@@ -1864,7 +1864,7 @@ class Migration(migrations.Migration):
                                    to=settings.AUTH_USER_MODEL)),
                 ('program_role',
                  models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
-                                   to=swapper.get_model_name('accelerator', 'PROGRAMROLEGRANT'))),
+                                   to=swapper.get_model_name('accelerator', 'PROGRAMROLE'))),
             ],
             options={
                 'verbose_name': 'Program Role Grant',
