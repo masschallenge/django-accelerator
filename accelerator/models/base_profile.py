@@ -12,4 +12,3 @@ class BaseProfile(BaseBaseProfile):
     class Meta(BaseBaseProfile.Meta):
         swappable = swapper.swappable_setting(
             BaseBaseProfile.Meta.app_label, "BaseProfile")
-        abstract = True
