@@ -39,7 +39,6 @@ class BaseReference(AcceleratorModel):
         db_table = '{}_reference'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
-        pass
 
     def __str__(self):
         if self.submitted:
