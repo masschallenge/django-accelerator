@@ -14,11 +14,6 @@ from accelerator_abstract.models.base_program_role_grant import (
 
 
 class ProgramRoleGrant(BaseProgramRoleGrant):
-    person = models.ForeignKey(settings.AUTH_USER_MODEL)
-    program_role = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "ProgramRoleGrant"))
-
     class Meta(BaseProgramRoleGrant.Meta):
         swappable = swapper.swappable_setting(
             BaseProgramRoleGrant.Meta.app_label, "ProgramRoleGrant")
