@@ -49,5 +49,5 @@ class BaseBaseProfile(AcceleratorModel):
         if fn and ln:
             identifier = "%s %s" % (fn, ln)
         else:
-            identifier = self.user.username
+            identifier = self.user.email
         return "Base Profile for %s" % identifier
