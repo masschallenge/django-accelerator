@@ -219,3 +219,20 @@ class BaseJudgingRound(AcceleratorModel):
 
     def __str__(self):
         return '%s in %s' % (self.name, self.program)
+
+    def short_name(self):
+        return "{year_month} {family_abbrs} {round_name}".format(
+            year_month=self.year_month(),
+            family_abbrs=self.program_family_abbrs(),
+            round_name=self.name)
+
+    def year_month(self):
+        date = self.end_date_time
+        return "{year}-{month:02}".format(year=date.year, month=date.month)
+
+    def program_family_abbrs(self):
+        if self.cycle_based_round:
+            programs = self.program.cycle.programs.all()
+            return " ".join(sorted([program.family_abbr()
+                                    for program in programs]))
+        return self.program.family_abbr()
