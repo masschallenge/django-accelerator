@@ -50,8 +50,11 @@ class BaseJudgeApplicationFeedback(AcceleratorModel):
         max_length=20,
         editable=False,
         choices=JUDGING_FEEDBACK_STATUS_ENUM)
-    viewers = models.ManyToManyField(settings.AUTH_USER_MODEL,
-                                     related_name="viewed_feedback")
+    viewers = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="viewed_feedback",
+        db_table="{}_judgeapplicationfeedback_viewers".format(
+            AcceleratorModel.Meta.app_label))
 
     MANDATORY_MESSAGE = 'The question "%s" is mandatory.'
     REQUIRED_MINIMUM_MESSAGE = 'The question "%s" requires a minimum of %s %s.'
