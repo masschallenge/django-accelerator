@@ -24,8 +24,12 @@ from .base_program_startup_status import (
 )
 
 from .base_startup_program_interest import (
-    INTEREST_CHOICES,
     BaseStartupProgramInterest,
+    INTEREST_CHOICES,
+    PROGRAM_INTEREST_BOTTOM,
+    PROGRAM_INTEREST_DOWN,
+    PROGRAM_INTEREST_TOP,
+    PROGRAM_INTEREST_UP,
 )
 from .base_startup_cycle_interest import BaseStartupCycleInterest
 
