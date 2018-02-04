@@ -118,7 +118,10 @@ from .base_clearance import (
     CLEARANCE_LEVELS,
 )
 from .base_currency import BaseCurrency
-from .base_refund_code_redemption import BaseRefundCodeRedemption
+from .base_refund_code_redemption import (
+    BaseRefundCodeRedemption,
+    CREDIT_CODE_NOT_AVAILABLE,
+)
 from .base_reference import BaseReference
 from .base_startup_team_member import BaseStartupTeamMember
 

@@ -9,9 +9,6 @@ from accelerator_abstract.models.base_refund_code_redemption import (
     BaseRefundCodeRedemption
 )
 
-CREDIT_CODE_NOT_AVAILABLE = ("Apologies, credit code %s "
-                             "is no longer available")
-
 
 class RefundCodeRedemption(BaseRefundCodeRedemption):
     class Meta(BaseRefundCodeRedemption.Meta):
