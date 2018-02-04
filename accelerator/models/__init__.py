@@ -1,10 +1,12 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
+from swapper import load_model
 
 from simpleuser.models import User
 # from paypal.pro.helpers import PayPalWPP  # Commented out for impact-api
 
-from .startup_role import StartupRole
+StartupRole = load_model("accelerator", "StartupRole")
+# from .startup_role import StartupRole
 from .user_role import UserRole
 from .program_cycle import ProgramCycle
 from .base_profile import (
