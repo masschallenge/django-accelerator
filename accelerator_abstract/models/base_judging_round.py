@@ -77,7 +77,6 @@ BUFFER_TIMES = tuple([(i * FIFTEEN_MINUTES, i * FIFTEEN_MINUTES)
 START_MUST_PRECEDE_END_ERROR = 'Start date must precede end date'
 
 
-@python_2_unicode_compatible
 def validate_capacity_options(value):
     '''validate that the option is a pipe-separated list of integer values
     '''
