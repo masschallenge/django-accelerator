@@ -58,7 +58,11 @@ from .base_functional_expertise import BaseFunctionalExpertise
 from .base_industry import BaseIndustry
 from .base_member_profile import BaseMemberProfile
 from .base_named_group import BaseNamedGroup
-from .base_organization import BaseOrganization
+from .base_organization import (
+    BaseOrganization,
+    PARTNER_TYPE,
+    STARTUP_TYPE,
+)
 from .base_partner import BasePartner
 from .base_partner_team_member import BasePartnerTeamMember
 from .base_program_role import BaseProgramRole
