@@ -6,7 +6,6 @@ from __future__ import unicode_literals
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 
 def build_case_statement(cases_dict,
@@ -41,7 +40,6 @@ def url_validator():
         message='Enter a valid URL')
 
 
-@python_2_unicode_compatible
 def validate_capacity_options(value):
     '''
     validate that the option is a pipe-separated list of integer values
