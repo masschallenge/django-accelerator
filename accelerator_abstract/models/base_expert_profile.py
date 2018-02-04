@@ -8,7 +8,6 @@ import decimal
 import swapper
 from django.conf import settings
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.base_core_profile import BaseCoreProfile
 
@@ -49,7 +48,6 @@ INVITED_JUDGE_ALERT = (
 )
 
 
-@python_2_unicode_compatible
 class BaseExpertProfile(BaseCoreProfile):
     user_type = 'expert'
     default_page = "expert_homepage"

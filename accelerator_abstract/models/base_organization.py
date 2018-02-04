@@ -39,6 +39,9 @@ class BaseOrganization(AcceleratorModel):
         ordering = ['name', ]
         abstract = True
 
+    def __str__(self):
+        return self.name
+
     @classmethod
     def slug_from_instance(cls, instance):
         slug = slugify(instance.name)
@@ -57,6 +60,3 @@ class BaseOrganization(AcceleratorModel):
         if self.url_slug == "":
             self.url_slug = BaseOrganization.slug_from_instance(self)
         super(BaseOrganization, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return self.name

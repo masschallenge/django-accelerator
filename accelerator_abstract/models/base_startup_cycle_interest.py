@@ -8,12 +8,10 @@ from django.db.models import (
     ForeignKey,
     ManyToManyField,
 )
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
 class BaseStartupCycleInterest(AcceleratorModel):
     cycle = ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                               "ProgramCycle"))
