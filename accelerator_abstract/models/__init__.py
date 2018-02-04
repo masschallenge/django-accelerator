@@ -267,3 +267,5 @@ from .base_bucket_state import (
     UNPAID_BUCKET_TYPE,
     UNSUBMITTED_BUCKET_TYPE,
 )
+
+from base_user_role_menu import BaseUserRoleMenu
