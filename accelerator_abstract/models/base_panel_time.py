@@ -17,7 +17,10 @@ class BasePanelTime(AcceleratorModel):
     start_date_time = models.DateTimeField(blank=False, null=True)
     end_date_time = models.DateTimeField(blank=False, null=True)
     judging_round = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, 'JudgingRound'), blank=True, null=True)
+        AcceleratorModel.Meta.app_label, 'JudgingRound'),
+        blank=True,
+        null=True
+    )
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Panel Times'

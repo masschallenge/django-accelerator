@@ -4,9 +4,6 @@
 from __future__ import unicode_literals
 
 import swapper
-from django.conf import settings
-from django.core.validators import EmailValidator
-from django.db import models
 
 from accelerator_abstract.models import BaseReference
 from accelerator_abstract.models.accelerator_model import AcceleratorModel

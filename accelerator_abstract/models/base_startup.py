@@ -147,7 +147,6 @@ class BaseStartup(AcceleratorModel):
     def __str__(self):
         return self.organization.name
 
-
     @property
     def name(self):
         return self.organization.name
