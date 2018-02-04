@@ -109,7 +109,7 @@ from .base_clearance import (
     CLEARANCE_LEVEL_POM,
     CLEARANCE_LEVELS,
 )
-
+from .base_currency import BaseCurrency
 from .base_refund_code_redemption import BaseRefundCodeRedemption
 from .base_reference import BaseReference
 from .base_startup_team_member import BaseStartupTeamMember
