@@ -252,15 +252,17 @@ from .base_model_change import (
     MIGRATION_STATUS_OLD,
 )
 from .base_judge_feedback_component import (
+    BaseJudgeFeedbackComponent,
+    DEFINITELY_DONT_RECOMMEND,
+    DEFINITELY_RECOMMEND,
+    DONT_RECOMMEND,
     JUDGE_FEEDBACK_REVIEWER,
     JUDGE_FEEDBACK_SANITIZER,
-    BaseJudgeFeedbackComponent,
-    DEFINITELY_RECOMMEND,
-    STRONGLY_RECOMMEND,
+    LINEAR_SCORES,
     RECOMMEND,
-    DONT_RECOMMEND,
     STRONGLY_DONT_RECOMMEND,
-    DEFINITELY_DONT_RECOMMEND,
+    STRONGLY_RECOMMEND,
+    WEIGHTED_SCORES,
 )
 
 from .base_panel_location import BasePanelLocation

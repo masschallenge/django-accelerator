@@ -242,14 +242,16 @@ from accelerator_abstract.models.base_panel import (
 )
 from .judge_feedback_component import JudgeFeedbackComponent
 from accelerator_abstract.models.base_judge_feedback_component import (
+    DEFINITELY_DONT_RECOMMEND,
+    DEFINITELY_RECOMMEND,
+    DONT_RECOMMEND,
     JUDGE_FEEDBACK_REVIEWER,
     JUDGE_FEEDBACK_SANITIZER,
-    DEFINITELY_RECOMMEND,
-    STRONGLY_RECOMMEND,
+    LINEAR_SCORES,
     RECOMMEND,
-    DONT_RECOMMEND,
     STRONGLY_DONT_RECOMMEND,
-    DEFINITELY_DONT_RECOMMEND,
+    STRONGLY_RECOMMEND,
+    WEIGHTED_SCORES,
 )
 
 from .panel_location import PanelLocation
