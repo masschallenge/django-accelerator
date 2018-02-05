@@ -17,6 +17,7 @@ from accelerator_abstract.models.base_base_profile import (
     USER_TYPES,
 )
 from .currency import Currency
+from .model_change import ModelChange
 from .program import Program
 from accelerator_abstract.models.base_program import (
     ACTIVE_PROGRAM_STATUS,

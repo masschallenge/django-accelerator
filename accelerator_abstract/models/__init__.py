@@ -244,6 +244,13 @@ from .base_panel import (
     PREVIEW_PANEL_STATUS,
     BasePanel,
 )
+from .base_model_change import (
+    BaseModelChange,
+    MIGRATION_STATUS_DONE,
+    MIGRATION_STATUS_ERROR,
+    MIGRATION_STATUS_MIGRATING,
+    MIGRATION_STATUS_OLD,
+)
 from .base_judge_feedback_component import (
     JUDGE_FEEDBACK_REVIEWER,
     JUDGE_FEEDBACK_SANITIZER,
