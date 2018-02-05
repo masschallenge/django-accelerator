@@ -181,7 +181,10 @@ from .base_judge_panel_assignment import (
     BaseJudgePanelAssignment,
 )
 from .base_judge_round_commitment import BaseJudgeRoundCommitment
-from .base_judging_form_element import BaseJudgingFormElement
+from .base_judging_form_element import (
+    BaseJudgingFormElement,
+    FORM_ELEM_OVERALL_RECOMMENDATION,
+)
 from .base_judging_round import (
     CAPTURE_AVAILABILITY_DISABLED,
     CAPTURE_AVAILABILITY_TIME,

@@ -181,6 +181,9 @@ from accelerator_abstract.models.base_judge_panel_assignment import (
 )
 from .judge_round_commitment import JudgeRoundCommitment
 from .judging_form_element import JudgingFormElement
+from accelerator_abstract.models.base_judging_form_element import (
+    FORM_ELEM_OVERALL_RECOMMENDATION
+)
 from .judging_round import JudgingRound
 from accelerator_abstract.models.base_judging_round import (
     CAPTURE_AVAILABILITY_DISABLED,
