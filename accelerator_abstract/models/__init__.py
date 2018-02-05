@@ -110,6 +110,7 @@ from .base_application import (
     UNPAID_PAYMENT_STATUS,
 )
 
+from .base_core_profile import BaseCoreProfile
 from .base_clearance import (
     BaseClearance,
     CLEARANCE_LEVEL_EXEC_MD,
