@@ -182,7 +182,21 @@ from accelerator_abstract.models.base_judge_panel_assignment import (
 from .judge_round_commitment import JudgeRoundCommitment
 from .judging_form_element import JudgingFormElement
 from accelerator_abstract.models.base_judging_form_element import (
-    FORM_ELEM_OVERALL_RECOMMENDATION
+    FEEDBACK_ERROR,
+    FEEDBACK_QUESTION,
+    FORM_ELEM_COMPETITORS,
+    FORM_ELEM_CUSTOMER_ACQUISITION,
+    FORM_ELEM_CUSTOMER_PAIN_SOLUTION,
+    FORM_ELEM_FINANCIALS,
+    FORM_ELEM_OVERALL_IMPACT,
+    FORM_ELEM_OVERALL_RECOMMENDATION,
+    FORM_ELEM_REGULATION_IP,
+    FORM_ELEM_TEAM,
+    JUDGE_FEEDBACK_FORM_ELEMENTS,
+    RECOMMENDATION_ERROR,
+    RECOMMENDATION_QUESTION,
+    FORM_ELEM_FEEDBACK_TO_STARTUP,
+    FORM_ELEM_FEEDBACK_TO_MC,
 )
 from .judging_round import JudgingRound
 from accelerator_abstract.models.base_judging_round import (
