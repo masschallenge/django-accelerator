@@ -38,5 +38,5 @@ class BaseUserRoleMenu(Page, AcceleratorModel):
     class Meta(Page.Meta, AcceleratorModel.Meta):
         verbose_name = "User Role Men"
         verbose_name_plural = "User Role Menus"
-        db_table = '{}_startup'.format(AcceleratorModel.Meta.app_label)
+        db_table = '{}_userrole'.format(AcceleratorModel.Meta.app_label)
         abstract = True
