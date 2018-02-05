@@ -1,41 +1,72 @@
 targets = \
-  clean \
-  code-check \
+  help \
+  \
+  test \
+  tox \
   coverage \
   coverage-html \
-  help \
-  install \
-  package \
-  shell \
-  test \
-  uninstall \
+  code-check \
+  \
+  data-migration \
+  migrations \
+  \
+  status \
+  current \
+  \
+  run-all-servers \
+  stop-all-servers \
+  shutdown-all-vms \
+  delete-all-vms \
+
+
+#   install \
+#   package \
+#   shell \
+#   uninstall \
 
 
 .PHONY: $(targets)
 
 
 target_help = \
-  "clean - Shutdown all running containers and removes data files." \
-  "code-check - Runs Flake8 and pycodestyle on the files changed between the " \
-  "\tcurrent branch and and a given BRANCH (defaults to development)" \
-  "coverage - Run coverage and generate text report." \
-  "coverage-html - Run coverage and generate HTML report." \
-  "help - Prints this help message." \
-  "install - Builds package and installs it in the local virtualenv." \
-  "migrate - Runs migrations. If MIGRATION is given then then that " \
-  "\tmigration is targeted in the accelerator package unless another " \
-  "\tAPPLICATION is given. The migrations are run on a temporary" \
-  "\tdatabase that is destroyed immediately afterwords." \
-  "migrations - Creates an needed migrations due to model changes." \
-  "package - Create python package for this library (default)." \
-  "shell - Start Django shell that can load this package." \
-  "test - Run tests. To run a subset of tests:" \
-  "\tmake test TESTS='accelerator.tests.test_currency accelerator.tests.test_startup'" \
-  "tox - Run tox to run tests on all supported configurations." \
-  "uninstall - Removes the package from the local virtuanlenv." \
-  "" \
-  "Note: various targets automatically create a python virtualenv, venv." \
-  "You can us it in your shell by running: 'source venv/bin/activate'"
+  'help - Prints this help message.' \
+  ' ' \
+  'test - Run tests with no coverage. Run just those specified in $$(tests)' \
+  '\tif provided.  E.g.:' \
+  '\tmake test tests="impact.tests.test_file1 impact.tests.test_file2"' \
+  'coverage - Run tests with coverage summary in terminal.' \
+  'coverage-html - Run tests with coverage and open repot in browser.' \
+  'code-check - Runs Flake8 and pep8 on the files changed between the' \
+  '\tcurrent branch and $$(branch) (defaults to development)' \
+  'tox - Run tox to run tests on all supported configurations.' \
+  ' ' \
+  'data-migration - Create empty migration.' \
+  '\tUses $$(migration_name) if provided.' \
+  'migrations - Create any needed auto-generated migrations.' \
+  '\tUses $$(migration_name) if provided.' \
+  'migrate - Runs any pending migrations from managing client.' \
+  'models - Updates model definitions in clients.' \
+  ' ' \
+  'status - Reports the status of all related source code repositories.' \
+  'current - Switch all repos to development branch (or $$(branch)' \
+  '\tif provided and available) and pulls down any changes to the branch.' \
+  '\tReports any errors from the different repos.' \
+  ' ' \
+  'run-all-servers - Starts a set of related servers.' \
+  'stop-all-server - Stops a set of related servers.' \
+  'shutdown-all-vms - Shutdown set of related server VMs' \
+  'delete-all-vms - Delets set of related server VMs' \
+  ' ' \
+  'release-list - List all releases that are ready to be deployed.' \
+  'release - Create named release of releated servers.' \
+  '\tRelease name is applied as a tag to all the related git repos.' \
+  '\tRelease name defaults release-<version>.<number> where <version> is' \
+  '\tthe first line of impact-api/VERSION and <number> is the next unused' \
+  '\tnon-negative integer (0,1,2,...).' \
+  '\t$$(release_name) overrides the entire release name.' \
+  'deploy - Deploy $$(release_name) to a $$(target).' \
+  '\tValid targets include "staging" (the default), "production",' \
+  '\t "test-1", and "test-2"' \
 
 OS = $(shell uname)
 
@@ -119,20 +150,25 @@ install: package uninstall
 uninstall:
 	-pip uninstall -qy django-accelerator
 
+ifdef migration_name
+  MIGRATION_ARGS = --name $(migration_name)
+endif
+
+data-migration: $(VENV)
+	@. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
+	DJANGO_SETTINGS_MODULE=settings \
+	django-admin.py makemigrations accelerator --empty $(MIGRATION_ARGS)
+
 migrations: $(VENV)
 	@. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
 	DJANGO_SETTINGS_MODULE=settings \
-	django-admin.py makemigrations accelerator
+	django-admin.py makemigrations accelerator $(MIGRATION_ARGS)
 	@. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
 	DJANGO_SETTINGS_MODULE=settings \
-	django-admin.py makemigrations simpleuser
+	django-admin.py makemigrations simpleuser $(MIGRATION_ARGS)
 
-migrate: $(VENV)
-	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
-	django-admin.py migrate $(APPLICATION) $(MIGRATION)
-
-shell: $(VENV)
-	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings django-admin.py shell
+migrate:
+	@cd ../impact-api && $(MAKE)
 
 test: $(VENV)
 	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings django-admin.py test $(TESTS)
