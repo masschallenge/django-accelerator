@@ -210,6 +210,8 @@ from accelerator_abstract.models.base_judging_round import (
     RECRUIT_DISPLAY_ONLY,
     RECRUIT_ANYONE,
     RECRUIT_APPROVED_ONLY,
+    FEEDBACK_DISPLAY_DISABLED,
+    FEEDBACK_DISPLAY_ENABLED,
 )
 
 from .scenario import Scenario
