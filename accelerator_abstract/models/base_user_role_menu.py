@@ -11,7 +11,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_program import PROGRAM_STATUSES
 
 
-class BaseUserRoleMenu(Page, AcceleratorModel):
+class BaseUserRoleMenu(AcceleratorModel, Page):
     program_family = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "ProgramFamily"),
@@ -35,8 +35,8 @@ class BaseUserRoleMenu(Page, AcceleratorModel):
         blank=True,
     )
 
-    class Meta(Page.Meta, AcceleratorModel.Meta):
-        verbose_name = "User Role Men"
+    class Meta(AcceleratorModel.Meta, Page.Meta):
+        verbose_name = "User Role Menu"
         verbose_name_plural = "User Role Menus"
         db_table = '{}_userrolemenu'.format(AcceleratorModel.Meta.app_label)
         abstract = True

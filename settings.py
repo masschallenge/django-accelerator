@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     "accelerator.tests",
     "embed_video",
     "paypal.pro",
+    "fluent_pages",
 ]
 
 MIDDLEWARE_CLASSES = []

@@ -6,6 +6,7 @@ from simpleuser.models import User
 
 from .startup_role import StartupRole
 from .user_role import UserRole
+from .user_role_menu import UserRoleMenu
 from .program_cycle import ProgramCycle
 from .base_profile import (
     BaseProfile,

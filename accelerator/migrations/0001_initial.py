@@ -24,6 +24,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('fluent_pages', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -705,7 +706,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'APPLICATIONPANELASSIGNMENT'),
+                                                       'APPLICATIONPANELASSIGNMENT'),
             },
         ),
         migrations.CreateModel(
@@ -739,7 +740,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'BUCKETSTATE'),
+                                                       'BUCKETSTATE'),
             },
         ),
         migrations.CreateModel(
@@ -770,7 +771,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'CLEARANCE'),
+                                                       'CLEARANCE'),
             },
         ),
         migrations.CreateModel(
@@ -835,7 +836,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'ENTREPRENEURPROFILE'),
+                                                       'ENTREPRENEURPROFILE'),
             },
         ),
         migrations.CreateModel(
@@ -856,7 +857,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'EXPERTCATEGORY'),
+                                                       'EXPERTCATEGORY'),
             },
         ),
         migrations.CreateModel(
@@ -980,7 +981,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'EXPERTPROFILE'),
+                                                       'EXPERTPROFILE'),
             },
         ),
         migrations.CreateModel(
@@ -1033,7 +1034,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'INTERESTCATEGORY'),
+                                                       'INTERESTCATEGORY'),
             },
         ),
         migrations.CreateModel(
@@ -1065,7 +1066,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'JUDGEAPPLICATIONFEEDBACK'),
+                                                       'JUDGEAPPLICATIONFEEDBACK'),
             },
         ),
         migrations.CreateModel(
@@ -1091,7 +1092,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'JUDGEAVAILABILITY'),
+                                                       'JUDGEAVAILABILITY'),
             },
         ),
         migrations.CreateModel(
@@ -1112,7 +1113,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'JUDGEFEEDBACKCOMPONENT'),
+                                                       'JUDGEFEEDBACKCOMPONENT'),
             },
         ),
         migrations.CreateModel(
@@ -1141,7 +1142,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'JUDGEPANELASSIGNMENT'),
+                                                       'JUDGEPANELASSIGNMENT'),
             },
         ),
         migrations.CreateModel(
@@ -1165,7 +1166,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'JUDGEROUNDCOMMITMENT'),
+                                                       'JUDGEROUNDCOMMITMENT'),
             },
         ),
         migrations.CreateModel(
@@ -1185,7 +1186,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'JUDGINGFORM'),
+                                                       'JUDGINGFORM'),
             },
         ),
         migrations.CreateModel(
@@ -1257,7 +1258,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'JUDGINGFORMELEMENT'),
+                                                       'JUDGINGFORMELEMENT'),
             },
         ),
         migrations.CreateModel(
@@ -1357,7 +1358,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'JUDGINGROUND'),
+                                                       'JUDGINGROUND'),
             },
         ),
         migrations.CreateModel(
@@ -1446,7 +1447,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'MEMBERPROFILE'),
+                                                       'MEMBERPROFILE'),
             },
         ),
         migrations.CreateModel(
@@ -1467,7 +1468,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'MENTORINGSPECIALTIES'),
+                                                       'MENTORINGSPECIALTIES'),
             },
         ),
         migrations.CreateModel(
@@ -1518,7 +1519,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'MENTORPROGRAMOFFICEHOUR'),
+                                                       'MENTORPROGRAMOFFICEHOUR'),
             },
         ),
         migrations.CreateModel(
@@ -1556,7 +1557,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'NEWSLETTER'),
+                                                       'NEWSLETTER'),
             },
         ),
         migrations.CreateModel(
@@ -1580,7 +1581,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'NEWSLETTERRECEIPT'),
+                                                       'NEWSLETTERRECEIPT'),
             },
         ),
         migrations.CreateModel(
@@ -1607,7 +1608,8 @@ class Migration(migrations.Migration):
                 'ordering': ['last_name', 'first_name'],
                 'abstract': False,
                 'managed': True,
-                'swappable': swapper.swappable_setting('accelerator', 'OBSERVER'),
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'OBSERVER'),
             },
         ),
         migrations.CreateModel(
@@ -1667,7 +1669,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'PANELLOCATION'),
+                                                       'PANELLOCATION'),
             },
         ),
         migrations.CreateModel(
@@ -1695,7 +1697,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'PANELTIME'),
+                                                       'PANELTIME'),
             },
         ),
         migrations.CreateModel(
@@ -1721,7 +1723,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'PANELTYPE'),
+                                                       'PANELTYPE'),
             },
         ),
         migrations.CreateModel(
@@ -1750,7 +1752,8 @@ class Migration(migrations.Migration):
                 'ordering': ['organization__name'],
                 'abstract': False,
                 'managed': True,
-                'swappable': swapper.swappable_setting('accelerator', 'PARTNER'),
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'PARTNER'),
             },
         ),
         migrations.CreateModel(
@@ -1778,7 +1781,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'PARTNERTEAMMEMBER'),
+                                                       'PARTNERTEAMMEMBER'),
             },
         ),
         migrations.CreateModel(
@@ -1801,7 +1804,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'PAYPALREFUND'),
+                                                       'PAYPALREFUND'),
             },
         ),
         migrations.CreateModel(
@@ -1843,7 +1846,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'PROGRAMOVERRIDE'),
+                                                       'PROGRAMOVERRIDE'),
             },
         ),
         migrations.CreateModel(
@@ -1870,7 +1873,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'PROGRAMPARTNER'),
+                                                       'PROGRAMPARTNER'),
             },
         ),
         migrations.CreateModel(
@@ -1908,7 +1911,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'PROGRAMPARTNERTYPE'),
+                                                       'PROGRAMPARTNERTYPE'),
             },
         ),
         migrations.CreateModel(
@@ -1937,7 +1940,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'PROGRAMROLE'),
+                                                       'PROGRAMROLE'),
             },
         ),
         migrations.CreateModel(
@@ -1963,7 +1966,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'PROGRAMROLEGRANT'),
+                                                       'PROGRAMROLEGRANT'),
             },
         ),
         migrations.CreateModel(
@@ -2010,7 +2013,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'PROGRAMSTARTUPATTRIBUTE'),
+                                                       'PROGRAMSTARTUPATTRIBUTE'),
             },
         ),
         migrations.CreateModel(
@@ -2066,7 +2069,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'PROGRAMSTARTUPSTATUS'),
+                                                       'PROGRAMSTARTUPSTATUS'),
             },
         ),
         migrations.CreateModel(
@@ -2105,7 +2108,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'REFUNDCODE'),
+                                                       'REFUNDCODE'),
             },
         ),
         migrations.CreateModel(
@@ -2145,7 +2148,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'REFUNDCODEREDEMPTION'),
+                                                       'REFUNDCODEREDEMPTION'),
             },
         ),
         migrations.CreateModel(
@@ -2172,7 +2175,8 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_scenario',
                 'abstract': False,
                 'managed': True,
-                'swappable': swapper.swappable_setting('accelerator', 'SCENARIO'),
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'SCENARIO'),
             },
         ),
         migrations.CreateModel(
@@ -2199,7 +2203,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'SCENARIOAPPLICATION'),
+                                                       'SCENARIOAPPLICATION'),
             },
         ),
         migrations.CreateModel(
@@ -2224,7 +2228,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'SCENARIOJUDGE'),
+                                                       'SCENARIOJUDGE'),
             },
         ),
         migrations.CreateModel(
@@ -2281,7 +2285,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'SCENARIOPREFERENCE'),
+                                                       'SCENARIOPREFERENCE'),
             },
         ),
         migrations.CreateModel(
@@ -2315,7 +2319,8 @@ class Migration(migrations.Migration):
                 'ordering': ('newsletter', 'sequence'),
                 'abstract': False,
                 'managed': True,
-                'swappable': swapper.swappable_setting('accelerator', 'SECTION'),
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'SECTION'),
             },
         ),
         migrations.CreateModel(
@@ -2373,7 +2378,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'SITEPROGRAMAUTHORIZATION'),
+                                                       'SITEPROGRAMAUTHORIZATION'),
             },
         ),
         migrations.CreateModel(
@@ -2402,7 +2407,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'STARTUPATTRIBUTE'),
+                                                       'STARTUPATTRIBUTE'),
             },
         ),
         migrations.CreateModel(
@@ -2423,7 +2428,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'STARTUPCYCLEINTEREST'),
+                                                       'STARTUPCYCLEINTEREST'),
             },
         ),
         migrations.CreateModel(
@@ -2450,7 +2455,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'STARTUPMENTORRELATIONSHIP'),
+                                                       'STARTUPMENTORRELATIONSHIP'),
             },
         ),
         migrations.CreateModel(
@@ -2491,7 +2496,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'STARTUPMENTORTRACKINGRECORD'),
+                                                       'STARTUPMENTORTRACKINGRECORD'),
             },
         ),
         migrations.CreateModel(
@@ -2517,7 +2522,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'STARTUPOVERRIDEGRANT'),
+                                                       'STARTUPOVERRIDEGRANT'),
             },
         ),
         migrations.CreateModel(
@@ -2558,7 +2563,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'STARTUPPROGRAMINTEREST'),
+                                                       'STARTUPPROGRAMINTEREST'),
             },
         ),
         migrations.CreateModel(
@@ -2576,7 +2581,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'STARTUPROLE'),
+                                                       'STARTUPROLE'),
             },
         ),
         migrations.CreateModel(
@@ -2602,7 +2607,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'STARTUPSTATUS'),
+                                                       'STARTUPSTATUS'),
             },
         ),
         migrations.CreateModel(
@@ -2647,7 +2652,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'STARTUPTEAMMEMBER'),
+                                                       'STARTUPTEAMMEMBER'),
             },
         ),
         migrations.CreateModel(
@@ -2668,7 +2673,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                    'USERLABEL'),
+                                                       'USERLABEL'),
             },
         ),
         migrations.CreateModel(
@@ -2687,7 +2692,8 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_userrole',
                 'abstract': False,
                 'managed': True,
-                'swappable': swapper.swappable_setting('accelerator', 'USERROLE'),
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'USERROLE'),
             },
         ),
         migrations.CreateModel(
@@ -2789,6 +2795,54 @@ class Migration(migrations.Migration):
                 'swappable': swapper.swappable_setting('accelerator',
                                                        'Reference'),
             },
+        ),
+        migrations.CreateModel(
+            name='UserRoleMenu',
+            fields=[
+                ('urlnode_ptr', models.OneToOneField(auto_created=True,
+                                                     on_delete=django.db.models.deletion.CASCADE,
+                                                     parent_link=True,
+                                                     primary_key=True,
+                                                     serialize=False,
+                                                     to='fluent_pages.UrlNode')),
+                ('created_at',
+                 models.DateTimeField(auto_now_add=True, null=True)),
+                ('updated_at', models.DateTimeField(auto_now=True, null=True)),
+                ('program_status', models.CharField(blank=True, choices=[
+                    ('upcoming', 'Upcoming'), ('active', 'Active'),
+                    ('ended', 'Ended'), ('hidden', 'Hidden')], max_length=64,
+                                                    null=True)),
+                ('program', models.ForeignKey(blank=True, null=True,
+                                              on_delete=django.db.models.deletion.CASCADE,
+                                              to=swapper.get_model_name(
+                                                  'accelerator',
+                                                  'Program'),
+                                              verbose_name='Program')),
+                ('program_family', models.ForeignKey(blank=True, null=True,
+                                                     on_delete=django.db.models.deletion.CASCADE,
+                                                     to=swapper.get_model_name(
+                                                         'accelerator',
+                                                         'ProgramFamily'),
+                                                     verbose_name='Program Family')),
+                ('user_role', models.ForeignKey(blank=True, null=True,
+                                                on_delete=django.db.models.deletion.CASCADE,
+                                                to=swapper.get_model_name(
+                                                    'accelerator',
+                                                    'UserRole'),
+                                                verbose_name='User Role')),
+            ],
+            options={
+                'verbose_name': 'User Role Menu',
+                'verbose_name_plural': 'User Role Menus',
+                'db_table': 'pagetype_accelerator_userrolemenu',
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'UserRoleMenu'),
+            },
+            bases=('fluent_pages.page', models.Model),
+            managers=[
+                ('objects', django.db.models.manager.Manager()),
+                ('base_objects', django.db.models.manager.Manager()),
+            ],
         ),
         migrations.AddField(
             model_name='industry',
