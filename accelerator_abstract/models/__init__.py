@@ -255,6 +255,12 @@ from .base_judge_feedback_component import (
     JUDGE_FEEDBACK_REVIEWER,
     JUDGE_FEEDBACK_SANITIZER,
     BaseJudgeFeedbackComponent,
+    DEFINITELY_RECOMMEND,
+    STRONGLY_RECOMMEND,
+    RECOMMEND,
+    DONT_RECOMMEND,
+    STRONGLY_DONT_RECOMMEND,
+    DEFINITELY_DONT_RECOMMEND,
 )
 
 from .base_panel_location import BasePanelLocation

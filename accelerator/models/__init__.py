@@ -244,7 +244,12 @@ from .judge_feedback_component import JudgeFeedbackComponent
 from accelerator_abstract.models.base_judge_feedback_component import (
     JUDGE_FEEDBACK_REVIEWER,
     JUDGE_FEEDBACK_SANITIZER,
-
+    DEFINITELY_RECOMMEND,
+    STRONGLY_RECOMMEND,
+    RECOMMEND,
+    DONT_RECOMMEND,
+    STRONGLY_DONT_RECOMMEND,
+    DEFINITELY_DONT_RECOMMEND,
 )
 
 from .panel_location import PanelLocation

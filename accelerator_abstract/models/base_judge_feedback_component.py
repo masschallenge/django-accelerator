@@ -12,6 +12,12 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 JUDGE_FEEDBACK_REVIEWER = "_RESTRICTED_: Judge Feedback Reviewer"
 JUDGE_FEEDBACK_SANITIZER = "_CAUTION_: Judge Feedback Sanitizer"
 
+DEFINITELY_RECOMMEND = "Definitely Recommend"
+STRONGLY_RECOMMEND = "Strongly Recommend"
+RECOMMEND = "Recommend"
+DONT_RECOMMEND = "Don't Recommend"
+STRONGLY_DONT_RECOMMEND = "Strongly Don't Recommend"
+DEFINITELY_DONT_RECOMMEND = "Definitely Don't Recommend"
 
 @python_2_unicode_compatible
 class BaseJudgeFeedbackComponent(AcceleratorModel):
