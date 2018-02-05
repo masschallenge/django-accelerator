@@ -17,7 +17,6 @@ from accelerator_abstract.models.base_base_profile import (
     USER_TYPES,
 )
 from .currency import Currency
-from .model_change import ModelChange
 from .program import Program
 from accelerator_abstract.models.base_program import (
     ACTIVE_PROGRAM_STATUS,
@@ -25,6 +24,14 @@ from accelerator_abstract.models.base_program import (
     ENDED_PROGRAM_STATUS,
     HIDDEN_PROGRAM_STATUS,
     UPCOMING_PROGRAM_STATUS,
+)
+
+from .model_change import ModelChange
+from accelerator_abstract.models.base_model_change import (
+    MIGRATION_STATUS_DONE,
+    MIGRATION_STATUS_ERROR,
+    MIGRATION_STATUS_MIGRATING,
+    MIGRATION_STATUS_OLD,
 )
 from .program_startup_status import ProgramStartupStatus
 from accelerator_abstract.models.base_program_startup_status import (
