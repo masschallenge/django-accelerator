@@ -2805,9 +2805,9 @@ class Migration(migrations.Migration):
                                                      primary_key=True,
                                                      serialize=False,
                                                      to='fluent_pages.UrlNode')),
-                ('created_at',
-                 models.DateTimeField(auto_now_add=True, null=True)),
-                ('updated_at', models.DateTimeField(auto_now=True, null=True)),
+                # ('created_at',
+                #  models.DateTimeField(auto_now_add=True, null=True)),
+                # ('updated_at', models.DateTimeField(auto_now=True, null=True)),
                 ('program_status', models.CharField(blank=True, choices=[
                     ('upcoming', 'Upcoming'), ('active', 'Active'),
                     ('ended', 'Ended'), ('hidden', 'Hidden')], max_length=64,

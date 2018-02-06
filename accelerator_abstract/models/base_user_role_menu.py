@@ -11,7 +11,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_program import PROGRAM_STATUSES
 
 
-class BaseUserRoleMenu(AcceleratorModel, Page):
+class BaseUserRoleMenu(Page):
     program_family = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "ProgramFamily"),
