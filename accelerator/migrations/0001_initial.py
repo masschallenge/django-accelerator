@@ -2887,6 +2887,61 @@ class Migration(migrations.Migration):
                                                        'ExpertInterestType'),
             },
         ),
+        migrations.CreateModel(
+            name='CategoryHeaderPage',
+            fields=[
+                ('urlnode_ptr', models.OneToOneField(auto_created=True,
+                                                     on_delete=django.db.models.deletion.CASCADE,
+                                                     parent_link=True,
+                                                     primary_key=True,
+                                                     serialize=False,
+                                                     to='fluent_pages.UrlNode')),
+                ('is_category_header', models.BooleanField(default=True)),
+            ],
+            options={
+                'verbose_name': 'Category Header',
+                'verbose_name_plural': 'Category Headers',
+                'db_table': 'pagetype_accelerator_categoryheaderpage',
+                'abstract': False,
+                'managed': True,
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'CategoryHeaderPage'),
+            },
+            bases=('fluent_pages.page',),
+            managers=[
+                ('objects', django.db.models.manager.Manager()),
+                ('base_objects', django.db.models.manager.Manager()),
+            ],
+        ),
+        migrations.CreateModel(
+            name='FilePage',
+            fields=[
+                ('urlnode_ptr', models.OneToOneField(auto_created=True,
+                                                     on_delete=django.db.models.deletion.CASCADE,
+                                                     parent_link=True,
+                                                     primary_key=True,
+                                                     serialize=False,
+                                                     to='fluent_pages.UrlNode')),
+                ('file', models.FileField(
+                    storage=accelerator_abstract.models.secure_file_system_storage.SecureFileSystemStorage(
+                        location='/var/www/cms-files'), upload_to='%Y-%m')),
+                ('description', models.TextField(blank=True)),
+            ],
+            options={
+                'verbose_name': 'File',
+                'verbose_name_plural': 'Files',
+                'db_table': 'pagetype_accelerator_filepage',
+                'abstract': False,
+                'managed': True,
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'FilePage'),
+            },
+            bases=('fluent_pages.page',),
+            managers=[
+                ('objects', django.db.models.manager.Manager()),
+                ('base_objects', django.db.models.manager.Manager()),
+            ],
+        ),
         migrations.AddField(
             model_name='industry',
             name='created_at',

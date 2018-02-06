@@ -17,7 +17,7 @@ from accelerator_abstract.models.secure_file_system_storage import (
 cms_fs = SecureFileSystemStorage(location=settings.CMS_FILE_ROOT)
 
 
-class BaseFilePage(Page, AcceleratorModel):
+class BaseFilePage(Page):
     file = models.FileField(storage=cms_fs, upload_to="%Y-%m")
     description = models.TextField(blank=True)
 
