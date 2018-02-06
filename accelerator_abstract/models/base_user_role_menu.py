@@ -35,7 +35,7 @@ class BaseUserRoleMenu(AcceleratorModel, Page):
         blank=True,
     )
 
-    class Meta(AcceleratorModel.Meta, Page.Meta):
+    class Meta(AcceleratorModel.Meta):
         verbose_name = "User Role Menu"
         verbose_name_plural = "User Role Menus"
         db_table = '{}_userrolemenu'.format(AcceleratorModel.Meta.app_label)
