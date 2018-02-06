@@ -10,11 +10,6 @@ from accelerator_abstract.models import BaseExpertInterestType
 
 
 class ExpertInterestType(BaseExpertInterestType):
-    """A category of involvement an expert has with a program or program family
-    """
-    name = models.CharField(max_length=50)
-    short_description = models.CharField(max_length=255)
-
     class Meta(BaseExpertInterestType.Meta):
         swappable = swapper.swappable_setting(
             BaseExpertInterestType.Meta.app_label, "ExpertInterestType")
