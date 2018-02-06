@@ -8,7 +8,7 @@ class ProfileManager(models.Manager):
     def get_queryset(self):
         # Breaking a circular reference:
         #   BaseProfile => ProfileManager => ProfileQuerySet => BaseProfile
-        from accelerator_abstract.models.profile_query_set import (
+        from accelerator.models.profile_query_set import (
             ProfileQuerySet
         )
         return ProfileQuerySet(self.model, using=self._db)

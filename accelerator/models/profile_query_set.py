@@ -5,17 +5,22 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.query import QuerySet
 
 from accelerator_abstract.models.base_base_profile import (
-    BaseBaseProfile,
     ENTREPRENEUR_USER_TYPE,
     EXPERT_USER_TYPE,
     MEMBER_USER_TYPE,
 )
-from accelerator_abstract.models.base_entrepreneur_profile import (
-    BaseEntrepreneurProfile
-)
-from accelerator_abstract.models.base_expert_profile import BaseExpertProfile
-from accelerator_abstract.models.base_member_profile import BaseMemberProfile
+from accelerator.apps import AcceleratorConfig
 
+import swapper
+
+EntrepreneurProfile = swapper.load_model(AcceleratorConfig.name,
+                                         "EntrepreneurProfile")
+ExpertProfile = swapper.load_model(AcceleratorConfig.name,
+                                   "ExpertProfile")
+MemberProfile = swapper.load_model(AcceleratorConfig.name,
+                                   "MemberProfile")
+BaseProfile = swapper.load_model(AcceleratorConfig.name,
+                                 "BaseProfile")
 User = get_user_model()
 
 MISSING_BASE_PROFILE_TEMPLATE = ("Missing BaseProfile for user {}. "
@@ -27,9 +32,9 @@ EMAIL_KEY = 'email'
 PK_KEY = 'pk'
 
 PROFILE_CLASSES_AND_TYPES = [
-    (BaseExpertProfile, EXPERT_USER_TYPE),
-    (BaseEntrepreneurProfile, ENTREPRENEUR_USER_TYPE),
-    (BaseMemberProfile, MEMBER_USER_TYPE)
+    (ExpertProfile, EXPERT_USER_TYPE),
+    (EntrepreneurProfile, ENTREPRENEUR_USER_TYPE),
+    (MemberProfile, MEMBER_USER_TYPE)
 ]
 
 MISSING_PROFILE_TEMPLATE = ("No CoreProfile Subclass found. Creating a "
@@ -65,7 +70,7 @@ class ProfileQuerySet(QuerySet):
 
     def _profile_manager_by_user_type(self):
         try:
-            self.base_profile = BaseBaseProfile.manager.get(user=self.user)
+            self.base_profile = BaseProfile.manager.get(user=self.user)
         except ObjectDoesNotExist:
             self.base_profile = None
             return None
@@ -81,7 +86,7 @@ class ProfileQuerySet(QuerySet):
     def _add_base_profile_if_missing(self):
         if not self.base_profile:
             logger.warning(MISSING_BASE_PROFILE_TEMPLATE.format(self.user))
-            self.base_profile = BaseBaseProfile.manager.create(user=self.user)
+            self.base_profile = BaseProfile.manager.create(user=self.user)
 
     def _get_or_create_profile(self):
         return (self._get_profile_from_existing_profile_types() or
@@ -91,7 +96,7 @@ class ProfileQuerySet(QuerySet):
         logger.warning(MISSING_PROFILE_TEMPLATE.format(MEMBER_USER_TYPE))
         self.base_profile.user_type = MEMBER_USER_TYPE
         self.base_profile.save()
-        member_profile = BaseMemberProfile.objects.create(user=self.user)
+        member_profile = MemberProfile.objects.create(user=self.user)
         member_profile.save()
         return member_profile
 

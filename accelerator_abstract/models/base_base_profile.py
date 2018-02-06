@@ -7,7 +7,6 @@ from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-from accelerator_abstract.managers.profile_manager import ProfileManager
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 ENTREPRENEUR_USER_TYPE = 'ENTREPRENEUR'
@@ -26,10 +25,8 @@ PHONE_MAX_LENGTH = 20
 class BaseBaseProfile(AcceleratorModel):
     """pivot class that returns an appropriate profile based on user_type
 
-    see: ProfileManager
+    see: accelerator.models.ProfileManager
     """
-    objects = ProfileManager()
-    manager = models.Manager()
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 related_name="baseprofile")
     user_type = models.CharField(max_length=16, choices=USER_TYPES)
