@@ -305,3 +305,4 @@ from .base_bucket_state import (
 
 from .base_node_published_for import BaseNodePublishedFor
 from .base_category_header_page import BaseCategoryHeaderPage
+from .base_file_page import BaseFilePage
