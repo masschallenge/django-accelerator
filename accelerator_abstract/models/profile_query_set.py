@@ -1,6 +1,7 @@
 import logging
 
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.query import QuerySet
 
 from accelerator_abstract.models.base_base_profile import (
@@ -65,7 +66,7 @@ class ProfileQuerySet(QuerySet):
     def _profile_manager_by_user_type(self):
         try:
             self.base_profile = BaseBaseProfile.manager.get(user=self.user)
-        except BaseBaseProfile.DoesNotExist:
+        except ObjectDoesNotExist:
             self.base_profile = None
             return None
         profile_managers = {user_type: kls.objects for
