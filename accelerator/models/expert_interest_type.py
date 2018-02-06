@@ -13,5 +13,3 @@ class ExpertInterestType(BaseExpertInterestType):
     class Meta(BaseExpertInterestType.Meta):
         swappable = swapper.swappable_setting(
             BaseExpertInterestType.Meta.app_label, "ExpertInterestType")
-        abstract = True
-        verbose_name_plural = "Expert Interest Types"
