@@ -2834,6 +2834,7 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'User Role Menu',
                 'verbose_name_plural': 'User Role Menus',
+                'managed': True,
                 'db_table': 'pagetype_accelerator_userrolemenu',
                 'swappable': swapper.swappable_setting('accelerator',
                                                        'UserRoleMenu'),
@@ -2843,6 +2844,28 @@ class Migration(migrations.Migration):
                 ('objects', django.db.models.manager.Manager()),
                 ('base_objects', django.db.models.manager.Manager()),
             ],
+        ),
+        migrations.CreateModel(
+            name='ModelChange',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
+                ('created_at',
+                 models.DateTimeField(auto_now_add=True, null=True)),
+                ('updated_at', models.DateTimeField(auto_now=True, null=True)),
+                ('name', models.CharField(max_length=128, unique=True)),
+                ('status', models.CharField(
+                    choices=[('OLD', 'OLD'), ('MIGRATING', 'MIGRATING'),
+                             ('DONE', 'DONE'), ('ERROR', 'ERROR')],
+                    default='OLD', max_length=64)),
+            ],
+            options={
+                'db_table': 'accelerator_modelchange',
+                'abstract': False,
+                'managed': True,
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'ModelChange'),
+            },
         ),
         migrations.AddField(
             model_name='industry',
