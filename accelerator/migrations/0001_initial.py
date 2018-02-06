@@ -2867,6 +2867,26 @@ class Migration(migrations.Migration):
                                                        'ModelChange'),
             },
         ),
+        migrations.CreateModel(
+            name='ExpertInterestType',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
+                ('created_at',
+                 models.DateTimeField(auto_now_add=True, null=True)),
+                ('updated_at', models.DateTimeField(auto_now=True, null=True)),
+                ('name', models.CharField(max_length=50)),
+                ('short_description', models.CharField(max_length=255)),
+            ],
+            options={
+                'verbose_name_plural': 'Expert Interest Types',
+                'db_table': 'accelerator_expertinteresttype',
+                'abstract': False,
+                'managed': True,
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'ExpertInterestType'),
+            },
+        ),
         migrations.AddField(
             model_name='industry',
             name='created_at',
@@ -2971,7 +2991,8 @@ class Migration(migrations.Migration):
             name='payment',
             field=models.ForeignKey(
                 on_delete=django.db.models.deletion.CASCADE,
-                to='accelerator.PayPalPayment'),
+                to=swapper.get_model_name('accelerator',
+                                          'PayPalPayment')),
         ),
         migrations.AddField(
             model_name='panel',

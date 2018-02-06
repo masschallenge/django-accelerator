@@ -10,4 +10,4 @@ import swapper
 class PayPalPayment(BasePayPalPayment):
     class Meta(BasePayPalPayment.Meta):
         swappable = swapper.swappable_setting(
-            BasePayPalPayment.Meta.app_label, "StartupAttribute")
+            BasePayPalPayment.Meta.app_label, "PayPalPayment")
