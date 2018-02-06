@@ -72,8 +72,8 @@ class BaseCoreProfile(AcceleratorModel):
     drupal_creation_date = models.DateTimeField(blank=True, null=True)
     drupal_last_login = models.DateTimeField(blank=True, null=True)
     interest_categories = models.ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               'InterestCategory'),
+        to=swapper.get_model_name(AcceleratorModel.Meta.app_label,
+                                  'InterestCategory'),
         blank=True)
     users_last_activity = models.DateTimeField(blank=True, null=True)
     current_program = models.ForeignKey(
