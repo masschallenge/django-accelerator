@@ -1,3 +1,8 @@
+# MIT License
+# Copyright (c) 2017 MassChallenge, Inc.
+
+from __future__ import unicode_literals
+
 from accelerator.tests.factories.expert_category_factory import (
     ExpertCategoryFactory
 )

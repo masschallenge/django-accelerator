@@ -1,3 +1,8 @@
+# MIT License
+# Copyright (c) 2017 MassChallenge, Inc.
+
+from __future__ import unicode_literals
+
 from django.contrib.auth.models import Permission
 from factory import (
     DjangoModelFactory,

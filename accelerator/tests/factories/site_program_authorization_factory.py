@@ -1,3 +1,8 @@
+# MIT License
+# Copyright (c) 2017 MassChallenge, Inc.
+
+from __future__ import unicode_literals
+
 import swapper
 from factory import (
     DjangoModelFactory,
@@ -19,7 +24,7 @@ class SiteProgramAuthorizationFactory(DjangoModelFactory):
 
     site = SubFactory(SiteFactory)
     program = SubFactory("mc.tests.factories_old.DefaultProgramFactory")
-    startup_profile_base_url = "http://accelerate.masschallenge.org/finalists/"
+    startup_profile_base_url = "http://accelerator.org/finalists/"
     sponsor_profile_base_url = Sequence(
         lambda n: "www.sponsor{0}.com".format(n))
     video_base_url = Sequence(lambda n: "www.video{0}.com".format(n))

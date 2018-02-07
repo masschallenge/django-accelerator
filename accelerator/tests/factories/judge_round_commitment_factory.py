@@ -1,4 +1,7 @@
-# -*- coding: utf-8 -*-
+# MIT License
+# Copyright (c) 2017 MassChallenge, Inc.
+
+from __future__ import unicode_literals
 
 import swapper
 from factory import (
@@ -7,12 +10,13 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
+from accelerator.tests.factories.expert_factory import ExpertFactory
+from accelerator.tests.factories.judging_round_factory import (
+    JudgingRoundFactory
+)
 
 JudgeRoundCommitment = swapper.load_model(AcceleratorConfig.name,
                                           'JudgeRoundCommitment')
-
-from accelerator.tests.factories.expert_factory import ExpertFactory
-from accelerator.tests.factories.judging_round_factory import JudgingRoundFactory
 
 
 class JudgeRoundCommitmentFactory(DjangoModelFactory):

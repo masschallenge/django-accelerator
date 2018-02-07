@@ -6,12 +6,12 @@ from __future__ import unicode_literals
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 import swapper
-from base_judging_round import (
+from accelerator_abstract.models.base_judging_round import (
     RECRUIT_ANYONE,
     RECRUIT_APPROVED_ONLY,
 )
-from base_program import ACTIVE_PROGRAM_STATUS
-from base_user_role import BaseUserRole
+from accelerator_abstract.models.base_program import ACTIVE_PROGRAM_STATUS
+from accelerator_abstract.models.base_user_role import BaseUserRole
 from accelerator.apps import AcceleratorConfig
 
 ProgramRole = swapper.load_model(AcceleratorConfig.name, "ProgramRole")

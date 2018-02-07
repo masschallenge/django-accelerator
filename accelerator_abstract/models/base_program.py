@@ -38,7 +38,7 @@ INVALID_OVERVIEW_TIMESPAN_MSG = ("Overview deadline date must be"
 
 @python_2_unicode_compatible
 class BaseProgram(AcceleratorModel):
-    """a masschallenge program"""
+    """An Accelerator program"""
     name = models.CharField(max_length=50)
     program_family = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,

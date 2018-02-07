@@ -1,3 +1,11 @@
+# MIT License
+# Copyright (c) 2017 MassChallenge, Inc.
+
+from .application_answer_factory import ApplicationAnswerFactory
+from .application_factory import ApplicationFactory
+from .application_panel_assignment_factory import (
+    ApplicationPanelAssignmentFactory,
+)
 from .application_question_factory import ApplicationQuestionFactory
 from .application_type_factory import ApplicationTypeFactory
 from .base_profile_factory import BaseProfileFactory
@@ -22,6 +30,7 @@ from .functional_expertise_factory import FunctionalExpertiseFactory
 from .group_factory import GroupFactory
 from .industry_factory import IndustryFactory
 from .interest_category_factory import InterestCategoryFactory
+from .job_posting_factory import JobPostingFactory
 from .judge_application_feedback_factory import JudgeApplicationFeedbackFactory
 from .judge_availability_factory import JudgeAvailabilityFactory
 from .judge_feedback_component_factory import JudgeFeedbackComponentFactory
@@ -92,9 +101,3 @@ from .url_node_factory import UrlNodeFactory
 from .user_factory import UserFactory
 from .user_label_factory import UserLabelFactory
 from .user_role_factory import UserRoleFactory
-from .application_answer_factory import ApplicationAnswerFactory
-from .application_factory import ApplicationFactory
-from .application_panel_assignment_factory import (
-    ApplicationPanelAssignmentFactory,
-)
-from .job_posting_factory import JobPostingFactory

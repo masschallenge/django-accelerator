@@ -1,3 +1,8 @@
+# MIT License
+# Copyright (c) 2017 MassChallenge, Inc.
+
+from __future__ import unicode_literals
+
 from datetime import (
     date,
     timedelta,
@@ -17,6 +22,7 @@ from accelerator.tests.factories import (
     ExpertFactory,
 )
 from accelerator.tests.factories.program_factory import ProgramFactory
+
 MentorProgramOfficeHour = swapper.load_model(AcceleratorConfig.name,
                                              'MentorProgramOfficeHour')
 
