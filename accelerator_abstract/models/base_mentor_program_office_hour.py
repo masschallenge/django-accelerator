@@ -66,3 +66,6 @@ class BaseMentorProgramOfficeHour(AcceleratorModel):
         if self.is_open():
             hour_type = "Open"
         return "%s office hour with %s" % (hour_type, self.mentor)
+
+    def is_open(self):
+        return not bool(self.finalist)
