@@ -15,7 +15,7 @@ from factory import (
 from pytz import utc
 
 from accelerator.apps import AcceleratorConfig
-from accelerator.tests.factories_old.startup_factory import StartupFactory
+from accelerator.tests.factories.startup_factory import StartupFactory
 
 JobPosting = swapper.load_model(AcceleratorConfig.name, 'JobPosting')
 
