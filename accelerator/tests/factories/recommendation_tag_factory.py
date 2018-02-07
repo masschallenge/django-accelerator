@@ -1,18 +1,16 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
+import swapper
 from factory import (
     DjangoModelFactory,
     Sequence,
 )
 
-import swapper
+from accelerator.apps import AcceleratorConfig
 
-RecommendationTag = swapper.load_model("accelerator", "RecommendationTag")
+RecommendationTag = swapper.load_model(AcceleratorConfig.name,
+                                       'RecommendationTag')
 
 
 class RecommendationTagFactory(DjangoModelFactory):
-
     class Meta:
         model = RecommendationTag
 

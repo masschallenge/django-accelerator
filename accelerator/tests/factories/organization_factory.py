@@ -1,19 +1,15 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
+import swapper
 from factory import (
     DjangoModelFactory,
     Sequence,
 )
 
-import swapper
+from accelerator.apps import AcceleratorConfig
 
-
-Organization = swapper.load_model("accelerator", "Organization")
+Organization = swapper.load_model(AcceleratorConfig.name, 'Organization')
 
 
 class OrganizationFactory(DjangoModelFactory):
-
     class Meta:
         model = Organization
 
