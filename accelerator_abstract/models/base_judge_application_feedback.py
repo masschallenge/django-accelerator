@@ -58,7 +58,7 @@ class BaseJudgeApplicationFeedback(AcceleratorModel):
 
     MANDATORY_MESSAGE = 'The question "%s" is mandatory.'
     REQUIRED_MINIMUM_MESSAGE = 'The question "%s" requires a minimum of %s %s.'
-    UNICODE_FORMAT = 'Feedback to Application %s by Judge %s'
+    STR_FORMAT = 'Feedback to Application %s by Judge %s'
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_judgeapplicationfeedback'.format(
@@ -68,4 +68,4 @@ class BaseJudgeApplicationFeedback(AcceleratorModel):
         unique_together = ('application', 'judge', 'panel')
 
     def __str__(self):
-        return self.UNICODE_FORMAT % (self.application, self.judge)
+        return self.STR_FORMAT % (self.application, self.judge)
