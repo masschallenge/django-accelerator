@@ -15,10 +15,10 @@ class TestBaseProfile(TestCase):
         self.assertIn(member.first_name, display)
         self.assertIn(member.last_name, display)
 
-    def test_str_defaults_to_username_if_first_or_last_names_are_missing(
+    def test_str_defaults_to_email_if_first_or_last_names_are_missing(
             self):
         member = MemberFactory()
-        member.first_name = None
+        member.first_name = ''
         member.save()
         display = member.baseprofile.__str__()
         self.assertIn(member.email, display)
