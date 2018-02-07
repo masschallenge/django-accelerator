@@ -6,18 +6,17 @@ from decimal import Decimal
 
 import django.core.validators
 import django.db.models.deletion
+import embed_video.fields
+import mptt.fields
+import sorl.thumbnail.fields
+import swapper
 from django.conf import settings
 from django.db import (
     migrations,
     models,
 )
 
-import embed_video.fields
-import mptt.fields
-import sorl.thumbnail.fields
-import swapper
-
-import accelerator_abstract.models.base_judging_round
+import accelerator_abstract.models.base_expert_interest
 
 
 class Migration(migrations.Migration):
@@ -3049,6 +3048,42 @@ class Migration(migrations.Migration):
                                                        'NodePublishedFor'),
             },
         ),
+        migrations.CreateModel(
+            name='ExpertInterest',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
+                ('created_at',
+                 models.DateTimeField(auto_now_add=True, null=True)),
+                ('updated_at', models.DateTimeField(auto_now=True, null=True)),
+                ('topics', models.TextField(blank=True,
+                                            help_text='Please provide a list of topics of interest to yo')),
+                ('interest_type',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                   related_name='interested_experts',
+                                   to=swapper.get_model_name('accelerator',
+                                                             'ExpertInterestType'))),
+                ('program_family',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                   related_name='interested_experts',
+                                   to=swapper.get_model_name('accelerator',
+                                                             'ProgramFamily'))),
+                ('user',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                   related_name='expert_interests',
+                                   to=settings.AUTH_USER_MODEL, validators=[
+                         accelerator_abstract.models.base_expert_interest.is_expert_validator])),
+            ],
+            options={
+                'verbose_name_plural': 'Expert Interests',
+                'db_table': 'accelerator_expertinterest',
+                'abstract': False,
+                'managed': True,
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'ExpertInterest'),
+            },
+        ),
+
         migrations.AddField(
             model_name='industry',
             name='created_at',
