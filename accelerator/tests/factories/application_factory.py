@@ -8,19 +8,23 @@ from datetime import (
     timedelta,
 )
 
+import swapper
 from factory import (
     DjangoModelFactory,
     SubFactory,
 )
 from pytz import utc
 
-from accelerator.models.application import Application
+from accelerator.apps import AcceleratorConfig
+
 from accelerator.tests.factories.application_type_factory import ApplicationTypeFactory
 from accelerator.tests.factories.program_cycle_factory import ProgramCycleFactory
 from accelerator.tests.factories.startup_factory import StartupFactory
 from accelerator_abstract.models.base_application import (
     INCOMPLETE_APP_STATUS,
 )
+Application = swapper.load_model(AcceleratorConfig.name,
+                                 'Application')
 
 
 class ApplicationFactory(DjangoModelFactory):

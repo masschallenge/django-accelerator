@@ -3,15 +3,18 @@
 
 from __future__ import unicode_literals
 
+import swapper
 from factory import (
     DjangoModelFactory,
     Sequence,
     SubFactory,
 )
 
-from accelerator.models.section import Section
+from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories import NewsletterFactory
 from accelerator_abstract.models.base_section import INCLUDE_FOR_CHOICES
+
+Section = swapper.load_model(AcceleratorConfig.name, 'Section')
 
 
 class SectionFactory(DjangoModelFactory):
