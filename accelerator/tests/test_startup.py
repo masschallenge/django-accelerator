@@ -2,7 +2,7 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from django.test import TestCase
-from .factories.startup_factory import StartupFactory
+from accelerator.tests.factories.startup_factory import StartupFactory
 
 
 class TestStartup(TestCase):
