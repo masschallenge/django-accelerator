@@ -16,6 +16,7 @@ SiteProgramAuthorization = swapper.load_model(AcceleratorConfig.name,
                                               'SiteProgramAuthorization')
 
 from .site_factory import SiteFactory
+from .program_factory import ProgramFactory
 
 
 class SiteProgramAuthorizationFactory(DjangoModelFactory):
@@ -23,7 +24,7 @@ class SiteProgramAuthorizationFactory(DjangoModelFactory):
         model = SiteProgramAuthorization
 
     site = SubFactory(SiteFactory)
-    program = SubFactory("mc.tests.factories_old.DefaultProgramFactory")
+    program = SubFactory(ProgramFactory)
     startup_profile_base_url = "http://accelerator.org/finalists/"
     sponsor_profile_base_url = Sequence(
         lambda n: "www.sponsor{0}.com".format(n))

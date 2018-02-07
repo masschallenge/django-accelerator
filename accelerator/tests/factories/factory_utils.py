@@ -10,11 +10,6 @@ from accelerator.tests.factories.industry_factory import IndustryFactory
 from accelerator.tests.factories.program_factory import ProgramFactory
 
 
-# Note: Not sure this is the right place for this.
-# It can't go in mc.tests.utils since it depends
-# on some factories_old and some of the factories_old depend
-# on mc.tests.utils.  It's kind of like a context,
-# but a bit different.
 def expert_data(user):
     return {
         "email": user.email,

@@ -11,6 +11,7 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
+from accelerator.tests.factories import ProgramFactory
 
 ProgramPartnerType = swapper.load_model(AcceleratorConfig.name,
                                         'ProgramPartnerType')
@@ -21,7 +22,7 @@ class ProgramPartnerTypeFactory(DjangoModelFactory):
         model = ProgramPartnerType
 
     partner_type = Sequence(lambda n: 'Test Partner Type %d' % n)
-    program = SubFactory("mc.tests.factories_old.DefaultProgramFactory")
+    program = SubFactory(ProgramFactory)
     description = Sequence(
         lambda n: "Description of Program Partner Type #{0}".format(n))
     feature_in_footer = False
