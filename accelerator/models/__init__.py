@@ -15,6 +15,9 @@ from accelerator_abstract.models.base_base_profile import (
     PHONE_MAX_LENGTH,
     TWITTER_HANDLE_MAX_LENGTH,
     USER_TYPES,
+    ENTREPRENEUR_USER_TYPE,
+    MEMBER_USER_TYPE,
+    EXPERT_USER_TYPE,
 )
 from .currency import Currency
 from .program import Program
@@ -294,3 +297,5 @@ from accelerator_abstract.models.base_bucket_state import (
 )
 from .file_page import FilePage
 from .category_header_page import CategoryHeaderPage
+from .core_profile import CoreProfile
+from .node_published_for import NodePublishedFor

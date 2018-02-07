@@ -10,6 +10,9 @@ from .base_program_cycle import BaseProgramCycle
 from .base_base_profile import (
     BaseBaseProfile,
     USER_TYPES,
+    ENTREPRENEUR_USER_TYPE,
+    MEMBER_USER_TYPE,
+    EXPERT_USER_TYPE
 )
 from .base_program import (
     ACTIVE_PROGRAM_STATUS,
