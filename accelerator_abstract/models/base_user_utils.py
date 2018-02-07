@@ -5,14 +5,17 @@ from __future__ import unicode_literals
 
 from django.contrib.auth import get_user_model
 from django.db.models import Q
-from judging_round import (
-    JudgingRound,
+import swapper
+from base_judging_round import (
     RECRUIT_ANYONE,
     RECRUIT_APPROVED_ONLY,
 )
-from program import ACTIVE_PROGRAM_STATUS
-from program_role import ProgramRole
-from user_role import UserRole
+from base_program import ACTIVE_PROGRAM_STATUS
+from base_user_role import BaseUserRole
+from accelerator.apps import AcceleratorConfig
+
+ProgramRole = swapper.load_model(AcceleratorConfig.name, "ProgramRole")
+JudgingRound = swapper.load_model(AcceleratorConfig.name, "JudgingRound")
 
 
 def _has_user_type(obj, user_type):
@@ -36,7 +39,7 @@ def is_member(user):
 def current_mentor_roles():
     return ProgramRole.objects.filter(
         program__program_status=ACTIVE_PROGRAM_STATUS,
-        user_role__name=UserRole.MENTOR)
+        user_role__name=BaseUserRole.MENTOR)
 
 
 def current_mentor_filter():
@@ -46,7 +49,7 @@ def current_mentor_filter():
 def current_office_hour_holder_roles():
     return ProgramRole.objects.filter(
         program__program_status=ACTIVE_PROGRAM_STATUS,
-        user_role__name=UserRole.OFFICE_HOUR_HOLDER)
+        user_role__name=BaseUserRole.OFFICE_HOUR_HOLDER)
 
 
 def current_office_hours_filter():
@@ -64,7 +67,7 @@ def get_office_hour_holder_users():
     partner_team_member_q = ~Q(partnerteammember__exact=None)
     current_air_roles = ProgramRole.objects.filter(
         program__program_status=ACTIVE_PROGRAM_STATUS,
-        user_role__name=UserRole.AIR)
+        user_role__name=BaseUserRole.AIR)
     air_q = Q(programrolegrant__program_role__in=current_air_roles)
     office_hours_q = current_office_hours_filter()
 
