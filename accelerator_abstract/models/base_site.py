@@ -20,7 +20,6 @@ class BaseSite(AcceleratorModel):
         db_table = '{}_site'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
-        pass
 
     def __str__(self):
         return "{0} at {1}".format(self.name,

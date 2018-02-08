@@ -11,12 +11,11 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
+from .program_factory import ProgramFactory
+from .site_factory import SiteFactory
 
 SiteProgramAuthorization = swapper.load_model(AcceleratorConfig.name,
                                               'SiteProgramAuthorization')
-
-from .site_factory import SiteFactory
-from .program_factory import ProgramFactory
 
 
 class SiteProgramAuthorizationFactory(DjangoModelFactory):
