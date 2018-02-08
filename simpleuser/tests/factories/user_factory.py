@@ -26,7 +26,7 @@ class UserFactory(DjangoModelFactory):
     is_staff = False
     is_active = True
     last_login = timezone.now() + timedelta(-1)
-    date_joined = (timezone.now() + timedelta(-10))
+    date_joined = (timezone.now() + timedelta(-10)).date()
 
     @classmethod
     def _prepare(cls, create, **kwargs):
