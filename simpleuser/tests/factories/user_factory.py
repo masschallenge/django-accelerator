@@ -18,7 +18,7 @@ class UserFactory(DjangoModelFactory):
     class Meta:
         model = get_user_model()
 
-    username = Sequence(lambda n: uuid.uuid4())
+    username = Sequence(lambda n: str(uuid.uuid4()))
     email = Sequence(lambda n: "user_{0}@example.com".format(n))
     first_name = Sequence(lambda n: "First {0}".format(n))
     last_name = Sequence(lambda n: "Last {0}".format(n))
