@@ -13,10 +13,12 @@ from factory import (
     Sequence,
 )
 
+User = get_user_model()
+
 
 class UserFactory(DjangoModelFactory):
     class Meta:
-        model = get_user_model()
+        model = User
 
     username = Sequence(lambda n: str(uuid.uuid4()))
     email = Sequence(lambda n: "user_{0}@example.com".format(n))
