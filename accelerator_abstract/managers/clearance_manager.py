@@ -75,7 +75,7 @@ class ClearanceManager(models.Manager):
 def _level_order(user, level, program_family=None):
     level_order = CLEARANCE_LEVEL_ORDER.get(level)
     if level_order is None:
-        logger.warn(CLEARANCE_LOGGER_FAILED_BAD_CLEARANCE_MSG.format(
+        logger.warning(CLEARANCE_LOGGER_FAILED_BAD_CLEARANCE_MSG.format(
             user=user,
             program_family=program_family or "none",
             level=level))
