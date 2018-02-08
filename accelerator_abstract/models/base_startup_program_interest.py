@@ -50,3 +50,13 @@ class BaseStartupProgramInterest(OrderedModel, AcceleratorModel):
         abstract = True
         db_table = '{}_startuporograminterest'.format(
             AcceleratorModel.Meta.app_label)
+
+    def change_position(self, move):
+        moves = {
+            PROGRAM_INTEREST_UP: self.up,
+            PROGRAM_INTEREST_DOWN: self.down,
+            PROGRAM_INTEREST_TOP: self.top,
+            PROGRAM_INTEREST_BOTTOM: self.bottom,
+        }
+        if move and move in moves.keys():
+            moves[move]()
