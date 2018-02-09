@@ -1,10 +1,17 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
 
+from mock import patch
+
+from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django.test import TestCase
 from .factories.user_factory import UserFactory
-from simpleuser.email_model_backend import EmailModelBackend
+from simpleuser.email_model_backend import (
+    EmailModelBackend,
+    MULTIPLE_USERS_FOUND,
+)
+User = get_user_model()
 
 BAD_EMAIL = "nosuch@user.com"
 BAD_PASSWORD = "bad password"
@@ -49,3 +56,15 @@ class TestEmailModelBackend(TestCase):
         id = user.id
         user.delete()
         assert backend.get_user(id) is None
+
+    @patch('simpleuser.email_model_backend.logger')
+    def test_authenticate_user_with_duplicated_email(self, mock_logger):
+        email = "user@example.com"
+        UserFactory(email=email, password="password", username="user1")
+        user2 = UserFactory(email=email,
+                            password="password",
+                            username="user2")
+        backend = EmailModelBackend()
+        with self.assertRaises(User.AuthenticationException):
+            backend.authenticate(user2)
+        mock_logger.error.assert_called_with(MULTIPLE_USERS_FOUND % email)
