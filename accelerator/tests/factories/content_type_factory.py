@@ -9,10 +9,12 @@ from factory import (
     Sequence,
 )
 
+from accelerator.apps import AcceleratorConfig
+
 
 class ContentTypeFactory(DjangoModelFactory):
     class Meta:
         model = ContentType
 
-    app_label = "mc"
+    app_label = AcceleratorConfig.name
     model = Sequence(lambda n: "test_contenttypemodel{0}".format(n))
