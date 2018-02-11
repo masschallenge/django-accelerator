@@ -8,6 +8,13 @@ from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
+VALID_EXPERT_CATEGORIES = [
+    "Executive",
+    "Investor",
+    "Lawyer",
+    "Other",
+]
+
 
 @python_2_unicode_compatible
 class BaseExpertCategory(AcceleratorModel):

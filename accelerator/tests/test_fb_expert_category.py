@@ -4,11 +4,14 @@
 from __future__ import unicode_literals
 
 from django.test import TestCase
-from accelerator.tests.factories.expert_category_factory import ExpertCategoryFactory
+from accelerator.tests.factories.expert_category_factory import (
+    ExpertCategoryFactory
+)
+from accelerator.models import VALID_EXPERT_CATEGORIES
 
 
 class TestExpertCategory(TestCase):
 
     def test_create(self):
         category = ExpertCategoryFactory()
-        self.assertTrue("Expert Category" in category.name)
+        self.assertTrue(category.name in VALID_EXPERT_CATEGORIES)

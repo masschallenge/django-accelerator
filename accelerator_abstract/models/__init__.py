@@ -145,7 +145,10 @@ from .base_startup_mentor_relationship import (
     BaseStartupMentorRelationship,
 )
 from .base_interest_category import BaseInterestCategory
-from .base_expert_category import BaseExpertCategory
+from .base_expert_category import (
+    BaseExpertCategory,
+    VALID_EXPERT_CATEGORIES,
+)
 from .base_expert_interest_type import BaseExpertInterestType
 from .base_job_posting import (
     BaseJobPosting,

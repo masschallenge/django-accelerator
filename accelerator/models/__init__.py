@@ -149,6 +149,9 @@ from accelerator_abstract.models.base_startup_mentor_relationship import (
 )
 from .interest_category import InterestCategory
 from .expert_category import ExpertCategory
+from accelerator_abstract.models.base_expert_category import (
+    VALID_EXPERT_CATEGORIES
+)
 from .expert_interest_type import ExpertInterestType
 from .job_posting import JobPosting
 from accelerator_abstract.models.base_job_posting import JOB_TYPE_VALUES
