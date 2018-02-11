@@ -21,5 +21,6 @@ ExpertCategory = swapper.load_model(AcceleratorConfig.name, 'ExpertCategory')
 class ExpertCategoryFactory(DjangoModelFactory):
     class Meta:
         model = ExpertCategory
+        django_get_or_create = ('name',)
 
     name = Iterator(VALID_EXPERT_CATEGORIES)
