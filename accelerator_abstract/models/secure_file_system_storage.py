@@ -6,6 +6,7 @@ from __future__ import unicode_literals
 import base64
 
 from django.core.files.storage import FileSystemStorage
+from django.conf import settings
 
 try:
     from django.urls import reverse
@@ -35,7 +36,7 @@ class SecureFileSystemStorage(FileSystemStorage):
             if isinstance(name, str):
                 name = name.encode('utf-8')
             encoded_name = base64.urlsafe_b64encode(name)
-            url = reverse('mc.views.AdminFilePageDownloadView',
+            url = reverse(settings.FILE_PAGE_DOWNLOAD_VIEW,
                           args=(encoded_name,))
         except TypeError:
             raise ValueError("This file is not accessible via a URL.")
