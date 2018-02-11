@@ -11,11 +11,12 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
+from accelerator.tests.factories.judging_round_factory import (
+    JudgingRoundFactory
+)
+from accelerator.tests.factories.program_factory import ProgramFactory
 
 Newsletter = swapper.load_model(AcceleratorConfig.name, 'Newsletter')
-
-from accelerator.tests.factories.program_factory import ProgramFactory
-from accelerator.tests.factories.judging_round_factory import JudgingRoundFactory
 
 
 class NewsletterFactory(DjangoModelFactory):
@@ -24,7 +25,7 @@ class NewsletterFactory(DjangoModelFactory):
 
     name = Sequence(lambda n: "Newsletter {0}".format(n))
     subject = Sequence(lambda n: "NewsletterSubject {0}".format(n))
-    from_addr = Sequence(lambda n: "mcstaffer{0}@mc.org".format(n))
+    from_addr = Sequence(lambda n: "staffer{0}@accelerator.org".format(n))
     program = SubFactory(ProgramFactory)
     judging_round = SubFactory(JudgingRoundFactory)
     cc_addrs = ""
