@@ -11,7 +11,7 @@ from django.conf import settings
 try:
     from django.urls import reverse
 except ImportError:
-    from django.core.urlresolvers import reverse
+    from django.core.urlresolvers import reverse  # pragma: no cover
 
 
 class SecureFileSystemStorage(FileSystemStorage):
