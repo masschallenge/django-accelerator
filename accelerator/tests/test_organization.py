@@ -34,7 +34,7 @@ class TestOrganization(TestCase):
         assert slug in organization1.url_slug
         assert slug in organization2.url_slug
 
-    def test_slugifying_org_with_no_name(self):
+    def test_slugify_org_with_no_name(self):
         org = OrganizationFactory(name="")
         slug = Organization.slug_from_instance(org)
         self.assertEqual(slug, "organization-1")
