@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -16,7 +15,6 @@ EMAIL = 0
 EMAIL_TEMPLATE = "newsletter/newsletter_email.html"
 
 
-@python_2_unicode_compatible
 class BaseNewsletter(AcceleratorModel):
     name = models.CharField(max_length=127)
     subject = models.CharField(
@@ -52,4 +50,3 @@ class BaseNewsletter(AcceleratorModel):
             AcceleratorModel.Meta.app_label)
         abstract = True
         ordering = ('-created_at', 'name',)
-

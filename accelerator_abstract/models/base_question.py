@@ -25,7 +25,6 @@ QUESTION_TYPES = ((QUESTION_TYPE_MULTILINE, 'MultilineText'),
                   (QUESTION_TYPE_NUMBER, 'Number'))
 
 
-@python_2_unicode_compatible
 class BaseQuestion(AcceleratorModel):
     name = models.CharField(max_length=200)
     question_type = models.CharField(

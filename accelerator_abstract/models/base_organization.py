@@ -6,7 +6,6 @@ from __future__ import unicode_literals
 from django.core.validators import RegexValidator
 from django.db import models
 from django.template.defaultfilters import slugify
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -14,7 +13,6 @@ STARTUP_TYPE = "startup"
 PARTNER_TYPE = "partner"
 
 
-@python_2_unicode_compatible
 class BaseOrganization(AcceleratorModel):
     name = models.CharField(max_length=255)
     website_url = models.URLField(max_length=100, blank=True)
@@ -41,7 +39,6 @@ class BaseOrganization(AcceleratorModel):
         verbose_name_plural = 'Organizations'
         ordering = ['name', ]
         abstract = True
-
 
     def save(self, *args, **kwargs):
         if self.url_slug == "":

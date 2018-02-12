@@ -4,12 +4,10 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
 class BaseProgramFamily(AcceleratorModel):
     """An association of related programs."""
 
@@ -52,4 +50,3 @@ class BaseProgramFamily(AcceleratorModel):
         verbose_name_plural = "program families"
         db_table = '{}_programfamily'.format(AcceleratorModel.Meta.app_label)
         abstract = True
-

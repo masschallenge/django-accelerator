@@ -5,12 +5,10 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
 class BaseApplicationType(AcceleratorModel):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=500, blank=True)
@@ -23,4 +21,3 @@ class BaseApplicationType(AcceleratorModel):
         db_table = '{}_applicationtype'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
-

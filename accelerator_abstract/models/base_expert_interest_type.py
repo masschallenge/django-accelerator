@@ -4,12 +4,10 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
 class BaseExpertInterestType(AcceleratorModel):
     """A category of involvement an expert has with a program or program family
     """
@@ -21,4 +19,3 @@ class BaseExpertInterestType(AcceleratorModel):
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name_plural = "Expert Interest Types"
-

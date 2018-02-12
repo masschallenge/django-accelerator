@@ -7,12 +7,10 @@ from django.db.models import (
     CharField,
     PositiveIntegerField,
 )
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
 class BaseUserRole(AcceleratorModel):
     # Known User Roles
     ACTIVE_JUDGE = "Active Judge"
@@ -45,7 +43,6 @@ class BaseUserRole(AcceleratorModel):
     name = CharField(max_length=255)
     url_slug = CharField(max_length=30)
     sort_order = PositiveIntegerField()
-
 
     class Meta(AcceleratorModel.Meta):
         abstract = True

@@ -11,7 +11,6 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.label_model import LabelModel
 
 
-@python_2_unicode_compatible
 class BaseProgramRole(LabelModel):
     program = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"))

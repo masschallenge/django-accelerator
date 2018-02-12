@@ -36,7 +36,6 @@ INVALID_OVERVIEW_TIMESPAN_MSG = ("Overview deadline date must be"
                                  " after start date")
 
 
-@python_2_unicode_compatible
 class BaseProgram(AcceleratorModel):
     """An Accelerator program"""
     name = models.CharField(max_length=50)

@@ -12,7 +12,6 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 NAME_AS_PROGRAM_FAMILIES_AND_YEAR = "{relevant_program_families} {year}"
 
 
-@python_2_unicode_compatible
 class BaseProgramCycle(AcceleratorModel):
     """Association of relatively simultaneous programs"""
     name = models.CharField(max_length=128)

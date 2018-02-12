@@ -31,7 +31,6 @@ BUCKET_TYPES = (
 )
 
 
-@python_2_unicode_compatible
 class BaseBucketState(AcceleratorModel):
     name = models.CharField(
         max_length=64,

@@ -13,7 +13,6 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 DEFAULT_PANEL_SIZE = 10
 
 
-@python_2_unicode_compatible
 class BaseScenario(AcceleratorModel):
     name = models.CharField(max_length=40)
     judging_round = models.ForeignKey(
