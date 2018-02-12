@@ -8,16 +8,17 @@ from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-from accelerator_abstract.managers import (  # noqa
-    CLEARANCE_LEVELS,
-    ClearanceManager,
+
+from accelerator_abstract.models.accelerator_model import AcceleratorModel
+
+CLEARANCE_LEVEL_EXEC_MD = "Exec/MD"
+CLEARANCE_LEVEL_GLOBAL_MANAGER = "Global Manager"
+CLEARANCE_LEVEL_POM = "Program Operations Manager"
+CLEARANCE_LEVELS = [
     CLEARANCE_LEVEL_EXEC_MD,
     CLEARANCE_LEVEL_GLOBAL_MANAGER,
-    CLEARANCE_LEVEL_ORDER,
     CLEARANCE_LEVEL_POM,
-    CLEARANCE_LEVELS,
-)  # noqa
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+]
 
 CLEARANCE_LEVEL_CHOICES = [(x, x) for x in CLEARANCE_LEVELS]
 CLEARANCE_FORMAT_STR = "Clearance {level} at {program_family} for {user}"
@@ -38,7 +39,6 @@ class BaseClearance(AcceleratorModel):
         null=False,
         blank=False,
         related_name="user_clearances")
-    objects = ClearanceManager()
 
     class Meta(AcceleratorModel.Meta):
         unique_together = ("user", "program_family")
