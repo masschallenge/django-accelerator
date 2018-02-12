@@ -4,7 +4,6 @@
 from __future__ import unicode_literals
 
 import swapper
-from django.core.exceptions import ValidationError
 from django.db.models import (
     BooleanField,
     CharField,
@@ -16,6 +15,7 @@ from django.db.models import (
 from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from accelerator_abstract.utils import validate_capacity_options
 
 ONLINE_JUDGING_ROUND_TYPE = 'Online'
 IN_PERSON_JUDGING_ROUND_TYPE = 'In-Person'
@@ -75,18 +75,6 @@ FIFTEEN_MINUTES = 15
 BUFFER_TIMES = tuple([(i * FIFTEEN_MINUTES, i * FIFTEEN_MINUTES)
                       for i in range(9)])
 START_MUST_PRECEDE_END_ERROR = 'Start date must precede end date'
-
-
-def validate_capacity_options(value):
-    '''validate that the option is a pipe-separated list of integer values
-    '''
-    if value:
-        try:
-            map(int, value.split('|'))
-        except ValueError as e:
-            provided = e.message.split(':')[-1].strip()
-            raise ValidationError(
-                '{} is not an integer value'.format(provided))
 
 
 @python_2_unicode_compatible

@@ -8,14 +8,6 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from accelerator_abstract.utils import (
-    convert_from_boolean,
-    convert_from_float,
-    convert_from_integer,
-    convert_to_boolean,
-    convert_to_float,
-    convert_to_integer,
-)
 
 PROGRAM_STARTUP_ATTRIBUTE_TYPES = (
     ('django.forms.CharField', 'Text Line'),
@@ -23,18 +15,6 @@ PROGRAM_STARTUP_ATTRIBUTE_TYPES = (
     ('django.forms.FloatField', 'Floating Point Value'),
     ('django.forms.BooleanField', 'True/False'),
 )
-
-# dict 'field_type': {'to_field': to_field_value, 'to_stored': to_stored_value}
-ATTRIBUTE_TYPE_CONVERTERS = {
-    'django.forms.CharField': {'to_field': None,
-                               'to_stored': None},
-    'django.forms.IntegerField': {'to_field': convert_to_integer,
-                                  'to_stored': convert_from_integer},
-    'django.forms.FloatField': {'to_field': convert_to_float,
-                                'to_stored': convert_from_float},
-    'django.forms.BooleanField': {'to_field': convert_to_boolean,
-                                  'to_stored': convert_from_boolean},
-}
 
 
 @python_2_unicode_compatible
