@@ -6,10 +6,10 @@ from __future__ import unicode_literals
 from django.template.defaultfilters import slugify
 from django.test import TestCase
 
-from accelerator.models import Organization
 from accelerator.tests.factories import (
     OrganizationFactory,
 )
+from accelerator.models import slug_from_instance
 
 
 class TestOrganization(TestCase):
@@ -36,5 +36,5 @@ class TestOrganization(TestCase):
 
     def test_slugify_org_with_no_name(self):
         org = OrganizationFactory(name="")
-        slug = Organization.slug_from_instance(org)
+        slug = slug_from_instance(org)
         self.assertEqual(slug, "organization-1")

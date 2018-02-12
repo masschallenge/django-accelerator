@@ -3,11 +3,10 @@
 
 from __future__ import unicode_literals
 
-
 from django.core.validators import RegexValidator
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from django.template.defaultfilters import slugify
+from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -17,7 +16,6 @@ PARTNER_TYPE = "partner"
 
 @python_2_unicode_compatible
 class BaseOrganization(AcceleratorModel):
-
     name = models.CharField(max_length=255)
     website_url = models.URLField(max_length=100, blank=True)
     twitter_handle = models.CharField(
@@ -49,19 +47,20 @@ class BaseOrganization(AcceleratorModel):
 
     def save(self, *args, **kwargs):
         if self.url_slug == "":
-            self.url_slug = self.slug_from_instance()
+            self.url_slug = slug_from_instance(self)
         super(BaseOrganization, self).save(*args, **kwargs)
 
-    def slug_from_instance(self):
-        slug = slugify(self.name)
-        if slug == "":
-            slug = "organization"
-        slug = slug[:61]
-        slugbase = slug
-        i = 0
-        while (self._meta.model.objects.filter(
-                url_slug=slug).exists() and
-               (i < 100 or slugbase == "organization")):
-            i += 1
-            slug = slugbase + "-" + str(i)
-        return slug
+
+def slug_from_instance(organization):
+    slug = slugify(organization.name)
+    if slug == "":
+        slug = "organization"
+    slug = slug[:61]
+    slugbase = slug
+    i = 0
+    while (organization._meta.model.objects.filter(
+            url_slug=slug).exists() and
+           (i < 100 or slugbase == "organization")):
+        i += 1
+        slug = slugbase + "-" + str(i)
+    return slug

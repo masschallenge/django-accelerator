@@ -74,6 +74,7 @@ from .industry import Industry
 from .member_profile import MemberProfile
 from .named_group import NamedGroup
 from .organization import Organization
+from accelerator_abstract.models.base_organization import slug_from_instance
 from .partner import Partner
 from .partner_team_member import PartnerTeamMember
 from .program_role import ProgramRole

@@ -65,6 +65,7 @@ from .base_named_group import BaseNamedGroup
 from .base_organization import (
     BaseOrganization,
     PARTNER_TYPE,
+    slug_from_instance,
     STARTUP_TYPE,
 )
 from .base_partner import BasePartner
