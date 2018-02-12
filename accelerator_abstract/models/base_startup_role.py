@@ -26,8 +26,6 @@ class BaseStartupRole(AcceleratorModel):
 
     name = CharField(max_length=255)
 
-    def __str__(self):
-        return self.name
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_startuprole'.format(AcceleratorModel.Meta.app_label)

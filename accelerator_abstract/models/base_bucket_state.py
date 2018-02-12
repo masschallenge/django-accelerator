@@ -57,5 +57,3 @@ class BaseBucketState(AcceleratorModel):
         abstract = True
         ordering = ["sort_order", ]
 
-    def __str__(self):
-        return self.name

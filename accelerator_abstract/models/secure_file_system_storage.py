@@ -10,7 +10,7 @@ from django.conf import settings
 
 try:
     from django.urls import reverse
-except ImportError:
+except ImportError:   # pragma: no cover - backward compatibility
     from django.core.urlresolvers import reverse  # pragma: no cover
 
 

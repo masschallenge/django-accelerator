@@ -53,5 +53,3 @@ class BaseNewsletter(AcceleratorModel):
         abstract = True
         ordering = ('-created_at', 'name',)
 
-    def __str__(self):
-        return self.name

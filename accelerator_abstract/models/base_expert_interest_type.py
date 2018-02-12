@@ -22,5 +22,3 @@ class BaseExpertInterestType(AcceleratorModel):
         abstract = True
         verbose_name_plural = "Expert Interest Types"
 
-    def __str__(self):
-        return self.name

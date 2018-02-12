@@ -11,7 +11,7 @@ USE_TZ = True
 
 INSTALLED_APPS = [
     "django.contrib.auth",
-    "simpleuser",
+    "simpleuser.apps.SimpleuserConfig",
     "django.contrib.contenttypes",
     "django.contrib.sites",
     "accelerator_abstract.apps.AcceleratorAbstractConfig",

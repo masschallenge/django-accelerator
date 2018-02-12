@@ -13,3 +13,7 @@ class AcceleratorModel(models.Model):
         abstract = True
         app_label = 'accelerator'
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
+
+    def __str__(self):
+        return self.name if hasattr(self, 'name') else super(AcceleratorModel,
+                                                             self).__str__()

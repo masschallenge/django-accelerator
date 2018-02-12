@@ -30,9 +30,9 @@ class BaseModelChange(AcceleratorModel):
                               choices=MODEL_CHANGE_STATUS_CHOICES,
                               default=MIGRATION_STATUS_OLD)
 
-    def __str__(self):
-        return "{} ({})".format(self.name, self.status)
-
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_modelchange'.format(AcceleratorModel.Meta.app_label)
         abstract = True
+
+    def __str__(self):
+        return "{} ({})".format(self.name, self.status)

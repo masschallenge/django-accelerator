@@ -125,8 +125,6 @@ class BaseProgram(AcceleratorModel):
         abstract = True
         db_table = '{}_program'.format(AcceleratorModel.Meta.app_label)
 
-    def __str__(self):
-        return self.name
 
     def family_abbr(self):
         return self.program_family.url_slug.upper()

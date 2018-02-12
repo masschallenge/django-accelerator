@@ -19,5 +19,3 @@ class BaseCurrency(AcceleratorModel):
         db_table = '{}_currency'.format(AcceleratorModel.Meta.app_label)
         abstract = True
 
-    def __str__(self):
-        return self.name

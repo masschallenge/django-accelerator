@@ -21,5 +21,3 @@ class BaseMentoringSpecialties(AcceleratorModel):
         verbose_name = "Mentoring Specialty"
         verbose_name_plural = "Mentoring Specialties"
 
-    def __str__(self):
-        return self.name

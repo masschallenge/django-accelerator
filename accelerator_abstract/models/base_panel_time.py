@@ -8,6 +8,10 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from accelerator_abstract.utils import (
+    HOUR_FORMAT,
+    local_time,
+)
 
 
 @python_2_unicode_compatible
@@ -30,3 +34,9 @@ class BasePanelTime(AcceleratorModel):
 
     def __str__(self):
         return self.create_time_frame(self.start_date_time)
+
+    def create_time_frame(self, start_time):
+        return u"%s, %s-%s" % (
+            self.day,
+            local_time(start_time).strftime(HOUR_FORMAT),
+            local_time(self.end_date_time).strftime(HOUR_FORMAT))

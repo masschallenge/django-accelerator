@@ -28,5 +28,3 @@ class BaseExpertCategory(AcceleratorModel):
         verbose_name = "Expert Category"
         verbose_name_plural = "Expert Categories"
 
-    def __str__(self):
-        return self.name

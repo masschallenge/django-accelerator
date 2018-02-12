@@ -1,11 +1,13 @@
 from django.test import TestCase
 
 from accelerator.tests.factories import ClearanceFactory
-from simpleuser.tests.factories import UserFactory
-
 
 
 class TestClearance(TestCase):
 
-    def test_clearances_for_user(self):
-        pass
+    def test_str(self):
+        clearance = ClearanceFactory()
+        assert str(clearance.user) in str(clearance)
+        assert str(clearance.program_family) in str(clearance)
+        assert str(clearance.level) in str(clearance)
+

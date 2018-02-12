@@ -3,10 +3,17 @@
 
 from __future__ import unicode_literals
 
+import os
+import pytz
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 
 IS_NOT_AN_INTEGER_VALUE_MSG = '{} is not an integer value'
+
+
+def local_time(utc_time):
+    if utc_time:
+        return utc_time.astimezone(pytz.timezone(os.environ['TZ']))
 
 
 def url_validator():
@@ -43,3 +50,6 @@ def _error_msg(e):
     except AttributeError:
         msg = str(e)
     return msg
+
+
+HOUR_FORMAT = "%I:%M %p"

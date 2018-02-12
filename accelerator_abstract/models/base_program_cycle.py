@@ -48,5 +48,3 @@ class BaseProgramCycle(AcceleratorModel):
         db_table = '{}_programcycle'.format(AcceleratorModel.Meta.app_label)
         abstract = True
 
-    def __str__(self):
-        return self.name

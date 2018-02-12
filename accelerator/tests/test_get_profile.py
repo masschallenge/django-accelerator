@@ -3,32 +3,29 @@
 
 from __future__ import unicode_literals
 
-from mock import patch
-
 from django.contrib.auth import get_user_model
 from django.test import TestCase
+from mock import patch
 
+from accelerator.models import (
+    BaseProfile,
+    ENTREPRENEUR_USER_TYPE,
+    EXPERT_USER_TYPE,
+    EntrepreneurProfile,
+    ExpertProfile,
+    MEMBER_USER_TYPE,
+    MemberProfile,
+)
+from accelerator.models.profile_query_set import (
+    INCORRECT_USER_TYPE_TEMPLATE,
+    MISSING_BASE_PROFILE_TEMPLATE,
+    MISSING_PROFILE_TEMPLATE,
+)
 from accelerator.tests.factories import (
     EntrepreneurFactory,
     ExpertFactory,
     MemberFactory,
     UserFactory,
-)
-
-from accelerator.models import (
-    BaseProfile,
-    ENTREPRENEUR_USER_TYPE,
-    EntrepreneurProfile,
-    EXPERT_USER_TYPE,
-    ExpertProfile,
-    MEMBER_USER_TYPE,
-    MemberProfile,
-)
-
-from accelerator.models.profile_query_set import (
-    INCORRECT_USER_TYPE_TEMPLATE,
-    MISSING_BASE_PROFILE_TEMPLATE,
-    MISSING_PROFILE_TEMPLATE,
 )
 
 User = get_user_model()
@@ -54,6 +51,17 @@ class TestGetProfile(TestCase):
         user = EntrepreneurFactory()
         profile = BaseProfile.objects.get(pk=user.pk)
         self.assertIsInstance(profile, EntrepreneurProfile)
+
+    def test_get_profile_works_by_email_key(self):
+        user = EntrepreneurFactory()
+        profile = BaseProfile.objects.get(email=user.email)
+        self.assertIsInstance(profile, EntrepreneurProfile)
+
+    def test_get_profile_with_multiple_emails_returns_first(self):
+        user = EntrepreneurFactory()
+        EntrepreneurFactory(email=user.email)
+        profile = BaseProfile.objects.get(email=user.email)
+        self.assertEqual(profile.user.id, user.id)
 
     @patch("accelerator.models.profile_query_set.logger")
     def test_get_profile_handles_incorrect_user_type_member(self, mock_logger):
@@ -81,20 +89,6 @@ class TestGetProfile(TestCase):
             INCORRECT_USER_TYPE_TEMPLATE.format(ENTREPRENEUR_USER_TYPE,
                                                 EXPERT_USER_TYPE))
 
-    # todo: uncomment or remove
-    # @patch("accelerator.models.profile_query_set.logger")
-    # def test_get_profile_handles_null_user_type(self, mock_logger):
-    #     entrepreneur = EntrepreneurFactory()
-    #     entrepreneur.baseprofile.user_type = None
-    #     entrepreneur.baseprofile.save()
-    #     profile = entrepreneur.get_profile()
-    #     self.assertIsInstance(profile, EntrepreneurProfile)
-    #     entrepreneur = User.objects.get(email=entrepreneur.email)
-    #     self.assertEqual(entrepreneur.baseprofile.user_type,
-    #                      ENTREPRENEUR_USER_TYPE)
-    #     mock_logger.warning.assert_called_with(
-    #         INCORRECT_USER_TYPE_TEMPLATE.format("",
-    #                                             ENTREPRENEUR_USER_TYPE))
 
     @patch("accelerator.models.profile_query_set.logger")
     def test_get_profile_handles_a_user_without_a_profile(self, mock_logger):

@@ -18,5 +18,3 @@ class BaseNamedGroup(LabelModel):
         db_table = '{}_namedgroup'.format(LabelModel.Meta.app_label)
         abstract = True
 
-    def __str__(self):
-        return self.name

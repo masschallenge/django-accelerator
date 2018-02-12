@@ -42,8 +42,6 @@ class BaseOrganization(AcceleratorModel):
         ordering = ['name', ]
         abstract = True
 
-    def __str__(self):
-        return self.name
 
     def save(self, *args, **kwargs):
         if self.url_slug == "":

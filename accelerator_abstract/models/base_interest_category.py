@@ -23,5 +23,3 @@ class BaseInterestCategory(AcceleratorModel):
         abstract = True
         verbose_name_plural = "Interest Categories"
 
-    def __str__(self):
-        return self.name

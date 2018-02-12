@@ -20,5 +20,3 @@ class BaseJudgingForm(AcceleratorModel):
         abstract = True
         verbose_name_plural = 'Judging Forms'
 
-    def __str__(self):
-        return self.name

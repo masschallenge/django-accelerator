@@ -46,8 +46,6 @@ class BaseUserRole(AcceleratorModel):
     url_slug = CharField(max_length=30)
     sort_order = PositiveIntegerField()
 
-    def __str__(self):
-        return self.name
 
     class Meta(AcceleratorModel.Meta):
         abstract = True

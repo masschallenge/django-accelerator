@@ -24,5 +24,3 @@ class BaseApplicationType(AcceleratorModel):
             AcceleratorModel.Meta.app_label)
         abstract = True
 
-    def __str__(self):
-        return self.name

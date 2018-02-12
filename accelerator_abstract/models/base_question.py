@@ -43,5 +43,3 @@ class BaseQuestion(AcceleratorModel):
         abstract = True
         db_table = '{}_question'.format(AcceleratorModel.Meta.app_label)
 
-    def __str__(self):
-        return self.name

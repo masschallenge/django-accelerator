@@ -42,5 +42,3 @@ class BaseProgramRole(LabelModel):
         verbose_name = "Program Role"
         verbose_name_plural = "Program Roles"
 
-    def __str__(self):
-        return self.name

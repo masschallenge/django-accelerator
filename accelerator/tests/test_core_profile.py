@@ -14,3 +14,8 @@ class TestCoreProfile(TestCase):
     def test_full_name(self):
         user = ExpertFactory(first_name="", last_name="")
         assert user.get_profile().full_name() == str(user.username)
+
+    def test_str(self):
+        user = ExpertFactory()
+        profile = user.get_profile()
+        assert profile.full_name() in str(profile)
