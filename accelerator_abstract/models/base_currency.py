@@ -21,15 +21,3 @@ class BaseCurrency(AcceleratorModel):
 
     def __str__(self):
         return self.name
-
-    @classmethod
-    def choices(cls):
-        return [(c["id"], c["name"])
-                for c in cls.objects.all().values("id", "name")]
-
-    @classmethod
-    def default_currency(cls):
-        usd = cls.objects.filter(abbr="USD")
-        if usd:
-            return usd[0]
-        return cls.objects.all()[0]
