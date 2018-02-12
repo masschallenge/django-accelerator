@@ -5,21 +5,8 @@ from __future__ import unicode_literals
 
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
-from django.db import models
 
 IS_NOT_AN_INTEGER_VALUE_MSG = '{} is not an integer value'
-
-
-def build_case_statement(cases_dict,
-                         attr_field,
-                         default_value=None,
-                         output_field=models.IntegerField()):
-    cases = [models.When(**{attr_field: key, 'then': models.Value(value)})
-             for key, value in cases_dict.items()]
-    case_statement = models.Case(default=models.Value(default_value),
-                                 output_field=output_field)
-    case_statement.cases = cases
-    return case_statement
 
 
 def url_validator():
