@@ -3083,7 +3083,33 @@ class Migration(migrations.Migration):
                                                        'ExpertInterest'),
             },
         ),
-
+        migrations.CreateModel(
+            name='SiteRedirectPage',
+            fields=[
+                ('urlnode_ptr', models.OneToOneField(
+                    auto_created=True,
+                    on_delete=django.db.models.deletion.CASCADE,
+                    parent_link=True,
+                    primary_key=True,
+                    serialize=False,
+                    to='fluent_pages.UrlNode')),
+                ('new_url', models.CharField(max_length=100)),
+            ],
+            options={
+                'verbose_name': 'Site Redirect',
+                'verbose_name_plural': 'Site Redirects',
+                'db_table': 'pagetype_accelerator_siteredirectpage',
+                'abstract': False,
+                'managed': True,
+                'swappable': swapper.swappable_setting('accelerator',
+                                                       'SiteRedirectPage'),
+            },
+            bases=('fluent_pages.page',),
+            managers=[
+                ('objects', django.db.models.manager.Manager()),
+                ('base_objects', django.db.models.manager.Manager()),
+            ],
+        ),
         migrations.AddField(
             model_name='industry',
             name='created_at',
