@@ -62,5 +62,9 @@ class BaseProgramStartupAttribute(AcceleratorModel):
         unique_together = ('program', 'attribute_label')
 
     def __str__(self):
-        tmpl = "%s (%s attribute)"
-        return tmpl % (self.attribute_label, self.get_attribute_type_display())
+        type_display = self.attribute_type_display()
+        return '{} ({} attribute)'.format(self.attribute_label, type_display)
+
+    def attribute_type_display(self):
+        types_dict = dict(PROGRAM_STARTUP_ATTRIBUTE_TYPES)
+        return types_dict.get(str(self.attribute_type), '')
