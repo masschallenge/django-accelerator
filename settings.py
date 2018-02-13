@@ -63,7 +63,7 @@ TEMPLATES = [
         },
     },
 ]
-
+FLUENT_PAGES_TEMPLATE_DIR = PACKAGE_ROOT
 TEST_RUNNER = 'accelerator.test_runner.UnManagedModelTestRunner'
 
 MPTT_SWAPPABLE_INDUSTRY_MODEL = "accelerator.Industry"
