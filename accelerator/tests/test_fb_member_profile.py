@@ -4,10 +4,19 @@
 from __future__ import unicode_literals
 
 from django.test import TestCase
-from accelerator.tests.factories.member_profile_factory import MemberProfileFactory
-from accelerator.tests.factories.recommendation_tag_factory import RecommendationTagFactory
-from accelerator.tests.factories.program_family_factory import ProgramFamilyFactory
-from accelerator.tests.factories.interest_category_factory import InterestCategoryFactory
+
+from accelerator.tests.factories.interest_category_factory import (
+    InterestCategoryFactory
+)
+from accelerator.tests.factories.member_profile_factory import (
+    MemberProfileFactory
+)
+from accelerator.tests.factories.program_family_factory import (
+    ProgramFamilyFactory
+)
+from accelerator.tests.factories.recommendation_tag_factory import (
+    RecommendationTagFactory
+)
 
 
 class TestMemberProfile(TestCase):

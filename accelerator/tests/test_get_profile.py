@@ -25,8 +25,8 @@ from accelerator.tests.factories import (
     EntrepreneurFactory,
     ExpertFactory,
     MemberFactory,
-    UserFactory,
 )
+from simpleuser.tests.factories import UserFactory
 
 User = get_user_model()
 
@@ -88,7 +88,6 @@ class TestGetProfile(TestCase):
         mock_logger.warning.assert_called_with(
             INCORRECT_USER_TYPE_TEMPLATE.format(ENTREPRENEUR_USER_TYPE,
                                                 EXPERT_USER_TYPE))
-
 
     @patch("accelerator.models.profile_query_set.logger")
     def test_get_profile_handles_a_user_without_a_profile(self, mock_logger):

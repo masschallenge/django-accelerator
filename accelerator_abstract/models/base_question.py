@@ -4,7 +4,6 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -41,4 +40,3 @@ class BaseQuestion(AcceleratorModel):
     class Meta(AcceleratorModel.Meta):
         abstract = True
         db_table = '{}_question'.format(AcceleratorModel.Meta.app_label)
-

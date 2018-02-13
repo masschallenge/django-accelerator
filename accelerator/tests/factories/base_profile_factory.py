@@ -10,7 +10,7 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
-from accelerator.tests.factories.user_factory import UserFactory
+from simpleuser.tests.factories.user_factory import UserFactory
 
 BaseProfile = swapper.load_model(AcceleratorConfig.name, 'BaseProfile')
 

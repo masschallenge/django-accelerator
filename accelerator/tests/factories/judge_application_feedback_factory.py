@@ -12,14 +12,13 @@ from factory import (
 
 from accelerator.apps import AcceleratorConfig
 from accelerator.models import JUDGING_STATUS_NO_CONFLICT
-
-JudgeApplicationFeedback = swapper.load_model(AcceleratorConfig.name,
-                                              'JudgeApplicationFeedback')
-
 from accelerator.tests.factories.application_factory import ApplicationFactory
 from accelerator.tests.factories.expert_factory import ExpertFactory
 from accelerator.tests.factories.judging_form_factory import JudgingFormFactory
 from accelerator.tests.factories.panel_factory import PanelFactory
+
+JudgeApplicationFeedback = swapper.load_model(AcceleratorConfig.name,
+                                              'JudgeApplicationFeedback')
 
 
 class JudgeApplicationFeedbackFactory(DjangoModelFactory):

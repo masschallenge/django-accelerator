@@ -3,6 +3,11 @@
 
 from __future__ import unicode_literals
 
+from datetime import (
+    datetime,
+    timedelta,
+)
+
 import swapper
 from factory import (
     DjangoModelFactory,
@@ -10,18 +15,13 @@ from factory import (
     SubFactory,
     post_generation,
 )
+from pytz import utc
 
 from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.program_factory import ProgramFactory
-from accelerator.tests.factories.user_factory import UserFactory
+from simpleuser.tests.factories.user_factory import UserFactory
 
 CoreProfile = swapper.load_model(AcceleratorConfig.name, 'CoreProfile')
-
-from datetime import (
-    datetime,
-    timedelta,
-)
-from pytz import utc
 
 
 class CoreProfileFactory(DjangoModelFactory):

@@ -3,15 +3,15 @@
 
 from __future__ import unicode_literals
 
-from django.test import TestCase
 from django.core.exceptions import ValidationError
-from accelerator_abstract.models.base_expert_interest import (
-    is_expert_validator,
-)
+from django.test import TestCase
 
 from accelerator.tests.factories import (
     EntrepreneurFactory,
     ExpertInterestFactory,
+)
+from accelerator_abstract.models.base_expert_interest import (
+    is_expert_validator,
 )
 
 

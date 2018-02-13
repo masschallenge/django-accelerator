@@ -17,17 +17,23 @@ from accelerator.models import (
     IN_PERSON_JUDGING_ROUND_TYPE,
     RECRUIT_NONE,
 )
-
-JudgingRound = swapper.load_model(AcceleratorConfig.name, 'JudgingRound')
-
-from accelerator_abstract.models.base_judging_round import \
-    DEFAULT_BUFFER_BEFORE_EVENT
-from accelerator.tests.factories.application_type_factory import ApplicationTypeFactory
-from accelerator.tests.factories.judging_form_factory import JudgingFormFactory
+from accelerator.tests.factories.application_type_factory import (
+    ApplicationTypeFactory
+)
+from accelerator.tests.factories.judging_form_factory import (
+    JudgingFormFactory
+)
 from accelerator.tests.factories.program_factory import ProgramFactory
-from accelerator.tests.factories.startup_label_factory import StartupLabelFactory
+from accelerator.tests.factories.startup_label_factory import (
+    StartupLabelFactory
+)
 from accelerator.tests.factories.user_label_factory import UserLabelFactory
 from accelerator.tests.utils import months_from_now
+from accelerator_abstract.models.base_judging_round import (
+    DEFAULT_BUFFER_BEFORE_EVENT
+)
+
+JudgingRound = swapper.load_model(AcceleratorConfig.name, 'JudgingRound')
 
 
 class JudgingRoundFactory(DjangoModelFactory):

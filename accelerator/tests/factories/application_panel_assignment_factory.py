@@ -11,13 +11,12 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
-
-ApplicationPanelAssignment = swapper.load_model(AcceleratorConfig.name,
-                                                'ApplicationPanelAssignment')
-
 from accelerator.tests.factories.application_factory import ApplicationFactory
 from accelerator.tests.factories.panel_factory import PanelFactory
 from accelerator.tests.factories.scenario_factory import ScenarioFactory
+
+ApplicationPanelAssignment = swapper.load_model(AcceleratorConfig.name,
+                                                'ApplicationPanelAssignment')
 
 
 class ApplicationPanelAssignmentFactory(DjangoModelFactory):

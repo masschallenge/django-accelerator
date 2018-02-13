@@ -4,7 +4,10 @@
 from __future__ import unicode_literals
 
 from django.test import TestCase
-from accelerator.tests.factories.recommendation_tag_factory import RecommendationTagFactory
+
+from accelerator.tests.factories.recommendation_tag_factory import (
+    RecommendationTagFactory
+)
 
 
 class TestRecommendationTag(TestCase):

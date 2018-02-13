@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -123,7 +122,6 @@ class BaseProgram(AcceleratorModel):
         verbose_name_plural = 'Programs'
         abstract = True
         db_table = '{}_program'.format(AcceleratorModel.Meta.app_label)
-
 
     def family_abbr(self):
         return self.program_family.url_slug.upper()

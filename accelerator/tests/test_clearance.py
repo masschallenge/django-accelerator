@@ -10,4 +10,3 @@ class TestClearance(TestCase):
         assert str(clearance.user) in str(clearance)
         assert str(clearance.program_family) in str(clearance)
         assert str(clearance.level) in str(clearance)
-

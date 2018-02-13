@@ -11,11 +11,10 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
+from accelerator.tests.factories.program_factory import ProgramFactory
 
 InterestCategory = swapper.load_model(AcceleratorConfig.name,
                                       'InterestCategory')
-
-from accelerator.tests.factories.program_factory import ProgramFactory
 
 
 class InterestCategoryFactory(DjangoModelFactory):

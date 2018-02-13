@@ -5,12 +5,12 @@ from __future__ import unicode_literals
 
 import base64
 
-from django.core.files.storage import FileSystemStorage
 from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 
 try:
     from django.urls import reverse
-except ImportError:   # pragma: no cover - backward compatibility
+except ImportError:  # pragma: no cover - backward compatibility
     from django.core.urlresolvers import reverse  # pragma: no cover
 
 

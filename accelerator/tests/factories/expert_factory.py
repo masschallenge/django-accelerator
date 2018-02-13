@@ -8,8 +8,10 @@ from factory import (
 )
 
 from accelerator.tests.factories.base_profile_factory import BaseProfileFactory
-from accelerator.tests.factories.expert_profile_factory import ExpertProfileFactory
-from accelerator.tests.factories.user_factory import UserFactory
+from accelerator.tests.factories.expert_profile_factory import (
+    ExpertProfileFactory
+)
+from simpleuser.tests.factories.user_factory import UserFactory
 
 
 class ExpertFactory(UserFactory):

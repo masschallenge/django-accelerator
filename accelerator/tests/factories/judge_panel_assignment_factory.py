@@ -12,13 +12,12 @@ from factory import (
 
 from accelerator.apps import AcceleratorConfig
 from accelerator.models import COMPLETE_PANEL_ASSIGNMENT_STATUS
-
-JudgePanelAssignment = swapper.load_model(AcceleratorConfig.name,
-                                          'JudgePanelAssignment')
-
 from accelerator.tests.factories.expert_factory import ExpertFactory
 from accelerator.tests.factories.panel_factory import PanelFactory
 from accelerator.tests.factories.scenario_factory import ScenarioFactory
+
+JudgePanelAssignment = swapper.load_model(AcceleratorConfig.name,
+                                          'JudgePanelAssignment')
 
 
 class JudgePanelAssignmentFactory(DjangoModelFactory):

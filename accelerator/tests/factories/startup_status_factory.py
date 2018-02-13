@@ -10,13 +10,12 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
-
-StartupStatus = swapper.load_model(AcceleratorConfig.name, 'StartupStatus')
-
-from accelerator.tests.factories.startup_factory import StartupFactory
 from accelerator.tests.factories.program_startup_status_factory import (
     ProgramStartupStatusFactory,
 )
+from accelerator.tests.factories.startup_factory import StartupFactory
+
+StartupStatus = swapper.load_model(AcceleratorConfig.name, 'StartupStatus')
 
 
 class StartupStatusFactory(DjangoModelFactory):

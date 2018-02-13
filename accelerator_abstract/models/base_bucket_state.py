@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -55,4 +54,3 @@ class BaseBucketState(AcceleratorModel):
             AcceleratorModel.Meta.app_label)
         abstract = True
         ordering = ["sort_order", ]
-

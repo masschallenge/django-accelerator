@@ -12,12 +12,13 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
+from accelerator.tests.factories.entrepreneur_factory import (
+    EntrepreneurFactory
+)
+from accelerator.tests.factories.startup_factory import StartupFactory
 
 StartupTeamMember = swapper.load_model(AcceleratorConfig.name,
                                        'StartupTeamMember')
-
-from accelerator.tests.factories.entrepreneur_factory import EntrepreneurFactory
-from accelerator.tests.factories.startup_factory import StartupFactory
 
 
 class StartupTeamMemberFactory(DjangoModelFactory):

@@ -4,7 +4,6 @@
 from __future__ import unicode_literals
 
 import swapper
-from django.db import models
 
 from accelerator_abstract.models import BaseExpertInterestType
 

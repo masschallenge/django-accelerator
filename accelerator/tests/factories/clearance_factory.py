@@ -10,14 +10,13 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
+from accelerator.models import CLEARANCE_LEVEL_POM
 from accelerator.tests.factories.program_family_factory import (
     ProgramFamilyFactory
 )
-from accelerator.tests.factories.user_factory import UserFactory
+from simpleuser.tests.factories.user_factory import UserFactory
 
 Clearance = swapper.load_model(AcceleratorConfig.name, 'Clearance')
-
-from accelerator.models import CLEARANCE_LEVEL_POM
 
 
 class ClearanceFactory(DjangoModelFactory):

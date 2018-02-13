@@ -4,7 +4,10 @@
 from __future__ import unicode_literals
 
 from django.test import TestCase
-from accelerator.tests.factories.functional_expertise_factory import FunctionalExpertiseFactory
+
+from accelerator.tests.factories.functional_expertise_factory import (
+    FunctionalExpertiseFactory
+)
 
 
 class TestFunctionalExpertise(TestCase):

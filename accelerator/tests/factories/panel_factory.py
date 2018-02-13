@@ -12,12 +12,13 @@ from factory import (
 
 from accelerator.apps import AcceleratorConfig
 from accelerator.models import PREVIEW_PANEL_STATUS
-
-Panel = swapper.load_model(AcceleratorConfig.name, 'Panel')
-
-from accelerator.tests.factories.panel_location_factory import PanelLocationFactory
+from accelerator.tests.factories.panel_location_factory import (
+    PanelLocationFactory
+)
 from accelerator.tests.factories.panel_time_factory import PanelTimeFactory
 from accelerator.tests.factories.panel_type_factory import PanelTypeFactory
+
+Panel = swapper.load_model(AcceleratorConfig.name, 'Panel')
 
 
 class PanelFactory(DjangoModelFactory):

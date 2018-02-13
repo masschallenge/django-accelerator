@@ -18,14 +18,17 @@ from accelerator.models import (
     DEFAULT_PROFILE_TEXT_COLOR,
     STARTUP_COMMUNITIES,
 )
+from accelerator.tests.factories.currency_factory import CurrencyFactory
+from accelerator.tests.factories.entrepreneur_factory import (
+    EntrepreneurFactory
+)
+from accelerator.tests.factories.industry_factory import IndustryFactory
+from accelerator.tests.factories.organization_factory import (
+    OrganizationFactory
+)
+from accelerator.tests.utils import days_from_now
 
 Startup = swapper.load_model(AcceleratorConfig.name, 'Startup')
-
-from accelerator.tests.factories.entrepreneur_factory import EntrepreneurFactory
-from accelerator.tests.factories.industry_factory import IndustryFactory
-from accelerator.tests.factories.organization_factory import OrganizationFactory
-from accelerator.tests.factories.currency_factory import CurrencyFactory
-from accelerator.tests.utils import days_from_now
 
 COMMUNITY_VALUES = [val[0] for val in STARTUP_COMMUNITIES]
 

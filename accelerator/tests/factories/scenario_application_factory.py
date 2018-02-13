@@ -10,12 +10,11 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
+from accelerator.tests.factories.application_factory import ApplicationFactory
+from accelerator.tests.factories.scenario_factory import ScenarioFactory
 
 ScenarioApplication = swapper.load_model(AcceleratorConfig.name,
                                          'ScenarioApplication')
-
-from accelerator.tests.factories.application_factory import ApplicationFactory
-from accelerator.tests.factories.scenario_factory import ScenarioFactory
 
 
 class ScenarioApplicationFactory(DjangoModelFactory):

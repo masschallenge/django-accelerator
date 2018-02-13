@@ -6,10 +6,10 @@ from __future__ import unicode_literals
 from django.template.defaultfilters import slugify
 from django.test import TestCase
 
+from accelerator.models import slug_from_instance
 from accelerator.tests.factories import (
     OrganizationFactory,
 )
-from accelerator.models import slug_from_instance
 
 
 class TestOrganization(TestCase):

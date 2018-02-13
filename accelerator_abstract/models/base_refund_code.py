@@ -23,7 +23,7 @@ class BaseRefundCode(AcceleratorModel):
                    "applied to any program."),
         related_name="refund_codes",
         blank=True
-        )
+    )
     issued_to = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Partner"),
         blank=True, null=True)

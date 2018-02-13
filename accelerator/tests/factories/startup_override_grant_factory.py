@@ -10,14 +10,13 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
-
-StartupOverrideGrant = swapper.load_model(AcceleratorConfig.name,
-                                          'StartupOverrideGrant')
-
 from accelerator.tests.factories import (
     ProgramOverrideFactory,
     StartupFactory,
 )
+
+StartupOverrideGrant = swapper.load_model(AcceleratorConfig.name,
+                                          'StartupOverrideGrant')
 
 
 class StartupOverrideGrantFactory(DjangoModelFactory):

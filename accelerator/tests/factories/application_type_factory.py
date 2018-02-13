@@ -11,7 +11,9 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
-from accelerator.tests.factories.startup_label_factory import StartupLabelFactory
+from accelerator.tests.factories.startup_label_factory import (
+    StartupLabelFactory
+)
 
 ApplicationType = swapper.load_model(AcceleratorConfig.name, 'ApplicationType')
 

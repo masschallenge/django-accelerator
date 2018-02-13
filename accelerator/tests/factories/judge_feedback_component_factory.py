@@ -11,14 +11,15 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
-
-JudgeFeedbackComponent = swapper.load_model(AcceleratorConfig.name,
-                                            'JudgeFeedbackComponent')
-
 from accelerator.tests.factories.judge_application_feedback_factory import (
     JudgeApplicationFeedbackFactory,
 )
-from accelerator.tests.factories.judging_form_element_factory import JudgingFormElementFactory
+from accelerator.tests.factories.judging_form_element_factory import (
+    JudgingFormElementFactory
+)
+
+JudgeFeedbackComponent = swapper.load_model(AcceleratorConfig.name,
+                                            'JudgeFeedbackComponent')
 
 
 class JudgeFeedbackComponentFactory(DjangoModelFactory):

@@ -4,7 +4,10 @@
 from __future__ import unicode_literals
 
 from django.test import TestCase
-from accelerator.tests.factories.program_family_factory import ProgramFamilyFactory
+
+from accelerator.tests.factories.program_family_factory import (
+    ProgramFamilyFactory
+)
 
 
 class TestProgramFamily(TestCase):

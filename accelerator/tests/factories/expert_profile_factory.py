@@ -12,9 +12,13 @@ from factory import (
 
 from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.core_profile_factory import CoreProfileFactory
-from accelerator.tests.factories.expert_category_factory import ExpertCategoryFactory
+from accelerator.tests.factories.expert_category_factory import (
+    ExpertCategoryFactory
+)
 from accelerator.tests.factories.industry_factory import IndustryFactory
-from accelerator.tests.factories.program_family_factory import ProgramFamilyFactory
+from accelerator.tests.factories.program_family_factory import (
+    ProgramFamilyFactory
+)
 
 ExpertProfile = swapper.load_model(AcceleratorConfig.name, 'ExpertProfile')
 

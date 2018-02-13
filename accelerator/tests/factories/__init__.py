@@ -98,6 +98,6 @@ from .startup_role_factory import StartupRoleFactory
 from .startup_status_factory import StartupStatusFactory
 from .startup_team_member_factory import StartupTeamMemberFactory
 from .url_node_factory import UrlNodeFactory
-from .user_factory import UserFactory
 from .user_label_factory import UserLabelFactory
 from .user_role_factory import UserRoleFactory
+from simpleuser.tests.factories import UserFactory

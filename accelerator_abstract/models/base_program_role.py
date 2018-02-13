@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.label_model import LabelModel
@@ -40,4 +39,3 @@ class BaseProgramRole(LabelModel):
         ordering = ['name', ]
         verbose_name = "Program Role"
         verbose_name_plural = "Program Roles"
-

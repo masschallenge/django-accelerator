@@ -11,10 +11,11 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
+from accelerator.tests.factories.judging_round_factory import (
+    JudgingRoundFactory
+)
 
 PanelType = swapper.load_model(AcceleratorConfig.name, 'PanelType')
-
-from accelerator.tests.factories.judging_round_factory import JudgingRoundFactory
 
 
 class PanelTypeFactory(DjangoModelFactory):

@@ -11,10 +11,11 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
+from accelerator.tests.factories.organization_factory import (
+    OrganizationFactory
+)
 
 Partner = swapper.load_model(AcceleratorConfig.name, 'Partner')
-
-from accelerator.tests.factories.organization_factory import OrganizationFactory
 
 
 class PartnerFactory(DjangoModelFactory):

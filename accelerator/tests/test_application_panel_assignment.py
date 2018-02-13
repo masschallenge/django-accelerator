@@ -4,6 +4,7 @@
 from __future__ import unicode_literals
 
 from django.test import TestCase
+
 from accelerator.tests.factories.application_panel_assignment_factory \
     import ApplicationPanelAssignmentFactory
 
