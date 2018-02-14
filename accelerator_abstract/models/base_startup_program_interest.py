@@ -48,7 +48,7 @@ class BaseStartupProgramInterest(OrderedModel, AcceleratorModel):
     class Meta(OrderedModel.Meta, AcceleratorModel.Meta):
         ordering = ['order']
         abstract = True
-        db_table = '{}_startuporograminterest'.format(
+        db_table = '{}_startupprograminterest'.format(
             AcceleratorModel.Meta.app_label)
 
     def change_position(self, move):

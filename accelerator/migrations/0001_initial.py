@@ -2556,7 +2556,7 @@ class Migration(migrations.Migration):
                                                              'STARTUPCYCLEINTEREST'))),
             ],
             options={
-                'db_table': 'accelerator_startuporograminterest',
+                'db_table': 'accelerator_startupprograminterest',
                 'ordering': ['order'],
                 'abstract': False,
                 'managed': True,
