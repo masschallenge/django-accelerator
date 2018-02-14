@@ -255,7 +255,6 @@ class Migration(migrations.Migration):
                                                                    'RecommendationTag'))),
                 ('user',
                  models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
-                                   related_name='acc_startups',
                                    to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -3640,5 +3639,10 @@ class Migration(migrations.Migration):
         migrations.AlterUniqueTogether(
             name='applicationpanelassignment',
             unique_together=set([('application', 'panel', 'scenario')]),
+        ),
+        migrations.AlterIndexTogether(
+            name='judgefeedbackcomponent',
+            index_together=set(
+                [('id', 'judge_feedback', 'feedback_element', 'answer_text')]),
         ),
     ]
