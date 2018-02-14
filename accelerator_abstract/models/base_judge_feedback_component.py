@@ -54,6 +54,9 @@ class BaseJudgeFeedbackComponent(AcceleratorModel):
         abstract = True
         verbose_name_plural = 'Feedback Components'
         unique_together = ('judge_feedback', 'feedback_element')
+        index_together = [
+            ('id', 'judge_feedback', 'feedback_element', 'answer_text'),
+        ]
 
     def __str__(self):
         return "Feedback for component %s from %s" % (
