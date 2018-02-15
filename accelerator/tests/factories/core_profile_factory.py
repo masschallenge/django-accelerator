@@ -8,7 +8,6 @@ from datetime import (
     timedelta,
 )
 
-import swapper
 from factory import (
     DjangoModelFactory,
     Sequence,
@@ -17,11 +16,9 @@ from factory import (
 )
 from pytz import utc
 
-from accelerator.apps import AcceleratorConfig
+from accelerator.models.core_profile import CoreProfile
 from accelerator.tests.factories.program_factory import ProgramFactory
 from simpleuser.tests.factories.user_factory import UserFactory
-
-CoreProfile = swapper.load_model(AcceleratorConfig.name, 'CoreProfile')
 
 
 class CoreProfileFactory(DjangoModelFactory):
