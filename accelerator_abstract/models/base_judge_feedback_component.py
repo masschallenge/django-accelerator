@@ -53,7 +53,7 @@ class BaseJudgeFeedbackComponent(AcceleratorModel):
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name_plural = 'Feedback Components'
-        unique_together = ('judge_feedback', 'feedback_element')
+        # unique_together = ('judge_feedback', 'feedback_element')
         index_together = [
             ('id', 'judge_feedback', 'feedback_element', 'answer_text'),
         ]
