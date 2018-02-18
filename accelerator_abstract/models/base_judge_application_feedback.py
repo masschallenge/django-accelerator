@@ -43,10 +43,9 @@ class BaseJudgeApplicationFeedback(AcceleratorModel):
     panel = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Panel"))
     judging_status = models.IntegerField(
-        null=False,
+        null=True,
         blank=True,
-        choices=JUDGING_STATUS_ENUM,
-        default=JUDGING_STATUS_NO_CONFLICT)
+        choices=JUDGING_STATUS_ENUM)
     feedback_status = models.CharField(
         max_length=20,
         editable=False,

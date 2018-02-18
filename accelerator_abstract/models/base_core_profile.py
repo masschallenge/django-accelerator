@@ -103,7 +103,8 @@ class BaseCoreProfile(AcceleratorModel):
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                'RecommendationTag'),
         blank=True)
-    newsletter_sender = models.BooleanField(default=False)
+    # newsletter_sender = models.BooleanField(default=False)
+    foo = models.TextField(null=True)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_coreprofile'.format(
