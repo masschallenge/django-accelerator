@@ -82,7 +82,6 @@ from .scenario_preference_factory import ScenarioPreferenceFactory
 from .section_factory import SectionFactory
 from .site_factory import SiteFactory
 from .site_program_authorization_factory import SiteProgramAuthorizationFactory
-from .startup_attribute_factory import StartupAttributeFactory
 from .startup_cycle_interest_factory import StartupCycleInterestFactory
 from .startup_factory import StartupFactory
 from .startup_label_factory import StartupLabelFactory

@@ -95,7 +95,6 @@ ACCELERATOR_RECOMMENDATIONTAG_MODEL = "accelerator.RecommendationTag"
 ACCELERATOR_STARTUP_MODEL = "accelerator.Startup"
 ACCELERATOR_SCENARIO_MODEL = "accelerator.Scenario"
 ACCELERATOR_STARTUPLABEL_MODEL = "accelerator.StartupLabel"
-ACCELERATOR_STARTUPATTRIBUTE_MODEL = "accelerator.StartupAttribute"
 ACCELERATOR_PAYPALPAYMENT_MODEL = "accelerator.PayPalPayment"
 
 PAYPAL_WPP_USER = ""
