@@ -17,14 +17,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='application',
-            name='cycle',
-            field=models.ForeignKey(
-                blank=True,
-                null=True,
-                on_delete=django.db.models.deletion.CASCADE,
-                related_name='applications',
-                to=swapper.get_model_name('accelerator', 'ProgramFamily')),
-        ),
+        # This change introduced a *correct* data inconsistency
     ]

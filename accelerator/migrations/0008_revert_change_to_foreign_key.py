@@ -14,9 +14,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='application',
-            name='cycle',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='applications', to=settings.ACCELERATOR_PROGRAMCYCLE_MODEL),
-        ),
+        # 0007 was removed, no need to revert.
     ]
