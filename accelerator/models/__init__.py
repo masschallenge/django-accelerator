@@ -134,6 +134,7 @@ from .reference import Reference
 from .startup_team_member import StartupTeamMember
 
 from .program_startup_attribute import ProgramStartupAttribute
+from .startup_attribute import StartupAttribute
 from .startup_override_grant import StartupOverrideGrant
 from .startup_status import StartupStatus
 from .startup_mentor_tracking_record import (

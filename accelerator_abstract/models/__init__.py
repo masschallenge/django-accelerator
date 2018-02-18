@@ -275,6 +275,7 @@ from .base_startup import (
     DEFAULT_PROFILE_TEXT_COLOR,
     STARTUP_COMMUNITIES,
 )
+from .base_startup_attribute import BaseStartupAttribute
 from .base_startup_cycle_interest import BaseStartupCycleInterest
 from .base_startup_label import BaseStartupLabel
 from .base_startup_mentor_relationship import (
