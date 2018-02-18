@@ -56,8 +56,6 @@ class BaseApplication(AcceleratorModel):
         max_length=64,
         choices=APPLICATION_STATUSES,
     )
-    user_label = models.ManyToManyField(
-        to=swapper.get_model_name('accelerator', 'UserLabel'))
     submission_datetime = models.DateTimeField(blank=True, null=True)
 
     class Meta(AcceleratorModel.Meta):
