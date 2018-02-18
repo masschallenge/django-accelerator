@@ -30,11 +30,11 @@ PANEL_AVAILABILITY_KEYWORD_SLOTS = {'time': 'panel_time',
 
 @python_2_unicode_compatible
 class BasePanel(AcceleratorModel):
-    # judges = ManyToManyField(
-    #     settings.AUTH_USER_MODEL,
-    #     related_name="panels",
-    #     through=swapper.get_model_name(AcceleratorModel.Meta.app_label,
-    #                                    'JudgePanelAssignment'))
+    judges = ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="panels",
+        through=swapper.get_model_name(AcceleratorModel.Meta.app_label,
+                                       'JudgePanelAssignment'))
     applications = ManyToManyField(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Application'),
         related_name='panels',

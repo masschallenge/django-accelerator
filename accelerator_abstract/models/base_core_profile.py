@@ -82,14 +82,14 @@ class BaseCoreProfile(AcceleratorModel):
         blank=True,
         null=True,
     )
-    program_families = models.ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               'ProgramFamily'),
-        help_text="Which of our Program Families would you like to be "
-                  "involved with?",
-        related_name="interested_%(class)s",
-        blank=True
-    )
+    # program_families = models.ManyToManyField(
+    #     swapper.get_model_name(AcceleratorModel.Meta.app_label,
+    #                            'ProgramFamily'),
+    #     help_text="Which of our Program Families would you like to be "
+    #               "involved with?",
+    #     related_name="interested_%(class)s",
+    #     blank=True
+    # )
 
     user_type = None
     default_page = "member_homepage"
