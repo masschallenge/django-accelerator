@@ -22,7 +22,7 @@ class BaseFilePage(Page):
     description = models.TextField(blank=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_filepage'.format(
+        db_table = 'pagetype_{}_filepage'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name = "File"

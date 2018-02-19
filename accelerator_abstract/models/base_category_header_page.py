@@ -13,7 +13,7 @@ class BaseCategoryHeaderPage(Page):
     is_category_header = models.BooleanField(default=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_categoryheaderpage'.format(
+        db_table = 'pagetype_{}_categoryheaderpage'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name = "Category Header"

@@ -13,7 +13,7 @@ class BaseSiteRedirectPage(Page):
     new_url = models.CharField(max_length=100)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_siteredirectpage'.format(
+        db_table = 'pagetype_{}_siteredirectpage'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name = "Site Redirect"
