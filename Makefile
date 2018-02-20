@@ -126,6 +126,9 @@ migrations: $(VENV)
 	@. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
 	DJANGO_SETTINGS_MODULE=settings \
 	django-admin.py makemigrations simpleuser
+	@. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
+	DJANGO_SETTINGS_MODULE=settings \
+	django-admin.py makemigrations accelerator_abstract
 
 migrate: $(VENV)
 	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
