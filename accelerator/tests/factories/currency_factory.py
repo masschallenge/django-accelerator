@@ -1,11 +1,17 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
 
+from __future__ import unicode_literals
+
+import swapper
 from factory import (
     DjangoModelFactory,
     Sequence,
 )
-from accelerator.models import Currency
+
+from accelerator.apps import AcceleratorConfig
+
+Currency = swapper.load_model(AcceleratorConfig.name, 'Currency')
 
 
 def _char_range(start, end):
@@ -30,6 +36,6 @@ class CurrencyFactory(DjangoModelFactory):
     class Meta:
         model = Currency
 
-    name = Sequence(lambda n: "Currency {0}".format(n))
+    name = Sequence(lambda n: 'Currency {0}'.format(n))
     abbr = Sequence(lambda n: nth_currency(n))
     usd_exchange = 1.0

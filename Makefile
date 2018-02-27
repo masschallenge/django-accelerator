@@ -90,7 +90,7 @@ DEV_PACKAGES = ipython pycodestyle flake8 coverage tox mock \
   factory-boy # factory-boy is in setup.py, but is not getting loaded
   
 
-DJANGO_VERSION = 1.10.3
+DJANGO_VERSION = 1.10.8
 VENV = venv
 ACTIVATE = $(VENV)/bin/activate
 
@@ -175,3 +175,4 @@ test: $(VENV)
 
 tox: $(VENV)
 	@. $(ACTIVATE); tox
+
