@@ -13,7 +13,7 @@ from accelerator_abstract.models.base_user_utils import (
 )
 
 
-class TestMember(TestCase):
+class TestMemberProfile(TestCase):
 
     def test_create(self):
         user = MemberFactory()
