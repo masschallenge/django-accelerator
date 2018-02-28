@@ -2,6 +2,7 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from django.test import TestCase
+
 from .factories.job_posting_factory import JobPostingFactory
 
 
