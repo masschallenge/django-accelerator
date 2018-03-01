@@ -16,3 +16,8 @@ class TestFunctionalExpertise(TestCase):
             parent=parent_functional_expertise)
         assert functional_expertise.name in str(functional_expertise)
         assert parent_functional_expertise.name in str(functional_expertise)
+
+    def test_add_parent(self):
+        parent = FunctionalExpertiseFactory()
+        child = FunctionalExpertiseFactory(parent=parent)
+        self.assertEqual(child.parent, parent)
