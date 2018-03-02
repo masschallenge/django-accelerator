@@ -13,8 +13,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunSQL("ALTER TABLE django_content_type MODIFY COLUMN name VARCHAR(100) NOT NULL DEFAULT '';",
-                          "ALTER TABLE django_content_type ALTER COLUMN name DROP DEFAULT;"),
         migrations.AlterField(
             model_name='entrepreneurprofile',
             name='interest_categories',
