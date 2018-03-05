@@ -35,7 +35,7 @@ target_help = \
   '\tif provided.  E.g.:' \
   '\tmake test tests="impact.tests.test_file1 impact.tests.test_file2"' \
   'coverage - Run tests with coverage summary in terminal.' \
-  'coverage-html - Run tests with coverage and open repot in browser.' \
+  'coverage-html - Run tests with coverage and open report in browser.' \
   'code-check - Runs Flake8 and pep8 on the files changed between the' \
   '\tcurrent branch and $$(branch) (defaults to development)' \
   'tox - Run tox to run tests on all supported configurations.' \
@@ -45,7 +45,6 @@ target_help = \
   'migrations - Create any needed auto-generated migrations.' \
   '\tUses $$(migration_name) if provided.' \
   'migrate - Runs any pending migrations from managing client.' \
-  'models - Updates model definitions in clients.' \
   ' ' \
   'status - Reports the status of all related source code repositories.' \
   'current - Switch all repos to development branch (or $$(branch)' \
