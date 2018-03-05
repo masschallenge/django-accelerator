@@ -175,3 +175,5 @@ test: $(VENV)
 tox: $(VENV)
 	@. $(ACTIVATE); tox
 
+release-list release deploy:
+	@$(IMPACT_MAKE) $@
