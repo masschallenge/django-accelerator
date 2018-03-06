@@ -6,6 +6,10 @@ from django.conf import settings
 from django.db import migrations, models
 
 
+PROGRAM_FAMILY_HELP = ('Which of our Program Families would you like to be '
+                       'involved with')
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -16,46 +20,70 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='entrepreneurprofile',
             name='interest_categories',
-            field=models.ManyToManyField(blank=True, to=settings.ACCELERATOR_INTERESTCATEGORY_MODEL),
+            field=models.ManyToManyField(
+                blank=True,
+                to=settings.ACCELERATOR_INTERESTCATEGORY_MODEL),
         ),
         migrations.AlterField(
             model_name='entrepreneurprofile',
             name='program_families',
-            field=models.ManyToManyField(blank=True, help_text='Which of our Program Families would you like to be involved with?', related_name='interested_entrepreneurprofile', to=settings.ACCELERATOR_PROGRAMFAMILY_MODEL),
+            field=models.ManyToManyField(
+                blank=True,
+                help_text=PROGRAM_FAMILY_HELP,
+                related_name='interested_entrepreneurprofile',
+                to=settings.ACCELERATOR_PROGRAMFAMILY_MODEL),
         ),
         migrations.AlterField(
             model_name='entrepreneurprofile',
             name='recommendation_tags',
-            field=models.ManyToManyField(blank=True, to=settings.ACCELERATOR_RECOMMENDATIONTAG_MODEL),
+            field=models.ManyToManyField(
+                blank=True,
+                to=settings.ACCELERATOR_RECOMMENDATIONTAG_MODEL),
         ),
         migrations.AlterField(
             model_name='expertprofile',
             name='interest_categories',
-            field=models.ManyToManyField(blank=True, to=settings.ACCELERATOR_INTERESTCATEGORY_MODEL),
+            field=models.ManyToManyField(
+                blank=True,
+                to=settings.ACCELERATOR_INTERESTCATEGORY_MODEL),
         ),
         migrations.AlterField(
             model_name='expertprofile',
             name='program_families',
-            field=models.ManyToManyField(blank=True, help_text='Which of our Program Families would you like to be involved with?', related_name='interested_expertprofile', to=settings.ACCELERATOR_PROGRAMFAMILY_MODEL),
+            field=models.ManyToManyField(
+                blank=True,
+                help_text=PROGRAM_FAMILY_HELP,
+                related_name='interested_expertprofile',
+                to=settings.ACCELERATOR_PROGRAMFAMILY_MODEL),
         ),
         migrations.AlterField(
             model_name='expertprofile',
             name='recommendation_tags',
-            field=models.ManyToManyField(blank=True, to=settings.ACCELERATOR_RECOMMENDATIONTAG_MODEL),
+            field=models.ManyToManyField(
+                blank=True,
+                to=settings.ACCELERATOR_RECOMMENDATIONTAG_MODEL),
         ),
         migrations.AlterField(
             model_name='memberprofile',
             name='interest_categories',
-            field=models.ManyToManyField(blank=True, to=settings.ACCELERATOR_INTERESTCATEGORY_MODEL),
+            field=models.ManyToManyField(
+                blank=True,
+                to=settings.ACCELERATOR_INTERESTCATEGORY_MODEL),
         ),
         migrations.AlterField(
             model_name='memberprofile',
             name='program_families',
-            field=models.ManyToManyField(blank=True, help_text='Which of our Program Families would you like to be involved with?', related_name='interested_memberprofile', to=settings.ACCELERATOR_PROGRAMFAMILY_MODEL),
+            field=models.ManyToManyField(
+                blank=True,
+                help_text=PROGRAM_FAMILY_HELP,
+                related_name='interested_memberprofile',
+                to=settings.ACCELERATOR_PROGRAMFAMILY_MODEL),
         ),
         migrations.AlterField(
             model_name='memberprofile',
             name='recommendation_tags',
-            field=models.ManyToManyField(blank=True, to=settings.ACCELERATOR_RECOMMENDATIONTAG_MODEL),
+            field=models.ManyToManyField(
+                blank=True,
+                to=settings.ACCELERATOR_RECOMMENDATIONTAG_MODEL),
         ),
     ]
