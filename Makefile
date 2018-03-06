@@ -85,22 +85,18 @@ help:
 	    echo $$t; done
 	@echo
 
-DEV_PACKAGES = ipython pycodestyle flake8 coverage tox mock \
-  factory-boy # factory-boy is in setup.py, but is not getting loaded
-  
 
 DJANGO_VERSION = 1.10.8
 VENV = venv
 ACTIVATE = $(VENV)/bin/activate
 
-$(VENV): requirements.txt Makefile
+$(VENV): requirements/base.txt requirements/dev.txt Makefile
 	@pip install virtualenv
 	@rm -rf $(VENV)
 	@virtualenv -p `which python3` $@
 	@touch $(ACTIVATE)
 	@. $(ACTIVATE) ; \
-	DJANGO_VERSION=$(DJANGO_VERSION) pip install -r requirements.txt; \
-	  pip install $(DEV_PACKAGES)
+	DJANGO_VERSION=$(DJANGO_VERSION) pip install -r requirements/dev.txt
 
 package: $(VENV)
 	@. $(ACTIVATE); python setup.py sdist
@@ -134,7 +130,7 @@ coverage-report: diff_grep:=$(shell echo $(diff_sed) | tr ' ' '\n' | \
   grep -v /django_migrations/ | grep -v setup.py | tr '\n' ' ' )
 coverage-report: $(VENV)
 	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
-	coverage report --skip-covered $(diff_grep) | grep -v "NoSource:"
+	coverage report -i --skip-covered $(diff_grep) | grep -v "NoSource:"
 
 coverage-html: $(VENV)
 	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
