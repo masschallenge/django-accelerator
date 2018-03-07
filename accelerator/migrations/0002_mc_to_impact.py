@@ -6,8 +6,7 @@ from django.conf import settings
 from django.db import migrations, models
 
 
-PROGRAM_FAMILY_HELP = ('Which of our Program Families would you like to be '
-                       'involved with')
+HELP_TEXT = 'Which of our Program Families would you like to be involved with?'
 
 
 class Migration(migrations.Migration):
@@ -29,7 +28,7 @@ class Migration(migrations.Migration):
             name='program_families',
             field=models.ManyToManyField(
                 blank=True,
-                help_text=PROGRAM_FAMILY_HELP,
+                help_text=HELP_TEXT,
                 related_name='interested_entrepreneurprofile',
                 to=settings.ACCELERATOR_PROGRAMFAMILY_MODEL),
         ),
@@ -52,7 +51,7 @@ class Migration(migrations.Migration):
             name='program_families',
             field=models.ManyToManyField(
                 blank=True,
-                help_text=PROGRAM_FAMILY_HELP,
+                help_text=HELP_TEXT,
                 related_name='interested_expertprofile',
                 to=settings.ACCELERATOR_PROGRAMFAMILY_MODEL),
         ),
@@ -75,7 +74,7 @@ class Migration(migrations.Migration):
             name='program_families',
             field=models.ManyToManyField(
                 blank=True,
-                help_text=PROGRAM_FAMILY_HELP,
+                help_text=HELP_TEXT,
                 related_name='interested_memberprofile',
                 to=settings.ACCELERATOR_PROGRAMFAMILY_MODEL),
         ),
