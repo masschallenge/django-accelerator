@@ -13,16 +13,20 @@ targets = \
   status \
   current \
   \
+  clean \
+  \
   run-all-servers \
   stop-all-servers \
   shutdown-all-vms \
   delete-all-vms \
 
 
-#   install \
-#   package \
-#   shell \
-#   uninstall \
+# Repos
+ACCELERATE = ../accelerate
+DJANGO_ACCELERATOR = ../django-accelerator
+IMPACT_API = ../impact-api
+REPOS = $(ACCELERATE) $(DJANGO_ACCELERATOR) $(IMPACT_API)
+IMPACT_MAKE = cd $(IMPACT_API) && $(MAKE)
 
 
 .PHONY: $(targets)
@@ -51,8 +55,10 @@ target_help = \
   '\tif provided and available) and pulls down any changes to the branch.' \
   '\tReports any errors from the different repos.' \
   ' ' \
+  'clean - Clean out all build products.' \
+  ' ' \
   'run-all-servers - Starts a set of related servers.' \
-  'stop-all-server - Stops a set of related servers.' \
+  'stop-all-servers - Stops a set of related servers.' \
   'shutdown-all-vms - Shutdown set of related server VMs' \
   'delete-all-vms - Delets set of related server VMs' \
   ' ' \
@@ -163,7 +169,7 @@ migrations: $(VENV)
 	django-admin.py makemigrations simpleuser $(MIGRATION_ARGS)
 
 migrate:
-	@cd ../impact-api && $(MAKE)
+	@cd ../impact-api && $(MAKE) $@
 
 test: $(VENV)
 	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings django-admin.py test $(TESTS)
@@ -171,5 +177,19 @@ test: $(VENV)
 tox: $(VENV)
 	@. $(ACTIVATE); tox
 
-release-list release deploy:
+release-list release deploy run-all-servers stop-all-servers shutdown-all-vms delete-all-vms:
 	@$(IMPACT_MAKE) $@
+
+
+# Cross repo targets
+
+status:
+	@for r in $(REPOS) ; do \
+	    echo ; echo Status of $$r; cd $$r; git status; done
+
+current:
+	@for r in $(REPOS) ; do \
+	  cd $$r; \
+	  git checkout $(branch) || git checkout development; \
+	  git pull; \
+	  done
