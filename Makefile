@@ -40,7 +40,7 @@ target_help = \
   '\tmake test tests="impact.tests.test_file1 impact.tests.test_file2"' \
   'coverage - Run tests with coverage summary in terminal.' \
   'coverage-html - Run tests with coverage and open report in browser.' \
-  'code-check - Runs Flake8 and pep8 on the files changed between the' \
+  'code-check - Runs Flake8 and pycodestyle on the files changed between the' \
   '\tcurrent branch and $$(branch) (defaults to development)' \
   'tox - Run tox to run tests on all supported configurations.' \
   ' ' \
@@ -60,7 +60,7 @@ target_help = \
   'run-all-servers - Starts a set of related servers.' \
   'stop-all-servers - Stops a set of related servers.' \
   'shutdown-all-vms - Shutdown set of related server VMs' \
-  'delete-all-vms - Delets set of related server VMs' \
+  'delete-all-vms - Deletes set of related server VMs' \
   ' ' \
   'release-list - List all releases that are ready to be deployed.' \
   'release - Create named release of releated servers.' \
