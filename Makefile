@@ -11,7 +11,7 @@ targets = \
   migrations \
   \
   status \
-  current \
+  checkout \
   \
   clean \
   \
@@ -51,7 +51,7 @@ target_help = \
   'migrate - Runs any pending migrations from managing client.' \
   ' ' \
   'status - Reports the status of all related source code repositories.' \
-  'current - Switch all repos to development branch (or $$(branch)' \
+  'checkout - Switch all repos to development branch (or $$(branch)' \
   '\tif provided and available) and pulls down any changes to the branch.' \
   '\tReports any errors from the different repos.' \
   ' ' \
@@ -187,7 +187,7 @@ status:
 	@for r in $(REPOS) ; do \
 	    echo ; echo Status of $$r; cd $$r; git status; done
 
-current:
+checkout:
 	@for r in $(REPOS) ; do \
 	  cd $$r; \
 	  git checkout $(branch) || git checkout development; \
