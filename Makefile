@@ -7,6 +7,7 @@ targets = \
   coverage-html \
   code-check \
   \
+  update-schema \
   data-migration \
   migrations \
   \
@@ -40,11 +41,19 @@ target_help = \
   '\tcurrent branch and $$(branch) (defaults to $(DEFAULT_BRANCH))' \
   'tox - Run tox to run tests on all supported configurations.' \
   ' ' \
+  'update-schema - Brings database schema up to date.  Specifically,' \
+  '\tupdates any model definitions managed in other libraries,' \
+  '\tcreates any needed migrations (uses $$(migration_name) if provided),' \
+  '\truns any pending migrations.' \
   'data-migration - Create empty migration.' \
   '\tUses $$(migration_name) if provided.' \
   'migrations - Create any needed auto-generated migrations.' \
   '\tUses $$(migration_name) if provided.' \
-  'migrate - Runs any pending migrations from managing client.' \
+  'migrate - Runs migrations. If $$(migration) is given then then that ' \
+  '\tmigration is targeted in the accelerator package unless another ' \
+  '\t$$(application) is given.  Examples:' \
+  '\taccelerate 0123: make migrate migration=0123' \
+  '\tsimpleuser 0123: make migrate migration=0123 application=simpleuser' \
   ' ' \
   'status - Reports the status of all related source code repositories.' \
   'checkout - Switch all repos to $(DEFAULT_BRANCH) (or $$(branch)' \
@@ -73,12 +82,6 @@ OS = $(shell uname)
 
 ifeq ($(OS), Linux)
 	XARGS_FLAG = -r
-endif
-
-ifdef MIGRATION
-ifndef APPLICATION
-APPLICATION = accelerator
-endif
 endif
 
 help:
@@ -114,7 +117,7 @@ code-check: $(VENV)
 	grep -v __init__.py | grep -v 0001_initial.py | \
 	xargs $(XARGS_FLAG) flake8
 
-coverage: coverage-run coverage-report coverage-html
+coverage: coverage-run coverage-report coverage-html-report
 
 coverage-run: $(VENV)
 	@. $(ACTIVATE); \
@@ -137,11 +140,11 @@ coverage-report: $(VENV)
 	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
 	coverage report -i --skip-covered $(diff_grep) | grep -v "NoSource:"
 
-coverage-html: $(VENV)
+coverage-html-report: $(VENV)
 	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
 	coverage html --omit="*/tests/*,*/venv/*"
 
-coverage-html-open: coverage-html
+coverage-html: coverage
 	@open htmlcov/index.html
 
 install: package uninstall
@@ -167,9 +170,6 @@ migrations: $(VENV)
 	DJANGO_SETTINGS_MODULE=settings \
 	django-admin.py makemigrations simpleuser $(MIGRATION_ARGS)
 
-migrate:
-	@cd ../impact-api && $(MAKE) $@
-
 test: $(VENV)
 	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings django-admin.py test $(TESTS)
 
@@ -179,6 +179,10 @@ tox: $(VENV)
 release-list release deploy run-all-servers stop-all-servers shutdown-all-vms delete-all-vms status:
 	@$(IMPACT_MAKE) $@
 
+application ?= accelerator
+
+migrate update-schema:
+	@$(IMPACT_MAKE) $@ application=$(application) migration=$(migration)
 
 checkout:
 	@$(IMPACT_MAKE) $@ branch=$(branch)
