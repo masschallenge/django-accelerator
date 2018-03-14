@@ -21,11 +21,7 @@ targets = \
   delete-all-vms \
 
 
-# Repos
-ACCELERATE = ../accelerate
-DJANGO_ACCELERATOR = ../django-accelerator
 IMPACT_API = ../impact-api
-REPOS = $(ACCELERATE) $(DJANGO_ACCELERATOR) $(IMPACT_API)
 IMPACT_MAKE = cd $(IMPACT_API) && $(MAKE)
 
 
@@ -41,7 +37,7 @@ target_help = \
   'coverage - Run tests with coverage summary in terminal.' \
   'coverage-html - Run tests with coverage and open report in browser.' \
   'code-check - Runs Flake8 and pycodestyle on the files changed between the' \
-  '\tcurrent branch and $$(branch) (defaults to development)' \
+  '\tcurrent branch and $$(branch) (defaults to $(DEFAULT_BRANCH))' \
   'tox - Run tox to run tests on all supported configurations.' \
   ' ' \
   'data-migration - Create empty migration.' \
@@ -51,7 +47,7 @@ target_help = \
   'migrate - Runs any pending migrations from managing client.' \
   ' ' \
   'status - Reports the status of all related source code repositories.' \
-  'checkout - Switch all repos to development branch (or $$(branch)' \
+  'checkout - Switch all repos to $(DEFAULT_BRANCH) (or $$(branch)' \
   '\tif provided and available) and pulls down any changes to the branch.' \
   '\tReports any errors from the different repos.' \
   ' ' \
@@ -127,9 +123,12 @@ coverage-run: $(VENV)
 	/usr/local/bin/django-admin.py test
 
 
-BRANCH ?= development
+DEFAULT_BRANCH = modular-models-epic
+# Change after modular-models-epic branch has merged
+# DEFAULT_BRANCH = development
+branch ?= $(DEFAULT_BRANCH)
 
-coverage-report: diff_files:=$(shell git diff --name-only $(BRANCH))
+coverage-report: diff_files:=$(shell git diff --name-only $(branch))
 coverage-report: diff_sed:=$(shell echo $(diff_files)| sed s:web/impact/::g)
 coverage-report: diff_grep:=$(shell echo $(diff_sed) | tr ' ' '\n' | \
   grep \.py | grep -v /tests/ | grep -v /venv/ | \
@@ -177,19 +176,9 @@ test: $(VENV)
 tox: $(VENV)
 	@. $(ACTIVATE); tox
 
-release-list release deploy run-all-servers stop-all-servers shutdown-all-vms delete-all-vms:
+release-list release deploy run-all-servers stop-all-servers shutdown-all-vms delete-all-vms status:
 	@$(IMPACT_MAKE) $@
 
 
-# Cross repo targets
-
-status:
-	@for r in $(REPOS) ; do \
-	    echo ; echo Status of $$r; cd $$r; git status; done
-
 checkout:
-	@for r in $(REPOS) ; do \
-	  cd $$r; \
-	  git checkout $(branch) || git checkout development; \
-	  git pull; \
-	  done
+	@$(IMPACT_MAKE) $@ branch=$(branch)
