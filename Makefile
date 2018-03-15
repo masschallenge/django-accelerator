@@ -148,11 +148,11 @@ coverage-html-report: $(VENV)
 coverage-html: coverage
 	@open htmlcov/index.html
 
-install: package uninstall
-	pip install dist/*
+install: package uninstall $(VENV)
+	@. $(ACTIVATE); pip install dist/*
 
-uninstall:
-	-pip uninstall -qy django-accelerator
+uninstall: $(VENV)
+	-@. $(ACTIVATE); pip uninstall -qy django-accelerator
 
 ifdef migration_name
   MIGRATION_ARGS = --name $(migration_name)
