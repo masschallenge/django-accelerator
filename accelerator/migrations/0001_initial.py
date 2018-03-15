@@ -728,7 +728,8 @@ class Migration(migrations.Migration):
                 ('sort_order', models.PositiveIntegerField()),
                 ('last_update', models.DateTimeField()),
                 ('cycle',
-                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 models.ForeignKey(blank=True, null=True,
+                                   on_delete=django.db.models.deletion.CASCADE,
                                    to=swapper.get_model_name('accelerator',
                                                              'PROGRAMCYCLE'))),
             ],
@@ -1152,7 +1153,7 @@ class Migration(migrations.Migration):
                  models.DateTimeField(auto_now_add=True, null=True)),
                 ('updated_at', models.DateTimeField(auto_now=True, null=True)),
                 ('commitment_state', models.BooleanField(default=True)),
-                ('capacity', models.IntegerField(blank=True, null=True)),
+                ('capacity', models.IntegerField(default=0)),
                 ('current_quota', models.IntegerField(blank=True, null=True)),
                 ('judge',
                  models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
@@ -1490,7 +1491,7 @@ class Migration(migrations.Migration):
                                  'MassChallenge Switzerland',
                                  'MassChallenge Switzerland'),
                              ('MassChallenge Mexico', 'MassChallenge Mexico'),
-                             ('Pulse@MassChallenge', 'Pulse@MassChallenge'), (
+                             ('PULSE@MassChallenge', 'PULSE@MassChallenge'), (
                                  'Newton Innovation Center (NIC)',
                                  'Newton Innovation Center (NIC)'),
                              ('Remote', 'Remote')], max_length=50)),
@@ -3468,6 +3469,20 @@ class Migration(migrations.Migration):
                 to=swapper.get_model_name('accelerator', 'PROGRAMROLE')),
         ),
         migrations.AddField(
+            model_name='bucketstate',
+            name='basis',
+            field=models.CharField(
+                choices=[('cycle', 'cycle'), ('program', 'program')],
+                default='cycle', max_length=20),
+        ),
+        migrations.AddField(
+            model_name='bucketstate',
+            name='program',
+            field=models.ForeignKey(blank=True, null=True,
+                                    on_delete=django.db.models.deletion.CASCADE,
+                                    to=swapper.get_model_name('accelerator', 'PROGRAM')),
+        ),
+        migrations.AddField(
             model_name='applicationpanelassignment',
             name='panel',
             field=models.ForeignKey(
@@ -3562,6 +3577,6 @@ class Migration(migrations.Migration):
         migrations.AlterIndexTogether(
             name='judgefeedbackcomponent',
             index_together=set(
-                [('id', 'judge_feedback', 'feedback_element', 'answer_text')]),
+                [('id', 'judge_feedback', 'feedback_element')]),
         ),
     ]
