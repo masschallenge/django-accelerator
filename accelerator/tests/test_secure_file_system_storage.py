@@ -18,6 +18,7 @@ class TestSecureFileSystemStorage(TestCase):
         name = 'bar'
         url = secure_file_system_storage.url(name)
         assert url is not None
+        assert name not in url
 
     @patch('accelerator_abstract.models.secure_file_system_storage.settings')
     def test_url_unsuccessful_url_reverse(self, mock_settings):
