@@ -29,8 +29,25 @@ BUCKET_TYPES = (
     (NEW_EXPERTS_BUCKET_TYPE, "New Experts"),
 )
 
+CYCLE_BASED = "cycle"
+PROGRAM_BASED = "program"
+
+BASIS_TYPES = (
+    (CYCLE_BASED, "cycle"),
+    (PROGRAM_BASED, "program"),
+)
+
+EXPERTS_GROUP = "Experts"
+FRESH_LEADS_GROUP = "Fresh Lead Buckets"
+STALE_LEADS_GROUP = "Stale Lead Buckets"
+
 
 class BaseBucketState(AcceleratorModel):
+    basis = models.CharField(
+        choices=BASIS_TYPES,
+        default=CYCLE_BASED,
+        max_length=20
+    )
     name = models.CharField(
         max_length=64,
         choices=BUCKET_TYPES,
@@ -43,7 +60,14 @@ class BaseBucketState(AcceleratorModel):
     sort_order = models.PositiveIntegerField()
     cycle = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "ProgramCycle"))
+                               "ProgramCycle"),
+        blank=True,
+        null=True)
+    program = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+                               "Program"),
+        blank=True,
+        null=True)
     last_update = models.DateTimeField()
     program_role = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,

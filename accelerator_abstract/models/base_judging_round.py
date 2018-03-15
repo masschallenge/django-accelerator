@@ -64,11 +64,21 @@ FEEDBACK_DISPLAY_CHOICES = (
     (FEEDBACK_DISPLAY_DISABLED, 'Disabled'),
     (FEEDBACK_DISPLAY_ENABLED, 'Enabled'),
 )
+FEEDBACK_DISPLAY_CATEGORY_AND_FEEDBACK = 'feedback-and-judge-category'
+FEEDBACK_DISPLAY_CATEGORY_AND_FEEDBACK_TEXT = 'Judge Category and Feedback'
+FEEDBACK_DISPLAY_FEEDBACK_ONLY = 'feedback-only'
+FEEDBACK_DISPLAY_FEEDBACK_ONLY_TEXT = 'Only Feedback'
+FEEDBACK_DISPLAY_CATEGORY_ONLY = 'judge-category-only'
+FEEDBACK_DISPLAY_CATEGORY_ONLY_TEXT = 'Only Judge Category'
 
 FEEDBACK_DISPLAY_ITEMS = (
-    ('feedback-and-judge-category', 'Judge Category and Feedback'),
-    ('feedback-only', 'Only Feedback'),
-    ('judge-category-only', 'Only Judge Category'))
+    (FEEDBACK_DISPLAY_CATEGORY_AND_FEEDBACK,
+     FEEDBACK_DISPLAY_CATEGORY_AND_FEEDBACK_TEXT),
+    (FEEDBACK_DISPLAY_FEEDBACK_ONLY,
+     FEEDBACK_DISPLAY_FEEDBACK_ONLY_TEXT),
+    (FEEDBACK_DISPLAY_CATEGORY_ONLY,
+     FEEDBACK_DISPLAY_CATEGORY_ONLY_TEXT),
+)
 
 DEFAULT_BUFFER_BEFORE_EVENT = 30
 FIFTEEN_MINUTES = 15
@@ -220,6 +230,8 @@ class BaseJudgingRound(AcceleratorModel):
     def program_family_abbrs(self):
         if self.cycle_based_round:
             programs = self.program.cycle.programs.all()
-            return " ".join(sorted([program.family_abbr()
-                                    for program in programs]))
+            abbrs = map(lambda s: s.upper(),
+                        programs.values_list("program_family__url_slug",
+                                             flat=True))
+            return " ".join(sorted(abbrs))
         return self.program.family_abbr()
