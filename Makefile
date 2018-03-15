@@ -94,6 +94,7 @@ help:
 DJANGO_VERSION = 1.10.8
 VENV = venv
 ACTIVATE = $(VENV)/bin/activate
+DJANGO_ADMIN = $(VENV)/bin/django-admin.py
 
 $(VENV): requirements/base.txt requirements/dev.txt Makefile
 	@pip install virtualenv
@@ -123,7 +124,7 @@ coverage-run: $(VENV)
 	@. $(ACTIVATE); \
 	DJANGO_SETTINGS_MODULE=settings coverage run \
 	--omit="*/tests/*,*/venv/*" --source='.' \
-	/usr/local/bin/django-admin.py test
+	$(DJANGO_ADMIN) test
 
 
 DEFAULT_BRANCH = modular-models-epic
@@ -160,18 +161,18 @@ endif
 data-migration: $(VENV)
 	@. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
 	DJANGO_SETTINGS_MODULE=settings \
-	django-admin.py makemigrations accelerator --empty $(MIGRATION_ARGS)
+	$(DJANGO_ADMIN) makemigrations accelerator --empty $(MIGRATION_ARGS)
 
 migrations: $(VENV)
 	@. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
 	DJANGO_SETTINGS_MODULE=settings \
-	django-admin.py makemigrations accelerator $(MIGRATION_ARGS)
+	$(DJANGO_ADMIN) makemigrations accelerator $(MIGRATION_ARGS)
 	@. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
 	DJANGO_SETTINGS_MODULE=settings \
-	django-admin.py makemigrations simpleuser $(MIGRATION_ARGS)
+	$(DJANGO_ADMIN) makemigrations simpleuser $(MIGRATION_ARGS)
 
 test: $(VENV)
-	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings django-admin.py test $(TESTS)
+	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings $(DJANGO_ADMIN) test $(TESTS)
 
 tox: $(VENV)
 	@. $(ACTIVATE); tox
