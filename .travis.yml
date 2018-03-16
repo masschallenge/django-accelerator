@@ -26,5 +26,8 @@ install:
 
 script:
 
-- source venv/bin/activate; make test
+- source venv/bin/activate
+- which python
+- find . -name settings.py
+- make test
 - make code-check
