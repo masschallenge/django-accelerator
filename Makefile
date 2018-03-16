@@ -93,25 +93,26 @@ help:
 
 DJANGO_VERSION = 1.10.8
 VENV = venv
-ACTIVATE = $(VENV)/bin/activate
+ACTIVATE_SCRIPT = $(VENV)/bin/activate
+ACTIVATE = export PYTHONPATH=.; . $(ACTIVATE_SCRIPT)
 DJANGO_ADMIN = $(VENV)/bin/django-admin.py
 
 $(VENV): requirements/base.txt requirements/dev.txt Makefile
 	@pip install virtualenv
 	@rm -rf $(VENV)
 	@virtualenv -p `which python3` $@
-	@touch $(ACTIVATE)
-	@. $(ACTIVATE) ; \
+	@touch $(ACTIVATE_SCRIPT)
+	@$(ACTIVATE) ; \
 	DJANGO_VERSION=$(DJANGO_VERSION) pip install -r requirements/dev.txt
 
 package: $(VENV)
-	@. $(ACTIVATE); python setup.py sdist
+	@$(ACTIVATE); python setup.py sdist
 
 clean:
 	@rm -rf $(VENV) django_accelerator.egg-info dist
 
 code-check: $(VENV)
-	@. $(ACTIVATE); \
+	@$(ACTIVATE); \
 	git diff --name-only development | grep __init__.py | \
 	xargs $(XARGS_FLAG) pycodestyle --ignore E902; \
 	git diff --name-only development | grep "\.py" | \
@@ -121,7 +122,7 @@ code-check: $(VENV)
 coverage: coverage-run coverage-report coverage-html-report
 
 coverage-run: $(VENV)
-	@. $(ACTIVATE); \
+	@$(ACTIVATE); \
 	DJANGO_SETTINGS_MODULE=settings coverage run \
 	--omit="*/tests/*,*/venv/*" --source='.' \
 	$(DJANGO_ADMIN) test
@@ -138,44 +139,44 @@ coverage-report: diff_grep:=$(shell echo $(diff_sed) | tr ' ' '\n' | \
   grep \.py | grep -v /tests/ | grep -v /venv/ | \
   grep -v /django_migrations/ | grep -v setup.py | tr '\n' ' ' )
 coverage-report: $(VENV)
-	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
+	@$(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
 	coverage report -i --skip-covered $(diff_grep) | grep -v "NoSource:"
 
 coverage-html-report: $(VENV)
-	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
+	@$(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
 	coverage html --omit="*/tests/*,*/venv/*"
 
 coverage-html: coverage
 	@open htmlcov/index.html
 
 install: package uninstall $(VENV)
-	@. $(ACTIVATE); pip install dist/*
+	@$(ACTIVATE); pip install dist/*
 
 uninstall: $(VENV)
-	-@. $(ACTIVATE); pip uninstall -qy django-accelerator
+	-@$(ACTIVATE); pip uninstall -qy django-accelerator
 
 ifdef migration_name
   MIGRATION_ARGS = --name $(migration_name)
 endif
 
 data-migration: $(VENV)
-	@. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
+	@$(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
 	DJANGO_SETTINGS_MODULE=settings \
 	$(DJANGO_ADMIN) makemigrations accelerator --empty $(MIGRATION_ARGS)
 
 migrations: $(VENV)
-	@. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
+	@$(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
 	DJANGO_SETTINGS_MODULE=settings \
 	$(DJANGO_ADMIN) makemigrations accelerator $(MIGRATION_ARGS)
-	@. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
+	@$(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
 	DJANGO_SETTINGS_MODULE=settings \
 	$(DJANGO_ADMIN) makemigrations simpleuser $(MIGRATION_ARGS)
 
 test: $(VENV)
-	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings $(DJANGO_ADMIN) test $(TESTS)
+	@$(ACTIVATE); DJANGO_SETTINGS_MODULE=settings $(DJANGO_ADMIN) test $(TESTS)
 
 tox: $(VENV)
-	@. $(ACTIVATE); tox
+	@$(ACTIVATE); tox
 
 release-list release deploy run-all-servers stop-all-servers shutdown-all-vms delete-all-vms status:
 	@$(IMPACT_MAKE) $@
