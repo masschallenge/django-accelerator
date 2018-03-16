@@ -12,6 +12,8 @@ from factory import (
     DjangoModelFactory,
     Sequence,
 )
+from simpleuser.models import MAX_USERNAME_LENGTH
+
 
 User = get_user_model()
 
@@ -20,7 +22,7 @@ class UserFactory(DjangoModelFactory):
     class Meta:
         model = User
 
-    username = Sequence(lambda n: str(uuid.uuid4()))
+    username = Sequence(lambda n: str(uuid.uuid4())[:MAX_USERNAME_LENGTH])
     email = Sequence(lambda n: "user_{0}@example.com".format(n))
     first_name = Sequence(lambda n: "First {0}".format(n))
     last_name = Sequence(lambda n: "Last {0}".format(n))
