@@ -24,6 +24,6 @@ install:
 - git checkout $CURRENT_HEAD
 
 script:
-- source venv/bin/activate
-- make test
+
+- source venv/bin/activate; make test
 - make code-check
