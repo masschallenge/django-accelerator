@@ -29,5 +29,7 @@ script:
 - source venv/bin/activate
 - which python
 - find . -name settings.py
+- echo $PYTHONPATH
+- export PYTHONPATH=.
 - make test
 - make code-check
