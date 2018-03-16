@@ -25,6 +25,7 @@ install:
 - git checkout $CURRENT_HEAD
 
 script:
-
-- source venv/bin/activate; make test
+- source venv/bin/activate
+- export PYTHONPATH=.
+- make test
 - make code-check
