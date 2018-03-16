@@ -26,5 +26,5 @@ install:
 
 script:
 
-- make test
+- source venv/bin/activate; make test
 - make code-check
