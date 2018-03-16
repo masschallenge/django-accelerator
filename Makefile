@@ -172,7 +172,7 @@ migrations: $(VENV)
 	$(DJANGO_ADMIN) makemigrations simpleuser $(MIGRATION_ARGS)
 
 test: $(VENV)
-	. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings $(DJANGO_ADMIN) test $(TESTS)
+	. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings django-admin.py test $(TESTS)
 
 tox: $(VENV)
 	@. $(ACTIVATE); tox
