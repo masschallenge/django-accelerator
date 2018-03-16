@@ -1,26 +1,36 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
 
-from datetime import datetime
-from pytz import utc
+from __future__ import unicode_literals
+
+import swapper
 from factory import (
     DjangoModelFactory,
+    Iterator,
     Sequence,
     SubFactory,
     post_generation,
 )
 
+from accelerator.apps import AcceleratorConfig
 from accelerator.models import (
     DEFAULT_PROFILE_BACKGROUND_COLOR,
     DEFAULT_PROFILE_TEXT_COLOR,
     STARTUP_COMMUNITIES,
-    Startup,
 )
+from accelerator.tests.factories.currency_factory import CurrencyFactory
+from accelerator.tests.factories.entrepreneur_factory import (
+    EntrepreneurFactory
+)
+from accelerator.tests.factories.industry_factory import IndustryFactory
+from accelerator.tests.factories.organization_factory import (
+    OrganizationFactory
+)
+from accelerator.tests.utils import days_from_now
 
-from .currency_factory import CurrencyFactory
-from .industry_factory import IndustryFactory
-from .organization_factory import OrganizationFactory
-from simpleuser.tests.factories.user_factory import UserFactory
+Startup = swapper.load_model(AcceleratorConfig.name, 'Startup')
+
+COMMUNITY_VALUES = [val[0] for val in STARTUP_COMMUNITIES]
 
 
 class StartupFactory(DjangoModelFactory):
@@ -28,18 +38,25 @@ class StartupFactory(DjangoModelFactory):
         model = Startup
 
     organization = SubFactory(OrganizationFactory)
-    user = SubFactory(UserFactory)
+    user = SubFactory(EntrepreneurFactory)
     is_visible = True
     primary_industry = SubFactory(IndustryFactory)
-    short_pitch = "Doing the things with the stuff."
-    full_elevator_pitch = "It is really hard to throw elevators."
-    video_elevator_pitch_url = "http://example.com"
+
+    short_pitch = name = Sequence(
+        lambda n: "short_pitch Startup {0} Inc.".format(n))
+    full_elevator_pitch = Sequence(
+        lambda n: "full_elevator_pitch Startup {0} Inc.".format(n))
+    video_elevator_pitch_url = ""
+    website_url = Sequence(lambda n: "startup{0}.com".format(n))
     linked_in_url = Sequence(lambda n: "linkedin.com/startup{0}".format(n))
     facebook_url = Sequence(lambda n: "facebook.com/startup{0}".format(n))
     high_resolution_logo = None
-    created_datetime = utc.localize(datetime(2015, 1, 1))
-    last_updated_datetime = utc.localize(datetime(2015, 7, 1))
-    community = STARTUP_COMMUNITIES[0][0]
+    twitter_handle = Sequence(lambda n: "startup{0}".format(n))
+    public_inquiry_email = Sequence(
+        lambda n: "contact@startup{0}.com".format(n))
+    created_datetime = days_from_now(-5)
+    last_updated_datetime = days_from_now(-4)
+    community = Iterator(COMMUNITY_VALUES)
     profile_background_color = DEFAULT_PROFILE_BACKGROUND_COLOR
     profile_text_color = DEFAULT_PROFILE_TEXT_COLOR
     currency = SubFactory(CurrencyFactory)
@@ -65,3 +82,11 @@ class StartupFactory(DjangoModelFactory):
         if extracted:
             for tag in extracted:
                 self.recommendation_tags.add(tag)
+
+    @post_generation
+    def name(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            self.organization.name = extracted
+            self.organization.save()
