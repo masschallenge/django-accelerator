@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         migrations.AlterIndexTogether(
             name='judgefeedbackcomponent',
             index_together=set(
-                [('id', 'judge_feedback', 'feedback_element', 'answer_text')]),
+                [('id', 'judge_feedback', 'feedback_element')]),
         ),
         migrations.AlterField(
             model_name='judgeapplicationfeedback',
