@@ -29,22 +29,18 @@ BUCKET_TYPES = (
     (NEW_EXPERTS_BUCKET_TYPE, "New Experts"),
 )
 
-CYCLE_BASED = "cycle"
-PROGRAM_BASED = "program"
-
-BASIS_TYPES = (
-    (CYCLE_BASED, "cycle"),
-    (PROGRAM_BASED, "program"),
-)
-
 EXPERTS_GROUP = "Experts"
 FRESH_LEADS_GROUP = "Fresh Lead Buckets"
 STALE_LEADS_GROUP = "Stale Lead Buckets"
 
 
 class BaseBucketState(AcceleratorModel):
+    CYCLE_BASED = "cycle"
+    PROGRAM_BASED = "program"
+
     basis = models.CharField(
-        choices=BASIS_TYPES,
+        choices=((CYCLE_BASED, "Cycle"),
+                 (PROGRAM_BASED, "Program")),
         default=CYCLE_BASED,
         max_length=20
     )

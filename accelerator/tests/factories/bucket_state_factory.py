@@ -17,7 +17,6 @@ from pytz import utc
 
 from accelerator.apps import AcceleratorConfig
 from accelerator.models import (
-    CYCLE_BASED,
     STALE_NOSTARTUP_BUCKET_TYPE,
     STALE_LEADS_GROUP,
 )
@@ -34,7 +33,7 @@ class BucketStateFactory(DjangoModelFactory):
     class Meta:
         model = BucketState
 
-    basis = CYCLE_BASED
+    basis = BucketState.CYCLE_BASED
     name = STALE_NOSTARTUP_BUCKET_TYPE
     group = STALE_LEADS_GROUP
     sort_order = 1

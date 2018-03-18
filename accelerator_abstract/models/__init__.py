@@ -36,12 +36,9 @@ from .base_base_profile import (
 )
 from .base_bucket_state import (
     BaseBucketState,
-    BASIS_TYPES,
     BUCKET_TYPES,
-    CYCLE_BASED,
     FRESH_LEADS_GROUP,
     NEW_ENTREPRENEURS_BUCKET_TYPE,
-    PROGRAM_BASED,
     STALE_LEADS_GROUP,
     STALE_NOSTARTUP_BUCKET_TYPE,
     STALE_STARTUP_BUCKET_TYPE,
