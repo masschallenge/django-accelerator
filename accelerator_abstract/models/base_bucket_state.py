@@ -40,7 +40,8 @@ class BaseBucketState(AcceleratorModel):
 
     basis = models.CharField(
         choices=((CYCLE_BASED, "Cycle"),
-                 (PROGRAM_BASED, "Program")),
+                 (PROGRAM_BASED, "Program"),
+                 ('foo', 'Foo')),
         default=CYCLE_BASED,
         max_length=20
     )
