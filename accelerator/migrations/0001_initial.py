@@ -2804,9 +2804,6 @@ class Migration(migrations.Migration):
                                                      primary_key=True,
                                                      serialize=False,
                                                      to='fluent_pages.UrlNode')),
-                # ('created_at',
-                #  models.DateTimeField(auto_now_add=True, null=True)),
-                # ('updated_at', models.DateTimeField(auto_now=True, null=True)),
                 ('program_status', models.CharField(blank=True, choices=[
                     ('upcoming', 'Upcoming'), ('active', 'Active'),
                     ('ended', 'Ended'), ('hidden', 'Hidden')], max_length=64,
@@ -2923,7 +2920,7 @@ class Migration(migrations.Migration):
                                                      to='fluent_pages.UrlNode')),
                 ('file', models.FileField(
                     storage=accelerator_abstract.models.secure_file_system_storage.SecureFileSystemStorage(
-                        location='/var/www/cms-files'), upload_to='%Y-%m')),
+                        location=settings.CMS_FILE_ROOT), upload_to='%Y-%m')),
                 ('description', models.TextField(blank=True)),
             ],
             options={
