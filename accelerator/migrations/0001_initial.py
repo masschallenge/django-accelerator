@@ -3472,7 +3472,7 @@ class Migration(migrations.Migration):
             model_name='bucketstate',
             name='basis',
             field=models.CharField(
-                choices=[('cycle', 'cycle'), ('program', 'program')],
+                choices=[('cycle', 'Cycle'), ('program', 'Program')],
                 default='cycle', max_length=20),
         ),
         migrations.AddField(
