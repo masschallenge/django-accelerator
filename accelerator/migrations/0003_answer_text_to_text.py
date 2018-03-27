@@ -22,8 +22,4 @@ class Migration(migrations.Migration):
             name='original_answer_text',
             field=models.TextField(blank=True),
         ),
-        migrations.AlterIndexTogether(
-            name='judgefeedbackcomponent',
-            index_together=set([]),
-        ),
     ]
