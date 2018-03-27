@@ -1,52 +1,87 @@
 targets = \
-  clean \
-  code-check \
+  help \
+  \
+  test \
+  tox \
   coverage \
   coverage-html \
-  help \
-  install \
-  package \
-  shell \
-  test \
-  uninstall \
+  code-check \
+  \
+  update-schema \
+  data-migration \
+  migrations \
+  \
+  status \
+  checkout \
+  \
+  clean \
+  \
+  run-all-servers \
+  stop-all-servers \
+  shutdown-all-vms \
+  delete-all-vms \
+
+
+IMPACT_API = ../impact-api
+IMPACT_MAKE = cd $(IMPACT_API) && $(MAKE)
 
 
 .PHONY: $(targets)
 
 
 target_help = \
-  "clean - Shutdown all running containers and removes data files." \
-  "code-check - Runs Flake8 and pycodestyle on the files changed between the " \
-  "\tcurrent branch and and a given BRANCH (defaults to development)" \
-  "coverage - Run coverage and generate text report." \
-  "coverage-html - Run coverage and generate HTML report." \
-  "help - Prints this help message." \
-  "install - Builds package and installs it in the local virtualenv." \
-  "migrate - Runs migrations. If MIGRATION is given then then that " \
-  "\tmigration is targeted in the accelerator package unless another " \
-  "\tAPPLICATION is given. The migrations are run on a temporary" \
-  "\tdatabase that is destroyed immediately afterwords." \
-  "migrations - Creates an needed migrations due to model changes." \
-  "package - Create python package for this library (default)." \
-  "shell - Start Django shell that can load this package." \
-  "test - Run tests. To run a subset of tests:" \
-  "\tmake test TESTS='accelerator.tests.test_currency accelerator.tests.test_startup'" \
-  "tox - Run tox to run tests on all supported configurations." \
-  "uninstall - Removes the package from the local virtuanlenv." \
-  "" \
-  "Note: various targets automatically create a python virtualenv, venv." \
-  "You can us it in your shell by running: 'source venv/bin/activate'"
+  'help - Prints this help message.' \
+  ' ' \
+  'test - Run tests with no coverage. Run just those specified in $$(tests)' \
+  '\tif provided.  E.g.:' \
+  '\tmake test tests="impact.tests.test_file1 impact.tests.test_file2"' \
+  'coverage - Run tests with coverage summary in terminal.' \
+  'coverage-html - Run tests with coverage and open report in browser.' \
+  'code-check - Runs Flake8 and pycodestyle on the files changed between the' \
+  '\tcurrent branch and $$(branch) (defaults to $(DEFAULT_BRANCH))' \
+  'tox - Run tox to run tests on all supported configurations.' \
+  ' ' \
+  'update-schema - Brings database schema up to date.  Specifically,' \
+  '\tupdates any model definitions managed in other libraries,' \
+  '\tcreates any needed migrations (uses $$(migration_name) if provided),' \
+  '\truns any pending migrations.' \
+  'data-migration - Create empty migration.' \
+  '\tUses $$(migration_name) if provided.' \
+  'migrations - Create any needed auto-generated migrations.' \
+  '\tUses $$(migration_name) if provided.' \
+  'migrate - Runs migrations. If $$(migration) is given then then that ' \
+  '\tmigration is targeted in the accelerator package unless another ' \
+  '\t$$(application) is given.  Examples:' \
+  '\taccelerate 0123: make migrate migration=0123' \
+  '\tsimpleuser 0123: make migrate migration=0123 application=simpleuser' \
+  ' ' \
+  'status - Reports the status of all related source code repositories.' \
+  'checkout - Switch all repos to $(DEFAULT_BRANCH) (or $$(branch)' \
+  '\tif provided and available) and pulls down any changes to the branch.' \
+  '\tReports any errors from the different repos.' \
+  ' ' \
+  'clean - Clean out all build products.' \
+  ' ' \
+  'run-all-servers - Starts a set of related servers.' \
+  'stop-all-servers - Stops a set of related servers.' \
+  'shutdown-all-vms - Shutdown set of related server VMs' \
+  'delete-all-vms - Deletes set of related server VMs' \
+  ' ' \
+  'release-list - List all releases that are ready to be deployed.' \
+  'release - Create named release of releated servers.' \
+  '\tRelease name is applied as a tag to all the related git repos.' \
+  '\tRelease name defaults release-<version>.<number> where <version> is' \
+  '\tthe first line of impact-api/VERSION and <number> is the next unused' \
+  '\tnon-negative integer (0,1,2,...).' \
+  '\t$$(release_name) overrides the entire release name.' \
+  'deploy - Deploy $$(release_name) to a $$(target).' \
+  '\tValid targets include "staging" (the default), "production",' \
+  '\t "test-1", and "test-2"' \
 
 OS = $(shell uname)
 
 ifeq ($(OS), Linux)
 	XARGS_FLAG = -r
-endif
-
-ifdef MIGRATION
-ifndef APPLICATION
-APPLICATION = accelerator
-endif
 endif
 
 help:
@@ -55,88 +90,101 @@ help:
 	    echo $$t; done
 	@echo
 
-DEV_PACKAGES = ipython pycodestyle flake8 coverage tox mock \
-  factory-boy # factory-boy is in setup.py, but is not getting loaded
-  
 
 DJANGO_VERSION = 1.10.8
 VENV = venv
-ACTIVATE = $(VENV)/bin/activate
+ACTIVATE_SCRIPT = $(VENV)/bin/activate
+ACTIVATE = export PYTHONPATH=.; . $(ACTIVATE_SCRIPT)
+DJANGO_ADMIN = $(VENV)/bin/django-admin.py
 
-$(VENV): requirements.txt Makefile
+$(VENV): requirements/base.txt requirements/dev.txt Makefile
 	@pip install virtualenv
 	@rm -rf $(VENV)
 	@virtualenv -p `which python3` $@
-	@touch $(ACTIVATE)
-	@. $(ACTIVATE) ; \
-	DJANGO_VERSION=$(DJANGO_VERSION) pip install -r requirements.txt; \
-	  pip install $(DEV_PACKAGES)
+	@touch $(ACTIVATE_SCRIPT)
+	@$(ACTIVATE) ; \
+	DJANGO_VERSION=$(DJANGO_VERSION) pip install -r requirements/dev.txt
 
 package: $(VENV)
-	@. $(ACTIVATE); python setup.py sdist
+	@$(ACTIVATE); python setup.py sdist
 
 clean:
 	@rm -rf $(VENV) django_accelerator.egg-info dist
 
 code-check: $(VENV)
-	@. $(ACTIVATE); \
+	@$(ACTIVATE); \
 	git diff --name-only development | grep __init__.py | \
 	xargs $(XARGS_FLAG) pycodestyle --ignore E902; \
 	git diff --name-only development | grep "\.py" | \
 	grep -v __init__.py | grep -v 0001_initial.py | \
 	xargs $(XARGS_FLAG) flake8
 
-coverage: coverage-run coverage-report coverage-html
+coverage: coverage-run coverage-report coverage-html-report
 
 coverage-run: $(VENV)
-	@. $(ACTIVATE); \
+	@$(ACTIVATE); \
 	DJANGO_SETTINGS_MODULE=settings coverage run \
 	--omit="*/tests/*,*/venv/*" --source='.' \
-	/usr/local/bin/django-admin.py test
+	$(DJANGO_ADMIN) test
 
 
-BRANCH ?= development
+DEFAULT_BRANCH = modular-models-epic
+# Change after modular-models-epic branch has merged
+# DEFAULT_BRANCH = development
+branch ?= $(DEFAULT_BRANCH)
 
-coverage-report: diff_files:=$(shell git diff --name-only $(BRANCH))
+coverage-report: diff_files:=$(shell git diff --name-only $(branch))
 coverage-report: diff_sed:=$(shell echo $(diff_files)| sed s:web/impact/::g)
 coverage-report: diff_grep:=$(shell echo $(diff_sed) | tr ' ' '\n' | \
   grep \.py | grep -v /tests/ | grep -v /venv/ | \
   grep -v /django_migrations/ | grep -v setup.py | tr '\n' ' ' )
 coverage-report: $(VENV)
-	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
-	coverage report --skip-covered $(diff_grep) | grep -v "NoSource:"
+	@$(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
+	coverage report -i --skip-covered $(diff_grep) | grep -v "NoSource:"
 
-coverage-html: $(VENV)
-	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
+coverage-html-report: $(VENV)
+	@$(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
 	coverage html --omit="*/tests/*,*/venv/*"
 
-coverage-html-open: coverage-html
+coverage-html: coverage
 	@open htmlcov/index.html
 
-install: package uninstall
-	pip install dist/*
+install: package uninstall $(VENV)
+	@$(ACTIVATE); pip install dist/*
 
-uninstall:
-	-pip uninstall -qy django-accelerator
+uninstall: $(VENV)
+	-@$(ACTIVATE); pip uninstall -qy django-accelerator
+
+ifdef migration_name
+  MIGRATION_ARGS = --name $(migration_name)
+endif
+
+data-migration: $(VENV)
+	@$(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
+	DJANGO_SETTINGS_MODULE=settings \
+	$(DJANGO_ADMIN) makemigrations accelerator --empty $(MIGRATION_ARGS)
 
 migrations: $(VENV)
-	@. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
+	@$(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
 	DJANGO_SETTINGS_MODULE=settings \
-	django-admin.py makemigrations accelerator
-	@. $(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
+	$(DJANGO_ADMIN) makemigrations accelerator $(MIGRATION_ARGS)
+	@$(ACTIVATE); DJANGO_VERSION=$(DJANGO_VERSION) \
 	DJANGO_SETTINGS_MODULE=settings \
-	django-admin.py makemigrations simpleuser
-
-migrate: $(VENV)
-	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
-	django-admin.py migrate $(APPLICATION) $(MIGRATION)
-
-shell: $(VENV)
-	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings django-admin.py shell
+	$(DJANGO_ADMIN) makemigrations simpleuser $(MIGRATION_ARGS)
 
 test: $(VENV)
-	@. $(ACTIVATE); DJANGO_SETTINGS_MODULE=settings django-admin.py test $(TESTS)
+	@$(ACTIVATE); DJANGO_SETTINGS_MODULE=settings $(DJANGO_ADMIN) test $(TESTS)
 
 tox: $(VENV)
-	@. $(ACTIVATE); tox
+	@$(ACTIVATE); tox
 
+release-list release deploy run-all-servers stop-all-servers shutdown-all-vms delete-all-vms status:
+	@$(IMPACT_MAKE) $@
+
+application ?= accelerator
+
+migrate update-schema:
+	@$(IMPACT_MAKE) $@ application=$(application) migration=$(migration)
+
+checkout:
+	@$(IMPACT_MAKE) $@ branch=$(branch)

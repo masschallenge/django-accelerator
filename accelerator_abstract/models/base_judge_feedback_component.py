@@ -45,8 +45,8 @@ class BaseJudgeFeedbackComponent(AcceleratorModel):
     feedback_element = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "JudgingFormElement"))
-    answer_text = models.CharField(max_length=2000, blank=True)
-    original_answer_text = models.CharField(max_length=2000, blank=True)
+    answer_text = models.TextField(blank=True)
+    original_answer_text = models.TextField(blank=True)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_judgefeedbackcomponent'.format(
