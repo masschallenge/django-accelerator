@@ -3576,4 +3576,8 @@ class Migration(migrations.Migration):
             index_together=set(
                 [('id', 'judge_feedback', 'feedback_element')]),
         ),
+        migrations.AlterUniqueTogether(
+            name='refundcoderedemption',
+            unique_together=set([('startup', 'refund_code', 'cycle')]),
+        ),
     ]
