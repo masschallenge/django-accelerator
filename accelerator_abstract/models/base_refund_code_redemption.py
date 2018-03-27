@@ -39,14 +39,14 @@ class BaseRefundCodeRedemption(AcceleratorModel):
     refund_amount = models.DecimalField(
         max_digits=7,
         decimal_places=2,
-        default=decimal.Decimal('0.00'),
+        default=decimal.Decimal("0.00"),
     )
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_refundcoderedemption'.format(
+        unique_together = ("startup", "refund_code", "cycle")
+        db_table = "{}_refundcoderedemption".format(
             AcceleratorModel.Meta.app_label)
         abstract = True
-        pass
 
     def __str__(self):
         return "{} redeemed by {}".format(self.refund_code.unique_code,
