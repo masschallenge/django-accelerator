@@ -3580,4 +3580,93 @@ class Migration(migrations.Migration):
             name='refundcoderedemption',
             unique_together=set([('startup', 'refund_code', 'cycle')]),
         ),
+        migrations.AlterField(
+            model_name='entrepreneurprofile',
+            name='interest_categories',
+            field=models.ManyToManyField(blank=True,
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'InterestCategory')),
+        ),
+        migrations.AlterField(
+            model_name='entrepreneurprofile',
+            name='program_families',
+            field=models.ManyToManyField(blank=True,
+                                         help_text='Which of our Program Families would you like to be involved with?',
+                                         related_name='interested_entrepreneurprofile',
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'ProgramFamily')),
+        ),
+        migrations.AlterField(
+            model_name='entrepreneurprofile',
+            name='recommendation_tags',
+            field=models.ManyToManyField(blank=True,
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'RecommendationTag')),
+        ),
+        migrations.AlterField(
+            model_name='expertprofile',
+            name='interest_categories',
+            field=models.ManyToManyField(blank=True,
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'InterestCategory')),
+        ),
+        migrations.AlterField(
+            model_name='expertprofile',
+            name='program_families',
+            field=models.ManyToManyField(blank=True,
+                                         help_text='Which of our Program Families would you like to be involved with?',
+                                         related_name='interested_expertprofile',
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'ProgramFamily')),
+        ),
+        migrations.AlterField(
+            model_name='expertprofile',
+            name='recommendation_tags',
+            field=models.ManyToManyField(blank=True,
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'RecommendationTag')),
+        ),
+
+        migrations.AlterField(
+            model_name='memberprofile',
+            name='interest_categories',
+            field=models.ManyToManyField(blank=True,
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'InterestCategory')),
+        ),
+        migrations.AlterField(
+            model_name='memberprofile',
+            name='program_families',
+            field=models.ManyToManyField(blank=True,
+                                         help_text='Which of our Program Families would you like to be involved with?',
+                                         related_name='interested_memberprofile',
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'ProgramFamily')),
+        ),
+        migrations.AlterField(
+            model_name='memberprofile',
+            name='recommendation_tags',
+            field=models.ManyToManyField(blank=True,
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'RecommendationTag')),
+        ),
+        migrations.AlterField(
+            model_name='judgefeedbackcomponent',
+            name='answer_text',
+            field=models.TextField(blank=True),
+        ),
+        migrations.AlterField(
+            model_name='judgefeedbackcomponent',
+            name='original_answer_text',
+            field=models.TextField(blank=True),
+        ),
     ]
