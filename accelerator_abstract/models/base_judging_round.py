@@ -217,10 +217,10 @@ class BaseJudgingRound(AcceleratorModel):
     def __str__(self):
         return '%s in %s' % (self.name, self.program)
 
-    def short_name(self):
+    def short_name(self, program=None):
         return "{year_month} {family_abbrs} {round_name}".format(
             year_month=self.year_month(),
-            family_abbrs=self.program_family_abbrs(),
+            family_abbrs=self.program_family_abbrs(program),
             round_name=self.name)
 
     def year_month(self):
@@ -237,3 +237,11 @@ class BaseJudgingRound(AcceleratorModel):
                                              flat=True))
             return " ".join(sorted(abbrs))
         return self.program.family_abbr()
+
+    def display_name(self, program=None):
+        _program = program or self.program
+        return "{year}-{month:02} {family_abbr} {round_name}".format(
+            year=self.end_date_time.year,
+            month=self.end_date_time.month,
+            family_abbr=_program.family_abbr(),
+            round_name=self.name)
