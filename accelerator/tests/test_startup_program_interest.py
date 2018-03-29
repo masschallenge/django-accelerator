@@ -10,6 +10,11 @@ from accelerator.tests.factories import StartupProgramInterestFactory
 
 
 class TestStartupProgramInterest(TestCase):
+    def test_str(self):
+        spi = StartupProgramInterestFactory()
+        assert str(spi.program) in str(spi)
+        assert str(spi.startup) in str(spi)
+        assert str(spi.applying) in str(spi)
 
     def test_change_position(self):
         spi = StartupProgramInterestFactory()
