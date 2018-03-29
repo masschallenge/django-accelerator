@@ -227,7 +227,9 @@ class BaseJudgingRound(AcceleratorModel):
         date = self.end_date_time
         return "{year}-{month:02}".format(year=date.year, month=date.month)
 
-    def program_family_abbrs(self):
+    def program_family_abbrs(self, program=None):
+        if program:
+            return program.family_abbr()
         if self.cycle_based_round:
             programs = self.program.cycle.programs.all()
             abbrs = map(lambda s: s.upper(),
