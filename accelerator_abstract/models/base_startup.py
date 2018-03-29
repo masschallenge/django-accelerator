@@ -183,12 +183,6 @@ class BaseStartup(AcceleratorModel):
     def public_inquiry_email(self, public_inquiry_email):
         self._set_org_attr("public_inquiry_email", public_inquiry_email)
 
-    def profile_public_url(self, site=None):
-        if self.is_visible:
-            return self._get_org_attr("profile_public_url")(site)
-        else:
-            return ""
-
     def _get_org_attr(self, attr):
         if self.organization:
             return getattr(self.organization, attr)
