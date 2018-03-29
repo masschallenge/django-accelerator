@@ -26,6 +26,7 @@ PROGRAM_INTEREST_TOP = 'top'
 PROGRAM_INTEREST_UP = 'up'
 PROGRAM_INTEREST_DOWN = 'down'
 
+
 @python_2_unicode_compatible
 class BaseStartupProgramInterest(OrderedModel, AcceleratorModel):
     program = models.ForeignKey(

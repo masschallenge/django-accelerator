@@ -13,6 +13,7 @@ JUDGING_ROUND_FORMAT = "{judging_round} {state} Judge"
 DESIRED_JUDGE_STATE = "Desired"
 CONFIRMED_JUDGE_STATE = "Confirmed"
 
+
 @python_2_unicode_compatible
 class BaseUserLabel(LabelModel):
     label = models.CharField(max_length=LabelModel.LABEL_LENGTH)
