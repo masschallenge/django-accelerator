@@ -3669,4 +3669,13 @@ class Migration(migrations.Migration):
             name='original_answer_text',
             field=models.TextField(blank=True),
         ),
+        migrations.AlterField(
+            model_name='judgeavailability',
+            name='availability_type',
+            field=models.CharField(choices=[('Available', 'Available'),
+                                            ('Not Available', 'Not Available'),
+                                            ('Preferred', 'Preferred')],
+                                   max_length=32),
+        ),
+
     ]
