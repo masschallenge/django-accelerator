@@ -2,7 +2,6 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from simpleuser.models import User
-# from paypal.pro.helpers import PayPalWPP  # Commented out for impact-api
 
 from .startup_role import StartupRole
 from .user_role import UserRole
@@ -180,6 +179,11 @@ from accelerator_abstract.models.base_judge_application_feedback import (
     JUDGING_STATUS_OTHER,
 )
 from .judge_availability import JudgeAvailability
+from accelerator_abstract.models.base_judge_availability import (
+    JUDGE_AVAILABILITY_AVAILABLE,
+    JUDGE_AVAILABILITY_NOT_AVAILABLE,
+    JUDGE_AVAILABILITY_PREFERRED,
+)
 from .judge_panel_assignment import JudgePanelAssignment
 from accelerator_abstract.models.base_judge_panel_assignment import (
     ASSIGNED_PANEL_ASSIGNMENT_STATUS,
@@ -288,10 +292,18 @@ from .paypal_payment import PayPalPayment
 from .paypal_refund import PayPalRefund
 from .startup_label import StartupLabel
 from .user_label import UserLabel
+from accelerator_abstract.models.base_user_label import (
+    CONFIRMED_JUDGE_STATE,
+    DESIRED_JUDGE_STATE,
+    JUDGING_ROUND_FORMAT,
+)
 from .bucket_state import BucketState
 from accelerator_abstract.models.base_bucket_state import (
+    BaseBucketState,
     BUCKET_TYPES,
+    FRESH_LEADS_GROUP,
     NEW_ENTREPRENEURS_BUCKET_TYPE,
+    STALE_LEADS_GROUP,
     STALE_NOSTARTUP_BUCKET_TYPE,
     STALE_STARTUP_BUCKET_TYPE,
     SUBMITTED_BUCKET_TYPE,

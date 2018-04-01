@@ -8,6 +8,16 @@ from django.db import models
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
+JUDGE_AVAILABILITY_AVAILABLE = "Available"
+JUDGE_AVAILABILITY_NOT_AVAILABLE = "Not Available"
+JUDGE_AVAILABILITY_PREFERRED = "Preferred"
+
+JUDGE_AVAILABILITY_CHOICES = (
+    (JUDGE_AVAILABILITY_AVAILABLE, JUDGE_AVAILABILITY_AVAILABLE),
+    (JUDGE_AVAILABILITY_NOT_AVAILABLE, JUDGE_AVAILABILITY_NOT_AVAILABLE),
+    (JUDGE_AVAILABILITY_PREFERRED, JUDGE_AVAILABILITY_PREFERRED),
+)
+
 
 class BaseJudgeAvailability(AcceleratorModel):
     commitment = models.ForeignKey(
@@ -23,9 +33,7 @@ class BaseJudgeAvailability(AcceleratorModel):
         blank=True, null=True)
     availability_type = models.CharField(
         max_length=32,
-        choices=(("Preferred", "Preferred"), ("Available", "Available"),
-                 ("Not Available", "Not Available"))
-    )
+        choices=JUDGE_AVAILABILITY_CHOICES)
 
     # vocabularies for type time and location must be drawn from entries
     # consistent with the round associated with the chosen 'commitment'

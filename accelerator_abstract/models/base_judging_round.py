@@ -64,11 +64,21 @@ FEEDBACK_DISPLAY_CHOICES = (
     (FEEDBACK_DISPLAY_DISABLED, 'Disabled'),
     (FEEDBACK_DISPLAY_ENABLED, 'Enabled'),
 )
+FEEDBACK_DISPLAY_CATEGORY_AND_FEEDBACK = 'feedback-and-judge-category'
+FEEDBACK_DISPLAY_CATEGORY_AND_FEEDBACK_TEXT = 'Judge Category and Feedback'
+FEEDBACK_DISPLAY_FEEDBACK_ONLY = 'feedback-only'
+FEEDBACK_DISPLAY_FEEDBACK_ONLY_TEXT = 'Only Feedback'
+FEEDBACK_DISPLAY_CATEGORY_ONLY = 'judge-category-only'
+FEEDBACK_DISPLAY_CATEGORY_ONLY_TEXT = 'Only Judge Category'
 
 FEEDBACK_DISPLAY_ITEMS = (
-    ('feedback-and-judge-category', 'Judge Category and Feedback'),
-    ('feedback-only', 'Only Feedback'),
-    ('judge-category-only', 'Only Judge Category'))
+    (FEEDBACK_DISPLAY_CATEGORY_AND_FEEDBACK,
+     FEEDBACK_DISPLAY_CATEGORY_AND_FEEDBACK_TEXT),
+    (FEEDBACK_DISPLAY_FEEDBACK_ONLY,
+     FEEDBACK_DISPLAY_FEEDBACK_ONLY_TEXT),
+    (FEEDBACK_DISPLAY_CATEGORY_ONLY,
+     FEEDBACK_DISPLAY_CATEGORY_ONLY_TEXT),
+)
 
 DEFAULT_BUFFER_BEFORE_EVENT = 30
 FIFTEEN_MINUTES = 15
@@ -207,19 +217,31 @@ class BaseJudgingRound(AcceleratorModel):
     def __str__(self):
         return '%s in %s' % (self.name, self.program)
 
-    def short_name(self):
+    def short_name(self, program=None):
         return "{year_month} {family_abbrs} {round_name}".format(
             year_month=self.year_month(),
-            family_abbrs=self.program_family_abbrs(),
+            family_abbrs=self.program_family_abbrs(program),
             round_name=self.name)
 
     def year_month(self):
         date = self.end_date_time
         return "{year}-{month:02}".format(year=date.year, month=date.month)
 
-    def program_family_abbrs(self):
+    def program_family_abbrs(self, program=None):
+        if program:
+            return program.family_abbr()
         if self.cycle_based_round:
             programs = self.program.cycle.programs.all()
-            return " ".join(sorted([program.family_abbr()
-                                    for program in programs]))
+            abbrs = map(lambda s: s.upper(),
+                        programs.values_list("program_family__url_slug",
+                                             flat=True))
+            return " ".join(sorted(abbrs))
         return self.program.family_abbr()
+
+    def display_name(self, program=None):
+        _program = program or self.program
+        return "{year}-{month:02} {family_abbr} {round_name}".format(
+            year=self.end_date_time.year,
+            month=self.end_date_time.month,
+            family_abbr=_program.family_abbr(),
+            round_name=self.name)

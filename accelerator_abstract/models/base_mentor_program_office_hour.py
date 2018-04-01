@@ -16,7 +16,7 @@ MC_IL_JLM_LOCATION = "MassChallenge Israel - Jerusalem"
 MC_IL_TLV_LOCATION = "MassChallenge Israel - Tel Aviv"
 MC_MX_LOCATION = "MassChallenge Mexico"
 MC_NIC_LOCATION = "Newton Innovation Center (NIC)"
-MC_PULSE_LOCATION = "Pulse@MassChallenge"
+MC_PULSE_LOCATION = "PULSE@MassChallenge"
 MC_REMOTE_LOCATION = "Remote"
 LOCATION_CHOICES = (
     (MC_BOS_LOCATION, MC_BOS_LOCATION),

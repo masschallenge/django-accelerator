@@ -1,5 +1,8 @@
 from django.test import TestCase
-from mock import patch
+try:
+    from unittest.mock import patch
+except ImportError:
+    from mock import patch
 
 from accelerator_abstract.models.secure_file_system_storage import (
     SecureFileSystemStorage
@@ -15,6 +18,7 @@ class TestSecureFileSystemStorage(TestCase):
         name = 'bar'
         url = secure_file_system_storage.url(name)
         assert url is not None
+        assert name not in url
 
     @patch('accelerator_abstract.models.secure_file_system_storage.settings')
     def test_url_unsuccessful_url_reverse(self, mock_settings):

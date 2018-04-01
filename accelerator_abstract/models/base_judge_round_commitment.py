@@ -25,7 +25,7 @@ class BaseJudgeRoundCommitment(AcceleratorModel):
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "JudgingRound"))
     commitment_state = models.BooleanField(default=True)
-    capacity = models.IntegerField(blank=True, null=True)
+    capacity = models.IntegerField(default=0)
     current_quota = models.IntegerField(blank=True, null=True)
 
     class Meta(AcceleratorModel.Meta):

@@ -72,3 +72,23 @@ class TestStartup(TestCase):
         startup.save()
         org.refresh_from_db()
         self.assertEqual(org.public_inquiry_email, new_public_inquiry_email)
+
+    def test_startup_with_no_org_does_not_cause_errors_on_read(self):
+        startup = StartupFactory(organization=None)
+        assert startup.organization is None
+        try:
+            startup.name
+        except AttributeError:
+            self.fail("Reading startup.name raised AttributeError")
+
+    def test_startup_with_no_org_does_not_cause_errors_on_write(self):
+        startup = StartupFactory(organization=None)
+        assert startup.organization is None
+        try:
+            startup.name = "ZOMBOCOM"
+        except AttributeError:
+            self.fail("Setting startup.name raised AttributeError")
+
+    def test_startup_repr_returns_empty_string_when_org_is_empty(self):
+        startup = StartupFactory(organization=None)
+        self.assertEqual(startup.__str__(), "")

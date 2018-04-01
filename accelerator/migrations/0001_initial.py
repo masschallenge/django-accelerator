@@ -728,7 +728,8 @@ class Migration(migrations.Migration):
                 ('sort_order', models.PositiveIntegerField()),
                 ('last_update', models.DateTimeField()),
                 ('cycle',
-                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 models.ForeignKey(blank=True, null=True,
+                                   on_delete=django.db.models.deletion.CASCADE,
                                    to=swapper.get_model_name('accelerator',
                                                              'PROGRAMCYCLE'))),
             ],
@@ -1152,7 +1153,7 @@ class Migration(migrations.Migration):
                  models.DateTimeField(auto_now_add=True, null=True)),
                 ('updated_at', models.DateTimeField(auto_now=True, null=True)),
                 ('commitment_state', models.BooleanField(default=True)),
-                ('capacity', models.IntegerField(blank=True, null=True)),
+                ('capacity', models.IntegerField(default=0)),
                 ('current_quota', models.IntegerField(blank=True, null=True)),
                 ('judge',
                  models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
@@ -1490,7 +1491,7 @@ class Migration(migrations.Migration):
                                  'MassChallenge Switzerland',
                                  'MassChallenge Switzerland'),
                              ('MassChallenge Mexico', 'MassChallenge Mexico'),
-                             ('Pulse@MassChallenge', 'Pulse@MassChallenge'), (
+                             ('PULSE@MassChallenge', 'PULSE@MassChallenge'), (
                                  'Newton Innovation Center (NIC)',
                                  'Newton Innovation Center (NIC)'),
                              ('Remote', 'Remote')], max_length=50)),
@@ -2803,9 +2804,6 @@ class Migration(migrations.Migration):
                                                      primary_key=True,
                                                      serialize=False,
                                                      to='fluent_pages.UrlNode')),
-                # ('created_at',
-                #  models.DateTimeField(auto_now_add=True, null=True)),
-                # ('updated_at', models.DateTimeField(auto_now=True, null=True)),
                 ('program_status', models.CharField(blank=True, choices=[
                     ('upcoming', 'Upcoming'), ('active', 'Active'),
                     ('ended', 'Ended'), ('hidden', 'Hidden')], max_length=64,
@@ -2922,7 +2920,7 @@ class Migration(migrations.Migration):
                                                      to='fluent_pages.UrlNode')),
                 ('file', models.FileField(
                     storage=accelerator_abstract.models.secure_file_system_storage.SecureFileSystemStorage(
-                        location='/var/www/cms-files'), upload_to='%Y-%m')),
+                        location=settings.CMS_FILE_ROOT), upload_to='%Y-%m')),
                 ('description', models.TextField(blank=True)),
             ],
             options={
@@ -3468,6 +3466,20 @@ class Migration(migrations.Migration):
                 to=swapper.get_model_name('accelerator', 'PROGRAMROLE')),
         ),
         migrations.AddField(
+            model_name='bucketstate',
+            name='basis',
+            field=models.CharField(
+                choices=[('cycle', 'Cycle'), ('program', 'Program')],
+                default='cycle', max_length=20),
+        ),
+        migrations.AddField(
+            model_name='bucketstate',
+            name='program',
+            field=models.ForeignKey(blank=True, null=True,
+                                    on_delete=django.db.models.deletion.CASCADE,
+                                    to=swapper.get_model_name('accelerator', 'PROGRAM')),
+        ),
+        migrations.AddField(
             model_name='applicationpanelassignment',
             name='panel',
             field=models.ForeignKey(
@@ -3562,6 +3574,108 @@ class Migration(migrations.Migration):
         migrations.AlterIndexTogether(
             name='judgefeedbackcomponent',
             index_together=set(
-                [('id', 'judge_feedback', 'feedback_element', 'answer_text')]),
+                [('id', 'judge_feedback', 'feedback_element')]),
         ),
+        migrations.AlterUniqueTogether(
+            name='refundcoderedemption',
+            unique_together=set([('startup', 'refund_code', 'cycle')]),
+        ),
+        migrations.AlterField(
+            model_name='entrepreneurprofile',
+            name='interest_categories',
+            field=models.ManyToManyField(blank=True,
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'InterestCategory')),
+        ),
+        migrations.AlterField(
+            model_name='entrepreneurprofile',
+            name='program_families',
+            field=models.ManyToManyField(blank=True,
+                                         help_text='Which of our Program Families would you like to be involved with?',
+                                         related_name='interested_entrepreneurprofile',
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'ProgramFamily')),
+        ),
+        migrations.AlterField(
+            model_name='entrepreneurprofile',
+            name='recommendation_tags',
+            field=models.ManyToManyField(blank=True,
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'RecommendationTag')),
+        ),
+        migrations.AlterField(
+            model_name='expertprofile',
+            name='interest_categories',
+            field=models.ManyToManyField(blank=True,
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'InterestCategory')),
+        ),
+        migrations.AlterField(
+            model_name='expertprofile',
+            name='program_families',
+            field=models.ManyToManyField(blank=True,
+                                         help_text='Which of our Program Families would you like to be involved with?',
+                                         related_name='interested_expertprofile',
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'ProgramFamily')),
+        ),
+        migrations.AlterField(
+            model_name='expertprofile',
+            name='recommendation_tags',
+            field=models.ManyToManyField(blank=True,
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'RecommendationTag')),
+        ),
+
+        migrations.AlterField(
+            model_name='memberprofile',
+            name='interest_categories',
+            field=models.ManyToManyField(blank=True,
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'InterestCategory')),
+        ),
+        migrations.AlterField(
+            model_name='memberprofile',
+            name='program_families',
+            field=models.ManyToManyField(blank=True,
+                                         help_text='Which of our Program Families would you like to be involved with?',
+                                         related_name='interested_memberprofile',
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'ProgramFamily')),
+        ),
+        migrations.AlterField(
+            model_name='memberprofile',
+            name='recommendation_tags',
+            field=models.ManyToManyField(blank=True,
+                                         to=swapper.get_model_name(
+                                             'accelerator',
+                                             'RecommendationTag')),
+        ),
+        migrations.AlterField(
+            model_name='judgefeedbackcomponent',
+            name='answer_text',
+            field=models.TextField(blank=True),
+        ),
+        migrations.AlterField(
+            model_name='judgefeedbackcomponent',
+            name='original_answer_text',
+            field=models.TextField(blank=True),
+        ),
+        migrations.AlterField(
+            model_name='judgeavailability',
+            name='availability_type',
+            field=models.CharField(choices=[('Available', 'Available'),
+                                            ('Not Available', 'Not Available'),
+                                            ('Preferred', 'Preferred')],
+                                   max_length=32),
+        ),
+
     ]

@@ -1,8 +1,6 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
 
-# from paypal.pro.helpers import BasePayPalWPP  # Commented out for impact-api
-
 from .base_application import (
     APPLICATION_STATUSES,
     BaseApplication,
@@ -37,7 +35,9 @@ from .base_base_profile import (
 from .base_bucket_state import (
     BUCKET_TYPES,
     BaseBucketState,
+    FRESH_LEADS_GROUP,
     NEW_ENTREPRENEURS_BUCKET_TYPE,
+    STALE_LEADS_GROUP,
     STALE_NOSTARTUP_BUCKET_TYPE,
     STALE_STARTUP_BUCKET_TYPE,
     SUBMITTED_BUCKET_TYPE,
@@ -82,7 +82,12 @@ from .base_judge_application_feedback import (
     JUDGING_STATUS_NO_CONFLICT,
     JUDGING_STATUS_OTHER,
 )
-from .base_judge_availability import BaseJudgeAvailability
+from .base_judge_availability import (
+    BaseJudgeAvailability,
+    JUDGE_AVAILABILITY_AVAILABLE,
+    JUDGE_AVAILABILITY_NOT_AVAILABLE,
+    JUDGE_AVAILABILITY_PREFERRED,
+)
 from .base_judge_feedback_component import (
     BaseJudgeFeedbackComponent,
     DEFINITELY_DONT_RECOMMEND,
@@ -300,6 +305,11 @@ from .base_startup_program_interest import (
 from .base_startup_role import BaseStartupRole
 from .base_startup_status import BaseStartupStatus
 from .base_startup_team_member import BaseStartupTeamMember
-from .base_user_label import BaseUserLabel
+from .base_user_label import (
+    BaseUserLabel,
+    CONFIRMED_JUDGE_STATE,
+    DESIRED_JUDGE_STATE,
+    JUDGING_ROUND_FORMAT,
+)
 from .base_user_role import BaseUserRole
 from .base_user_role_menu import BaseUserRoleMenu

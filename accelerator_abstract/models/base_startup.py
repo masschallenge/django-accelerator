@@ -3,6 +3,8 @@
 
 from __future__ import unicode_literals
 
+import logging
+
 import swapper
 from django.conf import settings
 from django.core.validators import RegexValidator
@@ -13,6 +15,8 @@ from sorl.thumbnail import ImageField
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
+logger = logging.getLogger(__name__)
+
 DEFAULT_PROFILE_BACKGROUND_COLOR = '217181'  # default dark blue
 
 DEFAULT_PROFILE_TEXT_COLOR = 'FFFFFF'
@@ -22,6 +26,7 @@ STARTUP_COMMUNITIES = (
     ('blue', 'Blue'),
     ('green', 'Green'),
 )
+STARTUP_NO_ORG_WARNING_MSG = "Startup {} has no organization"
 
 
 @python_2_unicode_compatible
@@ -144,40 +149,52 @@ class BaseStartup(AcceleratorModel):
         ordering = ['organization__name']
 
     def __str__(self):
-        return self.organization.name
+        return self.name or ""
 
     @property
     def name(self):
-        return self.organization.name
+        return self._get_org_attr("name")
 
     @name.setter
     def name(self, value):
-        self.organization.name = value
-        self.organization.save()
+        self._set_org_attr("name", value)
 
     @property
     def website_url(self):
-        return self.organization.website_url
+        return self._get_org_attr("website_url")
 
     @website_url.setter
     def website_url(self, website_url):
-        self.organization.website_url = website_url
-        self.organization.save()
+        self._set_org_attr("website_url", website_url)
 
     @property
     def twitter_handle(self):
-        return self.organization.twitter_handle
+        return self._get_org_attr("twitter_handle")
 
     @twitter_handle.setter
     def twitter_handle(self, twitter_handle):
-        self.organization.twitter_handle = twitter_handle
-        self.organization.save()
+        self._set_org_attr("twitter_handle", twitter_handle)
 
     @property
     def public_inquiry_email(self):
-        return self.organization.public_inquiry_email
+        return self._get_org_attr("public_inquiry_email")
 
     @public_inquiry_email.setter
     def public_inquiry_email(self, public_inquiry_email):
-        self.organization.public_inquiry_email = public_inquiry_email
-        self.organization.save()
+        self._set_org_attr("public_inquiry_email", public_inquiry_email)
+
+    def _get_org_attr(self, attr):
+        if self.organization:
+            return getattr(self.organization, attr)
+        else:
+            logger.warning(STARTUP_NO_ORG_WARNING_MSG.format(self.pk))
+            return None
+
+    def _set_org_attr(self, attr, value):
+        if self.organization:
+            setattr(self.organization, attr, value)
+            self.organization.save()
+            return
+        else:
+            logger.warning(STARTUP_NO_ORG_WARNING_MSG.format(self.pk))
+            return None

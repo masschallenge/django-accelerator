@@ -5,7 +5,10 @@ from __future__ import unicode_literals
 
 from django.contrib.auth import get_user_model
 from django.test import TestCase
-from mock import patch
+try:
+    from unittest.mock import patch
+except ImportError:
+    from mock import patch
 
 from accelerator.models import (
     BaseProfile,
