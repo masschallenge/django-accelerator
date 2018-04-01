@@ -12,7 +12,7 @@ services:
 install:
 - make install
 - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
-- export DEFAULT_BRANCH=modular-models-epic
+- export DEFAULT_BRANCH=development
 - echo $TRAVIS_BRANCH
 - echo $TRAVIS_PULL_REQUEST_BRANCH
 - echo $TRAVIS_PULL_REQUEST

@@ -128,9 +128,7 @@ coverage-run: $(VENV)
 	$(DJANGO_ADMIN) test
 
 
-DEFAULT_BRANCH = modular-models-epic
-# Change after modular-models-epic branch has merged
-# DEFAULT_BRANCH = development
+DEFAULT_BRANCH = development
 branch ?= $(DEFAULT_BRANCH)
 
 coverage-report: diff_files:=$(shell git diff --name-only $(branch))
