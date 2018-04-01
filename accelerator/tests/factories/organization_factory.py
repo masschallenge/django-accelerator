@@ -1,15 +1,20 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
 
+from __future__ import unicode_literals
+
+import swapper
 from factory import (
     DjangoModelFactory,
     Sequence,
 )
-from accelerator.models import Organization
+
+from accelerator.apps import AcceleratorConfig
+
+Organization = swapper.load_model(AcceleratorConfig.name, 'Organization')
 
 
 class OrganizationFactory(DjangoModelFactory):
-
     class Meta:
         model = Organization
 
