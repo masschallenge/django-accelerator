@@ -4,10 +4,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import (
-    Group,
-    Permission,
-)
+from django.contrib.auth.models import Permission
 
 
 def add_mc_permissions(apps, schema_editor):
