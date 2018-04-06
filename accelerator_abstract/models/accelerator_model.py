@@ -17,5 +17,4 @@ class AcceleratorModel(models.Model):
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
 
     def __str__(self):
-        return self.name if hasattr(self, 'name') else super(AcceleratorModel,
-                                                             self).__str__()
+        return self.name if hasattr(self, 'name') else repr(self)
