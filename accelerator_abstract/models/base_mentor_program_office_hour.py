@@ -11,25 +11,25 @@ from django.utils.encoding import python_2_unicode_compatible
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 MC_BOS_LOCATION = "MassChallenge Boston"
-MC_CH_LOCATION = "MassChallenge Switzerland"
 MC_IL_JLM_LOCATION = "MassChallenge Israel - Jerusalem"
 MC_IL_TLV_LOCATION = "MassChallenge Israel - Tel Aviv"
 MC_MX_LOCATION = "MassChallenge Mexico"
+MC_RI_LOCATION = "MassChallenge Rhode Island"
+MC_CH_LOCATION = "MassChallenge Switzerland"
+MC_TX_LOCATION = "MassChallenge Texas"
 MC_NIC_LOCATION = "Newton Innovation Center (NIC)"
 MC_PULSE_LOCATION = "PULSE@MassChallenge"
-MC_RI_LOCATION = "MassChallenge Rhode Island"
-MC_TX_LOCATION = "MassChallenge Texas"
 MC_REMOTE_LOCATION = "Remote"
 LOCATION_CHOICES = (
     (MC_BOS_LOCATION, MC_BOS_LOCATION),
     (MC_IL_JLM_LOCATION, MC_IL_JLM_LOCATION),
     (MC_IL_TLV_LOCATION, MC_IL_TLV_LOCATION),
-    (MC_CH_LOCATION, MC_CH_LOCATION),
     (MC_MX_LOCATION, MC_MX_LOCATION),
-    (MC_PULSE_LOCATION, MC_PULSE_LOCATION),
     (MC_RI_LOCATION, MC_RI_LOCATION),
+    (MC_CH_LOCATION, MC_CH_LOCATION),
     (MC_TX_LOCATION, MC_TX_LOCATION),
     (MC_NIC_LOCATION, MC_NIC_LOCATION),
+    (MC_PULSE_LOCATION, MC_PULSE_LOCATION),
     (MC_REMOTE_LOCATION, MC_REMOTE_LOCATION),
 )
 HOUR_IS_PAST_MESSAGE = "This office hour is in the past"
