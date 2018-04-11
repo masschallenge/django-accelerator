@@ -8,6 +8,7 @@ from django.db import models
 from accelerator_abstract.models.base_core_profile import BaseCoreProfile
 
 
+
 class BaseEntrepreneurProfile(BaseCoreProfile):
     user_type = 'entrepreneur'
     default_page = "applicant_homepage"
