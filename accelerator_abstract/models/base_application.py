@@ -65,6 +65,7 @@ class BaseApplication(AcceleratorModel):
         abstract = True
 
     def __str__(self):
+        raise "Hello!"
         return '%s for %s by %s' % (self.application_type.name,
                                     self.cycle.name,
                                     self.startup.organization.name)
