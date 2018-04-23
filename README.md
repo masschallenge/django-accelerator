@@ -6,7 +6,7 @@
 1. [Overview](#overview)
 2. [Quickstart](#quickstart)
    1. [As a dependency for MassChallenge's Accelerate/Impact-API](
-  #as-a-dependency-for-masschallenges-accelerate-impact-api)
+  #as-a-dependency-for-masschallenges-accelerateimpact-api)
    2. [As a dependency for a stand-alone django project](
    #as-a-dependency-for-a-stand-alone-django-project)
 3. [Development](#Development)
