@@ -56,7 +56,7 @@ Since Django-accelerator uses [Swappable Models](
 https://github.com/wq/django-swappable-models). changing the django
 models is slightly different than usual.
 
-The key differences to note are:
+**The key differences to note are:**
 
 - All the model declarations - django fields, methods, meta configration,
 etc. - should live in the respective Base model, inside 
@@ -116,4 +116,29 @@ generated correctly by Django, and require slighlty changing the
 auto-generated migration, according to the instructions in
 [Django-swappable-models](https://github.com/wq/django-swappable-models).
 This feature is not promised to be supported in this repo.
+
+### Generating Migrations
+
+Running `make migrations` will try to generate new migrations
+for `accelerator` and `simpleuser` apps.
+
+
+### Running Migrations
+
+As this is a package and not a full app, it is impossible
+to run stand-alone migrations. The `Makefile` is configured
+to run the migrations in the [impact-api](
+https://github.com/masschallenge/impact-api/) project in
+which this project is installed.
+
+### Testing
+
+This package supports two versions of Django projects:
+- Python 2.7 + Django 1.8 (to be upgraded soon to 1.11)
+- Python 3.6 + Django 1.10 (to be upgraded soon to 1.11)
+
+Therfore, the code must be compatible for both versions,
+and the Travis builds are configured to test both.
+
+To test this locally, it is possible to run `make tox`.
 
