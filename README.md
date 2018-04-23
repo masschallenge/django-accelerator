@@ -159,3 +159,6 @@ To test this locally, it is possible to run `make tox`.
 Also, Running `make test` will simply run the tests
 under the default version.
 
+
+Copyright 2018, MassChallenge, Inc., some rights reserved
+Public license: MIT
