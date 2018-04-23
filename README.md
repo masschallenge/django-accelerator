@@ -3,8 +3,22 @@
  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/masschallenge/impact-api.svg?branch=development)](https://travis-ci.org/masschallenge/django-accelerator)
 
+1. [Overview](#overview)
+2. [Quickstart](#quickstart)
+   1. [As a dependency for MassChallenge's Accelerate/Impact-API](
+  #as-a-dependency-for-masschallenges-accelerate-impact-api)
+   2. [As a dependency for a stand-alone django project](
+   #as-a-dependency-for-a-stand-alone-django-project)
+3. [Development](#Development)
+   1. [Changing A Swappable Model](#changing-a-swappable-model)
+   2. [Generating Migrations](#generating-migrations)
+   3. [Running Migrations](#running-migrations)
+   4. [Testing](#testing)
+
 Accelerator is a simple Django package which provides models for the
 MassChallenge Accelerator applications.
+
+## Overview
 
 The package supports two modes of use, in two different django apps:
 
@@ -22,7 +36,7 @@ in the [usual way](
 https://docs.djangoproject.com/en/2.0/topics/auth/customizing/#changing-to-a-custom-user-model-mid-project).
 
 
-## Quick start
+## Quickstart
 
 ### As a dependency for MassChallenge's Accelerate/Impact-API
 
@@ -141,4 +155,7 @@ Therfore, the code must be compatible for both versions,
 and the Travis builds are configured to test both.
 
 To test this locally, it is possible to run `make tox`.
+
+Also, Running `make test` will simply run the tests
+under the default version.
 
