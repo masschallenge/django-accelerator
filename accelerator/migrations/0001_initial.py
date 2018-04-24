@@ -15,8 +15,14 @@ from django.db import (
     migrations,
     models,
 )
+from django.core.files.storage import default_storage
 
 import accelerator_abstract.models.base_expert_interest
+
+try:
+    selected_storage = accelerator_abstract.models.secure_file_system_storage.SecureFileSystemStorage
+except ImportError:
+    selected_storage = default_storage
 
 
 class Migration(migrations.Migration):
@@ -2919,7 +2925,7 @@ class Migration(migrations.Migration):
                                                      serialize=False,
                                                      to='fluent_pages.UrlNode')),
                 ('file', models.FileField(
-                    storage=accelerator_abstract.models.secure_file_system_storage.SecureFileSystemStorage(
+                    storage=selected_storage(
                         location=settings.CMS_FILE_ROOT), upload_to='%Y-%m')),
                 ('description', models.TextField(blank=True)),
             ],
