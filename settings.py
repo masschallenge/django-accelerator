@@ -102,4 +102,6 @@ PAYPAL_WPP_USER = ""
 PAYPAL_WPP_PASSWORD = ""
 PAYPAL_WPP_SIGNATURE = ""
 
-CMS_FILE_ROOT = '/var/www/cms-files'
+MEDIA_ROOT = 'media'
+CMS_FILE_ROOT = os.path.join(MEDIA_ROOT, 'cms-files')
+
