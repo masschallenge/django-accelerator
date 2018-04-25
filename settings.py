@@ -104,4 +104,3 @@ PAYPAL_WPP_SIGNATURE = ""
 
 MEDIA_ROOT = 'media'
 CMS_FILE_ROOT = os.path.join(MEDIA_ROOT, 'cms-files')
-
