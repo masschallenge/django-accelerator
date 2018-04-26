@@ -20,7 +20,7 @@ MassChallenge Accelerator applications.
 
 ## Overview
 
-The package supports two modes of use, in two different django apps:
+The package supports two modes of use, in two different Django apps:
 
 - `accelerator_abstract` - abstract models, declaring all the fields
 and relationships between the Base-models. All the models were made to
@@ -45,7 +45,7 @@ https://github.com/masschallenge/impact-api/) were configured to use
 django-accelerator as an editable source.
 
 Follow the instructions on [Setting Up The Development Environment](
-https://github.com/masschallenge/standards/blob/AC-5050/setup_development_environment.md)
+https://github.com/masschallenge/standards/blob/master/setup_development_environment.md)
 for further details.
 
 ### As a dependency for a stand-alone django project
@@ -59,7 +59,7 @@ for further details.
 
 2\. Run `python manage.py migrate` 
 
-3\. The new class should now appear in your application's admin and
+3\. The installed models should now appear in your application's admin and
 through the Django shell.
 
 ## Development
@@ -67,16 +67,16 @@ through the Django shell.
 ### Changing A Swappable Model
 
 Since Django-accelerator uses [Swappable Models](
-https://github.com/wq/django-swappable-models). changing the django
+https://github.com/wq/django-swappable-models). changing the Django
 models is slightly different than usual.
 
 **The key differences to note are:**
 
-- All the model declarations - django fields, methods, meta configration,
+- All the model declarations - Django fields, methods, meta configration,
 etc. - should live in the respective Base model, inside 
 `accelerator_abstract.models`. This makes the changes usable both
 by the `accelerator` app, and any app that inherits directly
-from `accelerator_abstract` and declares it's own concrete models.
+from `accelerator_abstract` and declares its own concrete models.
 - The Concrete model in `accelerator` should have no other role
 but:
    - to be a concrete subclass of a base model.
@@ -103,14 +103,23 @@ be swappable. E.g:
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Industry'),  
   ...
   ```
-- Any use of model that is expected to be swapped, should use
+- Whenever using models that are expected to be swapped, you should use
 dynamic imports in a similar fashion. Any code that lives inside
 `accelerator_abstract` falls under this category.
+  
+  e.g.:
+  ```
+  # accelerator_abstract/apps.py
+  ...
+  import swapper
+  ...
+  BaseProfile = swapper.load_model(AcceleratorConfig.name, 'BaseProfile')
+  ```
 - `accelerator.tests.factories` module contains all the [Factory-Boy](
 http://factoryboy.readthedocs.io/en/latest/) classes for the
 django-accelerator models. They must be defined in the concrete
 app, since the factories need a concrete class to work with. But in order
-for the factories to be swappable as well, they are defined as such:
+for the factories to be swappable as well, they also use dynamic imports:
   ```
   # accelerator/tests/factories/currency_factory.py
   import swapper
@@ -151,13 +160,15 @@ This package supports two versions of Django projects:
 - Python 2.7 + Django 1.8 (to be upgraded soon to 1.11)
 - Python 3.6 + Django 1.10 (to be upgraded soon to 1.11)
 
-Therfore, the code must be compatible for both versions,
+Therefore, the code must be compatible for both versions,
 and the Travis builds are configured to test both.
 
 To test this locally, it is possible to run `make tox`.
 
 Also, Running `make test` will simply run the tests
-under the default version.
+under the makefile's default Python+[Django](
+https://github.com/masschallenge/django-accelerator/blob/development/Makefile#L94)
+versions.
 
 ---
 Copyright 2018, MassChallenge, Inc., some rights reserved
