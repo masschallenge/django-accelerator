@@ -7,8 +7,9 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import connection
 
 
-
 def fix_actstream_contenttypes(apps, schema_editor):
+    if ContentType.objects.filter(app_label='mc').count() == 0:
+        return
     judgepanelassignment_ct = ContentType.objects.get(
         app_label='mc', model='judgepanelassignment').id
     application_ct = ContentType.objects.get(
