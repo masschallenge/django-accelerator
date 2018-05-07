@@ -63,141 +63,210 @@ def fix_actstream_contenttypes(apps, schema_editor):
     with connection.cursor() as cursor:
         cursor.execute("SET FOREIGN_KEY_CHECKS=0")
 
-        cursor.execute("UPDATE actstream_action SET "
-                       "action_object_content_type_id={judgepanelassignment_ct} WHERE "
-                       "action_object_content_type_id={old_judgepanelassignment_ct}".format(
-                           judgepanelassignment_ct=judgepanelassignment_ct,
-                           old_judgepanelassignment_ct=old_judgepanelassignment_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "action_object_content_type_id={application_ct} WHERE "
-                       "action_object_content_type_id={old_application_ct}".format(
-                           application_ct=application_ct,
-                           old_application_ct=old_application_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "action_object_content_type_id={refundcode_ct} WHERE "
-                       "action_object_content_type_id={old_refundcode_ct}".format(
-                           refundcode_ct=refundcode_ct,
-                           old_refundcode_ct=old_refundcode_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "action_object_content_type_id={judginground_ct} WHERE "
-                       "action_object_content_type_id={old_judginground_ct}".format(
-                           judginground_ct=judginground_ct,
-                           old_judginground_ct=old_judginground_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "action_object_content_type_id={judgeapplicationfeedback_ct} WHERE "
-                       "action_object_content_type_id={old_judgeapplicationfeedback_ct}".format(
-                           judgeapplicationfeedback_ct=judgeapplicationfeedback_ct,
-                           old_judgeapplicationfeedback_ct=old_judgeapplicationfeedback_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "action_object_content_type_id={startupmentorrelationship_ct} WHERE "
-                       "action_object_content_type_id={old_startupmentorrelationship_ct}".format(
-                           startupmentorrelationship_ct=startupmentorrelationship_ct,
-                           old_startupmentorrelationship_ct=old_startupmentorrelationship_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "action_object_content_type_id={mentorprogramofficehour_ct} WHERE "
-                       "action_object_content_type_id={old_mentorprogramofficehour_ct}".format(
-                           mentorprogramofficehour_ct=mentorprogramofficehour_ct,
-                           old_mentorprogramofficehour_ct=old_mentorprogramofficehour_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "action_object_content_type_id={paypalpayment_ct} WHERE "
-                       "action_object_content_type_id={old_paypalpayment_ct}".format(
-                           paypalpayment_ct=paypalpayment_ct,
-                           old_paypalpayment_ct=old_paypalpayment_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "action_object_content_type_id={startup_ct} WHERE "
-                       "action_object_content_type_id={old_startup_ct}".format(
-                           startup_ct=startup_ct,
-                           old_startup_ct=old_startup_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "target_content_type_id={judgepanelassignment_ct} WHERE "
-                       "target_content_type_id={old_judgepanelassignment_ct}".format(
-                           judgepanelassignment_ct=judgepanelassignment_ct,
-                           old_judgepanelassignment_ct=old_judgepanelassignment_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "target_content_type_id={application_ct} WHERE "
-                       "target_content_type_id={old_application_ct}".format(
-                           application_ct=application_ct,
-                           old_application_ct=old_application_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "target_content_type_id={refundcode_ct} WHERE "
-                       "target_content_type_id={old_refundcode_ct}".format(
-                           refundcode_ct=refundcode_ct,
-                           old_refundcode_ct=old_refundcode_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "target_content_type_id={judginground_ct} WHERE "
-                       "target_content_type_id={old_judginground_ct}".format(
-                           judginground_ct=judginground_ct,
-                           old_judginground_ct=old_judginground_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "target_content_type_id={judgeapplicationfeedback_ct} WHERE "
-                       "target_content_type_id={old_judgeapplicationfeedback_ct}".format(
-                           judgeapplicationfeedback_ct=judgeapplicationfeedback_ct,
-                           old_judgeapplicationfeedback_ct=old_judgeapplicationfeedback_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "target_content_type_id={startupmentorrelationship_ct} WHERE "
-                       "target_content_type_id={old_startupmentorrelationship_ct}".format(
-                           startupmentorrelationship_ct=startupmentorrelationship_ct,
-                           old_startupmentorrelationship_ct=old_startupmentorrelationship_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "target_content_type_id={mentorprogramofficehour_ct} WHERE "
-                       "target_content_type_id={old_mentorprogramofficehour_ct}".format(
-                           mentorprogramofficehour_ct=mentorprogramofficehour_ct,
-                           old_mentorprogramofficehour_ct=old_mentorprogramofficehour_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "target_content_type_id={paypalpayment_ct} WHERE "
-                       "target_content_type_id={old_paypalpayment_ct}".format(
-                           paypalpayment_ct=paypalpayment_ct,
-                           old_paypalpayment_ct=old_paypalpayment_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "target_content_type_id={startup_ct} WHERE "
-                       "target_content_type_id={old_startup_ct}".format(
-                           startup_ct=startup_ct,
-                           old_startup_ct=old_startup_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "actor_content_type_id={judgepanelassignment_ct} WHERE "
-                       "actor_content_type_id={old_judgepanelassignment_ct}".format(
-                           judgepanelassignment_ct=judgepanelassignment_ct,
-                           old_judgepanelassignment_ct=old_judgepanelassignment_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "actor_content_type_id={application_ct} WHERE "
-                       "actor_content_type_id={old_application_ct}".format(
-                           application_ct=application_ct,
-                           old_application_ct=old_application_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "actor_content_type_id={refundcode_ct} WHERE "
-                       "actor_content_type_id={old_refundcode_ct}".format(
-                           refundcode_ct=refundcode_ct,
-                           old_refundcode_ct=old_refundcode_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "actor_content_type_id={judginground_ct} WHERE "
-                       "actor_content_type_id={old_judginground_ct}".format(
-                           judginground_ct=judginground_ct,
-                           old_judginground_ct=old_judginground_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "actor_content_type_id={judgeapplicationfeedback_ct} WHERE "
-                       "actor_content_type_id={old_judgeapplicationfeedback_ct}".format(
-                           judgeapplicationfeedback_ct=judgeapplicationfeedback_ct,
-                           old_judgeapplicationfeedback_ct=old_judgeapplicationfeedback_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "actor_content_type_id={startupmentorrelationship_ct} WHERE "
-                       "actor_content_type_id={old_startupmentorrelationship_ct}".format(
-                           startupmentorrelationship_ct=startupmentorrelationship_ct,
-                           old_startupmentorrelationship_ct=old_startupmentorrelationship_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "actor_content_type_id={mentorprogramofficehour_ct} WHERE "
-                       "actor_content_type_id={old_mentorprogramofficehour_ct}".format(
-                           mentorprogramofficehour_ct=mentorprogramofficehour_ct,
-                           old_mentorprogramofficehour_ct=old_mentorprogramofficehour_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "actor_content_type_id={paypalpayment_ct} WHERE "
-                       "actor_content_type_id={old_paypalpayment_ct}".format(
-                           paypalpayment_ct=paypalpayment_ct,
-                           old_paypalpayment_ct=old_paypalpayment_ct))
-        cursor.execute("UPDATE actstream_action SET "
-                       "actor_content_type_id={startup_ct} WHERE "
-                       "actor_content_type_id={old_startup_ct}".format(
-                           startup_ct=startup_ct,
-                           old_startup_ct=old_startup_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "action_object_content_type_id="
+            "{judgepanelassignment_ct} WHERE "
+            "action_object_content_type_id="
+            "{old_judgepanelassignment_ct}".format(
+                judgepanelassignment_ct=judgepanelassignment_ct,
+                old_judgepanelassignment_ct=old_judgepanelassignment_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "action_object_content_type_id="
+            "{application_ct} WHERE "
+            "action_object_content_type_id="
+            "{old_application_ct}".format(
+                application_ct=application_ct,
+                old_application_ct=old_application_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "action_object_content_type_id="
+            "{refundcode_ct} WHERE "
+            "action_object_content_type_id="
+            "{old_refundcode_ct}".format(
+                refundcode_ct=refundcode_ct,
+                old_refundcode_ct=old_refundcode_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "action_object_content_type_id="
+            "{judginground_ct} WHERE "
+            "action_object_content_type_id="
+            "{old_judginground_ct}".format(
+                judginground_ct=judginground_ct,
+                old_judginground_ct=old_judginground_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "action_object_content_type_id="
+            "{judgeapplicationfeedback_ct} WHERE "
+            "action_object_content_type_id="
+            "{old_judgeapplicationfeedback_ct}".format(
+                judgeapplicationfeedback_ct=judgeapplicationfeedback_ct,
+                old_judgeapplicationfeedback_ct=old_judgeapplicationfeedback_ct
+            ))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "action_object_content_type_id="
+            "{startupmentorrelationship_ct} WHERE "
+            "action_object_content_type_id="
+            "{old_startupmentorrelationship_ct}".format(
+                startupmentorrelationship_ct=startupmentorrelationship_ct,
+                old_startupmentorrelationship_ct=old_startupmentorrelationship_ct
+            ))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "action_object_content_type_id="
+            "{mentorprogramofficehour_ct} WHERE "
+            "action_object_content_type_id="
+            "{old_mentorprogramofficehour_ct}".format(
+                mentorprogramofficehour_ct=mentorprogramofficehour_ct,
+                old_mentorprogramofficehour_ct=old_mentorprogramofficehour_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "action_object_content_type_id="
+            "{paypalpayment_ct} WHERE "
+            "action_object_content_type_id="
+            "{old_paypalpayment_ct}".format(
+                paypalpayment_ct=paypalpayment_ct,
+                old_paypalpayment_ct=old_paypalpayment_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "action_object_content_type_id="
+            "{startup_ct} WHERE "
+            "action_object_content_type_id="
+            "{old_startup_ct}".format(
+                startup_ct=startup_ct,
+                old_startup_ct=old_startup_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "target_content_type_id="
+            "{judgepanelassignment_ct} WHERE "
+            "target_content_type_id="
+            "{old_judgepanelassignment_ct}".format(
+                judgepanelassignment_ct=judgepanelassignment_ct,
+                old_judgepanelassignment_ct=old_judgepanelassignment_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "target_content_type_id="
+            "{application_ct} WHERE "
+            "target_content_type_id="
+            "{old_application_ct}".format(
+                application_ct=application_ct,
+                old_application_ct=old_application_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "target_content_type_id="
+            "{refundcode_ct} WHERE "
+            "target_content_type_id="
+            "{old_refundcode_ct}".format(
+                refundcode_ct=refundcode_ct,
+                old_refundcode_ct=old_refundcode_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "target_content_type_id="
+            "{judginground_ct} WHERE "
+            "target_content_type_id="
+            "{old_judginground_ct}".format(
+                judginground_ct=judginground_ct,
+                old_judginground_ct=old_judginground_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "target_content_type_id="
+            "{judgeapplicationfeedback_ct} WHERE "
+            "target_content_type_id="
+            "{old_judgeapplicationfeedback_ct}".format(
+                judgeapplicationfeedback_ct=judgeapplicationfeedback_ct,
+                old_judgeapplicationfeedback_ct=old_judgeapplicationfeedback_ct
+            ))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "target_content_type_id="
+            "{startupmentorrelationship_ct} WHERE "
+            "target_content_type_id="
+            "{old_startupmentorrelationship_ct}".format(
+                startupmentorrelationship_ct=startupmentorrelationship_ct,
+                old_startupmentorrelationship_ct=old_startupmentorrelationship_ct
+            ))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "target_content_type_id="
+            "{mentorprogramofficehour_ct} WHERE "
+            "target_content_type_id="
+            "{old_mentorprogramofficehour_ct}".format(
+                mentorprogramofficehour_ct=mentorprogramofficehour_ct,
+                old_mentorprogramofficehour_ct=old_mentorprogramofficehour_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "target_content_type_id="
+            "{paypalpayment_ct} WHERE "
+            "target_content_type_id="
+            "{old_paypalpayment_ct}".format(
+                paypalpayment_ct=paypalpayment_ct,
+                old_paypalpayment_ct=old_paypalpayment_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "target_content_type_id="
+            "{startup_ct} WHERE "
+            "target_content_type_id="
+            "{old_startup_ct}".format(
+                startup_ct=startup_ct,
+                old_startup_ct=old_startup_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "actor_content_type_id={judgepanelassignment_ct} WHERE "
+            "actor_content_type_id={old_judgepanelassignment_ct}".format(
+                judgepanelassignment_ct=judgepanelassignment_ct,
+                old_judgepanelassignment_ct=old_judgepanelassignment_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "actor_content_type_id={application_ct} WHERE "
+            "actor_content_type_id={old_application_ct}".format(
+                application_ct=application_ct,
+                old_application_ct=old_application_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "actor_content_type_id={refundcode_ct} WHERE "
+            "actor_content_type_id={old_refundcode_ct}".format(
+                refundcode_ct=refundcode_ct,
+                old_refundcode_ct=old_refundcode_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "actor_content_type_id={judginground_ct} WHERE "
+            "actor_content_type_id={old_judginground_ct}".format(
+                judginground_ct=judginground_ct,
+                old_judginground_ct=old_judginground_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "actor_content_type_id={judgeapplicationfeedback_ct} WHERE "
+            "actor_content_type_id={old_judgeapplicationfeedback_ct}".format(
+                judgeapplicationfeedback_ct=judgeapplicationfeedback_ct,
+                old_judgeapplicationfeedback_ct=old_judgeapplicationfeedback_ct
+            ))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "actor_content_type_id={startupmentorrelationship_ct} WHERE "
+            "actor_content_type_id={old_startupmentorrelationship_ct}".format(
+                startupmentorrelationship_ct=startupmentorrelationship_ct,
+                old_startupmentorrelationship_ct=old_startupmentorrelationship_ct
+            ))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "actor_content_type_id={mentorprogramofficehour_ct} WHERE "
+            "actor_content_type_id={old_mentorprogramofficehour_ct}".format(
+                mentorprogramofficehour_ct=mentorprogramofficehour_ct,
+                old_mentorprogramofficehour_ct=old_mentorprogramofficehour_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "actor_content_type_id={paypalpayment_ct} WHERE "
+            "actor_content_type_id={old_paypalpayment_ct}".format(
+                paypalpayment_ct=paypalpayment_ct,
+                old_paypalpayment_ct=old_paypalpayment_ct))
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "actor_content_type_id={startup_ct} WHERE "
+            "actor_content_type_id={old_startup_ct}".format(
+                startup_ct=startup_ct,
+                old_startup_ct=old_startup_ct))
         cursor.execute("SET FOREIGN_KEY_CHECKS=1")
 
 
