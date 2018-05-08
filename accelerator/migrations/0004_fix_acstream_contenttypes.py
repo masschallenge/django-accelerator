@@ -40,6 +40,10 @@ def fix_actstream_contenttypes(apps, schema_editor):
         "SELECT id from django_content_type "
         "WHERE app_label=\"accelerator\" "
         "AND model=\"refundcode\"")[0].id
+    old_refundcoderedemption_ct = ContentType.objects.raw(
+        "SELECT id from django_content_type "
+        "WHERE app_label=\"accelerator\" "
+        "AND model=\"refundcoderedemption\"")[0].id
     old_judginground_ct = ContentType.objects.raw(
         "SELECT id from django_content_type "
         "WHERE app_label=\"accelerator\" "
@@ -71,6 +75,8 @@ def fix_actstream_contenttypes(apps, schema_editor):
         app_label='mc', model='application').id
     refundcode_ct = ContentType.objects.get(
         app_label='mc', model='refundcode').id
+    refundcoderedemption_ct = ContentType.objects.get(
+        app_label='mc', model='refundcoderedemption').id
     judginground_ct = ContentType.objects.get(
         app_label='mc', model='judginground').id
     jaf_ct = ContentType.objects.get(
@@ -113,6 +119,13 @@ def fix_actstream_contenttypes(apps, schema_editor):
                     part=part,
                     refundcode_ct=refundcode_ct,
                     old_refundcode_ct=old_refundcode_ct))
+            cursor.execute(
+                "UPDATE actstream_action SET "
+                "{part}_content_type_id={refundcoderedemption_ct} WHERE "
+                "{part}_content_type_id={old_refundcoderedemption_ct}".format(
+                    part=part,
+                    refundcoderedemption_ct=refundcoderedemption_ct,
+                    old_refundcoderedemption_ct=old_refundcoderedemption_ct))
             cursor.execute(
                 "UPDATE actstream_action SET "
                 "{part}_content_type_id={judginground_ct} WHERE "
