@@ -16,31 +16,40 @@ def fix_actstream_contenttypes(apps, schema_editor):
 
     old_judgepanelassignment_ct = ContentType.objects.raw(
         "SELECT id from django_content_type "
-        "WHERE model=\"judgepanelassignment\"")[0].id
+        "WHERE app_label=\"accelerator\" "
+        "AND model=\"judgepanelassignment\"")[0].id
     old_application_ct = ContentType.objects.raw(
         "SELECT id from django_content_type "
-        "WHERE model=\"application\"")[0].id
+        "WHERE app_label=\"accelerator\" "
+        "AND model=\"application\"")[0].id
     old_refundcode_ct = ContentType.objects.raw(
         "SELECT id from django_content_type "
-        "WHERE model=\"refundcode\"")[0].id
+        "WHERE app_label=\"accelerator\" "
+        "AND model=\"refundcode\"")[0].id
     old_judginground_ct = ContentType.objects.raw(
         "SELECT id from django_content_type "
-        "WHERE model=\"judginground\"")[0].id
+        "WHERE app_label=\"accelerator\" "
+        "AND model=\"judginground\"")[0].id
     old_judgeapplicationfeedback_ct = ContentType.objects.raw(
         "SELECT id from django_content_type "
-        "WHERE model=\"judgeapplicationfeedback\"")[0].id
-    old_startupmentorrelationship_ct = ContentType.objects.raw(
+        "WHERE app_label=\"accelerator\" "
+        "AND model=\"judgeapplicationfeedback\"")[0].id
+    old_strtp_mnt_relationship_ct = ContentType.objects.raw(
         "SELECT id from django_content_type "
-        "WHERE model=\"startupmentorrelationship\"")[0].id
-    old_mentorprogramofficehour_ct = ContentType.objects.raw(
+        "WHERE app_label=\"accelerator\" "
+        "AND model=\"startupmentorrelationship\"")[0].id
+    old_mnt_prg_officehour_ct = ContentType.objects.raw(
         "SELECT id from django_content_type "
-        "WHERE model=\"mentorprogramofficehour\"")[0].id
+        "WHERE app_label=\"accelerator\" "
+        "AND model=\"mentorprogramofficehour\"")[0].id
     old_paypalpayment_ct = ContentType.objects.raw(
         "SELECT id from django_content_type "
-        "WHERE model=\"paypalpayment\"")[0].id
+        "WHERE app_label=\"accelerator\" "
+        "AND model=\"paypalpayment\"")[0].id
     old_startup_ct = ContentType.objects.raw(
         "SELECT id from django_content_type "
-        "WHERE model=\"startup\"")[0].id
+        "WHERE app_label=\"accelerator\" "
+        "AND model=\"startup\"")[0].id
 
     judgepanelassignment_ct = ContentType.objects.get(
         app_label='mc', model='judgepanelassignment').id
