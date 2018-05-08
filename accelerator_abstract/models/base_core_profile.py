@@ -118,10 +118,4 @@ class BaseCoreProfile(AcceleratorModel):
         return "%sProfile for %s" % (ptype, identifier)
 
     def full_name(self):
-        fn = self.user.first_name
-        ln = self.user.last_name
-        if fn and ln:
-            name = u"%s %s" % (fn, ln)
-        else:
-            name = str(self.user.username)
-        return name
+        return self.user.full_name()
