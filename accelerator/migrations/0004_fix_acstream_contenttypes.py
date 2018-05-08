@@ -10,7 +10,6 @@ from django.db import (
 
 
 def fix_actstream_contenttypes(apps, schema_editor):
-
     if ContentType.objects.filter(app_label='mc').count() == 0:
         return
     old_baseprofile_ct = ContentType.objects.raw(
@@ -45,11 +44,11 @@ def fix_actstream_contenttypes(apps, schema_editor):
         "SELECT id from django_content_type "
         "WHERE app_label=\"accelerator\" "
         "AND model=\"judginground\"")[0].id
-    old_judgeapplicationfeedback_ct = ContentType.objects.raw(
+    old_jaf_ct = ContentType.objects.raw(
         "SELECT id from django_content_type "
         "WHERE app_label=\"accelerator\" "
         "AND model=\"judgeapplicationfeedback\"")[0].id
-    old_strtp_mnt_relationship_ct = ContentType.objects.raw(
+    old_smr_ct = ContentType.objects.raw(
         "SELECT id from django_content_type "
         "WHERE app_label=\"accelerator\" "
         "AND model=\"startupmentorrelationship\"")[0].id
@@ -74,7 +73,7 @@ def fix_actstream_contenttypes(apps, schema_editor):
         app_label='mc', model='refundcode').id
     judginground_ct = ContentType.objects.get(
         app_label='mc', model='judginground').id
-    judgeapplicationfeedback_ct = ContentType.objects.get(
+    jaf_ct = ContentType.objects.get(
         app_label='mc', model='judgeapplicationfeedback').id
     startupmentorrelationship_ct = ContentType.objects.get(
         app_label='mc', model='startupmentorrelationship').id
@@ -84,248 +83,113 @@ def fix_actstream_contenttypes(apps, schema_editor):
         app_label='mc', model='paypalpayment').id
     startup_ct = ContentType.objects.get(
         app_label='mc', model='startup').id
-    baseprofile_ct = ContentType.objects.get(app_label='mc', 
+    baseprofile_ct = ContentType.objects.get(app_label='mc',
                                              model='baseprofile').id
     program_ct = ContentType.objects.get(app_label='mc', model='program').id
-    paypalrefund_ct = ContentType.objects.get(app_label='mc', 
+    paypalrefund_ct = ContentType.objects.get(app_label='mc',
                                               model='paypalrefund').id
     panel_ct = ContentType.objects.get(app_label='mc', model='panel').id
     with connection.cursor() as cursor:
         cursor.execute("SET FOREIGN_KEY_CHECKS=0")
+        for part in ('action_object', 'actor', 'target'):
+            cursor.execute(
+                "UPDATE actstream_action SET "
+                "{part}_content_type_id={application_ct} WHERE "
+                "{part}_content_type_id={old_application_ct}".format(
+                    part=part,
+                    application_ct=application_ct,
+                    old_application_ct=old_application_ct))
+            cursor.execute(
+                "UPDATE actstream_action SET "
+                "{part}_content_type_id={judgepanelassignment_ct} WHERE "
+                "{part}_content_type_id={old_judgepanelassignment_ct}".format(
+                    part=part,
+                    judgepanelassignment_ct=judgepanelassignment_ct,
+                    old_judgepanelassignment_ct=old_judgepanelassignment_ct))
+            cursor.execute(
+                "UPDATE actstream_action SET "
+                "{part}_content_type_id={refundcode_ct} WHERE "
+                "{part}_content_type_id={old_refundcode_ct}".format(
+                    part=part,
+                    refundcode_ct=refundcode_ct,
+                    old_refundcode_ct=old_refundcode_ct))
+            cursor.execute(
+                "UPDATE actstream_action SET "
+                "{part}_content_type_id={judginground_ct} WHERE "
+                "{part}_content_type_id={old_judginground_ct}".format(
+                    part=part,
+                    judginground_ct=judginground_ct,
+                    old_judginground_ct=old_judginground_ct))
+            cursor.execute(
+                "UPDATE actstream_action SET "
+                "{part}_content_type_id={jaf_ct} WHERE "
+                "{part}_content_type_id={old_jaf_ct}".format(
+                    part=part,
+                    jaf_ct=jaf_ct,
+                    old_jaf_ct=old_jaf_ct
+                ))
+            cursor.execute(
+                "UPDATE actstream_action SET "
+                "{part}_content_type_id={startupmentorrelationship_ct} WHERE "
+                "{part}_content_type_id={old_smr_ct}".format(
+                    part=part,
+                    startupmentorrelationship_ct=startupmentorrelationship_ct,
+                    old_smr_ct=old_smr_ct
+                ))
+            cursor.execute(
+                "UPDATE actstream_action SET "
+                "{part}_content_type_id={mentorprogramofficehour_ct} WHERE "
+                "{part}_content_type_id={old_mnt_prg_officehour_ct}".format(
+                    part=part,
+                    mentorprogramofficehour_ct=mentorprogramofficehour_ct,
+                    old_mnt_prg_officehour_ct=old_mnt_prg_officehour_ct))
+            cursor.execute(
+                "UPDATE actstream_action SET "
+                "{part}_content_type_id={paypalpayment_ct} WHERE "
+                "{part}_content_type_id={old_paypalpayment_ct}".format(
+                    part=part,
+                    paypalpayment_ct=paypalpayment_ct,
+                    old_paypalpayment_ct=old_paypalpayment_ct))
+            cursor.execute(
+                "UPDATE actstream_action SET "
+                "{part}_content_type_id={startup_ct} WHERE "
+                "{part}_content_type_id={old_startup_ct}".format(
+                    part=part,
+                    startup_ct=startup_ct,
+                    old_startup_ct=old_startup_ct))
 
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "action_object_content_type_id="
-            "{judgepanelassignment_ct} WHERE "
-            "action_object_content_type_id="
-            "{old_judgepanelassignment_ct}".format(
-                judgepanelassignment_ct=judgepanelassignment_ct,
-                old_judgepanelassignment_ct=old_judgepanelassignment_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "action_object_content_type_id="
-            "{application_ct} WHERE "
-            "action_object_content_type_id="
-            "{old_application_ct}".format(
-                application_ct=application_ct,
-                old_application_ct=old_application_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "action_object_content_type_id="
-            "{refundcode_ct} WHERE "
-            "action_object_content_type_id="
-            "{old_refundcode_ct}".format(
-                refundcode_ct=refundcode_ct,
-                old_refundcode_ct=old_refundcode_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "action_object_content_type_id="
-            "{judginground_ct} WHERE "
-            "action_object_content_type_id="
-            "{old_judginground_ct}".format(
-                judginground_ct=judginground_ct,
-                old_judginground_ct=old_judginground_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "action_object_content_type_id="
-            "{judgeapplicationfeedback_ct} WHERE "
-            "action_object_content_type_id="
-            "{old_judgeapplicationfeedback_ct}".format(
-                judgeapplicationfeedback_ct=judgeapplicationfeedback_ct,
-                old_judgeapplicationfeedback_ct=old_judgeapplicationfeedback_ct
-            ))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "action_object_content_type_id="
-            "{startupmentorrelationship_ct} WHERE "
-            "action_object_content_type_id="
-            "{old_strtp_mnt_relationship_ct}".format(
-                startupmentorrelationship_ct=startupmentorrelationship_ct,
-                old_strtp_mnt_relationship_ct=old_strtp_mnt_relationship_ct
-            ))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "action_object_content_type_id="
-            "{mentorprogramofficehour_ct} WHERE "
-            "action_object_content_type_id="
-            "{old_mnt_prg_officehour_ct}".format(
-                mentorprogramofficehour_ct=mentorprogramofficehour_ct,
-                old_mnt_prg_officehour_ct=old_mnt_prg_officehour_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "action_object_content_type_id="
-            "{paypalpayment_ct} WHERE "
-            "action_object_content_type_id="
-            "{old_paypalpayment_ct}".format(
-                paypalpayment_ct=paypalpayment_ct,
-                old_paypalpayment_ct=old_paypalpayment_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "action_object_content_type_id="
-            "{startup_ct} WHERE "
-            "action_object_content_type_id="
-            "{old_startup_ct}".format(
-                startup_ct=startup_ct,
-                old_startup_ct=old_startup_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "target_content_type_id="
-            "{judgepanelassignment_ct} WHERE "
-            "target_content_type_id="
-            "{old_judgepanelassignment_ct}".format(
-                judgepanelassignment_ct=judgepanelassignment_ct,
-                old_judgepanelassignment_ct=old_judgepanelassignment_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "target_content_type_id="
-            "{application_ct} WHERE "
-            "target_content_type_id="
-            "{old_application_ct}".format(
-                application_ct=application_ct,
-                old_application_ct=old_application_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "target_content_type_id="
-            "{refundcode_ct} WHERE "
-            "target_content_type_id="
-            "{old_refundcode_ct}".format(
-                refundcode_ct=refundcode_ct,
-                old_refundcode_ct=old_refundcode_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "target_content_type_id="
-            "{judginground_ct} WHERE "
-            "target_content_type_id="
-            "{old_judginground_ct}".format(
-                judginground_ct=judginground_ct,
-                old_judginground_ct=old_judginground_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "target_content_type_id="
-            "{judgeapplicationfeedback_ct} WHERE "
-            "target_content_type_id="
-            "{old_judgeapplicationfeedback_ct}".format(
-                judgeapplicationfeedback_ct=judgeapplicationfeedback_ct,
-                old_judgeapplicationfeedback_ct=old_judgeapplicationfeedback_ct
-            ))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "target_content_type_id="
-            "{startupmentorrelationship_ct} WHERE "
-            "target_content_type_id="
-            "{old_strtp_mnt_relationship_ct}".format(
-                startupmentorrelationship_ct=startupmentorrelationship_ct,
-                old_strtp_mnt_relationship_ct=old_strtp_mnt_relationship_ct
-            ))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "target_content_type_id="
-            "{mentorprogramofficehour_ct} WHERE "
-            "target_content_type_id="
-            "{old_mnt_prg_officehour_ct}".format(
-                mentorprogramofficehour_ct=mentorprogramofficehour_ct,
-                old_mnt_prg_officehour_ct=old_mnt_prg_officehour_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "target_content_type_id="
-            "{paypalpayment_ct} WHERE "
-            "target_content_type_id="
-            "{old_paypalpayment_ct}".format(
-                paypalpayment_ct=paypalpayment_ct,
-                old_paypalpayment_ct=old_paypalpayment_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "target_content_type_id="
-            "{startup_ct} WHERE "
-            "target_content_type_id="
-            "{old_startup_ct}".format(
-                startup_ct=startup_ct,
-                old_startup_ct=old_startup_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "actor_content_type_id={judgepanelassignment_ct} WHERE "
-            "actor_content_type_id={old_judgepanelassignment_ct}".format(
-                judgepanelassignment_ct=judgepanelassignment_ct,
-                old_judgepanelassignment_ct=old_judgepanelassignment_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "actor_content_type_id={application_ct} WHERE "
-            "actor_content_type_id={old_application_ct}".format(
-                application_ct=application_ct,
-                old_application_ct=old_application_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "actor_content_type_id={refundcode_ct} WHERE "
-            "actor_content_type_id={old_refundcode_ct}".format(
-                refundcode_ct=refundcode_ct,
-                old_refundcode_ct=old_refundcode_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "actor_content_type_id={judginground_ct} WHERE "
-            "actor_content_type_id={old_judginground_ct}".format(
-                judginground_ct=judginground_ct,
-                old_judginground_ct=old_judginground_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "actor_content_type_id={judgeapplicationfeedback_ct} WHERE "
-            "actor_content_type_id={old_judgeapplicationfeedback_ct}".format(
-                judgeapplicationfeedback_ct=judgeapplicationfeedback_ct,
-                old_judgeapplicationfeedback_ct=old_judgeapplicationfeedback_ct
-            ))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "actor_content_type_id={startupmentorrelationship_ct} WHERE "
-            "actor_content_type_id={old_strtp_mnt_relationship_ct}".format(
-                startupmentorrelationship_ct=startupmentorrelationship_ct,
-                old_strtp_mnt_relationship_ct=old_strtp_mnt_relationship_ct
-            ))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "actor_content_type_id={mentorprogramofficehour_ct} WHERE "
-            "actor_content_type_id={old_mnt_prg_officehour_ct}".format(
-                mentorprogramofficehour_ct=mentorprogramofficehour_ct,
-                old_mnt_prg_officehour_ct=old_mnt_prg_officehour_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "actor_content_type_id={paypalpayment_ct} WHERE "
-            "actor_content_type_id={old_paypalpayment_ct}".format(
-                paypalpayment_ct=paypalpayment_ct,
-                old_paypalpayment_ct=old_paypalpayment_ct))
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "actor_content_type_id={startup_ct} WHERE "
-            "actor_content_type_id={old_startup_ct}".format(
-                startup_ct=startup_ct,
-                old_startup_ct=old_startup_ct))
-        
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "actor_content_type_id={baseprofile_ct} WHERE "
-            "actor_content_type_id={old_baseprofile_ct}".format(
-                baseprofile_ct=baseprofile_ct,
-                old_baseprofile_ct=old_baseprofile_ct))
-        
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "actor_content_type_id={panel_ct} WHERE "
-            "actor_content_type_id={old_panel_ct}".format(
-                panel_ct=panel_ct,
-                old_panel_ct=old_panel_ct))
-       
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "actor_content_type_id={paypalrefund_ct} WHERE "
-            "actor_content_type_id={old_paypalrefund_ct}".format(
-                paypalrefund_ct=paypalrefund_ct,
-                old_paypalrefund_ct=old_paypalrefund_ct))
-        
-        cursor.execute(
-            "UPDATE actstream_action SET "
-            "actor_content_type_id={program_ct} WHERE "
-            "actor_content_type_id={old_program_ct}".format(
-                program_ct=program_ct,
-                old_program_ct=old_program_ct))
-        
+            cursor.execute(
+                "UPDATE actstream_action SET "
+                "{part}_content_type_id={baseprofile_ct} WHERE "
+                "{part}_content_type_id={old_baseprofile_ct}".format(
+                    part=part,
+                    baseprofile_ct=baseprofile_ct,
+                    old_baseprofile_ct=old_baseprofile_ct))
+
+            cursor.execute(
+                "UPDATE actstream_action SET "
+                "{part}_content_type_id={panel_ct} WHERE "
+                "{part}_content_type_id={old_panel_ct}".format(
+                    part=part,
+                    panel_ct=panel_ct,
+                    old_panel_ct=old_panel_ct))
+
+            cursor.execute(
+                "UPDATE actstream_action SET "
+                "{part}_content_type_id={paypalrefund_ct} WHERE "
+                "{part}_content_type_id={old_paypalrefund_ct}".format(
+                    part=part,
+                    paypalrefund_ct=paypalrefund_ct,
+                    old_paypalrefund_ct=old_paypalrefund_ct))
+
+            cursor.execute(
+                "UPDATE actstream_action SET "
+                "{part}_content_type_id={program_ct} WHERE "
+                "{part}_content_type_id={old_program_ct}".format(
+                    part=part,
+                    program_ct=program_ct,
+                    old_program_ct=old_program_ct))
+
         cursor.execute("SET FOREIGN_KEY_CHECKS=1")
 
 
