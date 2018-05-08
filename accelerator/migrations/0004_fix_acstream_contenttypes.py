@@ -13,7 +13,22 @@ def fix_actstream_contenttypes(apps, schema_editor):
 
     if ContentType.objects.filter(app_label='mc').count() == 0:
         return
-
+    old_baseprofile_ct = ContentType.objects.raw(
+        "SELECT id from django_content_type "
+        "WHERE app_label=\"accelerator\" "
+        "AND model=\"baseprofile\"")[0].id
+    old_program_ct = ContentType.objects.raw(
+        "SELECT id from django_content_type "
+        "WHERE app_label=\"accelerator\" "
+        "AND model=\"program\"")[0].id
+    old_paypalrefund_ct = ContentType.objects.raw(
+        "SELECT id from django_content_type "
+        "WHERE app_label=\"accelerator\" "
+        "AND model=\"paypalrefund\"")[0].id
+    old_panel_ct = ContentType.objects.raw(
+        "SELECT id from django_content_type "
+        "WHERE app_label=\"accelerator\" "
+        "AND model=\"panel\"")[0].id
     old_judgepanelassignment_ct = ContentType.objects.raw(
         "SELECT id from django_content_type "
         "WHERE app_label=\"accelerator\" "
@@ -69,6 +84,12 @@ def fix_actstream_contenttypes(apps, schema_editor):
         app_label='mc', model='paypalpayment').id
     startup_ct = ContentType.objects.get(
         app_label='mc', model='startup').id
+    baseprofile_ct = ContentType.objects.get(app_label='mc', 
+                                             model='baseprofile').id
+    program_ct = ContentType.objects.get(app_label='mc', model='program').id
+    paypalrefund_ct = ContentType.objects.get(app_label='mc', 
+                                              model='paypalrefund').id
+    panel_ct = ContentType.objects.get(app_label='mc', model='panel').id
     with connection.cursor() as cursor:
         cursor.execute("SET FOREIGN_KEY_CHECKS=0")
 
@@ -276,6 +297,35 @@ def fix_actstream_contenttypes(apps, schema_editor):
             "actor_content_type_id={old_startup_ct}".format(
                 startup_ct=startup_ct,
                 old_startup_ct=old_startup_ct))
+        
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "actor_content_type_id={baseprofile_ct} WHERE "
+            "actor_content_type_id={old_baseprofile_ct}".format(
+                baseprofile_ct=baseprofile_ct,
+                old_baseprofile_ct=old_baseprofile_ct))
+        
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "actor_content_type_id={panel_ct} WHERE "
+            "actor_content_type_id={old_panel_ct}".format(
+                panel_ct=panel_ct,
+                old_panel_ct=old_panel_ct))
+       
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "actor_content_type_id={paypalrefund_ct} WHERE "
+            "actor_content_type_id={old_paypalrefund_ct}".format(
+                paypalrefund_ct=paypalrefund_ct,
+                old_paypalrefund_ct=old_paypalrefund_ct))
+        
+        cursor.execute(
+            "UPDATE actstream_action SET "
+            "actor_content_type_id={program_ct} WHERE "
+            "actor_content_type_id={old_program_ct}".format(
+                program_ct=program_ct,
+                old_program_ct=old_program_ct))
+        
         cursor.execute("SET FOREIGN_KEY_CHECKS=1")
 
 
