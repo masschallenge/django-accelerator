@@ -109,18 +109,18 @@ def fix_actstream_contenttypes(apps, schema_editor):
             "action_object_content_type_id="
             "{startupmentorrelationship_ct} WHERE "
             "action_object_content_type_id="
-            "{old_startupmentorrelationship_ct}".format(
+            "{old_strtp_mnt_relationship_ct}".format(
                 startupmentorrelationship_ct=startupmentorrelationship_ct,
-                old_startupmentorrelationship_ct=old_startupmentorrelationship_ct
+                old_strtp_mnt_relationship_ct=old_strtp_mnt_relationship_ct
             ))
         cursor.execute(
             "UPDATE actstream_action SET "
             "action_object_content_type_id="
             "{mentorprogramofficehour_ct} WHERE "
             "action_object_content_type_id="
-            "{old_mentorprogramofficehour_ct}".format(
+            "{old_mnt_prg_officehour_ct}".format(
                 mentorprogramofficehour_ct=mentorprogramofficehour_ct,
-                old_mentorprogramofficehour_ct=old_mentorprogramofficehour_ct))
+                old_mnt_prg_officehour_ct=old_mnt_prg_officehour_ct))
         cursor.execute(
             "UPDATE actstream_action SET "
             "action_object_content_type_id="
@@ -183,18 +183,18 @@ def fix_actstream_contenttypes(apps, schema_editor):
             "target_content_type_id="
             "{startupmentorrelationship_ct} WHERE "
             "target_content_type_id="
-            "{old_startupmentorrelationship_ct}".format(
+            "{old_strtp_mnt_relationship_ct}".format(
                 startupmentorrelationship_ct=startupmentorrelationship_ct,
-                old_startupmentorrelationship_ct=old_startupmentorrelationship_ct
+                old_strtp_mnt_relationship_ct=old_strtp_mnt_relationship_ct
             ))
         cursor.execute(
             "UPDATE actstream_action SET "
             "target_content_type_id="
             "{mentorprogramofficehour_ct} WHERE "
             "target_content_type_id="
-            "{old_mentorprogramofficehour_ct}".format(
+            "{old_mnt_prg_officehour_ct}".format(
                 mentorprogramofficehour_ct=mentorprogramofficehour_ct,
-                old_mentorprogramofficehour_ct=old_mentorprogramofficehour_ct))
+                old_mnt_prg_officehour_ct=old_mnt_prg_officehour_ct))
         cursor.execute(
             "UPDATE actstream_action SET "
             "target_content_type_id="
@@ -245,16 +245,16 @@ def fix_actstream_contenttypes(apps, schema_editor):
         cursor.execute(
             "UPDATE actstream_action SET "
             "actor_content_type_id={startupmentorrelationship_ct} WHERE "
-            "actor_content_type_id={old_startupmentorrelationship_ct}".format(
+            "actor_content_type_id={old_strtp_mnt_relationship_ct}".format(
                 startupmentorrelationship_ct=startupmentorrelationship_ct,
-                old_startupmentorrelationship_ct=old_startupmentorrelationship_ct
+                old_strtp_mnt_relationship_ct=old_strtp_mnt_relationship_ct
             ))
         cursor.execute(
             "UPDATE actstream_action SET "
             "actor_content_type_id={mentorprogramofficehour_ct} WHERE "
-            "actor_content_type_id={old_mentorprogramofficehour_ct}".format(
+            "actor_content_type_id={old_mnt_prg_officehour_ct}".format(
                 mentorprogramofficehour_ct=mentorprogramofficehour_ct,
-                old_mentorprogramofficehour_ct=old_mentorprogramofficehour_ct))
+                old_mnt_prg_officehour_ct=old_mnt_prg_officehour_ct))
         cursor.execute(
             "UPDATE actstream_action SET "
             "actor_content_type_id={paypalpayment_ct} WHERE "
