@@ -13,7 +13,7 @@ from accelerator.tests.factories import (
 class TestCoreProfile(TestCase):
     def test_full_name(self):
         user = ExpertFactory(first_name="", last_name="")
-        assert user.get_profile().full_name() == str(user.username)
+        assert user.get_profile().full_name() == str(user.email)
 
     def test_str(self):
         user = ExpertFactory()

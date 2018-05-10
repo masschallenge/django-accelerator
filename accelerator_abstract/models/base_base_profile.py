@@ -41,10 +41,5 @@ class BaseBaseProfile(AcceleratorModel):
         abstract = True
 
     def __str__(self):
-        fn = self.user.first_name
-        ln = self.user.last_name
-        if fn and ln:
-            identifier = "%s %s" % (fn, ln)
-        else:
-            identifier = self.user.email
+        identifier = self.user.full_name()
         return "Base Profile for %s" % identifier
