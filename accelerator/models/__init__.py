@@ -315,3 +315,4 @@ from .category_header_page import CategoryHeaderPage
 from .core_profile import CoreProfile
 from .node_published_for import NodePublishedFor
 from .site_redirect_page import SiteRedirectPage
+from .legal_check import LegalCheck

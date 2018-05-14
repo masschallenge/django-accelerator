@@ -97,6 +97,7 @@ ACCELERATOR_SCENARIO_MODEL = "accelerator.Scenario"
 ACCELERATOR_STARTUPLABEL_MODEL = "accelerator.StartupLabel"
 ACCELERATOR_STARTUPATTRIBUTE_MODEL = "accelerator.StartupAttribute"
 ACCELERATOR_PAYPALPAYMENT_MODEL = "accelerator.PayPalPayment"
+ACCELERATOR_LEGALCHECK_MODEL = "accelerator.LegalCheck"
 
 PAYPAL_WPP_USER = ""
 PAYPAL_WPP_PASSWORD = ""

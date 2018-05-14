@@ -100,4 +100,5 @@ from .startup_team_member_factory import StartupTeamMemberFactory
 from .url_node_factory import UrlNodeFactory
 from .user_label_factory import UserLabelFactory
 from .user_role_factory import UserRoleFactory
+from .legal_check_factory import LegalCheckFactory
 from simpleuser.tests.factories import UserFactory
