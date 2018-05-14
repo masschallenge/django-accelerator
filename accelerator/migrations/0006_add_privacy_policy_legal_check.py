@@ -4,11 +4,13 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 
+PRIVACY_POLICY = 'privacy_policy'
+
 
 def add_privacy_policy_legal_check(apps, schema_editor):
     LegalCheck = apps.get_model('accelerator', 'LegalCheck')
     LegalCheck.objects.create(
-        name='accepted_privacy_policy',
+        name=PRIVACY_POLICY,
         title='The MassChallenge Privacy Policy',
         url='https://masschallenge.org/privacy-policy'
     )
@@ -16,7 +18,7 @@ def add_privacy_policy_legal_check(apps, schema_editor):
 
 def remove_privacy_policy_legal_check(apps, schema_editor):
     LegalCheck = apps.get_model('accelerator', 'LegalCheck')
-    LegalCheck.objects.filter(name='accepted_privacy_policy').delete()
+    LegalCheck.objects.filter(name=PRIVACY_POLICY).delete()
 
 
 class Migration(migrations.Migration):
