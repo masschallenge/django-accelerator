@@ -10,12 +10,10 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
-from accelerator.tests.factories.entrepreneur_profile_factory import (
-    EntrepreneurProfileFactory
-)
 from accelerator.tests.factories.legal_check_factory import (
     LegalCheckFactory
 )
+from simpleuser.tests.factories.user_factory import UserFactory
 
 LegalCheckAcceptance = swapper.load_model(AcceleratorConfig.name,
                                           'LegalCheckAcceptance')
@@ -25,6 +23,6 @@ class LegalCheckAcceptanceFactory(DjangoModelFactory):
     class Meta:
         model = LegalCheckAcceptance
 
-    profile = SubFactory(EntrepreneurProfileFactory)
+    user = SubFactory(UserFactory)
     legal_check = SubFactory(LegalCheckFactory)
     accepted = False
