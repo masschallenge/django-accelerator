@@ -314,3 +314,4 @@ from .base_user_label import (
 from .base_user_role import BaseUserRole
 from .base_user_role_menu import BaseUserRoleMenu
 from .base_legal_check import BaseLegalCheck
+from .base_legal_check_acceptance import BaseLegalCheckAcceptance

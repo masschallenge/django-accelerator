@@ -18,15 +18,11 @@ class BaseLegalCheck(AcceleratorModel):
                             default='',
                             null=False,
                             blank=False)
-    profiles = models.ManyToManyField(
-        to=swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                                  "BaseProfile"))
     title = models.CharField(max_length=512,
                              default='',
                              null=False,
                              blank=False)
     url = models.URLField(max_length=100)
-    accepted = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_legalcheck'.format(

@@ -21,4 +21,3 @@ class LegalCheckFactory(DjangoModelFactory):
     name = Sequence(lambda n: 'legal_check_{0}'.format(n))
     title = Sequence(lambda n: 'The Website Legal {0} Check'.format(n))
     url = Sequence(lambda n: 'http://example.com/legal-{0}'.format(n))
-    accepted = False
