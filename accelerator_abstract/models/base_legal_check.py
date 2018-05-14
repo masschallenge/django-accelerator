@@ -18,7 +18,7 @@ class BaseLegalCheck(AcceleratorModel):
                             default='',
                             null=False,
                             blank=False)
-    profile = models.ManyToManyField(
+    profiles = models.ManyToManyField(
         to=swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                   "BaseProfile"))
     title = models.CharField(max_length=512,

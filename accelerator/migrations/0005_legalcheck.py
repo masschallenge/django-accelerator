@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(default='', max_length=512)),
                 ('url', models.URLField(max_length=100)),
                 ('accepted', models.BooleanField(default=False)),
-                ('profile', models.ManyToManyField(
+                ('profiles', models.ManyToManyField(
                     to=swapper.get_model_name('accelerator', 'BaseProfile'))),
             ],
             options={
