@@ -33,5 +33,5 @@ class BaseLegalCheckAcceptance(AcceleratorModel):
 
     def __str__(self):
         return '{} {}accepted by {}'.format(self.legal_check,
-                                            "" if self.accepted else "not ",
+                                            '' if self.accepted else 'not ',
                                             self.profile.user.full_name())
