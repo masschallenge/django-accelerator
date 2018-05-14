@@ -68,4 +68,8 @@ class Migration(migrations.Migration):
                                                        'LegalCheckAcceptance'),
             },
         ),
+        migrations.AlterUniqueTogether(
+            name='legalcheckacceptance',
+            unique_together=set([('profile', 'legal_check')]),
+        ),
     ]

@@ -29,6 +29,7 @@ class BaseLegalCheckAcceptance(AcceleratorModel):
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name = 'Legal Check Acceptance'
+        unique_together = ('profile', 'legal_check')
 
     def __str__(self):
         return '{} {}accepted by {}'.format(self.legal_check,
