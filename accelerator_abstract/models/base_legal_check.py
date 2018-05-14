@@ -17,7 +17,8 @@ class BaseLegalCheck(AcceleratorModel):
     name = models.CharField(max_length=128,
                             default='',
                             null=False,
-                            blank=False)
+                            blank=False,
+                            unique=True)
     title = models.CharField(max_length=512,
                              default='',
                              null=False,
