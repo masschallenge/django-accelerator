@@ -26,7 +26,7 @@ def move_back_filepage_files(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0004_filepage_file_alter_storage_and_location'),
+        ('accelerator', '0004_fix_acstream_contenttypes'),
     ]
 
     operations = [
