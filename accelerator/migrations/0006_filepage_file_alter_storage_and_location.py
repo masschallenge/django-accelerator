@@ -11,7 +11,7 @@ from django.db import (
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0003_auto_20180410_1618'),
+        ('accelerator', '0005_fix_path_names_for_existing_filepage_files'),
     ]
 
     operations = [
