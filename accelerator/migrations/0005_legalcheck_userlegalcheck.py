@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='LegalCheckAcceptance',
+            name='UserLegalCheck',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True,
                                         serialize=False, verbose_name='ID')),
@@ -59,16 +59,16 @@ class Migration(migrations.Migration):
                                    to=settings.AUTH_USER_MODEL)),
             ],
             options={
-                'verbose_name': 'Legal Check Acceptance',
-                'db_table': 'accelerator_legalcheckacceptance',
+                'verbose_name': 'User Legal Check',
+                'db_table': 'accelerator_userlegalcheck',
                 'abstract': False,
                 'managed': True,
                 'swappable': swapper.swappable_setting('accelerator',
-                                                       'LegalCheckAcceptance'),
+                                                       'UserLegalCheck'),
             },
         ),
         migrations.AlterUniqueTogether(
-            name='legalcheckacceptance',
+            name='userlegalcheck',
             unique_together=set([('user', 'legal_check')]),
         ),
     ]

@@ -15,13 +15,12 @@ from accelerator.tests.factories.legal_check_factory import (
 )
 from simpleuser.tests.factories.user_factory import UserFactory
 
-LegalCheckAcceptance = swapper.load_model(AcceleratorConfig.name,
-                                          'LegalCheckAcceptance')
+UserLegalCheck = swapper.load_model(AcceleratorConfig.name, 'UserLegalCheck')
 
 
-class LegalCheckAcceptanceFactory(DjangoModelFactory):
+class UserLegalCheckFactory(DjangoModelFactory):
     class Meta:
-        model = LegalCheckAcceptance
+        model = UserLegalCheck
 
     user = SubFactory(UserFactory)
     legal_check = SubFactory(LegalCheckFactory)

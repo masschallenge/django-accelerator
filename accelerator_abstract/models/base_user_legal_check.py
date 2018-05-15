@@ -14,7 +14,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
 @python_2_unicode_compatible
-class BaseLegalCheckAcceptance(AcceleratorModel):
+class BaseUserLegalCheck(AcceleratorModel):
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL,
         related_name='legalcheck_set')
@@ -25,10 +25,10 @@ class BaseLegalCheckAcceptance(AcceleratorModel):
     accepted = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_legalcheckacceptance'.format(
+        db_table = '{}_userlegalcheck'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
-        verbose_name = 'Legal Check Acceptance'
+        verbose_name = 'User Legal Check'
         unique_together = ('user', 'legal_check')
 
     def __str__(self):

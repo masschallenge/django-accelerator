@@ -316,4 +316,4 @@ from .core_profile import CoreProfile
 from .node_published_for import NodePublishedFor
 from .site_redirect_page import SiteRedirectPage
 from .legal_check import LegalCheck
-from .legal_check_acceptance import LegalCheckAcceptance
+from .user_legal_check import UserLegalCheck

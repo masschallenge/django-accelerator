@@ -23,7 +23,7 @@ def remove_privacy_policy_legal_check(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0005_legalcheck_legalcheckacceptance'),
+        ('accelerator', '0005_legalcheck_userlegalcheck'),
     ]
 
     operations = [

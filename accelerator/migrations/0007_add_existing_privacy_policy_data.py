@@ -8,7 +8,7 @@ from django.db import migrations
 
 from accelerator.models import (
     LegalCheck,
-    LegalCheckAcceptance,
+    UserLegalCheck,
 )
 
 User = get_user_model()
@@ -23,7 +23,7 @@ def add_privacy_policy_acceptance(apps, schema_editor):
         profile = _get_user_profile(user)
         if not profile:
             continue
-        LegalCheckAcceptance.objects.create(
+        UserLegalCheck.objects.create(
             user=user,
             legal_check=privacy_policy,
             accepted=profile.privacy_policy_accepted)
@@ -44,7 +44,7 @@ def _get_user_profile(user):
 
 def remove_privacy_policy_acceptance(apps, schema_editor):
     privacy_policy = LegalCheck.objects.get(name=PRIVACY_POLICY)
-    LegalCheckAcceptance.objects.filter(legal_check=privacy_policy).delete()
+    UserLegalCheck.objects.filter(legal_check=privacy_policy).delete()
 
 
 class Migration(migrations.Migration):
