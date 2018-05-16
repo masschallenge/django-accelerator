@@ -25,8 +25,7 @@ class BaseLegalCheck(AcceleratorModel):
     url = models.URLField(max_length=100)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_legalcheck'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = '{}_legalcheck'.format(AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name = "Legal Check"
 
