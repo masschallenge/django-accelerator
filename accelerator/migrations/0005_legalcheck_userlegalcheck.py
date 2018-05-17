@@ -27,8 +27,8 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(default='',
                                           max_length=128,
                                           unique=True)),
-                ('title', models.CharField(default='', max_length=512)),
-                ('url', models.URLField(max_length=100)),
+                ('description', models.TextField(default='')),
+
             ],
             options={
                 'verbose_name': 'Legal Check',

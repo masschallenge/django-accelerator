@@ -19,5 +19,7 @@ class LegalCheckFactory(DjangoModelFactory):
         model = LegalCheck
 
     name = Sequence(lambda n: 'legal_check_{0}'.format(n))
-    title = Sequence(lambda n: 'The Website Legal {0} Check'.format(n))
-    url = Sequence(lambda n: 'http://example.com/legal-{0}'.format(n))
+    description = Sequence(
+        lambda n: 'I accept the terms specified by '
+                  '<a href="http://example.com/legal-{0}" '
+                  'target="_blank">legal_check_{0}</a>'.format(n))

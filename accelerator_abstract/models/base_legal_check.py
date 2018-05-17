@@ -18,11 +18,7 @@ class BaseLegalCheck(AcceleratorModel):
                             null=False,
                             blank=False,
                             unique=True)
-    title = models.CharField(max_length=512,
-                             default='',
-                             null=False,
-                             blank=False)
-    url = models.URLField(max_length=100)
+    description = models.TextField()
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_legalcheck'.format(AcceleratorModel.Meta.app_label)
@@ -30,4 +26,4 @@ class BaseLegalCheck(AcceleratorModel):
         verbose_name = "Legal Check"
 
     def __str__(self):
-        return 'Legal Check: {}'.format(self.title)
+        return 'Legal Check: {}'.format(self.name)
