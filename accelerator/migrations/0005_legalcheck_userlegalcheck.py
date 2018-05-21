@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(default='',
                                           max_length=128,
                                           unique=True)),
-                ('description', models.TextField(default='')),
+                ('description', models.TextField()),
 
             ],
             options={
