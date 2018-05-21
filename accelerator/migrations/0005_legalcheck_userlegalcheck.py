@@ -72,4 +72,3 @@ class Migration(migrations.Migration):
             unique_together=set([('user', 'legal_check')]),
         ),
     ]
-
