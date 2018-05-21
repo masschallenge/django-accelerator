@@ -27,7 +27,6 @@ class CoreProfileFactory(DjangoModelFactory):
         abstract = True
 
     user = SubFactory(UserFactory)
-    privacy_policy_accepted = True
     users_last_activity = utc.localize(datetime.now() + timedelta(-1))
     gender = "p"
     phone = "+1-555-555-5555"

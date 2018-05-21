@@ -21,4 +21,3 @@ class BaseProfileFactory(DjangoModelFactory):
 
     user = SubFactory(UserFactory)
     user_type = "ENTREPRENEUR"
-    privacy_policy_accepted = True
