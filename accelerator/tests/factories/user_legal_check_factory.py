@@ -21,6 +21,7 @@ UserLegalCheck = swapper.load_model(AcceleratorConfig.name, 'UserLegalCheck')
 class UserLegalCheckFactory(DjangoModelFactory):
     class Meta:
         model = UserLegalCheck
+        django_get_or_create = ('user', 'legal_check', )
 
     user = SubFactory(UserFactory)
     legal_check = SubFactory(LegalCheckFactory)
