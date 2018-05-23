@@ -17,8 +17,10 @@ class BaseLegalCheck(AcceleratorModel):
                             default='',
                             null=False,
                             blank=False,
-                            unique=True)
-    description = models.TextField()
+                            unique=True,
+                            help_text='Internal name for this check.')
+    description = models.TextField(
+        help_text='Text displayed next to checkbox. Use HTML for links.')
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_legalcheck'.format(AcceleratorModel.Meta.app_label)
