@@ -13,8 +13,6 @@ EntrepreneurProfile = swapper.load_model(AcceleratorConfig.name,
 
 
 class EntrepreneurProfileFactory(CoreProfileFactory):
-    privacy_policy_accepted = True
-
     class Meta:
         model = EntrepreneurProfile
 
