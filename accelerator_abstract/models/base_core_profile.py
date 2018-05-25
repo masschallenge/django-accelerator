@@ -93,12 +93,6 @@ class BaseCoreProfile(AcceleratorModel):
 
     user_type = None
     default_page = "member_homepage"
-    privacy_policy_accepted = models.BooleanField(
-        verbose_name="Privacy and Cookie Policy",
-        help_text="I have read and agree to the terms in the privacy policy",
-        default=False,
-        blank=False,
-        null=False)
     recommendation_tags = models.ManyToManyField(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                'RecommendationTag'),

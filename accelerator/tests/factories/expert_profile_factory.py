@@ -40,7 +40,6 @@ class ExpertProfileFactory(CoreProfileFactory):
     judge_interest = False
     mentor_interest = False
     speaker_interest = False
-    privacy_policy_accepted = True
     speaker_topics = ""
     office_hours_interest = False
     office_hours_topics = ""
