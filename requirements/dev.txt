@@ -10,3 +10,4 @@ flake8
 tox
 mock
 factory-boy
+Pillow==5.0.0
