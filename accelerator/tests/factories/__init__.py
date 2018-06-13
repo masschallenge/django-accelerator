@@ -13,6 +13,7 @@ from .bucket_state_factory import BucketStateFactory
 from .clearance_factory import ClearanceFactory
 from .content_type_factory import ContentTypeFactory
 from .core_profile_factory import CoreProfileFactory
+from .criterion_factory import CriterionFactory
 from .currency_factory import CurrencyFactory
 from .entrepreneur_factory import EntrepreneurFactory
 from .entrepreneur_profile_factory import EntrepreneurProfileFactory

@@ -53,6 +53,8 @@ from .base_clearance import (
     CLEARANCE_LEVEL_POM,
 )
 from .base_core_profile import BaseCoreProfile
+from .base_criterion import BaseCriterion
+from .base_criterion_option_spec import BaseCriterionOptionSpec
 from .base_currency import BaseCurrency
 from .base_entrepreneur_profile import BaseEntrepreneurProfile
 from .base_expert_category import (

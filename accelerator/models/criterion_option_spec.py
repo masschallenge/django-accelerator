@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from accelerator_abstract.models.base_bucket_state import BaseCriterionOptionSpec
+from accelerator_abstract.models.base_criterion_option_spec import BaseCriterionOptionSpec
 
 
 class CriterionOptionSpec(BaseCriterionOptionSpec):
