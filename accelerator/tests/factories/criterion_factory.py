@@ -6,10 +6,9 @@ from __future__ import unicode_literals
 import swapper
 from factory import (
     DjangoModelFactory,
-    #Sequence,
+    Sequence,
     SubFactory,
 )
-from pytz import utc
 
 from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.judging_round_factory import (

@@ -6,12 +6,12 @@ from __future__ import unicode_literals
 from django.test import TestCase
 
 from .factories import (
-    CriterionFactory
+    CriterionOptionSpecFactory
 )
 
 
-class TestCriterion(TestCase):
+class TestCriterionOptionSpec(TestCase):
 
     def test_str(self):
-        criterion = CriterionFactory()
-        assert criterion.name in str(criterion)
+        spec = CriterionOptionSpecFactory()
+        assert spec.option in str(spec)

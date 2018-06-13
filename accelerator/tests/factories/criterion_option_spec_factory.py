@@ -6,10 +6,9 @@ from __future__ import unicode_literals
 import swapper
 from factory import (
     DjangoModelFactory,
-    #Sequence,
+    Sequence,
     SubFactory,
 )
-from pytz import utc
 
 from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.criterion_factory import (
@@ -23,7 +22,7 @@ class CriterionOptionSpecFactory(DjangoModelFactory):
     class Meta:
         model = CriterionOptionSpec
 
-    name = Sequence(lambda n: "CriterionOptionSpec {0}".format(n))
+    option = Sequence(lambda n: "CriterionOptionSpec {0}".format(n))
     count = CriterionOptionSpec.DEFAULT_COUNT
-    weight = CriterionCriterionOptionSpec.DEFAULT_WEIGHT
-    judging_round = SubFactory(CriterionFactory)
+    weight = CriterionOptionSpec.DEFAULT_WEIGHT
+    criterion = SubFactory(CriterionFactory)
