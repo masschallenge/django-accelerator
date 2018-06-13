@@ -22,8 +22,6 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True, null=True)),
                 ('type', models.CharField(max_length=64)),
                 ('name', models.CharField(max_length=64)),
-                ('count', models.IntegerField(default=1)),
-                ('weight', models.FloatField(default=1.0)),
             ],
             options={
                 'abstract': False,

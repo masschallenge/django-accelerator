@@ -23,6 +23,4 @@ class CriterionFactory(DjangoModelFactory):
 
     type = Sequence(lambda n: "Criterion type {0}".format(n))
     name = Sequence(lambda n: "Criterion {0}".format(n))
-    count = Criterion.DEFAULT_COUNT
-    weight = Criterion.DEFAULT_WEIGHT
     judging_round = SubFactory(JudgingRoundFactory)
