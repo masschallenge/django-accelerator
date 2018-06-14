@@ -20,5 +20,10 @@ class BaseCriterion(AcceleratorModel):
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "JudgingRound"))
 
+    class Meta(AcceleratorModel.Meta):
+        db_table = '{}_criterion'.format(
+            AcceleratorModel.Meta.app_label)
+        abstract = True
+        
     def __str__(self):
         return "Criterion: %s" % self.name
