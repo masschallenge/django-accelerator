@@ -29,7 +29,7 @@ class BaseCriterionOptionSpec(AcceleratorModel):
         db_table = '{}_criterionoptionspec'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
-    
+
     def __str__(self):
         return "CriterionOptionSpec: %s: %s" % (self.criterion.name,
                                                 self.option)

@@ -24,6 +24,6 @@ class BaseCriterion(AcceleratorModel):
         db_table = '{}_criterion'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
-        
+
     def __str__(self):
         return "Criterion: %s" % self.name
