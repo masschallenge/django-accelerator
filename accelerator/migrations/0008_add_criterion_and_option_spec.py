@@ -68,7 +68,8 @@ class Migration(migrations.Migration):
             model_name='legalcheck',
             name='description',
             field=models.TextField(
-                help_text='Text displayed next to checkbox. Use HTML for links.'),
+                help_text=('Text displayed next to checkbox. '
+                           'Use HTML for links.')),
         ),
         migrations.AlterField(
             model_name='legalcheck',
