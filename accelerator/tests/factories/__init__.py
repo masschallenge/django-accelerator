@@ -22,7 +22,7 @@ from .expert_category_factory import ExpertCategoryFactory
 from .expert_factory import ExpertFactory
 # Late Loading Factories
 # These fail if put in alphabetical order in the above list
-# presumably due to their SubFactoriess.
+# presumably due to their SubFactories.
 from .expert_interest_factory import ExpertInterestFactory
 from .expert_interest_type_factory import ExpertInterestTypeFactory
 from .expert_profile_factory import ExpertProfileFactory
