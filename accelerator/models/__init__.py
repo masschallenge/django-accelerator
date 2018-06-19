@@ -18,6 +18,8 @@ from accelerator_abstract.models.base_base_profile import (
     MEMBER_USER_TYPE,
     EXPERT_USER_TYPE,
 )
+from .criterion import Criterion
+from .criterion_option_spec import CriterionOptionSpec
 from .currency import Currency
 from .program import Program
 from accelerator_abstract.models.base_program import (
