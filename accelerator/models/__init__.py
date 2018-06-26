@@ -58,13 +58,11 @@ from accelerator_abstract.models.base_mentor_program_office_hour import (
     MC_BOS_LOCATION,
     MC_CH_LOCATION,
     MC_IL_JLM_LOCATION,
-    MC_IL_TLV_LOCATION,
     MC_OTHER_LOCATION,
     MC_MX_LOCATION,
     MC_NIC_LOCATION,
     MC_PULSE_LOCATION,
     MC_REMOTE_LOCATION,
-    MC_REMOTE_LOCATION_OLD,
 )
 from .program_override import ProgramOverride
 from .refund_code import RefundCode
