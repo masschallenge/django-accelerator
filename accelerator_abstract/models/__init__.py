@@ -151,10 +151,12 @@ from .base_mentor_program_office_hour import (
     MC_CH_LOCATION,
     MC_IL_JLM_LOCATION,
     MC_IL_TLV_LOCATION,
+    MC_OTHER_LOCATION,
     MC_MX_LOCATION,
     MC_NIC_LOCATION,
     MC_PULSE_LOCATION,
     MC_REMOTE_LOCATION,
+    MC_REMOTE_LOCATION_OLD,
 )
 from .base_mentoring_specialties import BaseMentoringSpecialties
 from .base_model_change import (
