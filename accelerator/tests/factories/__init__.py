@@ -13,6 +13,8 @@ from .bucket_state_factory import BucketStateFactory
 from .clearance_factory import ClearanceFactory
 from .content_type_factory import ContentTypeFactory
 from .core_profile_factory import CoreProfileFactory
+from .criterion_factory import CriterionFactory
+from .criterion_option_spec_factory import CriterionOptionSpecFactory
 from .currency_factory import CurrencyFactory
 from .entrepreneur_factory import EntrepreneurFactory
 from .entrepreneur_profile_factory import EntrepreneurProfileFactory
@@ -20,7 +22,7 @@ from .expert_category_factory import ExpertCategoryFactory
 from .expert_factory import ExpertFactory
 # Late Loading Factories
 # These fail if put in alphabetical order in the above list
-# presumably due to their SubFactorys.
+# presumably due to their SubFactories.
 from .expert_interest_factory import ExpertInterestFactory
 from .expert_interest_type_factory import ExpertInterestTypeFactory
 from .expert_profile_factory import ExpertProfileFactory
