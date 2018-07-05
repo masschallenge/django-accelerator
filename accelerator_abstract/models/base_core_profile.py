@@ -4,7 +4,7 @@
 from __future__ import unicode_literals
 
 import swapper
-from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
@@ -30,7 +30,7 @@ GENDER_CHOICES = (
 
 @python_2_unicode_compatible
 class BaseCoreProfile(AcceleratorModel):
-    user = models.OneToOneField(to=get_user_model())
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
     gender = models.CharField(
         max_length=1,
         choices=GENDER_CHOICES,
