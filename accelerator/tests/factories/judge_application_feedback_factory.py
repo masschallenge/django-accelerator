@@ -11,7 +11,10 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
-from accelerator.models import JUDGING_STATUS_NO_CONFLICT
+from accelerator.models import (
+    JUDGING_FEEDBACK_STATUS_INCOMPLETE,
+    JUDGING_STATUS_NO_CONFLICT,
+)
 from accelerator.tests.factories.application_factory import ApplicationFactory
 from accelerator.tests.factories.expert_factory import ExpertFactory
 from accelerator.tests.factories.judging_form_factory import JudgingFormFactory
@@ -30,6 +33,7 @@ class JudgeApplicationFeedbackFactory(DjangoModelFactory):
     judge = SubFactory(ExpertFactory)
     panel = SubFactory(PanelFactory)
     judging_status = JUDGING_STATUS_NO_CONFLICT
+    feedback_status = JUDGING_FEEDBACK_STATUS_INCOMPLETE
 
     @post_generation
     def viewers(self, create, extracted, **kwargs):
