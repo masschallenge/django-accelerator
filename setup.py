@@ -24,7 +24,7 @@ INSTALL_REQUIRES = [
     "pytz",
     "swapper",
     "django-ordered-model==1.5.0",
-    "django-paypal==0.2.7",
+    "django-paypal==0.5.0",
     "django-fluent-pages==1.1.2",
     "django-polymorphic==1.3.1",
 ]
