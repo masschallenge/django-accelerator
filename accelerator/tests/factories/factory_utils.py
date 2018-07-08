@@ -10,7 +10,7 @@ from accelerator.tests.factories.industry_factory import IndustryFactory
 from accelerator.tests.factories.program_factory import ProgramFactory
 
 
-def expert_data(user):
+def expert_data(user, password="password"):
     return {
         "email": user.email,
         "first_name": user.first_name,
@@ -27,6 +27,6 @@ def expert_data(user):
         "home_program_family": ProgramFactory().program_family.id,
         "public_website_consent": True,
         "username": user.username,
-        "password": user.password,
+        "password": password,
         "date_joined": user.date_joined,
     }
