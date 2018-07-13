@@ -1,6 +1,7 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
 
+from .base_allocator import BaseAllocator
 from .base_application import (
     APPLICATION_STATUSES,
     BaseApplication,
