@@ -17,10 +17,18 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Allocator',
             fields=[
-                ('created_at', models.DateTimeField(auto_now_add=True, null=True)),
+                ('created_at', models.DateTimeField(auto_now_add=True,
+                                                    null=True)),
                 ('updated_at', models.DateTimeField(auto_now=True, null=True)),
-                ('judging_round', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to=settings.ACCELERATOR_JUDGINGROUND_MODEL)),
-                ('scenario', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.ACCELERATOR_SCENARIO_MODEL)),
+                ('judging_round',
+                 models.OneToOneField(
+                     on_delete=django.db.models.deletion.CASCADE,
+                     primary_key=True, serialize=False,
+                     to=settings.ACCELERATOR_JUDGINGROUND_MODEL)),
+                ('scenario',
+                 models.OneToOneField(
+                     on_delete=django.db.models.deletion.CASCADE,
+                     to=settings.ACCELERATOR_SCENARIO_MODEL)),
             ],
             options={
                 'verbose_name_plural': 'Allocators',
