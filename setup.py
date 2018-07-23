@@ -25,8 +25,8 @@ INSTALL_REQUIRES = [
     "swapper",
     "django-ordered-model==1.5.0",
     "django-paypal==0.5.0",
-    "django-fluent-pages==1.1.2",
-    "django-polymorphic==1.3.1",
+    "django-fluent-pages==2.0.4",
+    "django-polymorphic==2.0.2",
 ]
 
 setup(
