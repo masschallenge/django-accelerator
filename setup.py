@@ -26,7 +26,7 @@ INSTALL_REQUIRES = [
     "django-ordered-model==1.5.0",
     "django-paypal==0.5.0",
     "django-fluent-pages==2.0.4",
-    "django-polymorphic==2.0.2",
+    "django-polymorphic",
 ]
 
 setup(
