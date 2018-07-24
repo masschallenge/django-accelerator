@@ -45,7 +45,8 @@ class JudgeFeedbackContext:
                  panel_status=PREVIEW_PANEL_STATUS,
                  display_feedback=False,
                  merge_feedback_with=None,
-                 cycle_based_round=False):
+                 cycle_based_round=False,
+                 is_active=True):
         if application:
             self.application = application
             self.cycle = application.cycle
@@ -66,6 +67,7 @@ class JudgeFeedbackContext:
             'feedback_display': feedback_display,
             'cycle_based_round': cycle_based_round,
             'application_type': self.application_type,
+            'is_active': is_active,
         }
         if merge_feedback_with:
             jr_kwargs['feedback_merge_with'] = merge_feedback_with
