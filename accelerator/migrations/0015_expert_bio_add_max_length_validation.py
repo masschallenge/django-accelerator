@@ -11,7 +11,7 @@ from django.db import (
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0013_allocator'),
+        ('accelerator', '0014_alter_fluent_page_type_managers'),
     ]
 
     operations = [
