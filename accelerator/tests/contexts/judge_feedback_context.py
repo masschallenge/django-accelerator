@@ -235,22 +235,44 @@ class JudgeFeedbackContext:
             panel=panel,
             form_type=self.judging_round.judging_form)
 
-    def add_application(self, application=None):
+    def add_application(self,
+                        application=None,
+                        field=None,
+                        option=None,
+                        program=None):
+        program = program or self.program
         if application is None:
-            application = ApplicationFactory(
-                application_status=SUBMITTED_APP_STATUS,
-                application_type=self.application_type)
+            fields = {
+                "application_status": SUBMITTED_APP_STATUS,
+                "application_type": self.application_type,
+            }
+            if field:
+                fields[field] = option
+            application = ApplicationFactory(**fields)
         self.applications.append(application)
         startup = application.startup
-        cycle_interest = StartupCycleInterestFactory(cycle=self.program.cycle,
+        cycle_interest = StartupCycleInterestFactory(cycle=program.cycle,
                                                      startup=startup)
-        StartupProgramInterestFactory(program=self.program,
+        StartupProgramInterestFactory(program=program,
                                       startup=startup,
                                       startup_cycle_interest=cycle_interest,
                                       applying=True)
 
-    def add_applications(self, count):
-        [self.add_application() for _ in range(count)]
+    def add_applications(self, count, field=None, options=[], programs=[]):
+        result = []
+        option_count = len(options)
+        option = None
+        program_count = len(programs)
+        program = None
+        for i in range(count):
+            if option_count > 0:
+                option = options[i % option_count]
+            if program_count > 0:
+                program = programs[i % program_count]
+            result.append(self.add_application(field=field,
+                                               option=option,
+                                               program=program))
+        return result
 
     def add_judge(self, assigned=True, complete=True, judge=None, panel=None):
         if judge is None:
