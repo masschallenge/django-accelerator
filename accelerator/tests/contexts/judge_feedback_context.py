@@ -17,6 +17,7 @@ from accelerator.tests.factories import (
     ApplicationAnswerFactory,
     ApplicationFactory,
     ApplicationPanelAssignmentFactory,
+    ExpertFactory,
     JudgeApplicationFeedbackFactory,
     JudgeFeedbackComponentFactory,
     JudgePanelAssignmentFactory,
@@ -24,6 +25,7 @@ from accelerator.tests.factories import (
     JudgingRoundFactory,
     PanelFactory,
     ProgramCycleFactory,
+    ProgramRoleFactory,
     ProgramRoleGrantFactory,
     ScenarioFactory,
     StartupCycleInterestFactory,
@@ -73,22 +75,19 @@ class JudgeFeedbackContext:
             jr_kwargs['feedback_merge_with'] = merge_feedback_with
         self.judging_round = JudgingRoundFactory(**jr_kwargs)
         self.program = self.judging_round.program
-        self.feedback = JudgeApplicationFeedbackFactory(
-            judge__profile__primary_industry=self.industry,
-            judge__profile__home_program_family=self.program.program_family,
-            application=self.application,
-            panel__status=panel_status,
-            panel__panel_time__judging_round=self.judging_round,
-            form_type=self.judging_round.judging_form)
-        self.judge = self.feedback.judge
-
-        ProgramRoleGrantFactory(
-            person=self.judge,
-            program_role__user_role__name=UserRole.JUDGE)
-        self.judging_round.confirmed_judge_label.users.add(self.judge)
-        self.judging_form = self.feedback.form_type
-        self.panel = self.feedback.panel
+        self.panel = PanelFactory(status=panel_status,
+                                  panel_time__judging_round=self.judging_round)
         self.scenario = ScenarioFactory(judging_round=self.judging_round)
+        self.judge_role = ProgramRoleFactory(program=self.program,
+                                             user_role__name=UserRole.JUDGE)
+        self.judges = []
+        self.judge = self.add_judge(complete=complete)
+        self.feedback = JudgeApplicationFeedbackFactory(
+            judge=self.judge,
+            application=self.application,
+            panel=self.panel,
+            form_type=self.judging_round.judging_form)
+        self.judging_form = self.feedback.form_type
         self.application_assignment = ApplicationPanelAssignmentFactory(
             application=self.application,
             panel=self.panel,
@@ -99,15 +98,6 @@ class JudgeFeedbackContext:
                                       startup=self.startup,
                                       startup_cycle_interest=cycle_interest,
                                       applying=True)
-        if complete:
-            assignment_status = COMPLETE_PANEL_ASSIGNMENT_STATUS
-        else:
-            assignment_status = ASSIGNED_PANEL_ASSIGNMENT_STATUS
-        self.judge_assignment = JudgePanelAssignmentFactory(
-            assignment_status=assignment_status,
-            judge=self.judge,
-            panel=self.panel,
-            scenario=self.scenario)
         self.components = []
         self.elements = []
         self.application_questions = []
@@ -230,26 +220,79 @@ class JudgeFeedbackContext:
                      application=None,
                      judge=None,
                      panel=None):
+        judge = judge or self.judge
+        application = application or self.application
+        panel = panel or self.panel
+        if not panel.applicationpanelassignment_set.filter(
+                application=application).exists():
+            ApplicationPanelAssignmentFactory(
+                application=application,
+                panel=panel,
+                scenario=self.scenario)
         return JudgeApplicationFeedbackFactory(
-            judge=judge or self.judge,
-            application=application or self.application,
-            panel=panel or PanelFactory(
-                panel_time__judging_round=self.judging_round),
+            judge=judge,
+            application=application,
+            panel=panel,
             form_type=self.judging_round.judging_form)
 
-    def add_application(self, application=None):
+    def add_application(self,
+                        application=None,
+                        field=None,
+                        option=None,
+                        program=None):
+        program = program or self.program
         if application is None:
-            application = ApplicationFactory(
-                application_status=SUBMITTED_APP_STATUS,
-                application_type=self.application_type)
+            fields = {
+                "application_status": SUBMITTED_APP_STATUS,
+                "application_type": self.application_type,
+            }
+            if field:
+                fields[field] = option
+            application = ApplicationFactory(**fields)
         self.applications.append(application)
         startup = application.startup
-        cycle_interest = StartupCycleInterestFactory(cycle=self.program.cycle,
+        cycle_interest = StartupCycleInterestFactory(cycle=program.cycle,
                                                      startup=startup)
-        StartupProgramInterestFactory(program=self.program,
+        StartupProgramInterestFactory(program=program,
                                       startup=startup,
                                       startup_cycle_interest=cycle_interest,
                                       applying=True)
+
+    def add_applications(self, count, field=None, options=[], programs=[]):
+        result = []
+        option_count = len(options)
+        option = None
+        program_count = len(programs)
+        program = None
+        for i in range(count):
+            if option_count > 0:
+                option = options[i % option_count]
+            if program_count > 0:
+                program = programs[i % program_count]
+            result.append(self.add_application(field=field,
+                                               option=option,
+                                               program=program))
+        return result
+
+    def add_judge(self, assigned=True, complete=True, judge=None, panel=None):
+        if judge is None:
+            judge = ExpertFactory(
+                profile__primary_industry=self.industry,
+                profile__home_program_family=self.program.program_family)
+        ProgramRoleGrantFactory(person=judge, program_role=self.judge_role)
+        self.judging_round.confirmed_judge_label.users.add(judge)
+        if assigned:
+            if complete:
+                status = COMPLETE_PANEL_ASSIGNMENT_STATUS
+            else:
+                status = ASSIGNED_PANEL_ASSIGNMENT_STATUS
+            JudgePanelAssignmentFactory(
+                judge=judge,
+                assignment_status=status,
+                panel=panel or self.panel,
+                scenario=self.scenario)
+        self.judges.append(judge)
+        return judge
 
     @classmethod
     def create_batch(cls, qty, *args, **kwargs):

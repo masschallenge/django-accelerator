@@ -12,8 +12,13 @@ from accelerator.models import (
 
 
 class AnalyzeJudgingContext(JudgeFeedbackContext):
-    def __init__(self, type, name, read_count, options):
-        super().__init__()
+    def __init__(self,
+                 type="reads",
+                 name="reads",
+                 read_count=1,
+                 options=[""],
+                 is_active=True):
+        super().__init__(is_active=is_active)
         self.read_count = read_count
         self.options = options
         self.feedback.feedback_status = JUDGING_FEEDBACK_STATUS_COMPLETE
