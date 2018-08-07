@@ -8,6 +8,7 @@ import decimal
 import swapper
 from django.conf import settings
 from django.db import models
+from django.core.validators import MaxLengthValidator
 
 from accelerator_abstract.models.base_core_profile import BaseCoreProfile
 
@@ -46,6 +47,8 @@ INVITED_JUDGE_ALERT = (
     "here to tell us your availability"
     "</a></p> <p>&nbsp;</p>"
 )
+
+BIO_MAX_LENGTH = 7500
 
 
 class BaseExpertProfile(BaseCoreProfile):
@@ -163,7 +166,9 @@ class BaseExpertProfile(BaseCoreProfile):
         help_text="Internal notes only for use by MassChallenge Staff "
                   "(not visible to Expert)")
 
-    bio = models.TextField(blank=True, default="")
+    bio = models.TextField(blank=True,
+                           default="",
+                           validators=[MaxLengthValidator(BIO_MAX_LENGTH)])
     home_program_family = models.ForeignKey(
         swapper.get_model_name(BaseCoreProfile.Meta.app_label,
                                "ProgramFamily"),
