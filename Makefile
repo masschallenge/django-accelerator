@@ -103,8 +103,8 @@ endif
 
 
 $(VENV): requirements/base.txt requirements/dev.txt Makefile
-	@if [ ! python3.6 ]; then \
-		echo "You need to install python3.6 for this to work.."; exit 1; \
+	@if ! eval $(PYTHON_VERSION) --version ; then \
+		echo "You need to install $(PYTHON_VERSION) for this to work.."; exit 1; \
 	fi
 	@pip install virtualenv
 	@rm -rf $(VENV)
