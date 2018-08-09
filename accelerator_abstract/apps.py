@@ -17,6 +17,3 @@ def add_get_profile_to_user_class():
 
 class AcceleratorAbstractConfig(AppConfig):
     name = 'accelerator_abstract'
-
-    def ready(self):
-        add_get_profile_to_user_class()
