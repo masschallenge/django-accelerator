@@ -96,11 +96,19 @@ VENV = venv
 ACTIVATE_SCRIPT = $(VENV)/bin/activate
 ACTIVATE = export PYTHONPATH=.; . $(ACTIVATE_SCRIPT)
 DJANGO_ADMIN = $(VENV)/bin/django-admin.py
+PYTHON_VERSION = python3.6
+ifeq ($(TRAVIS_PYTHON_VERSION), 2.7)
+	PYTHON_VERSION = python2.7
+endif
+
 
 $(VENV): requirements/base.txt requirements/dev.txt Makefile
+	@if ! eval $(PYTHON_VERSION) --version ; then \
+		echo "You need to install $(PYTHON_VERSION) for this to work.."; exit 1; \
+	fi
 	@pip install virtualenv
 	@rm -rf $(VENV)
-	@virtualenv -p `which python3` $@
+	@virtualenv -p `which $(PYTHON_VERSION)` $@
 	@touch $(ACTIVATE_SCRIPT)
 	@$(ACTIVATE) ; \
 	DJANGO_VERSION=$(DJANGO_VERSION) pip install -r requirements/dev.txt
