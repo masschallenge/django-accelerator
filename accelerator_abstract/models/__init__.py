@@ -64,7 +64,10 @@ from .base_expert_category import (
 )
 from .base_expert_interest import BaseExpertInterest
 from .base_expert_interest_type import BaseExpertInterestType
-from .base_expert_profile import BaseExpertProfile
+from .base_expert_profile import (
+    BaseExpertProfile,
+    BIO_MAX_LENGTH,
+)
 from .base_file_page import BaseFilePage
 from .base_functional_expertise import BaseFunctionalExpertise
 from .base_industry import BaseIndustry
