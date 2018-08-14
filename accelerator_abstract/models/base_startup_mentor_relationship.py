@@ -23,7 +23,8 @@ class BaseStartupMentorRelationship(AcceleratorModel):
     startup_mentor_tracking = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "StartupMentorTrackingRecord"))
-    mentor = models.ForeignKey(settings.AUTH_USER_MODEL)
+    mentor = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               related_name='startup_mentor_relationships')
     status = models.CharField(
         max_length=32,
         choices=RELATIONSHIP_CHOICES,
