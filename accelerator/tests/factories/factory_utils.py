@@ -28,5 +28,5 @@ def expert_data(user, password="password"):
         "public_website_consent": True,
         "username": user.username,
         "password": password,
-        "date_joined": user.date_joined,
+        "date_joined": user.date_joined.date(),
     }
