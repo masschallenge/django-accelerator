@@ -39,7 +39,7 @@ class AnalyzeJudgingContext(JudgeFeedbackContext):
 
     def total_reads_required(self):
         return self.read_count * len(self.applications)
-                
+
     def feedback_count(self):
         counts = [JudgeApplicationFeedback.objects.filter(
             application=app,
@@ -47,4 +47,3 @@ class AnalyzeJudgingContext(JudgeFeedbackContext):
                   for app in self.applications]
         return sum([min(self.read_count, count)
                     for count in counts])
-    
