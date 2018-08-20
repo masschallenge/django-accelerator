@@ -21,6 +21,7 @@ from accelerator.tests.factories import (
     JudgeApplicationFeedbackFactory,
     JudgeFeedbackComponentFactory,
     JudgePanelAssignmentFactory,
+    JudgeRoundCommitmentFactory,
     JudgingFormElementFactory,
     JudgingRoundFactory,
     PanelFactory,
@@ -48,7 +49,9 @@ class JudgeFeedbackContext:
                  display_feedback=False,
                  merge_feedback_with=None,
                  cycle_based_round=False,
-                 is_active=True):
+                 is_active=True,
+                 judge_capacity=10):
+        self.judging_capacity = 0
         if application:
             self.application = application
             self.cycle = application.cycle
@@ -81,7 +84,8 @@ class JudgeFeedbackContext:
         self.judge_role = ProgramRoleFactory(program=self.program,
                                              user_role__name=UserRole.JUDGE)
         self.judges = []
-        self.judge = self.add_judge(complete=complete)
+        self.judge = self.add_judge(complete=complete,
+                                    capacity=judge_capacity)
         self.feedback = JudgeApplicationFeedbackFactory(
             judge=self.judge,
             application=self.application,
@@ -274,13 +278,23 @@ class JudgeFeedbackContext:
                                                program=program))
         return result
 
-    def add_judge(self, assigned=True, complete=True, judge=None, panel=None):
+    def add_judge(self,
+                  assigned=True,
+                  complete=True,
+                  judge=None,
+                  panel=None,
+                  capacity=10):
         if judge is None:
             judge = ExpertFactory(
                 profile__primary_industry=self.industry,
                 profile__home_program_family=self.program.program_family)
         ProgramRoleGrantFactory(person=judge, program_role=self.judge_role)
         self.judging_round.confirmed_judge_label.users.add(judge)
+        JudgeRoundCommitmentFactory(judging_round=self.judging_round,
+                                    judge=judge,
+                                    capacity=10,
+                                    commitment_state=True)
+        self.judging_capacity += capacity
         if assigned:
             if complete:
                 status = COMPLETE_PANEL_ASSIGNMENT_STATUS
