@@ -186,7 +186,7 @@ class JudgeFeedbackContext:
                     answer_text=None):
         element = JudgingFormElementFactory(
             form_type=self.judging_form,
-            mandatory=mandatory,{
+            mandatory=mandatory,
             element_type=element_type,
             feedback_type=feedback_type,
             choice_layout=choice_layout,
