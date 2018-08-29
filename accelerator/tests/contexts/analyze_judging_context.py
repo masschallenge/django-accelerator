@@ -17,8 +17,10 @@ class AnalyzeJudgingContext(JudgeFeedbackContext):
                  name="reads",
                  read_count=1,
                  options=[""],
-                 is_active=True):
-        super().__init__(is_active=is_active)
+                 is_active=True,
+                 judge_capacity=10):
+        super().__init__(is_active=is_active,
+                         judge_capacity=judge_capacity)
         self.read_count = read_count
         self.options = options
         self.feedback.feedback_status = JUDGING_FEEDBACK_STATUS_COMPLETE
@@ -33,8 +35,10 @@ class AnalyzeJudgingContext(JudgeFeedbackContext):
             option=option) for option in options]
 
     def needed_reads(self):
-        return (self.read_count * len(self.applications) -
-                self.feedback_count())
+        return self.total_reads_required() - self.feedback_count()
+
+    def total_reads_required(self):
+        return self.read_count * len(self.applications)
 
     def feedback_count(self):
         counts = [JudgeApplicationFeedback.objects.filter(

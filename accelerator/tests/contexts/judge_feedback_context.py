@@ -9,6 +9,9 @@ from accelerator.models import (
     COMPLETE_PANEL_ASSIGNMENT_STATUS,
     FEEDBACK_DISPLAY_DISABLED as DISABLED,
     FEEDBACK_DISPLAY_ENABLED as ENABLED,
+    IN_PERSON_JUDGING_ROUND_TYPE,
+    ONLINE_JUDGING_ROUND_TYPE,
+
     PREVIEW_PANEL_STATUS,
     SUBMITTED_APP_STATUS,
     UserRole,
@@ -21,6 +24,7 @@ from accelerator.tests.factories import (
     JudgeApplicationFeedbackFactory,
     JudgeFeedbackComponentFactory,
     JudgePanelAssignmentFactory,
+    JudgeRoundCommitmentFactory,
     JudgingFormElementFactory,
     JudgingRoundFactory,
     PanelFactory,
@@ -37,6 +41,8 @@ ELEMENT_NAMES = [
     FORM_ELEM_FEEDBACK_TO_STARTUP,
     FORM_ELEM_FEEDBACK_TO_MC,
 ]
+_round_type = {True: ONLINE_JUDGING_ROUND_TYPE,
+               False: IN_PERSON_JUDGING_ROUND_TYPE}
 
 
 class JudgeFeedbackContext:
@@ -48,7 +54,10 @@ class JudgeFeedbackContext:
                  display_feedback=False,
                  merge_feedback_with=None,
                  cycle_based_round=False,
-                 is_active=True):
+                 online_round=True,
+                 is_active=True,
+                 judge_capacity=10):
+        self.judging_capacity = 0
         if application:
             self.application = application
             self.cycle = application.cycle
@@ -65,7 +74,7 @@ class JudgeFeedbackContext:
         feedback_display = ENABLED if display_feedback else DISABLED
         jr_kwargs = {
             'program__cycle': self.cycle,
-            'round_type': "Online",
+            'round_type': _round_type[online_round],
             'feedback_display': feedback_display,
             'cycle_based_round': cycle_based_round,
             'application_type': self.application_type,
@@ -81,7 +90,8 @@ class JudgeFeedbackContext:
         self.judge_role = ProgramRoleFactory(program=self.program,
                                              user_role__name=UserRole.JUDGE)
         self.judges = []
-        self.judge = self.add_judge(complete=complete)
+        self.judge = self.add_judge(complete=complete,
+                                    capacity=judge_capacity)
         self.feedback = JudgeApplicationFeedbackFactory(
             judge=self.judge,
             application=self.application,
@@ -166,7 +176,9 @@ class JudgeFeedbackContext:
         self.feedback.save()
         return component
 
-    def add_element(self, feedback_type="",
+    def add_element(self,
+                    feedback_type="",
+                    element_type="feedback",
                     choice_layout="",
                     mandatory=True,
                     text_minimum=0,
@@ -175,7 +187,7 @@ class JudgeFeedbackContext:
         element = JudgingFormElementFactory(
             form_type=self.judging_form,
             mandatory=mandatory,
-            element_type="feedback",
+            element_type=element_type,
             feedback_type=feedback_type,
             choice_layout=choice_layout,
             sharing="share-with-startup",
@@ -274,13 +286,23 @@ class JudgeFeedbackContext:
                                                program=program))
         return result
 
-    def add_judge(self, assigned=True, complete=True, judge=None, panel=None):
+    def add_judge(self,
+                  assigned=True,
+                  complete=True,
+                  judge=None,
+                  panel=None,
+                  capacity=10):
         if judge is None:
             judge = ExpertFactory(
                 profile__primary_industry=self.industry,
                 profile__home_program_family=self.program.program_family)
         ProgramRoleGrantFactory(person=judge, program_role=self.judge_role)
         self.judging_round.confirmed_judge_label.users.add(judge)
+        JudgeRoundCommitmentFactory(judging_round=self.judging_round,
+                                    judge=judge,
+                                    capacity=10,
+                                    commitment_state=True)
+        self.judging_capacity += capacity
         if assigned:
             if complete:
                 status = COMPLETE_PANEL_ASSIGNMENT_STATUS
