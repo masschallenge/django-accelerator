@@ -268,7 +268,8 @@ class JudgeFeedbackContext:
         StartupProgramInterestFactory(program=program,
                                       startup=startup,
                                       startup_cycle_interest=cycle_interest,
-                                      applying=True)
+                                      applying=True,
+                                      interest_level=1)
 
     def add_applications(self, count, field=None, options=[], programs=[]):
         result = []
