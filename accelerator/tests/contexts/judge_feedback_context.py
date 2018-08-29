@@ -107,7 +107,8 @@ class JudgeFeedbackContext:
         StartupProgramInterestFactory(program=self.program,
                                       startup=self.startup,
                                       startup_cycle_interest=cycle_interest,
-                                      applying=True)
+                                      applying=True,
+                                      interest_level=1)
         self.components = []
         self.elements = []
         self.application_questions = []
