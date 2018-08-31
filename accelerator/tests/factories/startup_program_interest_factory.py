@@ -29,4 +29,5 @@ class StartupProgramInterestFactory(DjangoModelFactory):
     startup = SubFactory(StartupFactory)
     startup_cycle_interest = SubFactory(StartupCycleInterestFactory)
     applying = False
-    interest_level = Sequence(lambda x: x)
+    order = Sequence(lambda x: x)
+    interest_level = ""
