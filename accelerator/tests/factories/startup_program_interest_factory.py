@@ -6,6 +6,7 @@ from __future__ import unicode_literals
 import swapper
 from factory import (
     DjangoModelFactory,
+    Sequence,
     SubFactory,
 )
 
@@ -28,4 +29,5 @@ class StartupProgramInterestFactory(DjangoModelFactory):
     startup = SubFactory(StartupFactory)
     startup_cycle_interest = SubFactory(StartupCycleInterestFactory)
     applying = False
+    order = Sequence(lambda x: x)
     interest_level = ""
