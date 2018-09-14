@@ -105,7 +105,7 @@ class BaseJudgingRound(AcceleratorModel):
     allow_dynamic_allocation = BooleanField(
         default=False,
         help_text=("Check this button to allow judges to get new applications "
-                   "without manual allocation by staff.")
+                   "without manual allocation by staff."))
     application_type = ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                'ApplicationType'),
