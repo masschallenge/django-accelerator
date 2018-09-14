@@ -47,6 +47,7 @@ class JudgingRoundFactory(DjangoModelFactory):
     end_date_time = months_from_now(2)
     is_active = True
     round_type = IN_PERSON_JUDGING_ROUND_TYPE
+    allow_dynamic_allocation = False
     application_type = SubFactory(ApplicationTypeFactory)
     buffer_before_event = DEFAULT_BUFFER_BEFORE_EVENT
     judging_form = SubFactory(JudgingFormFactory)
