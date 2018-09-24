@@ -33,14 +33,14 @@ CLEARANCE_LOGGER_FAILURE_BASE_MSG = (
 CLEARANCE_LEVEL_DOES_NOT_EXIST_MSG = (
     "Permission Level with name \"{}\" does not exist.")
 CLEARANCE_LOGGER_FAILED_INSUFFICIENT_CLEARANCE_MSG = (
-        CLEARANCE_LOGGER_FAILURE_BASE_MSG + "Reason: Insufficient privileges."
+    CLEARANCE_LOGGER_FAILURE_BASE_MSG + "Reason: Insufficient privileges."
 )
 CLEARANCE_LOGGER_SUCCESS_MSG = (
     "clearance_check success: {user} attempted to access "
     "{program_family} related data that requires a clearance of "
     "{level}, and was granted access.")
 CLEARANCE_LOGGER_FAILED_BAD_CLEARANCE_MSG = (
-        CLEARANCE_LOGGER_FAILURE_BASE_MSG + "Reason: Bad clearance level name."
+    CLEARANCE_LOGGER_FAILURE_BASE_MSG + "Reason: Bad clearance level name."
 )
 NO_CLEARANCE_ERROR_MSG = ("User {user} does not have permission level "
                           "\"{level}\" for {program_family}.")
