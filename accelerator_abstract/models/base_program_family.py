@@ -46,12 +46,12 @@ class BaseProgramFamily(AcceleratorModel):
                   " entrepreneurs and experts"
     )
     is_open_for_startups = models.BooleanField(
-        default=True,
+        default=False,
         help_text="Whether this ProgramFamily should be available to"
                   " entrepreneurs"
     )
     is_open_for_experts = models.BooleanField(
-        default=True,
+        default=False,
         help_text="Whether this ProgramFamily should be available to"
                   " experts"
     )
