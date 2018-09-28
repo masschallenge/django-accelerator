@@ -16,14 +16,4 @@ class Migration(migrations.Migration):
             model_name='programfamily',
             name='is_open',
         ),
-        migrations.AlterField(
-            model_name='programfamily',
-            name='is_open_for_experts',
-            field=models.BooleanField(default=True, help_text='Whether this ProgramFamily should be available to experts'),
-        ),
-        migrations.AlterField(
-            model_name='programfamily',
-            name='is_open_for_startups',
-            field=models.BooleanField(default=True, help_text='Whether this ProgramFamily should be available to entrepreneurs'),
-        ),
     ]
