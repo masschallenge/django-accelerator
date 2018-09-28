@@ -57,6 +57,11 @@ class BaseProgram(AcceleratorModel):
         max_length=64,
         choices=PROGRAM_STATUSES,
     )
+    alumni_eligible_program = models.BooleanField(
+        default=False,
+        help_text=('Finalists will be added to our Global ' +
+                   'Alumni Program upon this program being set to "Ended"')
+    )
     currency_code = models.CharField(max_length=3)
     early_application_fee = models.DecimalField(
         max_digits=7,
