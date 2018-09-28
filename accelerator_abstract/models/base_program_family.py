@@ -40,11 +40,6 @@ class BaseProgramFamily(AcceleratorModel):
         help_text="An email address to bcc whenever office hours"
                   " are created, deleted, or modified in this program family"
     )
-    is_open = models.BooleanField(
-        default=True,
-        help_text="Whether this ProgramFamily should be available to"
-                  " entrepreneurs and experts"
-    )
     is_open_for_startups = models.BooleanField(
         default=False,
         help_text="Whether this ProgramFamily should be available to"
