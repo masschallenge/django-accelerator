@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0016_judginground_allow_dynamic_allocation'),
+        ('accelerator', '0017_add_alumni_program_eligibility'),
     ]
 
     operations = [
