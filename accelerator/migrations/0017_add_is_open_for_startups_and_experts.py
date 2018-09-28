@@ -15,16 +15,27 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='programfamily',
             name='is_open_for_experts',
-            field=models.BooleanField(default=False, help_text='Whether this ProgramFamily should be available to experts'),
+            field=models.BooleanField(
+                default=False,
+                help_text='Whether this ProgramFamily should be available'
+                          ' to experts'
+            ),
         ),
         migrations.AddField(
             model_name='programfamily',
             name='is_open_for_startups',
-            field=models.BooleanField(default=False, help_text='Whether this ProgramFamily should be available to entrepreneurs'),
+            field=models.BooleanField(
+                default=False,
+                help_text='Whether this ProgramFamily should be available'
+                          ' to entrepreneurs'
+            ),
         ),
         migrations.AlterField(
             model_name='judginground',
             name='allow_dynamic_allocation',
-            field=models.BooleanField(default=False, help_text='Check this button to allow judges to get new applications without manual allocation by staff.'),
+            field=models.BooleanField(
+                default=False,
+                help_text='Check this button to allow judges to get new'
+                          ' applications without manual allocation by staff.'),
         ),
     ]

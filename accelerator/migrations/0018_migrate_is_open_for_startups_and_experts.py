@@ -7,8 +7,10 @@ from django.db.models import F
 
 
 def forward(apps, schema_editor):
-    ProgramFamily = apps.get_model('accelerator',
-                                             'ProgramFamily')
+    ProgramFamily = apps.get_model(
+        'accelerator',
+        'ProgramFamily'
+    )
     is_open = F('is_open')
     ProgramFamily.objects.all().update(
         is_open_for_startups=is_open,
@@ -17,8 +19,10 @@ def forward(apps, schema_editor):
 
 
 def backward(apps, schema_editor):
-    ProgramFamily = apps.get_model('accelerator',
-                                             'ProgramFamily')
+    ProgramFamily = apps.get_model(
+        'accelerator',
+        'ProgramFamily'
+    )
     ProgramFamily.objects.all().update(
         is_open=F('is_open_for_startups')
     )
