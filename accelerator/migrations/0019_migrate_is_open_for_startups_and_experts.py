@@ -31,7 +31,7 @@ def backward(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0017_add_is_open_for_startups_and_experts'),
+        ('accelerator', '0018_add_is_open_for_startups_and_experts'),
     ]
 
     operations = [
