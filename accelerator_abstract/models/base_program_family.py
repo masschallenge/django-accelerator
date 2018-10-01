@@ -45,6 +45,16 @@ class BaseProgramFamily(AcceleratorModel):
         help_text="Whether this ProgramFamily should be available to"
                   " entrepreneurs and experts"
     )
+    is_open_for_startups = models.BooleanField(
+        default=False,
+        help_text="Whether this ProgramFamily should be available to"
+                  " entrepreneurs"
+    )
+    is_open_for_experts = models.BooleanField(
+        default=False,
+        help_text="Whether this ProgramFamily should be available to"
+                  " experts"
+    )
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = "program families"
