@@ -14,10 +14,13 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='criterion',
-            options={'managed': True, 'verbose_name': 'Application Allocator Criterion', 'verbose_name_plural': 'Application Allocator Criteria'},
+            options={'managed': True,
+                     'verbose_name': 'Application Allocator Criterion',
+                     'verbose_name_plural': 'Application Allocator Criteria'}
         ),
         migrations.AlterModelOptions(
             name='criterionoptionspec',
-            options={'managed': True, 'verbose_name': 'Application Allocator Criterion Option'},
+            options={'managed': True,
+                     'verbose_name': 'Application Allocator Criterion Option'}
         ),
     ]
