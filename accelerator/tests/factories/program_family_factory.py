@@ -24,3 +24,5 @@ class ProgramFamilyFactory(DjangoModelFactory):
     email_domain = Sequence(lambda n: "pf{0}.accelerator.org".format(n))
     phone_number = "617-555-1212"
     physical_address = "Boston"
+    is_open_for_startups = True
+    is_open_for_experts = True
