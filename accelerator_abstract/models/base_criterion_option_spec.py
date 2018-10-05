@@ -26,9 +26,10 @@ class BaseCriterionOptionSpec(AcceleratorModel):
         "Criterion"))
 
     class Meta(AcceleratorModel.Meta):
+        abstract = True
         db_table = '{}_criterionoptionspec'.format(
             AcceleratorModel.Meta.app_label)
-        abstract = True
+        verbose_name = "Application Allocator Criterion Option"
 
     def __str__(self):
         return "CriterionOptionSpec: %s: %s" % (self.criterion.name,
