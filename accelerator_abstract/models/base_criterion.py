@@ -21,9 +21,11 @@ class BaseCriterion(AcceleratorModel):
                                "JudgingRound"))
 
     class Meta(AcceleratorModel.Meta):
+        abstract = True
         db_table = '{}_criterion'.format(
             AcceleratorModel.Meta.app_label)
-        abstract = True
+        verbose_name = "Application Allocator Criterion"
+        verbose_name_plural = "Application Allocator Criteria"
 
     def __str__(self):
         return "Criterion: %s" % self.name
