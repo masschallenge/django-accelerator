@@ -8,7 +8,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0019_migrate_is_open_for_startups_and_experts'),
+        ('accelerator', '0020_criterion_verbose_names'),
     ]
 
     operations = [
