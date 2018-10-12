@@ -24,7 +24,7 @@ def _has_user_type(obj, user_type):
 
 
 def is_employee(user):
-    return (user.is_superuser or
+    return (not user.is_anonymous and (user.is_superuser or
             user.programrolegrant_set.filter(
                 program_role__user_role__name=BaseUserRole.STAFF
-            ).exists())
+            ).exists()))
