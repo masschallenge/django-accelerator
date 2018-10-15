@@ -2,6 +2,7 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
+from accelerator_abstract.models import BaseUserRole
 
 
 def is_expert(user):
@@ -20,3 +21,14 @@ def _has_user_type(obj, user_type):
     return (obj and
             getattr(obj, "baseprofile", None) and
             obj.baseprofile.user_type == user_type)
+
+
+def is_employee(user):
+    if user.is_anonymous:
+        return False
+    if user.is_superuser:
+        return True
+
+    return user.programrolegrant_set.filter(
+        program_role__user_role__name=BaseUserRole.STAFF
+    ).exists()
