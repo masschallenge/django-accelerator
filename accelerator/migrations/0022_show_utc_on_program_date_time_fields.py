@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0022_add_panel_collision_fields_to_judging_round'),
+        ('accelerator', '0021_remove_is_open_from_program_family'),
     ]
 
     operations = [
