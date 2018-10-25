@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0021_remove_is_open_from_program_family'),
+        ('accelerator', '0022_add_judginground_collision_detection_mode'),
     ]
 
     operations = [
