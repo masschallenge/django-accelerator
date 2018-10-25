@@ -30,7 +30,8 @@ from accelerator.tests.factories.startup_label_factory import (
 from accelerator.tests.factories.user_label_factory import UserLabelFactory
 from accelerator.tests.utils import months_from_now
 from accelerator_abstract.models.base_judging_round import (
-    DEFAULT_BUFFER_BEFORE_EVENT
+    DEFAULT_BUFFER_BEFORE_EVENT,
+    SCENARIO_DETECTION,
 )
 
 JudgingRound = swapper.load_model(AcceleratorConfig.name, 'JudgingRound')
@@ -71,3 +72,4 @@ class JudgingRoundFactory(DjangoModelFactory):
     startup_label = SubFactory(StartupLabelFactory)
     desired_judge_label = SubFactory(UserLabelFactory)
     confirmed_judge_label = SubFactory(UserLabelFactory)
+    collision_detection_mode = SCENARIO_DETECTION

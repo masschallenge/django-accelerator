@@ -6,7 +6,7 @@
 coverage
 ipython
 pycodestyle<2.4
-flake8
+flake8<3.6
 tox
 mock
 factory-boy

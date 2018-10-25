@@ -86,6 +86,18 @@ BUFFER_TIMES = tuple([(i * FIFTEEN_MINUTES, i * FIFTEEN_MINUTES)
                       for i in range(9)])
 START_MUST_PRECEDE_END_ERROR = 'Start date must precede end date'
 
+SCENARIO_DETECTION = 'scenario'
+PANEL_TIME_DETECTION = 'panel_time'
+PANEL_SLOT_DETECTION = 'panel_slot'
+COLLISION_DETECTION_CHOICES = (
+    (SCENARIO_DETECTION, "Check that applications are not added to a scenario"
+        " twice"),
+    (PANEL_TIME_DETECTION, "Check that applications are not added to the same"
+        " panel time within active scenarios twice"),
+    (PANEL_SLOT_DETECTION, "Check that applications are not added to the same"
+        " panel time and slot within active scenarios twice")
+)
+
 
 @python_2_unicode_compatible
 class BaseJudgingRound(AcceleratorModel):
@@ -206,6 +218,11 @@ class BaseJudgingRound(AcceleratorModel):
         null=True,
         help_text='Label for Confirmed Judges',
         related_name='rounds_confirmed_for')
+    collision_detection_mode = CharField(
+        max_length=10,
+        blank=False,
+        default=SCENARIO_DETECTION,
+        choices=COLLISION_DETECTION_CHOICES)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_judginground'.format(
