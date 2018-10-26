@@ -122,10 +122,12 @@ class BaseProgram(AcceleratorModel):
         null=True)
     overview_start_date = models.DateTimeField(
         blank=True, null=True,
-        verbose_name="Overview start date (Time in UTC)")
+        verbose_name="Overview start date",
+        help_text="Time is in UTC")
     overview_deadline_date = models.DateTimeField(
         blank=True, null=True,
-        verbose_name="Overview deadline date (Time in UTC)")
+        verbose_name="Overview deadline date",
+        help_text="Time is in UTC")
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Programs'
