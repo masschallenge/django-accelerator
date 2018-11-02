@@ -120,8 +120,12 @@ class BaseProgram(AcceleratorModel):
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "NamedGroup"),
         blank=True,
         null=True)
-    overview_start_date = models.DateTimeField(blank=True, null=True)
-    overview_deadline_date = models.DateTimeField(blank=True, null=True)
+    overview_start_date = models.DateTimeField(
+        blank=True, null=True,
+        help_text="Time is in UTC")
+    overview_deadline_date = models.DateTimeField(
+        blank=True, null=True,
+        help_text="Time is in UTC")
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Programs'
