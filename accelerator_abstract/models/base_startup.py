@@ -10,6 +10,8 @@ from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
+from django.utils.safestring import mark_safe
+
 from embed_video.fields import EmbedVideoField
 from sorl.thumbnail import ImageField
 
@@ -50,7 +52,10 @@ class BaseStartup(AcceleratorModel):
         db_table="{}_startup_related_industry".format(
             AcceleratorModel.Meta.app_label),
         blank=True,
-        help_text='You may select up to 5 related industries.',
+        help_text=(mark_safe(
+            'You may select up to 5 related industries. To select multiple '
+            'industries, please press and hold Control (CTRL) on PCs or '
+            'Command (&#8984;) on Macs.')),
     )
     short_pitch = models.CharField(
         max_length=140,
