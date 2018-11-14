@@ -3,6 +3,7 @@
 
 import uuid
 
+from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import BaseUserManager
@@ -53,6 +54,9 @@ class UserManager(BaseUserManager):
 
 @python_2_unicode_compatible
 class User(AbstractUser):
+    # Override the parent email field to add uniqueness constraint
+    email = models.EmailField(blank=True, unique=True)
+
     objects = UserManager()
 
     class Meta:
