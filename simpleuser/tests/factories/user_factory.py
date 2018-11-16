@@ -38,6 +38,6 @@ class UserFactory(DjangoModelFactory):
         if 'password' in kwargs:
             kwargs['password'] = make_password(kwargs['password'])
         else:
-            kwargs['password'] = make_password('password')
+            kwargs['password'] = make_password('validpassword')
 
         return super(UserFactory, cls)._prepare(create, **kwargs)
