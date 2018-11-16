@@ -9,6 +9,7 @@ import swapper
 from django.conf import settings
 from django.db import models
 from django.core.validators import MaxLengthValidator
+from django.utils.safestring import mark_safe
 
 from accelerator_abstract.models.base_core_profile import BaseCoreProfile
 
@@ -83,6 +84,10 @@ class BaseExpertProfile(BaseCoreProfile):
     additional_industries = models.ManyToManyField(
         settings.MPTT_SWAPPABLE_INDUSTRY_MODEL,
         verbose_name="Additional Industries",
+        help_text=(mark_safe(
+            'You may select up to 5 related industries. To select multiple '
+            'industries, please press and hold Control (CTRL) on PCs or '
+            'Command (&#8984;) on Macs.')),
         related_name="secondary_experts",
         db_table="{}_expert_related_industry".format(
             BaseCoreProfile.Meta.app_label))
