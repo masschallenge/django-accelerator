@@ -11,10 +11,12 @@ def change_page_layouts_to_use_semantic_templates(apps, schema_editor):
         key='home-page-layout').first()
     simple_page_layout = PageLayout.objects.filter(
         key='simple-layout').first()
-    home_page_layout.template_path = 'homepage_layout_semantic.html'
-    home_page_layout.save()
-    simple_page_layout.template_path = 'simple_layout_semantic.html'
-    simple_page_layout.save()
+    if home_page_layout:
+        home_page_layout.template_path = 'homepage_layout_semantic.html'
+        home_page_layout.save()
+    if simple_page_layout:
+        simple_page_layout.template_path = 'simple_layout_semantic.html'
+        simple_page_layout.save()
 
 
 class Migration(migrations.Migration):
