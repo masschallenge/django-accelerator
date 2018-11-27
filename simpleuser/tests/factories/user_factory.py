@@ -16,6 +16,7 @@ from simpleuser.models import MAX_USERNAME_LENGTH
 
 
 User = get_user_model()
+VALID_PASSWORD = "validpassword"
 
 
 class UserFactory(DjangoModelFactory):
@@ -34,10 +35,10 @@ class UserFactory(DjangoModelFactory):
 
     @classmethod
     def _prepare(cls, create, **kwargs):
-        # Hash the password if it has been provided
+        # Hash the password
         if 'password' in kwargs:
             kwargs['password'] = make_password(kwargs['password'])
         else:
-            kwargs['password'] = make_password('password')
+            kwargs['password'] = make_password(VALID_PASSWORD)
 
         return super(UserFactory, cls)._prepare(create, **kwargs)
