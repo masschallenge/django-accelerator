@@ -1,11 +1,6 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
 
-try:
-    from unittest.mock import patch
-except ImportError:
-    from mock import patch
-
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django.test import TestCase

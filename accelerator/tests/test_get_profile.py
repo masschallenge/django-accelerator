@@ -65,10 +65,9 @@ class TestGetProfile(TestCase):
         user = EntrepreneurFactory()
         try:
             self.assertRaises(
-                IntegrityError, EntrepreneurFactory(email=user.email)) 
+                IntegrityError, EntrepreneurFactory(email=user.email))
         except IntegrityError:
             pass
-
 
     @patch("accelerator.models.profile_query_set.logger")
     def test_get_profile_handles_incorrect_user_type_member(self, mock_logger):
