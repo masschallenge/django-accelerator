@@ -27,6 +27,13 @@ GENDER_CHOICES = (
     GENDER_UNKNOWN_CHOICE,
 )
 
+UI_GENDER_CHOICES = (
+    GENDER_FEMALE_CHOICE,
+    GENDER_MALE_CHOICE,
+    GENDER_PREFER_NOT_TO_STATE_CHOICE,
+    GENDER_OTHER_CHOICE,
+)
+
 
 @python_2_unicode_compatible
 class BaseCoreProfile(AcceleratorModel):
