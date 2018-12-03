@@ -15,6 +15,10 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='startup',
             name='acknowledgement',
-            field=models.BooleanField(default=False, help_text='I understand that my Startup Profile is a pre-requisite for applying to any MassChallenge Program'),
+            field=models.BooleanField(
+                default=False,
+                help_text=('I understand that my Startup Profile '
+                           'is a pre-requisite for applying to '
+                           'any MassChallenge Program')),
         ),
     ]
