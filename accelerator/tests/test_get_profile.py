@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 
 from django.contrib.auth import get_user_model
 from django.test import TestCase
+from django.db import IntegrityError
 try:
     from unittest.mock import patch
 except ImportError:
@@ -60,11 +61,13 @@ class TestGetProfile(TestCase):
         profile = BaseProfile.objects.get(email=user.email)
         self.assertIsInstance(profile, EntrepreneurProfile)
 
-    def test_get_profile_with_multiple_emails_returns_first(self):
+    def test_get_profile_with_duplicate_emails_returns_integrity_error(self):
         user = EntrepreneurFactory()
-        EntrepreneurFactory(email=user.email)
-        profile = BaseProfile.objects.get(email=user.email)
-        self.assertEqual(profile.user.id, user.id)
+        try:
+            self.assertRaises(
+                IntegrityError, EntrepreneurFactory(email=user.email))
+        except IntegrityError:
+            pass
 
     @patch("accelerator.models.profile_query_set.logger")
     def test_get_profile_handles_incorrect_user_type_member(self, mock_logger):
