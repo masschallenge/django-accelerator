@@ -82,6 +82,14 @@ class BaseStartup(AcceleratorModel):
             'minutes. Please submit YouTube or Vimeo URLs.')
     )
 
+    acknowledgement = models.BooleanField(
+        default=False,
+        help_text=(
+            'I understand that my Startup Profile is a pre-requisite '
+            'for applying to any MassChallenge Program'
+        )
+    )
+
     created_datetime = models.DateTimeField(blank=True, null=True)
     last_updated_datetime = models.DateTimeField(blank=True, null=True)
     community = models.CharField(
