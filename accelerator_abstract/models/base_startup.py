@@ -52,10 +52,9 @@ class BaseStartup(AcceleratorModel):
         db_table="{}_startup_related_industry".format(
             AcceleratorModel.Meta.app_label),
         blank=True,
-        help_text=(mark_safe(
-            'You may select up to 5 related industries. To select multiple '
-            'industries, please press and hold Control (CTRL) on PCs or '
-            'Command (&#8984;) on Macs.')),
+        help_text=(
+            'You may select up to 5 related industries.'
+        ),
     )
     short_pitch = models.CharField(
         max_length=140,
@@ -75,11 +74,8 @@ class BaseStartup(AcceleratorModel):
         max_length=100,
         blank=True,
         help_text=(
-            'The Startup Profile video is great way to show off your '
-            'startup to the judges and the broader MassChallenge '
-            'community (if you\'re not in stealth mode). Brevity is '
-            'recommended and videos should not be longer than 1-3 '
-            'minutes. Please submit YouTube or Vimeo URLs.')
+            'Upload your 1-3 minute video pitch to Vimeo or Youtube. '
+            'Paste the shared link here')
     )
 
     acknowledgement = models.BooleanField(
