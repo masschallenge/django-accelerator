@@ -10,7 +10,6 @@ from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from django.utils.safestring import mark_safe
 
 from embed_video.fields import EmbedVideoField
 from sorl.thumbnail import ImageField
