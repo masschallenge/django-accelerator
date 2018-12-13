@@ -66,6 +66,7 @@ class StartupFactory(DjangoModelFactory):
     location_postcode = "02210"
     date_founded = "01/2010"
     landing_page = None
+    acknowledgement = True
 
     @post_generation
     def additional_industries(self, create, extracted, **kwargs):
