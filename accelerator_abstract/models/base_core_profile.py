@@ -74,6 +74,7 @@ class BaseCoreProfile(AcceleratorModel):
     image = ImageField(
         upload_to='profile_pics',
         verbose_name="Profile Picture",
+        help_text="Suggested size: <400px on the short side",        
         blank=True)
     drupal_id = models.IntegerField(blank=True, null=True)
     drupal_creation_date = models.DateTimeField(blank=True, null=True)
