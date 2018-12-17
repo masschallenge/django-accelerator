@@ -18,7 +18,7 @@ class BaseCriterionOptionSpec(AcceleratorModel):
     DEFAULT_COUNT = 1
     DEFAULT_WEIGHT = 1.0
 
-    option = CharField(max_length=64)
+    option = CharField(max_length=64, blank=True)
     count = IntegerField(default=DEFAULT_COUNT)
     weight = FloatField(default=DEFAULT_WEIGHT)
     criterion = ForeignKey(swapper.get_model_name(
