@@ -50,17 +50,17 @@ class BaseCoreProfile(AcceleratorModel):
             message='Digits and +()-.x only')],
         blank=True)
     linked_in_url = models.URLField(
-        verbose_name="Personal LinkedIn URL",
+        verbose_name="LinkedIn",
         blank=True)
     facebook_url = models.URLField(
-        verbose_name="Personal Facebook URL",
+        verbose_name="Facebook",
         blank=True)
     twitter_handle = models.CharField(
-        verbose_name="Personal Twitter Handle",
+        verbose_name="Twitter",
         max_length=16,
         blank=True)
     personal_website_url = models.CharField(
-        verbose_name="Personal Website",
+        verbose_name="Website",
         validators=[url_validator()],
         max_length=255,
         blank=True)
@@ -74,6 +74,7 @@ class BaseCoreProfile(AcceleratorModel):
     image = ImageField(
         upload_to='profile_pics',
         verbose_name="Profile Picture",
+        help_text="Suggested size: <400px on the short side",        
         blank=True)
     drupal_id = models.IntegerField(blank=True, null=True)
     drupal_creation_date = models.DateTimeField(blank=True, null=True)
