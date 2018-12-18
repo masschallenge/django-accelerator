@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0027_modify_video_url_help_text'),
+        ('accelerator', '0029_add_help_text_on_image_field'),
     ]
 
     operations = [
