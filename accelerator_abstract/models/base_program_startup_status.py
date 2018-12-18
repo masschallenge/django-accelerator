@@ -10,11 +10,16 @@ from sorl.thumbnail import ImageField
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
+BADGE_NONE = "NONE"
+BADGE_STARTUP_LIST = "STARTUP_LIST"
+BADGE_STARTUP_PROFILE = "STARTUP_PROFILE"
+BADGE_STARTUP_LIST_AND_PROFILE = "STARTUP_LIST_AND_PROFILE"
+
 STARTUP_BADGE_DISPLAY_VALUES = (
-    ('NONE', 'None'),
-    ('STARTUP_LIST', 'Only on startup list'),
-    ('STARTUP_PROFILE', 'Only on startup profile'),
-    ('STARTUP_LIST_AND_PROFILE', 'Startup list and profile'))
+    (BADGE_NONE, 'None'),
+    (BADGE_STARTUP_LIST, 'Only on startup list'),
+    (BADGE_STARTUP_PROFILE, 'Only on startup profile'),
+    (BADGE_STARTUP_LIST_AND_PROFILE, 'Startup list and profile'))
 
 
 @python_2_unicode_compatible
@@ -46,7 +51,7 @@ class BaseProgramStartupStatus(AcceleratorModel):
         upload_to='badge_images',
         blank=True)
     badge_display = models.CharField(choices=STARTUP_BADGE_DISPLAY_VALUES,
-                                     max_length=30, default="NONE")
+                                     max_length=30, default=BADGE_NONE)
     status_group = models.CharField(
         max_length=50,
         blank=True,
