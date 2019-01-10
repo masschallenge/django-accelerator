@@ -91,7 +91,7 @@ help:
 	@echo
 
 
-DJANGO_VERSION = 1.11.14
+DJANGO_VERSION = 1.11.18
 VENV = venv
 ACTIVATE_SCRIPT = $(VENV)/bin/activate
 ACTIVATE = export PYTHONPATH=.; . $(ACTIVATE_SCRIPT)
