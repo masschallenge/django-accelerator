@@ -22,6 +22,7 @@ StartupCycleInterest = swapper.load_model(AcceleratorConfig.name,
 class StartupCycleInterestFactory(DjangoModelFactory):
     class Meta:
         model = StartupCycleInterest
+        django_get_or_create = ('cycle', 'startup')
 
     cycle = SubFactory(ProgramCycleFactory)
     startup = SubFactory(StartupFactory)
