@@ -23,7 +23,7 @@ class BaseStartupCycleInterest(AcceleratorModel):
                                        'StartupProgramInterest'))
 
     class Meta(AcceleratorModel.Meta):
-        unique_together = ('cycle', 'startup',)
+        unique_together = ('cycle', 'startup')
         db_table = '{}_startupcycleinterest'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
