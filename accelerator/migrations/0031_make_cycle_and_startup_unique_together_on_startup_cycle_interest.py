@@ -3,6 +3,23 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
+from django.db.models import Min, Count
+
+
+def remove_duplicate_startup_cycle_interest_pairs(apps, schema_editor):
+    StartupCycleInterest = apps.get_model(
+        'accelerator', 'StartupCycleInterest')
+    dupe_preserve_keys = StartupCycleInterest.objects\
+        .values("startup_id", "cycle_id")\
+        .annotate(Min("pk"), Count("pk"))\
+        .filter(pk__count__gt=1).values_list('pk__min', flat=True)
+    singleton_keys = StartupCycleInterest.objects\
+        .values("startup_id", "cycle_id")\
+        .annotate(Min("pk"), Count("pk"))\
+        .filter(pk__count=1).values_list('pk__min', flat=True)
+    set(dupe_preserve_keys).intersection(set(singleton_keys))
+    preserve = set(dupe_preserve_keys).union(set(singleton_keys))
+    StartupCycleInterest.objects.exclude(pk__in=preserve).delete()
 
 
 class Migration(migrations.Migration):
@@ -15,6 +32,8 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(
+            remove_duplicate_startup_cycle_interest_pairs),
         migrations.AlterUniqueTogether(
             name='startupcycleinterest',
             unique_together=set([('cycle', 'startup')]),
