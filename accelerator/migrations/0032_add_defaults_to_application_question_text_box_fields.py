@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='applicationquestion',
             name='text_box_lines',
-            field=models.IntegerField(default=0),
+            field=models.IntegerField(default=1),
         ),
         migrations.AlterField(
             model_name='applicationquestion',

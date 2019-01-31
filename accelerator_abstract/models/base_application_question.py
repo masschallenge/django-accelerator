@@ -38,7 +38,7 @@ class BaseApplicationQuestion(AcceleratorModel):
     )
     mandatory = models.BooleanField(default=False)
     text_box_lines = models.IntegerField(
-        default=0
+        default=1
     )
     text_limit = models.IntegerField(
         default=500
