@@ -37,8 +37,12 @@ class BaseApplicationQuestion(AcceleratorModel):
         choices=QUESTION_TYPES,
     )
     mandatory = models.BooleanField(default=False)
-    text_box_lines = models.IntegerField(blank=True)
-    text_limit = models.IntegerField(blank=True)
+    text_box_lines = models.IntegerField(
+        default=0
+    )
+    text_limit = models.IntegerField(
+        default=500
+    )
     text_limit_units = models.CharField(
         max_length=64,
         choices=TEXT_LIMIT_UNITS,
