@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     "embed_video",
     "paypal.pro",
     "fluent_pages",
+    "sitetree",
 ]
 
 MIDDLEWARE_CLASSES = []
