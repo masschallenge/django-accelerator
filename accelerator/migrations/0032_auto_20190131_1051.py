@@ -7,24 +7,34 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('accelerator', '0031_make_cycle_and_startup_unique_together_on_startup_cycle_interest'),
-    ]
+    dependencies = [(
+        'accelerator',
+        '0031_make_cycle_and_startup_unique_together_on_startup_cycle_interest'
+    ), ]
 
     operations = [
         migrations.AlterField(
             model_name='entrepreneurprofile',
             name='twitter_handle',
-            field=models.CharField(blank=True, max_length=40, verbose_name='Twitter'),
+            field=models.CharField(
+                blank=True,
+                max_length=40,
+                verbose_name='Twitter'),
         ),
         migrations.AlterField(
             model_name='expertprofile',
             name='twitter_handle',
-            field=models.CharField(blank=True, max_length=40, verbose_name='Twitter'),
+            field=models.CharField(
+                blank=True,
+                max_length=40,
+                verbose_name='Twitter'),
         ),
         migrations.AlterField(
             model_name='memberprofile',
             name='twitter_handle',
-            field=models.CharField(blank=True, max_length=40, verbose_name='Twitter'),
+            field=models.CharField(
+                blank=True,
+                max_length=40,
+                verbose_name='Twitter'),
         ),
     ]
