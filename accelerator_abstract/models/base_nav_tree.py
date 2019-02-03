@@ -14,6 +14,3 @@ class BaseNavTree(TreeBase, AcceleratorModel):
         db_table = '{}_navtree'.format(AcceleratorModel.Meta.app_label)
         verbose_name_plural = "NavTrees"
         abstract = True
-
-
-
