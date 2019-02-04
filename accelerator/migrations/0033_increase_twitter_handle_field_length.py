@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [(
         'accelerator',
-        '0031_make_cycle_and_startup_unique_together_on_startup_cycle_interest'
+        '0032_add_defaults_to_application_question_text_box_fields'
     ), ]
 
     operations = [
