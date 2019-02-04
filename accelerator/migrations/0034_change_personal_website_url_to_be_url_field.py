@@ -10,10 +10,7 @@ class Migration(migrations.Migration):
     dependencies = [
         (
             'accelerator',
-            (
-                '0031_make_cycle_and_startup_unique'
-                '_together_on_startup_cycle_interest'
-            )
+            '0033_increase_twitter_handle_field_length'
         ),
     ]
 
