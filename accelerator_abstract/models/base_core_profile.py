@@ -57,7 +57,7 @@ class BaseCoreProfile(AcceleratorModel):
         blank=True)
     twitter_handle = models.CharField(
         verbose_name="Twitter",
-        max_length=16,
+        max_length=40,
         blank=True)
     personal_website_url = models.CharField(
         verbose_name="Website",
@@ -74,7 +74,7 @@ class BaseCoreProfile(AcceleratorModel):
     image = ImageField(
         upload_to='profile_pics',
         verbose_name="Profile Picture",
-        help_text="Suggested size: <400px on the short side",        
+        help_text="Suggested size: <400px on the short side",
         blank=True)
     drupal_id = models.IntegerField(blank=True, null=True)
     drupal_creation_date = models.DateTimeField(blank=True, null=True)
