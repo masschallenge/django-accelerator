@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         (
             'accelerator',
             (
-                '0032_add_defaults_to_application_question_text_box_fields'
+                '0033_increase_twitter_handle_field_length'
             )
         ),
     ]
