@@ -11,7 +11,6 @@ from django.utils.encoding import python_2_unicode_compatible
 from sorl.thumbnail import ImageField
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from accelerator_abstract.utils import url_validator
 
 GENDER_MALE_CHOICE = ('m', 'Male')
 GENDER_FEMALE_CHOICE = ('f', 'Female')
@@ -59,9 +58,8 @@ class BaseCoreProfile(AcceleratorModel):
         verbose_name="Twitter",
         max_length=40,
         blank=True)
-    personal_website_url = models.CharField(
+    personal_website_url = models.URLField(
         verbose_name="Website",
-        validators=[url_validator()],
         max_length=255,
         blank=True)
     landing_page = models.CharField(
