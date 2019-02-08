@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         (
             'accelerator',
             (
-                '0033_increase_twitter_handle_field_length'
+                '0034_change_personal_website_url_to_be_url_field'
             )
         ),
     ]
