@@ -11,7 +11,6 @@ from django.utils.encoding import python_2_unicode_compatible
 from sorl.thumbnail import ImageField
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from accelerator_abstract.utils import url_validator
 
 GENDER_MALE_CHOICE = ('m', 'Male')
 GENDER_FEMALE_CHOICE = ('f', 'Female')
@@ -57,11 +56,10 @@ class BaseCoreProfile(AcceleratorModel):
         blank=True)
     twitter_handle = models.CharField(
         verbose_name="Twitter",
-        max_length=16,
+        max_length=40,
         blank=True)
-    personal_website_url = models.CharField(
+    personal_website_url = models.URLField(
         verbose_name="Website",
-        validators=[url_validator()],
         max_length=255,
         blank=True)
     landing_page = models.CharField(
@@ -74,7 +72,7 @@ class BaseCoreProfile(AcceleratorModel):
     image = ImageField(
         upload_to='profile_pics',
         verbose_name="Profile Picture",
-        help_text="Suggested size: <400px on the short side",        
+        help_text="Suggested size: <400px on the short side",
         blank=True)
     drupal_id = models.IntegerField(blank=True, null=True)
     drupal_creation_date = models.DateTimeField(blank=True, null=True)
