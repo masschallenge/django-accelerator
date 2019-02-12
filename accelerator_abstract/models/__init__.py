@@ -326,3 +326,6 @@ from .base_user_role import BaseUserRole
 from .base_user_role_menu import BaseUserRoleMenu
 from .base_legal_check import BaseLegalCheck
 from .base_user_legal_check import BaseUserLegalCheck
+
+from .base_nav_tree import BaseNavTree
+from .base_nav_tree_item import BaseNavTreeItem
