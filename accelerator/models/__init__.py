@@ -321,3 +321,6 @@ from .node_published_for import NodePublishedFor
 from .site_redirect_page import SiteRedirectPage
 from .legal_check import LegalCheck
 from .user_legal_check import UserLegalCheck
+
+from .nav_tree import NavTree
+from .nav_tree_item import NavTreeItem
