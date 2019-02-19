@@ -10,17 +10,19 @@ from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
-MENTOR_HELP = """
-Select the Mentors you would like to work with during the program.
-Start typing a Mentor's name; if they are in the Mentor Directory,
-their name should appear as you type.
-If you don't find the person you are looking for, use 'Other Mentors' below.
-"""
+MENTOR_HELP = ("Select the Mentors you would like to work with during "
+               "the program. Start typing a Mentor's name; if they "
+               "are in the Mentor Directory, their name should appear"
+               " as you type. If you don't find the person you are "
+               "looking for, use 'Other Mentors' below.")
 
-OTHER_MENTOR_HELP = """
-Add any mentors who you meet with and not listed in the MassChallenge
-Mentor Directory. Please provide their name, company, and email address below.
-"""
+ADDITIONAL_MENTORS_HELP = ("Add any mentors who you meet with and not"
+                           " listed in the MassChallenge Mentor "
+                           "Directory. Please provide their name, "
+                           "company, and email address below.")
+
+PROGRAM_GOALS_HELP = ("Submit the three goals you plan to work on "
+                      "with your mentors during the accelerator program.")
 
 
 @python_2_unicode_compatible
@@ -35,13 +37,12 @@ class BaseStartupMentorTrackingRecord(AcceleratorModel):
                                      through='StartupMentorRelationship')
     other_mentors = models.TextField(
         verbose_name="Additional Mentors",
-        help_text=OTHER_MENTOR_HELP,
+        help_text=ADDITIONAL_MENTORS_HELP,
         blank=True,
         null=True)
     notes = models.TextField(
         verbose_name="Program Goals",
-        help_text="Submit the three goals you plan to work on with your "
-                  "mentors during the accelerator program.",
+        help_text=PROGRAM_GOALS_HELP,
         blank=True,
         null=True)
 
