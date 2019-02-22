@@ -16,7 +16,7 @@ MENTOR_HELP = ("Select the Mentors you would like to work with during "
                " as you type. If you don't find the person you are "
                "looking for, use 'Other Mentors' below.")
 
-ADDITIONAL_MENTORS_HELP = ("Add any mentors who you meet with and not"
+ADDITIONAL_MENTORS_HELP = ("Add any mentors you meet with who are not"
                            " listed in the MassChallenge Mentor "
                            "Directory. Please provide their name, "
                            "company, and email address below.")
