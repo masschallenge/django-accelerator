@@ -54,10 +54,10 @@ class Migration(migrations.Migration):
             name='other_mentors',
             field=models.TextField(
                 blank=True,
-                help_text='Add any mentors who you meet with and not'
-                          ' listed in the MassChallenge Mentor '
-                          'Directory. Please provide their name,'
-                          ' company, and email address below.',
+                help_text='Add any mentors you meet with who are '
+                          'not listed in the MassChallenge Mentor '
+                          'Directory. Please provide their name, '
+                          'company, and email address below.',
                 null=True,
                 verbose_name='Additional Mentors'),
         ),
