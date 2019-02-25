@@ -10,20 +10,19 @@ from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
-MENTOR_HELP = """
-Select the Mentors you would like to work with during the program.
-Start typing a Mentor's name; if they are in the Mentor Directory,
-their name should appear as you type.
-If you don't find the person you are looking for, use 'Other Mentors' below.
-"""
+MENTOR_HELP = ("Select the Mentors you would like to work with during "
+               "the program. Start typing a Mentor's name; if they "
+               "are in the Mentor Directory, their name should appear"
+               " as you type. If you don't find the person you are "
+               "looking for, use 'Other Mentors' below.")
 
-OTHER_MENTOR_HELP = """
-Please list Mentors you are already working with or would like to work with
-who are not currently listed in the MassChallenge Mentor Directory.
-You can list names, email addresses, company names, anything
-that would help identify them. We very much welcome Mentors who are not
-currently listed in the Mentor Directory.
-"""
+ADDITIONAL_MENTORS_HELP = ("Add any mentors you meet with who are not"
+                           " listed in the MassChallenge Mentor "
+                           "Directory. Please provide their name, "
+                           "company, and email address below.")
+
+PROGRAM_GOALS_HELP = ("Submit the three goals you plan to work on "
+                      "with your mentors during the accelerator program.")
 
 
 @python_2_unicode_compatible
@@ -37,14 +36,13 @@ class BaseStartupMentorTrackingRecord(AcceleratorModel):
                                      help_text=MENTOR_HELP,
                                      through='StartupMentorRelationship')
     other_mentors = models.TextField(
-        verbose_name="Other Mentors",
-        help_text=OTHER_MENTOR_HELP,
+        verbose_name="Additional Mentors",
+        help_text=ADDITIONAL_MENTORS_HELP,
         blank=True,
         null=True)
     notes = models.TextField(
         verbose_name="Program Goals",
-        help_text="Submit the 3 goals you plan to work on with your Mentors "
-                  "during the Accelerator Program and report them here.",
+        help_text=PROGRAM_GOALS_HELP,
         blank=True,
         null=True)
 
