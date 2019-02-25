@@ -27,6 +27,7 @@ JudgeApplicationFeedback = swapper.load_model(AcceleratorConfig.name,
 class JudgeApplicationFeedbackFactory(DjangoModelFactory):
     class Meta:
         model = JudgeApplicationFeedback
+        django_get_or_create = ('application', 'judge', 'panel')
 
     application = SubFactory(ApplicationFactory)
     form_type = SubFactory(JudgingFormFactory)

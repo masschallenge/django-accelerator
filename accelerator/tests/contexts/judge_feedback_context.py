@@ -11,7 +11,7 @@ from accelerator.models import (
     FEEDBACK_DISPLAY_ENABLED as ENABLED,
     IN_PERSON_JUDGING_ROUND_TYPE,
     ONLINE_JUDGING_ROUND_TYPE,
-
+    JUDGING_FEEDBACK_STATUS_INCOMPLETE as INCOMPLETE,
     PREVIEW_PANEL_STATUS,
     SUBMITTED_APP_STATUS,
     UserRole,
@@ -232,7 +232,8 @@ class JudgeFeedbackContext:
     def add_feedback(self,
                      application=None,
                      judge=None,
-                     panel=None):
+                     panel=None,
+                     feedback_status=INCOMPLETE):
         judge = judge or self.judge
         application = application or self.application
         panel = panel or self.panel
@@ -243,6 +244,7 @@ class JudgeFeedbackContext:
                 panel=panel,
                 scenario=self.scenario)
         return JudgeApplicationFeedbackFactory(
+            feedback_status=feedback_status,
             judge=judge,
             application=application,
             panel=panel,
