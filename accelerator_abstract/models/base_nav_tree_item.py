@@ -43,7 +43,9 @@ class BaseNavTreeItem(TreeItemBase, AcceleratorModel):
         AcceleratorModel.Meta.app_label, "NavTree"))
     user_role = models.ForeignKey(
         swapper.get_model_name(
-            AcceleratorModel.Meta.app_label, "UserRole"), null=True)
+            AcceleratorModel.Meta.app_label, "UserRole"),
+        null=True,
+        blank=True)
     program_family = models.ManyToManyField(
         to=swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'ProgramFamily'),

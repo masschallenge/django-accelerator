@@ -77,7 +77,7 @@ class NavTreeContext(object):
 
         tree_item.program_exclude.add(program)
 
-    def add_exculded_family_to_tree_item(self, tree_item=None, family=None):
+    def add_excluded_family_to_tree_item(self, tree_item=None, family=None):
 
         if tree_item is None:
             tree_item = self.tree_item
