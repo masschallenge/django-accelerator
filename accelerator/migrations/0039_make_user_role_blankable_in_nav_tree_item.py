@@ -10,13 +10,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0038_add_permissions_fields_to_nav_tree_item_model'),
+        (
+            'accelerator',
+            '0038_add_permissions_fields_to_nav_tree_item_model'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='navtreeitem',
             name='user_role',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.ACCELERATOR_USERROLE_MODEL),
+            field=models.ForeignKey(
+                blank=True,
+                null=True, on_delete=django.db.models.deletion.CASCADE,
+                to=settings.ACCELERATOR_USERROLE_MODEL),
         ),
     ]
