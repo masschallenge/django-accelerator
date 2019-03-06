@@ -8,6 +8,7 @@ from accelerator.tests.factories import (
     ProgramCycleFactory,
     ProgramFactory,
     StartupFactory,
+    StartupStatusFactory,
     StartupTeamMemberFactory,
 )
 from pytz import utc
@@ -23,6 +24,7 @@ class StartupTeamMemberContext(object):
                  cycle=None,
                  program=None,
                  startup=None,
+                 startup_role=None,
                  user=None,
                  upcoming=False,
                  startup_administrator=False,
@@ -55,3 +57,8 @@ class StartupTeamMemberContext(object):
                 startup=self.startup,
                 startup_administrator=startup_administrator,
                 user=self.user)
+        if startup_role:
+            StartupStatusFactory(
+                program_startup_status__program=self.program,
+                program_startup_status__startup_role=startup_role,
+                startup=self.startup)
