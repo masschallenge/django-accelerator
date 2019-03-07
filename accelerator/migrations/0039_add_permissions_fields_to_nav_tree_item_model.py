@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
     dependencies = [
         (
             'accelerator',
-            '0037_change_help_texts_for_notes_and_other_mentors_fields'),
+            '0038_programfamily_side_navigation'),
     ]
 
     operations = [
