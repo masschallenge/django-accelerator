@@ -18,13 +18,13 @@ class NavTreeContext(object):
                  program_family=None,
                  program=None,
                  display_single_item=False,
-                 user_role=UserRole.STAFF,
-                 tree_user_role=UserRole.STAFF):
+                 program_role_user_role=UserRole.STAFF,
+                 tree_item_user_role=UserRole.STAFF):
 
         self.display_single_item = display_single_item
         self.tree = tree or NavTreeFactory()
 
-        self.user_role = UserRoleFactory(name=tree_user_role)
+        self.user_role = UserRoleFactory(name=tree_item_user_role)
 
         self.tree_item = NavTreeItemFactory(
             tree=self.tree,
@@ -41,7 +41,7 @@ class NavTreeContext(object):
         self.user = ExpertFactory(
             profile__home_program_family=self.program_family)
         self.program_role = ProgramRoleFactory(
-            program=self.program, user_role__name=user_role)
+            program=self.program, user_role__name=program_role_user_role)
         self.program_role_grant = ProgramRoleGrantFactory(
             person=self.user,
             program_role=self.program_role)
