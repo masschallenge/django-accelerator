@@ -17,32 +17,26 @@ class NavTreeContext(object):
                  tree=None,
                  program_family=None,
                  program=None,
-                 display_single=False,
+                 display_single_item=False,
                  user_role=UserRole.STAFF,
                  tree_user_role=UserRole.STAFF):
 
-        self.display_single = display_single
-        self.tree = tree
-        if not tree:
-            self.tree = NavTreeFactory()
+        self.display_single_item = display_single_item
+        self.tree = tree or NavTreeFactory()
 
         self.user_role = UserRoleFactory(name=tree_user_role)
 
         self.tree_item = NavTreeItemFactory(
             tree=self.tree,
             user_role=self.user_role,
-            display_single=display_single)
+            display_single_item=display_single_item)
 
         self.tree_items = [self.tree_item]
 
-        self.program_family = program_family
-        if program_family is None:
-            self.program_family = ProgramFamilyFactory()
+        self.program_family = program_family or ProgramFamilyFactory()
 
-        self.program = program
-        if program is None:
-            self.program = ProgramFactory(
-                program_family=self.program_family)
+        self.program = program or ProgramFactory(
+            program_family=self.program_family)
 
         self.user = ExpertFactory(
             profile__home_program_family=self.program_family)
@@ -64,7 +58,7 @@ class NavTreeContext(object):
         item = NavTreeItemFactory(
             tree=self.tree,
             user_role=user_role,
-            display_single=self.display_single)
+            display_single_item=self.display_single_item)
         self.tree_items.append(item)
 
         if give_role_permissions:

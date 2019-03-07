@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='navtreeitem',
-            name='display_single',
+            name='display_single_item',
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
