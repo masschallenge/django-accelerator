@@ -17,9 +17,11 @@ class NavTreeContext(object):
                  tree=None,
                  program_family=None,
                  program=None,
+                 display_single=False,
                  user_role=UserRole.STAFF,
                  tree_user_role=UserRole.STAFF):
 
+        self.display_single = display_single
         self.tree = tree
         if not tree:
             self.tree = NavTreeFactory()
@@ -28,7 +30,10 @@ class NavTreeContext(object):
 
         self.tree_item = NavTreeItemFactory(
             tree=self.tree,
-            user_role=self.user_role)
+            user_role=self.user_role,
+            display_single=display_single)
+
+        self.tree_items = [self.tree_item]
 
         self.program_family = program_family
         if program_family is None:
@@ -47,6 +52,26 @@ class NavTreeContext(object):
             person=self.user,
             program_role=self.program_role)
 
+    def update_item_title(self, tree_item, title):
+        tree_item.title = title
+        tree_item.save()
+
+    def add_tree_item(self, user_role=None, give_role_permissions=False):
+
+        if user_role is None:
+            user_role = self.user_role
+
+        item = NavTreeItemFactory(
+            tree=self.tree,
+            user_role=user_role,
+            display_single=self.display_single)
+        self.tree_items.append(item)
+
+        if give_role_permissions:
+            self.add_role_permissions(user_role=user_role)
+
+        return item
+
     def add_program_to_tree_item(self, tree_item=None, program=None):
 
         if tree_item is None:
@@ -56,6 +81,7 @@ class NavTreeContext(object):
             program = self.program
 
         tree_item.program.add(program)
+        return program
 
     def add_program_family_to_tree_item(self, tree_item=None, family=None):
 
@@ -66,6 +92,20 @@ class NavTreeContext(object):
             family = self.program_family
 
         tree_item.program_family.add(family)
+
+    def add_role_permissions(self, program=None, user_role=None):
+
+        if program is None:
+            program = ProgramFactory()
+
+        if user_role is None:
+            user_role = UserRoleFactory()
+
+        program_role = ProgramRoleFactory(
+            program=program, user_role=user_role)
+        self.program_role_grant = ProgramRoleGrantFactory(
+            person=self.user,
+            program_role=program_role)
 
     def add_excluded_program_to_tree_item(self, tree_item=None, program=None):
 

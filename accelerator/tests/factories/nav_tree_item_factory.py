@@ -23,6 +23,7 @@ NavTreeItem = swapper.load_model(
 class NavTreeItemFactory(DjangoModelFactory):
     class Meta:
         model = NavTreeItem
+        django_get_or_create = ('tree', 'user_role', 'title', 'url')
 
     tree = SubFactory(NavTreeFactory)
     title = Sequence(lambda n: "tree item {0}".format(n))

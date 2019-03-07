@@ -33,6 +33,11 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='navtreeitem',
+            name='display_single',
+            field=models.BooleanField(default=False),
+        ),
+        migrations.AddField(
+            model_name='navtreeitem',
             name='program',
             field=models.ManyToManyField(
                 blank=True,
@@ -70,6 +75,7 @@ class Migration(migrations.Migration):
             name='user_role',
             field=models.ForeignKey(
                 null=True,
+                blank=True,
                 on_delete=django.db.models.deletion.CASCADE,
                 to=swapper.get_model_name(
                     AcceleratorModel.Meta.app_label, "UserRole")),

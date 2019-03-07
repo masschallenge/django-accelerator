@@ -55,6 +55,7 @@ class BaseNavTreeItem(TreeItemBase, AcceleratorModel):
             AcceleratorModel.Meta.app_label, 'Program'),
         blank=True)
     active_program = models.BooleanField(default=False)
+    display_single = models.BooleanField(default=False)
     '''
         added to allow
          - 'show for all program families exluding program family Y'
@@ -76,4 +77,5 @@ class BaseNavTreeItem(TreeItemBase, AcceleratorModel):
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_navtreeitem'.format(AcceleratorModel.Meta.app_label)
         verbose_name_plural = "NavTreeItems"
+        unique_together = ('tree', 'user_role', 'title', 'url')
         abstract = True
