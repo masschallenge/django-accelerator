@@ -3,7 +3,15 @@
 
 from __future__ import unicode_literals
 
-from django.db import models
+from swapper import get_model_name
+from django.db.models import (
+    BooleanField,
+    CharField,
+    EmailField,
+    ForeignKey,
+    SET_NULL,
+    TextField,
+)
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -11,45 +19,50 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 class BaseProgramFamily(AcceleratorModel):
     """An association of related programs."""
 
-    name = models.CharField(max_length=128)
-    short_description = models.TextField(
+    name = CharField(max_length=128)
+    short_description = TextField(
         blank=True,
         help_text="You may use HTML, including links",
     )
-    url_slug = models.CharField(
+    url_slug = CharField(
         max_length=30,
         default="",
     )
-    email_domain = models.CharField(
+    email_domain = CharField(
         max_length=30,
         default="",
         help_text="Base domain for role-based email"
     )
-    phone_number = models.CharField(
+    phone_number = CharField(
         max_length=30,
         default="",
         help_text="Phone number for this program (local form)"
     )
-    physical_address = models.TextField(
+    physical_address = TextField(
         default="",
     )
-    office_hour_bcc = models.EmailField(
+    office_hour_bcc = EmailField(
         max_length=100,
         blank=True,
         null=True,
         help_text="An email address to bcc whenever office hours"
                   " are created, deleted, or modified in this program family"
     )
-    is_open_for_startups = models.BooleanField(
+    is_open_for_startups = BooleanField(
         default=False,
         help_text="Whether this ProgramFamily should be available to"
                   " entrepreneurs"
     )
-    is_open_for_experts = models.BooleanField(
+    is_open_for_experts = BooleanField(
         default=False,
         help_text="Whether this ProgramFamily should be available to"
                   " experts"
     )
+    side_navigation = ForeignKey(
+        get_model_name('accelerator', 'NavTree'),
+        blank=True,
+        null=True,
+        on_delete=SET_NULL)
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = "program families"
