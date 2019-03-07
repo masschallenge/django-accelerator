@@ -10,13 +10,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0037_change_help_texts_for_notes_and_other_mentors_fields'),
+        ('accelerator',
+         '0037_change_help_texts_for_notes_and_other_mentors_fields'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='programfamily',
             name='side_navigation',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.ACCELERATOR_NAVTREE_MODEL),
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to=settings.ACCELERATOR_NAVTREE_MODEL),
         ),
     ]
