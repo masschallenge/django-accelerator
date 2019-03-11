@@ -18,14 +18,16 @@ class AnalyzeJudgingContext(JudgeFeedbackContext):
                  read_count=1,
                  options=[""],
                  is_active=True,
-                 judge_capacity=10):
+                 judge_capacity=10,
+                 add_application=True):
         super().__init__(is_active=is_active,
                          judge_capacity=judge_capacity)
         self.read_count = read_count
         self.options = options
         self.feedback.feedback_status = JUDGING_FEEDBACK_STATUS_COMPLETE
         self.feedback.save()
-        self.add_application()  # Add unread app
+        if add_application:
+            self.add_application()  # Add unread app
         self.criterion = CriterionFactory(type=type,
                                           name=name,
                                           judging_round=self.judging_round)
