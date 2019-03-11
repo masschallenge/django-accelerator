@@ -27,7 +27,7 @@ class AnalyzeJudgingContext(JudgeFeedbackContext):
         self.feedback.feedback_status = JUDGING_FEEDBACK_STATUS_COMPLETE
         self.feedback.save()
         if add_application:
-            self.add_application()  # Add unread app
+            self.add_application()
         self.criterion = CriterionFactory(type=type,
                                           name=name,
                                           judging_round=self.judging_round)
