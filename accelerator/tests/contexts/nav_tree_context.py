@@ -48,7 +48,7 @@ class NavTreeContext(object):
         tree_item.title = title
         tree_item.save()
 
-    def add_tree_item(self, user_role=None, give_role_permissions=False):
+    def add_tree_item(self, user_role=None):
         item = NavTreeItemFactory(
             tree=self.tree,
             display_single_item=self.display_single_item)
@@ -58,10 +58,6 @@ class NavTreeContext(object):
             item.save()
 
         self.tree_items.append(item)
-
-        if give_role_permissions:
-            self.add_role_permissions(user_role=user_role)
-
         return item
 
     def add_user_role_to_tree_item(self, tree_item=None, user_role=None):
@@ -108,4 +104,3 @@ class NavTreeContext(object):
         self.program_role_grant = ProgramRoleGrantFactory(
             person=self.user,
             program_role=program_role)
-
