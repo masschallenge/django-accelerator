@@ -9,27 +9,12 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 class BaseNavTreeItem(TreeItemBase, AcceleratorModel):
     """
-    A class used to represent a django sitetree item
-
-    Attributes
-    ----------
-    tree : obj
-        the NavTree object that this item belongs to
-    user_role : obj
-        the UserRole allowed to access this tree item, a null
-        here implies that we allow all UserRoles to access
-        this item (default null)
-    program_family : objs
-        the ProgramFamilies allowed to access this tree item, a blank
-        here implies that we allow all ProgramFamilies to access
-        this item (default '')
-    program : objs
-        the Programs allowed to access this tree item, a blank
-        here implies that we allow all Programs to access
-        this item (default '')
-    active_program : bool
-        determines if the programs that access this item must be active
-        (default False)
+    The tree field specifies the NavTree object that this item belongs to.
+    The remaining fields of this model specify objects which are either
+    allowed to access this item. In all cases, a null value implies
+    "all programs"  For example, if the `program` field is null,
+    then all programs are allowed to access this Item. If it is non-null,
+    then only the selected programs are allowed to access it.
     """
     tree = models.ForeignKey(to=swapper.get_model_name(
         AcceleratorModel.Meta.app_label, "NavTree"))
