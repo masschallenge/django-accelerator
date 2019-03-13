@@ -30,21 +30,12 @@ class BaseNavTreeItem(TreeItemBase, AcceleratorModel):
     active_program : bool
         determines if the programs that access this item must be active
         (default False)
-    program_exclude : int
-        the Programs not allowed to access this tree item, a blank
-        here implies that we don't exclude any Programs from accessing
-        this item (default '')
-    program_family_exclude : str
-        the Programs not allowed to access this tree item, a blank
-        here implies that we do not exclude any Programs from accessing
-        this item (default '')
     """
     tree = models.ForeignKey(to=swapper.get_model_name(
         AcceleratorModel.Meta.app_label, "NavTree"))
-    user_role = models.ForeignKey(
-        swapper.get_model_name(
-            AcceleratorModel.Meta.app_label, "UserRole"),
-        null=True,
+    user_role = models.ManyToManyField(
+        to=swapper.get_model_name(
+            AcceleratorModel.Meta.app_label, 'UserRole'),
         blank=True)
     program_family = models.ManyToManyField(
         to=swapper.get_model_name(
@@ -56,26 +47,9 @@ class BaseNavTreeItem(TreeItemBase, AcceleratorModel):
         blank=True)
     active_program = models.BooleanField(default=False)
     display_single_item = models.BooleanField(default=False)
-    '''
-        added to allow
-         - 'show for all program families exluding program family Y'
-         - 'show for program family X exluding program Y'
-         - 'show to all programs exluding programs A, B, C'
-        level filtering
-    '''
-    program_exclude = models.ManyToManyField(
-        to=swapper.get_model_name(
-            AcceleratorModel.Meta.app_label, 'Program'),
-        blank=True,
-        related_name='program_exlusion')
-    program_family_exclude = models.ManyToManyField(
-        to=swapper.get_model_name(
-            AcceleratorModel.Meta.app_label, 'ProgramFamily'),
-        blank=True,
-        related_name='program_family_exlusion')
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_navtreeitem'.format(AcceleratorModel.Meta.app_label)
         verbose_name_plural = "NavTreeItems"
-        unique_together = ('tree', 'user_role', 'title', 'url')
+        unique_together = ('tree', 'title', 'url')
         abstract = True
