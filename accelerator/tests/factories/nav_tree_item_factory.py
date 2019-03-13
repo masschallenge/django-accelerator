@@ -13,7 +13,6 @@ from factory import (
 from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories import (
     NavTreeFactory,
-    UserRoleFactory
 )
 
 NavTreeItem = swapper.load_model(
@@ -23,9 +22,8 @@ NavTreeItem = swapper.load_model(
 class NavTreeItemFactory(DjangoModelFactory):
     class Meta:
         model = NavTreeItem
-        django_get_or_create = ('tree', 'user_role', 'title', 'url')
+        django_get_or_create = ('tree', 'title', 'url')
 
     tree = SubFactory(NavTreeFactory)
     title = Sequence(lambda n: "tree item {0}".format(n))
     url = Sequence(lambda n: "/tree_item_{0}".format(n))
-    user_role = SubFactory(UserRoleFactory)

@@ -15,24 +15,22 @@ from accelerator.models import UserRole
 class NavTreeContext(object):
     def __init__(self,
                  tree=None,
+                 user_role=None,
                  program_family=None,
                  program=None,
                  display_single_item=False,
-                 program_role_user_role=UserRole.STAFF,
-                 tree_item_user_role=UserRole.STAFF):
+                 program_role_user_role=UserRole.STAFF):
 
         self.display_single_item = display_single_item
         self.tree = tree or NavTreeFactory()
 
-        self.user_role = UserRoleFactory(name=tree_item_user_role)
-
         self.tree_item = NavTreeItemFactory(
             tree=self.tree,
-            user_role=self.user_role,
             display_single_item=display_single_item)
 
         self.tree_items = [self.tree_item]
 
+        self.user_role = user_role or UserRoleFactory()
         self.program_family = program_family or ProgramFamilyFactory()
 
         self.program = program or ProgramFactory(
@@ -51,20 +49,30 @@ class NavTreeContext(object):
         tree_item.save()
 
     def add_tree_item(self, user_role=None, give_role_permissions=False):
-
-        if user_role is None:
-            user_role = self.user_role
-
         item = NavTreeItemFactory(
             tree=self.tree,
-            user_role=user_role,
             display_single_item=self.display_single_item)
+
+        if user_role:
+            item.user_role.add(user_role)
+            item.save()
+
         self.tree_items.append(item)
 
         if give_role_permissions:
             self.add_role_permissions(user_role=user_role)
 
         return item
+
+    def add_user_role_to_tree_item(self, tree_item=None, user_role=None):
+
+        if tree_item is None:
+            tree_item = self.tree_item
+
+        if user_role is None:
+            user_role = self.user_role
+
+        tree_item.user_role.add(user_role)
 
     def add_program_to_tree_item(self, tree_item=None, program=None):
 
@@ -101,22 +109,3 @@ class NavTreeContext(object):
             person=self.user,
             program_role=program_role)
 
-    def add_excluded_program_to_tree_item(self, tree_item=None, program=None):
-
-        if tree_item is None:
-            tree_item = self.tree_item
-
-        if program is None:
-            program = self.program
-
-        tree_item.program_exclude.add(program)
-
-    def add_excluded_family_to_tree_item(self, tree_item=None, family=None):
-
-        if tree_item is None:
-            tree_item = self.tree_item
-
-        if family is None:
-            family = self.program_family
-
-        tree_item.program_family_exclude.add(family)
