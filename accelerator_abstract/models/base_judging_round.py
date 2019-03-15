@@ -108,8 +108,8 @@ class BaseJudgingRound(AcceleratorModel):
         help_text='Include startups from all programs in this Program\'s cycle'
     )
     name = CharField(max_length=60)
-    start_date_time = DateTimeField(blank=False, null=True)
-    end_date_time = DateTimeField(blank=False, null=True)
+    start_date_time = DateTimeField(blank=False, null=False, default=None)
+    end_date_time = DateTimeField(blank=False, null=False, default=None)
     is_active = BooleanField(default=False)
     round_type = CharField(
         choices=JUDGING_ROUND_TYPE_ENUM,
