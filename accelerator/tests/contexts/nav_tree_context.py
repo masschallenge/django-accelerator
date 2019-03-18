@@ -91,7 +91,7 @@ class NavTreeContext(object):
 
         tree_item.program_family.add(family)
 
-    def add_role_permissions(self, program=None, user_role=None):
+    def add_user_role_access(self, program=None, user_role=None):
 
         if program is None:
             program = ProgramFactory()

@@ -8,7 +8,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0039_add_permissions_fields_to_nav_tree_item_model'),
+        ('accelerator', '0039_add_access_control_fields_to_nav_tree_item_model'),
     ]
 
     operations = [
