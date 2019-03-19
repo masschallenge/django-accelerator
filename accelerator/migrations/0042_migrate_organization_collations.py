@@ -11,7 +11,7 @@ def get_conversion_function(collation, character_set='utf8'):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0037_change_help_texts_for_notes_and_other_mentors_fields'),
+        ('accelerator', '0041_make_user_role_field_many_to_many'),
     ]
     operations = [
         migrations.RunPython(get_conversion_function('utf8mb4_general_ci')),
