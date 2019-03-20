@@ -7,44 +7,50 @@ SIDE_NAV_TREE_ITEMS_LIST = [
     {
         'title': 'Home',
         'alias': 'home',
-        'url': '/'
+        'url': '/',
     },
     {
         'title': 'Events',
         'alias': 'events',
-        'url': '/events'
+        'url': '/events',
+        'active_program': True
     },
     {
         'title': 'Directories',
         'alias': 'directories',
-        'url': '/directories'
+        'url': '/directories',
     },
     {
         'title': 'Office Hours',
         'alias': 'officehours',
-        'url': '/officehours'
+        'url': '/officehours',
+        'active_program': True,
     },
     {
         'title': 'Room Booking',
         'alias': 'roombooking',
-        'url': '/roombooking'
+        'url': '/roombooking',
+        'active_program': True,
     },
     {
         'title': 'Resources',
         'alias': 'resources',
-        'url': '/resources'
+        'url': '/resources',
+        'active_program': True,
     },
     {
         'title': 'My startups',
         'alias': 'mystartups',
-        'url': '/mystartups'
+        'url': '/mystartups',
     },
     {
         'title': 'Judging',
         'alias': 'judging',
-        'url': '/judging'
+        'url': '/judging',
+        'active_program': True,
     },
 ]
+
 
 def create_items():
     side_nav_tree = NavTree.objects.filter(
@@ -54,25 +60,31 @@ def create_items():
     for item in SIDE_NAV_TREE_ITEMS_LIST:
         tree_item_objects.append(
             NavTreeItem(
-                title=item['title'],
-                alias=item['alias'],
-                url=item['url'],
-                tree=side_nav_tree
+                tree=side_nav_tree,
+                **item
             )
         )
     NavTreeItem.objects.bulk_create(tree_item_objects)
 
+
 def add_user_roles_to_item(alias, user_roles):
     item = NavTreeItem.objects.get(alias=alias)
     for user_role in user_roles:
-        item.user_role.add(user_role)
+        if user_role:
+            item.user_role.add(user_role)
+
 
 def add_user_roles_to_items():
-    ALUM_ROLE = UserRole.objects.get(name=BaseUserRole.ALUM)
-    ALUM_IN_RESIDENCE_ROLE = UserRole.objects.get(name=BaseUserRole.AIR)
-    FINALIST_ROLE = UserRole.objects.get(name=BaseUserRole.FINALIST)
-    JUDGE_ROLE = UserRole.objects.get(name=BaseUserRole.JUDGE)
-    MENTOR_ROLE = UserRole.objects.get(name=BaseUserRole.MENTOR)
+    ALUM_ROLE = UserRole.objects.filter(
+        name=BaseUserRole.ALUM).first()
+    ALUM_IN_RESIDENCE_ROLE = UserRole.objects.filter(
+        name=BaseUserRole.AIR).first()
+    FINALIST_ROLE = UserRole.objects.filter(
+        name=BaseUserRole.FINALIST).first()
+    JUDGE_ROLE = UserRole.objects.filter(
+        name=BaseUserRole.JUDGE).first()
+    MENTOR_ROLE = UserRole.objects.filter(
+        name=BaseUserRole.MENTOR).first()
     add_user_roles_to_item(
         'directories', [FINALIST_ROLE, MENTOR_ROLE])
     add_user_roles_to_item(
