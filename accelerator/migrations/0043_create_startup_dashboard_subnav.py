@@ -63,7 +63,7 @@ class Migration(migrations.Migration):
     dependencies = [
         (
             'accelerator',
-            '0041_make_user_role_field_many_to_many'
+            '0042_change_end_and_start_date_time_fields'
         ),
     ]
 
