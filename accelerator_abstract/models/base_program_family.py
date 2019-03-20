@@ -58,11 +58,9 @@ class BaseProgramFamily(AcceleratorModel):
         help_text="Whether this ProgramFamily should be available to"
                   " experts"
     )
-    side_navigation = ForeignKey(
-        get_model_name('accelerator', 'NavTree'),
-        blank=True,
-        null=True,
-        on_delete=SET_NULL)
+    use_site_tree_side_nav = BooleanField(
+        default=False,
+        help_text="Show the new-style side navigation")
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = "program families"
