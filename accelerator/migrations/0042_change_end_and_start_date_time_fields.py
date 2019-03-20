@@ -12,14 +12,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='navtreeitem',
-            name='program_exclude',
-        ),
-        migrations.RemoveField(
-            model_name='navtreeitem',
-            name='program_family_exclude',
-        ),
         migrations.AlterField(
             model_name='judginground',
             name='end_date_time',
