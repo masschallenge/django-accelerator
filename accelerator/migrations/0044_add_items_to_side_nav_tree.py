@@ -17,7 +17,7 @@ def add_items_to_side_nav_tree(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0042_create_side_nav_tree'),
+        ('accelerator', '0043_create_side_nav_tree'),
     ]
 
     operations = [
