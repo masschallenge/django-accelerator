@@ -9,7 +9,10 @@ from accelerator.tests.factories import (
     UserRoleFactory,
 )
 
-from accelerator.models import UserRole
+from accelerator.models import (
+    MC_SIDE_NAV_TREE_ALIAS,
+    UserRole,
+)
 
 
 class NavTreeContext(object):
@@ -19,9 +22,13 @@ class NavTreeContext(object):
                  program_family=None,
                  program=None,
                  display_single_item=False,
-                 program_role_user_role=UserRole.STAFF):
+                 program_role_user_role=UserRole.STAFF,
+                 default_sidenav=False):
 
         self.display_single_item = display_single_item
+        if default_sidenav:
+            tree = NavTreeFactory(alias=MC_SIDE_NAV_TREE_ALIAS)
+            
         self.tree = tree or NavTreeFactory()
 
         self.tree_item = NavTreeItemFactory(
@@ -61,44 +68,25 @@ class NavTreeContext(object):
         return item
 
     def add_user_role_to_tree_item(self, tree_item=None, user_role=None):
-
-        if tree_item is None:
-            tree_item = self.tree_item
-
-        if user_role is None:
-            user_role = self.user_role
-
+        tree_item = tree_item or self.tree_item
+        user_role = user_role or self.user_role
         tree_item.user_role.add(user_role)
 
     def add_program_to_tree_item(self, tree_item=None, program=None):
-
-        if tree_item is None:
-            tree_item = self.tree_item
-
-        if program is None:
-            program = self.program
+        tree_item = tree_item or self.tree_item
+        program = program or self.program
 
         tree_item.program.add(program)
         return program
 
     def add_program_family_to_tree_item(self, tree_item=None, family=None):
-
-        if tree_item is None:
-            tree_item = self.tree_item
-
-        if family is None:
-            family = self.program_family
-
+        tree_item = tree_item or self.tree_item
+        family = family or self.program_family
         tree_item.program_family.add(family)
 
     def add_user_role_access(self, program=None, user_role=None):
-
-        if program is None:
-            program = ProgramFactory()
-
-        if user_role is None:
-            user_role = UserRoleFactory()
-
+        program = program or ProgramFactory()
+        user_role = user_role or UserRoleFactory()
         program_role = ProgramRoleFactory(
             program=program, user_role=user_role)
         self.program_role_grant = ProgramRoleGrantFactory(
