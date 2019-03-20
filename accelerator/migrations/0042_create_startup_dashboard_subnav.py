@@ -54,7 +54,8 @@ def create_startup_dashboard_subnav(apps, schema_editor):
     )
 
     finalist_user_role = UserRole.objects.filter(name='Finalist').first()
-    mentors_and_goals.user_role.add(finalist_user_role)
+    if finalist_user_role:
+        mentors_and_goals.user_role.add(finalist_user_role)
 
 
 class Migration(migrations.Migration):
