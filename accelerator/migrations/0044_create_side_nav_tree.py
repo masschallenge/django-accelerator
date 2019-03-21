@@ -3,7 +3,8 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from accelerator.side_nav_tree_utils import MC_SIDE_NAV_TREE_ALIAS
+
+from accelerator_abstract.models.base_nav_tree import MC_SIDE_NAV_TREE_ALIAS
 
 
 def create_side_nav_tree(apps, schema_editor):
