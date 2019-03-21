@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ('accelerator', '0043_remove_exclude_fields'),
     ]
-
+    help_text = 'Show the new-style side navigation'
     operations = [
         migrations.RemoveField(
             model_name='programfamily',
@@ -19,6 +19,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='programfamily',
             name='use_site_tree_side_nav',
-            field=models.BooleanField(default=False, help_text='Show the new-style side navigation'),
+            field=models.BooleanField(default=False,
+                                      help_text=help_text),
         ),
     ]
