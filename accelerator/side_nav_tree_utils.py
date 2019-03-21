@@ -1,5 +1,9 @@
 from accelerator_abstract.models import BaseUserRole
-from accelerator.models import NavTree, NavTreeItem, UserRole
+from accelerator.models import (
+    NavTree,
+    NavTreeItem,
+    UserRole
+)
 
 MC_SIDE_NAV_TREE_ALIAS = 'mc_side_nav_tree'
 

@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
     dependencies = [
         (
             'accelerator',
-            '0041_make_user_role_field_many_to_many'
+            '0043_remove_exclude_fields'
         ),
     ]
 
