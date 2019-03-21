@@ -20,12 +20,13 @@ SIDE_NAV_TREE_ITEMS_LIST = [
         'title': 'Events',
         'alias': 'events',
         'url': '/events',
-        'active_program': True
+        'active_program': True,
     },
     {
         'title': 'Directories',
         'alias': 'directories',
         'url': '/directories',
+        'active_program': True,
     },
     {
         'title': 'Office Hours',
