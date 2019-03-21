@@ -28,7 +28,7 @@ class NavTreeContext(object):
         self.display_single_item = display_single_item
         if default_sidenav:
             tree = NavTreeFactory(alias=MC_SIDE_NAV_TREE_ALIAS)
-            
+
         self.tree = tree or NavTreeFactory()
 
         self.tree_item = NavTreeItemFactory(

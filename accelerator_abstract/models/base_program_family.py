@@ -3,13 +3,10 @@
 
 from __future__ import unicode_literals
 
-from swapper import get_model_name
 from django.db.models import (
     BooleanField,
     CharField,
     EmailField,
-    ForeignKey,
-    SET_NULL,
     TextField,
 )
 
