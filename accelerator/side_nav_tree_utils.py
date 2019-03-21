@@ -1,11 +1,14 @@
 from accelerator_abstract.models import BaseUserRole
 from accelerator.models import (
-    NavTree,
     NavTreeItem,
     UserRole
 )
 
-MC_SIDE_NAV_TREE_ALIAS = 'mc_side_nav_tree'
+AIR = BaseUserRole.AIR
+ALUM = BaseUserRole.ALUM
+FINALIST = BaseUserRole.FINALIST
+JUDGE = BaseUserRole.JUDGE
+MENTOR = BaseUserRole.MENTOR
 
 SIDE_NAV_TREE_ITEMS_LIST = [
     {
@@ -56,15 +59,12 @@ SIDE_NAV_TREE_ITEMS_LIST = [
 ]
 
 
-def create_items():
-    side_nav_tree = NavTree.objects.filter(
-        alias=MC_SIDE_NAV_TREE_ALIAS).first()
-
+def create_items(tree, items_list):
     tree_item_objects = []
-    for item in SIDE_NAV_TREE_ITEMS_LIST:
+    for item in items_list:
         tree_item_objects.append(
             NavTreeItem(
-                tree=side_nav_tree,
+                tree=tree,
                 **item
             )
         )
@@ -78,17 +78,29 @@ def add_user_roles_to_item(alias, user_roles):
             item.user_role.add(user_role)
 
 
-def add_user_roles_to_items():
-    ALUM_ROLE = UserRole.objects.filter(
-        name=BaseUserRole.ALUM).first()
-    ALUM_IN_RESIDENCE_ROLE = UserRole.objects.filter(
-        name=BaseUserRole.AIR).first()
-    FINALIST_ROLE = UserRole.objects.filter(
-        name=BaseUserRole.FINALIST).first()
-    JUDGE_ROLE = UserRole.objects.filter(
-        name=BaseUserRole.JUDGE).first()
-    MENTOR_ROLE = UserRole.objects.filter(
-        name=BaseUserRole.MENTOR).first()
+def get_user_roles():
+    user_roles = [
+        AIR,
+        ALUM,
+        FINALIST,
+        JUDGE,
+        MENTOR,
+    ]
+    user_roles_dict = dict(
+        (user_role.name, user_role) for user_role in
+        UserRole.objects.filter(name__in=user_roles))
+
+    return user_roles_dict
+
+
+def add_user_roles_to_side_nav_items():
+    user_roles = get_user_roles()
+    ALUM_IN_RESIDENCE_ROLE = user_roles.get(AIR)
+    ALUM_ROLE = user_roles.get(ALUM)
+    FINALIST_ROLE = user_roles.get(FINALIST)
+    JUDGE_ROLE = user_roles.get(JUDGE)
+    MENTOR_ROLE = user_roles.get(MENTOR)
+
     add_user_roles_to_item(
         'directories', [FINALIST_ROLE, MENTOR_ROLE])
     add_user_roles_to_item(
