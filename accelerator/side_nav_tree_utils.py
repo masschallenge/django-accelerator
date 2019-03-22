@@ -21,30 +21,35 @@ SIDE_NAV_TREE_ITEMS_LIST = [
         'alias': 'events',
         'url': '/events',
         'active_program': True,
+        'user_roles': [FINALIST, MENTOR]
     },
     {
         'title': 'Directories',
         'alias': 'directories',
         'url': '/directories',
         'active_program': True,
+        'user_roles': [FINALIST, MENTOR],
     },
     {
         'title': 'Office Hours',
         'alias': 'officehours',
         'url': '/officehours',
         'active_program': True,
+        'user_roles': [FINALIST, MENTOR],
     },
     {
         'title': 'Room Booking',
         'alias': 'roombooking',
         'url': '/roombooking',
         'active_program': True,
+        'user_roles': [AIR, FINALIST, MENTOR],
     },
     {
         'title': 'Resources',
         'alias': 'resources',
         'url': '/resources',
         'active_program': True,
+        'user_roles': [ALUM, FINALIST, MENTOR],
     },
     {
         'title': 'My startups',
@@ -56,61 +61,33 @@ SIDE_NAV_TREE_ITEMS_LIST = [
         'alias': 'judging',
         'url': '/judging',
         'active_program': True,
+        'user_roles': [ALUM, FINALIST, JUDGE],
     },
 ]
 
 
-def create_items(tree, items_list):
+def create_items(tree, item_props_list):
     tree_item_objects = []
-    for item in items_list:
+    for item in item_props_list:
+        item_kwargs = dict(item)
+        item_kwargs.pop('user_roles', None)
         tree_item_objects.append(
             NavTreeItem(
                 tree=tree,
-                **item
+                **item_kwargs
             )
         )
     NavTreeItem.objects.bulk_create(tree_item_objects)
 
 
-def add_user_roles_to_item(alias, user_roles):
-    item = NavTreeItem.objects.get(alias=alias)
+def add_user_roles_to_item(item_props):
+    allowed_user_roles = item_props.get('user_roles', [])
+    user_roles = UserRole.objects.filter(name__in=allowed_user_roles)
+    tree_item = NavTreeItem.objects.filter(alias=item_props["alias"]).first()
     for user_role in user_roles:
-        if user_role:
-            item.user_role.add(user_role)
+        tree_item.user_role.add(user_role)
 
 
-def get_user_roles():
-    user_roles = [
-        AIR,
-        ALUM,
-        FINALIST,
-        JUDGE,
-        MENTOR,
-    ]
-    user_roles_dict = dict(
-        (user_role.name, user_role) for user_role in
-        UserRole.objects.filter(name__in=user_roles))
-
-    return user_roles_dict
-
-
-def add_user_roles_to_side_nav_items():
-    user_roles = get_user_roles()
-    ALUM_IN_RESIDENCE_ROLE = user_roles.get(AIR)
-    ALUM_ROLE = user_roles.get(ALUM)
-    FINALIST_ROLE = user_roles.get(FINALIST)
-    JUDGE_ROLE = user_roles.get(JUDGE)
-    MENTOR_ROLE = user_roles.get(MENTOR)
-
-    add_user_roles_to_item(
-        'directories', [FINALIST_ROLE, MENTOR_ROLE])
-    add_user_roles_to_item(
-        'events', [FINALIST_ROLE, MENTOR_ROLE])
-    add_user_roles_to_item(
-        'officehours', [FINALIST_ROLE, MENTOR_ROLE])
-    add_user_roles_to_item(
-        'resources', [ALUM_ROLE, FINALIST_ROLE, MENTOR_ROLE])
-    add_user_roles_to_item(
-        'roombooking', [ALUM_IN_RESIDENCE_ROLE, FINALIST_ROLE, MENTOR_ROLE])
-    add_user_roles_to_item(
-        'judging', [ALUM_ROLE, FINALIST_ROLE, JUDGE_ROLE])
+def add_user_roles_to_side_nav_items(item_props_list):
+    for item_props in item_props_list:
+        add_user_roles_to_item(item_props)
