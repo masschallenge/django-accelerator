@@ -10,7 +10,7 @@ FINALIST = BaseUserRole.FINALIST
 JUDGE = BaseUserRole.JUDGE
 MENTOR = BaseUserRole.MENTOR
 
-SIDE_NAV_TREE_ITEMS_LIST = [
+SIDE_NAV_ITEM_PROPS_LIST = [
     {
         'title': 'Home',
         'alias': 'home',
@@ -68,8 +68,8 @@ SIDE_NAV_TREE_ITEMS_LIST = [
 
 def create_items(tree, item_props_list):
     tree_item_objects = []
-    for item in item_props_list:
-        item_kwargs = dict(item)
+    for item_props in item_props_list:
+        item_kwargs = dict(item_props)
         item_kwargs.pop('user_roles', None)
         tree_item_objects.append(
             NavTreeItem(
