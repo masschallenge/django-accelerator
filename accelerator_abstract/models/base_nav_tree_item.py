@@ -31,7 +31,7 @@ class BaseNavTreeItem(TreeItemBase, AcceleratorModel):
             AcceleratorModel.Meta.app_label, 'Program'),
         blank=True)
     active_program = models.BooleanField(default=False)
-    display_single_item = models.BooleanField(default=False)
+    display_single_item = models.BooleanField(default=True)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_navtreeitem'.format(AcceleratorModel.Meta.app_label)
