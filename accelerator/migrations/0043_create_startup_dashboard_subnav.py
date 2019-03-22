@@ -4,6 +4,51 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 
+# STARTUP_DASHBOARD_SUBNAV = {
+#     "title": 'Startup Dashboard SubNav',
+#     "alias": 'startup_dashboard_subnav'
+# }
+
+# NAV_TREE_ITEMS = [{
+#     "title": 'Dashboard',
+#     "url": 'startup_dashboard startup.id',
+#     "urlaspattern": True,
+#     "tree": tree
+# }, {
+#     "title": 'Profile',
+#     "url": '/',
+#     "tree": tree,
+#     "alias": 'startup_profile'
+# }, {
+#     "title": 'Team',
+#     "url": 'startup_team_view startup.id',
+#     "urlaspattern": True,
+#     "tree": tree
+# }, {
+#     "title": 'Mentors & Goals',
+#     "url": (
+#         'startup_mentor_tracking_view startup_id'
+#         ' family_slug program_slug'
+#     ),
+#     "urlaspattern": True,
+#     "tree": tree,
+#     "alias": 'mentors_and_goals'
+# }]
+
+# NAV_TREE_ITEM_CHILDREN = [{
+#     "title": 'View Profile',
+#     "url": 'startup_preview startup.id',
+#     "urlaspattern": True,
+#     "parent": profile,
+#     "tree": tree
+# }, {
+#     "title": 'Edit Profile',
+#     "url": 'edit_startup startup.id',
+#     "urlaspattern": True,
+#     "parent": profile,
+#     "tree": tree
+# }]
+
 
 def create_startup_dashboard_subnav(apps, schema_editor):
     NavTree = apps.get_model('accelerator', 'NavTree')
