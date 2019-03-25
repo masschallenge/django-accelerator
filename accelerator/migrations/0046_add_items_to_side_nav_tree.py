@@ -4,8 +4,10 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 
-from accelerator_abstract.models.base_nav_tree import MC_SIDE_NAV_TREE_ALIAS
-from accelerator.models import NavTree
+from accelerator.models import (
+    MC_SIDE_NAV_TREE_ALIAS,
+    NavTree,
+)
 from accelerator.side_nav_tree_utils import (
     SIDE_NAV_ITEM_PROPS_LIST,
     add_user_roles_to_side_nav_items,
@@ -23,7 +25,7 @@ def add_items_to_side_nav_tree(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0044_create_side_nav_tree'),
+        ('accelerator', '0045_create_side_nav_tree'),
     ]
 
     operations = [

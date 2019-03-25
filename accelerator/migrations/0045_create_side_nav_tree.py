@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 
-from accelerator_abstract.models.base_nav_tree import MC_SIDE_NAV_TREE_ALIAS
+from accelerator.models import MC_SIDE_NAV_TREE_ALIAS
 
 
 def create_side_nav_tree(apps, schema_editor):
@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
     dependencies = [
         (
             'accelerator',
-            '0043_remove_exclude_fields'
+            '0044_add_sitetree_sidenav_toggle'
         ),
     ]
 
