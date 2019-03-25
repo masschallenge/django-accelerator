@@ -26,3 +26,4 @@ class ProgramFamilyFactory(DjangoModelFactory):
     physical_address = "Boston"
     is_open_for_startups = True
     is_open_for_experts = True
+    use_site_tree_side_nav = False
