@@ -23,19 +23,22 @@ class NavTreeContext(object):
                  program=None,
                  display_single_item=False,
                  program_role_user_role=UserRole.STAFF,
-                 default_sidenav=False):
+                 default_sidenav=False,
+                 add_default_item=True):
 
         self.display_single_item = display_single_item
         if default_sidenav:
-            tree = NavTreeFactory(alias=MC_SIDE_NAV_TREE_ALIAS)
+            self.tree = NavTreeFactory(alias=MC_SIDE_NAV_TREE_ALIAS)
+        else:
+            self.tree = tree or NavTreeFactory()
+        self.tree_items = []
 
-        self.tree = tree or NavTreeFactory()
+        if add_default_item:
+            self.tree_item = NavTreeItemFactory(
+                tree=self.tree,
+                display_single_item=display_single_item)
 
-        self.tree_item = NavTreeItemFactory(
-            tree=self.tree,
-            display_single_item=display_single_item)
-
-        self.tree_items = [self.tree_item]
+            self.tree_items.append(self.tree_item)
 
         self.user_role = user_role or UserRoleFactory()
         self.program_family = program_family or ProgramFamilyFactory()
@@ -55,12 +58,19 @@ class NavTreeContext(object):
         tree_item.title = title
         tree_item.save()
 
-    def add_tree_item(self, user_role=None):
-        item = NavTreeItemFactory(
-            tree=self.tree,
-            display_single_item=self.display_single_item)
+    def add_tree_item(self, item_props=None, user_roles=[]):
+        if item_props:
+            item = NavTreeItemFactory(
+                tree=self.tree,
+                display_single_item=self.display_single_item,
+                **item_props)
 
-        if user_role:
+        else:
+            item = NavTreeItemFactory(
+                tree=self.tree,
+                display_single_item=self.display_single_item)
+
+        for user_role in user_roles:
             item.user_role.add(user_role)
             item.save()
 
@@ -92,3 +102,7 @@ class NavTreeContext(object):
         self.program_role_grant = ProgramRoleGrantFactory(
             person=self.user,
             program_role=program_role)
+
+    def create_user_roles(self, user_role_names):
+        for name in user_role_names:
+            UserRoleFactory(name=name)
