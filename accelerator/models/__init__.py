@@ -323,4 +323,7 @@ from .legal_check import LegalCheck
 from .user_legal_check import UserLegalCheck
 
 from .nav_tree import NavTree
+from accelerator_abstract.models.base_nav_tree import (
+    MC_SIDE_NAV_TREE_ALIAS,
+)
 from .nav_tree_item import NavTreeItem
