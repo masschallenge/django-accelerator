@@ -19,7 +19,7 @@ SIDE_NAV_ITEM_PROPS_LIST = [
     {
         'title': 'Events',
         'alias': 'events',
-        'url': '/events',
+        'url': '/nav/events',
         'active_program': True,
         'user_roles': [FINALIST, MENTOR]
     },
@@ -47,7 +47,7 @@ SIDE_NAV_ITEM_PROPS_LIST = [
     {
         'title': 'Resources',
         'alias': 'resources',
-        'url': '/resources',
+        'url': '/nav/resources',
         'active_program': True,
         'user_roles': [ALUM, FINALIST, MENTOR],
     },
@@ -59,7 +59,7 @@ SIDE_NAV_ITEM_PROPS_LIST = [
     {
         'title': 'Judging',
         'alias': 'judging',
-        'url': '/judging',
+        'url': '/nav/judging',
         'active_program': True,
         'user_roles': [ALUM, FINALIST, JUDGE],
     },
