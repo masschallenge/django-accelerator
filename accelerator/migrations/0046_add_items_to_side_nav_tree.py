@@ -8,7 +8,7 @@ from accelerator.models import (
     MC_SIDE_NAV_TREE_ALIAS,
     NavTree,
 )
-from accelerator.side_nav_tree_utils import (
+from accelerator.sitetree_navigation import (
     SIDE_NAV_ITEM_PROPS_LIST,
     add_user_roles_to_side_nav_items,
     create_items,
