@@ -37,7 +37,6 @@ JUDGING_SUBNAV_ITEMS = [
         "title": 'Judging Panels',
         "url": 'application_stats_csv scenario.id',
         "urlaspattern": True,
-        "alias": 'mentors_and_goals',
         "user_roles": [JUDGE],
         "alias": 'judging_panels',
     }
