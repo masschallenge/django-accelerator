@@ -329,3 +329,5 @@ from .base_user_legal_check import BaseUserLegalCheck
 
 from .base_nav_tree import BaseNavTree
 from .base_nav_tree_item import BaseNavTreeItem
+
+from .base_fluent_side_nav_association import BaseNodeSideNavAssociation
