@@ -10,7 +10,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0047_nodesidenavassociation'),
+        ('accelerator', '0047_create_fluent_node_sidenav_association'),
     ]
 
     operations = [
