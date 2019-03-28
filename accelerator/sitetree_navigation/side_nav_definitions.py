@@ -32,7 +32,7 @@ SIDE_NAV_ITEM_PROPS_LIST = [
         'alias': 'officehours',
         'url': '/officehours',
         'active_program': True,
-        'user_roles': [FINALIST, MENTOR],
+        'user_roles': [AIR, FINALIST, MENTOR],
     },
     {
         'title': 'Room Booking',
@@ -46,7 +46,7 @@ SIDE_NAV_ITEM_PROPS_LIST = [
         'alias': 'resources',
         'url': '/nav/resources',
         'active_program': True,
-        'user_roles': [ALUM, FINALIST, MENTOR],
+        'user_roles': [AIR, ALUM, FINALIST, MENTOR],
     },
     {
         'title': 'My startups',
