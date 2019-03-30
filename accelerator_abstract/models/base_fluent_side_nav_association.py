@@ -16,6 +16,8 @@ class BaseNodeSideNavAssociation(AcceleratorModel):
     node = models.ForeignKey(UrlNode)
     side_nav = models.ForeignKey(swapper.get_model_name(
         AcceleratorModel.Meta.app_label, "NavTree"))
+    sub_nav_item = models.ForeignKey(swapper.get_model_name(
+        AcceleratorModel.Meta.app_label, "NavTreeItem"), null=True)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_nodesidenavassociation'.format(
