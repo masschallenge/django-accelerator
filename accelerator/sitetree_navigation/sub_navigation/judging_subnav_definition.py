@@ -17,24 +17,24 @@ JUDGING_SUBNAV_TREE = {
 JUDGING_SUBNAV_ITEMS = [
     {
         "title": 'Feedback',
-        "url": 'application_judging_progress_view',
+        "url": 'judge_feedback_view judging_round.id',
         "urlaspattern": True,
         "user_roles": [FINALIST, ALUMNI],
-        "alias": 'judging_feedbakc',
+        "alias": 'judging_feedback',
     }, {
-        "title": 'Documentation',
+        "title": 'Documentation',  # find/ ask for url
         "url": 'application_pdf_view application.id',
         "urlaspattern": True,
         "user_roles": [FINALIST, ALUMNI],
         "alias": 'judging_documentation',
     }, {
         "title": 'Judging Landing Page',
-        "url": 'application_stats scenario.id',
+        "url": 'judge_homepage',
         "urlaspattern": True,
         "user_roles": [JUDGE],
         "alias": 'judging_landing_page',
     }, {
-        "title": 'Judging Panels',
+        "title": 'Judging Panels',  # find/ ask for url
         "url": 'application_stats_csv scenario.id',
         "urlaspattern": True,
         "user_roles": [JUDGE],
