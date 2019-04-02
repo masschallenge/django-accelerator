@@ -7,6 +7,7 @@ from django.db import migrations
 from accelerator.models import (
     MC_SIDE_NAV_TREE_ALIAS,
     NavTree,
+    NavTreeItem,
 )
 from accelerator.sitetree_navigation import (
     SIDE_NAV_ITEM_PROPS_LIST,
@@ -18,8 +19,16 @@ from accelerator.sitetree_navigation import (
 def add_items_to_side_nav_tree(apps, schema_editor):
     side_nav_tree = NavTree.objects.filter(
         alias=MC_SIDE_NAV_TREE_ALIAS).first()
-    create_items(side_nav_tree, SIDE_NAV_ITEM_PROPS_LIST)
-    add_user_roles_to_side_nav_items(SIDE_NAV_ITEM_PROPS_LIST)
+    if side_nav_tree:
+        create_items(side_nav_tree, SIDE_NAV_ITEM_PROPS_LIST)
+        add_user_roles_to_side_nav_items(SIDE_NAV_ITEM_PROPS_LIST)
+
+
+def delete_items_from_side_nav_tree(apps, schema_editor):
+    side_nav_tree = NavTree.objects.filter(
+        alias=MC_SIDE_NAV_TREE_ALIAS).first()
+    if side_nav_tree:
+        NavTreeItem.objects.filter(tree=side_nav_tree).delete()
 
 
 class Migration(migrations.Migration):
@@ -29,5 +38,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(add_items_to_side_nav_tree),
+        migrations.RunPython(
+            add_items_to_side_nav_tree,
+            delete_items_from_side_nav_tree),
     ]

@@ -16,6 +16,11 @@ def create_side_nav_tree(apps, schema_editor):
     NavTree.objects.update_or_create(**navtree_kwargs)
 
 
+def delete_side_nav_tree(apps, schema_editor):
+    NavTree = apps.get_model('accelerator', 'NavTree')
+    NavTree.objects.filter(alias=MC_SIDE_NAV_TREE_ALIAS).delete()
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -26,5 +31,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(create_side_nav_tree),
+        migrations.RunPython(
+            create_side_nav_tree,
+            delete_side_nav_tree),
     ]
