@@ -9,10 +9,11 @@ from accelerator.models import MC_SIDE_NAV_TREE_ALIAS
 
 def create_side_nav_tree(apps, schema_editor):
     NavTree = apps.get_model('accelerator', 'NavTree')
-    side_nav_tree = NavTree(
-        title="MC Side Nav Tree",
-        alias=MC_SIDE_NAV_TREE_ALIAS)
-    side_nav_tree.save()
+    navtree_kwargs = {
+        'title': "MC Side Nav Tree",
+        'alias': MC_SIDE_NAV_TREE_ALIAS
+    }
+    NavTree.objects.update_or_create(**navtree_kwargs)
 
 
 class Migration(migrations.Migration):
