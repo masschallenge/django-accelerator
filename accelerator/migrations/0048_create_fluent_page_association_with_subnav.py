@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('fluent_pages', '0005_author_on_delete_set_null'),
-        ('accelerator', '0045_create_side_navigation_objects'),
+        ('accelerator', '0047_create_side_navigation_objects'),
     ]
 
     operations = [
