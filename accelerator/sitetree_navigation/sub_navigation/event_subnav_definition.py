@@ -44,7 +44,8 @@ EVENTS_SUBNAV_ITEMS = [
 
 
 def create_events_subnav():
-    tree, _ = NavTree.objects.update_or_create(**EVENTS_SUBNAV_TREE)
-    import pdb; pdb.set_trace()
+    tree, _ = NavTree.objects.update_or_create(
+        alias=EVENTS_SUBNAV_TREE['alias'],
+        defaults=EVENTS_SUBNAV_TREE)
     create_items(tree, EVENTS_SUBNAV_ITEMS)
     add_user_roles_to_nav_items(EVENTS_SUBNAV_ITEMS)
