@@ -29,3 +29,7 @@ def _add_user_roles_to_item(item_props):
 def add_user_roles_to_nav_items(item_props_list):
     for item_props in item_props_list:
         _add_user_roles_to_item(item_props)
+
+
+def add_user_roles_to_side_nav_items(item_props_list):
+    add_user_roles_to_nav_items(item_props_list)

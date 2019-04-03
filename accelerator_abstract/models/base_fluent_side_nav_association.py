@@ -24,7 +24,7 @@ class BaseNodeSideNavAssociation(AcceleratorModel):
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name = "Side Nav Association"
-        verbose_name_plural = "Node will show up on"
+        verbose_name_plural = "Fluent page link will show up on"
 
     def __str__(self):
         tmpl = "%s will show up on the %s sub navigation"
