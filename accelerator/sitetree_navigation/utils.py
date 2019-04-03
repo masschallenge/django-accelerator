@@ -1,6 +1,8 @@
 from accelerator.models import (
     NavTreeItem,
     UserRole,
+    Program,
+    ProgramFamily,
 )
 
 
@@ -24,6 +26,31 @@ def _add_user_roles_to_item(item_props):
     tree_item.user_role.clear()
     for user_role in user_roles:
         tree_item.user_role.add(user_role)
+
+
+def _add_allowed_programs_to_item(item_props):
+    allowed_programs = item_props.get('programs', [])
+    if not allowed_programs:
+        return None
+
+    programs = Program.objects.filter(id__in=allowed_programs)
+    tree_item = NavTreeItem.objects.filter(alias=item_props["alias"]).first()
+    tree_item.program.clear()
+    for program in programs:
+        tree_item.program.add(program)
+
+
+def _add_allowed_program_families_to_item(item_props):
+    allowed_program_families = item_props.get('program_families', [])
+    if not allowed_program_families:
+        return None
+
+    program_families = ProgramFamily.objects.filter(
+            id__in=allowed_program_families)
+    tree_item = NavTreeItem.objects.filter(alias=item_props["alias"]).first()
+    tree_item.program_family.clear()
+    for program_family in program_families:
+        tree_item.program_family.add(program_family)
 
 
 def add_user_roles_to_nav_items(item_props_list):
