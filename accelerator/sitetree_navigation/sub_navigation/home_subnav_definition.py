@@ -18,30 +18,31 @@ HOME_SUBNAV_TREE = {
 HOME_SUBNAV_ITEMS = [
     {
         "title": 'Finalist Dashboard',
-        "url": 'add_panel_judge',
-        "urlaspattern": True,
+        "url": '/fluent-redirect',
+        "urlaspattern": False,
         'active_program': True,
         "display_single_item": False,
         "user_roles": [FINALIST],
         "alias": 'finalist_dashboard',
     }, {
         "title": 'Alumni Dashboard',
-        "url": 'allocation_panel_stats scenario.id',
+        "url": '/fluent-redirect',
         "alias": 'alumni_dashboard',
         'active_program': True,
+        "urlaspattern": False,
         "user_roles": [ALUMNI]
     }, {
         "title": 'Mentor Dashboard',
-        "url": 'allocation_stats scenario.id',
-        "urlaspattern": True,
+        "url": '/fluent-redirect',
+        "urlaspattern": False,
         'active_program': True,
         "display_single_item": False,
         "user_roles": [MENTOR],
         "alias": 'mentor_dashboard',
     }, {
         "title": 'Judge Dashboard',
-        "url": 'analysis_results',
-        "urlaspattern": True,
+        "url": '/fluent-redirect',
+        "urlaspattern": False,
         "alias": 'judge_dashboard',
         "user_roles": [JUDGE]
     }
@@ -49,6 +50,6 @@ HOME_SUBNAV_ITEMS = [
 
 
 def create_home_subnav():
-    tree = NavTree.objects.create(**HOME_SUBNAV_TREE)
+    tree, _ = NavTree.objects.update_or_create(**HOME_SUBNAV_TREE)
     create_items(tree, HOME_SUBNAV_ITEMS)
     add_user_roles_to_nav_items(HOME_SUBNAV_ITEMS)

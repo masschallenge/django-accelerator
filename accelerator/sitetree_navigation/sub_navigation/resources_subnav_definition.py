@@ -17,28 +17,28 @@ RESOURCES_SUBNAV_TREE = {
 RESOURCES_SUBNAV_ITEMS = [
     {
         "title": 'Session Slides',
-        "url": 'apply',
-        "urlaspattern": True,
+        "url": '/fluent-redirect',
+        "urlaspattern": False,
         "display_single_item": False,
         'active_program': True,
         "user_roles": [FINALIST, ALUMNI, MENTOR],
         "alias": 'resources_session_slides',
     }, {
         "title": 'Program Guide',
-        "url": 'auth_login',
-        "urlaspattern": True,
+        "url": '/fluent-redirect',
+        "urlaspattern": False,
         "user_roles": [FINALIST, ALUMNI, MENTOR],
         "alias": 'resources_program_guide',
     }, {
         "title": 'Office Guide',
-        "url": 'auth_logout',
-        "urlaspattern": True,
+        "url": '/fluent-redirect',
+        "urlaspattern": False,
         "user_roles": [FINALIST, ALUMNI, MENTOR],
         "alias": 'resources_office_guide',
     }, {
         "title": 'In-kind Deals',
-        "url": 'auth_password_reset',
-        "urlaspattern": True,
+        "url": '/fluent-redirect',
+        "urlaspattern": False,
         "user_roles": [FINALIST, ALUMNI, MENTOR],
         "alias": 'resources_in_kind_deals',
     }
@@ -46,6 +46,6 @@ RESOURCES_SUBNAV_ITEMS = [
 
 
 def create_resources_subnav():
-    tree = NavTree.objects.create(**RESOURCES_SUBNAV_TREE)
+    tree, _ = NavTree.objects.update_or_create(**RESOURCES_SUBNAV_TREE)
     create_items(tree, RESOURCES_SUBNAV_ITEMS)
     add_user_roles_to_nav_items(RESOURCES_SUBNAV_ITEMS)

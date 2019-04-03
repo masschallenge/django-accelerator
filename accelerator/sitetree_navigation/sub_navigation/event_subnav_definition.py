@@ -17,23 +17,24 @@ EVENTS_SUBNAV_TREE = {
 EVENTS_SUBNAV_ITEMS = [
     {
         "title": 'Session Slides',
-        "url": 'applicant_homepage',
-        "urlaspattern": True,
+        "url": '/fluent-redirect',
+        "urlaspattern": False,
         "display_single_item": False,
         'active_program': True,
         "user_roles": [FINALIST, ALUMNI, MENTOR],
         "alias": 'event_session_slides',
     }, {
         "title": 'Calendar',
-        "url": 'application_answers_judging_round.id judging_round.id',
+        "url": '/fluent-redirect',
+        "urlaspattern": False,
         "display_single_item": False,
         'active_program': True,
         "user_roles": [FINALIST, ALUMNI, MENTOR],
         "alias": 'event_calendar',
     }, {
         "title": 'Key Dates',
-        "url": 'application_judges_csv scenario.id',
-        "urlaspattern": True,
+        "url": '/fluent-redirect',
+        "urlaspattern": False,
         "display_single_item": False,
         'active_program': True,
         "user_roles": [FINALIST, MENTOR],
@@ -43,6 +44,7 @@ EVENTS_SUBNAV_ITEMS = [
 
 
 def create_events_subnav():
-    tree = NavTree.objects.create(**EVENTS_SUBNAV_TREE)
+    tree, _ = NavTree.objects.update_or_create(**EVENTS_SUBNAV_TREE)
+    import pdb; pdb.set_trace()
     create_items(tree, EVENTS_SUBNAV_ITEMS)
     add_user_roles_to_nav_items(EVENTS_SUBNAV_ITEMS)

@@ -35,6 +35,6 @@ DIRECTORY_SUBNAV_ITEMS = [
 
 
 def create_directory_subnav():
-    tree = NavTree.objects.create(**DIRECTORY_SUBNAV_TREE)
+    tree, _ = NavTree.objects.update_or_create(**DIRECTORY_SUBNAV_TREE)
     create_items(tree, DIRECTORY_SUBNAV_ITEMS)
     add_user_roles_to_nav_items(DIRECTORY_SUBNAV_ITEMS)
