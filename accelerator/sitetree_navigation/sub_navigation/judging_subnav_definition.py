@@ -22,20 +22,14 @@ JUDGING_SUBNAV_ITEMS = [
         "user_roles": [FINALIST, ALUMNI],
         "alias": 'judging_feedback',
     }, {
-        "title": 'Documentation',  # find/ ask for url
-        "url": 'application_pdf_view application.id',
-        "urlaspattern": True,
-        "user_roles": [FINALIST, ALUMNI],
-        "alias": 'judging_documentation',
-    }, {
         "title": 'Judging Landing Page',
         "url": 'judge_homepage',
         "urlaspattern": True,
         "user_roles": [JUDGE],
         "alias": 'judging_landing_page',
     }, {
-        "title": 'Judging Panels',  # find/ ask for url
-        "url": 'application_stats_csv scenario.id',
+        "title": 'Judging Panels',
+        "url": 'panel_listing',
         "urlaspattern": True,
         "user_roles": [JUDGE],
         "alias": 'judging_panels',
