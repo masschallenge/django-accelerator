@@ -11,9 +11,9 @@ def create_items(tree, item_props_list, parent=None):
         item_kwargs = dict(item_props)
         item_kwargs.pop('user_roles', None)
         NavTreeItem.objects.update_or_create(
-                tree=tree,
-                **item_kwargs
-            )
+            alias=item_kwargs['alias'], tree=tree,
+            defaults=item_kwargs
+        )
 
 
 def _add_user_roles_to_item(item_props):

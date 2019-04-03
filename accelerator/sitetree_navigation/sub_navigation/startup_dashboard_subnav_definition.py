@@ -61,7 +61,9 @@ STARTUP_DASHBOARD_SUBNAV_CHILDREN_ITEMS = [
 
 
 def create_startup_dashboard_subnav():
-    tree, _ = NavTree.objects.update_or_create(**STARTUP_DASHBOARD_SUBNAV_TREE)
+    tree, _ = NavTree.objects.update_or_create(
+        alias=STARTUP_DASHBOARD_SUBNAV_TREE['alias'],
+        defaults=STARTUP_DASHBOARD_SUBNAV_TREE)
     create_items(tree, STARTUP_DASHBOARD_SUBNAV_ITEMS)
     profile_item = NavTreeItem.objects.filter(
         alias=STARTUP_PROFILE_ALIAS).first()

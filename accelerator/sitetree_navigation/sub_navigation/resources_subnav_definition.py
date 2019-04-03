@@ -46,6 +46,8 @@ RESOURCES_SUBNAV_ITEMS = [
 
 
 def create_resources_subnav():
-    tree, _ = NavTree.objects.update_or_create(**RESOURCES_SUBNAV_TREE)
+    tree, _ = NavTree.objects.update_or_create(
+        alias=RESOURCES_SUBNAV_TREE['alias'],
+        defaults=RESOURCES_SUBNAV_TREE)
     create_items(tree, RESOURCES_SUBNAV_ITEMS)
     add_user_roles_to_nav_items(RESOURCES_SUBNAV_ITEMS)

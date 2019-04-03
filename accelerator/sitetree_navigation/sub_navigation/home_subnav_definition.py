@@ -50,6 +50,8 @@ HOME_SUBNAV_ITEMS = [
 
 
 def create_home_subnav():
-    tree, _ = NavTree.objects.update_or_create(**HOME_SUBNAV_TREE)
+    tree, _ = NavTree.objects.update_or_create(
+        alias=HOME_SUBNAV_TREE['alias'],
+        defaults=HOME_SUBNAV_TREE)
     create_items(tree, HOME_SUBNAV_ITEMS)
     add_user_roles_to_nav_items(HOME_SUBNAV_ITEMS)
