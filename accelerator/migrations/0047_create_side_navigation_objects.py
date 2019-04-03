@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
     dependencies = [
         (
             'accelerator',
-            '0044_add_sitetree_sidenav_toggle'
+            '0046_add_items_to_side_nav_tree'
         ),
     ]
 
