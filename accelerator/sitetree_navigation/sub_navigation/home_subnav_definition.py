@@ -1,9 +1,9 @@
-from accelerator_abstract.models import BaseUserRole
 from accelerator.models import NavTree
 from accelerator.sitetree_navigation.utils import (
-    add_user_roles_to_nav_items,
-    create_items
+    create_items,
+    add_user_roles_to_nav_items
 )
+from accelerator_abstract.models import BaseUserRole
 
 FINALIST = BaseUserRole.FINALIST
 ALUMNI = BaseUserRole.ALUM
