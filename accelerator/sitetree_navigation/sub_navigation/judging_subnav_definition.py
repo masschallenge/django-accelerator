@@ -44,6 +44,6 @@ JUDGING_SUBNAV_ITEMS = [
 
 
 def create_judging_subnav():
-    tree = NavTree.objects.create(**JUDGING_SUBNAV_TREE)
+    tree, _ = NavTree.objects.update_or_create(**JUDGING_SUBNAV_TREE)
     create_items(tree, JUDGING_SUBNAV_ITEMS)
     add_user_roles_to_nav_items(JUDGING_SUBNAV_ITEMS)
