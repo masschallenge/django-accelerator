@@ -19,7 +19,7 @@ def create_items(tree, item_props_list, parent=None):
 def _add_user_roles_to_item(item_props):
     allowed_user_roles = item_props.get('user_roles', [])
     if not allowed_user_roles:
-        return None
+        return
 
     user_roles = UserRole.objects.filter(name__in=allowed_user_roles)
     tree_item = NavTreeItem.objects.filter(alias=item_props["alias"]).first()
@@ -31,7 +31,7 @@ def _add_user_roles_to_item(item_props):
 def _add_allowed_programs_to_item(item_props):
     allowed_programs = item_props.get('programs', [])
     if not allowed_programs:
-        return None
+        return
 
     programs = Program.objects.filter(id__in=allowed_programs)
     tree_item = NavTreeItem.objects.filter(alias=item_props["alias"]).first()
@@ -43,7 +43,7 @@ def _add_allowed_programs_to_item(item_props):
 def _add_allowed_program_families_to_item(item_props):
     allowed_program_families = item_props.get('program_families', [])
     if not allowed_program_families:
-        return None
+        return
 
     program_families = ProgramFamily.objects.filter(
             id__in=allowed_program_families)
