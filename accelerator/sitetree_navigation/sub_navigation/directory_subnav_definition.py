@@ -25,11 +25,6 @@ DIRECTORY_SUBNAV_ITEMS = [
         "url": '/directory/people',
         "user_roles": [FINALIST, ALUMNI, MENTOR],
         "alias": 'people_directory',
-    }, {
-        "title": 'Startups',
-        "url": '/directory/allocator',
-        "user_roles": [FINALIST, ALUMNI, MENTOR],
-        "alias": 'startup_directory',
     }
 ]
 
