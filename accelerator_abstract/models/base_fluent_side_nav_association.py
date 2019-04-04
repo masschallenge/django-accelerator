@@ -15,16 +15,26 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 class BaseNodeSideNavAssociation(AcceleratorModel):
     node = models.ForeignKey(UrlNode)
     side_nav = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "NavTree"))
+        AcceleratorModel.Meta.app_label, "NavTree"),
+        help_text=(
+            'This is the sub navigation tree '
+            'that this page is tied to'
+        )
+    )
     sub_nav_item = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "NavTreeItem"), null=True)
+        AcceleratorModel.Meta.app_label, "NavTreeItem"),
+        null=True,
+        help_text=(
+            'This is the sub navigation '
+            'item that this page it tied to')
+    )
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_nodesidenavassociation'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
-        verbose_name = "Side Nav Association"
-        verbose_name_plural = "Fluent page link will show up on"
+        verbose_name = "Node Side Navigation Association"
+        verbose_name_plural = "Node Side Navigation Associations"
 
     def __str__(self):
         tmpl = "%s will show up on the %s sub navigation"
