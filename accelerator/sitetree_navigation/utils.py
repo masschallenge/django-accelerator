@@ -10,6 +10,8 @@ def create_items(tree, item_props_list, parent=None):
     for item_props in item_props_list:
         item_kwargs = dict(item_props)
         item_kwargs.pop('user_roles', None)
+        item_kwargs.pop('programs', None)
+        item_kwargs.pop('program_families', None)
         NavTreeItem.objects.update_or_create(
             alias=item_kwargs['alias'], tree=tree,
             defaults=item_kwargs
@@ -51,6 +53,16 @@ def _add_allowed_program_families_to_item(item_props):
     tree_item.program_family.clear()
     for program_family in program_families:
         tree_item.program_family.add(program_family)
+
+
+def add_allowed_programs_to_nav_items(item_props_list):
+    for item_props in item_props_list:
+        _add_allowed_programs_to_item(item_props)
+
+
+def add_allowed_program_families_to_nav_items(item_props_list):
+    for item_props in item_props_list:
+        _add_allowed_program_families_to_item(item_props)
 
 
 def add_user_roles_to_nav_items(item_props_list):
