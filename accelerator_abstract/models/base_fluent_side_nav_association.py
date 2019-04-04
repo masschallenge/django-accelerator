@@ -26,7 +26,7 @@ class BaseNodeSideNavAssociation(AcceleratorModel):
         null=True,
         help_text=(
             'This is the sub navigation '
-            'item that this page it tied to')
+            'item that this page is tied to')
     )
 
     class Meta(AcceleratorModel.Meta):

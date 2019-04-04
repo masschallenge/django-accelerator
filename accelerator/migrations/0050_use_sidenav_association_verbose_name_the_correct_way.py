@@ -39,7 +39,7 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 help_text=(
                     'This is the sub navigation '
-                    'item that this page it tied to'
+                    'item that this page is tied to'
                 ),
                 null=True,
                 on_delete=django.db.models.deletion.CASCADE,
