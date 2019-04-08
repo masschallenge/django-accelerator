@@ -78,7 +78,7 @@ def add_user_roles_to_side_nav_items(item_props_list):
     add_user_roles_to_nav_items(item_props_list)
 
 
-def delete_nav_tree(item_props_list):
-    tree = NavTree.objects.filter(alias=item_props_list["alias"]).first()
+def delete_nav_tree(nav_tree_props):
+    tree = NavTree.objects.filter(alias=nav_tree_props["alias"]).first()
     if tree:
         tree.delete()
