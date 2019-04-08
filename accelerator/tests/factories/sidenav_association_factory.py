@@ -16,13 +16,13 @@ from accelerator.tests.factories import (
     UrlNodeFactory
 )
 
-NodeSideNavAssociation = swapper.load_model(
-    AcceleratorConfig.name, 'NodeSideNavAssociation')
+NodeSubNavAssociation = swapper.load_model(
+    AcceleratorConfig.name, 'NodeSubNavAssociation')
 
 
-class NodeSideNavAssociationFactory(DjangoModelFactory):
+class NodeSubNavAssociationFactory(DjangoModelFactory):
     class Meta:
-        model = NodeSideNavAssociation
+        model = NodeSubNavAssociation
         django_get_or_create = ('node', 'sub_nav', 'sub_nav_item')
 
     node = SubFactory(UrlNodeFactory)

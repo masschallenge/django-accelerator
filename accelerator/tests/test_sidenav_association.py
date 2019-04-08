@@ -5,11 +5,11 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
-from accelerator.tests.factories import NodeSideNavAssociationFactory
+from accelerator.tests.factories import NodeSubNavAssociationFactory
 
 
 class TestStartupRole(TestCase):
     def test_str(self):
-        association = NodeSideNavAssociationFactory()
+        association = NodeSubNavAssociationFactory()
         assert association.node.title in str(association)
         assert association.sub_nav.title in str(association)

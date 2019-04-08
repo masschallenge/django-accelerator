@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='NodeSideNavAssociation',
+            name='NodeSubNavAssociation',
             fields=[
                 (
                     'id',
@@ -47,12 +47,12 @@ class Migration(migrations.Migration):
                         to=settings.ACCELERATOR_NAVTREE_MODEL)),
             ],
             options={
-                'verbose_name': 'Node Side Navigation Association',
-                'verbose_name_plural': 'Node Side Navigation Associations',
-                'db_table': 'accelerator_nodesidenavassociation',
+                'verbose_name': 'Node Sub Navigation Association',
+                'verbose_name_plural': 'Node Sub Navigation Associations',
+                'db_table': 'accelerator_nodesubnavassociation',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_NODESIDENAVASSOCIATION_MODEL',
+                'swappable': 'ACCELERATOR_NODESUBNAVASSOCIATION_MODEL',
             },
         ),
         migrations.AlterField(
@@ -61,7 +61,7 @@ class Migration(migrations.Migration):
             field=models.BooleanField(default=True),
         ),
         migrations.AddField(
-            model_name='nodesidenavassociation',
+            model_name='nodesubnavassociation',
             name='sub_nav_item',
             field=models.ForeignKey(
                 help_text=(

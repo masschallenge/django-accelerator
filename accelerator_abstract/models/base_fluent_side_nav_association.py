@@ -30,11 +30,11 @@ class BaseNodeSubNavAssociation(AcceleratorModel):
     )
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_nodesidenavassociation'.format(
+        db_table = '{}_nodesubnavassociation'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
-        verbose_name = "Node Side Navigation Association"
-        verbose_name_plural = "Node Side Navigation Associations"
+        verbose_name = "Node Sub Navigation Association"
+        verbose_name_plural = "Node Sub Navigation Associations"
 
     def __str__(self):
         tmpl = "%s will show up on the %s sub navigation"
