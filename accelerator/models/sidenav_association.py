@@ -5,11 +5,11 @@ from __future__ import unicode_literals
 
 import swapper
 
-from accelerator_abstract.models import BaseNodeSideNavAssociation
+from accelerator_abstract.models import BaseNodeSubNavAssociation
 
 
-class NodeSideNavAssociation(BaseNodeSideNavAssociation):
-    class Meta(BaseNodeSideNavAssociation.Meta):
+class NodeSideNavAssociation(BaseNodeSubNavAssociation):
+    class Meta(BaseNodeSubNavAssociation.Meta):
         swappable = swapper.swappable_setting(
-            BaseNodeSideNavAssociation.Meta.app_label,
+            BaseNodeSubNavAssociation.Meta.app_label,
             "NodeSideNavAssociation")

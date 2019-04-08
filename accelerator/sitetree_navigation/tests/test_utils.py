@@ -13,7 +13,8 @@ from accelerator.sitetree_navigation.utils import (
     create_items,
     add_user_roles_to_nav_items,
     add_allowed_programs_to_nav_items,
-    add_allowed_program_families_to_nav_items
+    add_allowed_program_families_to_nav_items,
+    delete_nav_tree
 )
 
 from accelerator_abstract.models import BaseUserRole
@@ -171,6 +172,16 @@ class TestSitetreeUtils(TestCase):
             program_families = NavTreeItem.objects.filter(
                 alias=family['alias']).first().program_family.all()
             self.assertEqual(list(family['families']), list(program_families))
+
+    def test_delete_nav_tree_also_deletes_related_objects(self):
+        create_items(self.tree, TEST_ITEMS)
+        delete_nav_tree(TEST_TREE)
+        self.assertEqual(
+            0,
+            NavTree.objects.filter(alias=TEST_TREE['alias']).count())
+        self.assertEqual(
+            0,
+            NavTreeItem.objects.filter(tree=self.tree).count())
 
     def _add_allowed_programs_to_nav_items_assertions(self):
         for item in TEST_ITEMS:
