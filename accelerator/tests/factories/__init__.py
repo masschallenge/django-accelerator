@@ -110,4 +110,4 @@ from simpleuser.tests.factories import UserFactory
 from .nav_tree_factory import NavTreeFactory
 from .nav_tree_item_factory import NavTreeItemFactory
 
-from .sidenav_association_factory import NodeSubNavAssociationFactory
+from .subnav_association_factory import NodeSubNavAssociationFactory

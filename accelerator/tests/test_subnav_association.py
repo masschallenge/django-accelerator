@@ -8,7 +8,7 @@ from django.test import TestCase
 from accelerator.tests.factories import NodeSubNavAssociationFactory
 
 
-class TestStartupRole(TestCase):
+class TestSubNavigation(TestCase):
     def test_str(self):
         association = NodeSubNavAssociationFactory()
         assert association.node.title in str(association)
