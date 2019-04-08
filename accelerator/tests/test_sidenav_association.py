@@ -12,4 +12,4 @@ class TestStartupRole(TestCase):
     def test_str(self):
         association = NodeSideNavAssociationFactory()
         assert association.node.title in str(association)
-        assert association.side_nav.title in str(association)
+        assert association.sub_nav.title in str(association)

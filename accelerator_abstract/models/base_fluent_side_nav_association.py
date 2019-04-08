@@ -14,7 +14,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseNodeSideNavAssociation(AcceleratorModel):
     node = models.ForeignKey(UrlNode)
-    side_nav = models.ForeignKey(swapper.get_model_name(
+    sub_nav = models.ForeignKey(swapper.get_model_name(
         AcceleratorModel.Meta.app_label, "NavTree"),
         help_text=(
             'This is the sub navigation tree '
@@ -38,4 +38,4 @@ class BaseNodeSideNavAssociation(AcceleratorModel):
 
     def __str__(self):
         tmpl = "%s will show up on the %s sub navigation"
-        return tmpl % (self.node.title, self.side_nav.title)
+        return tmpl % (self.node.title, self.sub_nav.title)

@@ -1,7 +1,9 @@
 from accelerator.models import NavTree
 from accelerator.sitetree_navigation.utils import (
+    add_user_roles_to_nav_items,
     create_items,
-    add_user_roles_to_nav_items
+    delete_nav_tree,
+    FLUENT_REDIRECT_URL
 )
 from accelerator_abstract.models import BaseUserRole
 
@@ -18,7 +20,7 @@ HOME_SUBNAV_TREE = {
 HOME_SUBNAV_ITEMS = [
     {
         "title": 'Finalist Dashboard',
-        "url": '/fluent-redirect',
+        "url": FLUENT_REDIRECT_URL,
         "urlaspattern": False,
         'active_program': True,
         "display_single_item": False,
@@ -26,14 +28,14 @@ HOME_SUBNAV_ITEMS = [
         "alias": 'finalist_dashboard',
     }, {
         "title": 'Alumni Dashboard',
-        "url": '/fluent-redirect',
+        "url": FLUENT_REDIRECT_URL,
         "alias": 'alumni_dashboard',
         'active_program': True,
         "urlaspattern": False,
         "user_roles": [ALUMNI]
     }, {
         "title": 'Mentor Dashboard',
-        "url": '/fluent-redirect',
+        "url": FLUENT_REDIRECT_URL,
         "urlaspattern": False,
         'active_program': True,
         "display_single_item": False,
@@ -41,7 +43,7 @@ HOME_SUBNAV_ITEMS = [
         "alias": 'mentor_dashboard',
     }, {
         "title": 'Judge Dashboard',
-        "url": '/fluent-redirect',
+        "url": FLUENT_REDIRECT_URL,
         "urlaspattern": False,
         "alias": 'judge_dashboard',
         "user_roles": [JUDGE]
@@ -55,3 +57,7 @@ def create_home_subnav():
         defaults=HOME_SUBNAV_TREE)
     create_items(tree, HOME_SUBNAV_ITEMS)
     add_user_roles_to_nav_items(HOME_SUBNAV_ITEMS)
+
+
+def delete_home_subnav():
+    delete_nav_tree(HOME_SUBNAV_TREE)

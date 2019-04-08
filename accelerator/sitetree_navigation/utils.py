@@ -1,9 +1,13 @@
 from accelerator.models import (
+    NavTree,
     NavTreeItem,
     UserRole,
     Program,
     ProgramFamily,
 )
+
+
+FLUENT_REDIRECT_URL = '/fluent-redirect'
 
 
 def create_items(tree, item_props_list, parent=None):
@@ -72,3 +76,9 @@ def add_user_roles_to_nav_items(item_props_list):
 
 def add_user_roles_to_side_nav_items(item_props_list):
     add_user_roles_to_nav_items(item_props_list)
+
+
+def delete_nav_tree(item_props_list):
+    tree = NavTree.objects.filter(alias=item_props_list["alias"]).first()
+    if tree:
+        tree.delete()

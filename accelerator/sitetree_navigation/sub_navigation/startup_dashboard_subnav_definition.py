@@ -3,8 +3,9 @@ from accelerator.models import (
     NavTreeItem
 )
 from accelerator.sitetree_navigation.utils import (
+    add_user_roles_to_nav_items,
     create_items,
-    add_user_roles_to_nav_items
+    delete_nav_tree
 )
 from accelerator_abstract.models import BaseUserRole
 
@@ -69,3 +70,7 @@ def create_startup_dashboard_subnav():
         alias=STARTUP_PROFILE_ALIAS).first()
     create_items(tree, STARTUP_DASHBOARD_SUBNAV_CHILDREN_ITEMS, profile_item)
     add_user_roles_to_nav_items(STARTUP_DASHBOARD_SUBNAV_ITEMS)
+
+
+def delete_startup_dashboard_subnav():
+    delete_nav_tree(STARTUP_DASHBOARD_SUBNAV_TREE)

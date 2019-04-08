@@ -1,7 +1,9 @@
 from accelerator.models import NavTree
 from accelerator.sitetree_navigation.utils import (
+    add_user_roles_to_nav_items,
     create_items,
-    add_user_roles_to_nav_items
+    delete_nav_tree,
+    FLUENT_REDIRECT_URL
 )
 from accelerator_abstract.models import BaseUserRole
 
@@ -17,7 +19,7 @@ EVENTS_SUBNAV_TREE = {
 EVENTS_SUBNAV_ITEMS = [
     {
         "title": 'Session Slides',
-        "url": '/fluent-redirect',
+        "url": FLUENT_REDIRECT_URL,
         "urlaspattern": False,
         "display_single_item": False,
         'active_program': True,
@@ -25,7 +27,7 @@ EVENTS_SUBNAV_ITEMS = [
         "alias": 'event_session_slides',
     }, {
         "title": 'Calendar',
-        "url": '/fluent-redirect',
+        "url": FLUENT_REDIRECT_URL,
         "urlaspattern": False,
         "display_single_item": False,
         'active_program': True,
@@ -33,7 +35,7 @@ EVENTS_SUBNAV_ITEMS = [
         "alias": 'event_calendar',
     }, {
         "title": 'Key Dates',
-        "url": '/fluent-redirect',
+        "url": FLUENT_REDIRECT_URL,
         "urlaspattern": False,
         "display_single_item": False,
         'active_program': True,
@@ -49,3 +51,7 @@ def create_events_subnav():
         defaults=EVENTS_SUBNAV_TREE)
     create_items(tree, EVENTS_SUBNAV_ITEMS)
     add_user_roles_to_nav_items(EVENTS_SUBNAV_ITEMS)
+
+
+def delete_events_subnav():
+    delete_nav_tree(EVENTS_SUBNAV_TREE)
