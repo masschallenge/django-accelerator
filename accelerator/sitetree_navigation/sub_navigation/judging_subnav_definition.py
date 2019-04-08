@@ -1,7 +1,8 @@
 from accelerator.models import NavTree
 from accelerator.sitetree_navigation.utils import (
+    add_user_roles_to_nav_items,
     create_items,
-    add_user_roles_to_nav_items
+    delete_nav_tree
 )
 from accelerator_abstract.models import BaseUserRole
 
@@ -43,3 +44,7 @@ def create_judging_subnav():
         defaults=JUDGING_SUBNAV_TREE)
     create_items(tree, JUDGING_SUBNAV_ITEMS)
     add_user_roles_to_nav_items(JUDGING_SUBNAV_ITEMS)
+
+
+def delete_judging_subnav():
+    delete_nav_tree(JUDGING_SUBNAV_TREE)

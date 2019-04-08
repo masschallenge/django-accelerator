@@ -23,8 +23,8 @@ NodeSideNavAssociation = swapper.load_model(
 class NodeSideNavAssociationFactory(DjangoModelFactory):
     class Meta:
         model = NodeSideNavAssociation
-        django_get_or_create = ('node', 'side_nav', 'sub_nav_item')
+        django_get_or_create = ('node', 'sub_nav', 'sub_nav_item')
 
     node = SubFactory(UrlNodeFactory)
-    side_nav = SubFactory(NavTreeFactory)
+    sub_nav = SubFactory(NavTreeFactory)
     sub_nav_item = SubFactory(NavTreeItemFactory)

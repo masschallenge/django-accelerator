@@ -10,6 +10,12 @@ from accelerator.sitetree_navigation.sub_navigation import (
     create_judging_subnav,
     create_resources_subnav,
     create_startup_dashboard_subnav,
+    delete_directory_subnav,
+    delete_events_subnav,
+    delete_home_subnav,
+    delete_judging_subnav,
+    delete_resources_subnav,
+    delete_startup_dashboard_subnav
 )
 
 
@@ -22,15 +28,26 @@ def create_subnav_trees_and_items(apps, schema_editor):
     create_startup_dashboard_subnav()
 
 
+def delete_subnav_trees_and_items(apps, schema_editor):
+    delete_directory_subnav()
+    delete_events_subnav()
+    delete_home_subnav()
+    delete_judging_subnav()
+    delete_resources_subnav()
+    delete_startup_dashboard_subnav()
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
         (
             'accelerator',
-            '0046_add_items_to_side_nav_tree'
+            '0047_create_fluent_page_association_with_subnav'
         ),
     ]
 
     operations = [
-        migrations.RunPython(create_subnav_trees_and_items),
+        migrations.RunPython(
+            create_subnav_trees_and_items,
+            delete_subnav_trees_and_items),
     ]
