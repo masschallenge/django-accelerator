@@ -119,3 +119,10 @@ class BaseCoreProfile(AcceleratorModel):
 
     def full_name(self):
         return self.user.full_name()
+
+    def image_url(self):
+        if str(self.image):
+            return self.image.storage.url(
+                self.image.name)
+        else:
+            return ""
