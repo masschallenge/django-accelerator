@@ -187,3 +187,12 @@ class TestUser(TestCase):
         )
         finalist_roles = context.user.finalist_user_roles()
         self.assertTrue(role_grant.program_role.name in finalist_roles)
+
+    def test_has_a_finalist_role(self):
+        context = StartupTeamMemberContext(primary_contact=False)
+        ProgramRoleGrantFactory(
+            person=context.user,
+            program_role=ProgramRoleFactory(
+                user_role=UserRoleFactory(name='Staff'))
+        )
+        self.assertTrue(context.user.has_a_finalist_role())
