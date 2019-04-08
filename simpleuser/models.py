@@ -71,6 +71,7 @@ class User(AbstractUser):
         self.startup = None
         self.team_member = None
         self.profile = None
+        self.user_finalist_roles = None
 
     class AuthenticationException(Exception):
         pass
@@ -131,11 +132,13 @@ class User(AbstractUser):
                     for startup_status in self.startup.startupstatus_set.all()]
 
     def finalist_user_roles(self):
-        startup_roles = BaseUserRole.FINALIST_USER_ROLES
-        roles = self.programrolegrant_set.filter(
-            program_role__user_role__name__in=startup_roles
-        ).values_list('program_role__name', flat=True).distinct()
-        return [role for role in roles]
+        if not self.user_finalist_roles:
+            startup_roles = BaseUserRole.FINALIST_USER_ROLES
+            roles = self.programrolegrant_set.filter(
+                program_role__user_role__name__in=startup_roles
+            ).values_list('program_role__name', flat=True).distinct()
+            self.user_finalist_roles = [role for role in roles]
+        return self.user_finalist_roles
 
     def program(self):
         return self.startup.current_program() if self._get_startup() else None
@@ -168,3 +171,6 @@ class User(AbstractUser):
             return self.profile
         self.profile = self.get_profile()
         return self.profile
+
+    def has_a_finalist_role(self):
+        return len(self.finalist_user_roles()) > 0
