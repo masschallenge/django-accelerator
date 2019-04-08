@@ -88,7 +88,7 @@ class User(AbstractUser):
             name = str(self.email)
         return name
 
-    def phone(self):
+    def user_phone(self):
         return self._get_profile().phone
 
     def image_url(self):
@@ -97,22 +97,22 @@ class User(AbstractUser):
     def team_member_id(self):
         return self.team_member.id if self._get_member() else ''
 
-    def title(self):
+    def user_title(self):
         return self.team_member.title if self._get_member() else ''
 
-    def twitter_handle(self):
+    def user_twitter_handle(self):
         return self._get_profile().twitter_handle
 
-    def linked_in_url(self):
+    def user_linked_in_url(self):
         return self._get_profile().linked_in_url
 
-    def facebook_url(self):
+    def user_facebook_url(self):
         return self._get_profile().facebook_url
 
-    def personal_website_url(self):
+    def user_personal_website_url(self):
         return self._get_profile().personal_website_url
 
-    def user_type(self):
+    def type(self):
         return self._get_profile().user_type
 
     def startup_name(self):

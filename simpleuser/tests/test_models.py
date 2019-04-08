@@ -34,12 +34,12 @@ class TestUser(TestCase):
     def test_that_correct_entrepreneur_user_type_is_returned(self):
         user = EntrepreneurFactory()
         user = User.objects.get(pk=user.pk)
-        self.assertEqual('entrepreneur', user.user_type())
+        self.assertEqual('entrepreneur', user.type())
 
     def test_that_correct_expert_user_type_is_returned(self):
         user = ExpertFactory()
         user = User.objects.get(pk=user.pk)
-        self.assertEqual('expert', user.user_type())
+        self.assertEqual('expert', user.type())
 
     def test_startup_name_is_correct(self):
         context = StartupTeamMemberContext(primary_contact=False)
@@ -98,14 +98,14 @@ class TestUser(TestCase):
             profile__personal_website_url='http://example.com/0'
         )
         user = User.objects.get(pk=user.pk)
-        self.assertEqual('111', user.phone())
-        self.assertEqual('tw0', user.twitter_handle())
+        self.assertEqual('111', user.user_phone())
+        self.assertEqual('tw0', user.user_twitter_handle())
         self.assertEqual('http://www.linkedin.com/0',
-                         user.linked_in_url())
+                         user.user_linked_in_url())
         self.assertEqual('http://www.facebook.com/0',
-                         user.facebook_url())
+                         user.user_facebook_url())
         self.assertEqual('http://example.com/0',
-                         user.personal_website_url())
+                         user.user_personal_website_url())
 
     def test_startup_status_names(self):
         status = ProgramStartupStatusFactory()
@@ -135,11 +135,11 @@ class TestUser(TestCase):
     def test_team_member_title(self):
         context = StartupTeamMemberContext(primary_contact=False)
         self.assertTrue(
-            context.user.title() == context.member.title)
+            context.user.user_title() == context.member.title)
 
     def test_non_team_member_title(self):
         user = UserFactory()
-        self.assertTrue(user.title() == '')
+        self.assertTrue(user.user_title() == '')
 
     def test_missing_profile_image_url_returns_empty(self):
         context = StartupTeamMemberContext(primary_contact=False)
