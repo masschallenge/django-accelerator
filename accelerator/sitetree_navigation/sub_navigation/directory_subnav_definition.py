@@ -23,7 +23,7 @@ DIRECTORY_SUBNAV_ITEMS = [
         "user_roles": [FINALIST, ALUMNI, MENTOR]
     }, {
         "title": 'People',
-        "url": '/directory/people',
+        "url": '/people',
         "user_roles": [FINALIST, ALUMNI, MENTOR],
         "alias": 'people_directory',
     }
