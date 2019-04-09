@@ -13,13 +13,11 @@ from django.contrib.contenttypes.models import ContentType
 from django.core import urlresolvers
 from sorl.thumbnail import ImageField
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from accelerator.apps import AcceleratorConfig
 
+from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_user_role import (
     BaseUserRole,
-)
-from accelerator_abstract.models.base_partner_team_member import (
-    BasePartnerTeamMember,
 )
 
 GENDER_MALE_CHOICE = ('m', 'Male')
@@ -181,11 +179,15 @@ class BaseCoreProfile(AcceleratorModel):
             BaseUserRole.OFFICE_HOUR_ROLES)) > 0
 
     def is_partner(self):
-        return BasePartnerTeamMember.objects.filter(
+        PartnerTeamMember = swapper.load_model(
+            AcceleratorConfig.name, 'PartnerTeamMember')
+        return PartnerTeamMember.objects.filter(
             team_member=self.user).exists()
 
     def is_partner_admin(self):
-        return BasePartnerTeamMember.objects.filter(
+        PartnerTeamMember = swapper.load_model(
+            AcceleratorConfig.name, 'PartnerTeamMember')
+        return PartnerTeamMember.objects.filter(
             team_member=self.user,
             partner_administrator=True).exists()
 
