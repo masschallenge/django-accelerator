@@ -133,9 +133,9 @@ class User(AbstractUser):
 
     def finalist_user_roles(self):
         if not self.user_finalist_roles:
-            startup_roles = BaseUserRole.FINALIST_USER_ROLES
+            finalist_roles = BaseUserRole.FINALIST_USER_ROLES
             roles = self.programrolegrant_set.filter(
-                program_role__user_role__name__in=startup_roles
+                program_role__user_role__name__in=finalist_roles
             ).values_list('program_role__name', flat=True).distinct()
             self.user_finalist_roles = [role for role in roles]
         return self.user_finalist_roles
