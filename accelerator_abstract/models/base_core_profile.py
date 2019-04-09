@@ -8,9 +8,19 @@ from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
+from django.contrib.auth import get_user_model
+from django.contrib.contenttypes.models import ContentType
+from django.core import urlresolvers
 from sorl.thumbnail import ImageField
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
+
+from accelerator_abstract.models.base_user_role import (
+    BaseUserRole,
+)
+from accelerator_abstract.models.base_partner_team_member import (
+    BasePartnerTeamMember,
+)
 
 GENDER_MALE_CHOICE = ('m', 'Male')
 GENDER_FEMALE_CHOICE = ('f', 'Female')
@@ -126,3 +136,116 @@ class BaseCoreProfile(AcceleratorModel):
                 self.image.name)
         else:
             return ""
+
+    def is_judge(self, *args, **kwargs):
+        """prevent attribute errors on subclasses
+        """
+        return False
+
+    def is_alum(self):
+        """prevent attribute errors on subclasses
+        """
+        return False
+
+    def is_alum_in_residence(self):
+        return self.user.programrolegrant_set.filter(
+            program_role__user_role__name=BaseUserRole.AIR
+        ).exists()
+
+    def is_mentor(self, program=None):
+        """If program is specified, is the expert a mentor in that program.
+        Otherwise, is the expert a mentor in any program.
+        """
+        if program:
+            return self.user.programrolegrant_set.filter(
+                program_role__program__exact=program,
+                program_role__user_role__name=BaseUserRole.MENTOR).exists()
+        else:
+            return self.user.programrolegrant_set.filter(
+                program_role__user_role__name=BaseUserRole.MENTOR).exists()
+
+    @property
+    def mentor_profile_url(self):
+        if self.is_mentor():
+            return urlresolvers.reverse('mentor_view',
+                                        args=(self.user.id,))
+
+    def user_roles(self):
+        return set([prg.program_role.user_role
+                    for prg in self.user.programrolegrant_set.all()
+                    if prg.program_role.user_role is not None])
+
+    def is_office_hour_holder(self):
+        user_role_names = set([ur.name for ur in self.user_roles()])
+        return len(user_role_names.intersection(
+            BaseUserRole.OFFICE_HOUR_ROLES)) > 0
+
+    def is_partner(self):
+        return BasePartnerTeamMember.objects.filter(
+            team_member=self.user).exists()
+
+    def is_partner_admin(self):
+        return BasePartnerTeamMember.objects.filter(
+            team_member=self.user,
+            partner_administrator=True).exists()
+
+    def get_admin_url(self):
+        content_type = ContentType.objects.get_for_model(get_user_model())
+        return urlresolvers.reverse("admin:%s_%s_change" % (
+            content_type.app_label, content_type.model), args=(self.user.id,))
+
+    def get_active_alerts(self, page=None):
+        """Return any active alerts for the user, that are relevant for
+        the current 'page' of the application.
+        May be overridden by subclasses (e.g., ExpertProfile,
+        EntrepreneurProfile, etc.)
+        """
+        alerts = []
+        return alerts
+
+    def startup_based_landing_page(self):
+        member = self.user.startupteammember_set.filter(
+            startup__landing_page__isnull=False).exclude(
+            startup__landing_page="").order_by(
+            "-startup_administrator").first()
+        if member:
+            return member.startup.landing_page
+        return None
+
+    def role_based_landing_page(self, exclude_role_names=[]):
+        query = self.user.programrolegrant_set.filter(
+            program_role__user_role__isnull=False,
+            program_role__landing_page__isnull=False).exclude(
+            program_role__landing_page="")
+        if exclude_role_names:
+            query = query.exclude(
+                program_role__user_role__name__in=exclude_role_names)
+        grant = query.order_by("-program_role__program__end_date",
+                               "program_role__user_role__sort_order"
+                               ).first()
+        if grant:
+            return grant.program_role.landing_page
+        return self.default_page
+
+    def calc_landing_page(self):
+        return (self.startup_based_landing_page() or
+                self.role_based_landing_page())
+
+    def check_landing_page(self):
+        page = self.landing_page or self.calc_landing_page()
+        if page == "/":
+            return self.default_page
+        return page
+
+    def first_startup(self, statuses=[]):
+        return None
+
+    def interest_category_names(self):
+        return [interest.name for interest in self.interest_categories.all()]
+
+    def program_family_names(self):
+        return [pf.name for pf in self.program_families.all()]
+
+    def gender_value(self):
+        gender_dict = dict(GENDER_CHOICES)
+        return gender_dict[self.gender.lower()]
