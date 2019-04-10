@@ -15,7 +15,7 @@ from accelerator.sitetree_navigation import (
 
 
 def add_items_to_side_nav_tree(apps, schema_editor):
-    NavTree = apps.get_model('accelerator', 'NavTree')
+    from accelerator.models import NavTree
     side_nav_tree = NavTree.objects.filter(
         alias=MC_SIDE_NAV_TREE_ALIAS).first()
     if side_nav_tree:
