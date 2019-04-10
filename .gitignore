@@ -106,3 +106,6 @@ venv
 
 # Emacs ~ files
 *~
+
+# image url test directory
+/profile_pics
