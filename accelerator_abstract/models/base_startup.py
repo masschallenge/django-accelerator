@@ -219,3 +219,5 @@ class BaseStartup(AcceleratorModel):
             startup_role__name=BaseStartupRole.FINALIST,
             program__exact=program
         ).exists()
+    
+    is_finalist.boolean = True
