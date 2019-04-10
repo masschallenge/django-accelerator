@@ -162,12 +162,6 @@ class BaseCoreProfile(AcceleratorModel):
             return self.user.programrolegrant_set.filter(
                 program_role__user_role__name=BaseUserRole.MENTOR).exists()
 
-    @property
-    def mentor_profile_url(self):
-        if self.is_mentor():
-            return urlresolvers.reverse('mentor_view',
-                                        args=(self.user.id,))
-
     def user_roles(self):
         return set([prg.program_role.user_role
                     for prg in self.user.programrolegrant_set.all()

@@ -208,6 +208,13 @@ class BaseStartup(AcceleratorModel):
             logger.warning(STARTUP_NO_ORG_WARNING_MSG.format(self.pk))
             return None
 
+    def program_startup_statuses(self):
+        from accelerator.models.program_startup_status import (
+            ProgramStartupStatus
+        )
+        return ProgramStartupStatus.objects.filter(
+            startupstatus__startup=self)
+
     def is_finalist(self, program=None):
         """if program is given, check whether this startup is a finalist
         in that program. Otherwise, check whether this startup is a finalist
