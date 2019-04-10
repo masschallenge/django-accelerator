@@ -17,7 +17,7 @@ TEST_PASSWORD = 'simplepass1'
 def login_as_user(test, user):
     user.set_password(TEST_PASSWORD)
     user.save()
-    return test.client.login(username=user.username, password=TEST_PASSWORD)
+    return test.client.login(username=user.email, password=TEST_PASSWORD)
 
 
 def login_as_new_user(test, factory, is_superuser=False):

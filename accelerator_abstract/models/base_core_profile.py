@@ -8,9 +8,6 @@ from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from django.contrib.auth import get_user_model
-from django.contrib.contenttypes.models import ContentType
-from django.core import urlresolvers
 from sorl.thumbnail import ImageField
 
 from accelerator.apps import AcceleratorConfig
@@ -184,11 +181,6 @@ class BaseCoreProfile(AcceleratorModel):
         return PartnerTeamMember.objects.filter(
             team_member=self.user,
             partner_administrator=True).exists()
-
-    def get_admin_url(self):
-        content_type = ContentType.objects.get_for_model(get_user_model())
-        return urlresolvers.reverse("admin:%s_%s_change" % (
-            content_type.app_label, content_type.model), args=(self.user.id,))
 
     def get_active_alerts(self, page=None):
         """Return any active alerts for the user, that are relevant for

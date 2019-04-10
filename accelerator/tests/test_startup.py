@@ -7,7 +7,15 @@ from django.test import TestCase
 
 from accelerator.tests.factories import (
     OrganizationFactory,
+    ProgramFactory,
     StartupFactory,
+    StartupRoleFactory
+)
+from accelerator_abstract.models.base_startup_role import (
+    BaseStartupRole
+)
+from accelerator.tests.contexts import (
+    StartupTeamMemberContext
 )
 
 
@@ -92,3 +100,18 @@ class TestStartup(TestCase):
     def test_startup_repr_returns_empty_string_when_org_is_empty(self):
         startup = StartupFactory(organization=None)
         self.assertEqual(startup.__str__(), "")
+
+    def test_is_finalist(self):
+        startup_role = StartupRoleFactory(name=BaseStartupRole.FINALIST)
+        context = StartupTeamMemberContext(
+            primary_contact=False,
+            startup_role=startup_role)
+        self.assertTrue(context.startup.is_finalist())
+
+    def test_is_finalist_with_program_passed_in(self):
+        startup_role = StartupRoleFactory(name=BaseStartupRole.FINALIST)
+        context = StartupTeamMemberContext(
+            primary_contact=False,
+            startup_role=startup_role)
+        self.assertFalse(
+            context.startup.is_finalist(ProgramFactory()))
