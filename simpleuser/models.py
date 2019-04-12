@@ -10,6 +10,9 @@ from django.contrib.auth.models import BaseUserManager
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 
+from accelerator_abstract.models import BaseUserRole
+
+
 MAX_USERNAME_LENGTH = 30
 
 
@@ -63,6 +66,13 @@ class User(AbstractUser):
         db_table = 'auth_user'
         managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
 
+    def __init__(self, *args, **kwargs):
+        super(User, self).__init__(*args, **kwargs)
+        self.startup = None
+        self.team_member = None
+        self.profile = None
+        self.user_finalist_roles = None
+
     class AuthenticationException(Exception):
         pass
 
@@ -77,3 +87,89 @@ class User(AbstractUser):
         else:
             name = str(self.email)
         return name
+
+    def user_phone(self):
+        return self._get_profile().phone
+
+    def image_url(self):
+        return self._get_profile().image_url()
+
+    def team_member_id(self):
+        return self.team_member.id if self._get_member() else ''
+
+    def user_title(self):
+        return self.team_member.title if self._get_member() else ''
+
+    def user_twitter_handle(self):
+        return self._get_profile().twitter_handle
+
+    def user_linked_in_url(self):
+        return self._get_profile().linked_in_url
+
+    def user_facebook_url(self):
+        return self._get_profile().facebook_url
+
+    def user_personal_website_url(self):
+        return self._get_profile().personal_website_url
+
+    def type(self):
+        return self._get_profile().user_type
+
+    def startup_name(self):
+        return self.startup.name if self._get_startup() else None
+
+    def startup_industry(self):
+        return self.startup.primary_industry if self._get_startup() else None
+
+    def top_level_startup_industry(self):
+        industry = (
+            self.startup.primary_industry if self._get_startup() else None)
+        return industry.parent if industry and industry.parent else industry
+
+    def startup_status_names(self):
+        if self._get_startup():
+            return [startup_status.program_startup_status.startup_status
+                    for startup_status in self.startup.startupstatus_set.all()]
+
+    def finalist_user_roles(self):
+        if not self.user_finalist_roles:
+            finalist_roles = BaseUserRole.FINALIST_USER_ROLES
+            self.user_finalist_roles = self.programrolegrant_set.filter(
+                program_role__user_role__name__in=finalist_roles
+            ).values_list('program_role__name', flat=True).distinct()
+        return list(self.user_finalist_roles)
+
+    def program(self):
+        return self.startup.current_program() if self._get_startup() else None
+
+    def location(self):
+        program = self.program()
+        return program.program_family.name if program else None
+
+    def year(self):
+        program = self.program()
+        return program.start_date.year if program else None
+
+    def is_team_member(self):
+        return True if self._get_member() else False
+
+    def _get_startup(self):
+        if not self.startup:
+            self._get_member()
+            if self.team_member:
+                self.startup = self.team_member.startup
+        return self.startup
+
+    def _get_member(self):
+        if not self.team_member:
+            self.team_member = self.startupteammember_set.last()
+        return self.team_member
+
+    def _get_profile(self):
+        if self.profile:
+            return self.profile
+        self.profile = self.get_profile()
+        return self.profile
+
+    def has_a_finalist_role(self):
+        return len(self.finalist_user_roles()) > 0

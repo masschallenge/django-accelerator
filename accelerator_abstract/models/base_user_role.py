@@ -47,3 +47,30 @@ class BaseUserRole(AcceleratorModel):
     class Meta(AcceleratorModel.Meta):
         abstract = True
         db_table = '{}_userrole'.format(AcceleratorModel.Meta.app_label)
+
+
+def has_user_role_base(
+        user, user_role_name, program=None, inactive_programs=False):
+    filter = user.programrolegrant_set.filter(
+        program_role__user_role__name=user_role_name)
+    if program:
+        filter = filter.filter(program_role__program=program)
+    if not inactive_programs:
+        filter = filter.filter(program_role__program__program_status__in=[
+            "active", "upcoming"])
+    return filter.exists()
+
+
+def is_finalist_user(user, program=None, inactive_programs=False):
+    return has_user_role_base(
+        user, BaseUserRole.FINALIST, program, inactive_programs)
+
+
+def is_mentor(user, program=None, inactive_programs=False):
+    return has_user_role_base(
+        user, BaseUserRole.MENTOR, program, inactive_programs)
+
+
+def is_judge(user, program=None, inactive_programs=False):
+    return has_user_role_base(
+        user, BaseUserRole.JUDGE, program, inactive_programs)
