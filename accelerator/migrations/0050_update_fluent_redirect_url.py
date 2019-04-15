@@ -41,7 +41,7 @@ def delete_subnav_trees_and_items(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0048_create_sub_navigation_objects'),
+        ('accelerator', '0049_update_office_hour_location_choices'),
     ]
 
     operations = [
