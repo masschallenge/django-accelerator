@@ -28,8 +28,8 @@ class StartupTeamMemberContext(object):
                  user=None,
                  upcoming=False,
                  startup_administrator=False,
-                 primary_contact=True):
-        program_status = ACTIVE_PROGRAM_STATUS
+                 primary_contact=True,
+                 program_status=ACTIVE_PROGRAM_STATUS):
         applications_open = False
         if upcoming:
             program_status = UPCOMING_PROGRAM_STATUS

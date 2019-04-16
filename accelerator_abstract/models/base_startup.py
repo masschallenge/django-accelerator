@@ -15,6 +15,7 @@ from embed_video.fields import EmbedVideoField
 from sorl.thumbnail import ImageField
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from accelerator_abstract.models.base_startup_role import BaseStartupRole
 
 logger = logging.getLogger(__name__)
 
@@ -206,3 +207,24 @@ class BaseStartup(AcceleratorModel):
         else:
             logger.warning(STARTUP_NO_ORG_WARNING_MSG.format(self.pk))
             return None
+
+    def program_startup_statuses(self):
+        from accelerator.models.program_startup_status import (
+            ProgramStartupStatus
+        )
+        return ProgramStartupStatus.objects.filter(
+            startupstatus__startup=self)
+
+    def is_finalist(self, program=None):
+        """if program is given, check whether this startup is a finalist
+        in that program. Otherwise, check whether this startup is a finalist
+        in any program"""
+        if program is None:
+            return self.program_startup_statuses().filter(
+                startup_role__name=BaseStartupRole.FINALIST).exists()
+        return self.program_startup_statuses().filter(
+            startup_role__name=BaseStartupRole.FINALIST,
+            program__exact=program
+        ).exists()
+
+    is_finalist.boolean = True
