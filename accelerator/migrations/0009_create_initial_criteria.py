@@ -33,9 +33,9 @@ def handle_spec(spec, apps):
 
     data = CriterionData(*spec)
     name = data.name
-    jr_exists = JudgingRound.objects.filter(
+    judging_round_exists = JudgingRound.objects.filter(
         id=BOS_2017_JUDGING_ROUND_ID).exists()
-    if name not in criteria and jr_exists:
+    if name not in criteria and judging_round_exists:
         criteria[name] = Criterion.objects.create(
             name=name,
             type=data.type,
