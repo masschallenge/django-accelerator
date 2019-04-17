@@ -29,20 +29,25 @@ def create_initial_criteria(apps, schema_editor):
 def handle_spec(spec, apps):
     Criterion = apps.get_model('accelerator', 'Criterion')
     CriterionOptionSpec = apps.get_model('accelerator', 'CriterionOptionSpec')
+    JudgingRound = apps.get_model('accelerator', 'JudgingRound')
 
     data = CriterionData(*spec)
     name = data.name
-    if name not in criteria:
+    judging_round_exists = JudgingRound.objects.filter(
+        id=BOS_2017_JUDGING_ROUND_ID).exists()
+    if name not in criteria and judging_round_exists:
         criteria[name] = Criterion.objects.create(
             name=name,
             type=data.type,
             judging_round_id=BOS_2017_JUDGING_ROUND_ID)
 
-    criterion = criteria[name]
-    CriterionOptionSpec.objects.create(criterion=criterion,
-                                       option=data.option,
-                                       weight=float(data.weight),
-                                       count=int(data.count))
+    criterion = criteria.get(name)
+    if criterion:
+        CriterionOptionSpec.objects.create(
+            criterion=criterion,
+            option=data.option,
+            weight=float(data.weight),
+            count=int(data.count))
 
 
 def destroy_all_criteria(apps, schema_editor):
