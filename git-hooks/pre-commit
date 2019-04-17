@@ -24,6 +24,6 @@ exec 1>&2
 DEBUG_FUNC=set_trace
 if git diff $against | grep -v '^-' | grep "$DEBUG_FUNC"
 then
-    echo "Commit failed. 'import $DEBUG_LIB' detected."
+    echo "Commit failed. 'pdb $DEBUG_FUNC' detected."
     exit 1
 fi
