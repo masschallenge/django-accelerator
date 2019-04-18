@@ -9,13 +9,7 @@ from accelerator.sitetree_navigation.sub_navigation import (
     create_home_subnav,
     create_judging_subnav,
     create_resources_subnav,
-    create_startup_dashboard_subnav,
-    delete_directory_subnav,
-    delete_events_subnav,
-    delete_home_subnav,
-    delete_judging_subnav,
-    delete_resources_subnav,
-    delete_startup_dashboard_subnav
+    create_startup_dashboard_subnav
 )
 
 
@@ -26,8 +20,6 @@ def create_subnav_trees_and_items(apps, schema_editor):
     create_judging_subnav()
     create_resources_subnav()
     create_startup_dashboard_subnav()
-
-
 
 
 class Migration(migrations.Migration):
