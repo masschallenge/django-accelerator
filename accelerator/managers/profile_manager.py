@@ -15,3 +15,9 @@ class ProfileManager(models.Manager):
             ProfileQuerySet
         )
         return ProfileQuerySet(self.model, using=self._db)
+
+    def create(self, *args, **kwargs):
+        profile = self.filter(user=kwargs['user']).first()
+        if profile:
+            profile.delete()
+        return super(ProfileManager, self).create(*args, **kwargs)
