@@ -7,7 +7,7 @@ from accelerator.models import (
 )
 
 
-FLUENT_REDIRECT_URL = '/fluent-redirect'
+FLUENT_REDIRECT_URL = '/nav/fluent-redirect'
 
 
 def create_items(tree, item_props_list, parent=None):
