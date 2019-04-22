@@ -7,8 +7,8 @@ from accelerator.models import (
 )
 
 
-FLUENT_REDIRECT_URL = '/fluent-redirect'
-REGISTER_FOR_EVENTS_URL = '/events/'
+FLUENT_REDIRECT_URL = '/nav/fluent-redirect'
+REGISTER_FOR_EVENTS_URL = '/nav/events/'
 
 
 def create_items(tree, item_props_list, parent=None):
