@@ -109,6 +109,7 @@ $(VENV): requirements/base.txt requirements/dev.txt Makefile
 	@pip install virtualenv
 	@rm -rf $(VENV)
 	@virtualenv -p `which $(PYTHON_VERSION)` $@
+	@cp git-hooks/* .git/hooks/
 	@touch $(ACTIVATE_SCRIPT)
 	@$(ACTIVATE) ; \
 	DJANGO_VERSION=$(DJANGO_VERSION) pip install -r requirements/dev.txt
