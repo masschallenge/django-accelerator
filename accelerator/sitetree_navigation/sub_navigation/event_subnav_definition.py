@@ -49,7 +49,7 @@ EVENTS_SUBNAV_ITEMS = [
         "urlaspattern": False,
         "display_single_item": False,
         'active_program': True,
-        "user_roles": [FINALIST, ALUMNI, MENTOR, STAFF],
+        "user_roles": [FINALIST, ALUMNI, MENTOR],
         "alias": 'register_for_events',
     }
 
