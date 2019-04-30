@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
     dependencies = [
         (
             'accelerator',
-            '0049_update_office_hour_location_choices'
+            '0050_update_fluent_redirect_url'
         ),
     ]
 
