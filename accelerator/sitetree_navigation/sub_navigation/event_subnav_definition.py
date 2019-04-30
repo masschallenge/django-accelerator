@@ -3,13 +3,15 @@ from accelerator.sitetree_navigation.utils import (
     add_user_roles_to_nav_items,
     create_items,
     delete_nav_tree,
-    FLUENT_REDIRECT_URL
+    FLUENT_REDIRECT_URL,
+    REGISTER_FOR_EVENTS_URL
 )
 from accelerator_abstract.models import BaseUserRole
 
 FINALIST = BaseUserRole.FINALIST
 ALUMNI = BaseUserRole.ALUM
 MENTOR = BaseUserRole.MENTOR
+STAFF = BaseUserRole.STAFF
 
 EVENTS_SUBNAV_TREE = {
     "title": 'Events Sub Nav',
@@ -41,7 +43,16 @@ EVENTS_SUBNAV_ITEMS = [
         'active_program': True,
         "user_roles": [FINALIST, MENTOR],
         "alias": 'event_key_dates',
+    }, {
+        "title": 'Register for Events',
+        "url": REGISTER_FOR_EVENTS_URL,
+        "urlaspattern": False,
+        "display_single_item": False,
+        'active_program': True,
+        "user_roles": [FINALIST, ALUMNI, MENTOR],
+        "alias": 'register_for_events',
     }
+
 ]
 
 
