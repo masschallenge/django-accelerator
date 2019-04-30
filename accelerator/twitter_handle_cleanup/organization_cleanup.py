@@ -1,38 +1,26 @@
 import re
 
+from .utils import (
+    remove_leading_slashes_from_strings,
+    remove_trailing_slashes_from_strings,
+    remove_trailing_and_leading_whitespace,
+    remove_leading_hastag_on_valid_twitter_handles,
+    remove_twitter_url_prefix_from_handles,
+    remove_not_available_abbreviation_from_twitter_handles,
+    remove_hashbang_from_twitter_handles,
+    write_to_csv
+)
+
 
 def clean_organization_twitter_handles(Organization):
-    # remove leading twitter.com/ from handles
-    orgs = Organization.objects.filter(
-        twitter_handle__contains="twitter.com/")
-    for org in orgs:
-        old = org.twitter_handle
-        new = org.twitter_handle[org.twitter_handle.index('twitter.com/')+12:]
-        org.twitter_handle = new
-        org.save()
-        print(org.name, old, new)
-
-    # remove leading Twitter.com/ from handles
-    orgs = Organization.objects.filter(
-        twitter_handle__contains="Twitter.com/")
-    for org in orgs:
-        old = org.twitter_handle
-        new = org.twitter_handle[org.twitter_handle.index('Twitter.com/')+12:]
-        org.twitter_handle = new
-        org.save()
-        print(org.name, old, new)
-
-    # remove 'n/a' from handles
-    for org in Organization.objects.filter(twitter_handle__icontains="n/a"):
-        insensitive_na = re.compile(re.escape('n/a'), re.IGNORECASE)
-        new = insensitive_na.sub('', org.twitter_handle)
-        old = org.twitter_handle
-        org.twitter_handle = new
-        org.save()
-        print(org.name, old, new)
+    remove_twitter_url_prefix_from_handles(Organization)
+    remove_not_available_abbreviation_from_twitter_handles(Organization)
+    remove_hashbang_from_twitter_handles(Organization)
+    remove_leading_hastag_on_valid_twitter_handles(Organization)
 
     for org in Organization.objects.exclude(twitter_handle=""):
         match = re.match(r'^@?(\w){1,15}$', org.twitter_handle)
+        twitter_handle = ""
         if not match:
             match = re.search(
                 r'(\?lang)=?([a-zA-z]{1,2})?(-[a-zA-z]{1,2})?',
@@ -48,56 +36,10 @@ def clean_organization_twitter_handles(Organization):
                 new_handle = str(org.twitter_handle).replace(found_string, "")
                 org.twitter_handle = new_handle
                 org.save()
-                print(org.name, old_handle, new_handle)
+                write_to_csv(
+                    [Organization.__name__, org.id, old_handle, twitter_handle]
+                )
 
-        # remove trailing and leading whitespace
-        match = re.match(r'^@?(\w){1,15}$', org.twitter_handle)
-        if not match:
-            old = org.twitter_handle
-            new = org.twitter_handle.strip()
-            org.twitter_handle = new
-            org.save()
-
-        # remove leading hashtag on valid twitter handles
-        match = re.match(r'^@?(\w){1,15}$', org.twitter_handle)
-        if not match:
-            match = re.search(r'#(@?(\w){1,15})', org.twitter_handle)
-            if match:
-                old_handle = org.twitter_handle
-                new_handle = org.twitter_handle[1:]
-                org.twitter_handle = new_handle
-                org.save()
-                print(org.name, old_handle, new_handle)
-
-        # remove trailing slashes from strings
-        match = re.match(r'^@?(\w){1,15}$', org.twitter_handle)
-        if not match:
-            match = re.search(r'/$', org.twitter_handle)
-            if match:
-                old = org.twitter_handle
-                new = org.twitter_handle[:-1]
-                org.twitter_handle = new
-                org.save()
-                print(org.name, old, new)
-
-        # remove leading slashes from strings
-        match = re.match(r'^@?(\w){1,15}$', org.twitter_handle)
-        if not match:
-            match = re.search(r'^/', org.twitter_handle)
-            if match:
-                old = org.twitter_handle
-                new = org.twitter_handle[1:]
-                org.twitter_handle = new
-                org.save()
-                print(org.name, old, new)
-
-        # remove leading hashbang situation
-        match = re.match(r'^@?(\w){1,15}$', org.twitter_handle)
-        if not match:
-            match = re.search(r'^#!/', org.twitter_handle)
-            if match:
-                old = org.twitter_handle
-                new = org.twitter_handle[3:]
-                org.twitter_handle = new
-                org.save()
-                print(org.name, old, new)
+            remove_trailing_and_leading_whitespace(org)
+            remove_leading_slashes_from_strings(org)
+            remove_trailing_slashes_from_strings(org)

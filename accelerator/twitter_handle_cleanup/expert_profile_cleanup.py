@@ -1,72 +1,26 @@
 import re
 
+from .utils import (
+    remove_leading_slashes_from_strings,
+    remove_trailing_slashes_from_strings,
+    remove_trailing_and_leading_whitespace,
+    remove_leading_hastag_on_valid_twitter_handles,
+    remove_twitter_url_prefix_from_handles,
+    remove_not_available_abbreviation_from_twitter_handles,
+    turn_handles_with_incomplete_handles_to_empty_string
+)
+
 
 def clean_expert_profile_twitter_handles(ExpertProfile):
-    # remove leading twitter.com/ from handles
-    experts = ExpertProfile.objects.filter(
-        twitter_handle__contains="twitter.com/")
-    for ent in experts:
-        old = ent.twitter_handle
-        new = ent.twitter_handle[ent.twitter_handle.index('twitter.com/')+12:]
-        ent.twitter_handle = new
-        ent.save()
-        print(ent, old, new)
-
-    # empty "https://twitter." from handles
-    for ent in ExpertProfile.objects.filter(twitter_handle="https://twitter."):
-        old = ent.twitter_handle
-        new = ""
-        ent.twitter_handle = new
-        ent.save()
-        print(ent, old, new)
-
-    # remove 'n/a' from handles
-    for ent in ExpertProfile.objects.filter(twitter_handle__icontains="n/a"):
-        insensitive_na = re.compile(re.escape('n/a'), re.IGNORECASE)
-        new = insensitive_na.sub('', ent.twitter_handle)
-        old = ent.twitter_handle
-        ent.twitter_handle = new
-        ent.save()
-        print(ent, old, new)
+    remove_twitter_url_prefix_from_handles(ExpertProfile)
+    turn_handles_with_incomplete_handles_to_empty_string(ExpertProfile)
+    remove_not_available_abbreviation_from_twitter_handles(ExpertProfile)
+    remove_leading_hastag_on_valid_twitter_handles(ExpertProfile)
 
     for ent in ExpertProfile.objects.exclude(twitter_handle=""):
-        # remove trailing and leading whitespace
-        match = re.match(r'^@?(\w){1,15}$', ent.twitter_handle)
+        twitter_handle = ent.twitter_handle
+        match = re.match(r'^@?(\w){1,15}$', twitter_handle)
         if not match:
-            old = ent.twitter_handle
-            new = ent.twitter_handle.strip()
-            ent.twitter_handle = new
-            ent.save()
-
-        # remove leading hashtag on valid twitter handles
-        match = re.match(r'^@?(\w){1,15}$', ent.twitter_handle)
-        if not match:
-            match = re.search(r'#(@?(\w){1,15})', ent.twitter_handle)
-            if match:
-                old_handle = ent.twitter_handle
-                new_handle = ent.twitter_handle[1:]
-                ent.twitter_handle = new_handle
-                ent.save()
-                print(ent, old_handle, new_handle)
-
-        # remove trailing slashes from strings
-        match = re.match(r'^@?(\w){1,15}$', ent.twitter_handle)
-        if not match:
-            match = re.search(r'/$', ent.twitter_handle)
-            if match:
-                old = ent.twitter_handle
-                new = ent.twitter_handle[:-1]
-                ent.twitter_handle = new
-                ent.save()
-                print(ent, old, new)
-
-        # remove leading slashes from strings
-        match = re.match(r'^@?(\w){1,15}$', ent.twitter_handle)
-        if not match:
-            match = re.search(r'^/', ent.twitter_handle)
-            if match:
-                old = ent.twitter_handle
-                new = ent.twitter_handle[1:]
-                ent.twitter_handle = new
-                ent.save()
-                print(ent, old, new)
+            remove_trailing_and_leading_whitespace(ent)
+            remove_leading_slashes_from_strings(ent)
+            remove_trailing_slashes_from_strings(ent)
