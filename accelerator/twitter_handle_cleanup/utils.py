@@ -106,7 +106,7 @@ def remove_twitter_url_prefix_from_handles(Model):
                     Value(variation),
                     Value(""),
                     function="replace"))
-        except ValueError as error:
+        except ValueError:
             pass
 
 
