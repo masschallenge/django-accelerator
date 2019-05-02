@@ -1,10 +1,10 @@
 import re
 
 from .utils import (
-    remove_leading_slashes_from_strings,
-    remove_trailing_slashes_from_strings,
+    remove_leading_slashes,
+    remove_trailing_slashes,
     remove_trailing_and_leading_whitespace,
-    remove_leading_hastag_on_valid_twitter_handles,
+    remove_leading_hashtag_on_valid_twitter_handles,
     remove_twitter_url_prefix_from_handles,
     remove_not_available_abbreviation_from_twitter_handles,
     remove_hashbang_from_twitter_handles,
@@ -16,7 +16,7 @@ def clean_organization_twitter_handles(Organization):
     remove_twitter_url_prefix_from_handles(Organization)
     remove_not_available_abbreviation_from_twitter_handles(Organization)
     remove_hashbang_from_twitter_handles(Organization)
-    remove_leading_hastag_on_valid_twitter_handles(Organization)
+    remove_leading_hashtag_on_valid_twitter_handles(Organization)
 
     for org in Organization.objects.exclude(twitter_handle=""):
         match = re.match(r'^@?(\w){1,15}$', org.twitter_handle)
@@ -41,5 +41,5 @@ def clean_organization_twitter_handles(Organization):
                 )
 
             remove_trailing_and_leading_whitespace(org)
-            remove_leading_slashes_from_strings(org)
-            remove_trailing_slashes_from_strings(org)
+            remove_leading_slashes(org)
+            remove_trailing_slashes(org)

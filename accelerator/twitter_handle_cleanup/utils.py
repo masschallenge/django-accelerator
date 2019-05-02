@@ -1,3 +1,9 @@
+# This file and the logic within it were used in the sibling
+# organization_cleanup.py, expert_profile_cleanup.py and
+# entrepreneur_profile_cleanup.py files to turn as many "bad"
+# twitter handles into valid ones. See ticket below.
+# Ticket reference: https://masschallenge.atlassian.net/browse/AC-6406
+
 import re
 import csv
 
@@ -11,7 +17,7 @@ from django.db.models import (
 TWITTER_HANDLE_CSV_FILE_NAME = 'twitter_handle_cleanup.csv'
 
 
-def remove_leading_slashes_from_strings(obj):
+def remove_leading_slashes(obj):
     twitter_handle = str(obj.twitter_handle)
     match = re.match(r'^/', twitter_handle)
     new_twitter_handle = ""
@@ -28,7 +34,7 @@ def remove_leading_slashes_from_strings(obj):
         obj.save()
 
 
-def remove_trailing_slashes_from_strings(obj):
+def remove_trailing_slashes(obj):
     twitter_handle = str(obj.twitter_handle)
     new_twitter_handle = ''
     if twitter_handle.endswith("/"):
@@ -51,7 +57,7 @@ def remove_trailing_and_leading_whitespace(obj):
         obj.save()
 
 
-def remove_leading_hastag_on_valid_twitter_handles(Model):
+def remove_leading_hashtag_on_valid_twitter_handles(Model):
 
     profiles = Model.objects.filter(twitter_handle__iregex="^#")
 
