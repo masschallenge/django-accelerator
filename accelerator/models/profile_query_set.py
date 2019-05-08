@@ -74,7 +74,8 @@ class ProfileQuerySet(QuerySet):
     def _profile_for_inferred_profile_type(self, profile_manager):
         if profile_manager is None:
             return None
-        profile = profile_manager.using(self._db).filter(user=self.user).first()
+        profile_qs = profile_manager.using(self._db).filter(user=self.user)
+        profile = profile_qs.first()
         if not profile:
             profile = self._get_profile_from_existing_profile_types()
         return profile

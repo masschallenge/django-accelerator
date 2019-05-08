@@ -22,14 +22,12 @@ from accelerator.models import (
 )
 from accelerator.models.profile_query_set import (
     INCORRECT_USER_TYPE_TEMPLATE,
-    MISSING_PROFILE_TEMPLATE,
 )
 from accelerator.tests.factories import (
     EntrepreneurFactory,
     ExpertFactory,
     MemberFactory,
 )
-from simpleuser.tests.factories import UserFactory
 
 User = get_user_model()
 
@@ -93,4 +91,3 @@ class TestGetProfile(TestCase):
         mock_logger.warning.assert_called_with(
             INCORRECT_USER_TYPE_TEMPLATE.format(ENTREPRENEUR_USER_TYPE,
                                                 EXPERT_USER_TYPE))
-
