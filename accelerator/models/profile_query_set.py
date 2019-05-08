@@ -28,9 +28,6 @@ BaseProfile = swapper.load_model(AcceleratorConfig.name,
                                  "BaseProfile")
 User = get_user_model()
 
-MISSING_BASE_PROFILE_TEMPLATE = ("Missing BaseProfile for user {}. "
-                                 "Creating.")
-
 logger = logging.getLogger(__file__)
 
 EMAIL_KEY = 'email'
@@ -56,22 +53,13 @@ class ProfileQuerySet(QuerySet):
         if PK_KEY in kwargs.keys():
             self.user = User.objects.get(pk=kwargs[PK_KEY])
         elif EMAIL_KEY in kwargs.keys():
-            try:
-                self.user = User.objects.get(email=kwargs[EMAIL_KEY])
-            except User.MultipleObjectsReturned:
-                # This guard is necessary since emails are not necessarily
-                # unique in our system.
-                # Should be able to remove this when we define a custom User
-                self.user = User.objects.filter(
-                    email=kwargs[EMAIL_KEY]).first()
+            self.user = User.objects.get(email=kwargs[EMAIL_KEY])
+
         profile_manager = self._profile_manager_by_user_type()
 
         profile = self._profile_for_inferred_profile_type(profile_manager)
         if profile:
             return profile
-        else:
-            self._add_base_profile_if_missing()
-            return self._get_or_create_profile()
 
     def _profile_manager_by_user_type(self):
         try:
@@ -86,24 +74,10 @@ class ProfileQuerySet(QuerySet):
     def _profile_for_inferred_profile_type(self, profile_manager):
         if profile_manager is None:
             return None
-        return profile_manager.using(self._db).filter(user=self.user).first()
-
-    def _add_base_profile_if_missing(self):
-        if not self.base_profile:
-            logger.warning(MISSING_BASE_PROFILE_TEMPLATE.format(self.user))
-            self.base_profile = BaseProfile.manager.create(user=self.user)
-
-    def _get_or_create_profile(self):
-        return (self._get_profile_from_existing_profile_types() or
-                self._create_default_profile())
-
-    def _create_default_profile(self):
-        logger.warning(MISSING_PROFILE_TEMPLATE.format(MEMBER_USER_TYPE))
-        self.base_profile.user_type = MEMBER_USER_TYPE
-        self.base_profile.save()
-        member_profile = MemberProfile.objects.create(user=self.user)
-        member_profile.save()
-        return member_profile
+        profile = profile_manager.using(self._db).filter(user=self.user).first()
+        if not profile:
+            profile = self._get_profile_from_existing_profile_types()
+        return profile
 
     def _get_profile_from_existing_profile_types(self):
         for kls, user_type in PROFILE_CLASSES_AND_TYPES:

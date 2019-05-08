@@ -2,6 +2,7 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 import uuid
+import swapper
 
 from django.db import models
 from django.conf import settings
@@ -11,6 +12,8 @@ from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models import BaseUserRole
+
+from accelerator.apps import AcceleratorConfig
 
 
 MAX_USERNAME_LENGTH = 30
@@ -44,6 +47,9 @@ class UserManager(BaseUserManager):
                           last_login=now, date_joined=now, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+
+        BaseProfile = swapper.load_model(AcceleratorConfig.name, 'BaseProfile')
+        BaseProfile.objects.create(user=user, user_type='MEMBER')
         return user
 
     def create_user(self, email=None, password=None, **extra_fields):
