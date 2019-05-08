@@ -2,6 +2,12 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 import os
+import sys
+import logging
+
+if len(sys.argv) > 1 and sys.argv[1] == 'test':
+    logging.disable(logging.CRITICAL)
+
 
 PACKAGE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                             "accelerator"))
