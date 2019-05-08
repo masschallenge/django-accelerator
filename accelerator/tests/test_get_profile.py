@@ -22,7 +22,6 @@ from accelerator.models import (
 )
 from accelerator.models.profile_query_set import (
     INCORRECT_USER_TYPE_TEMPLATE,
-    MISSING_BASE_PROFILE_TEMPLATE,
     MISSING_PROFILE_TEMPLATE,
 )
 from accelerator.tests.factories import (
@@ -95,17 +94,3 @@ class TestGetProfile(TestCase):
             INCORRECT_USER_TYPE_TEMPLATE.format(ENTREPRENEUR_USER_TYPE,
                                                 EXPERT_USER_TYPE))
 
-    @patch("accelerator.models.profile_query_set.logger")
-    def test_get_profile_handles_a_user_without_a_profile(self, mock_logger):
-        entrepreneur = UserFactory()
-        profile = BaseProfile.manager.filter(user=entrepreneur).first()
-        assert profile is None
-        profile = entrepreneur.get_profile()
-
-        self.assertIsInstance(profile, MemberProfile)
-        entrepreneur.refresh_from_db()
-        self.assertEqual(entrepreneur.baseprofile.user_type, MEMBER_USER_TYPE)
-        mock_logger.warning.assert_called_with(
-            MISSING_PROFILE_TEMPLATE.format(MEMBER_USER_TYPE))
-        mock_logger.warning.assert_any_call(
-            MISSING_BASE_PROFILE_TEMPLATE.format(entrepreneur))
