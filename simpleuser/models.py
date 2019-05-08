@@ -94,6 +94,9 @@ class User(AbstractUser):
             name = str(self.email)
         return name
 
+    def has_profile(self):
+        return self._get_profile() is not None
+
     def user_phone(self):
         return self._get_profile().phone
 
