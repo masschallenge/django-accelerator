@@ -11,7 +11,6 @@ from accelerator_abstract.models import BaseUserRole
 FINALIST = BaseUserRole.FINALIST
 ALUMNI = BaseUserRole.ALUM
 MENTOR = BaseUserRole.MENTOR
-STAFF = BaseUserRole.STAFF
 
 EVENTS_SUBNAV_TREE = {
     "title": 'Events Sub Nav',
