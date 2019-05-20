@@ -126,6 +126,10 @@ class BaseProgram(AcceleratorModel):
     overview_deadline_date = models.DateTimeField(
         blank=True, null=True,
         help_text="Time is in UTC")
+    eventbrite_organization_id = models.CharField(
+        max_length=20,
+        blank=True,
+        null=True)
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Programs'
