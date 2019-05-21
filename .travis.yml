@@ -27,3 +27,29 @@ install:
 script:
 - make test
 - make code-check
+
+after_success:
+- >
+  if [ ! "$TRAVIS_PULL_REQUEST" ] && [ "$TRAVIS_BRANCH" = "development" ] || [ "$TRAVIS_BRANCH" = "AC-6678" ]; then
+    gem install travis -v 1.8.10;
+    travis login --org --github-token "$SANTE_GH_TOKEN";
+    body=$(echo '{}' | jq --arg TRAVIS_BRANCH "$TRAVIS_BRANCH" \
+      --arg TRAVIS_COMMIT_MESSAGE "$TRAVIS_COMMIT_MESSAGE" \
+      --arg key   'request' \
+      --arg key0   'message' \
+      --arg value0 "Triggered by '$TRAVIS_COMMIT_MESSAGE' in the Front-End" \
+      --arg key1   'branch' \
+      --arg value1 "$TRAVIS_BRANCH" \
+      --arg key2   'config' \
+      --arg key3   'script' \
+      --arg value3 'echo "The tests dont need to run."' \
+      '. | .[$key][$key0]=$value0 | .[$key][$key1]=$value1 | .[$key][$key2][$key3]=$value3' \
+    );
+    curl -s -X POST \
+      -H "Content-Type:application/json" \
+      -H "Accept:application/json" \
+      -H "Travis-API-Version:3" \
+      -H "Authorization:token $(travis token --org)" \
+      -d "$body" \
+      https://api.travis-ci.org/repo/masschallenge%2Fimpact-api/requests;
+  fi;
