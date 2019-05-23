@@ -28,7 +28,7 @@ class ProfileManager(models.Manager):
 
     def create(self, *args, **kwargs):
         self.filter(user=kwargs['user'], user_type="MEMBER").delete()
-        logger.warning(PROFILE_CREATION_WARNING.format(
+        logger.info(PROFILE_CREATION_WARNING.format(
             profile_type=kwargs['user_type'].title(),
             user=kwargs['user']))
         return super(ProfileManager, self).create(*args, **kwargs)
