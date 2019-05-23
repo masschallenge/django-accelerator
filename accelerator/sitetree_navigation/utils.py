@@ -19,7 +19,8 @@ def create_items(tree, item_props_list, parent=None):
         item_kwargs.pop('program_families', None)
         NavTreeItem.objects.update_or_create(
             alias=item_kwargs['alias'], tree=tree,
-            defaults=item_kwargs
+            defaults=item_kwargs,
+            parent=parent,
         )
 
 
