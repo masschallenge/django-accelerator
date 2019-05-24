@@ -37,7 +37,7 @@ STARTUP_DASHBOARD_SUBNAV_ITEMS = [
     }, {
         "title": 'Mentors & Goals',
         "url": (
-            'startup_mentor_tracking_view startup_id'
+            'startup_mentor_tracking_view startup.id'
             ' family_slug program_slug'
         ),
         "urlaspattern": True,
