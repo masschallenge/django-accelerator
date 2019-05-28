@@ -23,4 +23,5 @@ from .startup_dashboard_subnav_definition import (
     delete_startup_dashboard_subnav,
     STARTUP_DASHBOARD_SUBNAV_ITEMS,
     STARTUP_DASHBOARD_TREE_ALIAS,
+    STARTUP_PROFILE_ALIAS,
 )
