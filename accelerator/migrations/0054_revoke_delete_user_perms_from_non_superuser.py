@@ -5,7 +5,7 @@ from django.db import migrations
 from django.contrib.auth.models import Permission
 
 
-def revoke_delete_user_perms_from_non_superusers(apps, schema_editor):
+def revoke_delete_user_perms_from_all_users(apps, schema_editor):
     perm = Permission.objects.filter(name="Can delete user").first()
     if perm and perm.user_set.exists():
         perm.user_set.clear()
@@ -22,6 +22,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RunPython(
-            revoke_delete_user_perms_from_non_superusers,
+            revoke_delete_user_perms_from_all_users,
             migrations.RunPython.noop),
     ]
