@@ -5,10 +5,13 @@ from __future__ import unicode_literals
 from django.db import migrations
 
 from accelerator.sitetree_navigation.sub_navigation import (
-    STARTUP_PROFILE_ALIAS)
+    create_startup_dashboard_subnav,
+    STARTUP_PROFILE_ALIAS,
+)
 
 
-def add_parent_to_startup_profile_menu(apps, schema_editor):
+def update_startup_dashboard_subnav_items(apps, schema_editor):
+    create_startup_dashboard_subnav()
     NavTreeItem = apps.get_model('accelerator', 'NavTreeItem')
     profile_item = NavTreeItem.objects.filter(
         alias=STARTUP_PROFILE_ALIAS).first()
@@ -32,6 +35,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RunPython(
-            add_parent_to_startup_profile_menu,
+            update_startup_dashboard_subnav_items,
             migrations.RunPython.noop),
     ]
