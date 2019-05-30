@@ -6,25 +6,11 @@ from django.db import migrations
 
 from accelerator.sitetree_navigation.sub_navigation import (
     create_startup_dashboard_subnav,
-    STARTUP_PROFILE_ALIAS,
 )
 
 
 def update_startup_dashboard_subnav_items(apps, schema_editor):
     create_startup_dashboard_subnav()
-    NavTreeItem = apps.get_model('accelerator', 'NavTreeItem')
-    profile_item = NavTreeItem.objects.filter(
-        alias=STARTUP_PROFILE_ALIAS).first()
-    view_profile_item = NavTreeItem.objects.filter(
-        alias='startup_view').first()
-    edit_profile_item = NavTreeItem.objects.filter(
-        alias='startup_edit').first()
-    if profile_item and view_profile_item:
-        view_profile_item.parent = profile_item
-        view_profile_item.save()
-    if profile_item and edit_profile_item:
-        edit_profile_item.parent = profile_item
-        edit_profile_item.save()
 
 
 class Migration(migrations.Migration):
