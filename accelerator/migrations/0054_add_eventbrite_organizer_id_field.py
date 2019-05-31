@@ -11,9 +11,9 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RenameField(
+        migrations.AddField(
             model_name='program',
-            old_name='eventbrite_organization_id',
-            new_name='eventbrite_organizer_id'
+            name='eventbrite_organizer_id',
+            field=models.CharField(blank=True, max_length=20, null=True),
         )
     ]
