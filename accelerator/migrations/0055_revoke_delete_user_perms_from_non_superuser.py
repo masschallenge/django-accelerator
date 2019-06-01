@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
     dependencies = [
         (
             'accelerator',
-            '0053_add_eventbrite_organization_id_field'
+            '0054_add_eventbrite_organizer_id_field'
         ),
     ]
 
