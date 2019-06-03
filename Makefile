@@ -96,7 +96,7 @@ VENV = venv
 ACTIVATE_SCRIPT = $(VENV)/bin/activate
 ACTIVATE = export PYTHONPATH=.; . $(ACTIVATE_SCRIPT)
 DJANGO_ADMIN = $(VENV)/bin/django-admin.py
-PYTHON_VERSION = python3.6
+PYTHON_VERSION = python3
 ifeq ($(TRAVIS_PYTHON_VERSION), 2.7)
 	PYTHON_VERSION = python2.7
 endif

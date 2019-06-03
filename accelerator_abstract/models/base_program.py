@@ -130,6 +130,10 @@ class BaseProgram(AcceleratorModel):
         max_length=20,
         blank=True,
         null=True)
+    eventbrite_organizer_id = models.CharField(
+        max_length=20,
+        blank=True,
+        null=True)
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Programs'
