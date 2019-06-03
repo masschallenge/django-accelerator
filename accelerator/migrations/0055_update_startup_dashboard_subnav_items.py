@@ -16,7 +16,7 @@ def update_startup_dashboard_subnav_items(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0053_add_eventbrite_organization_id_field'),
+        ('accelerator', '0054_add_eventbrite_organizer_id_field'),
     ]
 
     operations = [
