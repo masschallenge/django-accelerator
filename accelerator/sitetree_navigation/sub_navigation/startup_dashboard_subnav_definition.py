@@ -10,6 +10,7 @@ from accelerator.sitetree_navigation.utils import (
 from accelerator_abstract.models import BaseUserRole
 
 
+ALUM = BaseUserRole.ALUM
 FINALIST = BaseUserRole.FINALIST
 STARTUP_DASHBOARD_TREE_ALIAS = 'startup_dashboard_subnav'
 STARTUP_PROFILE_ALIAS = 'startup_profile'
@@ -37,12 +38,12 @@ STARTUP_DASHBOARD_SUBNAV_ITEMS = [
     }, {
         "title": 'Mentors & Goals',
         "url": (
-            'startup_mentor_tracking_view startup_id'
+            'startup_mentor_tracking_view startup.id'
             ' family_slug program_slug'
         ),
         "urlaspattern": True,
         "alias": 'startup_mentors_and_goals',
-        "user_roles": [FINALIST]
+        "user_roles": [ALUM, FINALIST]
     }
 ]
 
