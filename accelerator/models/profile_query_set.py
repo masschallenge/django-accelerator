@@ -56,14 +56,8 @@ class ProfileQuerySet(QuerySet):
         if PK_KEY in kwargs.keys():
             self.user = User.objects.get(pk=kwargs[PK_KEY])
         elif EMAIL_KEY in kwargs.keys():
-            try:
-                self.user = User.objects.get(email=kwargs[EMAIL_KEY])
-            except User.MultipleObjectsReturned:
-                # This guard is necessary since emails are not necessarily
-                # unique in our system.
-                # Should be able to remove this when we define a custom User
-                self.user = User.objects.filter(
-                    email=kwargs[EMAIL_KEY]).first()
+            self.user = User.objects.get(email=kwargs[EMAIL_KEY])
+
         profile_manager = self._profile_manager_by_user_type()
 
         profile = self._profile_for_inferred_profile_type(profile_manager)
