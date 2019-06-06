@@ -40,7 +40,7 @@ after_success:
       -H "Authorization:token $(travis token --org)" \
       -d "{
         \"request\":{
-          \"message\":\"Triggered by '${TRAVIS_COMMIT_MESSAGE}' in \the django-accelerator\",
+          \"message\":\"Triggered by '${TRAVIS_COMMIT_MESSAGE}' in django-accelerator\",
           \"branch\":\"${TRAVIS_BRANCH}\",
           \"config\":{
             \"script\":\"echo 'The tests dont need to run.'\"}}}" \
