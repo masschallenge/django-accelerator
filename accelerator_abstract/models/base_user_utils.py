@@ -32,4 +32,4 @@ def is_employee(user):
     if user.is_superuser:
         return True
 
-    return user.clearances.filter(level=CLEARANCE_LEVEL_STAFF).exists()
+    return user.clearances.check_clearance(user, CLEARANCE_LEVEL_STAFF)
