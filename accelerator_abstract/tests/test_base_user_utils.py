@@ -5,9 +5,9 @@ from accelerator_abstract.models.base_user_utils import (
 )
 from accelerator.tests.utils import login_as_new_user
 from accelerator.tests.factories import (
+    Clearance,
+    CLEARANCE_LEVEL_STAFF,
     UserFactory,
-    ProgramRoleGrantFactory,
-    ProgramRoleFactory,
     UserRoleFactory
 )
 from accelerator_abstract.models.base_user_role import (
@@ -26,8 +26,6 @@ class TestBaseUserUtils(TestCase):
 
     def test_is_employee_for_staff_is_true(self):
         user = login_as_new_user(self, UserFactory)
-        ProgramRoleGrantFactory(
-            person=user,
-            program_role=ProgramRoleFactory(
-                user_role=UserRoleFactory(name=BaseUserRole.STAFF)))
+        ClearanceFactory(person=user,
+                         level=CLEARANCE_LEVEL_STAFF)
         self.assertTrue(is_employee(user))
