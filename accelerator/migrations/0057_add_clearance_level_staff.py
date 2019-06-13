@@ -15,6 +15,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='clearance',
             name='level',
-            field=models.CharField(choices=[('Exec/MD', 'Exec/MD'), ('Global Manager', 'Global Manager'), ('Program Operations Manager', 'Program Operations Manager'), ('Staff', 'Staff')], max_length=64),
+            field=models.CharField(
+                choices=[('Exec/MD', 'Exec/MD'),
+                         ('Global Manager', 'Global Manager'),
+                         ('Program Operations Manager',
+                          'Program Operations Manager'),
+                         ('Staff', 'Staff')], max_length=64),
         ),
     ]

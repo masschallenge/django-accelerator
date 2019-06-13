@@ -5,13 +5,11 @@ from accelerator_abstract.models.base_user_utils import (
 )
 from accelerator.tests.utils import login_as_new_user
 from accelerator.tests.factories import (
-    Clearance,
-    CLEARANCE_LEVEL_STAFF,
+    ClearanceFactory,
     UserFactory,
-    UserRoleFactory
 )
-from accelerator_abstract.models.base_user_role import (
-    BaseUserRole
+from accelerator_abstract.models.clearance import (
+    CLEARANCE_LEVEL_STAFF,
 )
 
 

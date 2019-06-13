@@ -3,7 +3,6 @@
 
 from __future__ import unicode_literals
 from accelerator_abstract.models import (
-    BaseUserRole,
     CLEARANCE_LEVEL_STAFF,
 )
 

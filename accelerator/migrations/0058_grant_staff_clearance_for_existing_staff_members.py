@@ -6,6 +6,7 @@ from django.db import migrations
 
 STAFF = "Staff"  # don't import from models in migrations.
 
+
 def grant_staff_clearances_for_role_grantees(apps, program_role):
     Clearance = apps.get_model('accelerator', 'Clearance')
     program_family = program_role.program.program_family
@@ -16,19 +17,21 @@ def grant_staff_clearances_for_role_grantees(apps, program_role):
             user_id=user_id,
             program_family=program_family,
             defaults={"level": STAFF})
-        
+
 
 def grant_clearances_for_mc_staff_users(apps, schema_editor):
-    ProgramRole = apps.get_model('accelerator', "ProgramRole")    
-    
+    ProgramRole = apps.get_model('accelerator', "ProgramRole")
+
     for program_role in ProgramRole.objects.filter(
             user_role__name=STAFF):
         grant_staff_clearances_for_role_grantees(apps, program_role)
 
+
 def revoke_staff_clearances(apps, schema_editor):
     Clearance = apps.get_model("accelerator", "Clearance")
     Clearance.objects.filter(level=STAFF).delete()
-    
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
