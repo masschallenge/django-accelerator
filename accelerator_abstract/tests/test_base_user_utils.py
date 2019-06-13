@@ -8,7 +8,7 @@ from accelerator.tests.factories import (
     ClearanceFactory,
     UserFactory,
 )
-from accelerator_abstract.models.clearance import (
+from accelerator_abstract.models.base_clearance import (
     CLEARANCE_LEVEL_STAFF,
 )
 
@@ -24,6 +24,6 @@ class TestBaseUserUtils(TestCase):
 
     def test_is_employee_for_staff_is_true(self):
         user = login_as_new_user(self, UserFactory)
-        ClearanceFactory(person=user,
+        ClearanceFactory(user=user,
                          level=CLEARANCE_LEVEL_STAFF)
         self.assertTrue(is_employee(user))
