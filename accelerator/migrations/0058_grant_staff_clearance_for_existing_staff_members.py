@@ -26,11 +26,25 @@ def grant_clearances_for_mc_staff_users(apps, schema_editor):
             user_role__name=STAFF):
         grant_staff_clearances_for_role_grantees(apps, program_role)
 
+def grant_demo_admin_clearance(apps, schema_editor):
+    Clearance = apps.get_model('accelerator', 'Clearance')
+    ProgramFamily = apps.get_model('accelerator', "ProgramFamily")    
+    User = apps.get_model('simpleuser', 'User')
+    user = User.objects.filter(email="demoadmin@masschallenge.org").first()
+    if user:
+        [Clearance.objects.get_or_create(
+            user=user,
+            program_family=program_family,
+            defaults={"level": STAFF})
+        for program_family in ProgramFamily.objects.all()]
 
 def revoke_staff_clearances(apps, schema_editor):
     Clearance = apps.get_model("accelerator", "Clearance")
     Clearance.objects.filter(level=STAFF).delete()
 
+def grant_clearances(apps, schema_editor):
+    grant_clearances_for_mc_staff_users(apps, schema_editor)
+    grant_demo_admin_clearance(apps, schema_editor)
 
 class Migration(migrations.Migration):
 
@@ -40,6 +54,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RunPython(
-            grant_clearances_for_mc_staff_users,
+            grant_clearances,
             revoke_staff_clearances)
     ]
