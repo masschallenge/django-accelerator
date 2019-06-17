@@ -28,7 +28,6 @@ script:
 - make test
 - make code-check
 
-
 deploy:
   # deploy development to the pre-staging environment
   - provider: script
