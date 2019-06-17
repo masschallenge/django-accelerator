@@ -18,3 +18,5 @@ curl -s -X POST \
 -H "Authorization:token $(travis token --org)" \
 -d "$body" \
 https://api.travis-ci.org/repo/masschallenge%2Fimpact-api/requests;
+
+printenv
