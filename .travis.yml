@@ -33,4 +33,4 @@ deploy:
   - provider: script
     script: bash scripts/pre-staging-deploy.sh
     on:
-      branch: development
+      branch: AC-6810
