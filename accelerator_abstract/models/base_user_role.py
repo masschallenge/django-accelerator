@@ -50,7 +50,8 @@ class BaseUserRole(AcceleratorModel):
 
 
 def has_user_role_base(
-        user, user_role_name, program=None, inactive_programs=False):
+        user, user_role_name, program=None,
+        inactive_programs=False, active_or_ended_programs=False):
     filter = user.programrolegrant_set.filter(
         program_role__user_role__name=user_role_name)
     if program:
@@ -58,6 +59,9 @@ def has_user_role_base(
     if not inactive_programs:
         filter = filter.filter(program_role__program__program_status__in=[
             "active", "upcoming"])
+    elif active_or_ended_programs:
+        filter = filter.filter(program_role__program__program_status__in=[
+            "active", "ended"])
     return filter.exists()
 
 
