@@ -59,8 +59,7 @@ def has_user_role_base(
     if not inactive_programs:
         filter = filter.filter(program_role__program__program_status__in=[
             "active", "upcoming"])
-        return filter.exists()
-    if inactive_programs and active_or_ended_programs:
+    elif active_or_ended_programs:
         filter = filter.filter(program_role__program__program_status__in=[
             "active", "ended"])
     return filter.exists()
