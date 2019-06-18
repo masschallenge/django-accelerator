@@ -2,7 +2,9 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from __future__ import unicode_literals
-from accelerator_abstract.models import BaseUserRole
+from accelerator_abstract.models import (
+    CLEARANCE_LEVEL_STAFF,
+)
 
 
 def is_expert(user):
@@ -29,6 +31,4 @@ def is_employee(user):
     if user.is_superuser:
         return True
 
-    return user.programrolegrant_set.filter(
-        program_role__user_role__name=BaseUserRole.STAFF
-    ).exists()
+    return user.clearances.check_clearance(user, CLEARANCE_LEVEL_STAFF)
