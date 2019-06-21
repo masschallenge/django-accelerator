@@ -217,10 +217,21 @@ class BaseStartup(AcceleratorModel):
 
     @property
     def finalist_startup_statuses(self):
+        statuses_of_interest = (
+            BaseStartupRole.FINALIST_STARTUP_ROLES +
+            BaseStartupRole.WINNER_STARTUP_ROLES
+        )
         statuses = self.program_startup_statuses().filter(
-                startup_role__name=BaseStartupRole.FINALIST).values_list(
-                    'program__name', flat=True).distinct()
-        return list(statuses)
+                startup_role__name__in=statuses_of_interest)
+        status_list = [
+            (
+                status.startup_role.name + " " +
+                str(status.program.start_date.year) + " " +
+                "(" + status.program.program_family.url_slug.upper() + ")"
+            )
+            for status in statuses]
+
+        return list(set(status_list))
 
     def is_finalist(self, program=None):
         """if program is given, check whether this startup is a finalist
