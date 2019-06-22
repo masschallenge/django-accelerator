@@ -29,7 +29,6 @@ script:
 - make code-check
 
 after_success:
-- printenv
 - >
   if [ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$TRAVIS_BRANCH" = "AC-6810" ]; then
     gem install travis -v 1.8.10;
