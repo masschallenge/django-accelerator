@@ -32,6 +32,7 @@ after_success:
 - printenv
 - >
   if [ ! "$TRAVIS_PULL_REQUEST" ] && [ "$TRAVIS_BRANCH" = "AC-6810" ]; then
+    echo "here";
     gem install travis -v 1.8.10;
     travis login --org --github-token "$SANTE_GH_TOKEN";
     body='{
