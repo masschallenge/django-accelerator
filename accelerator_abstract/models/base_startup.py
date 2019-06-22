@@ -208,12 +208,25 @@ class BaseStartup(AcceleratorModel):
             logger.warning(STARTUP_NO_ORG_WARNING_MSG.format(self.pk))
             return None
 
+    @property
+    def image_url(self):
+        if self.high_resolution_logo:
+            return self.high_resolution_logo.url
+        return ""
+
     def program_startup_statuses(self):
         from accelerator.models.program_startup_status import (
             ProgramStartupStatus
         )
         return ProgramStartupStatus.objects.filter(
             startupstatus__startup=self)
+
+    def _generate_startup_status(self, status):
+        return (
+            status.startup_role.name + " " +
+            str(status.program.start_date.year) + " " +
+            "(" + status.program.program_family.url_slug.upper() + ")"
+        )
 
     @property
     def finalist_startup_statuses(self):
@@ -222,15 +235,11 @@ class BaseStartup(AcceleratorModel):
             BaseStartupRole.WINNER_STARTUP_ROLES
         )
         statuses = self.program_startup_statuses().filter(
-                startup_role__name__in=statuses_of_interest)
+                startup_role__name__in=statuses_of_interest
+                    ).order_by("-created_at")
         status_list = [
-            (
-                status.startup_role.name + " " +
-                str(status.program.start_date.year) + " " +
-                "(" + status.program.program_family.url_slug.upper() + ")"
-            )
+            self._generate_startup_status(status)
             for status in statuses]
-
         return list(set(status_list))
 
     def is_finalist(self, program=None):
