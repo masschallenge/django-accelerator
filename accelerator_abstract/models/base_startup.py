@@ -240,7 +240,7 @@ class BaseStartup(AcceleratorModel):
         status_list = [
             self._generate_startup_status(status)
             for status in statuses]
-        return list(set(status_list))
+        return list(status_list)
 
     def is_finalist(self, program=None):
         """if program is given, check whether this startup is a finalist
