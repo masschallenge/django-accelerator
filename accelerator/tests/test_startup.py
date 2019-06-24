@@ -115,3 +115,61 @@ class TestStartup(TestCase):
             startup_role=startup_role)
         self.assertFalse(
             context.startup.is_finalist(ProgramFactory()))
+
+    def test_generate_startup_status(self):
+        startup_role = StartupRoleFactory(name=BaseStartupRole.FINALIST)
+        context = StartupTeamMemberContext(
+            primary_contact=False,
+            startup_role=startup_role)
+        self.assertTrue(context.startup.is_finalist())
+
+    def test_get_finalist_startup_statuses(self):
+        startup_role = StartupRoleFactory(name=BaseStartupRole.FINALIST)
+        winner_role = StartupRoleFactory(name=BaseStartupRole.WINNER)
+        context = StartupTeamMemberContext(
+            primary_contact=False,
+            startup_role=startup_role)
+        context.create_startup_status(winner_role)
+        startup = context.startup
+        finalist_statuses = startup._get_finalist_startup_statuses()
+        self.assertTrue(
+            all([status in context.program_startup_statuses
+                for status in finalist_statuses]))
+
+    def test_finalist_startup_statuses(self):
+        finalist_role = StartupRoleFactory(name=BaseStartupRole.FINALIST)
+        winner_role = StartupRoleFactory(name=BaseStartupRole.WINNER)
+        context = StartupTeamMemberContext(
+            primary_contact=False,
+            startup_role=finalist_role)
+        context.create_startup_status(winner_role)
+        finalist_statuses = context.startup.finalist_startup_statuses
+        finalist_statuses.reverse()
+        zipped_lists = zip(
+            finalist_statuses, context.program_startup_statuses)
+        startup = context.startup
+        for status_string, status in zipped_lists:
+            self.assertTrue(
+                status_string ==
+                startup._generate_startup_status(status)
+            )
+
+    def test_latest_status_year_with_statuses(self):
+        startup_role = StartupRoleFactory(name=BaseStartupRole.FINALIST)
+        context = StartupTeamMemberContext(
+            primary_contact=False,
+            startup_role=startup_role)
+        startup = context.startup
+        startup_status = context.startup_statuses[0].program_startup_status
+        program_year = startup_status.program.start_date.year
+        self.assertTrue(startup.latest_status_year == program_year)
+
+    def test_latest_status_year_without_startup_status(self):
+        context = StartupTeamMemberContext(
+            primary_contact=False)
+        self.assertTrue(context.startup.latest_status_year == 0)
+
+    def test_image_url_with_no_high_resolution_photo(self):
+        context = StartupTeamMemberContext(
+            primary_contact=False)
+        self.assertTrue(context.startup.image_url == "")

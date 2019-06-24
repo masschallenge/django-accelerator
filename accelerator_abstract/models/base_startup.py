@@ -240,7 +240,7 @@ class BaseStartup(AcceleratorModel):
 
     @property
     def finalist_startup_statuses(self):
-        statuses = self._generate_startup_status()
+        statuses = self._get_finalist_startup_statuses()
         status_list = [
             self._generate_startup_status(status)
             for status in statuses]
@@ -248,7 +248,7 @@ class BaseStartup(AcceleratorModel):
 
     @property
     def latest_status_year(self):
-        statuses = self._generate_startup_status()
+        statuses = self._get_finalist_startup_statuses()
         if statuses:
             return statuses[0].program.start_date.year
         return 0
