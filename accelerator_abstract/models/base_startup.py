@@ -249,7 +249,9 @@ class BaseStartup(AcceleratorModel):
     @property
     def latest_status_year(self):
         statuses = self._generate_startup_status()
-        return statuses[0].program.start_date.year
+        if statuses:
+            return statuses[0].program.start_date.year
+        return 0
 
     def is_finalist(self, program=None):
         """if program is given, check whether this startup is a finalist
