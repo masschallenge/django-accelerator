@@ -3,16 +3,16 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
 
 from accelerator.utils import create_mc_permission
 
 
 def add_mc_permissions(apps, schema_editor):
-    perms = Permission.objects.filter(content_type__app_label='accelerator')
-    for perm in perms:
-        create_mc_permission(perm)
+    permissions = Permission.objects.filter(
+        content_type__app_label='accelerator')
+    for permission in permissions:
+        create_mc_permission(permission)
 
 
 class Migration(migrations.Migration):

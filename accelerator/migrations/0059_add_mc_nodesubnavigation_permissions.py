@@ -3,24 +3,26 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
 
 from accelerator.utils import create_mc_permission
 
 
 def add_mc_nodesubnavigation_permissions(apps, schema_editor):
-    perms = Permission.objects.filter(
+    permissions = Permission.objects.filter(
         content_type__app_label='accelerator',
         content_type__model='nodesubnavassociation')
-    for perm in perms:
-        create_mc_permission(perm)
+    for permission in permissions:
+        create_mc_permission(permission)
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0058_grant_staff_clearance_for_existing_staff_members'),
+        (
+            'accelerator',
+            '0058_grant_staff_clearance_for_existing_staff_members'
+        ),
     ]
 
     operations = [
