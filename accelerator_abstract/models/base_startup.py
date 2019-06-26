@@ -112,9 +112,6 @@ class BaseStartup(AcceleratorModel):
         validators=[RegexValidator('^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|)$',
                                    'Color must be 3 or 6-digit hexecimal '
                                    'number, such as FF0000 for red.'), ])
-    recommendation_tags = models.ManyToManyField(
-        swapper.get_model_name('accelerator', 'RecommendationTag'),
-        blank=True)
     currency = models.ForeignKey(swapper.get_model_name(
         'accelerator', 'Currency'), blank=True,
         null=True)

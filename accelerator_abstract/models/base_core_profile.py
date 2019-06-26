@@ -104,10 +104,6 @@ class BaseCoreProfile(AcceleratorModel):
 
     user_type = None
     default_page = "member_homepage"
-    recommendation_tags = models.ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               'RecommendationTag'),
-        blank=True)
     newsletter_sender = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):

@@ -48,7 +48,6 @@ from accelerator_abstract.models.base_startup_program_interest import (
     INTEREST_CHOICES
 )
 from .startup_cycle_interest import StartupCycleInterest
-from .recommendation_tag import RecommendationTag
 
 from .site import Site
 from .site_program_authorization import SiteProgramAuthorization
