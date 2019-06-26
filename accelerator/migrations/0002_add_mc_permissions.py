@@ -6,21 +6,13 @@ from django.db import migrations
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
 
+from accelerator.utils import create_mc_permission
+
 
 def add_mc_permissions(apps, schema_editor):
     perms = Permission.objects.filter(content_type__app_label='accelerator')
     for perm in perms:
-        ct, _ = ContentType.objects.get_or_create(
-            app_label="mc",
-            model=perm.content_type.model)
-        new_perm, _ = Permission.objects.get_or_create(
-            name=perm.name,
-            content_type=ct,
-            codename=perm.codename)
-        for group in perm.group_set.all():
-            group.permissions.add(new_perm)
-        for user in perm.user_set.all():
-            user.user_permissions.add(new_perm)
+        create_mc_permission(perm)
 
 
 class Migration(migrations.Migration):
