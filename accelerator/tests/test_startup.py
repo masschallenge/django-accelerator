@@ -149,8 +149,8 @@ class TestStartup(TestCase):
             finalist_statuses, context.program_startup_statuses)
         startup = context.startup
         for status_string, status in zipped_lists:
-            self.assertTrue(
-                status_string ==
+            self.assertEqual(
+                status_string,
                 startup._generate_startup_status(status)
             )
 
@@ -162,14 +162,14 @@ class TestStartup(TestCase):
         startup = context.startup
         startup_status = context.startup_statuses[0].program_startup_status
         program_year = startup_status.program.start_date.year
-        self.assertTrue(startup.latest_status_year == program_year)
+        self.assertEqual(startup.latest_status_year, program_year)
 
     def test_latest_status_year_without_startup_status(self):
         context = StartupTeamMemberContext(
             primary_contact=False)
-        self.assertTrue(context.startup.latest_status_year == 0)
+        self.assertEqual(context.startup.latest_status_year, 0)
 
     def test_image_url_with_no_high_resolution_photo(self):
         context = StartupTeamMemberContext(
             primary_contact=False)
-        self.assertTrue(context.startup.image_url == "")
+        self.assertEqual(context.startup.image_url, "")

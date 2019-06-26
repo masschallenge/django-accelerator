@@ -244,7 +244,7 @@ class BaseStartup(AcceleratorModel):
         status_list = [
             self._generate_startup_status(status)
             for status in statuses]
-        return list(status_list)
+        return status_list
 
     @property
     def latest_status_year(self):
