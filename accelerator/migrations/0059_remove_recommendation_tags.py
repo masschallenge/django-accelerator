@@ -8,7 +8,8 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0058_grant_staff_clearance_for_existing_staff_members'),
+        ('accelerator',
+            '0058_grant_staff_clearance_for_existing_staff_members'),
     ]
 
     operations = [
