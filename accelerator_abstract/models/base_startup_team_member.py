@@ -33,10 +33,6 @@ class BaseStartupTeamMember(AcceleratorModel):
     design_contact = models.BooleanField(default=False)
     display_on_public_profile = models.BooleanField(default=True)
     founder = models.NullBooleanField(default=False, null=True)
-    recommendation_tags = models.ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               'RecommendationTag'),
-        blank=True)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_startupteammember'.format(

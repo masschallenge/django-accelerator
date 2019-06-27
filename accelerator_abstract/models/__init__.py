@@ -232,7 +232,6 @@ from .base_question import (
     QUESTION_TYPE_MULTILINE,
     QUESTION_TYPE_NUMBER,
 )
-from .base_recommendation_tag import BaseRecommendationTag
 from .base_reference import BaseReference
 from .base_refund_code import BaseRefundCode
 from .base_refund_code_redemption import (
