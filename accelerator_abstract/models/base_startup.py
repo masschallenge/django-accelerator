@@ -29,6 +29,7 @@ STARTUP_COMMUNITIES = (
     ('green', 'Green'),
 )
 STARTUP_NO_ORG_WARNING_MSG = "Startup {} has no organization"
+ALGOLIA_STARTUP_STATUS = "{status} {year} ({program_family_slug})"
 
 
 @python_2_unicode_compatible
@@ -221,20 +222,22 @@ class BaseStartup(AcceleratorModel):
         return ProgramStartupStatus.objects.filter(
             startupstatus__startup=self)
 
-    def _generate_startup_status(self, status):
-        return (
-            status.startup_role.name + " " +
-            str(status.program.start_date.year) + " " +
-            "(" + status.program.program_family.url_slug.upper() + ")"
+    def _generate_formatted_startup_status(self, status):
+        program = status.program
+        formatted_status = ALGOLIA_STARTUP_STATUS.format(
+            status=status.startup_role.name,
+            year=str(program.start_date.year),
+            program_family_slug=program.program_family.url_slug.upper()
         )
+        return formatted_status
 
     def _get_finalist_startup_statuses(self):
-        statuses_of_interest = (
+        roles_of_interest = (
             BaseStartupRole.FINALIST_STARTUP_ROLES +
             BaseStartupRole.WINNER_STARTUP_ROLES
         )
         statuses = self.program_startup_statuses().filter(
-                startup_role__name__in=statuses_of_interest
+                startup_role__name__in=roles_of_interest
                     ).order_by("-created_at")
         return statuses
 
@@ -242,7 +245,7 @@ class BaseStartup(AcceleratorModel):
     def finalist_startup_statuses(self):
         statuses = self._get_finalist_startup_statuses()
         status_list = [
-            self._generate_startup_status(status)
+            self._generate_formatted_startup_status(status)
             for status in statuses]
         return status_list
 
