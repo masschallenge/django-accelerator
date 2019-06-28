@@ -29,6 +29,7 @@ STARTUP_COMMUNITIES = (
     ('green', 'Green'),
 )
 STARTUP_NO_ORG_WARNING_MSG = "Startup {} has no organization"
+DISPLAY_STARTUP_STATUS = "{status} {year} ({program_family_slug})"
 
 
 @python_2_unicode_compatible
@@ -205,12 +206,52 @@ class BaseStartup(AcceleratorModel):
             logger.warning(STARTUP_NO_ORG_WARNING_MSG.format(self.pk))
             return None
 
+    @property
+    def image_url(self):
+        if self.high_resolution_logo:
+            return self.high_resolution_logo.url
+        return ""
+
     def program_startup_statuses(self):
         from accelerator.models.program_startup_status import (
             ProgramStartupStatus
         )
         return ProgramStartupStatus.objects.filter(
             startupstatus__startup=self)
+
+    def _generate_formatted_startup_status(self, status):
+        program = status.program
+        formatted_status = DISPLAY_STARTUP_STATUS.format(
+            status=status.startup_role.name,
+            year=str(program.start_date.year),
+            program_family_slug=program.program_family.url_slug.upper()
+        )
+        return formatted_status
+
+    def _get_finalist_startup_statuses(self):
+        roles_of_interest = (
+            BaseStartupRole.FINALIST_STARTUP_ROLES +
+            BaseStartupRole.WINNER_STARTUP_ROLES
+        )
+        statuses = self.program_startup_statuses().filter(
+                startup_role__name__in=roles_of_interest
+                    ).order_by("-created_at")
+        return statuses
+
+    @property
+    def finalist_startup_statuses(self):
+        statuses = self._get_finalist_startup_statuses()
+        status_list = [
+            self._generate_formatted_startup_status(status)
+            for status in statuses]
+        return status_list
+
+    @property
+    def latest_status_year(self):
+        statuses = self._get_finalist_startup_statuses()
+        if statuses:
+            return statuses[0].program.start_date.year
+        return 0
 
     def is_finalist(self, program=None):
         """if program is given, check whether this startup is a finalist
