@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     dependencies = [
         (
             'accelerator',
-            '0058_grant_staff_clearance_for_existing_staff_members'
+            '0059_remove_recommendation_tags'
         ),
     ]
 
