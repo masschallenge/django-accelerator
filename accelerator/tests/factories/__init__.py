@@ -74,7 +74,6 @@ from .program_role_grant_factory import ProgramRoleGrantFactory
 from .program_startup_attribute_factory import ProgramStartupAttributeFactory
 from .program_startup_status_factory import ProgramStartupStatusFactory
 from .question_factory import QuestionFactory
-from .recommendation_tag_factory import RecommendationTagFactory
 from .reference_factory import ReferenceFactory
 from .refund_code_factory import RefundCodeFactory
 from .refund_code_redemption_factory import RefundCodeRedemptionFactory

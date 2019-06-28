@@ -8,7 +8,6 @@ from factory import (
     DjangoModelFactory,
     Sequence,
     SubFactory,
-    post_generation,
 )
 
 from accelerator.apps import AcceleratorConfig
@@ -38,11 +37,3 @@ class StartupTeamMemberFactory(DjangoModelFactory):
     design_contact = False
     display_on_public_profile = False
     founder = False
-
-    @post_generation
-    def recommendation_tags(self, create, extracted, **kwargs):
-        if not create:
-            return
-        if extracted:
-            for tag in extracted:
-                self.recommendation_tags.add(tag)

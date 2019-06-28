@@ -77,14 +77,6 @@ class StartupFactory(DjangoModelFactory):
                 self.additional_industries.add(industry)
 
     @post_generation
-    def recommendation_tags(self, create, extracted, **kwargs):
-        if not create:
-            return
-        if extracted:
-            for tag in extracted:
-                self.recommendation_tags.add(tag)
-
-    @post_generation
     def name(self, create, extracted, **kwargs):
         if not create:
             return
