@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     dependencies = [
         (
             'accelerator',
-            '0059_remove_recommendation_tags'
+            '0060_add_mc_nodesubnavigation_permissions'
         ),
     ]
 
