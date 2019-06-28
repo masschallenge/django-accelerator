@@ -29,7 +29,7 @@ STARTUP_COMMUNITIES = (
     ('green', 'Green'),
 )
 STARTUP_NO_ORG_WARNING_MSG = "Startup {} has no organization"
-ALGOLIA_STARTUP_STATUS = "{status} {year} ({program_family_slug})"
+DISPLAY_STARTUP_STATUS = "{status} {year} ({program_family_slug})"
 
 
 @python_2_unicode_compatible
@@ -224,7 +224,7 @@ class BaseStartup(AcceleratorModel):
 
     def _generate_formatted_startup_status(self, status):
         program = status.program
-        formatted_status = ALGOLIA_STARTUP_STATUS.format(
+        formatted_status = DISPLAY_STARTUP_STATUS.format(
             status=status.startup_role.name,
             year=str(program.start_date.year),
             program_family_slug=program.program_family.url_slug.upper()

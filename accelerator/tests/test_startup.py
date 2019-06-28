@@ -15,7 +15,7 @@ from accelerator_abstract.models.base_startup_role import (
     BaseStartupRole
 )
 from accelerator_abstract.models.base_startup import (
-    ALGOLIA_STARTUP_STATUS
+    DISPLAY_STARTUP_STATUS
 )
 from accelerator.tests.contexts import (
     StartupTeamMemberContext
@@ -125,7 +125,7 @@ class TestStartup(TestCase):
             primary_contact=False,
             startup_role=startup_role)
         program = context.program
-        expected_status = ALGOLIA_STARTUP_STATUS.format(
+        expected_status = DISPLAY_STARTUP_STATUS.format(
             status=BaseStartupRole.FINALIST,
             year=program.start_date.year,
             program_family_slug=program.program_family.url_slug.upper()
