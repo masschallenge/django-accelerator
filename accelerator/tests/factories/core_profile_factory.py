@@ -44,14 +44,6 @@ class CoreProfileFactory(DjangoModelFactory):
     newsletter_sender = False
 
     @post_generation
-    def recommendation_tags(self, create, extracted, **kwargs):
-        if not create:
-            return
-        if extracted:
-            for tag in extracted:
-                self.recommendation_tags.add(tag)
-
-    @post_generation
     def program_families(self, create, extracted, **kwargs):
         if not create:
             return

@@ -37,6 +37,8 @@ UI_GENDER_CHOICES = (
     GENDER_PREFER_NOT_TO_STATE_CHOICE,
     GENDER_OTHER_CHOICE,
 )
+JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
+                          'confirmed_judge_label': 'Judge'}
 
 
 @python_2_unicode_compatible
@@ -104,10 +106,6 @@ class BaseCoreProfile(AcceleratorModel):
 
     user_type = None
     default_page = "member_homepage"
-    recommendation_tags = models.ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               'RecommendationTag'),
-        blank=True)
     newsletter_sender = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
@@ -216,8 +214,23 @@ class BaseCoreProfile(AcceleratorModel):
         return self.default_page
 
     def calc_landing_page(self):
+        excludes = self._check_for_judge_excludes()
         return (self.startup_based_landing_page() or
-                self.role_based_landing_page())
+                self.role_based_landing_page(exclude_role_names=excludes))
+
+    def _check_for_judge_excludes(self):
+        excludes = []
+        for (label, role_name) in JUDGE_FIELDS_TO_LABELS.items():
+            if not self._has_judge_label_in_active_round(label):
+                excludes.append(role_name)
+        return excludes
+
+    def _has_judge_label_in_active_round(self, label):
+        JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
+                                          'JudgingRound')
+        active_rounds = JudgingRound.objects.filter(is_active=True)
+        label_ids = active_rounds.values_list(label, flat=True)
+        return self.user.userlabel_set.filter(id__in=label_ids).exists()
 
     def check_landing_page(self):
         page = self.landing_page or self.calc_landing_page()
