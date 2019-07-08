@@ -7,6 +7,7 @@ from django.test import TestCase
 
 from accelerator.tests.factories import (
     ExpertFactory,
+    EntrepreneurFactory,
     InterestCategoryFactory,
     MemberFactory,
     ProgramFactory,
@@ -214,3 +215,13 @@ class TestCoreProfile(TestCase):
         ])
         default_page = profile.default_page
         self.assertTrue(landing_page == default_page)
+
+    def test_entrepreneur_profile_has_confirmed_mentor_programs_prop(self):
+        mentor = EntrepreneurFactory()
+        attr = hasattr(mentor.get_profile(), "confirmed_mentor_programs")
+        self.assertTrue(attr)
+
+    def test_expert_profile_has_confirmed_mentor_programs_prop(self):
+        expert = ExpertFactory()
+        attr = hasattr(expert.get_profile(), "confirmed_mentor_programs")
+        self.assertTrue(attr)
