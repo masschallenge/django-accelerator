@@ -28,8 +28,7 @@ def remove_eit_only_finalists_from_alumni_program(apps, schema_editor):
         StartupStatus,
         alum_program_family,
         eit_program_family,
-        eit_alum_startups,
-        eit_finalist_startups)
+        eit_alum_startups)
 
     _delete_program_role_grants(
         apps,
@@ -54,11 +53,11 @@ class Migration(migrations.Migration):
 
 def _delete_startup_statuses(
         startup_status_model, alum_program_family,
-        eit_program_family, eit_alum_startups, eit_finalist_startups):
+        eit_program_family, eit_alum_startups):
     eit_startups_in_other_programs = _get_eit_startups_in_other_programs(
         startup_status_model,
         [alum_program_family, eit_program_family],
-        eit_finalist_startups
+        eit_alum_startups
     )
 
     eit_only_startups = set(eit_alum_startups) - set(
@@ -123,7 +122,7 @@ def _get_eit_alums_in_other_programs(
 
 
 def _get_eit_startups_in_other_programs(
-        startup_status_model, exclude_programs, eit_finalist_startups):
+        startup_status_model, exclude_programs, eit_alum_startups):
     finalist_filter = Q(
         program_startup_status__startup_role__name=BaseStartupRole.FINALIST
     )
@@ -133,5 +132,5 @@ def _get_eit_startups_in_other_programs(
     return startup_status_model.objects.filter(
         program_family_filter,
         finalist_filter,
-        startup_id__in=eit_finalist_startups,
+        startup_id__in=eit_alum_startups,
         ).values_list('startup', flat=True)
