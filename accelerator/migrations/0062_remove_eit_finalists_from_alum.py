@@ -103,7 +103,7 @@ def _get_eit_startups_in_other_programs(
     finalist_filter = Q(
         program_startup_status__startup_role__name=BaseStartupRole.FINALIST
     )
-    program_family_filter = Q(
+    program_family_filter = ~Q(
         program_startup_status__program__program_family__in=exclude_programs
     )
     return startup_status_model.objects.filter(
