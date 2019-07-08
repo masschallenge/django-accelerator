@@ -10,9 +10,7 @@ from accelerator_abstract.models.base_user_role import BaseUserRole
 
 
 def remove_eit_only_finalists_from_alumni_program(apps, schema_editor):
-    ProgramRoleGrant = apps.get_model('accelerator', 'ProgramRoleGrant')
     ProgramFamily = apps.get_model('accelerator', 'ProgramFamily')
-    StartupTeamMember = apps.get_model('accelerator', 'StartupTeamMember')
     StartupStatus = apps.get_model('accelerator', 'StartupStatus')
 
     alum_program_family = ProgramFamily.objects.filter(
@@ -26,39 +24,19 @@ def remove_eit_only_finalists_from_alumni_program(apps, schema_editor):
     eit_alum_startups = _get_eit_alum_startups(
         StartupStatus, eit_finalist_startups, alum_program_family)
 
-    eit_startups_in_other_programs = _get_eit_startups_in_other_programs(
+    _delete_startup_statuses(
         StartupStatus,
-        [alum_program_family, eit_program_family],
-        eit_finalist_startups
+        alum_program_family,
+        eit_program_family,
+        eit_alum_startups,
+        eit_finalist_startups)
+
+    _delete_program_role_grants(
+        apps,
+        alum_program_family,
+        eit_program_family,
+        eit_alum_startups,
     )
-
-    eit_only_startups = set(eit_alum_startups) - set(
-        eit_startups_in_other_programs)
-
-    eit_alums = StartupTeamMember.objects.filter(
-        startup__in=eit_alum_startups
-    ).values_list('user', flat=True)
-
-    eit_alums_in_other_programs = _get_eit_alums_in_other_programs(
-        ProgramRoleGrant,
-        [alum_program_family, eit_program_family],
-        eit_alums)
-
-    eit_only_alums = set(eit_alums) - set(eit_alums_in_other_programs)
-
-    alum_pf_filter = Q(
-        program_startup_status__program__program_family=alum_program_family
-    )
-
-    if eit_only_startups and eit_only_alums:
-        StartupStatus.objects.filter(
-            alum_pf_filter,
-            startup_id__in=eit_only_startups,
-        ).delete()
-        ProgramRoleGrant.objects.filter(
-            person_id__in=eit_only_alums,
-            program_role__program__program_family=alum_program_family,
-        ).delete()
 
 
 class Migration(migrations.Migration):
@@ -72,6 +50,52 @@ class Migration(migrations.Migration):
             remove_eit_only_finalists_from_alumni_program,
             migrations.RunPython.noop)
     ]
+
+
+def _delete_startup_statuses(
+        startup_status_model, alum_program_family,
+        eit_program_family, eit_alum_startups, eit_finalist_startups):
+    eit_startups_in_other_programs = _get_eit_startups_in_other_programs(
+        startup_status_model,
+        [alum_program_family, eit_program_family],
+        eit_finalist_startups
+    )
+
+    eit_only_startups = set(eit_alum_startups) - set(
+        eit_startups_in_other_programs)
+
+    alum_program_family_filter = Q(
+        program_startup_status__program__program_family=alum_program_family
+    )
+
+    if eit_only_startups:
+        startup_status_model.objects.filter(
+            alum_program_family_filter,
+            startup_id__in=eit_only_startups,
+        ).delete()
+
+
+def _delete_program_role_grants(
+        apps, alum_program_family, eit_program_family, eit_alum_startups):
+    ProgramRoleGrant = apps.get_model('accelerator', 'ProgramRoleGrant')
+    StartupTeamMember = apps.get_model('accelerator', 'StartupTeamMember')
+
+    eit_alums = StartupTeamMember.objects.filter(
+        startup__in=eit_alum_startups
+    ).values_list('user', flat=True)
+
+    eit_alums_in_other_programs = _get_eit_alums_in_other_programs(
+        ProgramRoleGrant,
+        [alum_program_family, eit_program_family],
+        eit_alums)
+
+    eit_only_alums = set(eit_alums) - set(eit_alums_in_other_programs)
+
+    if eit_only_alums:
+        ProgramRoleGrant.objects.filter(
+            person_id__in=eit_only_alums,
+            program_role__program__program_family=alum_program_family,
+        ).delete()
 
 
 def _get_eit_finalist_startups(startup_status_model, eit_program_family):
