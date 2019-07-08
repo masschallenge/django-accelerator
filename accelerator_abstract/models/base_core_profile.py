@@ -250,3 +250,8 @@ class BaseCoreProfile(AcceleratorModel):
     def gender_value(self):
         gender_dict = dict(GENDER_CHOICES)
         return gender_dict[self.gender.lower()]
+
+    def confirmed_mentor_programs(self):
+        return list(self.user.programrolegrant_set.filter(
+            program_role__user_role__name=BaseUserRole.MENTOR).values_list(
+            'program_role__program__name', flat=True))
