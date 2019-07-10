@@ -139,6 +139,9 @@ class BaseCoreProfile(AcceleratorModel):
         return False
 
     def is_alum(self, program=None):
+        """TODO rename this appropriately based on new definition
+        of alumni
+        """
         qs = self.user.programrolegrant_set.filter(
             program_role__user_role__name=BaseUserRole.FINALIST,
             program_role__program__program_status=ENDED_PROGRAM_STATUS)
