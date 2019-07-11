@@ -66,8 +66,8 @@ class BaseMentorProgramOfficeHour(AcceleratorModel):
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name = "Office Hour"
-        unique_together = ('program', 'mentor', 'date', 'start_time')
-        ordering = ['date', 'start_time']
+        unique_together = ('program', 'mentor', 'start_date_time')
+        ordering = ['start_date_time']
 
     def __str__(self):
         hour_type = "Reserved"
