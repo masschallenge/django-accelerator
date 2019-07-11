@@ -146,7 +146,7 @@ class BaseCoreProfile(AcceleratorModel):
             program_role__user_role__name=BaseUserRole.FINALIST,
             program_role__program__program_status=ENDED_PROGRAM_STATUS)
         if program:
-            qs.filter(program=program)
+            qs = qs.filter(program_role__program=program)
         return qs.exists()
 
     def is_alum_in_residence(self):
