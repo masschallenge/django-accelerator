@@ -14,10 +14,13 @@ from django.db import migrations
 
 one_day = timedelta(1)
 
+
 def migrate_date_time_data(apps, schema_editor):
-    MentorProgramOfficeHour = apps.get_model('accelerator', 'MentorProgramOfficeHour')
+    MentorProgramOfficeHour = apps.get_model('accelerator',
+                                             'MentorProgramOfficeHour')
     for office_hour in MentorProgramOfficeHour.objects.all():
         migrate_office_hour_time_data(office_hour)
+
 
 def migrate_office_hour_time_data(office_hour):
     tz = timezone(office_hour.program.program_family.timezone)
@@ -35,11 +38,13 @@ def migrate_office_hour_time_data(office_hour):
 def as_utc(date, time, local_timezone):
     local_time = local_timezone.localize(datetime.combine(date, time))
     return local_time.astimezone(utc)
-                                         
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0064_add_sane_date_time_fields_to_office_hours_model'),
+        ('accelerator',
+         '0064_add_sane_date_time_fields_to_office_hours_model'),
     ]
 
     operations = [

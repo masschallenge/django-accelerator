@@ -15,6 +15,10 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='programfamily',
             name='timezone',
-            field=models.CharField(default='UTC', help_text='Timezone name from Olson Timezone database (https://en.wikipedia.org/wiki/Tz_database)', max_length=35),
+            field=models.CharField(
+                default='UTC',
+                help_text=('Timezone name from Olson Timezone database '
+                           '(https://en.wikipedia.org/wiki/Tz_database)'),
+                max_length=35),
         ),
     ]
