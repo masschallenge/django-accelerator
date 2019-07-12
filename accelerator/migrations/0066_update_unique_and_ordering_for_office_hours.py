@@ -16,7 +16,8 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='mentorprogramofficehour',
-            options={'managed': True, 'ordering': ['start_date_time'], 'verbose_name': 'Office Hour'},
+            options={'managed': True, 'ordering': ['start_date_time'],
+                     'verbose_name': 'Office Hour'},
         ),
         migrations.AlterUniqueTogether(
             name='mentorprogramofficehour',
