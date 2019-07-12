@@ -16,6 +16,9 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_user_role import (
     BaseUserRole,
 )
+from accelerator_abstract.models.base_program import (
+    ENDED_PROGRAM_STATUS
+)
 
 GENDER_MALE_CHOICE = ('m', 'Male')
 GENDER_FEMALE_CHOICE = ('f', 'Female')
@@ -135,10 +138,16 @@ class BaseCoreProfile(AcceleratorModel):
         """
         return False
 
-    def is_alum(self):
-        """prevent attribute errors on subclasses
+    def is_alum(self, program=None):
+        """TODO rename this appropriately based on new definition
+        of alumni
         """
-        return False
+        qs = self.user.programrolegrant_set.filter(
+            program_role__user_role__name=BaseUserRole.FINALIST,
+            program_role__program__program_status=ENDED_PROGRAM_STATUS)
+        if program:
+            qs = qs.filter(program_role__program=program)
+        return qs.exists()
 
     def is_alum_in_residence(self):
         return self.user.programrolegrant_set.filter(
