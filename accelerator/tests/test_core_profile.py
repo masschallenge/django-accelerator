@@ -225,3 +225,9 @@ class TestCoreProfile(TestCase):
         expert = ExpertFactory()
         attr = hasattr(expert.get_profile(), "confirmed_mentor_programs")
         self.assertTrue(attr)
+
+    def test_expert_profile_has_cconfirmed_memtor_program_families_all_prop(self):
+        expert = ExpertFactory()
+        attr = hasattr(expert.get_profile(),
+                       "confirmed_memtor_program_families_all")
+        self.assertTrue(attr)
