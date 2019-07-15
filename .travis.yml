@@ -33,7 +33,7 @@ after_success:
   if [ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$TRAVIS_BRANCH" = "development" ]; then
     gem install travis -v 1.8.10;
     travis login --org --github-token "$MC_DEV_ADMIN_GH_TOKEN";
-    export TICKET_NUMBER = $(echo $TRAVIS_COMMIT_MESSAGE | grep -Eo AC-[0-9]+ | head -1);
+    export TICKET_NUMBER=$(echo $TRAVIS_COMMIT_MESSAGE | grep -Eo AC-[0-9]+ | head -1);
     body='{
     "request": {
     "message": "Triggered by '$TICKET_NUMBER' in django-accelerator",
