@@ -16,12 +16,16 @@ from accelerator.tests.factories import (
     StartupFactory,
     UserRoleFactory,
     ProgramFamilyFactory,
-    PartnerTeamMemberFactory
+    PartnerTeamMemberFactory,
 )
 from accelerator_abstract.models import (
-    BaseUserRole
+    BaseUserRole,
+    ENDED_PROGRAM_STATUS,
 )
-from accelerator.tests.contexts import StartupTeamMemberContext
+from accelerator.tests.contexts import (
+    StartupTeamMemberContext,
+    UserRoleContext,
+)
 
 
 def expert(role):
@@ -232,3 +236,18 @@ class TestCoreProfile(TestCase):
         attr = hasattr(expert.get_profile(),
                        "confirmed_memtor_program_families_all")
         self.assertTrue(attr)
+
+    def test_user_profile_confirmed_mentor_program_families_method(self):
+        active_program = ProgramFactory()
+        inactive_program = ProgramFactory(program_status=ENDED_PROGRAM_STATUS)
+        user = EntrepreneurFactory()
+        UserRoleContext(
+            BaseUserRole.MENTOR,
+            user=user,
+            program=active_program)
+        UserRoleContext(
+            BaseUserRole.MENTOR,
+            user=user,
+            program=inactive_program)
+        families = user.get_profile().confirmed_memtor_program_families_all()
+        self.assertEqual(len(families), 2)
