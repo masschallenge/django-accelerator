@@ -251,3 +251,5 @@ class TestCoreProfile(TestCase):
             program=inactive_program)
         families = user.get_profile().confirmed_memtor_program_families_all()
         self.assertEqual(len(families), 2)
+        self.assertTrue(active_program.program_family.name in families)
+        self.assertTrue(inactive_program.program_family.name in families)
