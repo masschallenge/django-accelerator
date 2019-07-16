@@ -11,3 +11,5 @@ from accelerator.tests.contexts.startup_team_member_context import (
     StartupTeamMemberContext
 )
 from accelerator.tests.contexts.nav_tree_context import NavTreeContext
+
+from accelerator.tests.contexts.user_role_context import UserRoleContext
