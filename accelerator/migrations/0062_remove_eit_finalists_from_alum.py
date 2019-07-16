@@ -17,6 +17,8 @@ def remove_eit_only_finalists_from_alumni_program(apps, schema_editor):
         name="Global Alumni Program").first()
     eit_program_family = ProgramFamily.objects.filter(
         name="EIT Food Accelerator").first()
+    ch_program_family = ProgramFamily.objects.filter(
+        name="Switzerland").first()
 
     eit_finalist_startups = _get_eit_finalist_startups(
         StartupStatus, eit_program_family)
@@ -28,12 +30,14 @@ def remove_eit_only_finalists_from_alumni_program(apps, schema_editor):
         StartupStatus,
         alum_program_family,
         eit_program_family,
+        ch_program_family,
         eit_alum_startups)
 
     _delete_program_role_grants(
         apps,
         alum_program_family,
         eit_program_family,
+        ch_program_family,
         eit_alum_startups,
     )
 
@@ -53,10 +57,10 @@ class Migration(migrations.Migration):
 
 def _delete_startup_statuses(
         startup_status_model, alum_program_family,
-        eit_program_family, eit_alum_startups):
+        eit_program_family, ch_program_family, eit_alum_startups):
     eit_startups_in_other_programs = _get_eit_startups_in_other_programs(
         startup_status_model,
-        [alum_program_family, eit_program_family],
+        [alum_program_family, eit_program_family, ch_program_family],
         eit_alum_startups
     )
 
@@ -75,7 +79,8 @@ def _delete_startup_statuses(
 
 
 def _delete_program_role_grants(
-        apps, alum_program_family, eit_program_family, eit_alum_startups):
+        apps, alum_program_family, eit_program_family,
+        ch_program_family, eit_alum_startups):
     ProgramRoleGrant = apps.get_model('accelerator', 'ProgramRoleGrant')
     StartupTeamMember = apps.get_model('accelerator', 'StartupTeamMember')
 
@@ -85,7 +90,7 @@ def _delete_program_role_grants(
 
     eit_alums_in_other_programs = _get_eit_alums_in_other_programs(
         ProgramRoleGrant,
-        [alum_program_family, eit_program_family],
+        [alum_program_family, eit_program_family, ch_program_family],
         eit_alums)
 
     eit_only_alums = set(eit_alums) - set(eit_alums_in_other_programs)
