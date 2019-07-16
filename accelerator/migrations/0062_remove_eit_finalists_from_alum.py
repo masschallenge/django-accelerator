@@ -3,43 +3,44 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.db.models import Q
 
 from accelerator_abstract.models.base_startup_role import BaseStartupRole
-from accelerator_abstract.models.base_user_role import BaseUserRole
 
 
 def remove_eit_only_finalists_from_alumni_program(apps, schema_editor):
     ProgramFamily = apps.get_model('accelerator', 'ProgramFamily')
+    ProgramRoleGrant = apps.get_model('accelerator', 'ProgramRoleGrant')
     StartupStatus = apps.get_model('accelerator', 'StartupStatus')
+    StartupTeamMember = apps.get_model('accelerator', 'StartupTeamMember')
 
     alum_program_family = ProgramFamily.objects.filter(
         name="Global Alumni Program").first()
     eit_program_family = ProgramFamily.objects.filter(
         name="EIT Food Accelerator").first()
-    ch_program_family = ProgramFamily.objects.filter(
-        name="Switzerland").first()
 
-    eit_finalist_startups = _get_eit_finalist_startups(
-        StartupStatus, eit_program_family)
+    eit_finalist_startups = StartupStatus.objects.filter(
+        program_startup_status__program__program_family=eit_program_family,
+        program_startup_status__startup_role__name=BaseStartupRole.FINALIST
+        ).values_list("startup", flat=True)
 
-    eit_alum_startups = _get_eit_alum_startups(
-        StartupStatus, eit_finalist_startups, alum_program_family)
+    eit_alum_startup_statuses = StartupStatus.objects.filter(
+        startup_id__in=eit_finalist_startups,
+        program_startup_status__program__program_family=alum_program_family
+        )
 
-    _delete_startup_statuses(
-        StartupStatus,
-        alum_program_family,
-        eit_program_family,
-        ch_program_family,
-        eit_alum_startups)
+    eit_alum_startups = eit_alum_startup_statuses.values_list(
+        "startup", flat=True)
 
-    _delete_program_role_grants(
-        apps,
-        alum_program_family,
-        eit_program_family,
-        ch_program_family,
-        eit_alum_startups,
-    )
+    eit_alums = StartupTeamMember.objects.filter(
+        startup__in=eit_alum_startups
+        ).values_list('user', flat=True)
+
+    ProgramRoleGrant.objects.filter(
+        person_id__in=eit_alums,
+        program_role__program__program_family=alum_program_family
+        ).delete()
+
+    eit_alum_startup_statuses.delete()
 
 
 class Migration(migrations.Migration):
@@ -53,89 +54,3 @@ class Migration(migrations.Migration):
             remove_eit_only_finalists_from_alumni_program,
             migrations.RunPython.noop)
     ]
-
-
-def _delete_startup_statuses(
-        startup_status_model, alum_program_family,
-        eit_program_family, ch_program_family, eit_alum_startups):
-    eit_startups_in_other_programs = _get_eit_startups_in_other_programs(
-        startup_status_model,
-        [alum_program_family, eit_program_family, ch_program_family],
-        eit_alum_startups
-    )
-
-    eit_only_startups = set(eit_alum_startups) - set(
-        eit_startups_in_other_programs)
-
-    alum_program_family_filter = Q(
-        program_startup_status__program__program_family=alum_program_family
-    )
-
-    if eit_only_startups:
-        startup_status_model.objects.filter(
-            alum_program_family_filter,
-            startup_id__in=eit_only_startups,
-        ).delete()
-
-
-def _delete_program_role_grants(
-        apps, alum_program_family, eit_program_family,
-        ch_program_family, eit_alum_startups):
-    ProgramRoleGrant = apps.get_model('accelerator', 'ProgramRoleGrant')
-    StartupTeamMember = apps.get_model('accelerator', 'StartupTeamMember')
-
-    eit_alums = StartupTeamMember.objects.filter(
-        startup__in=eit_alum_startups
-    ).values_list('user', flat=True)
-
-    eit_alums_in_other_programs = _get_eit_alums_in_other_programs(
-        ProgramRoleGrant,
-        [alum_program_family, eit_program_family, ch_program_family],
-        eit_alums)
-
-    eit_only_alums = set(eit_alums) - set(eit_alums_in_other_programs)
-
-    if eit_only_alums:
-        ProgramRoleGrant.objects.filter(
-            person_id__in=eit_only_alums,
-            program_role__program__program_family=alum_program_family,
-        ).delete()
-
-
-def _get_eit_finalist_startups(startup_status_model, eit_program_family):
-    return startup_status_model.objects.filter(
-        program_startup_status__program__program_family=eit_program_family,
-        program_startup_status__startup_role__name=BaseStartupRole.FINALIST
-        ).values_list("startup", flat=True)
-
-
-def _get_eit_alum_startups(
-        startup_status_model, eit_finalist_startups, alum_program_family):
-    return startup_status_model.objects.filter(
-        startup_id__in=eit_finalist_startups,
-        program_startup_status__program__program_family=alum_program_family
-        ).values_list("startup", flat=True)
-
-
-def _get_eit_alums_in_other_programs(
-        program_role_grant_model, exclude_programs, eit_alums):
-    return program_role_grant_model.objects.filter(
-        ~Q(program_role__program__program_family__in=exclude_programs),
-        program_role__user_role__name=BaseUserRole.FINALIST,
-        person_id__in=eit_alums,
-    ).values_list("person", flat=True).distinct()
-
-
-def _get_eit_startups_in_other_programs(
-        startup_status_model, exclude_programs, eit_alum_startups):
-    finalist_filter = Q(
-        program_startup_status__startup_role__name=BaseStartupRole.FINALIST
-    )
-    program_family_filter = ~Q(
-        program_startup_status__program__program_family__in=exclude_programs
-    )
-    return startup_status_model.objects.filter(
-        program_family_filter,
-        finalist_filter,
-        startup_id__in=eit_alum_startups,
-        ).values_list('startup', flat=True)
