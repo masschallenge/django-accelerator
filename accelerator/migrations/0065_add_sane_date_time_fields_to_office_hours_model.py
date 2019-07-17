@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0063_fill_in_program_family_timezones'),
+        ('accelerator', '0064_fill_in_program_family_timezones'),
     ]
 
     operations = [

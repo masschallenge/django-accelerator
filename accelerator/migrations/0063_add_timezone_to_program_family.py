@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0061_remove_eventbrite_organization_id_field'),
+        ('accelerator', '0062_remove_eit_finalists_from_alum'),
     ]
 
     operations = [
