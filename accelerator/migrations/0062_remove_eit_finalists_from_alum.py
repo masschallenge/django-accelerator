@@ -21,7 +21,7 @@ def remove_eit_only_finalists_from_alumni_program(apps, schema_editor):
     eit_finalist_startups = StartupStatus.objects.filter(
         program_startup_status__program__program_family=eit_program_family,
         program_startup_status__startup_role__name=BaseStartupRole.FINALIST
-        ).values_list("startup", flat=True)
+        ).values_list("startup", flat=True).distinct()
 
     eit_alum_startup_statuses = StartupStatus.objects.filter(
         startup_id__in=eit_finalist_startups,
@@ -33,7 +33,7 @@ def remove_eit_only_finalists_from_alumni_program(apps, schema_editor):
 
     eit_alums = StartupTeamMember.objects.filter(
         startup__in=eit_alum_startups
-        ).values_list('user', flat=True)
+        ).values_list('user', flat=True).distinct()
 
     ProgramRoleGrant.objects.filter(
         person_id__in=eit_alums,
