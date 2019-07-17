@@ -264,3 +264,9 @@ class BaseCoreProfile(AcceleratorModel):
         return list(self.user.programrolegrant_set.filter(
             program_role__user_role__name=BaseUserRole.MENTOR).values_list(
             'program_role__program__name', flat=True))
+
+    def confirmed_memtor_program_families_all(self):
+        return list(self.user.programrolegrant_set.filter(
+            program_role__user_role__name=BaseUserRole.MENTOR).values_list(
+                "program_role__program__program_family__name", flat=True
+        ).distinct())
