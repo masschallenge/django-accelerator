@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('accelerator', '0065_migrate_date_and_time_data_for_office_hours'),
+        ('accelerator', '0066_migrate_date_and_time_data_for_office_hours'),
     ]
 
     operations = [

@@ -38,7 +38,7 @@ def update_timezone_for_programfamily(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0062_add_timezone_to_program_family'),
+        ('accelerator', '0063_add_timezone_to_program_family'),
     ]
 
     operations = [

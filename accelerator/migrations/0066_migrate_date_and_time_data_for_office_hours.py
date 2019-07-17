@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('accelerator',
-         '0064_add_sane_date_time_fields_to_office_hours_model'),
+         '0065_add_sane_date_time_fields_to_office_hours_model'),
     ]
 
     operations = [
