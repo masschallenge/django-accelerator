@@ -52,6 +52,10 @@ class BaseMentorProgramOfficeHour(AcceleratorModel):
     date = models.DateField(db_index=True)
     start_time = models.TimeField(db_index=True)
     end_time = models.TimeField(db_index=True)
+    start_date_time = models.DateTimeField(db_index=True,
+                                           null=True)
+    end_date_time = models.DateTimeField(db_index=True,
+                                         null=True)
     description = models.CharField(max_length=500, blank=True)
     location = models.CharField(max_length=50, choices=LOCATION_CHOICES)
     notify_reservation = models.BooleanField(default=True)
@@ -62,8 +66,8 @@ class BaseMentorProgramOfficeHour(AcceleratorModel):
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name = "Office Hour"
-        unique_together = ('program', 'mentor', 'date', 'start_time')
-        ordering = ['date', 'start_time']
+        unique_together = ('program', 'mentor', 'start_date_time')
+        ordering = ['start_date_time']
 
     def __str__(self):
         hour_type = "Reserved"

@@ -58,6 +58,13 @@ class BaseProgramFamily(AcceleratorModel):
     use_site_tree_side_nav = BooleanField(
         default=False,
         help_text="Show the new-style side navigation")
+    timezone = CharField(
+        max_length=35,
+        blank=False,
+        default="UTC",
+        help_text=("Timezone name from Olson Timezone database "
+                   "(https://en.wikipedia.org/wiki/Tz_database)")
+        )
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = "program families"
