@@ -154,8 +154,8 @@ coverage-html-report: $(VENV)
 	coverage html --omit="*/tests/*,*/venv/*"
 
 coverage-xml-report: $(VENV)
-  @$(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
-  coverage xml --omit="*/tests/*,*/venv/*"
+	@$(ACTIVATE); DJANGO_SETTINGS_MODULE=settings \
+	coverage xml --omit="*/tests/*,*/venv/*"
 
 coverage-html: coverage
 	@open htmlcov/index.html
