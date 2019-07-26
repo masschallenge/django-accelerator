@@ -13,7 +13,6 @@ from accelerator.tests.factories import (
     ProgramFactory,
     ProgramRoleFactory,
     ProgramRoleGrantFactory,
-    StartupFactory,
     UserRoleFactory,
     ProgramFamilyFactory,
     PartnerTeamMemberFactory,
@@ -146,49 +145,6 @@ class TestCoreProfile(TestCase):
         user = expert(BaseUserRole.MENTOR)
         profile = user.get_profile()
         self.assertFalse(profile.is_mentor(ProgramFactory()))
-
-    def test_startup_based_landing_page(self):
-        page = "/asante"
-        startup = StartupFactory(landing_page=page)
-        context = StartupTeamMemberContext(
-            primary_contact=False,
-            startup=startup)
-        profile = context.user.get_profile()
-        self.assertTrue(profile.startup_based_landing_page() == page)
-
-    def test_startup_based_landing_page_returns_none_without_landpage(self):
-        context = StartupTeamMemberContext(
-            primary_contact=False)
-        profile = context.user.get_profile()
-        self.assertTrue(profile.startup_based_landing_page() is None)
-
-    def test_check_landing_page(self):
-        page = "/asante"
-        startup = StartupFactory(landing_page=page)
-        context = StartupTeamMemberContext(
-            primary_contact=False,
-            startup=startup)
-        profile = context.user.get_profile()
-        self.assertTrue(profile.check_landing_page() == page)
-
-    def test_check_landing_page_with_landing_page_as_root(self):
-        page = "/"
-        startup = StartupFactory(landing_page=page)
-        context = StartupTeamMemberContext(
-            primary_contact=False,
-            startup=startup)
-        profile = context.user.get_profile()
-        self.assertTrue(
-            profile.check_landing_page() == profile.default_page)
-
-    def test_calc_landing_page_with_landing_page(self):
-        page = "/asante"
-        startup = StartupFactory(landing_page=page)
-        context = StartupTeamMemberContext(
-            primary_contact=False,
-            startup=startup)
-        profile = context.user.get_profile()
-        self.assertTrue(profile.calc_landing_page() == page)
 
     def test_role_based_landing_page(self):
         page = "/asante"
