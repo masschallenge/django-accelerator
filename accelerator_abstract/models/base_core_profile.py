@@ -16,6 +16,9 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_user_role import (
     BaseUserRole,
 )
+from accelerator_abstract.models.base_user_utils import (
+    has_staff_clearance,
+)
 from accelerator_abstract.models.base_program import (
     ENDED_PROGRAM_STATUS
 )
@@ -198,7 +201,14 @@ class BaseCoreProfile(AcceleratorModel):
         alerts = []
         return alerts
 
+    def _get_staff_landing_page(self):
+        if has_staff_clearance(self.user):
+            return '/staff'
+
     def startup_based_landing_page(self):
+        '''There may no longer be a use case for this. Should we still
+        have the landing page property on the Startup model
+        '''
         member = self.user.startupteammember_set.filter(
             startup__landing_page__isnull=False).exclude(
             startup__landing_page="").order_by(
@@ -224,8 +234,10 @@ class BaseCoreProfile(AcceleratorModel):
 
     def calc_landing_page(self):
         excludes = self._check_for_judge_excludes()
-        return (self.startup_based_landing_page() or
-                self.role_based_landing_page(exclude_role_names=excludes))
+        return (
+            self._get_staff_landing_page() or
+            self.startup_based_landing_page() or
+            self.role_based_landing_page(exclude_role_names=excludes))
 
     def _check_for_judge_excludes(self):
         excludes = []
