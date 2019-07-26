@@ -205,6 +205,18 @@ class BaseCoreProfile(AcceleratorModel):
         if has_staff_clearance(self.user):
             return '/staff'
 
+    def startup_based_landing_page(self):
+        '''There may no longer be a use case for this as the only cases
+        it came into play were for staff users
+        '''
+        member = self.user.startupteammember_set.filter(
+            startup__landing_page__isnull=False).exclude(
+            startup__landing_page="").order_by(
+            "-startup_administrator").first()
+        if member:
+            return member.startup.landing_page
+        return None
+
     def role_based_landing_page(self, exclude_role_names=[]):
         query = self.user.programrolegrant_set.filter(
             program_role__user_role__isnull=False,
@@ -224,6 +236,7 @@ class BaseCoreProfile(AcceleratorModel):
         excludes = self._check_for_judge_excludes()
         return (
             self._get_staff_landing_page() or
+            self.startup_based_landing_page() or
             self.role_based_landing_page(exclude_role_names=excludes))
 
     def _check_for_judge_excludes(self):
