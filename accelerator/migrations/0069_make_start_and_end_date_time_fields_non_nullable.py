@@ -9,7 +9,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0067_update_unique_and_ordering_for_office_hours'),
+        ('accelerator', '0068_remove_obsolete_date_and_time_fields'),
     ]
 
     operations = [
