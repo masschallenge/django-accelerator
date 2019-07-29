@@ -193,6 +193,15 @@ class TestCoreProfile(TestCase):
                        "confirmed_memtor_program_families_all")
         self.assertTrue(attr)
 
+    def test_confirmed_mentor_programs(self):
+        expert = ExpertFactory()
+        context = UserRoleContext(
+            BaseUserRole.MENTOR,
+            user=expert)
+        programs = expert.get_profile().confirmed_mentor_programs()
+        self.assertTrue(len(programs), 1)
+        self.assertIn(context.program.name, programs)
+
     def test_user_profile_confirmed_mentor_program_families_method(self):
         active_program = ProgramFactory()
         inactive_program = ProgramFactory(program_status=ENDED_PROGRAM_STATUS)
