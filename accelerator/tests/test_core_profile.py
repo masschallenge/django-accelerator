@@ -6,13 +6,16 @@ from __future__ import unicode_literals
 from django.test import TestCase
 
 from accelerator.tests.factories import (
+    ClearanceFactory,
     ExpertFactory,
     EntrepreneurFactory,
+    EntrepreneurProfileFactory,
     InterestCategoryFactory,
     MemberFactory,
     ProgramFactory,
     ProgramRoleFactory,
     ProgramRoleGrantFactory,
+    UserFactory,
     UserRoleFactory,
     ProgramFamilyFactory,
     PartnerTeamMemberFactory,
@@ -24,6 +27,9 @@ from accelerator_abstract.models import (
 from accelerator.tests.contexts import (
     StartupTeamMemberContext,
     UserRoleContext,
+)
+from accelerator_abstract.models.base_clearance import (
+    CLEARANCE_LEVEL_STAFF,
 )
 
 
@@ -227,3 +233,23 @@ class TestCoreProfile(TestCase):
         self.assertEqual(len(families), 2)
         self.assertTrue(active_program.program_family.name in families)
         self.assertTrue(inactive_program.program_family.name in families)
+
+    def test_calc_landing_page_with_staff_user(self):
+        user = UserFactory()
+        ClearanceFactory(
+            user=user,
+            level=CLEARANCE_LEVEL_STAFF)
+        landing_page = user.get_profile().calc_landing_page()
+        self.assertEqual(landing_page, '/staff')
+
+    def test_landing_page_if_profile_landing_page_is_set(self):
+        test_landing_page = "/foobar"
+        user_profile = EntrepreneurProfileFactory(
+            landing_page=test_landing_page)
+        landing_page = user_profile.check_landing_page()
+        self.assertEqual(landing_page, test_landing_page)
+
+    def test_landing_page_if_profile_landing_page_is_set_to_home(self):
+        user_profile = EntrepreneurProfileFactory(landing_page="/")
+        landing_page = user_profile.check_landing_page()
+        self.assertEqual(landing_page, user_profile.default_page)
