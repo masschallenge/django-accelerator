@@ -196,7 +196,7 @@ class TestCoreProfile(TestCase):
     def test_user_is_a_previous_finalist_in_a_specified_program(self):
         user = EntrepreneurFactory()
         ended_program = ProgramFactory(program_status=ENDED_PROGRAM_STATUS)
-        context = UserRoleContext(
+        UserRoleContext(
             BaseUserRole.FINALIST,
             program=ended_program,
             user=user)
