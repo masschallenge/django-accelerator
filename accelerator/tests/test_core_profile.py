@@ -193,6 +193,15 @@ class TestCoreProfile(TestCase):
                        "confirmed_memtor_program_families_all")
         self.assertTrue(attr)
 
+    def test_user_is_a_previous_finalist_in_a_specified_program(self):
+        user = EntrepreneurFactory()
+        ended_program = ProgramFactory(program_status=ENDED_PROGRAM_STATUS)
+        context = UserRoleContext(
+            BaseUserRole.FINALIST,
+            program=ended_program,
+            user=user)
+        self.assertTrue(user.get_profile().is_alum(ended_program))
+
     def test_confirmed_mentor_programs(self):
         expert = ExpertFactory()
         context = UserRoleContext(
