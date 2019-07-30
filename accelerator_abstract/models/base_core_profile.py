@@ -16,6 +16,9 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_user_role import (
     BaseUserRole,
 )
+from accelerator_abstract.models.base_user_utils import (
+    has_staff_clearance,
+)
 from accelerator_abstract.models.base_program import (
     ENDED_PROGRAM_STATUS
 )
@@ -198,14 +201,9 @@ class BaseCoreProfile(AcceleratorModel):
         alerts = []
         return alerts
 
-    def startup_based_landing_page(self):
-        member = self.user.startupteammember_set.filter(
-            startup__landing_page__isnull=False).exclude(
-            startup__landing_page="").order_by(
-            "-startup_administrator").first()
-        if member:
-            return member.startup.landing_page
-        return None
+    def _get_staff_landing_page(self):
+        if has_staff_clearance(self.user):
+            return '/staff'
 
     def role_based_landing_page(self, exclude_role_names=[]):
         query = self.user.programrolegrant_set.filter(
@@ -224,8 +222,9 @@ class BaseCoreProfile(AcceleratorModel):
 
     def calc_landing_page(self):
         excludes = self._check_for_judge_excludes()
-        return (self.startup_based_landing_page() or
-                self.role_based_landing_page(exclude_role_names=excludes))
+        return (
+            self._get_staff_landing_page() or
+            self.role_based_landing_page(exclude_role_names=excludes))
 
     def _check_for_judge_excludes(self):
         excludes = []
