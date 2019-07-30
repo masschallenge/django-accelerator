@@ -138,7 +138,7 @@ class BaseCoreProfile(AcceleratorModel):
         """
         return False
 
-    def is_alum(self, program=None):
+    def is_program_graduate(self, program=None):
         """TODO rename this appropriately based on new definition
         of alumni
         """
@@ -149,7 +149,7 @@ class BaseCoreProfile(AcceleratorModel):
             qs = qs.filter(program_role__program=program)
         return qs.exists()
 
-    def is_alum_in_residence(self):
+    def is_program_graduate_in_residence(self):
         return self.user.programrolegrant_set.filter(
             program_role__user_role__name=BaseUserRole.AIR
         ).exists()

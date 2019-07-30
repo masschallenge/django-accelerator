@@ -91,9 +91,9 @@ class TestCoreProfile(TestCase):
         user = expert(BaseUserRole.FINALIST)
         self.assertFalse(user.get_profile().is_judge())
 
-    def test_is_alum_is_false_by_default(self):
+    def test_is_program_graduate_is_false_by_default(self):
         user = expert(BaseUserRole.FINALIST)
-        self.assertFalse(user.get_profile().is_alum())
+        self.assertFalse(user.get_profile().is_program_graduate())
 
     def test_first_startup_is_false_by_default(self):
         user = expert(BaseUserRole.FINALIST)
@@ -119,10 +119,10 @@ class TestCoreProfile(TestCase):
         self.assertTrue(
             profile.interest_category_names() == [interest_category.name])
 
-    def test_is_alum_in_residence(self):
+    def test_is_program_graduate_in_residence(self):
         user = expert(BaseUserRole.AIR)
         profile = user.get_profile()
-        self.assertTrue(profile.is_alum_in_residence())
+        self.assertTrue(profile.is_program_graduate_in_residence())
 
     def test_is_partner(self):
         user = expert(BaseUserRole.FINALIST)
