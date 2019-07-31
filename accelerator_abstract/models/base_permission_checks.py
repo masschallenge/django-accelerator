@@ -27,7 +27,7 @@ def _see_active_pages(user):
     return (_see_finalist_pages(user) or
             profile.is_mentor() or
             profile.is_office_hour_holder() or
-            profile.is_program_graduate_in_residence())
+            profile.is_alum_in_residence())
 
 
 def _see_finalist_pages(user, inactive_programs=False):

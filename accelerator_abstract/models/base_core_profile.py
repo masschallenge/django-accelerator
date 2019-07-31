@@ -149,7 +149,7 @@ class BaseCoreProfile(AcceleratorModel):
             qs = qs.filter(program_role__program=program)
         return qs.exists()
 
-    def is_program_graduate_in_residence(self):
+    def is_alum_in_residence(self):
         return self.user.programrolegrant_set.filter(
             program_role__user_role__name=BaseUserRole.AIR
         ).exists()
