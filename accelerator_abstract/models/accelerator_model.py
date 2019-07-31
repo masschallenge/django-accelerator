@@ -5,6 +5,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
+
 @python_2_unicode_compatible
 class AcceleratorModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
