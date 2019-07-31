@@ -6,14 +6,16 @@ from __future__ import unicode_literals
 from django.test import TestCase
 
 from accelerator.tests.factories import (
+    ClearanceFactory,
     ExpertFactory,
     EntrepreneurFactory,
+    EntrepreneurProfileFactory,
     InterestCategoryFactory,
     MemberFactory,
     ProgramFactory,
     ProgramRoleFactory,
     ProgramRoleGrantFactory,
-    StartupFactory,
+    UserFactory,
     UserRoleFactory,
     ProgramFamilyFactory,
     PartnerTeamMemberFactory,
@@ -25,6 +27,9 @@ from accelerator_abstract.models import (
 from accelerator.tests.contexts import (
     StartupTeamMemberContext,
     UserRoleContext,
+)
+from accelerator_abstract.models.base_clearance import (
+    CLEARANCE_LEVEL_STAFF,
 )
 
 
@@ -147,49 +152,6 @@ class TestCoreProfile(TestCase):
         profile = user.get_profile()
         self.assertFalse(profile.is_mentor(ProgramFactory()))
 
-    def test_startup_based_landing_page(self):
-        page = "/asante"
-        startup = StartupFactory(landing_page=page)
-        context = StartupTeamMemberContext(
-            primary_contact=False,
-            startup=startup)
-        profile = context.user.get_profile()
-        self.assertTrue(profile.startup_based_landing_page() == page)
-
-    def test_startup_based_landing_page_returns_none_without_landpage(self):
-        context = StartupTeamMemberContext(
-            primary_contact=False)
-        profile = context.user.get_profile()
-        self.assertTrue(profile.startup_based_landing_page() is None)
-
-    def test_check_landing_page(self):
-        page = "/asante"
-        startup = StartupFactory(landing_page=page)
-        context = StartupTeamMemberContext(
-            primary_contact=False,
-            startup=startup)
-        profile = context.user.get_profile()
-        self.assertTrue(profile.check_landing_page() == page)
-
-    def test_check_landing_page_with_landing_page_as_root(self):
-        page = "/"
-        startup = StartupFactory(landing_page=page)
-        context = StartupTeamMemberContext(
-            primary_contact=False,
-            startup=startup)
-        profile = context.user.get_profile()
-        self.assertTrue(
-            profile.check_landing_page() == profile.default_page)
-
-    def test_calc_landing_page_with_landing_page(self):
-        page = "/asante"
-        startup = StartupFactory(landing_page=page)
-        context = StartupTeamMemberContext(
-            primary_contact=False,
-            startup=startup)
-        profile = context.user.get_profile()
-        self.assertTrue(profile.calc_landing_page() == page)
-
     def test_role_based_landing_page(self):
         page = "/asante"
         context = StartupTeamMemberContext(
@@ -237,6 +199,24 @@ class TestCoreProfile(TestCase):
                        "confirmed_memtor_program_families_all")
         self.assertTrue(attr)
 
+    def test_user_is_a_previous_finalist_in_a_specified_program(self):
+        user = EntrepreneurFactory()
+        ended_program = ProgramFactory(program_status=ENDED_PROGRAM_STATUS)
+        UserRoleContext(
+            BaseUserRole.FINALIST,
+            program=ended_program,
+            user=user)
+        self.assertTrue(user.get_profile().is_alum(ended_program))
+
+    def test_confirmed_mentor_programs(self):
+        expert = ExpertFactory()
+        context = UserRoleContext(
+            BaseUserRole.MENTOR,
+            user=expert)
+        programs = expert.get_profile().confirmed_mentor_programs()
+        self.assertTrue(len(programs), 1)
+        self.assertIn(context.program.name, programs)
+
     def test_user_profile_confirmed_mentor_program_families_method(self):
         active_program = ProgramFactory()
         inactive_program = ProgramFactory(program_status=ENDED_PROGRAM_STATUS)
@@ -253,3 +233,23 @@ class TestCoreProfile(TestCase):
         self.assertEqual(len(families), 2)
         self.assertTrue(active_program.program_family.name in families)
         self.assertTrue(inactive_program.program_family.name in families)
+
+    def test_calc_landing_page_with_staff_user(self):
+        user = UserFactory()
+        ClearanceFactory(
+            user=user,
+            level=CLEARANCE_LEVEL_STAFF)
+        landing_page = user.get_profile().calc_landing_page()
+        self.assertEqual(landing_page, '/staff')
+
+    def test_landing_page_if_profile_landing_page_is_set(self):
+        test_landing_page = "/foobar"
+        user_profile = EntrepreneurProfileFactory(
+            landing_page=test_landing_page)
+        landing_page = user_profile.check_landing_page()
+        self.assertEqual(landing_page, test_landing_page)
+
+    def test_landing_page_if_profile_landing_page_is_set_to_home(self):
+        user_profile = EntrepreneurProfileFactory(landing_page="/")
+        landing_page = user_profile.check_landing_page()
+        self.assertEqual(landing_page, user_profile.default_page)
