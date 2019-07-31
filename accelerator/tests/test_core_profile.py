@@ -206,7 +206,7 @@ class TestCoreProfile(TestCase):
             BaseUserRole.FINALIST,
             program=ended_program,
             user=user)
-        self.assertTrue(user.get_profile().is_alum(ended_program))
+        self.assertTrue(user.get_profile().is_program_graduate(ended_program))
 
     def test_confirmed_mentor_programs(self):
         expert = ExpertFactory()
