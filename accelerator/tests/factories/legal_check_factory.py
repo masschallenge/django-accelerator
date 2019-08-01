@@ -23,3 +23,5 @@ class LegalCheckFactory(DjangoModelFactory):
         lambda n: 'I accept the terms specified by '
                   '<a href="http://example.com/legal-{0}" '
                   'target="_blank">legal_check_{0}</a>'.format(n))
+    is_enabled_for_experts = True
+    is_enabled_for_entrepreneurs = True
