@@ -8,18 +8,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0069_make_start_and_end_date_time_fields_non_nullable'),
+        ('accelerator',
+         '0069_make_start_and_end_date_time_fields_non_nullable'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='legalcheck',
             name='is_enabled_for_entrepreneurs',
-            field=models.BooleanField(default=True, help_text='This legal check is for Entrepreneurs (people with Startups applying to MassChallenge)'),
+            field=models.BooleanField(
+                default=True,
+                help_text=('This legal check is for Entrepreneurs (people'
+                           ' with Startups applying to MassChallenge)')),
         ),
         migrations.AddField(
             model_name='legalcheck',
             name='is_enabled_for_experts',
-            field=models.BooleanField(default=True, help_text='This legal check is for Experts (Judges and Mentors)'),
+            field=models.BooleanField(
+                default=True,
+                help_text=('This legal check is for Experts '
+                           '(Judges and Mentors)')),
         ),
     ]
