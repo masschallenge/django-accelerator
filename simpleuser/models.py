@@ -98,7 +98,12 @@ class User(AbstractUser):
         return self.team_member.id if self._get_member() else ''
 
     def user_title(self):
-        return self.team_member.title if self._get_member() else ''
+        if self._get_member():
+            return self.team_member.title
+        profile = self._get_profile()
+        if self._is_expert():
+            return profile.title
+        return ""
 
     def user_twitter_handle(self):
         return self._get_profile().twitter_handle
@@ -116,7 +121,12 @@ class User(AbstractUser):
         return self._get_profile().user_type
 
     def startup_name(self):
-        return self.startup.name if self._get_startup() else None
+        if self._get_startup():
+            return self.startup.name
+        profile = self._get_profile()
+        if self._is_expert():
+            return profile.company
+        return None
 
     def startup_industry(self):
         return self.startup.primary_industry if self._get_startup() else None
@@ -173,3 +183,7 @@ class User(AbstractUser):
 
     def has_a_finalist_role(self):
         return len(self.finalist_user_roles()) > 0
+
+    def _is_expert(self):
+        profile = self._get_profile()
+        return profile.user_type == "expert"
