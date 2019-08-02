@@ -36,15 +36,12 @@ class MentorProgramOfficeHourFactory(DjangoModelFactory):
     program = SubFactory(ProgramFactory)
     mentor = SubFactory(ExpertFactory)
     finalist = SubFactory(EntrepreneurFactory)
-    date = date.today() + timedelta(days=3)
-    start_time = '10:00'
     start_date_time = utc.localize(datetime.combine(
         date.today() + timedelta(days=3),
         time(hour=10)))
     end_date_time = utc.localize(datetime.combine(
         date.today() + timedelta(days=3),
         time(hour=12)))
-    end_time = '12:00'
     location = MC_BOS_LOCATION
     description = Sequence(lambda n: "Description office hour {0}".format(n))
     notify_reservation = True

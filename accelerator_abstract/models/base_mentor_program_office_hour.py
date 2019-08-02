@@ -49,13 +49,8 @@ class BaseMentorProgramOfficeHour(AcceleratorModel):
                                  blank=True,
                                  null=True,
                                  related_name='finalist_officehours')
-    date = models.DateField(db_index=True)
-    start_time = models.TimeField(db_index=True)
-    end_time = models.TimeField(db_index=True)
-    start_date_time = models.DateTimeField(db_index=True,
-                                           null=True)
-    end_date_time = models.DateTimeField(db_index=True,
-                                         null=True)
+    start_date_time = models.DateTimeField(db_index=True)
+    end_date_time = models.DateTimeField(db_index=True)
     description = models.CharField(max_length=500, blank=True)
     location = models.CharField(max_length=50, choices=LOCATION_CHOICES)
     notify_reservation = models.BooleanField(default=True)

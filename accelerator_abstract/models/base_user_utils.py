@@ -25,10 +25,14 @@ def _has_user_type(obj, user_type):
             obj.baseprofile.user_type == user_type)
 
 
+def has_staff_clearance(user):
+    return user.clearances.check_clearance(user, CLEARANCE_LEVEL_STAFF)
+
+
 def is_employee(user):
     if user.is_anonymous:
         return False
     if user.is_superuser:
         return True
 
-    return user.clearances.check_clearance(user, CLEARANCE_LEVEL_STAFF)
+    return has_staff_clearance(user)

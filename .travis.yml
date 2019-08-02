@@ -6,6 +6,11 @@ python:
   - "3.6"
 cache: pip
 
+before_script:
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- ./cc-test-reporter before-build
+
 services:
 - mysql
 
@@ -25,7 +30,8 @@ install:
 - git checkout $CURRENT_HEAD
 
 script:
-- make test
+- make coverage
+- make coverage-xml-report
 - make code-check
 
 after_success:
@@ -50,3 +56,6 @@ after_success:
       -d "$body" \
       https://api.travis-ci.org/repo/masschallenge%2Fimpact-api/requests;
   fi;
+
+after_script:
+- ./cc-test-reporter after-build -t coverage.py --exit-code $TRAVIS_TEST_RESULT
