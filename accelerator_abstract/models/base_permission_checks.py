@@ -13,7 +13,7 @@ def base_accelerator_check(user):
     return (
         _see_active_pages(user) or
         _see_finalist_pages(user, inactive_programs=True) or
-        user.get_profile().is_alum())
+        user.get_profile().is_program_graduate())
 
 
 def _see_employee_pages(user):

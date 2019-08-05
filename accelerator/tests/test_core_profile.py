@@ -96,9 +96,9 @@ class TestCoreProfile(TestCase):
         user = expert(BaseUserRole.FINALIST)
         self.assertFalse(user.get_profile().is_judge())
 
-    def test_is_alum_is_false_by_default(self):
+    def test_is_program_graduate_is_false_by_default(self):
         user = expert(BaseUserRole.FINALIST)
-        self.assertFalse(user.get_profile().is_alum())
+        self.assertFalse(user.get_profile().is_program_graduate())
 
     def test_first_startup_is_false_by_default(self):
         user = expert(BaseUserRole.FINALIST)
@@ -206,7 +206,7 @@ class TestCoreProfile(TestCase):
             BaseUserRole.FINALIST,
             program=ended_program,
             user=user)
-        self.assertTrue(user.get_profile().is_alum(ended_program))
+        self.assertTrue(user.get_profile().is_program_graduate(ended_program))
 
     def test_confirmed_mentor_programs(self):
         expert = ExpertFactory()
