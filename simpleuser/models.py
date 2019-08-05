@@ -11,6 +11,7 @@ from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models import BaseUserRole
+from accelerator_abstract.models.base_base_profile import EXPERT_USER_TYPE
 
 
 MAX_USERNAME_LENGTH = 30
@@ -186,4 +187,4 @@ class User(AbstractUser):
 
     def _is_expert(self):
         profile = self._get_profile()
-        return profile.user_type == "expert"
+        return profile.user_type == EXPERT_USER_TYPE.lower()
