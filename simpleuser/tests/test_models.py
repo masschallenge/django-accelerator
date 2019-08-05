@@ -84,10 +84,17 @@ class TestUser(TestCase):
         user.program()
         startup.current_program.assert_any_call()
 
-    def test_expert_startup_name_is_none(self):
-        user = ExpertFactory()
-        user = User.objects.get(pk=user.pk)
-        self.assertEqual(user.startup_name(), None)
+    def test_expert_startup_name_is_not_none(self):
+        expert = ExpertFactory()
+        startup_name = expert.startup_name()
+        user = User.objects.get(pk=expert.pk)
+        self.assertEqual(user.startup_name(), startup_name)
+
+    def test_expert_user_title_is_not_empty(self):
+        expert = ExpertFactory()
+        title = expert.user_title()
+        user = User.objects.get(pk=expert.pk)
+        self.assertEqual(user.user_title(), title)
 
     def test_basic_getters_return_expected_results(self):
         user = ExpertFactory(
