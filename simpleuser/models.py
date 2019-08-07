@@ -99,12 +99,10 @@ class User(AbstractUser):
         return self.team_member.id if self._get_member() else ''
 
     def user_title(self):
-        if self._get_member():
-            return self.team_member.title
         profile = self._get_profile()
         if self._is_expert():
             return profile.title
-        return ""
+        return self.team_member.title if self._get_member() else ""
 
     def user_twitter_handle(self):
         return self._get_profile().twitter_handle
@@ -122,12 +120,10 @@ class User(AbstractUser):
         return self._get_profile().user_type
 
     def startup_name(self):
-        if self._get_startup():
-            return self.startup.name
         profile = self._get_profile()
         if self._is_expert():
             return profile.company
-        return None
+        return self.startup.name if self._get_startup() else None
 
     def startup_industry(self):
         return self.startup.primary_industry if self._get_startup() else None
