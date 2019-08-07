@@ -75,6 +75,11 @@ class BaseCoreProfile(AcceleratorModel):
         verbose_name="Website",
         max_length=255,
         blank=True)
+    test_field = models.CharField(
+        max_length=10,
+        null=True,
+        blank=True,
+    )
     landing_page = models.CharField(
         verbose_name="Current landing page within the site",
         validators=[RegexValidator(
