@@ -4,7 +4,14 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 
-
+def long_migation(apps, schema_editor):
+    User = apps.get_model('simpleuser',
+                          'User')
+    for user in User.objects.all():
+        user.first_name += "0070"
+        user.save()
+    
+        
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -12,4 +19,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(long_migration,
+                             migrations.RunPython.noop)
     ]
