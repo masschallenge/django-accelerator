@@ -24,3 +24,6 @@ class BaseProgramFamilyLocation(AcceleratorModel):
         unique_together = ('program_family', 'location')
         verbose_name = "Program Family Location"
         verbose_name_plural = "Program Family Locations"
+
+    def __str__(self):
+        return "Location %s for %s" % (self.location, self.program_family)

@@ -105,8 +105,8 @@ from .user_role_factory import UserRoleFactory
 from .legal_check_factory import LegalCheckFactory
 from .user_legal_check_factory import UserLegalCheckFactory
 from simpleuser.tests.factories import UserFactory
-
 from .nav_tree_factory import NavTreeFactory
 from .nav_tree_item_factory import NavTreeItemFactory
-
 from .subnav_association_factory import NodeSubNavAssociationFactory
+from .location_factory import LocationFactory
+from .program_family_location_factory import ProgramFamilyLocationFactory
