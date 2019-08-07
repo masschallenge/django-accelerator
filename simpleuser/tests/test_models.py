@@ -19,6 +19,7 @@ from accelerator.tests.factories import (
     ProgramRoleGrantFactory,
     ProgramRoleFactory,
     UserRoleFactory,
+    StartupTeamMemberFactory,
 )
 from accelerator.tests.contexts import (
     StartupTeamMemberContext
@@ -84,17 +85,35 @@ class TestUser(TestCase):
         user.program()
         startup.current_program.assert_any_call()
 
-    def test_expert_startup_name_is_not_none(self):
+    def test_expert_has_a_startup(self):
         expert = ExpertFactory()
         startup_name = expert.startup_name()
         user = User.objects.get(pk=expert.pk)
         self.assertEqual(user.startup_name(), startup_name)
 
-    def test_expert_user_title_is_not_empty(self):
+    def test_startup_team_member_has_a_startup(self):
+        user = UserFactory()
+        member = StartupTeamMemberFactory(user=user)
+        self.assertEquals(user.startup_name(), member.startup.name)
+
+    def test_user_without_a_startup(self):
+        user = UserFactory()
+        self.assertEquals(user.startup_name(), None)
+
+    def test_expert_has_a_user_title(self):
         expert = ExpertFactory()
         title = expert.user_title()
         user = User.objects.get(pk=expert.pk)
         self.assertEqual(user.user_title(), title)
+
+    def test_startup_team_member_has_a_title(self):
+        user = UserFactory()
+        member = StartupTeamMemberFactory(user=user)
+        self.assertEqual(user.user_title(), member.title)
+
+    def test_user_without_a_title(self):
+        user = UserFactory()
+        self.assertEqual(user.user_title(), "")
 
     def test_basic_getters_return_expected_results(self):
         user = ExpertFactory(
