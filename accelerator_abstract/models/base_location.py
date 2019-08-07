@@ -27,3 +27,6 @@ class BaseLocation(AcceleratorModel):
         verbose_name_plural = "locations"
         db_table = '{}_location'.format(AcceleratorModel.Meta.app_label)
         abstract = True
+
+    def __str__(self):
+        return self.name
