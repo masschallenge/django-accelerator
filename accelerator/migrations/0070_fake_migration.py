@@ -8,7 +8,10 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0069_make_start_and_end_date_time_fields_non_nullable'),
+        (
+            'accelerator',
+            '0069_make_start_and_end_date_time_fields_non_nullable'
+        ),
     ]
 
     operations = [
