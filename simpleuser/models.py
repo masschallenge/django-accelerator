@@ -73,6 +73,7 @@ class User(AbstractUser):
         self.team_member = None
         self.profile = None
         self.user_finalist_roles = None
+        self.title = ""
 
     class AuthenticationException(Exception):
         pass
@@ -99,10 +100,7 @@ class User(AbstractUser):
         return self.team_member.id if self._get_member() else ''
 
     def user_title(self):
-        profile = self._get_profile()
-        if self._is_expert():
-            return profile.title
-        return self.team_member.title if self._get_member() else ""
+        return self._get_title_and_company()['title']
 
     def user_twitter_handle(self):
         return self._get_profile().twitter_handle
@@ -120,10 +118,23 @@ class User(AbstractUser):
         return self._get_profile().user_type
 
     def startup_name(self):
+        return self._get_title_and_company()['company']
+
+    def _get_title_and_company(self):
         profile = self._get_profile()
-        if self._is_expert():
-            return profile.company
-        return self.startup.name if self._get_startup() else None
+        title = profile.title if profile.title else "",
+        company = profile.company if profile.company else None
+        if self._is_expert() and (title or company):
+            return {
+                "title": title,
+                "company": company
+            }
+        title = self._get_title()
+        company = self._get_startup()
+        return {
+            "title": title,
+            "company": company
+        }
 
     def startup_industry(self):
         return self.startup.primary_industry if self._get_startup() else None
@@ -166,6 +177,13 @@ class User(AbstractUser):
             if self.team_member:
                 self.startup = self.team_member.startup
         return self.startup
+
+    def _get_title(self):
+        if not self.title:
+            self._get_member()
+            if self.team_member:
+                self.title = self.team_member.title
+        return self.title
 
     def _get_member(self):
         if not self.team_member:
