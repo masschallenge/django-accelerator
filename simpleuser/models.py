@@ -121,20 +121,26 @@ class User(AbstractUser):
         return self._get_title_and_company()['company']
 
     def _get_title_and_company(self):
-        profile = self._get_profile()
-        title = profile.title if profile.title else "",
-        company = profile.company if profile.company else None
-        if self._is_expert() and (title or company):
+        if self._is_expert() and self._has_expert_details():
+            profile = self._get_profile()
+            title = profile.title if profile.title else "",
+            company = profile.company if profile.company else None
             return {
                 "title": title,
                 "company": company
             }
-        title = self._get_title()
-        company = self._get_startup()
+        title = self.title if self._get_title() else ""
+        company = self.startup.name if self._get_startup() else None
         return {
             "title": title,
             "company": company
         }
+    def _has_expert_details(self):
+        if self._is_expert():
+            profile = self._get_profile()
+            title = hasattr(profile, "tile") and profile.title
+            company = hasattr(profile, "company") and profile.company
+            return True if title or company else False
 
     def startup_industry(self):
         return self.startup.primary_industry if self._get_startup() else None
