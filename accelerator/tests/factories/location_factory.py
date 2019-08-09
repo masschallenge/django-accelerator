@@ -1,6 +1,7 @@
 import swapper
 from factory import (
     DjangoModelFactory,
+    Iterator,
     Sequence,
 )
 
@@ -14,10 +15,16 @@ class LocationFactory(DjangoModelFactory):
         model = Location
 
     name = Sequence(lambda n: "Location {0}".format(n))
-    city = "Boston"
-    state = "Massachusetts"
-    country = "United States"
-    postcode = "02210"
-    latitude = "100"
-    longitude = "200"
-    timezone = "America/New_York"
+    city = Sequence(lambda n: "city {0}".format(n))
+    state = Sequence(lambda n: "state {0}".format(n))
+    country = Sequence(lambda n: "country {0}".format(n))
+    postcode = "00000"
+    latitude = "11111"
+    longitude = "22222"
+    timezone = Iterator([
+        "Africa/Kampala",
+        "America/Argentina/Buenos_Aires",
+        "America/Phoenix",
+        "Asia/Bangkok",
+        "Australia/Sydney"
+    ])
