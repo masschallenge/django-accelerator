@@ -123,13 +123,13 @@ class User(AbstractUser):
     def _get_title_and_company(self):
         if self._is_expert() and self._has_expert_details():
             profile = self._get_profile()
-            title = profile.title if profile.title else "",
-            company = profile.company if profile.company else None
+            title = profile.title
+            company = profile.company
             return {
                 "title": title,
                 "company": company
             }
-        title = self.title if self._get_title() else ""
+        title = self._get_title()
         company = self.startup.name if self._get_startup() else None
         return {
             "title": title,
@@ -139,9 +139,7 @@ class User(AbstractUser):
     def _has_expert_details(self):
         if self._is_expert():
             profile = self._get_profile()
-            title = hasattr(profile, "tile") and profile.title
-            company = hasattr(profile, "company") and profile.company
-            return True if title or company else False
+            return True if profile.title or profile.company else False
 
     def startup_industry(self):
         return self.startup.primary_industry if self._get_startup() else None
