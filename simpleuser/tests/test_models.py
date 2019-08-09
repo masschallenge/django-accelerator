@@ -87,7 +87,7 @@ class TestUser(TestCase):
 
     def test_expert_has_a_startup(self):
         expert = ExpertFactory()
-        startup_name = expert.startup_name()
+        startup_name = expert.get_profile().company
         user = User.objects.get(pk=expert.pk)
         self.assertEqual(user.startup_name(), startup_name)
 
@@ -102,7 +102,7 @@ class TestUser(TestCase):
 
     def test_expert_has_a_user_title(self):
         expert = ExpertFactory()
-        title = expert.user_title()
+        title = expert.get_profile().title
         user = User.objects.get(pk=expert.pk)
         self.assertEqual(user.user_title(), title)
 
