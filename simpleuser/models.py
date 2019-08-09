@@ -135,6 +135,7 @@ class User(AbstractUser):
             "title": title,
             "company": company
         }
+
     def _has_expert_details(self):
         if self._is_expert():
             profile = self._get_profile()
