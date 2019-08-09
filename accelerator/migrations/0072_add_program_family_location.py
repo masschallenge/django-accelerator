@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('accelerator',
-         '0070_add_smart_location'),
+         '0071_add_smart_location'),
     ]
 
     operations = [

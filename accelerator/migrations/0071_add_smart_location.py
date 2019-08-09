@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('accelerator',
-         '0069_make_start_and_end_date_time_fields_non_nullable'),
+         '0070_add_user_type_enablers_for_legal_checks'),
     ]
 
     operations = [
