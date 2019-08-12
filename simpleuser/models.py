@@ -129,7 +129,8 @@ class User(AbstractUser):
                 "title": title,
                 "company": company
             }
-        title = self._get_title()
+        self._get_member()
+        title = self.team_member.title if self.team_member else ""
         company = self.startup.name if self._get_startup() else None
         return {
             "title": title,
@@ -182,13 +183,6 @@ class User(AbstractUser):
             if self.team_member:
                 self.startup = self.team_member.startup
         return self.startup
-
-    def _get_title(self):
-        if not self.title:
-            self._get_member()
-            if self.team_member:
-                self.title = self.team_member.title
-        return self.title
 
     def _get_member(self):
         if not self.team_member:
