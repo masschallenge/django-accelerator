@@ -21,6 +21,13 @@ class BaseLegalCheck(AcceleratorModel):
                             help_text='Internal name for this check.')
     description = models.TextField(
         help_text='Text displayed next to checkbox. Use HTML for links.')
+    is_enabled_for_experts = models.BooleanField(
+        default=True,
+        help_text='This legal check is for Experts (Judges and Mentors)')
+    is_enabled_for_entrepreneurs = models.BooleanField(
+        default=True,
+        help_text='This legal check is for Entrepreneurs (people with '
+                  'Startups applying to MassChallenge)')
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_legalcheck'.format(AcceleratorModel.Meta.app_label)
