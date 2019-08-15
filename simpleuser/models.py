@@ -73,7 +73,6 @@ class User(AbstractUser):
         self.team_member = None
         self.profile = None
         self.user_finalist_roles = None
-        self.title = ""
 
     class AuthenticationException(Exception):
         pass
