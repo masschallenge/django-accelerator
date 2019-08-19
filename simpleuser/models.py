@@ -11,6 +11,7 @@ from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models import BaseUserRole
+from accelerator_abstract.models.base_base_profile import EXPERT_USER_TYPE
 
 
 MAX_USERNAME_LENGTH = 30
@@ -98,7 +99,7 @@ class User(AbstractUser):
         return self.team_member.id if self._get_member() else ''
 
     def user_title(self):
-        return self.team_member.title if self._get_member() else ''
+        return self._get_title_and_company()['title']
 
     def user_twitter_handle(self):
         return self._get_profile().twitter_handle
@@ -116,7 +117,29 @@ class User(AbstractUser):
         return self._get_profile().user_type
 
     def startup_name(self):
-        return self.startup.name if self._get_startup() else None
+        return self._get_title_and_company()['company']
+
+    def _get_title_and_company(self):
+        if self._is_expert() and self._has_expert_details():
+            profile = self._get_profile()
+            title = profile.title
+            company = profile.company
+            return {
+                "title": title,
+                "company": company
+            }
+        self._get_member()
+        title = self.team_member.title if self.team_member else ""
+        company = self.startup.name if self._get_startup() else None
+        return {
+            "title": title,
+            "company": company
+        }
+
+    def _has_expert_details(self):
+        if self._is_expert():
+            profile = self._get_profile()
+            return True if profile.title or profile.company else False
 
     def startup_industry(self):
         return self.startup.primary_industry if self._get_startup() else None
@@ -173,3 +196,7 @@ class User(AbstractUser):
 
     def has_a_finalist_role(self):
         return len(self.finalist_user_roles()) > 0
+
+    def _is_expert(self):
+        profile = self._get_profile()
+        return profile.user_type == EXPERT_USER_TYPE.lower()
