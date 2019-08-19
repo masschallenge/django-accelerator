@@ -65,8 +65,14 @@ class BaseStartup(AcceleratorModel):
         max_length=500,
         blank=False,
         help_text='Your startup in 500 characters or less.')
-    linked_in_url = models.URLField(max_length=100, blank=True)
-    facebook_url = models.URLField(max_length=100, blank=True)
+    linked_in_url = models.URLField(
+        blank=True,
+        max_length=100,
+        verbose_name="LinkedIn profile URL")
+    facebook_url = models.URLField(
+        blank=True,
+        max_length=100,
+        verbose_name="Facebook profile URL")
     high_resolution_logo = ImageField(
         upload_to='startup_pics',
         verbose_name='High Resolution Logo',
