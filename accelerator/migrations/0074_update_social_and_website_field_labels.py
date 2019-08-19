@@ -103,12 +103,16 @@ class Migration(migrations.Migration):
             model_name='startup',
             name='facebook_url',
             field=models.URLField(
-                blank=True, max_length=100, verbose_name='Facebook profile URL'),
+                blank=True,
+                max_length=100,
+                verbose_name='Facebook profile URL'),
         ),
         migrations.AlterField(
             model_name='startup',
             name='linked_in_url',
             field=models.URLField(
-                blank=True, max_length=100, verbose_name='LinkedIn profile URL'),
+                blank=True,
+                max_length=100,
+                verbose_name='LinkedIn profile URL'),
         ),
     ]
