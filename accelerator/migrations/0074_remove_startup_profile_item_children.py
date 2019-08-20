@@ -10,9 +10,10 @@ from accelerator.sitetree_navigation.sub_navigation import (
 
 def update_startup_profile_item(apps, schema_editor):
     NavTreeItem = apps.get_model('accelerator', 'NavTreeItem')
-    start_profile_item = NavTreeItem.objects.filter(
+    NavTreeItem.objects.filter(
         alias="startup_profile").delete()
     create_startup_dashboard_subnav()
+
 
 class Migration(migrations.Migration):
 
