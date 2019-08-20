@@ -18,7 +18,7 @@ def update_startup_profile_item(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0073_updated_location_fields_help_text'),
+        ('accelerator', '0074_update_social_and_website_field_labels'),
     ]
 
     operations = [
