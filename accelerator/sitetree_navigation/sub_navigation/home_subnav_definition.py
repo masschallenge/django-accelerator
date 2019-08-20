@@ -1,7 +1,5 @@
-from accelerator.models import NavTree
 from accelerator.sitetree_navigation.utils import (
-    add_user_roles_to_nav_items,
-    create_items,
+    create_subnav,
     delete_nav_tree,
     FLUENT_REDIRECT_URL
 )
@@ -52,11 +50,7 @@ HOME_SUBNAV_ITEMS = [
 
 
 def create_home_subnav():
-    tree, _ = NavTree.objects.update_or_create(
-        alias=HOME_SUBNAV_TREE['alias'],
-        defaults=HOME_SUBNAV_TREE)
-    create_items(tree, HOME_SUBNAV_ITEMS)
-    add_user_roles_to_nav_items(HOME_SUBNAV_ITEMS)
+    create_subnav(HOME_SUBNAV_TREE, HOME_SUBNAV_ITEMS)
 
 
 def delete_home_subnav():

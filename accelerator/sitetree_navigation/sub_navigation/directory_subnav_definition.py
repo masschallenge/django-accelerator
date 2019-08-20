@@ -1,7 +1,5 @@
-from accelerator.models import NavTree
 from accelerator.sitetree_navigation.utils import (
-    add_user_roles_to_nav_items,
-    create_items,
+    create_subnav,
     delete_nav_tree
 )
 from accelerator_abstract.models import BaseUserRole
@@ -31,11 +29,7 @@ DIRECTORY_SUBNAV_ITEMS = [
 
 
 def create_directory_subnav():
-    tree, _ = NavTree.objects.update_or_create(
-        alias=DIRECTORY_SUBNAV_TREE['alias'],
-        defaults=DIRECTORY_SUBNAV_TREE)
-    create_items(tree, DIRECTORY_SUBNAV_ITEMS)
-    add_user_roles_to_nav_items(DIRECTORY_SUBNAV_ITEMS)
+    create_subnav(DIRECTORY_SUBNAV_TREE, DIRECTORY_SUBNAV_ITEMS)
 
 
 def delete_directory_subnav():
