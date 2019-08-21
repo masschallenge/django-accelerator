@@ -15,11 +15,15 @@ PARTNER_TYPE = "partner"
 
 class BaseOrganization(AcceleratorModel):
     name = models.CharField(max_length=255)
-    website_url = models.URLField(max_length=100, blank=True)
+    website_url = models.URLField(
+        max_length=100,
+        blank=True,
+        verbose_name="Website URL")
     twitter_handle = models.CharField(
         max_length=40,
         blank=True,
-        help_text='Omit the "@". We\'ll add it.')
+        help_text='Omit the "@". We\'ll add it.',
+        verbose_name="Twitter handle")
     public_inquiry_email = models.EmailField(verbose_name="Email address",
                                              max_length=100,
                                              blank=True)

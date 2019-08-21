@@ -1,7 +1,5 @@
-from accelerator.models import NavTree
 from accelerator.sitetree_navigation.utils import (
-    add_user_roles_to_nav_items,
-    create_items,
+    create_subnav,
     delete_nav_tree,
     FLUENT_REDIRECT_URL,
     REGISTER_FOR_EVENTS_URL
@@ -56,11 +54,7 @@ EVENTS_SUBNAV_ITEMS = [
 
 
 def create_events_subnav():
-    tree, _ = NavTree.objects.update_or_create(
-        alias=EVENTS_SUBNAV_TREE['alias'],
-        defaults=EVENTS_SUBNAV_TREE)
-    create_items(tree, EVENTS_SUBNAV_ITEMS)
-    add_user_roles_to_nav_items(EVENTS_SUBNAV_ITEMS)
+    create_subnav(EVENTS_SUBNAV_TREE, EVENTS_SUBNAV_ITEMS)
 
 
 def delete_events_subnav():

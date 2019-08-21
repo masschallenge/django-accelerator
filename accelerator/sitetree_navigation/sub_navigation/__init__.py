@@ -22,7 +22,5 @@ from .startup_dashboard_subnav_definition import (
     create_startup_dashboard_subnav,
     delete_startup_dashboard_subnav,
     STARTUP_DASHBOARD_SUBNAV_ITEMS,
-    STARTUP_DASHBOARD_SUBNAV_CHILDREN_ITEMS,
     STARTUP_DASHBOARD_TREE_ALIAS,
-    STARTUP_PROFILE_ALIAS,
 )

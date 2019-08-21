@@ -26,6 +26,14 @@ def create_items(tree, item_props_list, parent=None):
         )
 
 
+def create_subnav(subnav_tree, subnav_items):
+    tree, _ = NavTree.objects.update_or_create(
+        alias=subnav_tree['alias'],
+        defaults=subnav_tree)
+    create_items(tree, subnav_items)
+    add_user_roles_to_nav_items(subnav_items)
+
+
 def _add_user_roles_to_item(item_props):
     allowed_user_roles = item_props.get('user_roles', [])
     if not allowed_user_roles:
