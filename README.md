@@ -159,8 +159,8 @@ which this project is installed.
 ### Testing
 
 This package supports two Django projects:
-- 'accelerate', which runs on Python 2.7 and Django 1.11
-- 'impact-api', which runs on Python 3.6 and Django 1.10
+- 'accelerate', which runs on Python 3.6 and Django 1.11
+- 'impact-api', which runs on Python 3.6 and Django 1.11
 
 Therefore, the code must be compatible for both versions,
 and the Travis builds are configured to test both.
