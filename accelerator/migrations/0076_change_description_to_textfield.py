@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0073_updated_location_fields_help_text'),
+        ('accelerator', '0075_remove_startup_profile_item_children'),
     ]
 
     operations = [
