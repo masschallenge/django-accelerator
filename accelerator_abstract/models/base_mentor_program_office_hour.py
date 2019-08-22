@@ -51,7 +51,7 @@ class BaseMentorProgramOfficeHour(AcceleratorModel):
                                  related_name='finalist_officehours')
     start_date_time = models.DateTimeField(db_index=True)
     end_date_time = models.DateTimeField(db_index=True)
-    description = models.CharField(max_length=500, blank=True)
+    description = models.TextField(blank=True)
     location = models.CharField(max_length=50, choices=LOCATION_CHOICES)
     notify_reservation = models.BooleanField(default=True)
     topics = models.CharField(max_length=500, blank=True)
