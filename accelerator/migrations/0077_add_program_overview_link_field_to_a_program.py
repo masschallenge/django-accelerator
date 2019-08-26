@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 blank=True,
                 null=True,
                 help_text=('URL of the program overview page, '
-                            'ex: https://masschallenge.org/programs-boston'),
+                           'ex: https://masschallenge.org/programs-boston'),
                 max_length=255,
             )
         )

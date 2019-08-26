@@ -135,7 +135,7 @@ class BaseProgram(AcceleratorModel):
         null=True,
         max_length=255,
         help_text=('URL of the program overview page, '
-                    'ex: https://masschallenge.org/programs-boston')
+                   'ex: https://masschallenge.org/programs-boston')
         )
 
     class Meta(AcceleratorModel.Meta):
