@@ -158,13 +158,6 @@ which this project is installed.
 
 ### Testing
 
-This package supports two Django projects:
-- 'accelerate', which runs on Python 3.6 and Django 1.11
-- 'impact-api', which runs on Python 3.6 and Django 1.10
-
-Therefore, the code must be compatible for both versions,
-and the Travis builds are configured to test both.
-
 To test this locally, it is possible to run `make tox`.
 
 Also, Running `make test` will simply run the tests
@@ -173,5 +166,5 @@ https://github.com/masschallenge/django-accelerator/blob/development/Makefile#L9
 versions.
 
 ---
-Copyright 2018, MassChallenge, Inc., some rights reserved
+Copyright 2019, MassChallenge, Inc., some rights reserved
 Public license: MIT
