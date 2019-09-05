@@ -42,7 +42,7 @@ class MentorProgramOfficeHourFactory(DjangoModelFactory):
     end_date_time = utc.localize(datetime.combine(
         date.today() + timedelta(days=3),
         time(hour=12)))
-    location = MC_BOS_LOCATION
+    old_location = MC_BOS_LOCATION
     description = Sequence(lambda n: "Description office hour {0}".format(n))
     notify_reservation = True
     topics = Sequence(lambda n: "Topics for test office hour {0}".format(n))
