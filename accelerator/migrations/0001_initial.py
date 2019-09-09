@@ -22,8 +22,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('fluent_pages', '0006_auto_20190904_1823'),
-        ('auth', '0008_alter_user_username_max_length'),
+        ('fluent_pages', '0001_initial'),
     ]
 
     operations = [
