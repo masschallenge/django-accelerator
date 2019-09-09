@@ -130,6 +130,13 @@ class BaseProgram(AcceleratorModel):
         max_length=20,
         blank=True,
         null=True)
+    program_overview_link = models.URLField(
+        blank=True,
+        null=True,
+        max_length=255,
+        help_text=('URL of the program overview page, '
+                   'ex: https://masschallenge.org/programs-boston')
+        )
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Programs'
