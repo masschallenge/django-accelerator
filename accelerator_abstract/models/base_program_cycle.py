@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
+from django.core.exceptions import ValidationError
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -45,3 +46,8 @@ class BaseProgramCycle(AcceleratorModel):
         verbose_name_plural = "program cycles"
         db_table = '{}_programcycle'.format(AcceleratorModel.Meta.app_label)
         abstract = True
+
+    def clean(self):
+        if self.applications_open is True and not self.default_application_type:
+            raise ValidationError('Open applications must have a default application type.')
+
