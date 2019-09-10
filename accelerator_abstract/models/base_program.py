@@ -145,3 +145,4 @@ class BaseProgram(AcceleratorModel):
 
     def family_abbr(self):
         return self.program_family.url_slug.upper()
+    
