@@ -13,21 +13,18 @@ class TestProgramCycle(TestCase):
         cycle = ProgramCycleFactory(short_name=None)
         assert cycle.name in str(cycle)
 
-    def test_program_cycle_with_open_applications_has_default_application_type(self):
-        cycle = ProgramCycleFactory()
-        if (cycle.applications_open and 
-        not cycle.default_application_type):
-            self.assertRaises("Open applications must have a default application type.")
+    # def test_program_cycle_has_default_application_type(self):
+    #     cycle = ProgramCycleFactory()
+    #     if (cycle.applications_open and
+    #             not cycle.default_application_type):
+    #         self.assertRaises("Open applications must have"
+    #                           "a default application type.")
 
-    def test_program_cycle_with_open_applications_has_default_application_type_and_associated_programs(self):
-        cycle = ProgramCycleFactory()
-        if (cycle.applications_open and 
-        not cycle.default_application_type
-        and cycle.programs.exists()):
-            self.assertRaises("Default application type can’t be removed"
-                              "from the cycle until the program cycle is"
-                              "disassociated with all programs")
-    
-    
-
-
+    # def test_program_cycle_cannot_remove_default_application_type(self):
+    #     cycle = ProgramCycleFactory()
+    #     if (cycle.applications_open and
+    #             not cycle.default_application_type
+    #             and cycle.programs.exists()):
+    #         self.assertRaises("Default application type can’t be removed"
+    #                           "from the cycle until the program cycle is"
+    #                           "disassociated with all programs")
