@@ -49,13 +49,16 @@ class BaseProgramCycle(AcceleratorModel):
 
     def clean(self):
         program_name = str(self.programs.first())
-        if (self.applications_open is True and not self.default_application_type):
-            raise ValidationError('Open applications must have a default application type.')
-        
-        if (not self.default_application_type and 
-            self.programs.exists() and 
-            self.applications_open is True):
-            raise ValidationError("The program cycle is associated with " 
-                                    + program_name + " and the application can’t" 
-                                    " be removed from the cycle until the program "
-                                    "cycle is disassociated with all programs")
+        if (self.applications_open is True and
+                not self.default_application_type):
+            raise ValidationError('Open applications must have'
+                                  'a default application type.')
+
+        if (not self.default_application_type and
+                self.programs.exists() and
+                self.applications_open is True):
+            raise ValidationError("The program cycle is associated with "
+                                  + program_name + " and the application can’t"
+                                  " be removed from the cycle until the"
+                                  " program cycle is disassociated with all"
+                                  " programs")
