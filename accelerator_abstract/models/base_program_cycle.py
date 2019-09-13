@@ -4,8 +4,9 @@
 from __future__ import unicode_literals
 
 import swapper
-from django.db import models
 from django.core.exceptions import ValidationError
+from django.db import models
+
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -58,7 +59,6 @@ class BaseProgramCycle(AcceleratorModel):
                 self.programs.exists() and
                 self.applications_open is True):
             raise ValidationError("The program cycle is associated with "
-                                  + program_name + " and the application can’t"
-                                  " be removed from the cycle until the"
-                                  " program cycle is disassociated with all"
-                                  " programs")
+                                  " and the default application type can’t "
+                                  " be removed from the cycle until the program" 
+                                  " cycle is disassociated with all programs")
