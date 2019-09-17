@@ -3,7 +3,9 @@
 
 from __future__ import unicode_literals
 
+from django.core.exceptions import ValidationError
 from django.test import TestCase
+
 
 from accelerator.tests.factories import ProgramCycleFactory
 
@@ -14,17 +16,18 @@ class TestProgramCycle(TestCase):
         assert cycle.name in str(cycle)
 
     def test_program_cycle_has_default_application_type(self):
-        cycle = ProgramCycleFactory()
-        if (cycle.applications_open and
-                not cycle.default_application_type):
-            self.assertRaises("Open applications must have"
-                              "a default application type.")
+        cycle = ProgramCycleFactory(default_application_type=None,
+                                    applications_open=True)
+        try:
+            cycle.full_clean()
+        except ValidationError as e:
+            self.assertRaises(e)
 
     def test_program_cycle_cannot_remove_default_application_type(self):
-        cycle = ProgramCycleFactory()
-        if (cycle.applications_open and
-                not cycle.default_application_type
-                and cycle.programs.exists()):
-            self.assertRaises("Default application type can’t be removed"
-                              "from the cycle until the program cycle is"
-                              "disassociated with all programs")
+        cycle = ProgramCycleFactory(default_application_type=None,
+                                    applications_open=True)
+        if (cycle.programs.exists()):
+            try:
+                cycle.full_clean()
+            except ValidationError as e:
+                self.assertRaises(e)

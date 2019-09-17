@@ -42,6 +42,7 @@ class BaseProgramCycle(AcceleratorModel):
         blank=True,
         related_name="default_overview_application_type_for")
     hidden = models.BooleanField(default=False)
+    fields = '__all__'
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = "program cycles"
@@ -49,16 +50,21 @@ class BaseProgramCycle(AcceleratorModel):
         abstract = True
 
     def clean(self):
-        program_name = str(self.programs.first())
         if (self.applications_open is True and
                 not self.default_application_type):
-            raise ValidationError('Open applications must have'
-                                  'a default application type.')
+            raise ValidationError(
+                'Open applications must have a default '
+                ' application type.')
 
         if (not self.default_application_type and
                 self.programs.exists() and
                 self.applications_open is True):
-            raise ValidationError("The program cycle is associated with "
-                                  " and the default application type can’t "
-                                  " be removed from the cycle until the program" 
-                                  " cycle is disassociated with all programs")
+            raise ValidationError(
+                'The program cycle is associated with '
+                ' and the default application type can’t '
+                ' be removed from the cycle until the program'
+                ' cycle is disassociated with all programs')
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        return super().save(*args, **kwargs)
