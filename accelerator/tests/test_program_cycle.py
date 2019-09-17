@@ -16,18 +16,6 @@ class TestProgramCycle(TestCase):
         assert cycle.name in str(cycle)
 
     def test_program_cycle_has_default_application_type(self):
-        cycle = ProgramCycleFactory(default_application_type=None,
-                                    applications_open=True)
-        try:
-            cycle.full_clean()
-        except ValidationError as e:
-            self.assertRaises(e)
-
-    def test_program_cycle_cannot_remove_default_application_type(self):
-        cycle = ProgramCycleFactory(default_application_type=None,
-                                    applications_open=True)
-        if (cycle.programs.exists()):
-            try:
-                cycle.full_clean()
-            except ValidationError as e:
-                self.assertRaises(e)
+        with self.assertRaises(ValidationError):
+            ProgramCycleFactory(default_application_type=None,
+                                applications_open=True)
