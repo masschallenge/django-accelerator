@@ -14,7 +14,7 @@ class TestProgramCycle(TestCase):
         cycle = ProgramCycleFactory(short_name=None)
         assert cycle.name in str(cycle)
 
-    def test_program_cycle_has_default_application_type(self):
+    def test_program_cycle_requires_default_application_type(self):
         with self.assertRaises(ValidationError):
             ProgramCycleFactory(default_application_type=None,
                                 applications_open=True)
