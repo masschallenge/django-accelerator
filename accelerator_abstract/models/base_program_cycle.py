@@ -7,7 +7,6 @@ import swapper
 from django.core.exceptions import ValidationError
 from django.db import models
 
-
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 NAME_AS_PROGRAM_FAMILIES_AND_YEAR = "{relevant_program_families} {year}"
@@ -42,7 +41,6 @@ class BaseProgramCycle(AcceleratorModel):
         blank=True,
         related_name="default_overview_application_type_for")
     hidden = models.BooleanField(default=False)
-    fields = '__all__'
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = "program cycles"
