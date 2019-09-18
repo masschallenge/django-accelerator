@@ -4,6 +4,7 @@
 from __future__ import unicode_literals
 
 import swapper
+from django.core.exceptions import ValidationError
 from django.db import models
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
@@ -45,3 +46,23 @@ class BaseProgramCycle(AcceleratorModel):
         verbose_name_plural = "program cycles"
         db_table = '{}_programcycle'.format(AcceleratorModel.Meta.app_label)
         abstract = True
+
+    def clean(self):
+        if (self.applications_open is True and
+                not self.default_application_type):
+            raise ValidationError(
+                'Open applications must have a default '
+                ' application type.')
+
+        if (not self.default_application_type and
+                self.programs.exists() and
+                self.applications_open is True):
+            raise ValidationError(
+                'The program cycle is associated with '
+                ' and the default application type can’t '
+                ' be removed from the cycle until the program'
+                ' cycle is disassociated with all programs')
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        return super().save(*args, **kwargs)
