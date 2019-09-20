@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0077_add_program_overview_link_field_to_a_program'),
+        ('accelerator', '0001_initial.py')
     ]
 
     operations = [

@@ -35,9 +35,9 @@ class BaseProgramFamily(AcceleratorModel):
         default="",
         help_text="Phone number for this program (local form)"
     )
-    # physical_address = TextField(
-    #     default="",
-    # )
+    physical_address = TextField(
+        default="",
+    )
     office_hour_bcc = EmailField(
         max_length=100,
         blank=True,
@@ -58,13 +58,13 @@ class BaseProgramFamily(AcceleratorModel):
     use_site_tree_side_nav = BooleanField(
         default=False,
         help_text="Show the new-style side navigation")
-    # timezone = CharField(
-    #     max_length=35,
-    #     blank=False,
-    #     default="UTC",
-    #     help_text=("Timezone name from Olson Timezone database "
-    #                "(https://en.wikipedia.org/wiki/Tz_database)")
-    #     )
+    timezone = CharField(
+        max_length=35,
+        blank=False,
+        default="UTC",
+        help_text=("Timezone name from Olson Timezone database "
+                   "(https://en.wikipedia.org/wiki/Tz_database)")
+        )
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = "program families"

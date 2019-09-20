@@ -108,7 +108,7 @@ def migrate_program_family_location_info(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0078_add_street_address_to_location'),
+        ('accelerator', '0002_add_street_address_to_location'),
     ]
 
     operations = [
