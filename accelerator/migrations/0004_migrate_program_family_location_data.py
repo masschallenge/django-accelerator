@@ -6,18 +6,18 @@ from django.db import migrations
 
 location_data = {
     'Boston': {'street_address': '21 Drydock Avenue 610E',
-                              'city': 'Boston',
-                              'state': 'MA',
-                              'country': 'USA',
-                              'postcode': '02210',
-                              'timezone': 'America/New_York'},
+               'city': 'Boston',
+               'state': 'MA',
+               'country': 'USA',
+               'postcode': '02210',
+               'timezone': 'America/New_York'},
 
     'UK': {'street_address': 'International House, 24 Holborn Viaduct',
            'city': 'London',
            'country': "England",
-           'postcode': 'EC1A 2BN', 
+           'postcode': 'EC1A 2BN',
            'timezone': 'UTC'},
-           
+
     'Israel': {'street_address': 'c/o Kiach St. 5 (Beit Alliance)',
                'city': 'Jerusalem',
                'country': 'Israel',
@@ -54,7 +54,7 @@ location_data = {
                         'timezone': 'America/Chicago'},
     }
 
-    
+
 program_family_locations = {
     'Boston': 'Boston',
     'MADE': 'Boston',
@@ -66,8 +66,8 @@ program_family_locations = {
     'Rhode Island': 'Rhode Island',
     'EIT Food Accelerator': "Switzerland",
     'Startup HUB CDMX from Facebook by MassChallenge Mexico': 'Mexico',
-    'FinTech': 'Boston', 
-    'Global Alumni Program': 'Boston',                                
+    'FinTech': 'Boston',
+    'Global Alumni Program': 'Boston',
     'Comet (Boston)': 'Boston',
     'Comet (Texas)': "Texas - Austin",
     'Comet (Israel)': 'Israel',
@@ -77,7 +77,6 @@ program_family_locations = {
     'Texas - Houston': 'Texas - Houston',
     'Impulse Accelerator Africa': 'Boston',
 }
-
 
 
 def migrate_program_family_location_info(apps, schema_editor):
@@ -90,9 +89,11 @@ def migrate_program_family_location_info(apps, schema_editor):
                                    'ProgramFamily')
     ProgramFamilyLocation = apps.get_model('accelerator',
                                            'ProgramFamilyLocation')
-    for program_family_name, location_name in program_family_locations.items():
+    items = program_family_locations.items()
+    for program_family_name, location_name in items:
         try:
-            program_family = ProgramFamily.objects.get(name=program_family_name)
+            program_family = ProgramFamily.objects.get(
+                name=program_family_name)
             location = Location.objects.get(name=location_name)
             ProgramFamilyLocation.objects.create(location=location,
                                                  program_family=program_family,
@@ -100,10 +101,12 @@ def migrate_program_family_location_info(apps, schema_editor):
         except ProgramFamily.DoesNotExist:
             pass  # ignore
     boston = Location.objects.get(name="Boston")
-    for program_family in ProgramFamily.objects.filter(programfamilylocation__isnull=True):
+    for program_family in ProgramFamily.objects.filter(
+            programfamilylocation__isnull=True):
         ProgramFamilyLocation.objects.create(location=boston,
                                              program_family=program_family,
                                              primary=True)
+
 
 class Migration(migrations.Migration):
 

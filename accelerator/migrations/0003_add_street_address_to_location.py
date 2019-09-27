@@ -8,7 +8,8 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0002_added_a_unique_constraint_to_application_answers')
+        ('accelerator',
+         '0002_added_a_unique_constraint_to_application_answers')
     ]
 
     operations = [
