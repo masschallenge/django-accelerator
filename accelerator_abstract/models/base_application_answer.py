@@ -23,6 +23,7 @@ class BaseApplicationAnswer(AcceleratorModel):
         db_table = '{}_applicationanswer'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
+        unique_together = ('application', 'application_question')
 
     def __str__(self):
         return "Answer to question %s from %s" % (
