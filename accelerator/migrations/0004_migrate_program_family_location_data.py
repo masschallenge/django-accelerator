@@ -79,7 +79,6 @@ program_family_locations = {
 }
 
 
-
 def migrate_program_family_location_info(apps, schema_editor):
     Location = apps.get_model('accelerator',
                               'Location')
@@ -90,9 +89,11 @@ def migrate_program_family_location_info(apps, schema_editor):
                                    'ProgramFamily')
     ProgramFamilyLocation = apps.get_model('accelerator',
                                            'ProgramFamilyLocation')
-    for program_family_name, location_name in program_family_locations.items():
+    items = program_family_locations.items()
+    for program_family_name, location_name in items:
         try:
-            program_family = ProgramFamily.objects.get(name=program_family_name)
+            program_family = ProgramFamily.objects.get(
+                name=program_family_name)
             location = Location.objects.get(name=location_name)
             ProgramFamilyLocation.objects.create(location=location,
                                                  program_family=program_family,
@@ -100,7 +101,8 @@ def migrate_program_family_location_info(apps, schema_editor):
         except ProgramFamily.DoesNotExist:
             pass  # ignore
     boston = Location.objects.get(name="Boston")
-    for program_family in ProgramFamily.objects.filter(programfamilylocation__isnull=True):
+    for program_family in ProgramFamily.objects.filter(
+            programfamilylocation__isnull=True):
         ProgramFamilyLocation.objects.create(location=boston,
                                              program_family=program_family,
                                              primary=True)
