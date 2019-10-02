@@ -107,6 +107,7 @@ def migrate_program_family_location_info(apps, schema_editor):
                                              program_family=program_family,
                                              primary=True)
 
+
 class Migration(migrations.Migration):
 
     dependencies = [
