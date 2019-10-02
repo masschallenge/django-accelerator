@@ -6,18 +6,18 @@ from django.db import migrations
 
 location_data = {
     'Boston': {'street_address': '21 Drydock Avenue 610E',
-                              'city': 'Boston',
-                              'state': 'MA',
-                              'country': 'USA',
-                              'postcode': '02210',
-                              'timezone': 'America/New_York'},
+               'city': 'Boston',
+               'state': 'MA',
+               'country': 'USA',
+               'postcode': '02210',
+               'timezone': 'America/New_York'},
 
     'UK': {'street_address': 'International House, 24 Holborn Viaduct',
            'city': 'London',
            'country': "England",
-           'postcode': 'EC1A 2BN', 
+           'postcode': 'EC1A 2BN',
            'timezone': 'UTC'},
-           
+
     'Israel': {'street_address': 'c/o Kiach St. 5 (Beit Alliance)',
                'city': 'Jerusalem',
                'country': 'Israel',
@@ -54,7 +54,7 @@ location_data = {
                         'timezone': 'America/Chicago'},
     }
 
-    
+
 program_family_locations = {
     'Boston': 'Boston',
     'MADE': 'Boston',
@@ -66,8 +66,8 @@ program_family_locations = {
     'Rhode Island': 'Rhode Island',
     'EIT Food Accelerator': "Switzerland",
     'Startup HUB CDMX from Facebook by MassChallenge Mexico': 'Mexico',
-    'FinTech': 'Boston', 
-    'Global Alumni Program': 'Boston',                                
+    'FinTech': 'Boston',
+    'Global Alumni Program': 'Boston',
     'Comet (Boston)': 'Boston',
     'Comet (Texas)': "Texas - Austin",
     'Comet (Israel)': 'Israel',
