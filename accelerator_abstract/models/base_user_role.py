@@ -41,7 +41,7 @@ class BaseUserRole(AcceleratorModel):
                            STAFF]
 
     name = CharField(max_length=255)
-    url_slug = CharField(max_length=30)
+#    url_slug = CharField(max_length=30)
     sort_order = PositiveIntegerField()
 
     class Meta(AcceleratorModel.Meta):

@@ -19,5 +19,5 @@ class UserRoleFactory(DjangoModelFactory):
         model = UserRole
 
     name = Sequence(lambda n: "User Role {0}".format(n))
-    url_slug = Sequence(lambda n: "role_{0}".format(n))
+#    url_slug = Sequence(lambda n: "role_{0}".format(n))
     sort_order = Sequence(lambda n: n)
