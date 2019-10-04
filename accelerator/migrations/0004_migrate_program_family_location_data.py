@@ -30,7 +30,7 @@ location_data = {
                'city': 'Mexico City',
                'country': 'Mexico',
                'timezone': 'America/Mexico_City'},
-    
+
     'Switzerland': {'name': 'MassChallenge Switzerland',
                     'street_address': 'Lausanne',
                     'country': 'Switzerland',
@@ -43,7 +43,7 @@ location_data = {
                        'postcode': '78702',
                        'country': 'USA',
                        'timezone': 'America/Chicago'},
-    
+
     'Rhode Island': {'name': 'MassChallenge Rhode Island',
                      'street_address': '225 Dyer Street, 2nd Floor',
                      'city': 'Providence',
@@ -76,7 +76,8 @@ program_family_locations = {
     'Bridge to MassChallenge Biscay': 'MassChallenge Boston',
     'Rhode Island': 'MassChallenge Rhode Island',
     'EIT Food Accelerator': "MassChallenge Switzerland",
-    'Startup HUB CDMX from Facebook by MassChallenge Mexico': 'MassChallenge Mexico',
+    'Startup HUB CDMX from Facebook by MassChallenge Mexico':
+    'MassChallenge Mexico',
     'FinTech': 'MassChallenge Boston',
     'Global Alumni Program': 'MassChallenge Boston',
     'Comet (MassChallenge Boston)': 'MassChallenge Boston',
