@@ -8,7 +8,8 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0005_auto_20191002_1655'),
+        ('accelerator',
+         '0005_migrate_old_location_data_to_new_location_field'),
     ]
 
     operations = [
