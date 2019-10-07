@@ -1,8 +1,6 @@
 from __future__ import unicode_literals
 
-from django.db.models import (
-    CharField,
-)
+from django.db.models import CharField
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -11,6 +9,10 @@ class BaseLocation(AcceleratorModel):
     name = CharField(
         max_length=100,
         blank=False)
+    street_address = CharField(
+        max_length=100,
+        blank=True,
+        default="")
     city = CharField(
         max_length=100,
         blank=True,
@@ -19,8 +21,7 @@ class BaseLocation(AcceleratorModel):
         max_length=100,
         blank=True,
         default="",
-        help_text="State/Region/Province"
-    )
+        help_text="State/Region/Province")
     country = CharField(
         max_length=100,
         blank=True,
