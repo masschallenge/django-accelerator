@@ -5,48 +5,59 @@ from __future__ import unicode_literals
 from django.db import migrations
 
 location_data = {
-    'Boston': {'street_address': '21 Drydock Avenue 610E',
+    'Boston': {'name': 'MassChallenge Boston',
+               'street_address': '21 Drydock Avenue 610E',
                'city': 'Boston',
                'state': 'MA',
                'country': 'USA',
                'postcode': '02210',
                'timezone': 'America/New_York'},
 
-    'UK': {'street_address': 'International House, 24 Holborn Viaduct',
+    'UK': {'name': 'MassChallenge UK',
+           'street_address': 'International House, 24 Holborn Viaduct',
            'city': 'London',
            'country': "England",
            'postcode': 'EC1A 2BN',
            'timezone': 'UTC'},
 
-    'Israel': {'street_address': 'c/o Kiach St. 5 (Beit Alliance)',
+    'Israel': {'name': 'MassChallenge Israel',
+               'street_address': 'c/o Kiach St. 5 (Beit Alliance)',
                'city': 'Jerusalem',
                'country': 'Israel',
                'timezone': 'Israel'},
 
-    'Mexico': {'city': 'Mexico City',
+    'Mexico': {'name': 'MassChallenge Mexico',
+               'city': 'Mexico City',
                'country': 'Mexico',
                'timezone': 'America/Mexico_City'},
-    'Switzerland': {'street_address': 'Lausanne',
+
+    'Switzerland': {'name': 'MassChallenge Switzerland',
+                    'street_address': 'Lausanne',
                     'country': 'Switzerland',
                     'timezone': 'Europe/Zurich'},
 
-    'Texas - Austin': {'street_address': 'c/o WeWork, 801 Barton Springs Road',
+    'Texas - Austin': {'name': 'MassChallenge Austin',
+                       'street_address': 'c/o WeWork, 801 Barton Springs Road',
                        'city': 'Austin',
                        'state': 'Texas',
                        'postcode': '78702',
                        'country': 'USA',
                        'timezone': 'America/Chicago'},
-    'Rhode Island': {'street_address': '225 Dyer Street, 2nd Floor',
+
+    'Rhode Island': {'name': 'MassChallenge Rhode Island',
+                     'street_address': '225 Dyer Street, 2nd Floor',
                      'city': 'Providence',
                      'state': 'RI',
                      'country': 'USA',
                      'postcode': '02903',
                      'timezone': 'America/New_York'},
-    'FIA Smart Cities': {'street_address': '5 Chemin du Closel',
+    'FIA Smart Cities': {'name': 'FIA Smart Cities',
+                         'street_address': '5 Chemin du Closel',
                          'city': 'Renens',
                          'country': 'Switzerland',
                          'timezone': 'UTC'},
-    'Texas - Houston': {'street_address': '1313 Main Street Suite 210',
+    'Texas - Houston': {'name': 'MassChallenge Houston',
+                        'street_address': '1313 Main Street Suite 210',
                         'city': 'Houston',
                         'state': 'TX',
                         'country': 'USA',
@@ -56,26 +67,27 @@ location_data = {
 
 
 program_family_locations = {
-    'Boston': 'Boston',
-    'MADE': 'Boston',
-    'Mexico': 'Mexico',
-    'Switzerland': 'Switzerland',
-    'Texas - Austin': 'Texas - Austin',
-    'HealthTech': 'Boston',
-    'Bridge to MassChallenge Biscay': 'Boston',
-    'Rhode Island': 'Rhode Island',
-    'EIT Food Accelerator': "Switzerland",
-    'Startup HUB CDMX from Facebook by MassChallenge Mexico': 'Mexico',
-    'FinTech': 'Boston',
-    'Global Alumni Program': 'Boston',
-    'Comet (Boston)': 'Boston',
-    'Comet (Texas)': "Texas - Austin",
-    'Comet (Israel)': 'Israel',
+    'Boston': 'MassChallenge Boston',
+    'MADE': 'MassChallenge Boston',
+    'Mexico': 'MassChallenge Mexico',
+    'Switzerland': 'MassChallenge Switzerland',
+    'Texas - Austin': 'MassChallenge Austin',
+    'HealthTech': 'MassChallenge Boston',
+    'Bridge to MassChallenge Biscay': 'MassChallenge Boston',
+    'Rhode Island': 'MassChallenge Rhode Island',
+    'EIT Food Accelerator': "MassChallenge Switzerland",
+    'Startup HUB CDMX from Facebook by MassChallenge Mexico':
+    'MassChallenge Mexico',
+    'FinTech': 'MassChallenge Boston',
+    'Global Alumni Program': 'MassChallenge Boston',
+    'Comet (MassChallenge Boston)': 'MassChallenge Boston',
+    'Comet (Texas)': "MassChallenge Austin",
+    'Comet (MassChallenge Israel)': 'MassChallenge Israel',
     'FIA Smart Cities': 'FIA Smart Cities',
-    'Innovation Bridge Mexico - Boston': 'Mexico',
-    'Bridge to MassChallenge Taiwan': 'Boston',
-    'Texas - Houston': 'Texas - Houston',
-    'Impulse Accelerator Africa': 'Boston',
+    'Innovation Bridge Mexico - MassChallenge Boston': 'MassChallenge Mexico',
+    'Bridge to MassChallenge Taiwan': 'MassChallenge Boston',
+    'Texas - Houston': 'MassChallenge Houston',
+    'Impulse Accelerator Africa': 'MassChallenge Boston',
 }
 
 
@@ -83,7 +95,7 @@ def migrate_program_family_location_info(apps, schema_editor):
     Location = apps.get_model('accelerator',
                               'Location')
     for name, values in location_data.items():
-        Location.objects.create(name=name, **values)
+        Location.objects.create(**values)
 
     ProgramFamily = apps.get_model('accelerator',
                                    'ProgramFamily')
@@ -100,7 +112,7 @@ def migrate_program_family_location_info(apps, schema_editor):
                                                  primary=True)
         except ProgramFamily.DoesNotExist:
             pass  # ignore
-    boston = Location.objects.get(name="Boston")
+    boston = Location.objects.get(name="MassChallenge Boston")
     for program_family in ProgramFamily.objects.filter(
             programfamilylocation__isnull=True):
         ProgramFamilyLocation.objects.create(location=boston,
