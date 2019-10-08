@@ -6,8 +6,8 @@ from django.db import migrations
 
 
 location_to_name_mapping = {
-    "(Phone) Provide a preferred contact number below": 'Remote',
-    "ATLAS VENTURE:  25 First Street, St 303 Cambridge": 'Other',
+    "(Phone) Provide a preferred contact number below.": 'Remote',
+    "ATLAS VENTURE:  25 First Street, St 303 Cambridge": 'Other',
     "Call +1-508-244-9854 at start time.": 'Remote',
     "Cloud conference room": 'Boston',
     "Cobalt": 'Boston',
