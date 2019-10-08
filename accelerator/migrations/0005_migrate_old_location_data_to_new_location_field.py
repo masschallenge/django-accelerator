@@ -5,41 +5,52 @@ from __future__ import unicode_literals
 from django.db import migrations
 
 
+location_to_name_mapping = {
+    "(Phone) Provide a preferred contact number below": 'Remote',
+    "ATLAS VENTURE:  25 First Street, St 303 Cambridge": 'Other',
+    "Call +1-508-244-9854 at start time.": 'Remote',
+    "Cloud conference room": 'Boston',
+    "Cobalt": 'Boston',
+    "FOLEY & LARDNER": 'Other',
+    "Fog Conference Room @ MassChallenge": 'Boston',
+    "Lounge": 'Boston',
+    "MC Lounge": 'Boston',
+    "Magenta Conference Room": 'Boston',
+    "MassChallenge Boston": 'Boston',
+    "MassChallenge Israel - Jerusalem": 'Israel',
+    "MassChallenge Israel - Tel Aviv": 'Israel - Tel Aviv',
+    "MassChallenge Lounge": 'Boston',
+    "MassChallenge Mexico": 'Mexico',
+    "MassChallenge Rhode Island": 'Rhode Island',
+    "MassChallenge Switzerland": 'Switzerland',
+    "MassChallenge Texas": 'Texas - Austin',
+    "MassChallenge Texas - Austin": 'Texas - Austin',
+    "MassChallenge Texas - Houston": 'Texas - Houston',
+    "MassChallenge UK": 'UK',
+    "OFFSITE: General Catalyst Offices": 'Other',
+    "OFFSITE: Third Rock Ventures": 'Other',
+    "Offline w KB, entered by Matt": 'Other',
+    "Other - see description": 'Other',
+    "PULSE@MassChallenge": 'Boston',
+    "Pulse@MassChallenge": 'Boston',
+    "Remote - see description": 'Remote',
+    "mc lounge": 'Boston',
+    "phone call": 'Boston'
+}
+
+
 def migrate_office_hours_locations(apps, schema_editor):
     Location = apps.get_model('accelerator',
                               'Location')
     MentorProgramOfficeHour = apps.get_model('accelerator',
                                              'MentorProgramOfficeHour')
-
-    Location.objects.get_or_create(name='Israel - Tel Aviv')
-    Location.objects.get_or_create(name='Lounge')
-    other_location, _ = Location.objects.get_or_create(name='Other')
-    remote_location, _ = Location.objects.get_or_create(name='Remote')
     location_values = set(MentorProgramOfficeHour.objects.values_list(
         "old_location", flat=True))
-
-    program_family_locations = _program_family_locations(location_values)
     for old_location in location_values:
-        if old_location in program_family_locations:
-            location_name = old_location.replace('MassChallenge ', '')
-            if 'Israel' in location_name:
-                location_name = 'Israel'
-            elif old_location.endswith('Texas'):
-                location_name = 'Texas - Austin'
-            new_location = Location.objects.get(name=location_name)
-        else:
-            if old_location.startswith('Remote'):
-                new_location = remote_location
-            else:
-                new_location = other_location
-        print("{0} {0}".format(old_location, new_location))
+        new_location_name = location_to_name_mapping[old_location]
+        location, _ = Location.objects.get_or_create(name=new_location_name)
         MentorProgramOfficeHour.objects.filter(
-            old_location=old_location).update(location=new_location)
-
-
-def _program_family_locations(location_values):
-    return list(filter(
-        lambda x: x.startswith('MassChallenge'), location_values))
+            old_location=old_location).update(location=location)
 
 
 class Migration(migrations.Migration):
