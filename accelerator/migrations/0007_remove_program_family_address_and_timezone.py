@@ -8,7 +8,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0005_make_location_nullable'),
+        ('accelerator', '0006_remove_userrole_url_slug'),
     ]
 
     operations = [
