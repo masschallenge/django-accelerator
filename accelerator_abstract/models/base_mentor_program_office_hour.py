@@ -30,7 +30,7 @@ class BaseMentorProgramOfficeHour(AcceleratorModel):
     start_date_time = models.DateTimeField(db_index=True)
     end_date_time = models.DateTimeField(db_index=True)
     description = models.TextField(blank=True)
-    old_location = models.CharField(max_length=50)
+    old_location = models.CharField(max_length=50, blank=True, null=True)
     location = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Location"),
         null=True,
