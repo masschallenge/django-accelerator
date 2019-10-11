@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('accelerator',
-         '0006_migrate_old_location_data_to_new_location_field'),
+         '0008_migrate_old_location_data_to_new_location_field'),
     ]
 
     operations = [

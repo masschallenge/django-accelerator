@@ -56,7 +56,7 @@ def migrate_office_hours_locations(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0005_make_location_nullable'),
+        ('accelerator', '0007_remove_program_family_address_and_timezone'),
     ]
 
     operations = [
