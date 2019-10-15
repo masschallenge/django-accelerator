@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0004_migrate_program_family_location_data'),
+        ('accelerator', '0003_add_street_address_to_location'),
     ]
 
     operations = [
