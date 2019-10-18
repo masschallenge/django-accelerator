@@ -10,28 +10,6 @@ from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
-MC_BOS_LOCATION = "MassChallenge Boston"
-MC_IL_JLM_LOCATION = "MassChallenge Israel - Jerusalem"
-MC_IL_TLV_LOCATION = "MassChallenge Israel - Tel Aviv"
-MC_MX_LOCATION = "MassChallenge Mexico"
-MC_RI_LOCATION = "MassChallenge Rhode Island"
-MC_CH_LOCATION = "MassChallenge Switzerland"
-MC_TX_LOCATION = "MassChallenge Texas - Austin"
-MC_TXH_LOCATION = "MassChallenge Texas - Houston"
-MC_REMOTE_LOCATION = "Remote - see description"
-MC_OTHER_LOCATION = "Other - see description"
-LOCATION_CHOICES = (
-    (MC_BOS_LOCATION, MC_BOS_LOCATION),
-    (MC_IL_JLM_LOCATION, MC_IL_JLM_LOCATION),
-    (MC_IL_TLV_LOCATION, MC_IL_TLV_LOCATION),
-    (MC_MX_LOCATION, MC_MX_LOCATION),
-    (MC_RI_LOCATION, MC_RI_LOCATION),
-    (MC_CH_LOCATION, MC_CH_LOCATION),
-    (MC_TX_LOCATION, MC_TX_LOCATION),
-    (MC_TXH_LOCATION, MC_TXH_LOCATION),
-    (MC_REMOTE_LOCATION, MC_REMOTE_LOCATION),
-    (MC_OTHER_LOCATION, MC_OTHER_LOCATION),
-)
 HOUR_IS_PAST_MESSAGE = "This office hour is in the past"
 HOUR_HAS_BEEN_CANCELED_MESSAGE = "This office hour has been canceled"
 HOUR_NOT_SPECIFIED_MESSAGE = "Office hour has not been specified"
@@ -52,7 +30,7 @@ class BaseMentorProgramOfficeHour(AcceleratorModel):
     start_date_time = models.DateTimeField(db_index=True)
     end_date_time = models.DateTimeField(db_index=True)
     description = models.TextField(blank=True)
-    old_location = models.CharField(max_length=50, choices=LOCATION_CHOICES)
+    old_location = models.CharField(max_length=50, blank=True, null=True)
     location = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Location"),
         null=True,
