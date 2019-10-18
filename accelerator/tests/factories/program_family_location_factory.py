@@ -7,7 +7,9 @@ from factory import (
 )
 
 from accelerator.apps import AcceleratorConfig
-from accelerator.tests.factories import ProgramFamilyFactory
+from accelerator.tests.factories import (
+    ProgramFamilyFactory,
+)
 from accelerator.tests.factories.location_factory import LocationFactory
 
 ProgramFamilyLocation = swapper.load_model(AcceleratorConfig.name,
