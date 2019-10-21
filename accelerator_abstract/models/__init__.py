@@ -154,16 +154,7 @@ from .base_judging_round import (
     RECRUIT_NONE,
 )
 from .base_member_profile import BaseMemberProfile
-from .base_mentor_program_office_hour import (
-    BaseMentorProgramOfficeHour,
-    LOCATION_CHOICES,
-    MC_BOS_LOCATION,
-    MC_CH_LOCATION,
-    MC_IL_JLM_LOCATION,
-    MC_OTHER_LOCATION,
-    MC_MX_LOCATION,
-    MC_REMOTE_LOCATION,
-)
+from .base_mentor_program_office_hour import BaseMentorProgramOfficeHour
 from .base_mentoring_specialties import BaseMentoringSpecialties
 from .base_model_change import (
     BaseModelChange,
