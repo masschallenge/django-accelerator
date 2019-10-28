@@ -75,6 +75,14 @@ class BaseExpertProfile(BaseCoreProfile):
         verbose_name="Functional Expertise",
         related_name="experts",
         blank=True)
+    expert_type = models.CharField(
+        max_length=64,
+        null=True,
+        verbose_name="Expert Type")
+    judge_type = models.CharField(
+        max_length=64,
+        null=True,
+        verbose_name="Judge Type")
     primary_industry = models.ForeignKey(
         settings.MPTT_SWAPPABLE_INDUSTRY_MODEL,
         verbose_name="Primary Industry",
