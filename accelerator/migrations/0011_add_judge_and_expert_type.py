@@ -15,11 +15,33 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='expertprofile',
             name='judge_type',
-            field=models.CharField(blank=True, help_text='Allowed Values: 1 - Round 1 Judge, 2 - Round 2 Judge, 3 - Pre-final Judge, 4 - Final Judge, 0 - Once Accepted, now rejected, X - Not Accepted as a Judge (May still be a mentor)', max_length=1, verbose_name='Judge Type'),
+            field=models.CharField(
+                blank=True,
+                help_text=(
+                    "Allowed Values: "
+                    "1 - Round 1 Judge, "
+                    "2 - Round 2 Judge, "
+                    "3 - Pre-final Judge, "
+                    "4 - Final Judge, "
+                    "0 - Once Accepted, now rejected, "
+                    "X - Not Accepted as a Judge (May still be a mentor)"),
+                max_length=1,
+                verbose_name='Judge Type'),
         ),
         migrations.AddField(
             model_name='expertprofile',
             name='mentor_type',
-            field=models.CharField(blank=True, help_text='Allowed Values: F - Functional Expert, P - Partner, T - Technical, E - Entrepreneur, N - Once accepted, now rejected, X - Not Accepted as a Mentor (may still be a judge)', max_length=1, verbose_name='Mentor Type'),
+            field=models.CharField(
+                blank=True,
+                help_text=(
+                    "Allowed Values: "
+                    "F - Functional Expert, "
+                    "P - Partner, "
+                    "T - Technical, "
+                    "E - Entrepreneur, "
+                    "N - Once accepted, now rejected, "
+                    "X - Not Accepted as a Mentor (may still be a judge)"),
+                max_length=1,
+                verbose_name='Mentor Type'),
         ),
     ]
