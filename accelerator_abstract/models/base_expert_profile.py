@@ -94,12 +94,12 @@ class BaseExpertProfile(BaseCoreProfile):
         related_name="experts",
         blank=True)
     mentor_type = models.CharField(
-        max_length=64,
+        max_length=1,
         blank=True,
         help_text=MENTOR_TYPE_HELPTEXT,
         verbose_name="Mentor Type")
     judge_type = models.CharField(
-        max_length=64,
+        max_length=1,
         blank=True,
         help_text=JUDGE_TYPE_HELPTEXT,
         verbose_name="Judge Type")
