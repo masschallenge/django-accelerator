@@ -51,6 +51,24 @@ INVITED_JUDGE_ALERT = (
 
 BIO_MAX_LENGTH = 7500
 
+MENTOR_TYPE_HELPTEXT = (
+    "Allowed Values: "
+    "F - Functional Expert, "
+    "P - Partner, "
+    "T - Technical, "
+    "E - Entrepreneur, "
+    "N - Once accepted, now rejected, "
+    "X - Not Accepted as a Mentor (may still be a judge)")
+
+JUDGE_TYPE_HELPTEXT = (
+    "Allowed Values: "
+    "1 - Round 1 Judge, "
+    "2 - Round 2 Judge, "
+    "3 - Pre-final Judge, "
+    "4 - Final Judge, "
+    "0 - Once Accepted, now rejected, "
+    "X - Not Accepted as a Judge (May still be a mentor)")
+
 
 class BaseExpertProfile(BaseCoreProfile):
     user_type = 'expert'
@@ -75,6 +93,16 @@ class BaseExpertProfile(BaseCoreProfile):
         verbose_name="Functional Expertise",
         related_name="experts",
         blank=True)
+    mentor_type = models.CharField(
+        max_length=1,
+        blank=True,
+        help_text=MENTOR_TYPE_HELPTEXT,
+        verbose_name="Mentor Type")
+    judge_type = models.CharField(
+        max_length=1,
+        blank=True,
+        help_text=JUDGE_TYPE_HELPTEXT,
+        verbose_name="Judge Type")
     primary_industry = models.ForeignKey(
         settings.MPTT_SWAPPABLE_INDUSTRY_MODEL,
         verbose_name="Primary Industry",
