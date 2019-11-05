@@ -11,7 +11,7 @@ from accelerator.models import (
     has_user_role_base,
     UserRole,
 )
-    
+
 
 class TestBaseUserRole(TestCase):
     def test_has_user_role_base(self):
@@ -21,6 +21,3 @@ class TestBaseUserRole(TestCase):
                                            UserRole.JUDGE,
                                            inactive_programs=True,
                                            active_or_ended_programs=True))
-       
-        
-
