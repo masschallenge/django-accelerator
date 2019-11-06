@@ -10,6 +10,7 @@ def delete_unused_user_roles(apps, schema_editor):
     UserRole = apps.get_model('accelerator', 'UserRole')
     UserRole.objects.filter(name__in=unused_roles).delete()
 
+
 class Migration(migrations.Migration):
 
     dependencies = [

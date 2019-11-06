@@ -1,11 +1,8 @@
 # MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
-from __future__ import unicode_literals
+# Copyright (c) 2019 MassChallenge, Inc.
 
 from django.test import TestCase
 
-from accelerator.tests.factories import MemberFactory
 from accelerator.tests.contexts import JudgeFeedbackContext
 from accelerator.models import (
     has_user_role_base,
