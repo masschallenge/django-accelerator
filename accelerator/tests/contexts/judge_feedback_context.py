@@ -5,6 +5,7 @@ from accelerator_abstract.models import (
 )
 
 from accelerator.models import (
+    ACTIVE_PROGRAM_STATUS,
     ASSIGNED_PANEL_ASSIGNMENT_STATUS,
     COMPLETE_PANEL_ASSIGNMENT_STATUS,
     FEEDBACK_DISPLAY_DISABLED as DISABLED,
@@ -56,7 +57,8 @@ class JudgeFeedbackContext:
                  cycle_based_round=False,
                  online_round=True,
                  is_active=True,
-                 judge_capacity=10):
+                 judge_capacity=10,
+                 program_status=ACTIVE_PROGRAM_STATUS):
         self.judging_capacity = 0
         if application:
             self.application = application
@@ -79,6 +81,7 @@ class JudgeFeedbackContext:
             'cycle_based_round': cycle_based_round,
             'application_type': self.application_type,
             'is_active': is_active,
+            'program__program_status': program_status,
         }
         if merge_feedback_with:
             jr_kwargs['feedback_merge_with'] = merge_feedback_with

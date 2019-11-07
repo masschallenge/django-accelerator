@@ -6,11 +6,11 @@ from simpleuser.models import User
 from .allocator import Allocator
 from .startup_role import StartupRole
 from .user_role import UserRole
+from accelerator_abstract.models.base_user_role import has_user_role_base
+
 from .user_role_menu import UserRoleMenu
 from .program_cycle import ProgramCycle
-from .base_profile import (
-    BaseProfile,
-)
+from .base_profile import BaseProfile
 from accelerator_abstract.models.base_base_profile import (
     PHONE_MAX_LENGTH,
     TWITTER_HANDLE_MAX_LENGTH,
