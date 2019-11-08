@@ -13,7 +13,6 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 class BaseUserRole(AcceleratorModel):
     # Known User Roles
-    ACTIVE_JUDGE = "Active Judge"
     ALUM = "Alum"
     ALUM_MENTOR = "Alum Mentor"
     AIR = "Alumni in Residence"
@@ -26,7 +25,6 @@ class BaseUserRole(AcceleratorModel):
     PARTNER = "Partner"
     PARTNER_ADMIN = "Partner Admin"
     PROCTOR = "Proctor"
-    SENIOR_JUDGE = "Senior Judge"
     STAFF = "Staff"
     TEAM = "Team"
 
@@ -41,7 +39,6 @@ class BaseUserRole(AcceleratorModel):
                            STAFF]
 
     name = CharField(max_length=255)
-    url_slug = CharField(max_length=30)
     sort_order = PositiveIntegerField()
 
     class Meta(AcceleratorModel.Meta):

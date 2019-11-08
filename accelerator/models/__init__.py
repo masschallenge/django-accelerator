@@ -6,11 +6,11 @@ from simpleuser.models import User
 from .allocator import Allocator
 from .startup_role import StartupRole
 from .user_role import UserRole
+from accelerator_abstract.models.base_user_role import has_user_role_base
+
 from .user_role_menu import UserRoleMenu
 from .program_cycle import ProgramCycle
-from .base_profile import (
-    BaseProfile,
-)
+from .base_profile import BaseProfile
 from accelerator_abstract.models.base_base_profile import (
     PHONE_MAX_LENGTH,
     TWITTER_HANDLE_MAX_LENGTH,
@@ -53,15 +53,6 @@ from .site import Site
 from .site_program_authorization import SiteProgramAuthorization
 from .mentor_program_office_hour import MentorProgramOfficeHour
 
-from accelerator_abstract.models.base_mentor_program_office_hour import (
-    LOCATION_CHOICES,
-    MC_BOS_LOCATION,
-    MC_CH_LOCATION,
-    MC_IL_JLM_LOCATION,
-    MC_OTHER_LOCATION,
-    MC_MX_LOCATION,
-    MC_REMOTE_LOCATION,
-)
 from .program_override import ProgramOverride
 from .refund_code import RefundCode
 from .observer import Observer

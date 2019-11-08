@@ -15,6 +15,7 @@ class LocationFactory(DjangoModelFactory):
         model = Location
 
     name = Sequence(lambda n: "Location {0}".format(n))
+    street_address = Sequence(lambda n: "{0} Main St".format(n))
     city = Sequence(lambda n: "city {0}".format(n))
     state = Sequence(lambda n: "state {0}".format(n))
     country = Sequence(lambda n: "country {0}".format(n))
