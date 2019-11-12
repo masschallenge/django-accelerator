@@ -242,15 +242,14 @@ class BaseCoreProfile(AcceleratorModel):
             program_role__user_role__name__in=REMAINING_ROLES,
             program_role__user_role__isnull=False,
             program_role__landing_page__isnull=False)
-        
-        
+
         query = self.user.programrolegrant_set.filter(
             active_judge_grants |
             desired_judge_grants |
             active_mentor_grants |
             remaining_grants).exclude(
                 program_role__landing_page="")
-        
+
         if exclude_role_names:
             query = query.exclude(
                 program_role__user_role__name__in=exclude_role_names)
@@ -260,7 +259,6 @@ class BaseCoreProfile(AcceleratorModel):
         if grant:
             return grant.program_role.landing_page
         return self.default_page
-
 
     def calc_landing_page(self):
         excludes = self._check_for_judge_excludes()
@@ -287,7 +285,7 @@ class BaseCoreProfile(AcceleratorModel):
         if page == "/":
             return self.default_page
         return page
-    
+
     def first_startup(self, statuses=[]):
         return None
 
