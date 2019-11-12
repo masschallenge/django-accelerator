@@ -25,13 +25,15 @@ STARTUP_BADGE_DISPLAY_VALUES = (
 @python_2_unicode_compatible
 class BaseProgramStartupStatus(AcceleratorModel):
     program = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"))
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
+        on_delete=models.CASCADE)
     startup_status = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True, null=True)
     startup_role = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "StartupRole"),
         null=True,
-        blank=True)
+        blank=True,
+        on_delete=models.CASCADE)
     startup_list_include = models.BooleanField(
         default=False,
         help_text=("Include this startup status as a tab "

@@ -20,7 +20,8 @@ class BaseAllocator(AcceleratorModel):
         on_delete=CASCADE,
         primary_key=True)
     scenario = OneToOneField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Scenario'))
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Scenario'),
+        on_delete=CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_allocator'.format(

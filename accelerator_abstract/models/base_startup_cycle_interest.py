@@ -7,6 +7,7 @@ import swapper
 from django.db.models import (
     ForeignKey,
     ManyToManyField,
+    CASCADE,
 )
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
@@ -14,9 +15,11 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 class BaseStartupCycleInterest(AcceleratorModel):
     cycle = ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                                              "ProgramCycle"))
+                                              "ProgramCycle"),
+            on_delete=CASCADE)
     startup = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"))
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"),
+        on_delete=CASCADE)
     interested_programs = ManyToManyField(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Program'),
         through=swapper.get_model_name(AcceleratorModel.Meta.app_label,

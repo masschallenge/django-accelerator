@@ -14,8 +14,10 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseStartupTeamMember(AcceleratorModel):
     startup = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"))
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"),
+        on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE)
     title = models.CharField(max_length=60, blank=True)
     startup_administrator = models.BooleanField(
         help_text='You have to have at least one administrator')

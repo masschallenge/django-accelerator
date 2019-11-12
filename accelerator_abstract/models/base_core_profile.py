@@ -49,7 +49,8 @@ JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
 
 @python_2_unicode_compatible
 class BaseCoreProfile(AcceleratorModel):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE)
     gender = models.CharField(
         max_length=1,
         choices=GENDER_CHOICES,
@@ -100,6 +101,7 @@ class BaseCoreProfile(AcceleratorModel):
                                'Program'),
         blank=True,
         null=True,
+        on_delete=models.CASCADE,
     )
     program_families = models.ManyToManyField(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,

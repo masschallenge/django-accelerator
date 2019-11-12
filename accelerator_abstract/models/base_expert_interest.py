@@ -33,17 +33,20 @@ class BaseExpertInterest(AcceleratorModel):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         related_name="expert_interests",
-        validators=[is_expert_validator, ]
+        validators=[is_expert_validator, ],
+        on_delete=models.CASCADE
     )
     program_family = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                'ProgramFamily'),
-        related_name="interested_experts"
+        related_name="interested_experts",
+        on_delete=models.CASCADE
     )
     interest_type = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                'ExpertInterestType'),
-        related_name="interested_experts"
+        related_name="interested_experts",
+        on_delete=models.CASCADE
     )
     topics = models.TextField(
         blank=True,

@@ -13,9 +13,11 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseSiteProgramAuthorization(AcceleratorModel):
     site = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Site"))
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Site"),
+        on_delete=models.CASCADE)
     program = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"))
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
+        on_delete=models.CASCADE)
     startup_profile_base_url = models.URLField()
     sponsor_profile_base_url = models.URLField()
     video_base_url = models.URLField()

@@ -77,7 +77,8 @@ FORM_ELEM_FEEDBACK_TO_MC = 'FEEDBACK_TO_MC'
 @python_2_unicode_compatible
 class BaseJudgingFormElement(AcceleratorModel):
     form_type = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "JudgingForm"))
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "JudgingForm"),
+        on_delete=models.CASCADE)
     element_number = models.IntegerField()
     element_name = models.CharField(max_length=50, blank=True)
     dashboard_label = models.CharField(max_length=50, blank=True)
@@ -128,7 +129,8 @@ class BaseJudgingFormElement(AcceleratorModel):
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "ApplicationQuestion"),
         blank=True,
-        null=True)
+        null=True,
+        on_delete=models.CASCADE)
     sharing = models.CharField(
         max_length=64,
         choices=SHARING_VALUES,
