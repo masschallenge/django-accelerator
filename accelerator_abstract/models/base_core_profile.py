@@ -1,7 +1,6 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
 
-from __future__ import unicode_literals
 from datetime import datetime
 from pytz import utc
 
@@ -51,7 +50,6 @@ JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
                           'confirmed_judge_label': 'Judge'}
 
 
-@python_2_unicode_compatible
 class BaseCoreProfile(AcceleratorModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     gender = models.CharField(
