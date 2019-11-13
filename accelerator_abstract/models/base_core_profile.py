@@ -259,17 +259,9 @@ class BaseCoreProfile(AcceleratorModel):
         return self.default_page
 
     def calc_landing_page(self):
-        excludes = self._check_for_judge_excludes()
         return (
             self._get_staff_landing_page() or
-            self.role_based_landing_page(exclude_role_names=excludes))
-
-    def _check_for_judge_excludes(self):
-        excludes = []
-        for (label, role_name) in JUDGE_FIELDS_TO_LABELS.items():
-            if not self._has_judge_label_in_active_round(label):
-                excludes.append(role_name)
-        return excludes
+            self.role_based_landing_page())
 
     def _has_judge_label_in_active_round(self, label):
         JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
