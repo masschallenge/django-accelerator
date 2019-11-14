@@ -262,13 +262,6 @@ class BaseCoreProfile(AcceleratorModel):
             self._get_staff_landing_page() or
             self.role_based_landing_page())
 
-    def _has_judge_label_in_active_round(self, label):
-        JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
-                                          'JudgingRound')
-        active_rounds = JudgingRound.objects.filter(is_active=True)
-        label_ids = active_rounds.values_list(label, flat=True)
-        return self.user.userlabel_set.filter(id__in=label_ids).exists()
-
     def check_landing_page(self):
         page = self.landing_page or self.calc_landing_page()
         if page == "/":
