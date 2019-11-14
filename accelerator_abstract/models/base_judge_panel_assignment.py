@@ -22,7 +22,7 @@ JUDGE_PANEL_ASSIGNMENT_STATUS_ENUM = (
 @python_2_unicode_compatible
 class BaseJudgePanelAssignment(AcceleratorModel):
     judge = models.ForeignKey(settings.AUTH_USER_MODEL,
-    on_delete=models.CASCADE)
+                              on_delete=models.CASCADE)
     panel = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Panel"),
         on_delete=models.CASCADE)

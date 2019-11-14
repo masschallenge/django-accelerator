@@ -26,12 +26,12 @@ class BaseJudgeAvailability(AcceleratorModel):
         on_delete=models.CASCADE)
     panel_location = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "PanelLocation"), 
+                               "PanelLocation"),
         blank=True,
         null=True,
         on_delete=models.CASCADE)
     panel_time = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "PanelTime"), 
+        AcceleratorModel.Meta.app_label, "PanelTime"),
         blank=True,
         null=True,
         on_delete=models.CASCADE)

@@ -50,7 +50,7 @@ JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
 @python_2_unicode_compatible
 class BaseCoreProfile(AcceleratorModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE)
+                                on_delete=models.CASCADE)
     gender = models.CharField(
         max_length=1,
         choices=GENDER_CHOICES,

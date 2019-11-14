@@ -38,7 +38,7 @@ class BaseStartup(AcceleratorModel):
         AcceleratorModel.Meta.app_label, 'Organization'), blank=True,
         null=True, related_name='startups', on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE)
+                             on_delete=models.CASCADE)
     is_visible = models.BooleanField(
         default=True,
         help_text=('Startup Profiles will be published to external websites '

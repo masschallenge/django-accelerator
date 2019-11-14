@@ -21,7 +21,7 @@ class BaseNewsletterReceipt(AcceleratorModel):
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Newsletter'),
         on_delete=models.CASCADE)
     recipient = models.ForeignKey(settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE)
+                                  on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_newsletterreceipt'.format(

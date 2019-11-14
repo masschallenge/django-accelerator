@@ -21,7 +21,7 @@ NOT_AVAILABLE_MSG = ("You have indicated that you are not available for "
 @python_2_unicode_compatible
 class BaseJudgeRoundCommitment(AcceleratorModel):
     judge = models.ForeignKey(settings.AUTH_USER_MODEL,
-    on_delete=models.CASCADE)
+                              on_delete=models.CASCADE)
     judging_round = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "JudgingRound"),

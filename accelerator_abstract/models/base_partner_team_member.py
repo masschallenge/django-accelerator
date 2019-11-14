@@ -17,7 +17,7 @@ class BasePartnerTeamMember(AcceleratorModel):
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Partner"),
         on_delete=models.CASCADE)
     team_member = models.ForeignKey(settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE)
+                                    on_delete=models.CASCADE)
     partner_administrator = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):

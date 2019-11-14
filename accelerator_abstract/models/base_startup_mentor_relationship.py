@@ -25,7 +25,7 @@ class BaseStartupMentorRelationship(AcceleratorModel):
                                "StartupMentorTrackingRecord"),
         on_delete=models.CASCADE)
     mentor = models.ForeignKey(settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE)
+                               on_delete=models.CASCADE)
     status = models.CharField(
         max_length=32,
         choices=RELATIONSHIP_CHOICES,

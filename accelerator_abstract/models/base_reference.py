@@ -35,7 +35,7 @@ class BaseReference(AcceleratorModel):
     question_2_rating = models.IntegerField(null=True)
     comments = models.TextField(blank=True)
     requesting_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-        on_delete=models.CASCADE)
+                                        on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_reference'.format(

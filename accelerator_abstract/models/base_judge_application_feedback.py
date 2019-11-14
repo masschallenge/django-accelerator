@@ -42,7 +42,7 @@ class BaseJudgeApplicationFeedback(AcceleratorModel):
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "JudgingForm"),
         on_delete=models.CASCADE)
     judge = models.ForeignKey(settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE)
+                              on_delete=models.CASCADE)
     panel = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Panel"),
         on_delete=models.CASCADE)

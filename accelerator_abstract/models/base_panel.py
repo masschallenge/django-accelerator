@@ -43,12 +43,12 @@ class BasePanel(AcceleratorModel):
                                        'ApplicationPanelAssignment')
     )
     panel_time = ForeignKey('PanelTime', blank=True, null=True,
-        on_delete=CASCADE)
+                            on_delete=CASCADE)
     panel_type = ForeignKey('PanelType', blank=True, null=True,
-        on_delete=CASCADE)
+                            on_delete=CASCADE)
     description = CharField(max_length=30, blank=True)
     location = ForeignKey('PanelLocation', blank=True, null=True,
-        on_delete=CASCADE)
+                          on_delete=CASCADE)
     status = CharField(
         max_length=30,
         choices=PANEL_STATUS_ENUM,

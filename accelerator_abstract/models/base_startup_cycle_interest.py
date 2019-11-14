@@ -16,7 +16,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 class BaseStartupCycleInterest(AcceleratorModel):
     cycle = ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                               "ProgramCycle"),
-            on_delete=CASCADE)
+                       on_delete=CASCADE)
     startup = ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"),
         on_delete=CASCADE)

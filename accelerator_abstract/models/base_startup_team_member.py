@@ -17,7 +17,7 @@ class BaseStartupTeamMember(AcceleratorModel):
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"),
         on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE)
+                             on_delete=models.CASCADE)
     title = models.CharField(max_length=60, blank=True)
     startup_administrator = models.BooleanField(
         help_text='You have to have at least one administrator')
