@@ -1,13 +1,14 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
 
-from __future__ import unicode_literals
+from datetime import datetime
+from pytz import utc
 
 import swapper
 from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from django.db.models import Q
 from sorl.thumbnail import ImageField
 
 from accelerator.apps import AcceleratorConfig
@@ -20,7 +21,8 @@ from accelerator_abstract.models.base_user_utils import (
     has_staff_clearance,
 )
 from accelerator_abstract.models.base_program import (
-    ENDED_PROGRAM_STATUS
+    ACTIVE_PROGRAM_STATUS,
+    ENDED_PROGRAM_STATUS,
 )
 
 GENDER_MALE_CHOICE = ('m', 'Male')
@@ -47,7 +49,6 @@ JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
                           'confirmed_judge_label': 'Judge'}
 
 
-@python_2_unicode_compatible
 class BaseCoreProfile(AcceleratorModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     gender = models.CharField(
@@ -205,10 +206,47 @@ class BaseCoreProfile(AcceleratorModel):
             return '/staff'
 
     def role_based_landing_page(self, exclude_role_names=[]):
-        query = self.user.programrolegrant_set.filter(
+        JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
+                                          'JudgingRound')
+        UserRole = swapper.load_model(
+            AcceleratorConfig.name, 'UserRole')
+        now = utc.localize(datetime.now())
+        active_judging_round_labels = JudgingRound.objects.filter(
+            end_date_time__gt=now,
+            is_active=True).values_list("confirmed_judge_label",
+                                        flat=True)
+        active_judge_grants = Q(
+            program_role__user_role__name=UserRole.JUDGE,
+            program_role__user_label_id__in=active_judging_round_labels)
+
+        desired_judging_round_labels = JudgingRound.objects.filter(
+            end_date_time__gt=now).values_list("desired_judge_label",
+                                               flat=True)
+        desired_judge_grants = Q(
+            program_role__user_role__name=UserRole.DESIRED_JUDGE,
+            program_role__user_label__in=desired_judging_round_labels
+        )
+
+        active_mentor_grants = Q(
+            program_role__user_role__name=UserRole.MENTOR,
+            program_role__program__program_status=ACTIVE_PROGRAM_STATUS
+        )
+        REMAINING_ROLES = UserRole.objects.exclude(
+            name__in=[UserRole.JUDGE,
+                      UserRole.DESIRED_JUDGE,
+                      UserRole.MENTOR]).values_list("name", flat=True)
+        remaining_grants = Q(
+            program_role__user_role__name__in=REMAINING_ROLES,
             program_role__user_role__isnull=False,
-            program_role__landing_page__isnull=False).exclude(
-            program_role__landing_page="")
+            program_role__landing_page__isnull=False)
+
+        query = self.user.programrolegrant_set.filter(
+            active_judge_grants |
+            desired_judge_grants |
+            active_mentor_grants |
+            remaining_grants).exclude(
+                program_role__landing_page="")
+
         if exclude_role_names:
             query = query.exclude(
                 program_role__user_role__name__in=exclude_role_names)
@@ -220,24 +258,9 @@ class BaseCoreProfile(AcceleratorModel):
         return self.default_page
 
     def calc_landing_page(self):
-        excludes = self._check_for_judge_excludes()
         return (
             self._get_staff_landing_page() or
-            self.role_based_landing_page(exclude_role_names=excludes))
-
-    def _check_for_judge_excludes(self):
-        excludes = []
-        for (label, role_name) in JUDGE_FIELDS_TO_LABELS.items():
-            if not self._has_judge_label_in_active_round(label):
-                excludes.append(role_name)
-        return excludes
-
-    def _has_judge_label_in_active_round(self, label):
-        JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
-                                          'JudgingRound')
-        active_rounds = JudgingRound.objects.filter(is_active=True)
-        label_ids = active_rounds.values_list(label, flat=True)
-        return self.user.userlabel_set.filter(id__in=label_ids).exists()
+            self.role_based_landing_page())
 
     def check_landing_page(self):
         page = self.landing_page or self.calc_landing_page()
