@@ -14,7 +14,7 @@ MULTIPLE_USERS_FOUND = "django-accelerator: Multiple users found for email %s"
 
 class EmailModelBackend(object):
 
-    def authenticate(self, email=None, password=None, username=None):
+    def authenticate(self, request, email=None, password=None, username=None):
         try:
             if not email:
                 email = username

@@ -4,6 +4,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django.test import TestCase
+from django.test.client import RequestFactory
 from .factories.user_factory import UserFactory
 from simpleuser.email_model_backend import (
     EmailModelBackend,
@@ -20,26 +21,30 @@ class TestEmailModelBackend(TestCase):
         backend = EmailModelBackend()
         password = GOOD_PASSWORD
         user = UserFactory(password=make_password(password))
-        assert user == backend.authenticate(email=user.email,
+        assert user == backend.authenticate(request=RequestFactory(),
+                                            email=user.email,
                                             password=password)
 
     def test_authenticate_with_username(self):
         backend = EmailModelBackend()
         password = GOOD_PASSWORD
         user = UserFactory(password=make_password(password))
-        assert user == backend.authenticate(username=user.email,
+        assert user == backend.authenticate(request=RequestFactory(),
+                                            username=user.email,
                                             password=password)
 
     def test_authenticate_with_bad_password(self):
         backend = EmailModelBackend()
         password = GOOD_PASSWORD
         user = UserFactory(password=password)
-        assert backend.authenticate(username=user.email,
+        assert backend.authenticate(request=RequestFactory(),
+                                    username=user.email,
                                     password=BAD_PASSWORD) is None
 
     def test_authenticate_with_no_user(self):
         backend = EmailModelBackend()
-        assert backend.authenticate(email=BAD_EMAIL,
+        assert backend.authenticate(request=RequestFactory(),
+                                    email=BAD_EMAIL,
                                     password=BAD_PASSWORD) is None
 
     def test_get_user(self):
