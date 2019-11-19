@@ -208,6 +208,7 @@ class BaseCoreProfile(AcceleratorModel):
             return '/staff'
 
     def role_based_landing_page(self, exclude_role_names=[]):
+        import pdb; pdb.set_trace()
         JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
                                           'JudgingRound')
         UserRole = swapper.load_model(
@@ -247,7 +248,8 @@ class BaseCoreProfile(AcceleratorModel):
             desired_judge_grants |
             active_mentor_grants |
             remaining_grants).exclude(
-                program_role__landing_page="")
+                program_role__landing_page="").exclude(
+                    program_role__landing_page__isnull=True)
 
         if exclude_role_names:
             query = query.exclude(
