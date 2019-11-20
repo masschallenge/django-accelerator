@@ -9,6 +9,7 @@ from django.db.models import (
     CharField,
     ForeignKey,
     ManyToManyField,
+    CASCADE,
 )
 from django.utils.encoding import python_2_unicode_compatible
 
@@ -41,10 +42,13 @@ class BasePanel(AcceleratorModel):
         through=swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                        'ApplicationPanelAssignment')
     )
-    panel_time = ForeignKey('PanelTime', blank=True, null=True)
-    panel_type = ForeignKey('PanelType', blank=True, null=True)
+    panel_time = ForeignKey('PanelTime', blank=True, null=True,
+                            on_delete=CASCADE)
+    panel_type = ForeignKey('PanelType', blank=True, null=True,
+                            on_delete=CASCADE)
     description = CharField(max_length=30, blank=True)
-    location = ForeignKey('PanelLocation', blank=True, null=True)
+    location = ForeignKey('PanelLocation', blank=True, null=True,
+                          on_delete=CASCADE)
     status = CharField(
         max_length=30,
         choices=PANEL_STATUS_ENUM,

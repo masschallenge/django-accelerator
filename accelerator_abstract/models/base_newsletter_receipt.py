@@ -18,8 +18,10 @@ logger = logging.getLogger(__file__)
 @python_2_unicode_compatible
 class BaseNewsletterReceipt(AcceleratorModel):
     newsletter = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Newsletter'))
-    recipient = models.ForeignKey(settings.AUTH_USER_MODEL)
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Newsletter'),
+        on_delete=models.CASCADE)
+    recipient = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                  on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_newsletterreceipt'.format(

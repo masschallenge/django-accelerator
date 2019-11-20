@@ -16,7 +16,8 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 class BasePayPalRefund(AcceleratorModel):
     payment = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "PayPalPayment"))
+                               "PayPalPayment"),
+        on_delete=models.CASCADE)
     status = models.CharField(max_length=100, blank=True)
     transaction = models.CharField(max_length=100, blank=True)
     correlation = models.CharField(max_length=100, blank=True)

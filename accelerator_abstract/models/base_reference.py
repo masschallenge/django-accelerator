@@ -15,7 +15,8 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseReference(AcceleratorModel):
     application = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Application"))
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Application"),
+        on_delete=models.CASCADE)
     email = models.CharField(verbose_name="Email address",
                              max_length=100,
                              validators=[EmailValidator()])
@@ -33,7 +34,8 @@ class BaseReference(AcceleratorModel):
     question_1_rating = models.IntegerField(null=True)
     question_2_rating = models.IntegerField(null=True)
     comments = models.TextField(blank=True)
-    requesting_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
+    requesting_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
+                                        on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_reference'.format(

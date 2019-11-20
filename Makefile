@@ -181,7 +181,7 @@ migrations: $(VENV)
 	$(DJANGO_ADMIN) makemigrations simpleuser $(MIGRATION_ARGS)
 
 test: $(VENV)
-	@$(ACTIVATE); DJANGO_SETTINGS_MODULE=settings $(DJANGO_ADMIN) test $(tests)
+	@$(ACTIVATE); DJANGO_SETTINGS_MODULE=settings python3 -Wall $(DJANGO_ADMIN) test $(tests)
 
 tox: $(VENV)
 	@$(ACTIVATE); tox

@@ -20,7 +20,8 @@ JOB_TYPE_VALUES = (('NONE', 'None'),
 @python_2_unicode_compatible
 class BaseJobPosting(AcceleratorModel):
     startup = models.ForeignKey(swapper.get_model_name(
-        "accelerator", "Startup"))
+        "accelerator", "Startup"),
+        on_delete=models.CASCADE)
     postdate = models.DateTimeField(blank=False)
     type = models.CharField(
         max_length=20,

@@ -58,16 +58,19 @@ class BaseBucketState(AcceleratorModel):
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "ProgramCycle"),
         blank=True,
-        null=True)
+        null=True,
+        on_delete=models.CASCADE)
     program = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "Program"),
         blank=True,
-        null=True)
+        null=True,
+        on_delete=models.CASCADE)
     last_update = models.DateTimeField()
     program_role = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "ProgramRole"))
+                               "ProgramRole"),
+        on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_bucketstate'.format(

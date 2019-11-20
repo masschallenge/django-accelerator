@@ -50,7 +50,8 @@ JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
 
 
 class BaseCoreProfile(AcceleratorModel):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                on_delete=models.CASCADE)
     gender = models.CharField(
         max_length=1,
         choices=GENDER_CHOICES,
@@ -101,6 +102,7 @@ class BaseCoreProfile(AcceleratorModel):
                                'Program'),
         blank=True,
         null=True,
+        on_delete=models.CASCADE,
     )
     program_families = models.ManyToManyField(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
@@ -245,7 +247,8 @@ class BaseCoreProfile(AcceleratorModel):
             desired_judge_grants |
             active_mentor_grants |
             remaining_grants).exclude(
-                program_role__landing_page="")
+                program_role__landing_page="").exclude(
+                    program_role__landing_page__isnull=True)
 
         if exclude_role_names:
             query = query.exclude(

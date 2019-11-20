@@ -21,12 +21,15 @@ JUDGE_PANEL_ASSIGNMENT_STATUS_ENUM = (
 
 @python_2_unicode_compatible
 class BaseJudgePanelAssignment(AcceleratorModel):
-    judge = models.ForeignKey(settings.AUTH_USER_MODEL)
+    judge = models.ForeignKey(settings.AUTH_USER_MODEL,
+                              on_delete=models.CASCADE)
     panel = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Panel"))
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Panel"),
+        on_delete=models.CASCADE)
     scenario = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Scenario"),
-        related_name='judge_assignments')
+        related_name='judge_assignments',
+        on_delete=models.CASCADE)
     assignment_status = models.CharField(
         choices=JUDGE_PANEL_ASSIGNMENT_STATUS_ENUM,
         max_length=16,

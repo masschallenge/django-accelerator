@@ -13,9 +13,10 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 @python_2_unicode_compatible
 class BaseNodePublishedFor(AcceleratorModel):
-    node = models.ForeignKey(UrlNode)
+    node = models.ForeignKey(UrlNode, on_delete=models.CASCADE)
     published_for = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "ProgramRole"))
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "ProgramRole"),
+        on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_nodepublishedfor'.format(
