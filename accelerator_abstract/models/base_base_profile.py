@@ -28,7 +28,8 @@ class BaseBaseProfile(AcceleratorModel):
     see: accelerator.models.ProfileManager
     """
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
-                                related_name="baseprofile")
+                                related_name="baseprofile",
+                                on_delete=models.CASCADE)
     user_type = models.CharField(max_length=16, choices=USER_TYPES)
 
     class Meta(AcceleratorModel.Meta):

@@ -9,6 +9,7 @@ from django.db.models import (
     FloatField,
     ForeignKey,
     IntegerField,
+    CASCADE,
 )
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
@@ -23,7 +24,8 @@ class BaseCriterionOptionSpec(AcceleratorModel):
     weight = FloatField(default=DEFAULT_WEIGHT)
     criterion = ForeignKey(swapper.get_model_name(
         AcceleratorModel.Meta.app_label,
-        "Criterion"))
+        "Criterion"),
+        on_delete=CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         abstract = True

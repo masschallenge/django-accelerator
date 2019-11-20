@@ -17,7 +17,8 @@ class BasePanelLocation(AcceleratorModel):
     judging_round = models.ForeignKey(swapper.get_model_name(
         AcceleratorModel.Meta.app_label, 'JudgingRound'),
         blank=True,
-        null=True
+        null=True,
+        on_delete=models.CASCADE
     )
 
     class Meta(AcceleratorModel.Meta):

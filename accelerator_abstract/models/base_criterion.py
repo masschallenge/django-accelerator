@@ -7,6 +7,7 @@ import swapper
 from django.db.models import (
     CharField,
     ForeignKey,
+    CASCADE,
 )
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
@@ -18,7 +19,8 @@ class BaseCriterion(AcceleratorModel):
     name = CharField(max_length=64)
     judging_round = ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "JudgingRound"))
+                               "JudgingRound"),
+        on_delete=CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         abstract = True

@@ -31,7 +31,7 @@ class BaseSection(AcceleratorModel):
         default='EVERYONE')
     newsletter = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Newsletter"),
-        related_name='sections')
+        related_name='sections', on_delete=models.CASCADE)
     sequence = models.PositiveIntegerField(help_text=SECTION_SEQUENCE_HELP)
 
     class Meta(AcceleratorModel.Meta):

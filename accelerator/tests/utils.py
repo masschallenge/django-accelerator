@@ -8,7 +8,7 @@ from datetime import (
     timedelta,
 )
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from pytz import utc
 
 TEST_PASSWORD = 'simplepass1'

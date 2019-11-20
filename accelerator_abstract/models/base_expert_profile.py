@@ -86,7 +86,8 @@ class BaseExpertProfile(BaseCoreProfile):
         swapper.get_model_name(BaseCoreProfile.Meta.app_label,
                                "ExpertCategory"),
         verbose_name="I primarily consider myself a",
-        related_name="experts")
+        related_name="experts",
+        on_delete=models.CASCADE)
     functional_expertise = models.ManyToManyField(
         swapper.get_model_name(BaseCoreProfile.Meta.app_label,
                                'FunctionalExpertise'),
@@ -108,7 +109,8 @@ class BaseExpertProfile(BaseCoreProfile):
         verbose_name="Primary Industry",
         related_name="experts",
         limit_choices_to={'level__exact': 0},
-        null=True)
+        null=True,
+        on_delete=models.CASCADE)
     additional_industries = models.ManyToManyField(
         settings.MPTT_SWAPPABLE_INDUSTRY_MODEL,
         verbose_name="Additional Industries",
@@ -207,7 +209,8 @@ class BaseExpertProfile(BaseCoreProfile):
                                "ProgramFamily"),
         verbose_name="Home Program Family",
         blank=False,
-        null=False)
+        null=False,
+        on_delete=models.CASCADE)
 
     class Meta(BaseCoreProfile.Meta):
         db_table = '{}_expertprofile'.format(
