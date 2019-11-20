@@ -11,6 +11,7 @@ from django.db.models import (
     ForeignKey,
     IntegerField,
     TextField,
+    CASCADE,
 )
 from django.utils.encoding import python_2_unicode_compatible
 
@@ -102,7 +103,8 @@ COLLISION_DETECTION_CHOICES = (
 @python_2_unicode_compatible
 class BaseJudgingRound(AcceleratorModel):
     program = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Program'))
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Program'),
+        on_delete=CASCADE)
     cycle_based_round = BooleanField(
         default=False,
         help_text='Include startups from all programs in this Program\'s cycle'
@@ -122,14 +124,15 @@ class BaseJudgingRound(AcceleratorModel):
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                'ApplicationType'),
         blank=True,
-        null=True)
+        null=True,
+        on_delete=CASCADE)
     buffer_before_event = IntegerField(
         choices=BUFFER_TIMES,
         default=30,
         help_text='Choose a time in increments of 15 minutes.')
     judging_form = ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'JudgingForm'),
-        blank=True, null=True)
+        blank=True, null=True, on_delete=CASCADE)
     recruit_judges = CharField(
         max_length=16,
         choices=RECRUIT_JUDGES_ENUM,
@@ -169,7 +172,8 @@ class BaseJudgingRound(AcceleratorModel):
         blank=True,
         null=True,
         help_text='Optional: merge the display of this feedback with '
-                  'another round')
+                  'another round',
+        on_delete=CASCADE)
     feedback_display_message = TextField(
         blank=True,
         help_text='You may use HTML, including links (not relevant if '
@@ -205,19 +209,22 @@ class BaseJudgingRound(AcceleratorModel):
                                'StartupLabel'),
         blank=True,
         null=True,
-        help_text='Label for Startups')
+        help_text='Label for Startups',
+        on_delete=CASCADE)
     desired_judge_label = ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'UserLabel'),
         blank=True,
         null=True,
         help_text='Label for Desired Judges',
-        related_name='rounds_desired_for')
+        related_name='rounds_desired_for',
+        on_delete=CASCADE)
     confirmed_judge_label = ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'UserLabel'),
         blank=True,
         null=True,
         help_text='Label for Confirmed Judges',
-        related_name='rounds_confirmed_for')
+        related_name='rounds_confirmed_for',
+        on_delete=CASCADE)
     collision_detection_mode = CharField(
         max_length=10,
         blank=False,

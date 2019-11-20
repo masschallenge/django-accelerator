@@ -32,12 +32,14 @@ class BaseNewsletter(AcceleratorModel):
         },
         blank=True)
     program = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"))
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
+        on_delete=models.CASCADE)
     judging_round = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "JudgingRound"),
         null=True,
-        blank=True)
+        blank=True,
+        on_delete=models.CASCADE)
     cc_addrs = models.CharField(
         max_length=500,
         blank=True,

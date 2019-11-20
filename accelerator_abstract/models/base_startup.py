@@ -36,8 +36,9 @@ DISPLAY_STARTUP_STATUS = "{status} {year} ({program_family_slug})"
 class BaseStartup(AcceleratorModel):
     organization = models.ForeignKey(swapper.get_model_name(
         AcceleratorModel.Meta.app_label, 'Organization'), blank=True,
-        null=True, related_name='startups')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+        null=True, related_name='startups', on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     is_visible = models.BooleanField(
         default=True,
         help_text=('Startup Profiles will be published to external websites '
@@ -45,7 +46,7 @@ class BaseStartup(AcceleratorModel):
     primary_industry = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Industry'),
         verbose_name='Primary Industry categorization',
-        related_name='startups')
+        related_name='startups', on_delete=models.CASCADE)
     additional_industries = models.ManyToManyField(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Industry'),
         verbose_name='Additional Industries',
@@ -121,7 +122,7 @@ class BaseStartup(AcceleratorModel):
                                    'number, such as FF0000 for red.'), ])
     currency = models.ForeignKey(swapper.get_model_name(
         'accelerator', 'Currency'), blank=True,
-        null=True)
+        null=True, on_delete=models.CASCADE)
 
     location_national = models.CharField(
         max_length=100,

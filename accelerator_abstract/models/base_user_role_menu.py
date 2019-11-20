@@ -17,17 +17,20 @@ class BaseUserRoleMenu(Page):
                                "ProgramFamily"),
         verbose_name="Program Family",
         blank=True,
-        null=True)
+        null=True,
+        on_delete=models.CASCADE)
     program = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
         verbose_name="Program",
         blank=True,
-        null=True)
+        null=True,
+        on_delete=models.CASCADE)
     user_role = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "UserRole"),
         verbose_name="User Role",
         blank=True,
-        null=True)
+        null=True,
+        on_delete=models.CASCADE)
     program_status = models.CharField(
         max_length=64,
         choices=PROGRAM_STATUSES,

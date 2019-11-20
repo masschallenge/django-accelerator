@@ -13,9 +13,11 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 @python_2_unicode_compatible
 class BaseScenarioJudge(AcceleratorModel):
-    judge = models.ForeignKey(settings.AUTH_USER_MODEL)
+    judge = models.ForeignKey(settings.AUTH_USER_MODEL,
+                              on_delete=models.CASCADE)
     scenario = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Scenario"))
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Scenario"),
+        on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_scenariojudge'.format(

@@ -45,16 +45,19 @@ class BaseApplication(AcceleratorModel):
                                                      'ProgramCycle'),
                               blank=True,
                               null=True,
-                              related_name='applications')
+                              related_name='applications',
+                              on_delete=models.CASCADE)
     startup = models.ForeignKey(
-        swapper.get_model_name('accelerator', 'Startup'))
+        swapper.get_model_name('accelerator', 'Startup'),
+        on_delete=models.CASCADE)
     application_type = models.ForeignKey(swapper.get_model_name(
-        'accelerator', 'ApplicationType'))
+        'accelerator', 'ApplicationType'),
+        on_delete=models.CASCADE)
     application_status = models.CharField(
         blank=True,
         null=True,
         max_length=64,
-        choices=APPLICATION_STATUSES,
+        choices=APPLICATION_STATUSES
     )
     submission_datetime = models.DateTimeField(blank=True, null=True)
 

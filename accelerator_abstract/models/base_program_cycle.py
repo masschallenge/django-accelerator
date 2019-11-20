@@ -33,13 +33,15 @@ class BaseProgramCycle(AcceleratorModel):
                                "ApplicationType"),
         null=True,
         blank=True,
-        related_name="application_type_for")
+        related_name="application_type_for",
+        on_delete=models.CASCADE)
     default_overview_application_type = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "ApplicationType"),
         null=True,
         blank=True,
-        related_name="default_overview_application_type_for")
+        related_name="default_overview_application_type_for",
+        on_delete=models.CASCADE)
     hidden = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):

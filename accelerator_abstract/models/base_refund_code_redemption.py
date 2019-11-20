@@ -20,14 +20,15 @@ CREDIT_CODE_NOT_AVAILABLE = ("Apologies, credit code %s "
 class BaseRefundCodeRedemption(AcceleratorModel):
     refund_code = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "RefundCode"),
-        related_name="redemptions")
+        related_name="redemptions", on_delete=models.CASCADE)
 
     cycle = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "ProgramCycle"))
+                               "ProgramCycle"),
+        on_delete=models.CASCADE)
     startup = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"),
-        blank=True, null=True)
+        blank=True, null=True, on_delete=models.CASCADE)
     refund_status = models.CharField(
         max_length=32,
         choices=REFUND_STATUSES,
