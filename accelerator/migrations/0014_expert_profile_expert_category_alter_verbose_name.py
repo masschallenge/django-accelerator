@@ -17,6 +17,10 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='expertprofile',
             name='expert_category',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='experts', to=settings.ACCELERATOR_EXPERTCATEGORY_MODEL, verbose_name='I primarily consider myself a(n)'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name='experts',
+                to=settings.ACCELERATOR_EXPERTCATEGORY_MODEL,
+                verbose_name='I primarily consider myself a(n)'),
         ),
     ]
