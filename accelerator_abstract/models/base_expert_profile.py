@@ -85,7 +85,7 @@ class BaseExpertProfile(BaseCoreProfile):
     expert_category = models.ForeignKey(
         swapper.get_model_name(BaseCoreProfile.Meta.app_label,
                                "ExpertCategory"),
-        verbose_name="I primarily consider myself a",
+        verbose_name="I primarily consider myself a(n)",
         related_name="experts",
         on_delete=models.CASCADE)
     functional_expertise = models.ManyToManyField(
