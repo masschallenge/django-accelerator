@@ -2,8 +2,8 @@
 
 
 remove_older_version(){
-    sudo apt-get remove --auto-remove sqlite
-    sudo apt-get purge --auto-remove sqlite
+    sudo apt-get remove --auto-remove sqlite3
+    sudo apt-get purge --auto-remove sqlite3
 }
 
 install_sqlite(){
