@@ -12,7 +12,7 @@ install_sqlite(){
     wget https://www3.sqlite.org/cgi/src/tarball/fc82b73eaa/SQLite-fc82b73eaa.tar.gz
     tar -zxvf SQLite-fc82b73eaa.tar.gz
     cd SQLite-fc82b73eaa
-    ./configure && make && make install
+    ./configure && make && sudo make install
     sudo cp sqlite3 /usr/bin/sqlite3
     export LD_LIBRARY_PATH="/usr/local/lib" >> ~/.bashrc
     . ~/.bashrc
