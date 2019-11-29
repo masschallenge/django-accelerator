@@ -15,6 +15,7 @@ install_sqlite(){
     ./configure && make && make install
     sudo cp sqlite3 /usr/bin/sqlite3
     export LD_LIBRARY_PATH="/usr/local/lib" >> ~/.bashrc
+    . ~/.bashrc
     echo "======= sqlite version updated ======="
     sqlite3 --version
 }
