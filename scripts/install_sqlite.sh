@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+
+remove_older_version(){
+    sudo apt-get remove --auto-remove sqlite
+    sudo apt-get purge --auto-remove sqlite
+}
+
 install_sqlite(){
     # install sqlite 3.29.0
     wget https://www3.sqlite.org/cgi/src/tarball/fc82b73eaa/SQLite-fc82b73eaa.tar.gz
