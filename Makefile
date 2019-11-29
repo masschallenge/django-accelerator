@@ -198,4 +198,4 @@ checkout:
 	@$(IMPACT_MAKE) $@ branch=$(branch)
 
 install_sqlite:
-	@. scripts/install_sqlite.sh && install_sqlite
+	@. scripts/install_sqlite.sh && remove_older_version && install_sqlite
