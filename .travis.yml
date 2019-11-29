@@ -14,7 +14,6 @@ services:
 - mysql
 
 install:
-- make install_sqlite
 - make install
 - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
 - export DEFAULT_BRANCH=development
@@ -30,6 +29,7 @@ install:
 - git checkout $CURRENT_HEAD
 
 script:
+- make install_sqlite
 - make coverage
 - make coverage-xml-report
 - make code-check
