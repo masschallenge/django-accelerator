@@ -98,6 +98,8 @@ ACTIVATE = export PYTHONPATH=.; . $(ACTIVATE_SCRIPT)
 DJANGO_ADMIN = $(VENV)/bin/django-admin.py
 PYTHON_VERSION = python3
 
+activate:
+	@. $(ACTIVATE_SCRIPT)
 
 $(VENV): requirements/base.txt requirements/dev.txt Makefile
 	@if ! eval $(PYTHON_VERSION) --version ; then \
