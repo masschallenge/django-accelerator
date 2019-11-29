@@ -2,6 +2,8 @@
 
 
 remove_older_version(){
+    echo "======= sqlite version current ======="
+    sqlite3 --version
     sudo apt-get remove --auto-remove sqlite3
     sudo apt-get purge --auto-remove sqlite3
 }
@@ -12,7 +14,6 @@ install_sqlite(){
     tar -zxvf SQLite-fc82b73eaa.tar.gz
     cd SQLite-fc82b73eaa
     ./configure && make && make install
-    sudo mv /usr/bin/sqlite3 /usr/bin/sqlite3.bak
     sudo cp sqlite3 /usr/bin/sqlite3
     export LD_LIBRARY_PATH="/usr/local/lib" >> ~/.bashrc
     echo "======= sqlite version updated ======="
