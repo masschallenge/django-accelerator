@@ -4,7 +4,6 @@
 remove_older_version(){
     echo "======= sqlite version current ======="
     sqlite3 --version
-    sudo apt-get remove --auto-remove sqlite3
     sudo apt-get purge --auto-remove sqlite3
 }
 
