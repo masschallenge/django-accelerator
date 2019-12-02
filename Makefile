@@ -200,13 +200,16 @@ checkout:
 install_sqlite:
 	@. scripts/install_sqlite.sh && remove_older_version && install_sqlite
 
-setup:
+build:
+	@docker build -f base.Dockerfile -t accelerator_tests .
+
+setup: build
 	@docker-compose up -d
 
 pull-down:
 	@docker-compose down
 
-run:
+run: setup
 	@docker-compose exec accelerator scripts/commands.sh $(command)
 
 ssh:
