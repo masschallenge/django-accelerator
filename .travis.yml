@@ -29,7 +29,7 @@ install:
 - git checkout $CURRENT_HEAD
 
 script:
-- LD_LIBRARY_PATH=/usr/local/lib make install_sqlite
+- make install_sqlite
 - LD_LIBRARY_PATH=/usr/local/lib make coverage
 - LD_LIBRARY_PATH=/usr/local/lib make coverage-xml-report
 - LD_LIBRARY_PATH=/usr/local/lib make code-check
