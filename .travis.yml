@@ -29,10 +29,10 @@ install:
 - git checkout $CURRENT_HEAD
 
 script:
-- make install_sqlite
-- make coverage
-- make coverage-xml-report
-- make code-check
+- LD_LIBRARY_PATH=/usr/local/libmake install_sqlite
+- LD_LIBRARY_PATH=/usr/local/libmake coverage
+- LD_LIBRARY_PATH=/usr/local/libmake coverage-xml-report
+- LD_LIBRARY_PATH=/usr/local/libmake code-check
 
 after_success:
 - >
