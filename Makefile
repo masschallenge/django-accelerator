@@ -199,3 +199,15 @@ checkout:
 
 install_sqlite:
 	@. scripts/install_sqlite.sh && remove_older_version && install_sqlite
+
+setup:
+	@docker-compose up -d
+
+pull-down:
+	@docker-compose down
+
+run:
+	@docker-compose exec accelerator scripts/commands.sh $(command)
+
+ssh:
+	@docker-compose exec accelerator /bin/bash
