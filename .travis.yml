@@ -31,8 +31,8 @@ install:
 script:
 - make install_sqlite
 - LD_LIBRARY_PATH=/usr/local/lib make coverage
-- LD_LIBRARY_PATH=/usr/local/lib make coverage-xml-report
-- LD_LIBRARY_PATH=/usr/local/lib make code-check
+- make coverage-xml-report
+- make code-check
 
 after_success:
 - >
