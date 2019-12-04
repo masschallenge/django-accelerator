@@ -210,7 +210,7 @@ pull-down:
 	@docker-compose down
 
 run: setup
-	@docker-compose exec accelerator scripts/commands.sh $(command)
+	@docker-compose exec accelerator scripts/run_make_commands_in_docker.sh $(command)
 
 ssh:
 	@docker-compose exec accelerator /bin/bash
