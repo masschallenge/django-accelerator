@@ -25,8 +25,7 @@ RUN apt-get update -y && apt-get install sudo software-properties-common python-
     echo "accelerate_user -  nofile 65535" >> /etc/security/limits.conf && \
     apt-fast -y install python-setuptools python-dev emacs24 libjpeg8-dev
 
-RUN sudo apt-get install python-apt && \
-    ln -s /usr/lib/python3/dist-packages/apt_pkg.cpython-{35m,34m}-x86_64-linux-gnu.so && \
+RUN ln -s /usr/lib/python3/dist-packages/apt_pkg.cpython-{35m,34m}-x86_64-linux-gnu.so && \
     add-apt-repository ppa:jonathonf/backports && \
     apt-get -y update && sudo apt-get install -y sqlite3 && \
     echo 'export LD_LIBRARY_PATH="/usr/local/lib"' >> ~/.bashrc
