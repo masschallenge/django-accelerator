@@ -77,6 +77,18 @@ target_help = \
   'deploy - Deploy $$(release_name) to a $$(target).' \
   '\tValid targets include "staging" (the default), "production",' \
   '\t "test-1", and "test-2"' \
+  ' ' \
+  'install-sqlite - Installs sqlite3 on Travis from a script in' \
+  '\t scripts/run_make_commands_in_docker.sh, however it also can run in the' \
+  '\t accelerator container' \
+  'build - Builds the image for django_accelerator' \
+  'setup - Sets up a docker testing environent for django_accelerator' \
+  'pull-down - Stops the docker testing environent for django_accelerator' \
+  'run - runs [help, package, clean, code-check, coverage, coverage-run, ' \
+  'coverage-report, coverage-html-report, coverage-xml-report, ' \
+  '\t coverage-html, install, uninstall, data-migration, migrations, ' \
+  '\t test, tox, install_sqlite] set of commands from the testing docker environent' \
+  "ssh - Allows getting into the django_accelerator container's terminal" \
 
 OS = $(shell uname)
 
