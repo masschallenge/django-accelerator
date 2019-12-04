@@ -11,7 +11,7 @@ RUN apt-get update -y && apt-get install sudo software-properties-common python-
     apt-get update -y && \
     apt-get upgrade -y && \
     apt-get install -y apt-fast && \
-    apt-fast -y install git openssh-server build-essential libssl-dev zlib1g-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev libgdbm-dev libdb5.3-dev libbz2-dev libexpat1-dev liblzma-dev tk-dev libffi-dev && \
+    apt-fast -y install git openssh-server build-essential libssl-dev zlib1g-dev libncurses5-dev libncursesw5-dev libreadline-dev libgdbm-dev libdb5.3-dev libbz2-dev libexpat1-dev liblzma-dev tk-dev libffi-dev && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt-get update && \
     apt-get install -y build-essential checkinstall apt-utils wget curl python3.6 python3.6-dev && \
@@ -23,15 +23,14 @@ RUN apt-get update -y && apt-get install sudo software-properties-common python-
     sed -i  '/requiretty/s/^/#/'  /etc/sudoers && \
     echo "accelerate_user ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers && \
     echo "accelerate_user -  nofile 65535" >> /etc/security/limits.conf && \
-    apt-fast -y install python-setuptools python-dev emacs24 libjpeg8-dev && \
-    sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.4 1 && \
+    apt-fast -y install python-setuptools python-dev emacs24 libjpeg8-dev
+
+RUN sudo apt-get install python-apt && \
+    ln -s /usr/lib/python3/dist-packages/apt_pkg.cpython-{35m,34m}-x86_64-linux-gnu.so && \
+    add-apt-repository ppa:jonathonf/backports && \
+    apt-get -y update && sudo apt-get install -y sqlite3 && \
+    echo 'export LD_LIBRARY_PATH="/usr/local/lib"' >> ~/.bashrc
+
+RUN sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.4 1 && \
     sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2 && \
     sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 3
-
-RUN wget https://www3.sqlite.org/cgi/src/tarball/fc82b73eaa/SQLite-fc82b73eaa.tar.gz && \
-    tar -zxvf SQLite-fc82b73eaa.tar.gz && \
-    cd SQLite-fc82b73eaa && \
-    ./configure && make && sudo make install && \
-    sudo cp sqlite3 /usr/bin/sqlite3 && \
-    echo 'export LD_LIBRARY_PATH="/usr/local/lib"' >> ~/.bashrc && \
-    . ~/.bashrc
