@@ -197,7 +197,7 @@ migrate update-schema:
 checkout:
 	@$(IMPACT_MAKE) $@ branch=$(branch)
 
-install_sqlite:
+install-sqlite:
 	@. scripts/install_sqlite.sh && remove_older_version && install_sqlite
 
 build:
