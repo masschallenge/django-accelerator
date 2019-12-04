@@ -9,7 +9,7 @@ remove_older_version(){
 
 install_sqlite(){
     # install sqlite 3.29.0
-    sudo add-apt-repository ppa:jonathonf/backports && \
+    sudo add-apt-repository ppa:jonathonf/backports -y && \
     sudo apt-get -y update && sudo apt-get install -y sqlite3 && \
     echo 'export LD_LIBRARY_PATH="/usr/local/lib"' >> ~/.bashrc
     . ~/.bashrc
