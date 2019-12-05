@@ -26,6 +26,7 @@ RUN apt-get update -y && apt-get install sudo software-properties-common python-
     apt-fast -y install python-setuptools python-dev emacs24 libjpeg8-dev
 
 RUN add-apt-repository ppa:jonathonf/backports && \
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 6B05F25D762E3157 && \
     apt-get -y update && sudo apt-get install -y sqlite3 && \
     echo 'export LD_LIBRARY_PATH="/usr/local/lib"' >> ~/.bashrc
 
