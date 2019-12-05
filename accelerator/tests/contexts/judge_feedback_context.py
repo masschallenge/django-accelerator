@@ -276,6 +276,7 @@ class JudgeFeedbackContext:
                                       startup_cycle_interest=cycle_interest,
                                       applying=True,
                                       order=1)
+        return application
 
     def add_applications(self, count, field=None, options=[], programs=[]):
         result = []
