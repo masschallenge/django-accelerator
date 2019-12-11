@@ -42,13 +42,15 @@ class BaseProgram(AcceleratorModel):
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "ProgramFamily"),
         related_name="programs",
+        on_delete=models.CASCADE
     )
     cycle = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "ProgramCycle"),
         blank=True,
         null=True,
-        related_name="programs")
+        related_name="programs",
+        on_delete=models.CASCADE)
     description = models.CharField(max_length=500, blank=True)
     start_date = models.DateTimeField(blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
@@ -121,7 +123,8 @@ class BaseProgram(AcceleratorModel):
     mentor_program_group = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "NamedGroup"),
         blank=True,
-        null=True)
+        null=True,
+        on_delete=models.CASCADE)
     overview_start_date = models.DateTimeField(
         blank=True, null=True,
         help_text="Time is in UTC")

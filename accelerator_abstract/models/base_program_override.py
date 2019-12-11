@@ -19,10 +19,12 @@ class BaseProgramOverride(AcceleratorModel):
                                "ProgramCycle"),
         blank=True,
         null=True,
-        related_name='program_overrides')
+        related_name='program_overrides',
+        on_delete=models.CASCADE)
     program = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               'Program'))
+                               'Program'),
+        on_delete=models.CASCADE)
     # this field will be removed after data migration
     name = models.CharField(max_length=50)
     applications_open = models.BooleanField(default=False)

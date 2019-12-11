@@ -17,11 +17,13 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 class BaseUserLegalCheck(AcceleratorModel):
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL,
-        related_name='legalcheck_set')
+        related_name='legalcheck_set',
+        on_delete=models.CASCADE)
     legal_check = models.ForeignKey(
         to=swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                   'LegalCheck'),
-        related_name='user_set')
+        related_name='user_set',
+        on_delete=models.CASCADE)
     accepted = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):

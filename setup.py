@@ -11,21 +11,21 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
-DJANGO_SPEC = ">=1.8,<2.0"
+DJANGO_SPEC = ">=1.11,<2.3"
 if "DJANGO_VERSION" in os.environ:
     DJANGO_SPEC = "=={}".format(os.environ["DJANGO_VERSION"])
 
 INSTALL_REQUIRES = [
     "django{}".format(DJANGO_SPEC),
-    "django-mptt==0.9.0",
+    "django-mptt==0.10.0",
     "sorl-thumbnail",
     "django-embed-video",
     "pillow",
     "pytz",
     "swapper",
-    "django-ordered-model==1.5.0",
+    "django-ordered-model==2.1.0",
     "django-paypal==1.0.0",
-    "django-fluent-pages==2.0.4",
+    "django-fluent-pages==2.0.6",
     "django-polymorphic",
     "django-sitetree==1.12.0"
 ]

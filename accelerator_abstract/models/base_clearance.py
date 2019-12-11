@@ -92,7 +92,8 @@ class BaseClearance(AcceleratorModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              null=False,
                              blank=False,
-                             related_name="clearances")
+                             related_name="clearances",
+                             on_delete=models.CASCADE)
     level = models.CharField(choices=CLEARANCE_LEVEL_CHOICES,
                              null=False,
                              blank=False,
@@ -101,7 +102,8 @@ class BaseClearance(AcceleratorModel):
         AcceleratorModel.Meta.app_label, "ProgramFamily"),
         null=False,
         blank=False,
-        related_name="user_clearances")
+        related_name="user_clearances",
+        on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         unique_together = ("user", "program_family")

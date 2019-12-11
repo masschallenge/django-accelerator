@@ -22,11 +22,13 @@ TEXT_LIMIT_UNITS = ((CHARACTERS_UNIT_NAME.lower(), CHARACTERS_UNIT_NAME),
 @python_2_unicode_compatible
 class BaseApplicationQuestion(AcceleratorModel):
     application_type = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "ApplicationType"))
+        AcceleratorModel.Meta.app_label, "ApplicationType"),
+        on_delete=models.CASCADE)
     program = models.ForeignKey(swapper.get_model_name(
         AcceleratorModel.Meta.app_label, "Program"),
         blank=True,
-        null=True)
+        null=True,
+        on_delete=models.CASCADE)
     question_number = models.IntegerField()
     section_heading = models.CharField(max_length=40, blank=True)
     question_text = models.CharField(max_length=200, blank=True)
@@ -59,7 +61,8 @@ class BaseApplicationQuestion(AcceleratorModel):
     question = models.ForeignKey(swapper.get_model_name(
         AcceleratorModel.Meta.app_label, "Question"),
         blank=True,
-        null=True)
+        null=True,
+        on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         abstract = True
