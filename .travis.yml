@@ -23,7 +23,8 @@ install:
 - echo $BRANCH
 - export CURRENT_HEAD=$(git rev-parse HEAD)
 - git checkout -b $DEFAULT_BRANCH || git checkout $DEFAULT_BRANCH
-- git pull origin $DEFAULT_BRANCH --no-edit
+- git branch
+- git pull origin $DEFAULT_BRANCH --no-edit --allow-unrelated-histories
 - git checkout -b $BRANCH || git checkout $BRANCH
 - git pull origin $BRANCH --no-edit
 - git checkout $CURRENT_HEAD
