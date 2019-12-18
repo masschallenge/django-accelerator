@@ -82,7 +82,7 @@ target_help = \
   '\t scripts/run_make_commands_in_docker.sh, however it also can run in the' \
   '\t accelerator container' \
   'build - Builds the Docker image for django_accelerator' \
-  'setup - Sets up a docker testing environent for django_accelerator' \
+  'setup - Sets up a Docker testing environent for django_accelerator' \
   'stop-server - Stops the Docker testing environent for django_accelerator' \
   'run - runs Makefile commands inside the Docker container.' \
   '\tSet the "command" variable to one of:' \
