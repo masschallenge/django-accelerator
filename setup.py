@@ -23,7 +23,7 @@ INSTALL_REQUIRES = [
     "pillow",
     "pytz",
     "swapper",
-    "django-ordered-model==2.1.0",
+    "django-ordered-model==3.3.0",
     "django-paypal==1.0.0",
     "django-fluent-pages==2.0.6",
     "django-polymorphic",
