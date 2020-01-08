@@ -78,7 +78,6 @@ target_help = \
   '\tValid targets include "staging" (the default), "production",' \
   '\t "test-1", and "test-2"' \
   ' ' \
-  'install-sqlite - Installs sqlite3 on Travis from a script in' \
   '\t scripts/run_make_commands_in_docker.sh, however it also can run in the' \
   '\t accelerator container' \
   'build - Builds the Docker image for django_accelerator' \
@@ -88,8 +87,8 @@ target_help = \
   '\tSet the "command" variable to one of:' \
   '\t [help, package, clean, code-check, coverage, coverage-run, ' \
   '\t coverage-report, coverage-html-report, coverage-xml-report, ' \
-  '\t coverage-html, install, uninstall, data-migration, migrations, ' \
-  '\t test, tox, install_sqlite] E.g. `make run command=test`' \
+  '\t install, uninstall, data-migration, migrations, test, tox] '\
+  '\t E.g. `make run command=test`' \
   "bash-shell - Allows getting into the django_accelerator container's terminal" \
 
 OS = $(shell uname)

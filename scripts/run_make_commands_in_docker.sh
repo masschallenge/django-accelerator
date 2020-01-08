@@ -38,14 +38,11 @@ set_expected_commands (){
         coverage-report
         coverage-html-report
         coverage-xml-report
-        coverage-html
         install
         uninstall
         data-migration
         migrations
         test
-        tox
-        install_sqlite
     )
 }
 
