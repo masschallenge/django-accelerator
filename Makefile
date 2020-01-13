@@ -84,11 +84,7 @@ target_help = \
   'setup - Sets up a Docker testing environent for django_accelerator' \
   'stop-server - Stops the Docker testing environent for django_accelerator' \
   'run - runs Makefile commands inside the Docker container.' \
-  '\tSet the "command" variable to one of:' \
-  '\t [help, package, clean, code-check, coverage, coverage-run, ' \
-  '\t coverage-report, coverage-html-report, coverage-xml-report, ' \
-  '\t install, uninstall, data-migration, migrations, test, tox] '\
-  '\t E.g. `make run command=test`' \
+  '\tSet the "command" variable e.g. `make run command=test`' \
   "bash-shell - Allows getting into the django_accelerator container's terminal" \
 
 OS = $(shell uname)
