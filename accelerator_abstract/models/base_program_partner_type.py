@@ -20,7 +20,8 @@ PARTNER_BADGE_DISPLAY_VALUES = (
 @python_2_unicode_compatible
 class BaseProgramPartnerType(AcceleratorModel):
     program = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"))
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
+        on_delete=models.CASCADE)
     partner_type = models.CharField(max_length=50)
     description = models.CharField(max_length=200, blank=True)
     feature_in_footer = models.BooleanField(default=False)

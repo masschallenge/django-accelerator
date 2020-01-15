@@ -22,8 +22,10 @@ RELATIONSHIP_CHOICES = ((CONFIRMED_RELATIONSHIP, CONFIRMED_RELATIONSHIP),
 class BaseStartupMentorRelationship(AcceleratorModel):
     startup_mentor_tracking = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "StartupMentorTrackingRecord"))
-    mentor = models.ForeignKey(settings.AUTH_USER_MODEL)
+                               "StartupMentorTrackingRecord"),
+        on_delete=models.CASCADE)
+    mentor = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               on_delete=models.CASCADE)
     status = models.CharField(
         max_length=32,
         choices=RELATIONSHIP_CHOICES,

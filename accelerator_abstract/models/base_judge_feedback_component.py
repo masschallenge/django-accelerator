@@ -41,10 +41,12 @@ LINEAR_SCORES = {
 class BaseJudgeFeedbackComponent(AcceleratorModel):
     judge_feedback = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "JudgeApplicationFeedback"))
+                               "JudgeApplicationFeedback"),
+        on_delete=models.CASCADE)
     feedback_element = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "JudgingFormElement"))
+                               "JudgingFormElement"),
+        on_delete=models.CASCADE)
     answer_text = models.TextField(blank=True)
     original_answer_text = models.TextField(blank=True)
 

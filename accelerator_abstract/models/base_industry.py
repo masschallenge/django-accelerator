@@ -20,7 +20,8 @@ class BaseIndustry(MPTTModel, AcceleratorModel):
     parent = TreeForeignKey('self',
                             null=True,
                             blank=True,
-                            related_name="children")
+                            related_name="children",
+                            on_delete=models.CASCADE)
 
     class MPTTMeta:
         order_insertion_by = ['name', ]

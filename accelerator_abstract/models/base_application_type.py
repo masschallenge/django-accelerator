@@ -14,7 +14,7 @@ class BaseApplicationType(AcceleratorModel):
     description = models.CharField(max_length=500, blank=True)
     submission_label = models.ForeignKey(swapper.get_model_name(
         AcceleratorModel.Meta.app_label, 'StartupLabel'),
-        null=True, blank=True)
+        null=True, blank=True, on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Application Types'
