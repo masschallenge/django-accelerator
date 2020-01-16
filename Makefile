@@ -77,6 +77,15 @@ target_help = \
   'deploy - Deploy $$(release_name) to a $$(target).' \
   '\tValid targets include "staging" (the default), "production",' \
   '\t "test-1", and "test-2"' \
+  ' ' \
+  '\t scripts/run_make_commands_in_docker.sh, however it also can run in the' \
+  '\t accelerator container' \
+  'build - Builds the Docker image for django_accelerator' \
+  'setup - Sets up a Docker testing environent for django_accelerator' \
+  'stop-server - Stops the Docker testing environent for django_accelerator' \
+  'run - runs Makefile commands inside the Docker container.' \
+  '\tSet the "command" variable e.g. `make run command=test`' \
+  "bash-shell - Allows getting into the django_accelerator container's terminal" \
 
 OS = $(shell uname)
 
@@ -91,7 +100,7 @@ help:
 	@echo
 
 
-DJANGO_VERSION = 1.11.18
+DJANGO_VERSION = 1.11.27
 VENV = venv
 ACTIVATE_SCRIPT = $(VENV)/bin/activate
 ACTIVATE = export PYTHONPATH=.; . $(ACTIVATE_SCRIPT)
@@ -196,3 +205,18 @@ migrate update-schema:
 
 checkout:
 	@$(IMPACT_MAKE) $@ branch=$(branch)
+
+build:
+	@docker build -f base.Dockerfile -t accelerator_tests .
+
+setup: build
+	@docker-compose up -d
+
+stop-server:
+	@docker-compose down
+
+run:
+	@docker-compose exec accelerator scripts/run_make_commands_in_docker.sh $(command)
+
+bash-shell:
+	@docker-compose exec accelerator /bin/bash
