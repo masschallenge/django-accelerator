@@ -6,7 +6,7 @@ import sys
 import logging
 
 if len(sys.argv) > 1 and sys.argv[1] == 'test':
-    logging.disable(logging.INFO)
+    logging.disable(logging.WARNING)
 
 PACKAGE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                             "accelerator"))
