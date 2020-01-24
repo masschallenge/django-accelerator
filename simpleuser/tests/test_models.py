@@ -94,11 +94,11 @@ class TestUser(TestCase):
     def test_startup_team_member_has_a_startup(self):
         user = UserFactory()
         member = StartupTeamMemberFactory(user=user)
-        self.assertEquals(user.startup_name(), member.startup.name)
+        self.assertEqual(user.startup_name(), member.startup.name)
 
     def test_user_without_a_startup(self):
         user = UserFactory()
-        self.assertEquals(user.startup_name(), None)
+        self.assertEqual(user.startup_name(), None)
 
     def test_expert_has_a_user_title(self):
         expert = ExpertFactory()
