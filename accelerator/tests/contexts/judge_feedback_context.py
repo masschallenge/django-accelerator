@@ -27,7 +27,6 @@ from accelerator.tests.factories import (
     JudgePanelAssignmentFactory,
     JudgeRoundCommitmentFactory,
     JudgingFormElementFactory,
-    JudgingRoundFactory,
     PanelFactory,
     ProgramCycleFactory,
     ProgramRoleFactory,
@@ -36,7 +35,7 @@ from accelerator.tests.factories import (
     StartupCycleInterestFactory,
     StartupProgramInterestFactory,
 )
-
+from .judging_round_context import JudgingRoundContext
 ELEMENT_NAMES = [
     FORM_ELEM_OVERALL_RECOMMENDATION,
     FORM_ELEM_FEEDBACK_TO_STARTUP,
@@ -85,7 +84,7 @@ class JudgeFeedbackContext:
         }
         if merge_feedback_with:
             jr_kwargs['feedback_merge_with'] = merge_feedback_with
-        self.judging_round = JudgingRoundFactory(**jr_kwargs)
+        self.judging_round = JudgingRoundContext(**jr_kwargs).judging_round
         self.program = self.judging_round.program
         self.panel = PanelFactory(status=panel_status,
                                   panel_time__judging_round=self.judging_round)

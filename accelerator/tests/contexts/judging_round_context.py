@@ -7,9 +7,9 @@ from accelerator_abstract.models import FORM_ELEM_OVERALL_RECOMMENDATION
 
 class JudgingRoundContext:
     def __init__(self, **kwargs):
-        if kwargs.get(is_active) is True:
+        if kwargs.get("is_active") is True:
             should_be_active = True
-            kwargs[is_active] = False
+            kwargs["is_active"] = False
         else:
             should_be_active = False
         self.judging_round = JudgingRoundFactory(**kwargs)
@@ -18,18 +18,17 @@ class JudgingRoundContext:
 
 
     def activate_judging_round(self):
-        self.judging_form = prepare_judging_form()
+        self.judging_form = self.prepare_judging_form()
         self.judging_round.judging_form = self.judging_form
         self.judging_round.is_active=True
         self.judging_round.save()
         
 
-    def prepare_judging_form():
+    def prepare_judging_form(self):
         judging_form = JudgingFormFactory()
-        if include_overall_recommendation():
-            JudgingFormElementFactory(
-                element_name=FORM_ELEM_OVERALL_RECOMMENDATION,
-                form_type=self.judging_form)
+        JudgingFormElementFactory(
+            element_name=FORM_ELEM_OVERALL_RECOMMENDATION,
+            form_type=judging_form)
         return judging_form
 
 
