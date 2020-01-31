@@ -28,7 +28,9 @@ class JudgingRoundContext:
         judging_form = JudgingFormFactory()
         JudgingFormElementFactory(
             element_name=FORM_ELEM_OVERALL_RECOMMENDATION,
-            form_type=judging_form)
+            form_type=judging_form,
+            mandatory=True,
+            element_type="feedback")
         return judging_form
 
 
