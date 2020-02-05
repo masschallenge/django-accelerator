@@ -5,6 +5,7 @@ from accelerator.tests.factories import (
 )
 from accelerator_abstract.models import FORM_ELEM_OVERALL_RECOMMENDATION
 
+
 class JudgingRoundContext:
     def __init__(self, **kwargs):
         if kwargs.get("is_active") is True:
@@ -15,7 +16,6 @@ class JudgingRoundContext:
         self.judging_round = JudgingRoundFactory(**kwargs)
         if should_be_active:
             self.activate_judging_round()
-
 
     def activate_judging_round(self):
         self.judging_form = self.prepare_judging_form()
