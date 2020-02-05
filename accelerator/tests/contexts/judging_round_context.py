@@ -34,4 +34,6 @@ class JudgingRoundContext:
         return judging_form
 
 
-            
+           
+        hijack_jwt_cookie = hijack_start_response.client.cookies[
+            JWT_COOKIE_NAME]

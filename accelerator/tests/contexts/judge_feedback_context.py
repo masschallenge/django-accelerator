@@ -79,7 +79,7 @@ class JudgeFeedbackContext:
             'feedback_display': feedback_display,
             'cycle_based_round': cycle_based_round,
             'application_type': self.application_type,
-            'is_active': is_active,
+            'is_active': False,
             'program__program_status': program_status,
         }
         if merge_feedback_with:
@@ -125,6 +125,8 @@ class JudgeFeedbackContext:
         else:
             for _ in range(num_components):
                 self.add_element()
+        self.judging_round.is_active = is_active
+        self.judging_round.save()
 
     def add_application_answer(self, question=None, answer_text=None):
         question = question or self.application_questions[0]
