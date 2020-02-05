@@ -20,9 +20,8 @@ class JudgingRoundContext:
     def activate_judging_round(self):
         self.judging_form = self.prepare_judging_form()
         self.judging_round.judging_form = self.judging_form
-        self.judging_round.is_active=True
+        self.judging_round.is_active = True
         self.judging_round.save()
-        
 
     def prepare_judging_form(self):
         judging_form = JudgingFormFactory()
@@ -32,8 +31,3 @@ class JudgingRoundContext:
             mandatory=True,
             element_type="feedback")
         return judging_form
-
-
-           
-        hijack_jwt_cookie = hijack_start_response.client.cookies[
-            JWT_COOKIE_NAME]
