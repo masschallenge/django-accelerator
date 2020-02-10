@@ -4,10 +4,13 @@
 from django.utils.six import StringIO
 
 from datetime import datetime
+from mock import MagicMock
+from pytz import utc
+
 from django.test import TestCase
 from django.core.files.uploadedfile import InMemoryUploadedFile
+
 from .factories.user_factory import UserFactory
-from mock import MagicMock
 from accelerator.tests.factories import (
     EntrepreneurFactory,
     ExpertFactory,
@@ -72,7 +75,7 @@ class TestUser(TestCase):
 
     def test_year(self):
         datetime_object = datetime.strptime('Jun 1 2005', '%b %d %Y')
-        program = ProgramFactory(start_date=datetime_object)
+        program = ProgramFactory(start_date=utc.localize(datetime_object))
         user = User()
         user.program = MagicMock(return_value=program)
         self.assertEqual(2005, user.year())
