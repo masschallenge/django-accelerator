@@ -9,9 +9,9 @@ from accelerator.models import (
 )
 from accelerator.tests.factories import (
     ApplicationFactory,
-    JudgingRoundFactory,
     ProgramCycleFactory,
 )
+from accelerator.tests.contexts import JudgingRoundContext
 
 
 class CriterionOptionSpecContext:
@@ -38,7 +38,7 @@ class CriterionOptionSpecContext:
         }
 
         if judging_round is None:
-            self.judging_round = JudgingRoundFactory(**jr_kwargs)
+            self.judging_round = JudgingRoundContext(**jr_kwargs).judging_round
 
         self.criterion = CriterionFactory(
             type=type, name=name, judging_round=self.judging_round)
