@@ -5,6 +5,10 @@ from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
+CHOICE_OPTION_HELP_TEXT = (
+    "Provide a list of options separated by a “|” (ie. Yes|No)"
+)
+
 
 @python_2_unicode_compatible
 class AcceleratorModel(models.Model):

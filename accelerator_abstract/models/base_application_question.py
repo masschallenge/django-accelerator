@@ -7,7 +7,10 @@ import swapper
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from accelerator_abstract.models.accelerator_model import (
+    AcceleratorModel,
+    CHOICE_OPTION_HELP_TEXT
+)
 from accelerator_abstract.models.base_question import (
     CHOICE_LAYOUTS,
     QUESTION_TYPES,
@@ -51,7 +54,11 @@ class BaseApplicationQuestion(AcceleratorModel):
         blank=True,
     )
     # To be removed:
-    choice_options = models.CharField(max_length=4000, blank=True)
+    choice_options = models.CharField(
+        max_length=4000,
+        blank=True,
+        help_text=CHOICE_OPTION_HELP_TEXT
+    )
     # To be removed:
     choice_layout = models.CharField(
         max_length=64,
