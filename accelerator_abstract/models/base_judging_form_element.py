@@ -7,7 +7,10 @@ import swapper
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from accelerator_abstract.models.accelerator_model import (
+    AcceleratorModel,
+    CHOICE_OPTION_HELP_TEXT
+)
 from accelerator_abstract.models.base_application_question import (
     CHOICE_LAYOUTS,
     TEXT_LIMIT_UNITS,
@@ -119,7 +122,11 @@ class BaseJudgingFormElement(AcceleratorModel):
         choices=TEXT_LIMIT_UNITS,
         blank=True,
     )
-    choice_options = models.CharField(max_length=200, blank=True)
+    choice_options = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text=CHOICE_OPTION_HELP_TEXT
+    )
     choice_layout = models.CharField(
         max_length=64,
         choices=CHOICE_LAYOUTS,
