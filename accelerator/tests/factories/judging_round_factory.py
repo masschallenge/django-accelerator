@@ -46,7 +46,7 @@ class JudgingRoundFactory(DjangoModelFactory):
     name = Sequence(lambda n: "Judging Round {0}".format(n))
     start_date_time = months_from_now(1)
     end_date_time = months_from_now(2)
-    is_active = True
+    is_active = False
     round_type = IN_PERSON_JUDGING_ROUND_TYPE
     allow_dynamic_allocation = False
     application_type = SubFactory(ApplicationTypeFactory)

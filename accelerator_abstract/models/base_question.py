@@ -5,7 +5,10 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from accelerator_abstract.models.accelerator_model import (
+    AcceleratorModel,
+    CHOICE_OPTION_HELP_TEXT
+)
 
 CHOICE_LAYOUT_HORIZONTAL = "horizontal"
 CHOICE_LAYOUT_VERTICAL = "vertical"
@@ -30,7 +33,11 @@ class BaseQuestion(AcceleratorModel):
         max_length=64,
         choices=QUESTION_TYPES,
     )
-    choice_options = models.CharField(max_length=4000, blank=True)
+    choice_options = models.CharField(
+        max_length=4000,
+        blank=True,
+        help_text=CHOICE_OPTION_HELP_TEXT
+    )
     choice_layout = models.CharField(
         max_length=64,
         choices=CHOICE_LAYOUTS,
