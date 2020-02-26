@@ -18,7 +18,7 @@ if "DJANGO_VERSION" in os.environ:
 INSTALL_REQUIRES = [
     "django{}".format(DJANGO_SPEC),
     "django-mptt==0.10.0",
-    "sorl-thumbnail",
+    "sorl-thumbnail==12.6.3",
     "django-embed-video",
     "pillow",
     "pytz",
