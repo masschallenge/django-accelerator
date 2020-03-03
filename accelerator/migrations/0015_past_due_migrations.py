@@ -2,25 +2,37 @@
 
 from django.conf import settings
 from django.db import migrations, models
-import django.db.models.deletion
+from django.db.models.deletion import CASCADE
+
+
+APPLICATION_QUESTION_HELP_TEXT = ('Provide a list of options separated by ',
+                                  'a “|” (ie. Yes|No)')
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0014_expert_profile_expert_category_alter_verbose_name'),
+        ('accelerator',
+         '0014_expert_profile_expert_category_alter_verbose_name'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='applicationquestion',
             name='choice_options',
-            field=models.CharField(blank=True, help_text='Provide a list of options separated by a “|” (ie. Yes|No)', max_length=4000),
+            field=models.CharField(blank=True,
+                                   help_text=APPLICATION_QUESTION_HELP_TEXT,
+                                   max_length=4000),
         ),
         migrations.AlterField(
             model_name='expertprofile',
             name='primary_industry',
-            field=models.ForeignKey(limit_choices_to={'level__exact': 0}, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='experts', to=settings.MPTT_SWAPPABLE_INDUSTRY_MODEL, verbose_name='Primary Industry'),
+            field=models.ForeignKey(limit_choices_to={'level__exact': 0},
+                                    null=True,
+                                    on_delete=CASCADE,
+                                    related_name='experts',
+                                    to=settings.MPTT_SWAPPABLE_INDUSTRY_MODEL,
+                                    verbose_name='Primary Industry'),
         ),
         migrations.AlterField(
             model_name='functionalexpertise',
@@ -55,21 +67,30 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='judgingformelement',
             name='choice_options',
-            field=models.CharField(blank=True, help_text='Provide a list of options separated by a “|” (ie. Yes|No)', max_length=200),
+            field=models.CharField(blank=True,
+                                   help_text=APPLICATION_QUESTION_HELP_TEXT,
+                                   max_length=200),
         ),
         migrations.AlterField(
             model_name='newsletter',
             name='recipient_roles',
-            field=models.ManyToManyField(blank=True, limit_choices_to={'newsletter_recipient': True}, to=settings.ACCELERATOR_PROGRAMROLE_MODEL),
+            field=models.ManyToManyField(
+                blank=True,
+                limit_choices_to={'newsletter_recipient': True},
+                to=settings.ACCELERATOR_PROGRAMROLE_MODEL),
         ),
         migrations.AlterField(
             model_name='question',
             name='choice_options',
-            field=models.CharField(blank=True, help_text='Provide a list of options separated by a “|” (ie. Yes|No)', max_length=4000),
+            field=models.CharField(blank=True,
+                                   help_text=APPLICATION_QUESTION_HELP_TEXT,
+                                   max_length=4000),
         ),
         migrations.AlterField(
             model_name='startupprograminterest',
             name='order',
-            field=models.PositiveIntegerField(db_index=True, editable=False, verbose_name='order'),
+            field=models.PositiveIntegerField(db_index=True,
+                                              editable=False,
+                                              verbose_name='order'),
         ),
     ]
