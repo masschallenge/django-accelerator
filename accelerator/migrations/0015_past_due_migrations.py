@@ -5,7 +5,7 @@ from django.db import migrations, models
 from django.db.models.deletion import CASCADE
 
 
-APPLICATION_QUESTION_HELP_TEXT = ('Provide a list of options separated by ',
+APPLICATION_QUESTION_HELP_TEXT = ('Provide a list of options separated by '
                                   'a “|” (ie. Yes|No)')
 
 
