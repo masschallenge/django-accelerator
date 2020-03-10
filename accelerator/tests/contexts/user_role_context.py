@@ -13,7 +13,10 @@ from accelerator.models import UserRole
 
 class UserRoleContext(object):
 
-    def __init__(self, user_role_name, program=None, user=None):
+    def __init__(self, user_role_name,
+                 program=None,
+                 user=None,
+                 landing_page=None):
         if user and not program:
             self.program = user.get_profile().current_program
         else:
@@ -23,7 +26,8 @@ class UserRoleContext(object):
         self.user_role = user_role_for_name(user_role_name)
 
         self.program_role = ProgramRoleFactory(user_role=self.user_role,
-                                               program=self.program)
+                                               program=self.program,
+                                               landing_page=landing_page)
         self.program_role_grant = ProgramRoleGrantFactory(
             person=self.user,
             program_role=self.program_role)
