@@ -1,3 +1,4 @@
+from accelerator.tests.contexts.context_utils import user_role_for_name
 from accelerator.tests.factories import (
     ExpertFactory,
     NavTreeFactory,
@@ -105,4 +106,4 @@ class NavTreeContext(object):
 
     def create_user_roles(self, user_role_names):
         for name in user_role_names:
-            UserRoleFactory(name=name)
+            user_role_for_name(name)
