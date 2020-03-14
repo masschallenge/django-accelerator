@@ -1,18 +1,14 @@
-from builtins import object
-
 from accelerator.tests.factories import (
     ExpertFactory,
     ProgramFactory,
     ProgramRoleFactory,
     ProgramRoleGrantFactory,
     UserLabelFactory,
-    UserRoleFactory,
 )
 from accelerator.tests.contexts.context_utils import user_role_for_name
-from accelerator.models import UserRole
 
 
-class UserRoleContext(object):
+class UserRoleContext():
 
     def __init__(self, user_role_name,
                  program=None,
