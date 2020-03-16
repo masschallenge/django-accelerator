@@ -8,7 +8,7 @@ from accelerator.tests.factories import (
 from accelerator.tests.contexts.context_utils import user_role_for_name
 
 
-class UserRoleContext():
+class UserRoleContext:
 
     def __init__(self, user_role_name,
                  program=None,
