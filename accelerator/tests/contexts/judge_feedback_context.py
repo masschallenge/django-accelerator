@@ -35,7 +35,7 @@ from accelerator.tests.factories import (
     StartupCycleInterestFactory,
     StartupProgramInterestFactory,
 )
-from accelerator.tests.contexts.context_utils import user_role_for_name
+from accelerator.tests.contexts.context_utils import get_user_role_by_name
 from .judging_round_context import JudgingRoundContext
 ELEMENT_NAMES = [
     FORM_ELEM_OVERALL_RECOMMENDATION,
@@ -90,7 +90,7 @@ class JudgeFeedbackContext:
         self.panel = PanelFactory(status=panel_status,
                                   panel_time__judging_round=self.judging_round)
         self.scenario = ScenarioFactory(judging_round=self.judging_round)
-        user_role = user_role_for_name(UserRole.JUDGE)
+        user_role = get_user_role_by_name(UserRole.JUDGE)
         self.judge_role = ProgramRoleFactory(program=self.program,
                                              user_role=user_role)
         self.judges = []

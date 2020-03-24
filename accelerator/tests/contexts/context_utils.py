@@ -6,6 +6,6 @@ app_label, model = swapper.split(settings.ACCELERATOR_USERROLE_MODEL)
 UserRole = swapper.load_model(app_label, model)
 
 
-def user_role_for_name(user_role_name):
+def get_user_role_by_name(user_role_name):
     return (UserRole.objects.filter(name=user_role_name).first() or
             UserRoleFactory(name=user_role_name))
