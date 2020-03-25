@@ -21,7 +21,7 @@ class UserRoleContext:
             self.program = program or ProgramFactory()
         self.user = (user or
                      ExpertFactory(profile__current_program=self.program))
-        self.user_role = get_user_role_by_name(user_role_name)
+        self.user_role = get_user_role_by_name(user_role_name) 
         user_label = user_label or UserLabelFactory()
         self.program_role = ProgramRoleFactory(user_role=self.user_role,
                                                program=self.program,
