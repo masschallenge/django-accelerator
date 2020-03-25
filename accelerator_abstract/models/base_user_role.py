@@ -27,6 +27,12 @@ class BaseUserRole(AcceleratorModel):
     PROCTOR = "Proctor"
     STAFF = "Staff"
     TEAM = "Team"
+    WINNER_SILVER = "Silver"
+    WINNER_GOLD = "Gold"
+    WINNER_PLATINUM = "Platinum"
+    WINNER_DIAMOND = "Diamond"
+    WINNER_INKIND = "In-kind"
+    WINNER_SEMIFINALIST = "Semi-Finalist"
 
     OFFICE_HOUR_ROLES = set([AIR,
                              PARTNER,
