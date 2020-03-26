@@ -38,7 +38,8 @@ class BaseUserRole(AcceleratorModel):
                            AIR,
                            STAFF]
 
-    name = CharField(max_length=255)
+    name = CharField(max_length=255,
+                     unique=True)
     sort_order = PositiveIntegerField()
 
     class Meta(AcceleratorModel.Meta):
