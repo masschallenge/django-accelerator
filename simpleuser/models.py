@@ -116,6 +116,9 @@ class User(AbstractUser):
     def type(self):
         return self._get_profile().user_type
 
+    def is_of_the_member_archetype(self):
+        return self._get_profile().user_type == "member"
+
     def startup_name(self):
         return self._get_title_and_company()['company']
 
