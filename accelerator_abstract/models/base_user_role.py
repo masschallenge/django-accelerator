@@ -19,6 +19,7 @@ class BaseUserRole(AcceleratorModel):
     MENTOR = "Mentor"
     DESIRED_JUDGE = "Desired Judge"
     DESIRED_MENTOR = "Desired Mentor"
+    DEFERRED_MENTOR = "Deferred Mentor"
     FINALIST = "Finalist"
     JUDGE = "Judge"
     OFFICE_HOUR_HOLDER = "Office Hour Holder"
