@@ -10,3 +10,4 @@ flake8<3.6
 tox
 mock
 factory-boy
+swapper

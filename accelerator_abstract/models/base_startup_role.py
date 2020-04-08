@@ -24,6 +24,7 @@ class BaseStartupRole(AcceleratorModel):
     DIAMOND_WINNER = "Diamond Winner"
     IN_KIND_WINNER = "In-Kind Winner"
     SIDECAR_WINNER = "Sidecar Winner"
+    ALUM = "Alum"
 
     FINALIST_STARTUP_ROLES = [FINALIST,
                               AIR,
