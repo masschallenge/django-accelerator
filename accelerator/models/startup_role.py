@@ -30,3 +30,7 @@ class StartupRole:
                             DIAMOND_WINNER,
                             IN_KIND_WINNER,
                             SILVER_WINNER]
+
+    ALL_STARTUP_ROLES = [FINALIST, ENTRANT, FAST_TRACK, AIR, MC_STAFF, WINNER,
+        GOLD_WINNER, SILVER_WINNER, PLATINUM_WINNER, DIAMOND_WINNER,
+        IN_KIND_WINNER, SIDECAR_WINNER, ALUM]
