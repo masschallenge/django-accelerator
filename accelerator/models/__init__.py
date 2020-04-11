@@ -71,6 +71,7 @@ from .program_role import ProgramRole
 from .program_role_grant import ProgramRoleGrant
 from .expert_interest import ExpertInterest
 from .startup import Startup
+from .startup_role import StartupRole
 from accelerator_abstract.models.base_startup import (
     STARTUP_COMMUNITIES,
     DEFAULT_PROFILE_BACKGROUND_COLOR,
