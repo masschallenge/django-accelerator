@@ -14,8 +14,8 @@ from django.utils.encoding import python_2_unicode_compatible
 from embed_video.fields import EmbedVideoField
 from sorl.thumbnail import ImageField
 
+from accelerator.models.startup_role import StartupRole
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from accelerator_abstract.models.base_startup_role import BaseStartupRole
 
 logger = logging.getLogger(__name__)
 
@@ -237,8 +237,8 @@ class BaseStartup(AcceleratorModel):
 
     def _get_finalist_startup_statuses(self):
         roles_of_interest = (
-            BaseStartupRole.FINALIST_STARTUP_ROLES +
-            BaseStartupRole.WINNER_STARTUP_ROLES
+            StartupRole.FINALIST_STARTUP_ROLES +
+            StartupRole.WINNER_STARTUP_ROLES
         )
         statuses = self.program_startup_statuses().filter(
                 startup_role__name__in=roles_of_interest
@@ -266,9 +266,9 @@ class BaseStartup(AcceleratorModel):
         in any program"""
         if program is None:
             return self.program_startup_statuses().filter(
-                startup_role__name=BaseStartupRole.FINALIST).exists()
+                startup_role__name=StartupRole.FINALIST).exists()
         return self.program_startup_statuses().filter(
-            startup_role__name=BaseStartupRole.FINALIST,
+            startup_role__name=StartupRole.FINALIST,
             program__exact=program
         ).exists()
 

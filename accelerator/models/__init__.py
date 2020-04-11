@@ -4,7 +4,6 @@
 from simpleuser.models import User
 
 from .allocator import Allocator
-from .startup_role import StartupRole
 from .user_role import UserRole
 from accelerator_abstract.models.base_user_role import has_user_role_base
 

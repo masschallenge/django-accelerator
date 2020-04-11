@@ -1,9 +1,7 @@
 from django.test import TestCase
 
 from accelerator.tests.utils import login_as_new_user, login_as_user
-from accelerator_abstract.models.base_startup_role import (
-    BaseStartupRole
-)
+from accelerator.models.startup_role import StartupRole
 from accelerator_abstract.models.base_user_role import (
     BaseUserRole
 )
@@ -38,7 +36,7 @@ class TestBasePermissionsChecks(TestCase):
         self.assertTrue(_see_finalist_pages(user))
 
     def test_finalist_startup_team_member_can_see_finalist_pages(self):
-        startup_role = StartupRoleFactory(name=BaseStartupRole.FINALIST)
+        startup_role = StartupRole.FINALIST
         context = StartupTeamMemberContext(
             primary_contact=False,
             startup_role=startup_role)
@@ -46,7 +44,7 @@ class TestBasePermissionsChecks(TestCase):
         self.assertTrue(_see_finalist_pages(context.user))
 
     def test_finalist_in_active_program_can_see_finalist_pages(self):
-        startup_role = StartupRoleFactory(name=BaseStartupRole.FINALIST)
+        startup_role = StartupRole.FINALIST
         context = StartupTeamMemberContext(
             primary_contact=False,
             startup_role=startup_role)
@@ -54,7 +52,7 @@ class TestBasePermissionsChecks(TestCase):
         self.assertTrue(_see_finalist_pages(context.user))
 
     def test_finalist_in_active_program_can_see_active_pages(self):
-        startup_role = StartupRoleFactory(name=BaseStartupRole.FINALIST)
+        startup_role = StartupRole.FINALIST
         context = StartupTeamMemberContext(
             primary_contact=False,
             startup_role=startup_role)
@@ -77,7 +75,7 @@ class TestBasePermissionsChecks(TestCase):
         self.assertTrue(_see_active_pages(user))
 
     def test_finalist_in_inactive_program_passes_accelerator_check(self):
-        startup_role = StartupRoleFactory(name=BaseStartupRole.FINALIST)
+        startup_role = StartupRole.FINALIST
         context = StartupTeamMemberContext(
             primary_contact=False,
             startup_role=startup_role,

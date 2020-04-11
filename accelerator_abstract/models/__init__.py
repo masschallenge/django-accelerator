@@ -302,7 +302,6 @@ from .base_startup_program_interest import (
     PROGRAM_INTEREST_TOP,
     PROGRAM_INTEREST_UP,
 )
-from .base_startup_role import BaseStartupRole
 from .base_startup_status import BaseStartupStatus
 from .base_startup_team_member import BaseStartupTeamMember
 from .base_user_label import (

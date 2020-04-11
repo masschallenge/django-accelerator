@@ -12,7 +12,6 @@ from factory import (
 
 from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.program_factory import ProgramFactory
-from accelerator.tests.factories.startup_role_factory import StartupRoleFactory
 
 ProgramStartupStatus = swapper.load_model(AcceleratorConfig.name,
                                           'ProgramStartupStatus')
@@ -26,7 +25,7 @@ class ProgramStartupStatusFactory(DjangoModelFactory):
     startup_status = Sequence(lambda n: "program_startup_status{0}".format(n))
     description = Sequence(
         lambda n: "Description of Program Startup Status{0}".format(n))
-    startup_role = SubFactory(StartupRoleFactory)
+    startup_role = Sequence(lambda n: "startup_role{0}".format(n))
     startup_list_include = False
     startup_list_tab_title = Sequence(
         lambda n: "Tab Title for Program Startup Status {0}".format(n))

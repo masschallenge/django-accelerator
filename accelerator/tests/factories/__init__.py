@@ -96,7 +96,6 @@ from .startup_mentor_tracking_record_factory import (
 )
 from .startup_override_grant_factory import StartupOverrideGrantFactory
 from .startup_program_interest_factory import StartupProgramInterestFactory
-from .startup_role_factory import StartupRoleFactory
 from .startup_status_factory import StartupStatusFactory
 from .startup_team_member_factory import StartupTeamMemberFactory
 from .url_node_factory import UrlNodeFactory
