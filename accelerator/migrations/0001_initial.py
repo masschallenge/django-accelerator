@@ -1793,6 +1793,21 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
+            name='StartupRole',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('created_at', models.DateTimeField(auto_now_add=True, null=True)),
+                ('updated_at', models.DateTimeField(auto_now=True, null=True)),
+                ('name', models.CharField(max_length=255)),
+            ],
+            options={
+                'db_table': 'accelerator_startuprole',
+                'abstract': False,
+                'managed': True,
+                'swappable': 'ACCELERATOR_STARTUPROLE_MODEL',
+            },
+        ),
+        migrations.CreateModel(
             name='StartupStatus',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -1963,7 +1978,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='programstartupstatus',
             name='startup_role',
-            field=models.CharField(max_length=50, blank=True, null=True),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.ACCELERATOR_STARTUPROLE_MODEL),
         ),
         migrations.AddField(
             model_name='programrole',
