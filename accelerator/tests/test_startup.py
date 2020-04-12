@@ -10,12 +10,8 @@ from accelerator.tests.factories import (
     ProgramFactory,
     StartupFactory,
 )
-from accelerator_abstract.models.base_startup import (
-    DISPLAY_STARTUP_STATUS
-)
-from accelerator.tests.contexts import (
-    StartupTeamMemberContext
-)
+from accelerator_abstract.models.base_startup import DISPLAY_STARTUP_STATUS
+from accelerator.tests.contexts import StartupTeamMemberContext
 
 
 class TestStartup(TestCase):
@@ -101,25 +97,22 @@ class TestStartup(TestCase):
         self.assertEqual(startup.__str__(), "")
 
     def test_is_finalist(self):
-        startup_role = StartupRoleFactory(name=StartupRole.FINALIST)
         context = StartupTeamMemberContext(
             primary_contact=False,
-            startup_role=startup_role)
+            startup_role=StartupRole.FINALIST)
         self.assertTrue(context.startup.is_finalist())
 
     def test_is_finalist_with_program_passed_in(self):
-        startup_role = StartupRoleFactory(name=StartupRole.FINALIST)
         context = StartupTeamMemberContext(
             primary_contact=False,
-            startup_role=startup_role)
+            startup_role=StartupRole.FINALIST)
         self.assertFalse(
             context.startup.is_finalist(ProgramFactory()))
 
     def test_generate_formatted_startup_status(self):
-        startup_role = StartupRoleFactory(name=StartupRole.FINALIST)
         context = StartupTeamMemberContext(
             primary_contact=False,
-            startup_role=startup_role)
+            startup_role=StartupRole.FINALIST)
         program = context.program
         expected_status = DISPLAY_STARTUP_STATUS.format(
             status=StartupRole.FINALIST,
@@ -134,12 +127,10 @@ class TestStartup(TestCase):
         )
 
     def test_get_finalist_startup_statuses(self):
-        startup_role = StartupRoleFactory(name=StartupRole.FINALIST)
-        winner_role = StartupRoleFactory(name=StartupRole.WINNER)
         context = StartupTeamMemberContext(
             primary_contact=False,
-            startup_role=startup_role)
-        context.create_startup_status(winner_role)
+            startup_role=StartupRole.FINALIST)
+        context.create_startup_status(StartupRole.WINNER)
         startup = context.startup
         finalist_statuses = startup._get_finalist_startup_statuses()
         self.assertTrue(
@@ -147,12 +138,10 @@ class TestStartup(TestCase):
                 for status in finalist_statuses]))
 
     def test_finalist_startup_statuses_are_in_order_of_date_created(self):
-        finalist_role = StartupRoleFactory(name=StartupRole.FINALIST)
-        winner_role = StartupRoleFactory(name=StartupRole.WINNER)
         context = StartupTeamMemberContext(
             primary_contact=False,
-            startup_role=finalist_role)
-        context.create_startup_status(winner_role)
+            startup_role=StartupRole.FINALIST)
+        context.create_startup_status(StartupRole.WINNER)
         finalist_statuses = context.startup.finalist_startup_statuses
         finalist_statuses.reverse()
         zipped_lists = zip(
@@ -165,10 +154,9 @@ class TestStartup(TestCase):
             )
 
     def test_latest_status_year_with_statuses(self):
-        startup_role = StartupRoleFactory(name=StartupRole.FINALIST)
         context = StartupTeamMemberContext(
             primary_contact=False,
-            startup_role=startup_role)
+            startup_role=StartupRole.FINALIST)
         startup = context.startup
         startup_status = context.startup_statuses[0].program_startup_status
         program_year = startup_status.program.start_date.year
