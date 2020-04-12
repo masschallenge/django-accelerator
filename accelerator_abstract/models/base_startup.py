@@ -266,9 +266,9 @@ class BaseStartup(AcceleratorModel):
         in any program"""
         if program is None:
             return self.program_startup_statuses().filter(
-                startup_role__name=StartupRole.FINALIST).exists()
+                startup_role=StartupRole.FINALIST).exists()
         return self.program_startup_statuses().filter(
-            startup_role__name=StartupRole.FINALIST,
+            startup_role=StartupRole.FINALIST,
             program__exact=program
         ).exists()
 
