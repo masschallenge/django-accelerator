@@ -3,7 +3,6 @@
 
 from __future__ import unicode_literals
 
-from django.db import IntegrityError
 from django.test import TestCase
 
 from accelerator.tests.factories import (
@@ -23,15 +22,3 @@ class TestProgram(TestCase):
         program = ProgramFactory(program_family=program_family)
         self.assertEqual(lower_case_slug.upper(),
                          program.family_abbr())
-
-    def test_program_requires_end_date(self):
-        with self.assertRaises(IntegrityError):
-            ProgramFactory(end_date=None)
-
-    def test_program_requires_location(self):
-        with self.assertRaises(IntegrityError):
-            ProgramFactory(location=None)
-
-    def test_program_requires_start_date(self):
-        with self.assertRaises(IntegrityError):
-            ProgramFactory(start_date=None)
