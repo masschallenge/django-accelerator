@@ -76,3 +76,8 @@ def is_mentor(user, program=None, inactive_programs=False):
 def is_judge(user, program=None, inactive_programs=False):
     return has_user_role_base(
         user, BaseUserRole.JUDGE, program, inactive_programs)
+
+
+def has_user_roles(user, roles=None):
+    return user.programrolegrant_set.filter(
+        program_role__user_role__name__in=roles).exists()
