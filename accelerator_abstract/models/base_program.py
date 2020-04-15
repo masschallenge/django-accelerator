@@ -47,16 +47,13 @@ class BaseProgram(AcceleratorModel):
     cycle = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "ProgramCycle"),
-        blank=True,
         null=True,
         related_name="programs",
         on_delete=models.CASCADE)
     description = models.CharField(max_length=500, blank=True)
-    start_date = models.DateTimeField(blank=True, null=True)
-    end_date = models.DateTimeField(blank=True, null=True)
-    location = models.CharField(max_length=50,
-                                blank=True,
-                                null=True)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    location = models.CharField(max_length=50)
     program_status = models.CharField(
         max_length=64,
         choices=PROGRAM_STATUSES,
