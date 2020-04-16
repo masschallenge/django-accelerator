@@ -53,7 +53,9 @@ class BaseProgram(AcceleratorModel):
     description = models.CharField(max_length=500, blank=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-    location = models.CharField(max_length=50)
+    location = models.CharField(max_length=50,
+                                blank=True,
+                                null=True)
     program_status = models.CharField(
         max_length=64,
         choices=PROGRAM_STATUSES,
