@@ -12,12 +12,14 @@ def add_deferred_user_role(apps, schema_editor):
     user_role = UserRole.objects.create(
         name=DEFERRED_MENTOR, sort_order='17')
     for program in Program.objects.all():
-        try:
-            ProgramRole.objects.get_or_create(
-                program=program,
-                user_role=user_role)
-        except IntegrityError:
-            pass
+        name="{} {} Deferred Mentor".format(
+            program.start_date.year, 
+            program.program_family.name)
+        program = ProgramRole.objects.get_or_create(
+            program=program,
+            user_role=user_role,
+            defaults={'name': name})
+        return program
 
 
 class Migration(migrations.Migration):
