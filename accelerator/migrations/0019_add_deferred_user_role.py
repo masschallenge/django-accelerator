@@ -9,7 +9,8 @@ def add_deferred_user_role(apps, schema_editor):
     UserRole = apps.get_model('accelerator', 'UserRole')
     Program = apps.get_model('accelerator', 'Program')
     ProgramRole = apps.get_model('accelerator', 'ProgramRole')
-    user_role = UserRole.objects.create(name=DEFERRED_MENTOR, sort_order='17')
+    user_role = UserRole.objects.create(
+        name=DEFERRED_MENTOR, sort_order='17')
     for program in Program.objects.all():
         try:
             ProgramRole.objects.get_or_create(
@@ -22,7 +23,7 @@ def add_deferred_user_role(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0016_make_user_role_name_unique'),
+        ('accelerator', '0018_make_location_nonrequired'),
     ]
 
     operations = [
