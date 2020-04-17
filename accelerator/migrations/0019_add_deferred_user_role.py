@@ -15,11 +15,11 @@ def add_deferred_user_role(apps, schema_editor):
         name="{} {} Deferred Mentor".format(
             program.start_date.year, 
             program.program_family.name)
-        program = ProgramRole.objects.get_or_create(
+        ProgramRole.objects.get_or_create(
             program=program,
             user_role=user_role,
             defaults={'name': name})
-        return program
+
 
 
 class Migration(migrations.Migration):
