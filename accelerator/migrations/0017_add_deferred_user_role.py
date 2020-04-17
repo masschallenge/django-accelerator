@@ -3,6 +3,7 @@
 from django.db import migrations
 from django.db.utils import IntegrityError
 
+
 def add_deferred_user_role(apps, schema_editor):
     DEFERRED_MENTOR = 'Deferred Mentor'
     UserRole = apps.get_model('accelerator', 'UserRole')
@@ -11,9 +12,12 @@ def add_deferred_user_role(apps, schema_editor):
     user_role = UserRole.objects.create(name=DEFERRED_MENTOR, sort_order='17')
     for program in Program.objects.all():
         try:
-            ProgramRole.objects.get_or_create(program=program, user_role=user_role)
+            ProgramRole.objects.get_or_create(
+                program=program,
+                user_role=user_role)
         except IntegrityError:
             pass
+
 
 class Migration(migrations.Migration):
 
