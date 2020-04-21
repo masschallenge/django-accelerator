@@ -8,16 +8,24 @@ def add_deferred_user_role(apps, schema_editor):
     UserRole = apps.get_model('accelerator', 'UserRole')
     Program = apps.get_model('accelerator', 'Program')
     ProgramRole = apps.get_model('accelerator', 'ProgramRole')
-    user_role = UserRole.objects.create(
-        name=DEFERRED_MENTOR, sort_order='17')
+    if UserRole.objects.filter(name=DEFERRED_MENTOR).exists():
+        user_role = UserRole.objects.filter(user=DEFERRED_MENTOR)[0]
+    else:
+        user_role = UserRole.objects.create(name=DEFERRED_MENTOR,
+                                sort_order=17)
     for program in Program.objects.all():
-        name = "{} {} Deferred Mentor".format(
-            program.start_date.year,
-            program.program_family.name)
-        return ProgramRole.objects.get_or_create(
+        if not ProgramRole.objects.filter(user_role=user_role,
+                                      program=program).exists():
+            name = "{} {} ({}-{})".format(
+            (program.end_date.year if program.end_date else ""),
+            DEFERRED_MENTOR,
+            program.program_family.url_slug.upper(),
+            program.pk)
+
+            ProgramRole.objects.get_or_create(
             program=program,
             user_role=user_role,
-            defaults={'name': name})
+            name=name)
 
 
 class Migration(migrations.Migration):
