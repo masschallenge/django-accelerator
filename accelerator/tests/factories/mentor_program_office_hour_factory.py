@@ -24,6 +24,7 @@ from accelerator.tests.factories import (
 )
 from accelerator.tests.factories.location_factory import LocationFactory
 from accelerator.tests.factories.program_factory import ProgramFactory
+from accelerator.tests.factories.startup_factory import StartupFactory
 
 MentorProgramOfficeHour = swapper.load_model(AcceleratorConfig.name,
                                              'MentorProgramOfficeHour')
@@ -36,6 +37,7 @@ class MentorProgramOfficeHourFactory(DjangoModelFactory):
     program = SubFactory(ProgramFactory)
     mentor = SubFactory(ExpertFactory)
     finalist = SubFactory(EntrepreneurFactory)
+    startup = SubFactory(StartupFactory)
     start_date_time = utc.localize(datetime.combine(
         date.today() + timedelta(days=3),
         time(hour=10)))
