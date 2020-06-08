@@ -10,6 +10,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='mentorprogramofficehour',
             name='meeting_info',
-            field=models.CharField(blank=True, default='', max_length=100),
+            field=models.CharField(blank=True, default='', max_length=256),
         ),
     ]
