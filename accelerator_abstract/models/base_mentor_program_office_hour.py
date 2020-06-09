@@ -49,7 +49,7 @@ class BaseMentorProgramOfficeHour(AcceleratorModel):
         on_delete=models.CASCADE)
     notify_reservation = models.BooleanField(default=True)
     topics = models.CharField(max_length=500, blank=True)
-    meeting_info = models.CharField(max_length=100, blank=True, default="")
+    meeting_info = models.CharField(max_length=256, blank=True, default="")
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_mentorprogramofficehour'.format(
