@@ -5,7 +5,7 @@ from django.db import migrations
 
 def add_deferred_user_role(apps, schema_editor):
     DEFERRED_MENTOR = 'Deferred Mentor'
-    UserRole = apps.get_model('accelerator', 'UserRole')
+    UserRole = apps.get_model('mc', 'UserRole')
     Program = apps.get_model('accelerator', 'Program')
     ProgramRole = apps.get_model('accelerator', 'ProgramRole')
     if UserRole.objects.filter(name=DEFERRED_MENTOR).exists():
