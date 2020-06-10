@@ -9,7 +9,7 @@ def add_deferred_user_role(apps, schema_editor):
     Program = apps.get_model('accelerator', 'Program')
     ProgramRole = apps.get_model('accelerator', 'ProgramRole')
     if UserRole.objects.filter(name=DEFERRED_MENTOR).exists():
-        user_role = UserRole.objects.filter(user=DEFERRED_MENTOR)[0]
+        user_role = UserRole.objects.filter(name=DEFERRED_MENTOR)[0]
     else:
         user_role = UserRole.objects.create(name=DEFERRED_MENTOR,
                                             sort_order=17)
