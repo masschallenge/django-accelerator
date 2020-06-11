@@ -45,7 +45,7 @@ def migrate_office_hours_locations(apps, schema_editor):
     MentorProgramOfficeHour = apps.get_model('mc',
                                              'MentorProgramOfficeHour')
     location_values = set(MentorProgramOfficeHour.objects.values_list(
-        "old_location", flat=True))
+        "description", flat=True))
     for old_location in location_values:
         new_location_name = location_to_name_mapping[old_location]
         location, _ = Location.objects.get_or_create(name=new_location_name)
