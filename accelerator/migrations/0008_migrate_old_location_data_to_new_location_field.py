@@ -40,9 +40,9 @@ location_to_name_mapping = {
 
 
 def migrate_office_hours_locations(apps, schema_editor):
-    Location = apps.get_model('accelerator',
+    Location = apps.get_model('mc',
                               'Location')
-    MentorProgramOfficeHour = apps.get_model('accelerator',
+    MentorProgramOfficeHour = apps.get_model('mc',
                                              'MentorProgramOfficeHour')
     location_values = set(MentorProgramOfficeHour.objects.values_list(
         "old_location", flat=True))
