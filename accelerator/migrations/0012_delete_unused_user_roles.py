@@ -7,7 +7,7 @@ from django.db import migrations
 
 def delete_unused_user_roles(apps, schema_editor):
     unused_roles = ("Senior Judge", "Active Judge")
-    UserRole = apps.get_model('accelerator', 'UserRole')
+    UserRole = apps.get_model('mc', 'UserRole')
     UserRole.objects.filter(name__in=unused_roles).delete()
 
 
