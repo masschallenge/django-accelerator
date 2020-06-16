@@ -7,8 +7,14 @@ from accelerator.tests.contexts.judge_feedback_context import (
 )
 from accelerator.models import (
     JUDGING_FEEDBACK_STATUS_COMPLETE,
-    JudgeApplicationFeedback,
 )
+from accelerator.apps import AcceleratorConfig
+import swapper
+
+
+JudgeApplicationFeedback = swapper.load_model(
+    AcceleratorConfig.name,
+    'JudgeApplicationFeedback')
 
 
 class AnalyzeJudgingContext(JudgeFeedbackContext):
@@ -46,6 +52,6 @@ class AnalyzeJudgingContext(JudgeFeedbackContext):
         counts = [JudgeApplicationFeedback.objects.filter(
             application=app,
             feedback_status=JUDGING_FEEDBACK_STATUS_COMPLETE).count()
-                  for app in self.applications]
+            for app in self.applications]
         return sum([min(self.read_count, count)
                     for count in counts])

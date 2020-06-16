@@ -48,3 +48,4 @@ class MentorProgramOfficeHourFactory(DjangoModelFactory):
     description = Sequence(lambda n: "Description office hour {0}".format(n))
     notify_reservation = True
     topics = Sequence(lambda n: "Topics for test office hour {0}".format(n))
+    meeting_info = Sequence(lambda n: "{0} zoom link".format(n))
