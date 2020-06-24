@@ -20,7 +20,10 @@ HOUR_OWNED_BY_ANOTHER_MESSAGE = "This office hour is owned by another user"
 class BaseMentorProgramOfficeHour(AcceleratorModel):
     program = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
-        on_delete=models.CASCADE)
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+    )
     mentor = models.ForeignKey(settings.AUTH_USER_MODEL,
                                related_name='mentor_officehours',
                                on_delete=models.CASCADE)
@@ -30,6 +33,12 @@ class BaseMentorProgramOfficeHour(AcceleratorModel):
                                  null=True,
                                  related_name='finalist_officehours',
                                  on_delete=models.CASCADE)
+    startup = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"),
+        blank=True,
+        null=True,
+        related_name='startup_officehours',
+        on_delete=models.SET_NULL)
     start_date_time = models.DateTimeField(db_index=True)
     end_date_time = models.DateTimeField(db_index=True)
     description = models.TextField(blank=True)
@@ -40,6 +49,7 @@ class BaseMentorProgramOfficeHour(AcceleratorModel):
         on_delete=models.CASCADE)
     notify_reservation = models.BooleanField(default=True)
     topics = models.CharField(max_length=500, blank=True)
+    meeting_info = models.CharField(max_length=256, blank=True, default="")
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_mentorprogramofficehour'.format(

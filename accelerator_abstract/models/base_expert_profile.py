@@ -174,6 +174,8 @@ class BaseExpertProfile(BaseCoreProfile):
         swapper.get_model_name(BaseCoreProfile.Meta.app_label,
                                'MentoringSpecialties'),
         verbose_name="Mentoring Specialties",
+        help_text='Hold down "Control", or "Command" on a Mac,'
+                  'to select more than one.',
         db_table="accelerator_expert_related_mentoringspecialty",
         related_name="experts",
         blank=True)
