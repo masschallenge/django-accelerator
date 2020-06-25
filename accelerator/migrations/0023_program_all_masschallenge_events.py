@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0019_add_deferred_user_role'),
+        ('accelerator', '0022_add_meeting_info_on_office_hour_model'),
     ]
 
     operations = [
