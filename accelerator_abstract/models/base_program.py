@@ -141,7 +141,7 @@ class BaseProgram(AcceleratorModel):
         help_text=('URL of the program overview page, '
                    'ex: https://masschallenge.org/programs-boston')
         )
-    all_masschallenge_events = models.BooleanField(
+    show_all_masschallenge_events = models.BooleanField(
         default=False
         )
 

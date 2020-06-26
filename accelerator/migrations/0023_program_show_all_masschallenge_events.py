@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='program',
-            name='all_masschallenge_events',
+            name='show_all_masschallenge_events',
             field=models.BooleanField(default=False),
         ),
     ]
