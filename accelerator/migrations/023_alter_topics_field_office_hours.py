@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='mentorprogramofficehour',
             name='topics',
-            field=models.TextField(blank=True),
+            field=models.CharField(blank=True, default='', max_length=2000),
         ),
     ]
