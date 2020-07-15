@@ -24,6 +24,8 @@ targets = \
 
 IMPACT_API = ../impact-api
 IMPACT_MAKE = cd $(IMPACT_API) && $(MAKE)
+ACCELERATE = ../accelerate
+ACCELERATE_MAKE = cd $(ACCELERATE) && $(MAKE)
 
 
 .PHONY: $(targets)
@@ -196,7 +198,7 @@ tox: $(VENV)
 	@$(ACTIVATE); tox
 
 release-list release deploy run-all-servers stop-all-servers shutdown-all-vms delete-all-vms status:
-	@$(IMPACT_MAKE) $@
+	@$(ACCELERATE_MAKE) $@
 
 application ?= accelerator
 
