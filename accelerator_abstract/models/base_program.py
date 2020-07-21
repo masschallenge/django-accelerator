@@ -141,6 +141,9 @@ class BaseProgram(AcceleratorModel):
         help_text=('URL of the program overview page, '
                    'ex: https://masschallenge.org/programs-boston')
         )
+    show_all_masschallenge_events = models.BooleanField(
+        default=False
+        )
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Programs'

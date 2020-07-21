@@ -42,6 +42,7 @@ from .judge_round_commitment_factory import JudgeRoundCommitmentFactory
 from .judging_form_element_factory import JudgingFormElementFactory
 from .judging_form_factory import JudgingFormFactory
 from .judging_round_factory import JudgingRoundFactory
+from .location_factory import LocationFactory
 from .member_factory import MemberFactory
 from .member_profile_factory import MemberProfileFactory
 from .mentor_program_office_hour_factory import (
