@@ -24,6 +24,8 @@ targets = \
 
 IMPACT_API = ../impact-api
 IMPACT_MAKE = cd $(IMPACT_API) && $(MAKE)
+ACCELERATE = ../accelerate
+ACCELERATE_MAKE = cd $(ACCELERATE) && $(MAKE)
 
 
 .PHONY: $(targets)
@@ -68,12 +70,6 @@ target_help = \
   'delete-all-vms - Deletes set of related server VMs' \
   ' ' \
   'release-list - List all releases that are ready to be deployed.' \
-  'release - Create named release of releated servers.' \
-  '\tRelease name is applied as a tag to all the related git repos.' \
-  '\tRelease name defaults release-<version>.<number> where <version> is' \
-  '\tthe first line of impact-api/VERSION and <number> is the next unused' \
-  '\tnon-negative integer (0,1,2,...).' \
-  '\t$$(release_name) overrides the entire release name.' \
   'deploy - Deploy $$(release_name) to a $$(target).' \
   '\tValid targets include "staging" (the default), "production",' \
   '\t "test-1", and "test-2"' \
@@ -173,7 +169,7 @@ uninstall: $(VENV)
 	-@$(ACTIVATE); pip uninstall -qy django-accelerator
 
 ifdef migration_name
-  MIGRATION_ARGS = --name $(migration_name)
+	MIGRATION_ARGS = --name $(migration_name)
 endif
 
 data-migration: $(VENV)
@@ -196,7 +192,7 @@ tox: $(VENV)
 	@$(ACTIVATE); tox
 
 release-list release deploy run-all-servers stop-all-servers shutdown-all-vms delete-all-vms status:
-	@$(IMPACT_MAKE) $@
+	@$(ACCELERATE_MAKE) $@
 
 application ?= accelerator
 
