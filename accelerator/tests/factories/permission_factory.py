@@ -5,10 +5,10 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.models import Permission
 from factory import (
-    DjangoModelFactory,
     Sequence,
     SubFactory,
 )
+from factory.django import DjangoModelFactory
 
 from accelerator.tests.factories.content_type_factory import ContentTypeFactory
 
