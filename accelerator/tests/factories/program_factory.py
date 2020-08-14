@@ -7,10 +7,10 @@ from decimal import Decimal
 
 import swapper
 from factory import (
-    DjangoModelFactory,
     Sequence,
     SubFactory,
 )
+from factory.django import DjangoModelFactory
 
 from accelerator.apps import AcceleratorConfig
 from accelerator.models import ACTIVE_PROGRAM_STATUS

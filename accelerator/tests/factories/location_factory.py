@@ -1,10 +1,10 @@
 import swapper
 from factory import (
-    DjangoModelFactory,
     Iterator,
     Sequence,
 )
-
+from factory.django import DjangoModelFactory
+ 
 from accelerator.apps import AcceleratorConfig
 
 Location = swapper.load_model(AcceleratorConfig.name, 'Location')

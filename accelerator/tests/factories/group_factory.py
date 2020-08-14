@@ -5,10 +5,10 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.models import Group
 from factory import (
-    DjangoModelFactory,
     Sequence,
     post_generation,
 )
+from factory.django import DjangoModelFactory
 
 
 class GroupFactory(DjangoModelFactory):
