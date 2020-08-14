@@ -8,6 +8,8 @@ from factory import (
     DjangoModelFactory,
     SubFactory,
 )
+from factory import SubFactory
+from factory.django import DjangoModelFactory
 
 from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.judge_round_commitment_factory import (

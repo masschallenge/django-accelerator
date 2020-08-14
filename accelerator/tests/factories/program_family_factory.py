@@ -4,10 +4,9 @@
 from __future__ import unicode_literals
 
 import swapper
-from factory import (
-    DjangoModelFactory,
-    Sequence,
-)
+from factory import Sequence
+from factory.django import DjangoModelFactory
+
 
 from accelerator.apps import AcceleratorConfig
 

@@ -4,10 +4,9 @@
 from __future__ import unicode_literals
 
 from django.contrib.contenttypes.models import ContentType
-from factory import (
-    DjangoModelFactory,
-    Sequence,
-)
+
+from factory import Sequence
+from factory.django import DjangoModelFactory
 
 from accelerator.apps import AcceleratorConfig
 
