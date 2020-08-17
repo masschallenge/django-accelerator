@@ -6,10 +6,9 @@ from __future__ import unicode_literals
 from datetime import timedelta
 
 import swapper
-from factory import (
-    DjangoModelFactory,
-    SubFactory,
-)
+from factory import SubFactory
+from factory.django import DjangoModelFactory
+
 
 from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.judging_round_factory import (

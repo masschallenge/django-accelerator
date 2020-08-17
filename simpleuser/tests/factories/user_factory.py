@@ -8,10 +8,9 @@ from datetime import timedelta
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django.utils import timezone
-from factory import (
-    DjangoModelFactory,
-    Sequence,
-)
+from factory import Sequence
+from factory.django import DjangoModelFactory
+
 from simpleuser.models import MAX_USERNAME_LENGTH
 
 
