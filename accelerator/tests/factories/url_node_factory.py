@@ -4,10 +4,11 @@
 from __future__ import unicode_literals
 
 from factory import (
-    DjangoModelFactory,
     Sequence,
     SubFactory,
 )
+from factory.django import DjangoModelFactory
+
 from fluent_pages.models import UrlNode
 
 from accelerator.tests.factories import (

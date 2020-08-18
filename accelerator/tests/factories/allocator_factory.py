@@ -4,19 +4,17 @@
 from __future__ import unicode_literals
 
 import swapper
-from factory import (
-    DjangoModelFactory,
-    SubFactory,
-)
+from factory import SubFactory
+
+from factory.django import DjangoModelFactory
 
 from accelerator.apps import AcceleratorConfig
 
 from accelerator.tests.factories.judging_round_factory import (
     JudgingRoundFactory,
 )
-from accelerator.tests.factories.scenario_factory import (
-    ScenarioFactory,
-)
+from accelerator.tests.factories.scenario_factory import ScenarioFactory
+
 
 Allocator = swapper.load_model(AcceleratorConfig.name, 'Allocator')
 

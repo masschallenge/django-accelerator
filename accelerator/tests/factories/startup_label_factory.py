@@ -5,10 +5,11 @@ from __future__ import unicode_literals
 
 import swapper
 from factory import (
-    DjangoModelFactory,
     Sequence,
     post_generation,
 )
+from factory.django import DjangoModelFactory
+
 
 from accelerator.apps import AcceleratorConfig
 

@@ -9,11 +9,12 @@ from datetime import (
 )
 
 from factory import (
-    DjangoModelFactory,
     Sequence,
     SubFactory,
     post_generation,
 )
+from factory.django import DjangoModelFactory
+
 from pytz import utc
 
 from accelerator.models.core_profile import CoreProfile
