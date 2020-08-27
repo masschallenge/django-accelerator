@@ -10,10 +10,11 @@ from datetime import (
 
 import swapper
 from factory import (
-    DjangoModelFactory,
     Sequence,
     SubFactory,
 )
+from factory.django import DjangoModelFactory
+
 from pytz import utc
 
 from accelerator.apps import AcceleratorConfig
