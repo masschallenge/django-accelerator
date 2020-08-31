@@ -33,6 +33,7 @@ class BaseNavTreeItem(TreeItemBase, AcceleratorModel):
         blank=True)
     active_program = models.BooleanField(default=False)
     display_single_item = models.BooleanField(default=True)
+    active_user_roles = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_navtreeitem'.format(AcceleratorModel.Meta.app_label)
