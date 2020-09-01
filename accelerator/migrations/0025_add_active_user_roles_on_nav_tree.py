@@ -11,6 +11,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='navtreeitem',
             name='active_user_roles',
-            field=models.BooleanField(default=False),
+            field=models.BooleanField(
+                help_text='Whether to show on active user roles only',
+                default=False),
         ),
     ]
