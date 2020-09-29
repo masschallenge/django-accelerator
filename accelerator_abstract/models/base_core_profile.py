@@ -17,6 +17,9 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_user_role import (
     BaseUserRole,
 )
+from accelerator_abstract.models.base_base_profile import (
+    EXPERT_USER_TYPE,
+)
 from accelerator_abstract.models.base_user_utils import (
     has_staff_clearance,
 )
@@ -208,6 +211,8 @@ class BaseCoreProfile(AcceleratorModel):
             return '/staff'
 
     def role_based_landing_page(self, exclude_role_names=[]):
+        if upper(self.user_type) == EXPERT_USER_TYPE:
+            return '/dashboard/expert/overview/'
         JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
                                           'JudgingRound')
         UserRole = swapper.load_model(
@@ -241,7 +246,6 @@ class BaseCoreProfile(AcceleratorModel):
             program_role__user_role__name__in=REMAINING_ROLES,
             program_role__user_role__isnull=False,
             program_role__landing_page__isnull=False)
-
         query = self.user.programrolegrant_set.filter(
             active_judge_grants |
             desired_judge_grants |
@@ -249,7 +253,7 @@ class BaseCoreProfile(AcceleratorModel):
             remaining_grants).exclude(
                 program_role__landing_page="").exclude(
                     program_role__landing_page__isnull=True)
-
+        
         if exclude_role_names:
             query = query.exclude(
                 program_role__user_role__name__in=exclude_role_names)
