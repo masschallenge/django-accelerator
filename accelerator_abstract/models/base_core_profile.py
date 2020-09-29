@@ -211,7 +211,7 @@ class BaseCoreProfile(AcceleratorModel):
             return '/staff'
 
     def role_based_landing_page(self, exclude_role_names=[]):
-        if upper(self.user_type) == EXPERT_USER_TYPE:
+        if self.user_type.upper() == EXPERT_USER_TYPE:
             return '/dashboard/expert/overview/'
         JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
                                           'JudgingRound')
