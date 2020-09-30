@@ -72,7 +72,8 @@ class NavTreeContext(object):
         else:
             item = NavTreeItemFactory(
                 tree=self.tree,
-                display_single_item=self.display_single_item, user_type=self.user_type)
+                display_single_item=self.display_single_item,
+                user_type=self.user_type)
 
         for user_role in user_roles:
             item.user_role.add(user_role)

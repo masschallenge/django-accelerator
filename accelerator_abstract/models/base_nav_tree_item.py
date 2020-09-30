@@ -11,6 +11,7 @@ ENTREPRENEUR_USER_TYPE = 'ENTREPRENEUR'
 USER_TYPES = ((EXPERT_USER_TYPE, 'Expert'),
               (ENTREPRENEUR_USER_TYPE, 'Entrepreneur'),)
 
+
 class BaseNavTreeItem(TreeItemBase, AcceleratorModel):
     """
     The tree field specifies the NavTree object that this item belongs to.

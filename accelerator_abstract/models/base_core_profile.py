@@ -253,7 +253,7 @@ class BaseCoreProfile(AcceleratorModel):
             remaining_grants).exclude(
                 program_role__landing_page="").exclude(
                     program_role__landing_page__isnull=True)
-        
+
         if exclude_role_names:
             query = query.exclude(
                 program_role__user_role__name__in=exclude_role_names)
