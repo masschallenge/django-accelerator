@@ -210,7 +210,7 @@ class BaseCoreProfile(AcceleratorModel):
     def _get_staff_landing_page(self):
         if has_staff_clearance(self.user):
             return '/staff'
-    
+
     def _has_expert_nav_enabled(self):
         bt = BulletTrain(environment_id="aX45EUqSsAqhTvv5nW7WEL")
         if bt:
