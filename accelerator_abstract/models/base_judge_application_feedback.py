@@ -63,6 +63,9 @@ class BaseJudgeApplicationFeedback(AcceleratorModel):
     MANDATORY_MESSAGE = 'The question "%s" is mandatory.'
     REQUIRED_MINIMUM_MESSAGE = 'The question "%s" requires a minimum of %s %s.'
     STR_FORMAT = 'Feedback to Application %s by Judge %s'
+    REQUIRED_MAXIMUM_MESSAGE = 'The question "%s" requires a maximum of %s %s.'
+    REQUIRED_CHARACTER_SET_MESSAGE = 'The question "%s" must be in English text'
+
 
     class Meta(AcceleratorModel.Meta):
         db_table = '{}_judgeapplicationfeedback'.format(
