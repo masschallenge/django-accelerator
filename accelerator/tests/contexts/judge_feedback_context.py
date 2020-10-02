@@ -190,7 +190,9 @@ class JudgeFeedbackContext:
                     mandatory=True,
                     text_minimum=0,
                     text_minimum_units="",
-                    answer_text=None):
+                    answer_text=None,
+                    text_limit=0,
+                    text_limit_units=""):
         element = JudgingFormElementFactory(
             form_type=self.judging_form,
             mandatory=mandatory,
@@ -200,7 +202,9 @@ class JudgeFeedbackContext:
             sharing="share-with-startup",
             application_question__application_type=self.application_type,
             text_minimum=text_minimum,
-            text_minimum_units=text_minimum_units
+            text_minimum_units=text_minimum_units,
+            text_limit=text_limit,
+            text_limit_units=text_limit_units,
         )
         application_question = element.application_question
         self.application_questions.append(application_question)
