@@ -17,8 +17,9 @@ from accelerator.tests.factories.entrepreneur_factory import (
 )
 from accelerator.tests.factories.startup_factory import StartupFactory
 
-StartupTeamMember = swapper.load_model(AcceleratorConfig.name,
-                                       'StartupTeamMember')
+StartupTeamMember = swapper.load_model(
+    AcceleratorConfig.name,
+    'StartupTeamMember')
 
 
 class StartupTeamMemberFactory(DjangoModelFactory):
