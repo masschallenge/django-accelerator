@@ -5,11 +5,13 @@ from django.db import models
 from sitetree.models import TreeItemBase
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
-EXPERT_USER_TYPE = 'EXPERT'
-ENTREPRENEUR_USER_TYPE = 'ENTREPRENEUR'
+from accelerator_abstract.models.base_base_profile import (
+    EXPERT_USER_TYPE,
+    ENTREPRENEUR_USER_TYPE
+)
 
-USER_TYPES = ((EXPERT_USER_TYPE, 'Expert'),
-              (ENTREPRENEUR_USER_TYPE, 'Entrepreneur'),)
+NAV_TREE_USER_TYPES = ((EXPERT_USER_TYPE, 'Expert'),
+                       (ENTREPRENEUR_USER_TYPE, 'Entrepreneur'),)
 
 
 class BaseNavTreeItem(TreeItemBase, AcceleratorModel):
@@ -39,7 +41,7 @@ class BaseNavTreeItem(TreeItemBase, AcceleratorModel):
     active_program = models.BooleanField(default=False)
     user_type = models.CharField(
         max_length=12,
-        choices=USER_TYPES,
+        choices=NAV_TREE_USER_TYPES,
         blank=True,
     )
     display_single_item = models.BooleanField(default=True)

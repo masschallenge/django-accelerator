@@ -10,9 +10,9 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models import Q
 from sorl.thumbnail import ImageField
-from bullet_train import BulletTrain
 
 from accelerator.apps import AcceleratorConfig
+from accelerator.utils import bullet_train_access_util
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_user_role import (
@@ -211,19 +211,12 @@ class BaseCoreProfile(AcceleratorModel):
         if has_staff_clearance(self.user):
             return '/staff'
 
-    def _has_expert_nav_enabled(self):
-        bt = BulletTrain(environment_id="aX45EUqSsAqhTvv5nW7WEL")
-        if bt:
-            if bt.has_feature("expert_navigation"):
-                return bt.feature_enabled("expert_navigation")
-        return False
-
     def role_based_landing_page(self, exclude_role_names=[]):
-        if self._has_expert_nav_enabled():
+        if bullet_train_access_util("expert_navigation"):
             if self.user_type.upper() == EXPERT_USER_TYPE:
-                return '/dashboard/expert/overview/'
+                return "/dashboard/expert/overview/"
         JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
-                                          'JudgingRound')
+                                          "JudgingRound")
         UserRole = swapper.load_model(
             AcceleratorConfig.name, 'UserRole')
         now = utc.localize(datetime.now())
