@@ -12,7 +12,7 @@ from django.db.models import Q
 from sorl.thumbnail import ImageField
 
 from accelerator.apps import AcceleratorConfig
-from accelerator.utils import bullet_train_access_util
+from accelerator.utils import bullet_train_has_feature
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_user_role import (
@@ -51,7 +51,7 @@ UI_GENDER_CHOICES = (
 )
 JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
                           'confirmed_judge_label': 'Judge'}
-
+EXPERT_NAVIGATION_EPIC = "expert_navigation"
 
 class BaseCoreProfile(AcceleratorModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
@@ -212,7 +212,7 @@ class BaseCoreProfile(AcceleratorModel):
             return '/staff'
 
     def role_based_landing_page(self, exclude_role_names=[]):
-        if bullet_train_access_util("expert_navigation"):
+        if bullet_train_has_feature(EXPERT_NAVIGATION_EPIC):
             if self.user_type.upper() == EXPERT_USER_TYPE:
                 return "/dashboard/expert/overview/"
         JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,

@@ -19,7 +19,7 @@ def create_mc_permission(permission):
         user.user_permissions.add(new_perm)
 
 
-def bullet_train_access_util(feature_name):
+def bullet_train_has_feature(feature_name):
     bt = BulletTrain(environment_id=BULLET_TRAIN_ENVIRONMENT_ID)
     if bt:
         if bt.has_feature(feature_name):
