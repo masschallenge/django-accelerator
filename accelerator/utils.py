@@ -3,8 +3,6 @@ from django.contrib.auth.models import Permission
 from bullet_train import BulletTrain
 from django.conf import settings
 
-BULLET_TRAIN_ENVIRONMENT_ID = "aX45EUqSsAqhTvv5nW7WEL"
-
 
 def create_mc_permission(permission):
     ct, _ = ContentType.objects.get_or_create(
@@ -21,7 +19,7 @@ def create_mc_permission(permission):
 
 
 def bullet_train_has_feature(feature_name):
-    bt = BulletTrain(environment_id=settings.BULLET_TRAIN_API_KEY)
+    bt = BulletTrain(environment_id=settings.BULLET_TRAIN_API_KEY.strip('"'))
     if bt:
         if bt.has_feature(feature_name):
             return bt.feature_enabled(feature_name)
