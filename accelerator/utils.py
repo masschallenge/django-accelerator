@@ -19,7 +19,7 @@ def create_mc_permission(permission):
 
 
 def bullet_train_has_feature(feature_name):
-    bt = BulletTrain(environment_id=settings.BULLET_TRAIN_API_KEY.strip('"'))
+    bt = BulletTrain(environment_id=settings.BULLET_TRAIN_API_KEY)
     if bt:
         if bt.has_feature(feature_name):
             return bt.feature_enabled(feature_name)
