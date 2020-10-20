@@ -10,8 +10,17 @@ from datetime import (
 
 from django.urls import reverse
 from pytz import utc
+from accelerator.apps import AcceleratorConfig
 
 TEST_PASSWORD = 'simplepass1'
+
+
+def get_app_name():
+    try:
+        from mc.apps import MCAppConfig
+        return MCAppConfig.name
+    except:
+        return AcceleratorConfig.name
 
 
 def login_as_user(test, user):
