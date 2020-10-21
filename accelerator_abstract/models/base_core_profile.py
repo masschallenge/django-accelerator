@@ -12,10 +12,14 @@ from django.db.models import Q
 from sorl.thumbnail import ImageField
 
 from accelerator.apps import AcceleratorConfig
+from accelerator.utils import bullet_train_has_feature
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_user_role import (
     BaseUserRole,
+)
+from accelerator_abstract.models.base_base_profile import (
+    EXPERT_USER_TYPE,
 )
 from accelerator_abstract.models.base_user_utils import (
     has_staff_clearance,
@@ -47,6 +51,7 @@ UI_GENDER_CHOICES = (
 )
 JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
                           'confirmed_judge_label': 'Judge'}
+EXPERT_NAVIGATION_EPIC = "expert_navigation"
 
 
 class BaseCoreProfile(AcceleratorModel):
@@ -208,8 +213,11 @@ class BaseCoreProfile(AcceleratorModel):
             return '/staff'
 
     def role_based_landing_page(self, exclude_role_names=[]):
+        if bullet_train_has_feature(EXPERT_NAVIGATION_EPIC):
+            if self.user_type.upper() == EXPERT_USER_TYPE:
+                return "/dashboard/expert/overview/"
         JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
-                                          'JudgingRound')
+                                          "JudgingRound")
         UserRole = swapper.load_model(
             AcceleratorConfig.name, 'UserRole')
         now = utc.localize(datetime.now())
@@ -241,7 +249,6 @@ class BaseCoreProfile(AcceleratorModel):
             program_role__user_role__name__in=REMAINING_ROLES,
             program_role__user_role__isnull=False,
             program_role__landing_page__isnull=False)
-
         query = self.user.programrolegrant_set.filter(
             active_judge_grants |
             desired_judge_grants |

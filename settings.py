@@ -41,6 +41,9 @@ SITE_ID = 1
 
 ROOT_URLCONF = "accelerator.tests.urls"
 
+BULLET_TRAIN_API_KEY = os.environ.get(
+    "BULLET_TRAIN_API_KEY", 'aX45EUqSsAqhTvv5nW7WEL')
+
 SECRET_KEY = "notasecret"
 
 AUTH_USER_MODEL = 'simpleuser.User'
