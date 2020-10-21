@@ -1,6 +1,6 @@
+from bullet_train import BulletTrain
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
-from bullet_train import BulletTrain
 from django.conf import settings
 
 
