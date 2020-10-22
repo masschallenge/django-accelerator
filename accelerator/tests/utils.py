@@ -11,6 +11,10 @@ from datetime import (
 from django.urls import reverse
 from pytz import utc
 from accelerator.apps import AcceleratorConfig
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 TEST_PASSWORD = 'simplepass1'
 
@@ -19,7 +23,8 @@ def get_app_name():
     try:
         from mc.apps import MCAppConfig
         return MCAppConfig.name
-    except:
+    except ImportError as error:
+        logger.warning(error)
         return AcceleratorConfig.name
 
 
