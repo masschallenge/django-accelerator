@@ -27,3 +27,4 @@ class NavTreeItemFactory(DjangoModelFactory):
     tree = SubFactory(NavTreeFactory)
     title = Sequence(lambda n: "tree item {0}".format(n))
     url = Sequence(lambda n: "/tree_item_{0}".format(n))
+    user_type = ''
