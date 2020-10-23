@@ -21,6 +21,7 @@ ProgramRole = swapper.load_model(AcceleratorConfig.name, 'ProgramRole')
 class ProgramRoleFactory(DjangoModelFactory):
     class Meta:
         model = ProgramRole
+        django_get_or_create = ['name']
 
     program = SubFactory(ProgramFactory)
     name = Sequence(lambda n: "Program Role {0}".format(n))
