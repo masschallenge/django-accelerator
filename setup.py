@@ -27,7 +27,8 @@ INSTALL_REQUIRES = [
     "django-paypal==1.0.0",
     "django-fluent-pages==2.0.6",
     "django-polymorphic",
-    "django-sitetree"
+    "django-sitetree",
+    "bullet-train",
 ]
 
 setup(
