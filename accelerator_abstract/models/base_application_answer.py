@@ -18,7 +18,7 @@ class BaseApplicationAnswer(AcceleratorModel):
     application_question = models.ForeignKey(swapper.get_model_name(
         AcceleratorModel.Meta.app_label, 'ApplicationQuestion'),
         on_delete=models.CASCADE)
-    answer_text = models.CharField(max_length=2000, blank=True)
+    answer_text = models.TextField(blank=True)
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Application Answers'
