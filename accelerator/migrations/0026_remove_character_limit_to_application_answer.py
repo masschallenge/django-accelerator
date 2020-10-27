@@ -6,6 +6,8 @@ from django.db import migrations, models
 
 HELP_TEXT = ('Hold down "Control", or "Command" on a Mac,'
              'to select more than one.')
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
