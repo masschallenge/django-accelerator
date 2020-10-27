@@ -4,6 +4,8 @@ from django.conf import settings
 from django.db import migrations, models
 
 
+HELP_TEXT = ('Hold down "Control", or "Command" on a Mac,'
+             'to select more than one.')
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -19,6 +21,12 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='expertprofile',
             name='mentoring_specialties',
-            field=models.ManyToManyField(blank=True, db_table='accelerator_expert_related_mentoringspecialty', help_text='Hold down "Control", or "Command" on a Mac,to select more than one.', related_name='experts', to=settings.ACCELERATOR_MENTORINGSPECIALTIES_MODEL, verbose_name='Mentoring Specialties'),
+            field=models.ManyToManyField(
+                blank=True,
+                db_table='accelerator_expert_related_mentoringspecialty',
+                help_text=HELP_TEXT,
+                related_name='experts',
+                to=settings.ACCELERATOR_MENTORINGSPECIALTIES_MODEL,
+                verbose_name='Mentoring Specialties'),
         ),
     ]
