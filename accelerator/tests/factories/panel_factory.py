@@ -10,7 +10,6 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.models import PREVIEW_PANEL_STATUS
 from accelerator.tests.factories.panel_location_factory import (
     PanelLocationFactory
@@ -18,7 +17,7 @@ from accelerator.tests.factories.panel_location_factory import (
 from accelerator.tests.factories.panel_time_factory import PanelTimeFactory
 from accelerator.tests.factories.panel_type_factory import PanelTypeFactory
 
-Panel = swapper.load_model(AcceleratorConfig.name, 'Panel')
+Panel = swapper.load_model('accelerator', 'Panel')
 
 
 class PanelFactory(DjangoModelFactory):

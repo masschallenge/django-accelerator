@@ -10,12 +10,11 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from .program_cycle_factory import ProgramCycleFactory
 from .refund_code_factory import RefundCodeFactory
 from .startup_factory import StartupFactory
 
-RefundCodeRedemption = swapper.load_model(AcceleratorConfig.name,
+RefundCodeRedemption = swapper.load_model('accelerator',
                                           'RefundCodeRedemption')
 
 

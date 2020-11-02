@@ -8,12 +8,10 @@ from accelerator.tests.contexts.judge_feedback_context import (
 from accelerator.models import (
     JUDGING_FEEDBACK_STATUS_COMPLETE,
 )
-from accelerator.apps import AcceleratorConfig
 import swapper
 
 
-JudgeApplicationFeedback = swapper.load_model(
-    AcceleratorConfig.name,
+JudgeApplicationFeedback = swapper.load_model('accelerator',
     'JudgeApplicationFeedback')
 
 

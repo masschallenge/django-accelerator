@@ -8,9 +8,7 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
-
-Currency = swapper.load_model(AcceleratorConfig.name, 'Currency')
+Currency = swapper.load_model('accelerator', 'Currency')
 
 
 def _char_range(start, end):

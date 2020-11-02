@@ -7,9 +7,7 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
-
-UserRole = swapper.load_model(AcceleratorConfig.name, 'UserRole')
+UserRole = swapper.load_model('accelerator', 'UserRole')
 
 
 class UserRoleFactory(DjangoModelFactory):

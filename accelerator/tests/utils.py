@@ -10,7 +10,6 @@ from datetime import (
 
 from django.urls import reverse
 from pytz import utc
-from accelerator.apps import AcceleratorConfig
 import logging
 
 
@@ -25,7 +24,7 @@ def get_app_name():
         return MCAppConfig.name
     except ImportError as error:
         logger.warning(error)
-        return AcceleratorConfig.name
+        return 'accelerator'
 
 
 def login_as_user(test, user):

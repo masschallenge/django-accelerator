@@ -10,10 +10,7 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-
-from accelerator.apps import AcceleratorConfig
-
-StartupLabel = swapper.load_model(AcceleratorConfig.name, 'StartupLabel')
+StartupLabel = swapper.load_model('accelerator', 'StartupLabel')
 
 
 class StartupLabelFactory(DjangoModelFactory):

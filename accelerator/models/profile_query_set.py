@@ -1,8 +1,5 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
-
-from __future__ import unicode_literals
-
 import logging
 
 from django.contrib.auth import get_user_model
@@ -14,18 +11,13 @@ from accelerator_abstract.models.base_base_profile import (
     EXPERT_USER_TYPE,
     MEMBER_USER_TYPE,
 )
-from accelerator.apps import AcceleratorConfig
 
 import swapper
 
-EntrepreneurProfile = swapper.load_model(AcceleratorConfig.name,
-                                         "EntrepreneurProfile")
-ExpertProfile = swapper.load_model(AcceleratorConfig.name,
-                                   "ExpertProfile")
-MemberProfile = swapper.load_model(AcceleratorConfig.name,
-                                   "MemberProfile")
-BaseProfile = swapper.load_model(AcceleratorConfig.name,
-                                 "BaseProfile")
+EntrepreneurProfile = swapper.load_model('accelerator', "EntrepreneurProfile")
+ExpertProfile = swapper.load_model('accelerator', "ExpertProfile")
+MemberProfile = swapper.load_model('accelerator', "MemberProfile")
+BaseProfile = swapper.load_model('accelerator', "BaseProfile")
 User = get_user_model()
 
 MISSING_BASE_PROFILE_TEMPLATE = ("Missing BaseProfile for user {}. "

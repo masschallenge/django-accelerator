@@ -7,9 +7,7 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
-
-StartupRole = swapper.load_model(AcceleratorConfig.name, 'StartupRole')
+StartupRole = swapper.load_model('accelerator', 'StartupRole')
 
 
 class StartupRoleFactory(DjangoModelFactory):
