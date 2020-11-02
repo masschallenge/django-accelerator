@@ -20,7 +20,7 @@ from accelerator.tests.factories.program_family_factory import (
     ProgramFamilyFactory
 )
 
-ExpertInterest = swapper.load_model('accelerator, 'ExpertInterest')
+ExpertInterest = swapper.load_model('accelerator', 'ExpertInterest')
 
 
 class ExpertInterestFactory(DjangoModelFactory):
