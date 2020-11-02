@@ -11,9 +11,7 @@ from django.db import models
 from django.db.models import Q
 from sorl.thumbnail import ImageField
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.utils import bullet_train_has_feature
-
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_user_role import (
     BaseUserRole,
@@ -188,13 +186,13 @@ class BaseCoreProfile(AcceleratorModel):
 
     def is_partner(self):
         PartnerTeamMember = swapper.load_model(
-            AcceleratorConfig.name, 'PartnerTeamMember')
+            'accelerator', 'PartnerTeamMember')
         return PartnerTeamMember.objects.filter(
             team_member=self.user).exists()
 
     def is_partner_admin(self):
         PartnerTeamMember = swapper.load_model(
-            AcceleratorConfig.name, 'PartnerTeamMember')
+            'accelerator', 'PartnerTeamMember')
         return PartnerTeamMember.objects.filter(
             team_member=self.user,
             partner_administrator=True).exists()
@@ -219,7 +217,7 @@ class BaseCoreProfile(AcceleratorModel):
         JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
                                           "JudgingRound")
         UserRole = swapper.load_model(
-            AcceleratorConfig.name, 'UserRole')
+            'accelerator', 'UserRole')
         now = utc.localize(datetime.now())
         active_judging_round_labels = JudgingRound.objects.filter(
             end_date_time__gt=now,
