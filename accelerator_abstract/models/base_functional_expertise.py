@@ -26,8 +26,7 @@ class BaseFunctionalExpertise(MPTTModel, AcceleratorModel):
         order_insertion_by = ['name', ]
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_functionalexpertise'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_functionalexpertise'
         abstract = True
 
     def __str__(self):

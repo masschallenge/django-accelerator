@@ -145,8 +145,7 @@ class BaseJudgingFormElement(AcceleratorModel):
     )
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_judgingformelement'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_judgingformelement'
         abstract = True
         ordering = ['form_type', 'element_number', ]
         verbose_name_plural = 'Judging Form Elements'

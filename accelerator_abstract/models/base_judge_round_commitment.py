@@ -31,8 +31,7 @@ class BaseJudgeRoundCommitment(AcceleratorModel):
     current_quota = models.IntegerField(blank=True, null=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_judgeroundcommitment'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_judgeroundcommitment'
         abstract = True
         verbose_name_plural = ("Judge commitment to participate in a "
                                "Judging Round")

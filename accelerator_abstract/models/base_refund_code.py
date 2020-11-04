@@ -44,8 +44,7 @@ class BaseRefundCode(AcceleratorModel):
                    "directly by users."))
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_refundcode'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_refundcode'
         abstract = True
         verbose_name_plural = 'Refund Codes'
 

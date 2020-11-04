@@ -32,8 +32,7 @@ class BaseProgramPartner(AcceleratorModel):
                   'specific to a Program would go here.')
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_programpartner'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_programpartner'
         abstract = True
         verbose_name_plural = 'Program Partner'
         ordering = ['program__name', 'partner_type__sort_order', 'partner', ]

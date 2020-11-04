@@ -22,8 +22,7 @@ class BaseApplicationAnswer(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Application Answers'
-        db_table = 'accelerator_applicationanswer'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_applicationanswer'
         abstract = True
         unique_together = ('application', 'application_question')
 

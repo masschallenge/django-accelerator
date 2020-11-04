@@ -123,8 +123,7 @@ class BaseCoreProfile(AcceleratorModel):
     newsletter_sender = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_coreprofile'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_coreprofile'
         abstract = True
 
     def __str__(self):

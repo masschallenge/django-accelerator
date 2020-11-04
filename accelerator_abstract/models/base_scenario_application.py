@@ -23,8 +23,7 @@ class BaseScenarioApplication(AcceleratorModel):
     priority = models.IntegerField(default=1)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_scenarioapplication'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_scenarioapplication'
         abstract = True
         verbose_name_plural = 'Scenario Applications'
         unique_together = ('scenario', 'application')

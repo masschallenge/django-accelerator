@@ -23,8 +23,7 @@ class BaseObserver(AcceleratorModel):
     newsletter_sender = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_observer'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_observer'
         abstract = True
         ordering = ['last_name', 'first_name']
         verbose_name = "Observer"

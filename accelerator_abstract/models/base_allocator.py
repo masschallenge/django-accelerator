@@ -24,8 +24,7 @@ class BaseAllocator(AcceleratorModel):
         on_delete=CASCADE)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_allocator'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_allocator'
         abstract = True
         verbose_name_plural = 'Allocators'
 

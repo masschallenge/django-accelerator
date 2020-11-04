@@ -103,8 +103,7 @@ class BaseScenarioPreference(AcceleratorModel):
                                          blank=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_scenariopreference'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_scenariopreference'
         abstract = True
         unique_together = ('scenario', 'priority', 'entity_type')
         ordering = ['priority']

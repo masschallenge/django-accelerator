@@ -42,6 +42,5 @@ class BaseScenario(AcceleratorModel):
         null=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_scenario'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_scenario'
         abstract = True

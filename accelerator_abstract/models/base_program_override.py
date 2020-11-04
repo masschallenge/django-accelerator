@@ -45,8 +45,7 @@ class BaseProgramOverride(AcceleratorModel):
     )
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_programoverride'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_programoverride'
         abstract = True
         verbose_name_plural = 'Program Overrides'
 

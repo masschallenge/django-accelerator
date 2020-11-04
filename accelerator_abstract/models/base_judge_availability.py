@@ -48,8 +48,7 @@ class BaseJudgeAvailability(AcceleratorModel):
     # consistent with the round associated with the chosen 'commitment'
     # object.
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_judgeavailability'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_judgeavailability'
         abstract = True
         verbose_name_plural = ("Judge availability for specific Panel types, "
                                "times, locations")

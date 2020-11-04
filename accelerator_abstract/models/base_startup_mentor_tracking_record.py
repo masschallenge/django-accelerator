@@ -49,8 +49,7 @@ class BaseStartupMentorTrackingRecord(AcceleratorModel):
         null=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_startupmentortrackingrecord'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_startupmentortrackingrecord'
         abstract = True
         verbose_name = "Mentor Tracking Record"
         verbose_name_plural = "Mentor Tracking Records"

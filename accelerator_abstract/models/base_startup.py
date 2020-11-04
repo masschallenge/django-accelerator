@@ -51,8 +51,7 @@ class BaseStartup(AcceleratorModel):
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Industry'),
         verbose_name='Additional Industries',
         related_name='secondary_startups',
-        db_table="accelerator_startup_related_industry".format(
-            AcceleratorModel.Meta.app_label),
+        db_table="accelerator_startup_related_industry",
         blank=True,
         help_text=(
             'You may select up to 5 related industries.'

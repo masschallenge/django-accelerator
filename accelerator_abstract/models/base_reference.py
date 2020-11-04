@@ -38,8 +38,7 @@ class BaseReference(AcceleratorModel):
                                         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_reference'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_reference'
         abstract = True
 
     def __str__(self):

@@ -20,8 +20,7 @@ class BaseScenarioJudge(AcceleratorModel):
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_scenariojudge'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_scenariojudge'
         abstract = True
         verbose_name_plural = 'Scenario Judges'
         unique_together = ('scenario', 'judge')
