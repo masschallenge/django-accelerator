@@ -33,7 +33,7 @@ class BaseOrganization(AcceleratorModel):
         default="",  # This actually gets replaced by a real slug.
         unique=True,
         validators=[
-            RegexValidator(regex="^[\w-]+$",
+            RegexValidator(regex=r"^[\w-]+$",
                            message="Letters, numbers, and dashes only.")
         ]
     )
