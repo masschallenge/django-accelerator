@@ -37,7 +37,7 @@ class BaseStartupTeamMember(AcceleratorModel):
     founder = models.NullBooleanField(default=False, null=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_startupteammember'.format(
+        db_table = 'accelerator_startupteammember'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         unique_together = ('startup', 'user')

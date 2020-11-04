@@ -24,7 +24,7 @@ class BaseNewsletterReceipt(AcceleratorModel):
                                   on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_newsletterreceipt'.format(
+        db_table = 'accelerator_newsletterreceipt'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         pass

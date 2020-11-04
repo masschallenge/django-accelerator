@@ -27,7 +27,7 @@ class BaseUserLegalCheck(AcceleratorModel):
     accepted = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_userlegalcheck'.format(
+        db_table = 'accelerator_userlegalcheck'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name = 'User Legal Check'

@@ -35,7 +35,7 @@ class BaseProgramPartnerType(AcceleratorModel):
                                      max_length=30, default="NONE")
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_programpartnertype'.format(
+        db_table = 'accelerator_programpartnertype'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name_plural = 'Program Partner Types'

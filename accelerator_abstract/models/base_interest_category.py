@@ -17,7 +17,7 @@ class BaseInterestCategory(AcceleratorModel):
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_interestcategory'.format(
+        db_table = 'accelerator_interestcategory'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name_plural = "Interest Categories"

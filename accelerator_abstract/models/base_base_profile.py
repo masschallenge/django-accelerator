@@ -33,7 +33,7 @@ class BaseBaseProfile(AcceleratorModel):
     user_type = models.CharField(max_length=16, choices=USER_TYPES)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_baseprofile'.format(
+        db_table = 'accelerator_baseprofile'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
 

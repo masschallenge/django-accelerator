@@ -20,7 +20,7 @@ class BaseUserLabel(LabelModel):
     users = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
 
     class Meta(LabelModel.Meta):
-        db_table = '{}_userlabel'.format(
+        db_table = 'accelerator_userlabel'.format(
             LabelModel.Meta.app_label)
         abstract = True
         ordering = ["label", ]

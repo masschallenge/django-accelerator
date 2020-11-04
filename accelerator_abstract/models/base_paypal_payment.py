@@ -30,6 +30,6 @@ class BasePayPalPayment(AcceleratorModel):
     refundable = models.BooleanField(default=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_paypalpayment'.format(
+        db_table = 'accelerator_paypalpayment'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True

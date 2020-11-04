@@ -19,7 +19,7 @@ class BaseNodePublishedFor(AcceleratorModel):
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_nodepublishedfor'.format(
+        db_table = 'accelerator_nodepublishedfor'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name = "Node is Published For"

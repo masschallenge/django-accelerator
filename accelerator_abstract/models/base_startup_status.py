@@ -21,7 +21,7 @@ class BaseStartupStatus(AcceleratorModel):
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_startupstatus'.format(
+        db_table = 'accelerator_startupstatus'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name_plural = 'Startup Statuses'

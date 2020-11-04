@@ -32,7 +32,7 @@ class BaseNodeSubNavAssociation(AcceleratorModel):
     )
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_nodesubnavassociation'.format(
+        db_table = 'accelerator_nodesubnavassociation'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name = "Node Sub Navigation Association"

@@ -14,6 +14,6 @@ class BaseEntrepreneurProfile(BaseCoreProfile):
     bio = models.TextField(blank=True, default="")
 
     class Meta(BaseCoreProfile.Meta):
-        db_table = '{}_entrepreneurprofile'.format(
+        db_table = 'accelerator_entrepreneurprofile'.format(
             BaseCoreProfile.Meta.app_label)
         abstract = True

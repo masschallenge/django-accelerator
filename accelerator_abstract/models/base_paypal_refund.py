@@ -26,5 +26,5 @@ class BasePayPalRefund(AcceleratorModel):
                                  default=decimal.Decimal("0.00"))
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_paypalrefund'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_paypalrefund'
         abstract = True

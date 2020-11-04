@@ -66,7 +66,7 @@ class BaseProgramStartupStatus(AcceleratorModel):
         help_text="Order")
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_programstartupstatus'.format(
+        db_table = 'accelerator_programstartupstatus'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name_plural = 'Program Startup Statuses'

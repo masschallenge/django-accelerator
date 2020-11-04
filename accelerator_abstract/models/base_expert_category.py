@@ -19,7 +19,7 @@ class BaseExpertCategory(AcceleratorModel):
     name = models.CharField(max_length=255, unique=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_expertcategory'.format(
+        db_table = 'accelerator_expertcategory'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         ordering = ['name', ]

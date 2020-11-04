@@ -73,7 +73,7 @@ class BaseApplicationQuestion(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         abstract = True
-        db_table = '{}_applicationquestion'.format(
+        db_table = 'accelerator_applicationquestion'.format(
             AcceleratorModel.Meta.app_label)
         ordering = ["application_type", "question_number", ]
         verbose_name_plural = "Application Questions"

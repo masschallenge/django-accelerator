@@ -30,7 +30,7 @@ class BaseLegalCheck(AcceleratorModel):
                   'Startups applying to MassChallenge)')
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_legalcheck'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_legalcheck'
         abstract = True
         verbose_name = "Legal Check"
 

@@ -13,7 +13,7 @@ class BaseJudgingForm(AcceleratorModel):
     description = models.CharField(max_length=500, blank=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_judgingform'.format(
+        db_table = 'accelerator_judgingform'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name_plural = 'Judging Forms'

@@ -21,7 +21,7 @@ class BasePartnerTeamMember(AcceleratorModel):
     partner_administrator = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_partnerteammember'.format(
+        db_table = 'accelerator_partnerteammember'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name_plural = 'Partner Team Members'

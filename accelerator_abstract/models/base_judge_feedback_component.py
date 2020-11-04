@@ -51,7 +51,7 @@ class BaseJudgeFeedbackComponent(AcceleratorModel):
     original_answer_text = models.TextField(blank=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_judgefeedbackcomponent'.format(
+        db_table = 'accelerator_judgefeedbackcomponent'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name_plural = 'Feedback Components'

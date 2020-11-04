@@ -18,6 +18,6 @@ class BaseApplicationType(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Application Types'
-        db_table = '{}_applicationtype'.format(
+        db_table = 'accelerator_applicationtype'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True

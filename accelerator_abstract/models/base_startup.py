@@ -51,7 +51,7 @@ class BaseStartup(AcceleratorModel):
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Industry'),
         verbose_name='Additional Industries',
         related_name='secondary_startups',
-        db_table="{}_startup_related_industry".format(
+        db_table="accelerator_startup_related_industry".format(
             AcceleratorModel.Meta.app_label),
         blank=True,
         help_text=(
@@ -157,7 +157,7 @@ class BaseStartup(AcceleratorModel):
     landing_page = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_startup'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_startup'
         abstract = True
         verbose_name_plural = 'Startups'
         ordering = ['organization__name']

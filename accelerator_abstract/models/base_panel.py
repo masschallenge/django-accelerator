@@ -56,7 +56,7 @@ class BasePanel(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Panels'
-        db_table = '{}_panel'.format(
+        db_table = 'accelerator_panel'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
 

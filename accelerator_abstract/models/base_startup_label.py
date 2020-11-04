@@ -19,7 +19,7 @@ class BaseStartupLabel(LabelModel):
 
     class Meta(LabelModel.Meta):
         ordering = ['label', ]
-        db_table = '{}_startuplabel'.format(LabelModel.Meta.app_label)
+        db_table = 'accelerator_startuplabel'.format(LabelModel.Meta.app_label)
         abstract = True
 
     def __str__(self):

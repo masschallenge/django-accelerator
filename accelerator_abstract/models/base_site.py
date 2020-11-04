@@ -17,7 +17,7 @@ class BaseSite(AcceleratorModel):
     site_url = models.URLField(blank=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_site'.format(
+        db_table = 'accelerator_site'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
 

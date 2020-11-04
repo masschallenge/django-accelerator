@@ -13,5 +13,5 @@ class BaseNamedGroup(LabelModel):
 
     class Meta(LabelModel.Meta):
         ordering = ['name']
-        db_table = '{}_namedgroup'.format(LabelModel.Meta.app_label)
+        db_table = 'accelerator_namedgroup'.format(LabelModel.Meta.app_label)
         abstract = True

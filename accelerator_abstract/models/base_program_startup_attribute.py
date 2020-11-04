@@ -56,7 +56,7 @@ class BaseProgramStartupAttribute(AcceleratorModel):
         help_text='Can Mentors view this attribute?')
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_programstartupattribute'.format(
+        db_table = 'accelerator_programstartupattribute'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         ordering = ['program', 'attribute_label']

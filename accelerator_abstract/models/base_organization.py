@@ -39,7 +39,7 @@ class BaseOrganization(AcceleratorModel):
     )
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_organization'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_organization'
         verbose_name_plural = 'Organizations'
         ordering = ['name', ]
         abstract = True

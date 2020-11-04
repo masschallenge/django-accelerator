@@ -28,7 +28,7 @@ class BasePartner(AcceleratorModel):
         blank=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_partner'.format(
+        db_table = 'accelerator_partner'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name_plural = 'Partners'

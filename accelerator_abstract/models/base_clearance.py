@@ -108,7 +108,7 @@ class BaseClearance(AcceleratorModel):
     class Meta(AcceleratorModel.Meta):
         unique_together = ("user", "program_family")
         abstract = True
-        db_table = "{}_clearance".format(
+        db_table = "accelerator_clearance".format(
             AcceleratorModel.Meta.app_label)
 
     def __str__(self):

@@ -73,7 +73,7 @@ class BaseBucketState(AcceleratorModel):
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_bucketstate'.format(
+        db_table = 'accelerator_bucketstate'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         ordering = ["sort_order", ]

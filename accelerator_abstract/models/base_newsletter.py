@@ -48,7 +48,7 @@ class BaseNewsletter(AcceleratorModel):
     date_mailed = models.DateTimeField(blank=True, null=True, editable=False)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_newsletter'.format(
+        db_table = 'accelerator_newsletter'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         ordering = ('-created_at', 'name',)

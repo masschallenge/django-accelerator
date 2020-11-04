@@ -20,7 +20,7 @@ class BaseProgramFamilyLocation(AcceleratorModel):
     primary = models.BooleanField()
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_programfamilylocation'.format(
+        db_table = 'accelerator_programfamilylocation'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         unique_together = ('program_family', 'location')

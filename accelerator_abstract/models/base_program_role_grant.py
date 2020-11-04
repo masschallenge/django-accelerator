@@ -20,7 +20,7 @@ class BaseProgramRoleGrant(AcceleratorModel):
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_programrolegrant'.format(
+        db_table = 'accelerator_programrolegrant'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         unique_together = ('person', 'program_role')

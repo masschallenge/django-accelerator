@@ -28,7 +28,7 @@ class BaseIndustry(MPTTModel, AcceleratorModel):
         verbose_name_plural = 'Industries'
 
     class Meta:
-        db_table = '{}_industry'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_industry'
         verbose_name_plural = "Industries"
         abstract = True
 

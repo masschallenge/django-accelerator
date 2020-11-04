@@ -31,7 +31,7 @@ class BaseApplicationPanelAssignment(AcceleratorModel):
         verbose_name_plural = "assignments of startup applications to panel"
         unique_together = ("application", "panel", "scenario")
         ordering = ('panel_slot_number',)
-        db_table = '{}_applicationpanelassignment'.format(
+        db_table = 'accelerator_applicationpanelassignment'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
 

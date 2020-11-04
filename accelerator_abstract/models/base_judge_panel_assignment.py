@@ -42,7 +42,7 @@ class BaseJudgePanelAssignment(AcceleratorModel):
         null=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_judgepanelassignment'.format(
+        db_table = 'accelerator_judgepanelassignment'.format(
             AcceleratorModel.Meta.app_label)
         abstract = True
         verbose_name_plural = "assignments of judge to panel"
