@@ -11,6 +11,5 @@ class BaseMemberProfile(BaseCoreProfile):
     default_page = "member_homepage"
 
     class Meta(BaseCoreProfile.Meta):
-        db_table = 'accelerator_memberprofile'.format(
-            BaseCoreProfile.Meta.app_label)
+        db_table = 'accelerator_memberprofile'
         abstract = True

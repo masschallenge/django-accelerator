@@ -119,8 +119,7 @@ class BaseExpertProfile(BaseCoreProfile):
             'industries, please press and hold Control (CTRL) on PCs or '
             'Command (&#8984;) on Macs.')),
         related_name="secondary_experts",
-        db_table="accelerator_expert_related_industry".format(
-            BaseCoreProfile.Meta.app_label))
+        db_table="accelerator_expert_related_industry")
     privacy_email = models.CharField(
         max_length=64,
         verbose_name="Privacy - Email",
@@ -215,8 +214,7 @@ class BaseExpertProfile(BaseCoreProfile):
         on_delete=models.CASCADE)
 
     class Meta(BaseCoreProfile.Meta):
-        db_table = 'accelerator_expertprofile'.format(
-            BaseCoreProfile.Meta.app_label)
+        db_table = 'accelerator_expertprofile'
         abstract = True
         permissions = (
             ('change_password', 'Can change users passwords directly'),
