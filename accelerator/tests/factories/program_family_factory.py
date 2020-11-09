@@ -7,10 +7,7 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-
-from accelerator.apps import AcceleratorConfig
-
-ProgramFamily = swapper.load_model(AcceleratorConfig.name, 'ProgramFamily')
+ProgramFamily = swapper.load_model('accelerator', 'ProgramFamily')
 
 
 class ProgramFamilyFactory(DjangoModelFactory):

@@ -7,7 +7,6 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories import (
     NavTreeFactory,
     NavTreeItemFactory,
@@ -15,7 +14,7 @@ from accelerator.tests.factories import (
 )
 
 NodeSubNavAssociation = swapper.load_model(
-    AcceleratorConfig.name, 'NodeSubNavAssociation')
+    'accelerator', 'NodeSubNavAssociation')
 
 
 class NodeSubNavAssociationFactory(DjangoModelFactory):

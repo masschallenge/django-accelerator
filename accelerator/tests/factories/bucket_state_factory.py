@@ -13,7 +13,6 @@ from factory import SubFactory
 from factory.django import DjangoModelFactory
 from pytz import utc
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.models import (
     STALE_NOSTARTUP_BUCKET_TYPE,
     STALE_LEADS_GROUP,
@@ -24,7 +23,7 @@ from accelerator.tests.factories.program_cycle_factory import (
 from accelerator.tests.factories.program_factory import ProgramFactory
 from accelerator.tests.factories.program_role_factory import ProgramRoleFactory
 
-BucketState = swapper.load_model(AcceleratorConfig.name, 'BucketState')
+BucketState = swapper.load_model('accelerator', 'BucketState')
 
 
 class BucketStateFactory(DjangoModelFactory):

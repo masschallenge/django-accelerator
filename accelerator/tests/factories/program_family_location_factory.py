@@ -4,13 +4,12 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories import (
     ProgramFamilyFactory,
 )
 from accelerator.tests.factories.location_factory import LocationFactory
 
-ProgramFamilyLocation = swapper.load_model(AcceleratorConfig.name,
+ProgramFamilyLocation = swapper.load_model('accelerator',
                                            'ProgramFamilyLocation')
 
 

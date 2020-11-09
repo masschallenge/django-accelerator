@@ -7,9 +7,7 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
-
-LegalCheck = swapper.load_model(AcceleratorConfig.name, 'LegalCheck')
+LegalCheck = swapper.load_model('accelerator', 'LegalCheck')
 
 
 class LegalCheckFactory(DjangoModelFactory):

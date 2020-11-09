@@ -10,12 +10,11 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.organization_factory import (
     OrganizationFactory
 )
 
-Partner = swapper.load_model(AcceleratorConfig.name, 'Partner')
+Partner = swapper.load_model('accelerator', 'Partner')
 
 
 class PartnerFactory(DjangoModelFactory):

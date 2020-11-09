@@ -10,13 +10,12 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.judging_round_factory import (
     JudgingRoundFactory
 )
 from accelerator.tests.factories.program_factory import ProgramFactory
 
-Newsletter = swapper.load_model(AcceleratorConfig.name, 'Newsletter')
+Newsletter = swapper.load_model('accelerator', 'Newsletter')
 
 
 class NewsletterFactory(DjangoModelFactory):

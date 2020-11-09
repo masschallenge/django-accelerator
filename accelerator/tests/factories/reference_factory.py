@@ -15,11 +15,10 @@ from factory.django import DjangoModelFactory
 
 from pytz import utc
 
-from accelerator.apps import AcceleratorConfig
 from .application_factory import ApplicationFactory
 from .entrepreneur_factory import EntrepreneurFactory
 
-Reference = swapper.load_model(AcceleratorConfig.name, 'Reference')
+Reference = swapper.load_model('accelerator', 'Reference')
 
 
 class ReferenceFactory(DjangoModelFactory):

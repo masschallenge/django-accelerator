@@ -7,9 +7,7 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
-
-NamedGroup = swapper.load_model(AcceleratorConfig.name, 'NamedGroup')
+NamedGroup = swapper.load_model('accelerator', 'NamedGroup')
 
 
 class NamedGroupFactory(DjangoModelFactory):
