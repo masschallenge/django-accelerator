@@ -52,8 +52,7 @@ class BaseMentorProgramOfficeHour(AcceleratorModel):
     meeting_info = models.CharField(max_length=256, blank=True, default="")
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_mentorprogramofficehour'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_mentorprogramofficehour'
         abstract = True
         verbose_name = "Office Hour"
         unique_together = ('program', 'mentor', 'start_date_time')

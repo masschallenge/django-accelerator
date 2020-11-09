@@ -28,8 +28,7 @@ class BasePartner(AcceleratorModel):
         blank=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_partner'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_partner'
         abstract = True
         verbose_name_plural = 'Partners'
         ordering = ['organization__name', ]

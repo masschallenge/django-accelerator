@@ -45,7 +45,7 @@ class BaseUserRole(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         abstract = True
-        db_table = '{}_userrole'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_userrole'
 
 
 def has_user_role_base(

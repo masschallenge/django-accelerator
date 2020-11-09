@@ -47,7 +47,7 @@ class BaseNavTreeItem(TreeItemBase, AcceleratorModel):
     display_single_item = models.BooleanField(default=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_navtreeitem'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_navtreeitem'
         verbose_name_plural = "NavTreeItems"
         unique_together = ('tree', 'title', 'url')
         abstract = True

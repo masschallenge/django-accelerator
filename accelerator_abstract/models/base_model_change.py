@@ -31,7 +31,7 @@ class BaseModelChange(AcceleratorModel):
                               default=MIGRATION_STATUS_OLD)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_modelchange'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_modelchange'
         abstract = True
 
     def __str__(self):
