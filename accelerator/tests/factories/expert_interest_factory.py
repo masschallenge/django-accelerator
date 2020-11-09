@@ -10,7 +10,6 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories import (
     ExpertFactory,
 )
@@ -21,7 +20,7 @@ from accelerator.tests.factories.program_family_factory import (
     ProgramFamilyFactory
 )
 
-ExpertInterest = swapper.load_model(AcceleratorConfig.name, 'ExpertInterest')
+ExpertInterest = swapper.load_model('accelerator', 'ExpertInterest')
 
 
 class ExpertInterestFactory(DjangoModelFactory):

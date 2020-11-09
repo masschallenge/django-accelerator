@@ -7,10 +7,7 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
-
-ExpertInterestType = swapper.load_model(AcceleratorConfig.name,
-                                        'ExpertInterestType')
+ExpertInterestType = swapper.load_model('accelerator', 'ExpertInterestType')
 
 
 class ExpertInterestTypeFactory(DjangoModelFactory):

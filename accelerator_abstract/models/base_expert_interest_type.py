@@ -15,7 +15,6 @@ class BaseExpertInterestType(AcceleratorModel):
     short_description = models.CharField(max_length=255)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_expertinteresttype'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_expertinteresttype'
         abstract = True
         verbose_name_plural = "Expert Interest Types"

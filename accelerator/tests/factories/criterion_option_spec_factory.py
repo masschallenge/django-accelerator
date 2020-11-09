@@ -10,12 +10,10 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.criterion_factory import (
     CriterionFactory
 )
-CriterionOptionSpec = swapper.load_model(AcceleratorConfig.name,
-                                         'CriterionOptionSpec')
+CriterionOptionSpec = swapper.load_model('accelerator', 'CriterionOptionSpec')
 
 
 class CriterionOptionSpecFactory(DjangoModelFactory):

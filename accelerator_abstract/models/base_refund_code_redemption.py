@@ -45,8 +45,7 @@ class BaseRefundCodeRedemption(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         unique_together = ("startup", "refund_code", "cycle")
-        db_table = "{}_refundcoderedemption".format(
-            AcceleratorModel.Meta.app_label)
+        db_table = "accelerator_refundcoderedemption"
         abstract = True
 
     def __str__(self):

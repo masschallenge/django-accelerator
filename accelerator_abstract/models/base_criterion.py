@@ -24,8 +24,7 @@ class BaseCriterion(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         abstract = True
-        db_table = '{}_criterion'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_criterion'
         verbose_name = "Application Allocator Criterion"
         verbose_name_plural = "Application Allocator Criteria"
 

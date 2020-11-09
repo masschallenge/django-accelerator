@@ -7,13 +7,12 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.program_cycle_factory import (
     ProgramCycleFactory
 )
 from accelerator.tests.factories.startup_factory import StartupFactory
 
-StartupCycleInterest = swapper.load_model(AcceleratorConfig.name,
+StartupCycleInterest = swapper.load_model('accelerator',
                                           'StartupCycleInterest')
 
 

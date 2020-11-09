@@ -57,8 +57,7 @@ class BaseJudgeApplicationFeedback(AcceleratorModel):
     viewers = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name="viewed_feedback",
-        db_table="{}_judgeapplicationfeedback_viewers".format(
-            AcceleratorModel.Meta.app_label))
+        db_table="accelerator_judgeapplicationfeedback_viewers")
 
     MANDATORY_MESSAGE = 'The question "%s" is mandatory.'
     REQUIRED_MINIMUM_MESSAGE = 'The question "%s" requires a minimum of %s %s.'
@@ -68,8 +67,7 @@ class BaseJudgeApplicationFeedback(AcceleratorModel):
                                       ' text')
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_judgeapplicationfeedback'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_judgeapplicationfeedback'
         abstract = True
         verbose_name_plural = 'Judge Application Feedback'
         unique_together = ('application', 'judge', 'panel')

@@ -35,8 +35,7 @@ class BaseSection(AcceleratorModel):
     sequence = models.PositiveIntegerField(help_text=SECTION_SEQUENCE_HELP)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_section'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_section'
         abstract = True
         ordering = ('newsletter', 'sequence',)
 

@@ -53,8 +53,7 @@ class BaseStartupProgramInterest(OrderedModel, AcceleratorModel):
     class Meta(OrderedModel.Meta, AcceleratorModel.Meta):
         ordering = ['order']
         abstract = True
-        db_table = '{}_startupprograminterest'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_startupprograminterest'
 
     def __str__(self):
         return "{startup}-{program}, Applying:{applying}".format(

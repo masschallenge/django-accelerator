@@ -25,7 +25,7 @@ class BasePanelType(AcceleratorModel):
         verbose_name_plural = 'Panel Types'
         ordering = ['judging_round', 'description']
         abstract = True
-        db_table = '{}_paneltype'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_paneltype'
 
     def __str__(self):
         return self.description

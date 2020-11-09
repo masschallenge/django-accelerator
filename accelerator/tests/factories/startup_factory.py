@@ -12,7 +12,6 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.models import (
     DEFAULT_PROFILE_BACKGROUND_COLOR,
     DEFAULT_PROFILE_TEXT_COLOR,
@@ -28,7 +27,7 @@ from accelerator.tests.factories.organization_factory import (
 )
 from accelerator.tests.utils import days_from_now
 
-Startup = swapper.load_model(AcceleratorConfig.name, 'Startup')
+Startup = swapper.load_model('accelerator', 'Startup')
 
 COMMUNITY_VALUES = [val[0] for val in STARTUP_COMMUNITIES]
 

@@ -33,13 +33,13 @@ class BaseOrganization(AcceleratorModel):
         default="",  # This actually gets replaced by a real slug.
         unique=True,
         validators=[
-            RegexValidator(regex="^[\w-]+$",
+            RegexValidator(regex=r"^[\w-]+$",
                            message="Letters, numbers, and dashes only.")
         ]
     )
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_organization'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_organization'
         verbose_name_plural = 'Organizations'
         ordering = ['name', ]
         abstract = True

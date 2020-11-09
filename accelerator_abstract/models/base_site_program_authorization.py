@@ -33,8 +33,7 @@ class BaseSiteProgramAuthorization(AcceleratorModel):
     jobs = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_siteprogramauthorization'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_siteprogramauthorization'
         abstract = True
         unique_together = (("site", "program"),)
         verbose_name_plural = 'Site Program Authorizations'

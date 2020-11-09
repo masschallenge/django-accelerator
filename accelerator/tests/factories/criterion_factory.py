@@ -9,11 +9,10 @@ from factory import (
     SubFactory,
 )
 from factory.django import DjangoModelFactory
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.judging_round_factory import (
     JudgingRoundFactory
 )
-Criterion = swapper.load_model(AcceleratorConfig.name, 'Criterion')
+Criterion = swapper.load_model('accelerator', 'Criterion')
 
 
 class CriterionFactory(DjangoModelFactory):

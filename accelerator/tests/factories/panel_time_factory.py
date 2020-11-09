@@ -9,14 +9,12 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.judging_round_factory import (
     JudgingRoundFactory
 )
 from accelerator.tests.utils import months_from_now
 
-PanelTime = swapper.load_model(AcceleratorConfig.name, 'PanelTime')
+PanelTime = swapper.load_model('accelerator', 'PanelTime')
 
 
 class PanelTimeFactory(DjangoModelFactory):

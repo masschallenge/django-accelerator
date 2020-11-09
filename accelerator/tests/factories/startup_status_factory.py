@@ -7,13 +7,12 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.program_startup_status_factory import (
     ProgramStartupStatusFactory,
 )
 from accelerator.tests.factories.startup_factory import StartupFactory
 
-StartupStatus = swapper.load_model(AcceleratorConfig.name, 'StartupStatus')
+StartupStatus = swapper.load_model('accelerator', 'StartupStatus')
 
 
 class StartupStatusFactory(DjangoModelFactory):

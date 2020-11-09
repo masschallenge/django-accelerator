@@ -33,8 +33,7 @@ class BaseStartupMentorRelationship(AcceleratorModel):
     primary = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_startupmentorrelationship'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_startupmentorrelationship'
         abstract = True
         verbose_name_plural = 'Startup Mentor Relationships'
 

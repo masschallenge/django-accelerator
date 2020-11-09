@@ -232,8 +232,7 @@ class BaseJudgingRound(AcceleratorModel):
         choices=COLLISION_DETECTION_CHOICES)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_judginground'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_judginground'
         abstract = True
         unique_together = ('program', 'name')
         ordering = ['program__program_status',

@@ -54,8 +54,7 @@ class BaseExpertInterest(AcceleratorModel):
     )
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_expertinterest'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_expertinterest'
         abstract = True
         verbose_name_plural = "Expert Interests"
 
