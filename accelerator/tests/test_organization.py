@@ -1,7 +1,6 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
 
-from __future__ import unicode_literals
 
 from django.template.defaultfilters import slugify
 from django.test import TestCase
