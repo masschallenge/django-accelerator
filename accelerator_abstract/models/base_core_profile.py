@@ -119,6 +119,7 @@ class BaseCoreProfile(AcceleratorModel):
     user_type = None
     default_page = "member_homepage"
     newsletter_sender = models.BooleanField(default=False)
+    birth_year = models.DateField(blank=True, null=True)
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_coreprofile'
