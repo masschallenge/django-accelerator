@@ -36,3 +36,6 @@ class BaseEthnoRacialIdentity(AcceleratorModel):
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_ethnoracialidentity'
         abstract = True
+
+    def __str__(self):
+        return self.identity
