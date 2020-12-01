@@ -7,7 +7,9 @@ from accelerator_abstract.models.base_ethno_racial_identity import (
 
 
 def add_ethno_racial_identity_data(*args, **kwargs):
-    EthnoRacialIdentity = swapper.load_model('accelerator', 'EthnoRacialIdentity')
+    EthnoRacialIdentity = swapper.load_model(
+        'accelerator', 'EthnoRacialIdentity'
+    )
     for ethno_racial_identity in ETHNO_RACIAL_IDENTITY_CHOICES:
         EthnoRacialIdentity.objects.create(identity=ethno_racial_identity[0])
 
