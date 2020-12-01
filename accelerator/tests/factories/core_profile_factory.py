@@ -43,6 +43,7 @@ class CoreProfileFactory(DjangoModelFactory):
     drupal_last_login = None
     current_program = SubFactory(ProgramFactory)
     newsletter_sender = False
+    authorization_to_share_ethno_racial_identity = False
 
     @post_generation
     def program_families(self, create, extracted, **kwargs):

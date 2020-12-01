@@ -39,4 +39,19 @@ class Migration(migrations.Migration):
             name='ethno_racial_identification',
             field=models.ManyToManyField(to=settings.ACCELERATOR_ETHNORACIALIDENTITY_MODEL),
         ),
+        migrations.AddField(
+            model_name='entrepreneurprofile',
+            name='authorization_to_share_ethno_racial_identity',
+            field=models.BooleanField(default=False),
+        ),
+        migrations.AddField(
+            model_name='expertprofile',
+            name='authorization_to_share_ethno_racial_identity',
+            field=models.BooleanField(default=False),
+        ),
+        migrations.AddField(
+            model_name='memberprofile',
+            name='authorization_to_share_ethno_racial_identity',
+            field=models.BooleanField(default=False),
+        ),
     ]

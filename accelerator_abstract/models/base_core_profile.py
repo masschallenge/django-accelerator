@@ -122,6 +122,7 @@ class BaseCoreProfile(AcceleratorModel):
     ethno_racial_identification = models.ManyToManyField(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'EthnoRacialIdentity')
     )
+    authorization_to_share_ethno_racial_identity = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_coreprofile'
