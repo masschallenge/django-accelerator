@@ -59,6 +59,12 @@ class BaseCoreProfile(AcceleratorModel):
         max_length=1,
         choices=GENDER_CHOICES,
         default='')
+    gender_identity = models.ManyToManyField(
+        swapper.get_model_name(
+            AcceleratorModel.Meta.app_label, 'GenderChoices'),
+        blank=True
+    )
+    gender_self_description = models.TextField(blank=True, default="")
     phone = models.CharField(
         verbose_name="Phone",
         max_length=20,
