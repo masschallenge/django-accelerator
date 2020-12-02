@@ -20,7 +20,9 @@ from pytz import utc
 from accelerator.models.core_profile import CoreProfile
 from accelerator.tests.factories.program_factory import ProgramFactory
 from simpleuser.tests.factories.user_factory import UserFactory
-from accelerator.tests.factories import GenderChoicesFactory
+from accelerator.tests.factories.gender_choices_factory import (
+    GenderChoicesFactory
+)
 
 
 class CoreProfileFactory(DjangoModelFactory):
