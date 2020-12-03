@@ -20,6 +20,7 @@ GENDER_CHOICES = (
     GENDER_PREFER_NOT_TO_SAY_CHOICE
 )
 
+
 def add_gender_choices(apps, schema_editor):
     GenderChoices = apps.get_model('accelerator', 'GenderChoices')
     db_gender_choices = GenderChoices.objects.all().values_list(
