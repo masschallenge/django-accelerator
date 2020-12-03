@@ -6,7 +6,8 @@ from accelerator_abstract.models.base_gender_choices import GENDER_CHOICES
 
 def add_gender_choices(apps, schema_editor):
     GenderChoices = apps.get_model('accelerator', 'GenderChoices')
-    db_gender_choices = GenderChoices.objects.all().values_list('name', flat=True)
+    db_gender_choices = GenderChoices.objects.all().values_list(
+        'name', flat=True)
     missing_gender_choices = set(GENDER_CHOICES).difference(db_gender_choices)
     if missing_gender_choices:
         GenderChoices.objects.bulk_create(
