@@ -110,7 +110,6 @@ ACCELERATOR_STARTUPATTRIBUTE_MODEL = "accelerator.StartupAttribute"
 ACCELERATOR_PAYPALPAYMENT_MODEL = "accelerator.PayPalPayment"
 ACCELERATOR_LEGALCHECK_MODEL = "accelerator.LegalCheck"
 ACCELERATOR_USERLEGALCHECK_MODEL = "accelerator.UserLegalCheck"
-ACCELERATOR_USERLEGALCHECK_MODEL = "accelerator.UserLegalCheck"
 ACCELERATOR_GENDERCHOICES_MODEL = "accelerator.GenderChoices"
 
 PAYPAL_WPP_USER = ""
