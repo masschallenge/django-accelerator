@@ -44,6 +44,7 @@ class CoreProfileFactory(DjangoModelFactory):
     current_program = SubFactory(ProgramFactory)
     newsletter_sender = False
     authorization_to_share_ethno_racial_identity = False
+    birth_year = None
 
     @post_generation
     def program_families(self, create, extracted, **kwargs):

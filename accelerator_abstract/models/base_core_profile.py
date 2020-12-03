@@ -127,6 +127,7 @@ class BaseCoreProfile(AcceleratorModel):
     authorization_to_share_ethno_racial_identity = models.BooleanField(
         default=False,
     )
+    birth_year = models.DateField(blank=True, null=True)
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_coreprofile'
