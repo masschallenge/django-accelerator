@@ -4,7 +4,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0026_remove_character_limit_to_application_answer'),
+        ('accelerator', '0027_add_birth_year_to_core_profile'),
     ]
 
     operations = [
