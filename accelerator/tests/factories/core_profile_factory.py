@@ -43,6 +43,7 @@ class CoreProfileFactory(DjangoModelFactory):
     drupal_last_login = None
     current_program = SubFactory(ProgramFactory)
     newsletter_sender = False
+    birth_year = None
 
     @post_generation
     def program_families(self, create, extracted, **kwargs):
