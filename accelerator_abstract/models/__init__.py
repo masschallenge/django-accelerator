@@ -320,16 +320,4 @@ from .base_nav_tree import BaseNavTree
 from .base_nav_tree_item import BaseNavTreeItem
 
 from .base_fluent_sub_nav_association import BaseNodeSubNavAssociation
-from .base_ethno_racial_identity import (
-    BLACK,
-    EAST_SOUTHEAST_ASIAN,
-    HAWAIIAN_PACIFIC_POLYNESIAN,
-    HISPANIC_LATINX_SPANISH,
-    INDIGENOUS,
-    MIDDLE_EASTERN_NORTH_AFRICAN,
-    NORTH_CENTRAL_ASIAN,
-    SOUTH_ASIAN,
-    WHITE_CAUCASIAN,
-    PREFER_NOT_TO_STATE,
-    BaseEthnoRacialIdentity,
-)
+from .base_ethno_racial_identity import BaseEthnoRacialIdentity
