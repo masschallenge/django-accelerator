@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0027_add_gender_choices_object'),
+        ('accelerator', '0029_add_gender_choices_data'),
     ]
 
     operations = [
