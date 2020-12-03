@@ -30,6 +30,7 @@ class CoreProfileFactory(DjangoModelFactory):
     user = SubFactory(UserFactory)
     users_last_activity = utc.localize(datetime.now() + timedelta(-1))
     gender = "p"
+    gender_self_description = ""
     phone = "+1-555-555-5555"
     linked_in_url = Sequence(lambda n: "http://www.linkedin.com/{0}".format(n))
     facebook_url = Sequence(lambda n: "http://www.facebook.com/{0}".format(n))
@@ -67,5 +68,13 @@ class CoreProfileFactory(DjangoModelFactory):
         if not create:
             return
         if extracted:
-            for tag in extracted:
-                self.ethno_racial_identification.add(tag)
+            for racial_identity in extracted:
+                self.ethno_racial_identification.add(racial_identity)
+
+    @post_generation
+    def gender_identity(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for gender_choice in extracted:
+                self.gender_identity.add(gender_choice)
