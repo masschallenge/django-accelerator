@@ -44,6 +44,7 @@ class CoreProfileFactory(DjangoModelFactory):
     drupal_last_login = None
     current_program = SubFactory(ProgramFactory)
     newsletter_sender = False
+    authorization_to_share_ethno_racial_identity = False
     birth_year = None
 
     @post_generation
@@ -61,6 +62,14 @@ class CoreProfileFactory(DjangoModelFactory):
         if extracted:
             for tag in extracted:
                 self.interest_categories.add(tag)
+
+    @post_generation
+    def ethno_racial_identification(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for racial_identity in extracted:
+                self.ethno_racial_identification.add(racial_identity)
 
     @post_generation
     def gender_identity(self, create, extracted, **kwargs):
