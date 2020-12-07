@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('mc', '__first__'),
-        ('fluent_pages', '0006_auto_20201204_1958'),
+        ('fluent_pages', '0001_initial'),
         migrations.swappable_dependency(settings.MPTT_SWAPPABLE_INDUSTRY_MODEL),
     ]
 
