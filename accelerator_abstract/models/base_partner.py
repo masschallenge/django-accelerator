@@ -14,7 +14,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BasePartner(AcceleratorModel):
     organization = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "Organization"), null=True, blank=True,
         on_delete=models.CASCADE)
     description = models.TextField(

@@ -13,20 +13,20 @@ from accelerator_abstract.models.base_program import PROGRAM_STATUSES
 
 class BaseUserRoleMenu(Page):
     program_family = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "ProgramFamily"),
         verbose_name="Program Family",
         blank=True,
         null=True,
         on_delete=models.CASCADE)
     program = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
+        swapper.get_model_name('accelerator', "Program"),
         verbose_name="Program",
         blank=True,
         null=True,
         on_delete=models.CASCADE)
     user_role = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "UserRole"),
+        swapper.get_model_name('accelerator', "UserRole"),
         verbose_name="User Role",
         blank=True,
         null=True,

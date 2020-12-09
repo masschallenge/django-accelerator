@@ -99,7 +99,7 @@ class BaseClearance(AcceleratorModel):
                              blank=False,
                              max_length=64)
     program_family = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "ProgramFamily"),
+        'accelerator', "ProgramFamily"),
         null=False,
         blank=False,
         related_name="user_clearances",

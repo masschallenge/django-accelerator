@@ -13,10 +13,10 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseStartupOverrideGrant(AcceleratorModel):
     startup = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"),
+        swapper.get_model_name('accelerator', "Startup"),
         on_delete=models.CASCADE)
     program_override = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "ProgramOverride"),
         on_delete=models.CASCADE)
 

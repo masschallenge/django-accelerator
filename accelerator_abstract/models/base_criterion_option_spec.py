@@ -23,7 +23,7 @@ class BaseCriterionOptionSpec(AcceleratorModel):
     count = IntegerField(default=DEFAULT_COUNT)
     weight = FloatField(default=DEFAULT_WEIGHT)
     criterion = ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label,
+        'accelerator',
         "Criterion"),
         on_delete=CASCADE)
 

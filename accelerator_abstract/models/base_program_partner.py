@@ -13,13 +13,13 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseProgramPartner(AcceleratorModel):
     program = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
+        swapper.get_model_name('accelerator', "Program"),
         on_delete=models.CASCADE)
     partner = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Partner"),
+        swapper.get_model_name('accelerator', "Partner"),
         on_delete=models.CASCADE)
     partner_type = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "ProgramPartnerType"),
         on_delete=models.CASCADE)
     description = models.TextField(

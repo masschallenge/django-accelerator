@@ -18,7 +18,7 @@ class BaseCriterion(AcceleratorModel):
     type = CharField(max_length=64)
     name = CharField(max_length=64)
     judging_round = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "JudgingRound"),
         on_delete=CASCADE)
 

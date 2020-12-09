@@ -17,7 +17,7 @@ def is_expert_validator(value):
 
     id must identify a User who has an ExpertProfile
     """
-    ExpertProfile = swapper.load_model(AcceleratorModel.Meta.app_label,
+    ExpertProfile = swapper.load_model('accelerator',
                                        "ExpertProfile")
     if not ExpertProfile.objects.filter(user_id__exact=value).exists():
         raise ValidationError("User must be an expert")
@@ -37,13 +37,13 @@ class BaseExpertInterest(AcceleratorModel):
         on_delete=models.CASCADE
     )
     program_family = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                'ProgramFamily'),
         related_name="interested_experts",
         on_delete=models.CASCADE
     )
     interest_type = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                'ExpertInterestType'),
         related_name="interested_experts",
         on_delete=models.CASCADE

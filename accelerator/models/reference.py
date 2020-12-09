@@ -12,4 +12,4 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 class Reference(BaseReference):
     class Meta(AcceleratorModel.Meta):
         swappable = swapper.swappable_setting(
-            AcceleratorModel.Meta.app_label, "Reference")
+            'accelerator', "Reference")

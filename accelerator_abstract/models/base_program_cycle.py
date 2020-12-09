@@ -25,13 +25,13 @@ class BaseProgramCycle(AcceleratorModel):
     advertised_final_deadline = models.DateTimeField()
     accepting_references = models.BooleanField(default=False)
     default_application_type = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "ApplicationType"),
         null=True,
         related_name="application_type_for",
         on_delete=models.CASCADE)
     default_overview_application_type = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "ApplicationType"),
         null=True,
         blank=True,

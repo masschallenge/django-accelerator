@@ -15,12 +15,12 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseAllocator(AcceleratorModel):
     judging_round = OneToOneField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                'JudgingRound'),
         on_delete=CASCADE,
         primary_key=True)
     scenario = OneToOneField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Scenario'),
+        swapper.get_model_name('accelerator', 'Scenario'),
         on_delete=CASCADE)
 
     class Meta(AcceleratorModel.Meta):

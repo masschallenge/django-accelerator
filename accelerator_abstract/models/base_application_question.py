@@ -25,10 +25,10 @@ TEXT_LIMIT_UNITS = ((CHARACTERS_UNIT_NAME.lower(), CHARACTERS_UNIT_NAME),
 @python_2_unicode_compatible
 class BaseApplicationQuestion(AcceleratorModel):
     application_type = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "ApplicationType"),
+        'accelerator', "ApplicationType"),
         on_delete=models.CASCADE)
     program = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "Program"),
+        'accelerator', "Program"),
         blank=True,
         null=True,
         on_delete=models.CASCADE)
@@ -66,7 +66,7 @@ class BaseApplicationQuestion(AcceleratorModel):
         blank=True,
     )
     question = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "Question"),
+        'accelerator', "Question"),
         blank=True,
         null=True,
         on_delete=models.CASCADE)

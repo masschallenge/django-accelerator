@@ -15,10 +15,10 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 # PayPal in CamelCase and paypal in snake_case.@python_2_unicode_compatible
 class BasePayPalPayment(AcceleratorModel):
     startup = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"),
+        swapper.get_model_name('accelerator', "Startup"),
         on_delete=models.CASCADE)
     cycle = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "ProgramCycle"),
         on_delete=models.CASCADE)
     token = models.CharField(max_length=100)

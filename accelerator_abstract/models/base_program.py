@@ -39,13 +39,13 @@ class BaseProgram(AcceleratorModel):
     """An Accelerator program"""
     name = models.CharField(max_length=50)
     program_family = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "ProgramFamily"),
         related_name="programs",
         on_delete=models.CASCADE
     )
     cycle = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "ProgramCycle"),
         null=True,
         related_name="programs",
@@ -120,7 +120,7 @@ class BaseProgram(AcceleratorModel):
     )
     accepting_mentors_and_goals = models.BooleanField(default=False)
     mentor_program_group = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "NamedGroup"),
+        swapper.get_model_name('accelerator', "NamedGroup"),
         blank=True,
         null=True,
         on_delete=models.CASCADE)

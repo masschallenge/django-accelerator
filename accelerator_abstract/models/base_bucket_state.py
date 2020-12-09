@@ -55,20 +55,20 @@ class BaseBucketState(AcceleratorModel):
                              default="Other")
     sort_order = models.PositiveIntegerField()
     cycle = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "ProgramCycle"),
         blank=True,
         null=True,
         on_delete=models.CASCADE)
     program = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "Program"),
         blank=True,
         null=True,
         on_delete=models.CASCADE)
     last_update = models.DateTimeField()
     program_role = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "ProgramRole"),
         on_delete=models.CASCADE)
 

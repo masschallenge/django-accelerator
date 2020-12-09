@@ -20,7 +20,7 @@ PROGRAM_STARTUP_ATTRIBUTE_TYPES = (
 @python_2_unicode_compatible
 class BaseProgramStartupAttribute(AcceleratorModel):
     program = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
+        swapper.get_model_name('accelerator', "Program"),
         on_delete=models.CASCADE)
     attribute_type = models.CharField(
         'Type',

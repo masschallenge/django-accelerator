@@ -15,7 +15,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 class BaseNodePublishedFor(AcceleratorModel):
     node = models.ForeignKey(UrlNode, on_delete=models.CASCADE)
     published_for = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "ProgramRole"),
+        swapper.get_model_name('accelerator', "ProgramRole"),
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):

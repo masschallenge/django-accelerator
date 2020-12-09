@@ -21,7 +21,7 @@ class BasePanelTime(AcceleratorModel):
     start_date_time = models.DateTimeField(blank=False, null=True)
     end_date_time = models.DateTimeField(blank=False, null=True)
     judging_round = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, 'JudgingRound'),
+        'accelerator', 'JudgingRound'),
         blank=True,
         null=True,
         on_delete=models.CASCADE

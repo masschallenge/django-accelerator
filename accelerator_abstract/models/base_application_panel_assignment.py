@@ -13,13 +13,13 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseApplicationPanelAssignment(AcceleratorModel):
     application = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "Application"),
+        'accelerator', "Application"),
         on_delete=models.CASCADE)
     panel = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "Panel"),
+        'accelerator', "Panel"),
         on_delete=models.CASCADE)
     scenario = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "Scenario"),
+        'accelerator', "Scenario"),
         related_name="application_assignments",
         on_delete=models.CASCADE
     )

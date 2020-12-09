@@ -15,7 +15,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseReference(AcceleratorModel):
     application = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Application"),
+        swapper.get_model_name('accelerator', "Application"),
         on_delete=models.CASCADE)
     email = models.CharField(verbose_name="Email address",
                              max_length=100,

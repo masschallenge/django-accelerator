@@ -26,16 +26,16 @@ class BaseNewsletter(AcceleratorModel):
         blank=True,
         null=True)
     recipient_roles = models.ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'ProgramRole'),
+        swapper.get_model_name('accelerator', 'ProgramRole'),
         limit_choices_to={
             'newsletter_recipient': True,
         },
         blank=True)
     program = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
+        swapper.get_model_name('accelerator', "Program"),
         on_delete=models.CASCADE)
     judging_round = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "JudgingRound"),
         null=True,
         blank=True,

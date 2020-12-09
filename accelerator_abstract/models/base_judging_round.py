@@ -103,7 +103,7 @@ COLLISION_DETECTION_CHOICES = (
 @python_2_unicode_compatible
 class BaseJudgingRound(AcceleratorModel):
     program = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Program'),
+        swapper.get_model_name('accelerator', 'Program'),
         on_delete=CASCADE)
     cycle_based_round = BooleanField(
         default=False,
@@ -121,7 +121,7 @@ class BaseJudgingRound(AcceleratorModel):
         help_text=("Check this button to allow judges to get new applications "
                    "without manual allocation by staff."))
     application_type = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                'ApplicationType'),
         blank=True,
         null=True,
@@ -131,7 +131,7 @@ class BaseJudgingRound(AcceleratorModel):
         default=30,
         help_text='Choose a time in increments of 15 minutes.')
     judging_form = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'JudgingForm'),
+        swapper.get_model_name('accelerator', 'JudgingForm'),
         blank=True, null=True, on_delete=CASCADE)
     recruit_judges = CharField(
         max_length=16,
@@ -167,7 +167,7 @@ class BaseJudgingRound(AcceleratorModel):
         default=FEEDBACK_DISPLAY_DISABLED,
         max_length=10)
     feedback_merge_with = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                'JudgingRound'),
         blank=True,
         null=True,
@@ -205,21 +205,21 @@ class BaseJudgingRound(AcceleratorModel):
         help_text=('Number of breaks the judges will be given '
                    'during a judging panel'))
     startup_label = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                'StartupLabel'),
         blank=True,
         null=True,
         help_text='Label for Startups',
         on_delete=CASCADE)
     desired_judge_label = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'UserLabel'),
+        swapper.get_model_name('accelerator', 'UserLabel'),
         blank=True,
         null=True,
         help_text='Label for Desired Judges',
         related_name='rounds_desired_for',
         on_delete=CASCADE)
     confirmed_judge_label = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'UserLabel'),
+        swapper.get_model_name('accelerator', 'UserLabel'),
         blank=True,
         null=True,
         help_text='Label for Confirmed Judges',

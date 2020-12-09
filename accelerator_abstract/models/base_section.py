@@ -22,7 +22,7 @@ class BaseSection(AcceleratorModel):
     heading = models.CharField(max_length=255, blank=True)
     body = models.TextField(blank=True)
     interest_categories = models.ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                'InterestCategory'),
         blank=True)
     include_for = models.CharField(
@@ -30,7 +30,7 @@ class BaseSection(AcceleratorModel):
         choices=INCLUDE_FOR_CHOICES,
         default='EVERYONE')
     newsletter = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Newsletter"),
+        swapper.get_model_name('accelerator', "Newsletter"),
         related_name='sections', on_delete=models.CASCADE)
     sequence = models.PositiveIntegerField(help_text=SECTION_SEQUENCE_HELP)
 

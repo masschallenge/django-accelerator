@@ -11,10 +11,10 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 class BaseStartupAttribute(AcceleratorModel):
     startup = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"),
+        swapper.get_model_name('accelerator', "Startup"),
         on_delete=models.CASCADE)
     attribute = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "ProgramStartupAttribute"),
         on_delete=models.CASCADE)
     # TextField allows me to ignore max_length.

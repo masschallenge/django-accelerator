@@ -23,7 +23,7 @@ class BaseJudgeRoundCommitment(AcceleratorModel):
     judge = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE)
     judging_round = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                "JudgingRound"),
         on_delete=models.CASCADE)
     commitment_state = models.BooleanField(default=True)

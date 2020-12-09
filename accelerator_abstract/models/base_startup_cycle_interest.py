@@ -14,15 +14,15 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
 class BaseStartupCycleInterest(AcceleratorModel):
-    cycle = ForeignKey(swapper.get_model_name(AcceleratorModel.Meta.app_label,
+    cycle = ForeignKey(swapper.get_model_name('accelerator',
                                               "ProgramCycle"),
                        on_delete=CASCADE)
     startup = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"),
+        swapper.get_model_name('accelerator', "Startup"),
         on_delete=CASCADE)
     interested_programs = ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Program'),
-        through=swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator', 'Program'),
+        through=swapper.get_model_name('accelerator',
                                        'StartupProgramInterest'))
 
     class Meta(AcceleratorModel.Meta):

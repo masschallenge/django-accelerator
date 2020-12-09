@@ -61,7 +61,7 @@ class BaseCoreProfile(AcceleratorModel):
         default='')
     gender_identity = models.ManyToManyField(
         swapper.get_model_name(
-            AcceleratorModel.Meta.app_label, 'GenderChoices'),
+            'accelerator', 'GenderChoices'),
         blank=True
     )
     gender_self_description = models.TextField(blank=True, default="")
@@ -102,19 +102,19 @@ class BaseCoreProfile(AcceleratorModel):
     drupal_creation_date = models.DateTimeField(blank=True, null=True)
     drupal_last_login = models.DateTimeField(blank=True, null=True)
     interest_categories = models.ManyToManyField(
-        to=swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        to=swapper.get_model_name('accelerator',
                                   'InterestCategory'),
         blank=True)
     users_last_activity = models.DateTimeField(blank=True, null=True)
     current_program = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                'Program'),
         blank=True,
         null=True,
         on_delete=models.CASCADE,
     )
     program_families = models.ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+        swapper.get_model_name('accelerator',
                                'ProgramFamily'),
         help_text="Which of our Program Families would you like to be "
                   "involved with?",
@@ -127,7 +127,7 @@ class BaseCoreProfile(AcceleratorModel):
     newsletter_sender = models.BooleanField(default=False)
     ethno_racial_identification = models.ManyToManyField(
         swapper.get_model_name(
-            AcceleratorModel.Meta.app_label, 'EthnoRacialIdentity'
+            'accelerator', 'EthnoRacialIdentity'
         ), blank=True
     )
     authorization_to_share_ethno_racial_identity = models.BooleanField(
@@ -228,7 +228,7 @@ class BaseCoreProfile(AcceleratorModel):
         if bullet_train_has_feature(EXPERT_NAVIGATION_EPIC):
             if self.user_type.upper() == EXPERT_USER_TYPE:
                 return "/dashboard/expert/overview/"
-        JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
+        JudgingRound = swapper.load_model('accelerator',
                                           "JudgingRound")
         UserRole = swapper.load_model(
             'accelerator', 'UserRole')

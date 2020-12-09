@@ -16,7 +16,7 @@ class BaseProgramRoleGrant(AcceleratorModel):
     person = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE)
     program_role = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "ProgramRole"),
+        swapper.get_model_name('accelerator', "ProgramRole"),
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
