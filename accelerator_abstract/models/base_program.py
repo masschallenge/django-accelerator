@@ -3,7 +3,6 @@
 
 from __future__ import unicode_literals
 
-import swapper
 from django.db import models
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
@@ -38,15 +37,11 @@ INVALID_OVERVIEW_TIMESPAN_MSG = ("Overview deadline date must be"
 class BaseProgram(AcceleratorModel):
     """An Accelerator program"""
     name = models.CharField(max_length=50)
-    program_family = models.ForeignKey(
-        swapper.get_model_name('accelerator',
-                               "ProgramFamily"),
+    program_family = models.ForeignKey("ProgramFamily",
         related_name="programs",
         on_delete=models.CASCADE
     )
-    cycle = models.ForeignKey(
-        swapper.get_model_name('accelerator',
-                               "ProgramCycle"),
+    cycle = models.ForeignKey("ProgramCycle",
         null=True,
         related_name="programs",
         on_delete=models.CASCADE)
@@ -119,8 +114,7 @@ class BaseProgram(AcceleratorModel):
         default="",
     )
     accepting_mentors_and_goals = models.BooleanField(default=False)
-    mentor_program_group = models.ForeignKey(
-        swapper.get_model_name('accelerator', "NamedGroup"),
+    mentor_program_group = models.ForeignKey("NamedGroup",
         blank=True,
         null=True,
         on_delete=models.CASCADE)
