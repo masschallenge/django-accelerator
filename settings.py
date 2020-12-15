@@ -4,12 +4,15 @@
 import os
 import sys
 import logging
+from django.db.backends.mysql.base import DatabaseWrapper
 
 if len(sys.argv) > 1 and sys.argv[1] == 'test':
     logging.disable(logging.WARNING)
 
 PACKAGE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                             "accelerator"))
+
+DatabaseWrapper.data_types['DateTimeField'] = 'datetime'
 
 TIME_ZONE = 'America/New_York'
 USE_TZ = True
