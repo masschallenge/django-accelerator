@@ -59,6 +59,12 @@ class BaseCoreProfile(AcceleratorModel):
         max_length=1,
         choices=GENDER_CHOICES,
         default='')
+    gender_identity = models.ManyToManyField(
+        swapper.get_model_name(
+            AcceleratorModel.Meta.app_label, 'GenderChoices'),
+        blank=True
+    )
+    gender_self_description = models.TextField(blank=True, default="")
     phone = models.CharField(
         verbose_name="Phone",
         max_length=20,
@@ -119,6 +125,15 @@ class BaseCoreProfile(AcceleratorModel):
     user_type = None
     default_page = "member_homepage"
     newsletter_sender = models.BooleanField(default=False)
+    ethno_racial_identification = models.ManyToManyField(
+        swapper.get_model_name(
+            AcceleratorModel.Meta.app_label, 'EthnoRacialIdentity'
+        ), blank=True
+    )
+    authorization_to_share_ethno_racial_identity = models.BooleanField(
+        default=False,
+    )
+    birth_year = models.DateField(blank=True, null=True)
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_coreprofile'
