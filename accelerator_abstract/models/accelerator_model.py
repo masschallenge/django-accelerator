@@ -18,7 +18,7 @@ class AcceleratorModel(models.Model):
     class Meta(object):
         abstract = True
         app_label = 'accelerator'
-        managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
+        managed = True
 
     def __str__(self):
         return self.name if hasattr(self, 'name') else str(self.id)

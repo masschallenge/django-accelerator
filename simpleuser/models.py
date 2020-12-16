@@ -65,7 +65,7 @@ class User(AbstractUser):
 
     class Meta:
         db_table = 'auth_user'
-        managed = settings.ACCELERATOR_MODELS_ARE_MANAGED
+        managed = True
 
     def __init__(self, *args, **kwargs):
         super(User, self).__init__(*args, **kwargs)
