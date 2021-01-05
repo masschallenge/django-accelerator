@@ -11,3 +11,4 @@ tox
 mock
 factory-boy
 swapper
+mysqlclient
