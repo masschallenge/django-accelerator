@@ -3,7 +3,6 @@
 
 from __future__ import unicode_literals
 
-import swapper
 
 from accelerator_abstract.models.base_scenario_preference import (
     BaseScenarioPreference
@@ -12,5 +11,4 @@ from accelerator_abstract.models.base_scenario_preference import (
 
 class ScenarioPreference(BaseScenarioPreference):
     class Meta(BaseScenarioPreference.Meta):
-        swappable = swapper.swappable_setting(
-            BaseScenarioPreference.Meta.app_label, "ScenarioPreference")
+        swappable = False

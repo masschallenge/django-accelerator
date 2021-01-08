@@ -3,7 +3,6 @@
 
 from __future__ import unicode_literals
 
-import swapper
 
 from accelerator.tests.factories.core_profile_factory import CoreProfileFactory
 

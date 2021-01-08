@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 from datetime import timedelta
 
-import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 

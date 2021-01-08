@@ -7,7 +7,6 @@ from accelerator.tests.contexts.judge_feedback_context import (
 )
 from accelerator.models import JUDGING_FEEDBACK_STATUS_COMPLETE
 
-import swapper
 
 
 JudgeApplicationFeedback = swapper.load_model(

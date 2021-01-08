@@ -1,4 +1,3 @@
-import swapper
 from factory import (
     Iterator,
     Sequence,

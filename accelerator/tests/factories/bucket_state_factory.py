@@ -8,7 +8,6 @@ from datetime import (
     timedelta,
 )
 
-import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 from pytz import utc

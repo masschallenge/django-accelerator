@@ -12,7 +12,6 @@ from accelerator_abstract.models.base_base_profile import (
     MEMBER_USER_TYPE,
 )
 
-import swapper
 
 EntrepreneurProfile = swapper.load_model('accelerator', "EntrepreneurProfile")
 ExpertProfile = swapper.load_model('accelerator', "ExpertProfile")

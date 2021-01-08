@@ -3,7 +3,6 @@
 
 from __future__ import unicode_literals
 
-import swapper
 
 from accelerator_abstract.models import (
     BaseQuestion
@@ -12,5 +11,4 @@ from accelerator_abstract.models import (
 
 class Question(BaseQuestion):
     class Meta(BaseQuestion.Meta):
-        swappable = swapper.swappable_setting(BaseQuestion.Meta.app_label,
-                                              "Question")
+        swappable = False

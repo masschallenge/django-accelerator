@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 import decimal
 
-import swapper
 from django.conf import settings
 from django.db import models
 from django.core.validators import MaxLengthValidator

@@ -3,7 +3,6 @@
 
 from __future__ import unicode_literals
 
-import swapper
 
 from accelerator_abstract.models.base_startup_team_member import (
     BaseStartupTeamMember
@@ -12,5 +11,4 @@ from accelerator_abstract.models.base_startup_team_member import (
 
 class StartupTeamMember(BaseStartupTeamMember):
     class Meta(BaseStartupTeamMember.Meta):
-        swappable = swapper.swappable_setting(
-            BaseStartupTeamMember.Meta.app_label, "StartupTeamMember")
+        swappable = False

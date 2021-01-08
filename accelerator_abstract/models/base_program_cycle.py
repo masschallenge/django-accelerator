@@ -3,7 +3,6 @@
 
 from __future__ import unicode_literals
 
-import swapper
 from django.core.exceptions import ValidationError
 from django.db import models
 

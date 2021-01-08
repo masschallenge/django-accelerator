@@ -3,18 +3,13 @@
 
 from __future__ import unicode_literals
 
-import swapper
 
 from accelerator_abstract.models.base_currency import BaseCurrency
 
 
 class Currency(BaseCurrency):
     class Meta(BaseCurrency.Meta):
-        swappable = swapper.swappable_setting(BaseCurrency.Meta.app_label,
-                                              'Currency')
-
-    @classmethod
-    def choices(cls):
+        swappable = False
         return [(c["id"], c["name"])
                 for c in cls.objects.all().values("id", "name")]
 

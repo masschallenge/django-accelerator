@@ -3,7 +3,6 @@
 
 from __future__ import unicode_literals
 
-import swapper
 from django.db.models import (
     BooleanField,
     CharField,

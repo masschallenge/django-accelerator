@@ -3,7 +3,6 @@
 
 from __future__ import unicode_literals
 
-import swapper
 
 from accelerator_abstract.models.base_mentor_program_office_hour import (
     BaseMentorProgramOfficeHour,
@@ -12,6 +11,5 @@ from accelerator_abstract.models.base_mentor_program_office_hour import (
 
 class MentorProgramOfficeHour(BaseMentorProgramOfficeHour):
     class Meta(BaseMentorProgramOfficeHour.Meta):
-        swappable = swapper.swappable_setting(
-            BaseMentorProgramOfficeHour.Meta.app_label,
+        swappable = False
             "MentorProgramOfficeHour")

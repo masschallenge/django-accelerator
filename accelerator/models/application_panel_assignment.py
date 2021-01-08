@@ -3,7 +3,6 @@
 
 from __future__ import unicode_literals
 
-import swapper
 
 from accelerator_abstract.models.base_application_panel_assignment import (
     BaseApplicationPanelAssignment
@@ -12,6 +11,5 @@ from accelerator_abstract.models.base_application_panel_assignment import (
 
 class ApplicationPanelAssignment(BaseApplicationPanelAssignment):
     class Meta(BaseApplicationPanelAssignment.Meta):
-        swappable = swapper.swappable_setting(
-            BaseApplicationPanelAssignment.Meta.app_label,
+        swappable = False
             "ApplicationPanelAssignment")

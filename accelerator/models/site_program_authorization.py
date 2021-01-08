@@ -3,7 +3,6 @@
 
 from __future__ import unicode_literals
 
-import swapper
 
 from accelerator_abstract.models.base_site_program_authorization import (
     BaseSiteProgramAuthorization
@@ -12,6 +11,5 @@ from accelerator_abstract.models.base_site_program_authorization import (
 
 class SiteProgramAuthorization(BaseSiteProgramAuthorization):
     class Meta(BaseSiteProgramAuthorization.Meta):
-        swappable = swapper.swappable_setting(
-            BaseSiteProgramAuthorization.Meta.app_label,
+        swappable = False
             "SiteProgramAuthorization")

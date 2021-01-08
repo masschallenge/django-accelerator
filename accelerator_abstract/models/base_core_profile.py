@@ -4,7 +4,6 @@
 from datetime import datetime
 from pytz import utc
 
-import swapper
 from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models

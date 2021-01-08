@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 import logging
 
-import swapper
 from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models

@@ -8,7 +8,6 @@ from datetime import (
     timedelta,
 )
 
-import swapper
 from factory import (
     Sequence,
     SubFactory,

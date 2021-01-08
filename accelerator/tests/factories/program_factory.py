@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 from decimal import Decimal
 
-import swapper
 from factory import (
     Sequence,
     SubFactory,
