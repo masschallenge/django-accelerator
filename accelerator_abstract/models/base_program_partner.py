@@ -12,10 +12,10 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseProgramPartner(AcceleratorModel):
     program = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
+        "mc.Program",
         on_delete=models.CASCADE)
     partner = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Partner"),
+        "mc.Partner",
         on_delete=models.CASCADE)
     partner_type = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,

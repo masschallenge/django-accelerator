@@ -24,7 +24,7 @@ class BaseRefundCode(AcceleratorModel):
         blank=True
     )
     issued_to = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Partner"),
+        "mc.Partner",
         blank=True, null=True, on_delete=models.CASCADE)
     discount = models.IntegerField(default=0)
     maximum_uses = models.PositiveIntegerField(

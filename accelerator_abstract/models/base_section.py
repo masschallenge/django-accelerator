@@ -29,7 +29,7 @@ class BaseSection(AcceleratorModel):
         choices=INCLUDE_FOR_CHOICES,
         default='EVERYONE')
     newsletter = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Newsletter"),
+        "mc.Newsletter",
         related_name='sections', on_delete=models.CASCADE)
     sequence = models.PositiveIntegerField(help_text=SECTION_SEQUENCE_HELP)
 

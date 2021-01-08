@@ -119,7 +119,7 @@ class BaseProgram(AcceleratorModel):
     )
     accepting_mentors_and_goals = models.BooleanField(default=False)
     mentor_program_group = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "NamedGroup"),
+        "mc.NamedGroup",
         blank=True,
         null=True,
         on_delete=models.CASCADE)

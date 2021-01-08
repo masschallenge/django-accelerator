@@ -17,7 +17,7 @@ class BaseStartupCycleInterest(AcceleratorModel):
                                               "ProgramCycle"),
                        on_delete=CASCADE)
     startup = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"),
+        "mc.Startup",
         on_delete=CASCADE)
     interested_programs = ManyToManyField(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Program'),

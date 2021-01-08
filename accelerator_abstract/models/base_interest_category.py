@@ -12,7 +12,7 @@ class BaseInterestCategory(AcceleratorModel):
     name = models.CharField(max_length=127)
     description = models.CharField(max_length=500, blank=True)
     program = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
+        "mc.Program",
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):

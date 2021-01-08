@@ -35,7 +35,7 @@ class BaseJudgeAvailability(AcceleratorModel):
         null=True,
         on_delete=models.CASCADE)
     panel_type = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "PanelType"),
+        "mc.PanelType",
         blank=True,
         null=True,
         on_delete=models.CASCADE)

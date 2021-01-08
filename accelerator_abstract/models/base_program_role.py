@@ -11,13 +11,13 @@ from accelerator_abstract.models.label_model import LabelModel
 
 class BaseProgramRole(LabelModel):
     program = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
+        "mc.Program",
         on_delete=models.CASCADE)
     name = models.CharField(max_length=LabelModel.LABEL_LENGTH,
                             unique=True,
                             db_index=True)
     user_role = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "UserRole"),
+        "mc.UserRole",
         null=True, blank=True, on_delete=models.CASCADE)
     landing_page = models.CharField(max_length=255, null=True, blank=True)
     newsletter_recipient = models.BooleanField(default=False)
@@ -27,7 +27,7 @@ class BaseProgramRole(LabelModel):
     # Going from ProgramRole to UserLabel is good.
     # Going from UserLabel to ProgramRole is bad.
     user_label = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "UserLabel"),
+        "mc.UserLabel",
         blank=True,
         null=True,
         related_name="dont_use_commit_fail",

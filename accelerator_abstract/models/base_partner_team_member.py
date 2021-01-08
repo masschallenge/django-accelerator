@@ -13,7 +13,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BasePartnerTeamMember(AcceleratorModel):
     partner = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Partner"),
+        "mc.Partner",
         on_delete=models.CASCADE)
     team_member = models.ForeignKey(settings.AUTH_USER_MODEL,
                                     on_delete=models.CASCADE)

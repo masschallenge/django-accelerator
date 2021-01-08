@@ -82,7 +82,7 @@ ENTITY_TYPES = (
 @python_2_unicode_compatible
 class BaseScenarioPreference(AcceleratorModel):
     scenario = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Scenario"),
+        "mc.Scenario",
         on_delete=models.CASCADE)
     priority = models.PositiveIntegerField(null=False)
     constraint_type = models.CharField(max_length=16,

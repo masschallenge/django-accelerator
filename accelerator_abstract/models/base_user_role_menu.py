@@ -19,13 +19,13 @@ class BaseUserRoleMenu(Page):
         null=True,
         on_delete=models.CASCADE)
     program = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
+        "mc.Program",
         verbose_name="Program",
         blank=True,
         null=True,
         on_delete=models.CASCADE)
     user_role = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, "UserRole"),
+        "mc.UserRole",
         verbose_name="User Role",
         blank=True,
         null=True,
