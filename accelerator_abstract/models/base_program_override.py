@@ -14,15 +14,13 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseProgramOverride(AcceleratorModel):
     cycle = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "ProgramCycle"),
+        "mc.ProgramCycle",
         blank=True,
         null=True,
         related_name='program_overrides',
         on_delete=models.CASCADE)
     program = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               'Program'),
+        "mc.Program",
         on_delete=models.CASCADE)
     # this field will be removed after data migration
     name = models.CharField(max_length=50)

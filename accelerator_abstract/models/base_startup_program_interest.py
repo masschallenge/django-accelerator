@@ -35,8 +35,7 @@ class BaseStartupProgramInterest(OrderedModel, AcceleratorModel):
         "mc.Startup",
         on_delete=models.CASCADE)
     startup_cycle_interest = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "StartupCycleInterest"),
+        "mc.StartupCycleInterest",
         blank=True,
         null=True,
         on_delete=models.CASCADE)

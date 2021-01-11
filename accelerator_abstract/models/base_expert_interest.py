@@ -36,14 +36,12 @@ class BaseExpertInterest(AcceleratorModel):
         on_delete=models.CASCADE
     )
     program_family = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               'ProgramFamily'),
+        "mc.ProgramFamily",
         related_name="interested_experts",
         on_delete=models.CASCADE
     )
     interest_type = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               'ExpertInterestType'),
+        "mc.ExpertInterestType",
         related_name="interested_experts",
         on_delete=models.CASCADE
     )

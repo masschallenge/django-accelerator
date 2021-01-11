@@ -22,8 +22,7 @@ class BaseRefundCodeRedemption(AcceleratorModel):
         related_name="redemptions", on_delete=models.CASCADE)
 
     cycle = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "ProgramCycle"),
+        "mc.ProgramCycle",
         on_delete=models.CASCADE)
     startup = models.ForeignKey(
         "mc.Startup",

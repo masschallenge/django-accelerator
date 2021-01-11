@@ -14,8 +14,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseAllocator(AcceleratorModel):
     judging_round = OneToOneField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               'JudgingRound'),
+        "mc.JudgingRound",
         on_delete=CASCADE,
         primary_key=True)
     scenario = OneToOneField(

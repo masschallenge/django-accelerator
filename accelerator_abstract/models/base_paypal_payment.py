@@ -17,8 +17,7 @@ class BasePayPalPayment(AcceleratorModel):
         "mc.Startup",
         on_delete=models.CASCADE)
     cycle = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "ProgramCycle"),
+        "mc.ProgramCycle",
         on_delete=models.CASCADE)
     token = models.CharField(max_length=100)
     transaction = models.CharField(max_length=100, blank=True)

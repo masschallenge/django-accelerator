@@ -33,13 +33,11 @@ class BasePanel(AcceleratorModel):
     judges = ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name="panels",
-        through=swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                                       'JudgePanelAssignment'))
+        through="mc.JudgePanelAssignment")
     applications = ManyToManyField(
         "mc.Application",
         related_name='panels',
-        through=swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                                       'ApplicationPanelAssignment')
+        through="mc.ApplicationPanelAssignment"
     )
     panel_time = ForeignKey('PanelTime', blank=True, null=True,
                             on_delete=CASCADE)

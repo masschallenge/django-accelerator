@@ -14,8 +14,7 @@ DEFAULT_PANEL_SIZE = 10
 class BaseScenario(AcceleratorModel):
     name = models.CharField(max_length=40)
     judging_round = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "JudgingRound"), blank=True, null=True,
+        "mc.JudgingRound", blank=True, null=True,
         on_delete=models.CASCADE)
     description = models.TextField(max_length=512, blank=True)
     judges = models.ManyToManyField(

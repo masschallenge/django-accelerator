@@ -9,12 +9,10 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseProgramFamilyLocation(AcceleratorModel):
     program_family = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "ProgramFamily"),
+        "mc.ProgramFamily",
         on_delete=models.CASCADE)
     location = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "Location"),
+        "mc.Location",
         on_delete=models.CASCADE)
     primary = models.BooleanField()
 

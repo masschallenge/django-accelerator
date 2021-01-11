@@ -34,8 +34,7 @@ class BaseNewsletter(AcceleratorModel):
         "mc.Program",
         on_delete=models.CASCADE)
     judging_round = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "JudgingRound"),
+        "mc.JudgingRound",
         null=True,
         blank=True,
         on_delete=models.CASCADE)

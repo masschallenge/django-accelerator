@@ -21,8 +21,7 @@ class BaseSection(AcceleratorModel):
     heading = models.CharField(max_length=255, blank=True)
     body = models.TextField(blank=True)
     interest_categories = models.ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               'InterestCategory'),
+        "mc.InterestCategory",
         blank=True)
     include_for = models.CharField(
         max_length=32,

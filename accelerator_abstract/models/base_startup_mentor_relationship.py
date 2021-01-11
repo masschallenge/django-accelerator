@@ -20,8 +20,7 @@ RELATIONSHIP_CHOICES = ((CONFIRMED_RELATIONSHIP, CONFIRMED_RELATIONSHIP),
 @python_2_unicode_compatible
 class BaseStartupMentorRelationship(AcceleratorModel):
     startup_mentor_tracking = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "StartupMentorTrackingRecord"),
+        "mc.StartupMentorTrackingRecord",
         on_delete=models.CASCADE)
     mentor = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE)

@@ -38,14 +38,12 @@ class BaseProgram(AcceleratorModel):
     """An Accelerator program"""
     name = models.CharField(max_length=50)
     program_family = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "ProgramFamily"),
+        "mc.ProgramFamily",
         related_name="programs",
         on_delete=models.CASCADE
     )
     cycle = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "ProgramCycle"),
+        "mc.ProgramCycle",
         null=True,
         related_name="programs",
         on_delete=models.CASCADE)

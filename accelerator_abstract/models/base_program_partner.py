@@ -18,8 +18,7 @@ class BaseProgramPartner(AcceleratorModel):
         "mc.Partner",
         on_delete=models.CASCADE)
     partner_type = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "ProgramPartnerType"),
+        "mc.ProgramPartnerType",
         on_delete=models.CASCADE)
     description = models.TextField(
         max_length=2000,

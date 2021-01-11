@@ -82,14 +82,12 @@ class BaseExpertProfile(BaseCoreProfile):
         max_length=255,
         verbose_name="Company Name")
     expert_category = models.ForeignKey(
-        swapper.get_model_name(BaseCoreProfile.Meta.app_label,
-                               "ExpertCategory"),
+        "mc.ExpertCategory",
         verbose_name="I primarily consider myself a(n)",
         related_name="experts",
         on_delete=models.CASCADE)
     functional_expertise = models.ManyToManyField(
-        swapper.get_model_name(BaseCoreProfile.Meta.app_label,
-                               'FunctionalExpertise'),
+        "mc.FunctionalExpertise",
         verbose_name="Functional Expertise",
         related_name="experts",
         blank=True)
@@ -169,8 +167,7 @@ class BaseExpertProfile(BaseCoreProfile):
         help_text=BASE_TOPIC % (' to Finalists', ' during Office Hours'),
         blank=True)
     mentoring_specialties = models.ManyToManyField(
-        swapper.get_model_name(BaseCoreProfile.Meta.app_label,
-                               'MentoringSpecialties'),
+        "mc.MentoringSpecialties",
         verbose_name="Mentoring Specialties",
         help_text='Hold down "Control", or "Command" on a Mac,'
                   'to select more than one.',
@@ -205,8 +202,7 @@ class BaseExpertProfile(BaseCoreProfile):
                            default="",
                            validators=[MaxLengthValidator(BIO_MAX_LENGTH)])
     home_program_family = models.ForeignKey(
-        swapper.get_model_name(BaseCoreProfile.Meta.app_label,
-                               "ProgramFamily"),
+        "mc.ProgramFamily",
         verbose_name="Home Program Family",
         blank=False,
         null=False,

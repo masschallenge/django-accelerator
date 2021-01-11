@@ -120,8 +120,7 @@ class BaseJudgingRound(AcceleratorModel):
         help_text=("Check this button to allow judges to get new applications "
                    "without manual allocation by staff."))
     application_type = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               'ApplicationType'),
+        "mc.ApplicationType",
         blank=True,
         null=True,
         on_delete=CASCADE)
@@ -166,8 +165,7 @@ class BaseJudgingRound(AcceleratorModel):
         default=FEEDBACK_DISPLAY_DISABLED,
         max_length=10)
     feedback_merge_with = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               'JudgingRound'),
+        "mc.JudgingRound",
         blank=True,
         null=True,
         help_text='Optional: merge the display of this feedback with '
@@ -204,8 +202,7 @@ class BaseJudgingRound(AcceleratorModel):
         help_text=('Number of breaks the judges will be given '
                    'during a judging panel'))
     startup_label = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               'StartupLabel'),
+        "mc.StartupLabel",
         blank=True,
         null=True,
         help_text='Label for Startups',

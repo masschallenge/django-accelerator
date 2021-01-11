@@ -132,8 +132,7 @@ class BaseJudgingFormElement(AcceleratorModel):
         blank=True,
     )
     application_question = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "ApplicationQuestion"),
+        "mc.ApplicationQuestion",
         blank=True,
         null=True,
         on_delete=models.CASCADE)

@@ -19,8 +19,7 @@ class BaseUserLegalCheck(AcceleratorModel):
         related_name='legalcheck_set',
         on_delete=models.CASCADE)
     legal_check = models.ForeignKey(
-        to=swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                                  'LegalCheck'),
+        to="mc.LegalCheck",
         related_name='user_set',
         on_delete=models.CASCADE)
     accepted = models.BooleanField(default=False)

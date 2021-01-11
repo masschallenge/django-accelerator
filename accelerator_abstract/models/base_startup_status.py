@@ -15,8 +15,7 @@ class BaseStartupStatus(AcceleratorModel):
         "mc.Startup",
         on_delete=models.CASCADE)
     program_startup_status = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "ProgramStartupStatus"),
+        "mc.ProgramStartupStatus",
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):

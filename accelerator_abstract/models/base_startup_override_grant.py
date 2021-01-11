@@ -15,8 +15,7 @@ class BaseStartupOverrideGrant(AcceleratorModel):
         "mc.Startup",
         on_delete=models.CASCADE)
     program_override = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "ProgramOverride"),
+        "mc.ProgramOverride",
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
