@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-ExpertInterestType = swapper.load_model('accelerator', 'ExpertInterestType')
+from accelerator.models import ExpertInterestType
 
 
 class ExpertInterestTypeFactory(DjangoModelFactory):

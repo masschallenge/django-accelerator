@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-RecommendationTag = swapper.load_model('accelerator', 'RecommendationTag')
+from accelerator.models import RecommendationTag
 
 
 class RecommendationTagFactory(DjangoModelFactory):

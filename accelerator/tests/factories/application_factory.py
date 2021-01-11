@@ -23,7 +23,7 @@ from accelerator_abstract.models.base_application import (
     INCOMPLETE_APP_STATUS,
 )
 
-Application = swapper.load_model('accelerator', 'Application')
+from accelerator.models import Application
 
 
 class ApplicationFactory(DjangoModelFactory):

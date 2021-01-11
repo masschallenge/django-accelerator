@@ -9,7 +9,7 @@ from factory.django import DjangoModelFactory
 from accelerator.tests.factories.expert_factory import ExpertFactory
 from accelerator.tests.factories.scenario_factory import ScenarioFactory
 
-ScenarioJudge = swapper.load_model('accelerator', 'ScenarioJudge')
+from accelerator.models import ScenarioJudge
 
 
 class ScenarioJudgeFactory(DjangoModelFactory):

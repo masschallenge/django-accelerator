@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-NamedGroup = swapper.load_model('accelerator', 'NamedGroup')
+from accelerator.models import NamedGroup
 
 
 class NamedGroupFactory(DjangoModelFactory):

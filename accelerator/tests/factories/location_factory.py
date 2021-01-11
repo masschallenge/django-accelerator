@@ -4,7 +4,7 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-Location = swapper.load_model('accelerator', 'Location')
+from accelerator.models import Location
 
 
 class LocationFactory(DjangoModelFactory):

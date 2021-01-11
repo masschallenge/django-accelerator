@@ -14,7 +14,7 @@ from accelerator.tests.factories.judging_round_factory import (
 )
 from accelerator.tests.factories.program_factory import ProgramFactory
 
-Newsletter = swapper.load_model('accelerator', 'Newsletter')
+from accelerator.models import Newsletter
 
 
 class NewsletterFactory(DjangoModelFactory):

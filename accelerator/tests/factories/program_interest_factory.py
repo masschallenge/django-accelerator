@@ -11,7 +11,7 @@ from accelerator.tests.factories.startup_cycle_interest_factory import (
     StartupCycleInterestFactory
 )
 
-ProgramInterest = swapper.load_model('accelerator', 'ProgramInterest')
+from accelerator.models import ProgramInterest
 
 
 class ProgramInterestFactory(DjangoModelFactory):

@@ -18,7 +18,7 @@ from accelerator.tests.factories.program_family_factory import (
     ProgramFamilyFactory
 )
 
-ExpertProfile = swapper.load_model('accelerator', 'ExpertProfile')
+from accelerator.models import ExpertProfile
 
 
 class ExpertProfileFactory(CoreProfileFactory):

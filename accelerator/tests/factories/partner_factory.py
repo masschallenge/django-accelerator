@@ -13,7 +13,7 @@ from accelerator.tests.factories.organization_factory import (
     OrganizationFactory
 )
 
-Partner = swapper.load_model('accelerator', 'Partner')
+from accelerator.models import Partner
 
 
 class PartnerFactory(DjangoModelFactory):

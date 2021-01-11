@@ -17,7 +17,7 @@ from pytz import utc
 from .application_factory import ApplicationFactory
 from .entrepreneur_factory import EntrepreneurFactory
 
-Reference = swapper.load_model('accelerator', 'Reference')
+from accelerator.models import Reference
 
 
 class ReferenceFactory(DjangoModelFactory):

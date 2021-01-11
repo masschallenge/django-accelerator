@@ -11,7 +11,7 @@ from factory.django import DjangoModelFactory
 
 from accelerator.tests.factories import NavTreeFactory
 
-NavTreeItem = swapper.load_model('accelerator', 'NavTreeItem')
+from accelerator.models import NavTreeItem
 
 
 class NavTreeItemFactory(DjangoModelFactory):

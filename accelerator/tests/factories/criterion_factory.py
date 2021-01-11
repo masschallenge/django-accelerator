@@ -11,7 +11,7 @@ from factory.django import DjangoModelFactory
 from accelerator.tests.factories.judging_round_factory import (
     JudgingRoundFactory
 )
-Criterion = swapper.load_model('accelerator', 'Criterion')
+from accelerator.models import Criterion
 
 
 class CriterionFactory(DjangoModelFactory):

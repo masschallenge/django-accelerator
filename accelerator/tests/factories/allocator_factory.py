@@ -13,7 +13,7 @@ from accelerator.tests.factories.judging_round_factory import (
 from accelerator.tests.factories.scenario_factory import ScenarioFactory
 
 
-Allocator = swapper.load_model('accelerator', 'Allocator')
+from accelerator.models import Allocator
 
 
 class AllocatorFactory(DjangoModelFactory):

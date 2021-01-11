@@ -22,7 +22,7 @@ from accelerator.tests.factories.program_cycle_factory import (
 from accelerator.tests.factories.program_factory import ProgramFactory
 from accelerator.tests.factories.program_role_factory import ProgramRoleFactory
 
-BucketState = swapper.load_model('accelerator', 'BucketState')
+from accelerator.models import BucketState
 
 
 class BucketStateFactory(DjangoModelFactory):

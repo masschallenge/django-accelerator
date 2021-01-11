@@ -16,7 +16,7 @@ from accelerator.tests.factories.panel_location_factory import (
 from accelerator.tests.factories.panel_time_factory import PanelTimeFactory
 from accelerator.tests.factories.panel_type_factory import PanelTypeFactory
 
-Panel = swapper.load_model('accelerator', 'Panel')
+from accelerator.models import Panel
 
 
 class PanelFactory(DjangoModelFactory):

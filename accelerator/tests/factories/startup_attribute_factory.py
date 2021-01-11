@@ -14,7 +14,7 @@ from accelerator.tests.factories.program_startup_attribute_factory import (
 )
 from accelerator.tests.factories.startup_factory import StartupFactory
 
-StartupAttribute = swapper.load_model('accelerator', 'StartupAttribute')
+from accelerator.models import StartupAttribute
 
 
 class StartupAttributeFactory(DjangoModelFactory):

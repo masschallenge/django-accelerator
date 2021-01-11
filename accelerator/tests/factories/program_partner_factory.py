@@ -15,7 +15,7 @@ from accelerator.tests.factories.program_partner_type_factory import (
     ProgramPartnerTypeFactory
 )
 
-ProgramPartner = swapper.load_model('accelerator', 'ProgramPartner')
+from accelerator.models import ProgramPartner
 
 
 class ProgramPartnerFactory(DjangoModelFactory):

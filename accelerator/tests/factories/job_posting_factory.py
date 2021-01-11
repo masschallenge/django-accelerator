@@ -18,7 +18,7 @@ from pytz import utc
 
 from accelerator.tests.factories.startup_factory import StartupFactory
 
-JobPosting = swapper.load_model('accelerator', 'JobPosting')
+from accelerator.models import JobPosting
 
 
 class JobPostingFactory(DjangoModelFactory):

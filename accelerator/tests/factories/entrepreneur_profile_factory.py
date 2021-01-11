@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 
 from accelerator.tests.factories.core_profile_factory import CoreProfileFactory
 
-EntrepreneurProfile = swapper.load_model('accelerator', 'EntrepreneurProfile')
+from accelerator.models import EntrepreneurProfile
 
 
 class EntrepreneurProfileFactory(CoreProfileFactory):

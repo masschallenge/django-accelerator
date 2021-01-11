@@ -18,7 +18,7 @@ from accelerator.tests.factories.program_cycle_factory import (
 )
 from accelerator.tests.factories.program_factory import ProgramFactory
 
-ProgramOverride = swapper.load_model('accelerator', 'ProgramOverride')
+from accelerator.models import ProgramOverride
 
 
 class ProgramOverrideFactory(DjangoModelFactory):

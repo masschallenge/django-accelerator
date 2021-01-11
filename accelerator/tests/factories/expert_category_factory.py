@@ -11,7 +11,7 @@ from accelerator.models import VALID_EXPERT_CATEGORIES
 # how ExpertCategorys are currently used.  See AC-5022 for the underlying
 # issue and a discussion of possible better long term solutions.
 
-ExpertCategory = swapper.load_model('accelerator', 'ExpertCategory')
+from accelerator.models import ExpertCategory
 
 
 class ExpertCategoryFactory(DjangoModelFactory):

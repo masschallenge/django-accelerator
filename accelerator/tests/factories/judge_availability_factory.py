@@ -15,7 +15,7 @@ from accelerator.tests.factories.panel_location_factory import (
 from accelerator.tests.factories.panel_time_factory import PanelTimeFactory
 from accelerator.tests.factories.panel_type_factory import PanelTypeFactory
 
-JudgeAvailability = swapper.load_model('accelerator', 'JudgeAvailability')
+from accelerator.models import JudgeAvailability
 
 
 class JudgeAvailabilityFactory(DjangoModelFactory):

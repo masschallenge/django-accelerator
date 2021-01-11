@@ -13,7 +13,7 @@ from accelerator.tests.factories.judging_round_factory import (
     JudgingRoundFactory
 )
 
-PanelLocation = swapper.load_model('accelerator', 'PanelLocation')
+from accelerator.models import PanelLocation
 
 
 class PanelLocationFactory(DjangoModelFactory):

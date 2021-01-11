@@ -11,7 +11,7 @@ from accelerator.models import (
     QUESTION_TYPE_MULTILINE,
 )
 
-Question = swapper.load_model('accelerator', 'Question')
+from accelerator.models import Question
 
 
 class QuestionFactory(DjangoModelFactory):

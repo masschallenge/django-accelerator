@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-StartupRole = swapper.load_model('accelerator', 'StartupRole')
+from accelerator.models import StartupRole
 
 
 class StartupRoleFactory(DjangoModelFactory):

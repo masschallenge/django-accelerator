@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-JudgingForm = swapper.load_model('accelerator', 'JudgingForm')
+from accelerator.models import JudgingForm
 
 
 class JudgingFormFactory(DjangoModelFactory):

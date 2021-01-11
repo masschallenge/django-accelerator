@@ -12,7 +12,7 @@ from factory.django import DjangoModelFactory
 from .program_cycle_factory import ProgramCycleFactory
 from .startup_factory import StartupFactory
 
-PayPalPayment = swapper.load_model('accelerator', 'PayPalPayment')
+from accelerator.models import PayPalPayment
 
 
 class PayPalPaymentFactory(DjangoModelFactory):

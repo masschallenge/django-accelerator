@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-NavTree = swapper.load_model('accelerator', 'NavTree')
+from accelerator.models import NavTree
 
 
 class NavTreeFactory(DjangoModelFactory):

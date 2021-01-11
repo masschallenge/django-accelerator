@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-LegalCheck = swapper.load_model('accelerator', 'LegalCheck')
+from accelerator.models import LegalCheck
 
 
 class LegalCheckFactory(DjangoModelFactory):

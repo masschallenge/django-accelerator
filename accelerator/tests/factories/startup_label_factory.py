@@ -9,7 +9,7 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-StartupLabel = swapper.load_model('accelerator', 'StartupLabel')
+from accelerator.models import StartupLabel
 
 
 class StartupLabelFactory(DjangoModelFactory):

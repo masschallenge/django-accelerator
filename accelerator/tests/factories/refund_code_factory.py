@@ -12,7 +12,7 @@ from factory.django import DjangoModelFactory
 
 from .partner_factory import PartnerFactory
 
-RefundCode = swapper.load_model('accelerator', 'RefundCode')
+from accelerator.models import RefundCode
 
 
 class RefundCodeFactory(DjangoModelFactory):

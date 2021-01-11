@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-Site = swapper.load_model('accelerator', 'Site')
+from accelerator.models import Site
 
 
 class SiteFactory(DjangoModelFactory):

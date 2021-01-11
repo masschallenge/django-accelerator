@@ -26,7 +26,7 @@ from accelerator.tests.factories.organization_factory import (
 )
 from accelerator.tests.utils import days_from_now
 
-Startup = swapper.load_model('accelerator', 'Startup')
+from accelerator.models import Startup
 
 COMMUNITY_VALUES = [val[0] for val in STARTUP_COMMUNITIES]
 

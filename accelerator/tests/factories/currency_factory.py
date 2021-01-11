@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-Currency = swapper.load_model('accelerator', 'Currency')
+from accelerator.models import Currency
 
 
 def _char_range(start, end):

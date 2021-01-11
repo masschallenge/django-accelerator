@@ -14,7 +14,7 @@ from accelerator.tests.factories.application_question_factory import (
     ApplicationQuestionFactory
 )
 
-ApplicationAnswer = swapper.load_model('accelerator', 'ApplicationAnswer')
+from accelerator.models import ApplicationAnswer
 
 
 class ApplicationAnswerFactory(DjangoModelFactory):

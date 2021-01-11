@@ -13,10 +13,10 @@ from accelerator_abstract.models.base_base_profile import (
 )
 
 
-EntrepreneurProfile = swapper.load_model('accelerator', "EntrepreneurProfile")
-ExpertProfile = swapper.load_model('accelerator', "ExpertProfile")
-MemberProfile = swapper.load_model('accelerator', "MemberProfile")
-BaseProfile = swapper.load_model('accelerator', "BaseProfile")
+from accelerator.models import EntrepreneurProfile
+from accelerator.models import ExpertProfile
+from accelerator.models import MemberProfile
+from accelerator.models import BaseProfile
 User = get_user_model()
 
 MISSING_BASE_PROFILE_TEMPLATE = ("Missing BaseProfile for user {}. "

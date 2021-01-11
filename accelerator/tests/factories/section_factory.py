@@ -12,7 +12,7 @@ from factory.django import DjangoModelFactory
 from accelerator.tests.factories import NewsletterFactory
 from accelerator_abstract.models.base_section import INCLUDE_FOR_CHOICES
 
-Section = swapper.load_model('accelerator', 'Section')
+from accelerator.models import Section
 
 
 class SectionFactory(DjangoModelFactory):

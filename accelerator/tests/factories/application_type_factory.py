@@ -13,7 +13,7 @@ from accelerator.tests.factories.startup_label_factory import (
     StartupLabelFactory
 )
 
-ApplicationType = swapper.load_model('accelerator', 'ApplicationType')
+from accelerator.models import ApplicationType
 
 
 class ApplicationTypeFactory(DjangoModelFactory):

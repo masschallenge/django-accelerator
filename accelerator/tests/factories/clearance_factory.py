@@ -13,7 +13,7 @@ from accelerator.tests.factories.program_family_factory import (
 )
 from simpleuser.tests.factories.user_factory import UserFactory
 
-Clearance = swapper.load_model('accelerator', 'Clearance')
+from accelerator.models import Clearance
 
 
 class ClearanceFactory(DjangoModelFactory):

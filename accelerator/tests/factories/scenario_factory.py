@@ -13,7 +13,7 @@ from factory.django import DjangoModelFactory
 from accelerator.models import DEFAULT_PANEL_SIZE
 from .judging_round_factory import JudgingRoundFactory
 
-Scenario = swapper.load_model('accelerator', 'Scenario')
+from accelerator.models import Scenario
 
 
 class ScenarioFactory(DjangoModelFactory):

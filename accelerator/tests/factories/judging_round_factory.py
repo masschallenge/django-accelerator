@@ -32,7 +32,7 @@ from accelerator_abstract.models.base_judging_round import (
     SCENARIO_DETECTION,
 )
 
-JudgingRound = swapper.load_model('accelerator', 'JudgingRound')
+from accelerator.models import JudgingRound
 
 
 class JudgingRoundFactory(DjangoModelFactory):

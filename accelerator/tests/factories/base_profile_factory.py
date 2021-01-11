@@ -7,7 +7,7 @@ from factory import SubFactory
 from factory.django import DjangoModelFactory
 from simpleuser.tests.factories.user_factory import UserFactory
 
-BaseProfile = swapper.load_model('accelerator', 'BaseProfile')
+from accelerator.models import BaseProfile
 
 
 class BaseProfileFactory(DjangoModelFactory):

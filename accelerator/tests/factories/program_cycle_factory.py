@@ -14,7 +14,7 @@ from accelerator.tests.factories.application_type_factory import (
 )
 from accelerator.tests.utils import months_from_now
 
-ProgramCycle = swapper.load_model('accelerator', 'ProgramCycle')
+from accelerator.models import ProgramCycle
 
 
 class ProgramCycleFactory(DjangoModelFactory):

@@ -16,7 +16,7 @@ from accelerator.models import (
 )
 from accelerator.tests.factories.scenario_factory import ScenarioFactory
 
-ScenarioPreference = swapper.load_model('accelerator', 'ScenarioPreference')
+from accelerator.models import ScenarioPreference
 
 
 class ScenarioPreferenceFactory(DjangoModelFactory):

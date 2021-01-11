@@ -9,7 +9,7 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-Observer = swapper.load_model('accelerator', 'Observer')
+from accelerator.models import Observer
 
 
 class ObserverFactory(DjangoModelFactory):

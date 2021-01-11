@@ -8,7 +8,7 @@ from factory.django import DjangoModelFactory
 
 from accelerator.models import MIGRATION_STATUS_OLD
 
-ModelChange = swapper.load_model('accelerator', 'ModelChange')
+from accelerator.models import ModelChange
 
 
 class ModelChangeFactory(DjangoModelFactory):

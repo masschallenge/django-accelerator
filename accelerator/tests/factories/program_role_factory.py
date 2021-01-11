@@ -13,7 +13,7 @@ from accelerator.tests.factories.program_factory import ProgramFactory
 from accelerator.tests.factories.user_label_factory import UserLabelFactory
 from accelerator.tests.factories.user_role_factory import UserRoleFactory
 
-ProgramRole = swapper.load_model('accelerator', 'ProgramRole')
+from accelerator.models import ProgramRole
 
 
 class ProgramRoleFactory(DjangoModelFactory):
