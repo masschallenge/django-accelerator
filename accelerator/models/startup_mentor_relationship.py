@@ -10,6 +10,4 @@ from accelerator_abstract.models.base_startup_mentor_relationship import (
 
 
 class StartupMentorRelationship(BaseStartupMentorRelationship):
-    class Meta(BaseStartupMentorRelationship.Meta):
-        swappable = False
-            "StartupMentorRelationship")
+    pass

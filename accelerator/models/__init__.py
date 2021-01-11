@@ -1,7 +1,7 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
 
-from simpleuser.models import User
+# from simpleuser.models import User
 
 from .allocator import Allocator
 from .startup_role import StartupRole

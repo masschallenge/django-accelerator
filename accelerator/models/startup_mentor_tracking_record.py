@@ -10,6 +10,4 @@ from accelerator_abstract.models.base_startup_mentor_tracking_record import (
 
 
 class StartupMentorTrackingRecord(BaseStartupMentorTrackingRecord):
-    class Meta(BaseStartupMentorTrackingRecord.Meta):
-        swappable = False
-            "StartupMentorTrackingRecord")
+    pass

@@ -34,7 +34,8 @@ DISPLAY_STARTUP_STATUS = "{status} {year} ({program_family_slug})"
 @python_2_unicode_compatible
 class BaseStartup(AcceleratorModel):
     organization = models.ForeignKey("mc.Organization", blank=True,
-        null=True, related_name='startups', on_delete=models.CASCADE)
+                                     null=True, related_name='startups',
+                                     on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     is_visible = models.BooleanField(
@@ -118,7 +119,7 @@ class BaseStartup(AcceleratorModel):
                                    'Color must be 3 or 6-digit hexecimal '
                                    'number, such as FF0000 for red.'), ])
     currency = models.ForeignKey("mc.Currency", blank=True,
-        null=True, on_delete=models.CASCADE)
+                                 null=True, on_delete=models.CASCADE)
 
     location_national = models.CharField(
         max_length=100,

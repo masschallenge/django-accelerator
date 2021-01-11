@@ -19,24 +19,16 @@ JUDGE_AVAILABILITY_CHOICES = (
 
 
 class BaseJudgeAvailability(AcceleratorModel):
-    commitment = models.ForeignKey("mc.JudgeRoundCommitment",
-        on_delete=models.CASCADE)
-    panel_location = models.ForeignKey("mc.PanelLocation",
-        blank=True,
-        null=True,
-        on_delete=models.CASCADE)
-    panel_time = models.ForeignKey("mc.PanelTime",
-        blank=True,
-        null=True,
-        on_delete=models.CASCADE)
+    commitment = models.ForeignKey(
+        "mc.JudgeRoundCommitment", on_delete=models.CASCADE)
+    panel_location = models.ForeignKey(
+        "mc.PanelLocation", blank=True, null=True, on_delete=models.CASCADE)
+    panel_time = models.ForeignKey(
+        "mc.PanelTime", blank=True, null=True, on_delete=models.CASCADE)
     panel_type = models.ForeignKey(
-        "mc.PanelType",
-        blank=True,
-        null=True,
-        on_delete=models.CASCADE)
+        "mc.PanelType", blank=True, null=True, on_delete=models.CASCADE)
     availability_type = models.CharField(
-        max_length=32,
-        choices=JUDGE_AVAILABILITY_CHOICES)
+        max_length=32, choices=JUDGE_AVAILABILITY_CHOICES)
 
     # vocabularies for type time and location must be drawn from entries
     # consistent with the round associated with the chosen 'commitment'

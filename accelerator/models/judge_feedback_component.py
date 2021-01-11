@@ -10,6 +10,4 @@ from accelerator_abstract.models.base_judge_feedback_component import (
 
 
 class JudgeFeedbackComponent(BaseJudgeFeedbackComponent):
-    class Meta(BaseJudgeFeedbackComponent.Meta):
-        swappable = False
-            "JudgeFeedbackComponent")
+    pass

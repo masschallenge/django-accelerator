@@ -8,8 +8,9 @@ from accelerator_abstract.models.base_currency import BaseCurrency
 
 
 class Currency(BaseCurrency):
-    class Meta(BaseCurrency.Meta):
-        swappable = False
+
+    @classmethod
+    def choices(cls):
         return [(c["id"], c["name"])
                 for c in cls.objects.all().values("id", "name")]
 

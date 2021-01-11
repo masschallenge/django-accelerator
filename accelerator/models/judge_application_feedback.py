@@ -8,6 +8,4 @@ from accelerator_abstract.models import BaseJudgeApplicationFeedback
 
 
 class JudgeApplicationFeedback(BaseJudgeApplicationFeedback):
-    class Meta(BaseJudgeApplicationFeedback.Meta):
-        swappable = False
-            "JudgeApplicationFeedback")
+    pass

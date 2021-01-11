@@ -11,11 +11,10 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 @python_2_unicode_compatible
 class BaseApplicationPanelAssignment(AcceleratorModel):
-    application = models.ForeignKey("mc.Application",
-        on_delete=models.CASCADE)
-    panel = models.ForeignKey("mc.Panel",
-        on_delete=models.CASCADE)
-    scenario = models.ForeignKey("mc.Scenario",
+    application = models.ForeignKey("mc.Application", on_delete=models.CASCADE)
+    panel = models.ForeignKey("mc.Panel", on_delete=models.CASCADE)
+    scenario = models.ForeignKey(
+        "mc.Scenario",
         related_name="application_assignments",
         on_delete=models.CASCADE
     )

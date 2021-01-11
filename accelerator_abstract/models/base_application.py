@@ -46,10 +46,9 @@ class BaseApplication(AcceleratorModel):
                               related_name='applications',
                               on_delete=models.CASCADE)
     startup = models.ForeignKey(
-        "mc.Startup",
-        on_delete=models.CASCADE)
-    application_type = models.ForeignKey("mc.ApplicationType",
-        on_delete=models.CASCADE)
+        "mc.Startup", on_delete=models.CASCADE)
+    application_type = models.ForeignKey(
+        "mc.ApplicationType", on_delete=models.CASCADE)
     application_status = models.CharField(
         blank=True,
         null=True,

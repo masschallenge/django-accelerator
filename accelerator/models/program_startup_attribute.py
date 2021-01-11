@@ -10,6 +10,4 @@ from accelerator_abstract.models.base_program_startup_attribute import (
 
 
 class ProgramStartupAttribute(BaseProgramStartupAttribute):
-    class Meta(BaseProgramStartupAttribute.Meta):
-        swappable = False
-            "ProgramStartupAttribute")
+    pass

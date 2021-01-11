@@ -10,6 +10,4 @@ from accelerator_abstract.models.base_application_panel_assignment import (
 
 
 class ApplicationPanelAssignment(BaseApplicationPanelAssignment):
-    class Meta(BaseApplicationPanelAssignment.Meta):
-        swappable = False
-            "ApplicationPanelAssignment")
+    pass

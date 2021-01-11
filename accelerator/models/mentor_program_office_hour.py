@@ -10,6 +10,4 @@ from accelerator_abstract.models.base_mentor_program_office_hour import (
 
 
 class MentorProgramOfficeHour(BaseMentorProgramOfficeHour):
-    class Meta(BaseMentorProgramOfficeHour.Meta):
-        swappable = False
-            "MentorProgramOfficeHour")
+    pass

@@ -10,6 +10,4 @@ from accelerator_abstract.models.base_site_program_authorization import (
 
 
 class SiteProgramAuthorization(BaseSiteProgramAuthorization):
-    class Meta(BaseSiteProgramAuthorization.Meta):
-        swappable = False
-            "SiteProgramAuthorization")
+    pass

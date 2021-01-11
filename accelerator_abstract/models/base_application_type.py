@@ -11,8 +11,8 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 class BaseApplicationType(AcceleratorModel):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=500, blank=True)
-    submission_label = models.ForeignKey("mc.StartupLabel",
-        null=True, blank=True, on_delete=models.CASCADE)
+    submission_label = models.ForeignKey(
+        "mc.StartupLabel", null=True, blank=True, on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Application Types'

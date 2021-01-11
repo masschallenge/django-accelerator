@@ -27,7 +27,6 @@ from accelerator.tests.factories.program_factory import ProgramFactory
 from accelerator.tests.factories.startup_factory import StartupFactory
 
 
-
 class MentorProgramOfficeHourFactory(DjangoModelFactory):
     class Meta:
         model = MentorProgramOfficeHour

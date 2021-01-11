@@ -97,7 +97,8 @@ class BaseClearance(AcceleratorModel):
                              null=False,
                              blank=False,
                              max_length=64)
-    program_family = models.ForeignKey("mc.ProgramFamily",
+    program_family = models.ForeignKey(
+        "mc.ProgramFamily",
         null=False,
         blank=False,
         related_name="user_clearances",

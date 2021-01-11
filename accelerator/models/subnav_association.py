@@ -8,6 +8,4 @@ from accelerator_abstract.models import BaseNodeSubNavAssociation
 
 
 class NodeSubNavAssociation(BaseNodeSubNavAssociation):
-    class Meta(BaseNodeSubNavAssociation.Meta):
-        swappable = False
-            "NodeSubNavAssociation")
+    pass

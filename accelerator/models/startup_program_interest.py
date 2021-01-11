@@ -10,6 +10,4 @@ from accelerator_abstract.models.base_startup_program_interest import (
 
 
 class StartupProgramInterest(BaseStartupProgramInterest):
-    class Meta(BaseStartupProgramInterest.Meta):
-        swappable = False
-            "StartupProgramInterest")
+    pass
