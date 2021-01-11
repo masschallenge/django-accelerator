@@ -1,7 +1,6 @@
 from accelerator.tests.factories import UserRoleFactory
 from django.conf import settings
 
-app_label, model = swapper.split(settings.ACCELERATOR_USERROLE_MODEL)
 from accelerator.models import UserRole
 
 

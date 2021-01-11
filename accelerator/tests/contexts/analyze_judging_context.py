@@ -5,12 +5,10 @@ from accelerator.tests.factories import (
 from accelerator.tests.contexts.judge_feedback_context import (
     JudgeFeedbackContext,
 )
-from accelerator.models import JUDGING_FEEDBACK_STATUS_COMPLETE
-
-
-
-JudgeApplicationFeedback = swapper.load_model(
-    'accelerator', 'JudgeApplicationFeedback')
+from accelerator.models import (
+    JudgeApplicationFeedback,
+    JUDGING_FEEDBACK_STATUS_COMPLETE,
+)
 
 
 class AnalyzeJudgingContext(JudgeFeedbackContext):

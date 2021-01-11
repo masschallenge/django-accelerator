@@ -22,7 +22,6 @@ INSTALL_REQUIRES = [
     "django-embed-video",
     "pillow",
     "pytz",
-    "swapper",
     "django-ordered-model",
     "django-paypal==1.0.0",
     "django-fluent-pages==2.0.6",

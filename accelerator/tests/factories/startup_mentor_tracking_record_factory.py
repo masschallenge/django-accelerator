@@ -9,11 +9,9 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
+from accelerator.models import StartupMentorTrackingRecord
 from accelerator.tests.factories.program_factory import ProgramFactory
 from accelerator.tests.factories.startup_factory import StartupFactory
-
-StartupMentorTrackingRecord = swapper.load_model('accelerator',
-                                                 'StartupMentorTrackingRecord')
 
 
 class StartupMentorTrackingRecordFactory(DjangoModelFactory):

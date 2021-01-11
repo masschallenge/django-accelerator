@@ -6,14 +6,12 @@ from __future__ import unicode_literals
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
+from accelerator.models import NodeSubNavAssociation
 from accelerator.tests.factories import (
     NavTreeFactory,
     NavTreeItemFactory,
     UrlNodeFactory
 )
-
-NodeSubNavAssociation = swapper.load_model(
-    'accelerator', 'NodeSubNavAssociation')
 
 
 class NodeSubNavAssociationFactory(DjangoModelFactory):

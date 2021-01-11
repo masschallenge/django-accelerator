@@ -9,10 +9,8 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
+from accelerator.models import ProgramStartupAttribute
 from accelerator.tests.factories.program_factory import ProgramFactory
-
-ProgramStartupAttribute = swapper.load_model('accelerator',
-                                             'ProgramStartupAttribute')
 
 
 class ProgramStartupAttributeFactory(DjangoModelFactory):

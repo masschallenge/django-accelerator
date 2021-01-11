@@ -6,13 +6,11 @@ from __future__ import unicode_literals
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
+from accelerator.models import StartupOverrideGrant
 from accelerator.tests.factories import (
     ProgramOverrideFactory,
     StartupFactory,
 )
-
-StartupOverrideGrant = swapper.load_model('accelerator',
-                                          'StartupOverrideGrant')
 
 
 class StartupOverrideGrantFactory(DjangoModelFactory):

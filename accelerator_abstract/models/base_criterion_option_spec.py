@@ -21,10 +21,7 @@ class BaseCriterionOptionSpec(AcceleratorModel):
     option = CharField(max_length=64, blank=True)
     count = IntegerField(default=DEFAULT_COUNT)
     weight = FloatField(default=DEFAULT_WEIGHT)
-    criterion = ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label,
-        "Criterion"),
-        on_delete=CASCADE)
+    criterion = ForeignKey("mc.Criterion", on_delete=CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         abstract = True

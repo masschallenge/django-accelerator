@@ -10,6 +10,11 @@ from django.db import models
 from django.db.models import Q
 from sorl.thumbnail import ImageField
 
+from accelerator.models import (
+    JudgingRound,
+    PartnerTeamMember,
+    UserRole,
+)
 from accelerator.utils import bullet_train_has_feature
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_user_role import (
@@ -180,14 +185,10 @@ class BaseCoreProfile(AcceleratorModel):
             BaseUserRole.OFFICE_HOUR_ROLES)) > 0
 
     def is_partner(self):
-        PartnerTeamMember = swapper.load_model(
-            'accelerator', 'PartnerTeamMember')
         return PartnerTeamMember.objects.filter(
             team_member=self.user).exists()
 
     def is_partner_admin(self):
-        PartnerTeamMember = swapper.load_model(
-            'accelerator', 'PartnerTeamMember')
         return PartnerTeamMember.objects.filter(
             team_member=self.user,
             partner_administrator=True).exists()
@@ -209,10 +210,6 @@ class BaseCoreProfile(AcceleratorModel):
         if bullet_train_has_feature(EXPERT_NAVIGATION_EPIC):
             if self.user_type.upper() == EXPERT_USER_TYPE:
                 return "/dashboard/expert/overview/"
-        JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
-                                          "JudgingRound")
-        UserRole = swapper.load_model(
-            'accelerator', 'UserRole')
         now = utc.localize(datetime.now())
         active_judging_round_labels = JudgingRound.objects.filter(
             end_date_time__gt=now,

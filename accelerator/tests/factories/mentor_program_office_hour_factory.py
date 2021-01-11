@@ -17,6 +17,7 @@ from factory.django import DjangoModelFactory
 
 from pytz import utc
 
+from accelerator.models import MentorProgramOfficeHour
 from accelerator.tests.factories import (
     EntrepreneurFactory,
     ExpertFactory,
@@ -25,8 +26,6 @@ from accelerator.tests.factories.location_factory import LocationFactory
 from accelerator.tests.factories.program_factory import ProgramFactory
 from accelerator.tests.factories.startup_factory import StartupFactory
 
-MentorProgramOfficeHour = swapper.load_model('accelerator',
-                                             'MentorProgramOfficeHour')
 
 
 class MentorProgramOfficeHourFactory(DjangoModelFactory):

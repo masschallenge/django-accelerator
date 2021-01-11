@@ -6,11 +6,9 @@ from __future__ import unicode_literals
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
+from accelerator.models import ScenarioApplication
 from accelerator.tests.factories.application_factory import ApplicationFactory
 from accelerator.tests.factories.scenario_factory import ScenarioFactory
-
-ScenarioApplication = swapper.load_model('accelerator',
-                                         'ScenarioApplication')
 
 
 class ScenarioApplicationFactory(DjangoModelFactory):

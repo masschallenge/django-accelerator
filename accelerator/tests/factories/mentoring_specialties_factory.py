@@ -6,8 +6,7 @@ from __future__ import unicode_literals
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-MentoringSpecialties = swapper.load_model('accelerator',
-                                          'MentoringSpecialties')
+from accelerator.models import MentoringSpecialties
 
 
 class MentoringSpecialtiesFactory(DjangoModelFactory):
