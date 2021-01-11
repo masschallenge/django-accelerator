@@ -62,7 +62,7 @@ class BaseApplicationQuestion(AcceleratorModel):
         choices=CHOICE_LAYOUTS,
         blank=True,
     )
-    question = models.ForeignKey("mc.Question"),
+    question = models.ForeignKey("mc.Question",
         blank=True,
         null=True,
         on_delete=models.CASCADE)
