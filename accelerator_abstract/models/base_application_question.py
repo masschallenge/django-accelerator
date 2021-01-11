@@ -23,9 +23,9 @@ TEXT_LIMIT_UNITS = ((CHARACTERS_UNIT_NAME.lower(), CHARACTERS_UNIT_NAME),
 
 @python_2_unicode_compatible
 class BaseApplicationQuestion(AcceleratorModel):
-    application_type = models.ForeignKey("mc.ApplicationType"),
+    application_type = models.ForeignKey("mc.ApplicationType",
         on_delete=models.CASCADE)
-    program = models.ForeignKey("mc.Program"),
+    program = models.ForeignKey("mc.Program",
         blank=True,
         null=True,
         on_delete=models.CASCADE)

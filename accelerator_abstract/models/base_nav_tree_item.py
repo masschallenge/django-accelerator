@@ -22,7 +22,7 @@ class BaseNavTreeItem(TreeItemBase, AcceleratorModel):
     then all programs are allowed to access this Item. If it is non-null,
     then only the selected programs are allowed to access it.
     """
-    tree = models.ForeignKey(to="mc.NavTree"),
+    tree = models.ForeignKey(to="mc.NavTree",
         on_delete=models.CASCADE)
     user_role = models.ManyToManyField(
         to="mc.UserRole"),

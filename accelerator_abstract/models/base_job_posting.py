@@ -18,7 +18,7 @@ JOB_TYPE_VALUES = (('NONE', 'None'),
 
 @python_2_unicode_compatible
 class BaseJobPosting(AcceleratorModel):
-    startup = models.ForeignKey("mc.Startup"),
+    startup = models.ForeignKey("mc.Startup",
         on_delete=models.CASCADE)
     postdate = models.DateTimeField(blank=False)
     type = models.CharField(

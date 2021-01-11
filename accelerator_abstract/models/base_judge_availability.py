@@ -19,17 +19,13 @@ JUDGE_AVAILABILITY_CHOICES = (
 
 
 class BaseJudgeAvailability(AcceleratorModel):
-    commitment = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "JudgeRoundCommitment"),
+    commitment = models.ForeignKey("mc.JudgeRoundCommitment",
         on_delete=models.CASCADE)
-    panel_location = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                               "PanelLocation"),
+    panel_location = models.ForeignKey("mc.PanelLocation",
         blank=True,
         null=True,
         on_delete=models.CASCADE)
-    panel_time = models.ForeignKey("mc.PanelTime"),
+    panel_time = models.ForeignKey("mc.PanelTime",
         blank=True,
         null=True,
         on_delete=models.CASCADE)
