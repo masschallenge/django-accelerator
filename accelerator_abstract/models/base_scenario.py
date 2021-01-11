@@ -23,7 +23,7 @@ class BaseScenario(AcceleratorModel):
         related_name="scenarios",
         through="ScenarioJudge")
     applications = models.ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Application'),
+        "mc.Application",
         related_name="scenarios",
         through="ScenarioApplication")
     # Default False and set True when selected. Only one may be True.

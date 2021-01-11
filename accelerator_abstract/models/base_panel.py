@@ -36,7 +36,7 @@ class BasePanel(AcceleratorModel):
         through=swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                        'JudgePanelAssignment'))
     applications = ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Application'),
+        "mc.Application",
         related_name='panels',
         through=swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                        'ApplicationPanelAssignment')

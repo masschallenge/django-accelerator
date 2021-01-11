@@ -25,7 +25,7 @@ class BaseNewsletter(AcceleratorModel):
         blank=True,
         null=True)
     recipient_roles = models.ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'ProgramRole'),
+        "mc.ProgramRole",
         limit_choices_to={
             'newsletter_recipient': True,
         },

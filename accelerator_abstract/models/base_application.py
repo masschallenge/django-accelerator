@@ -47,7 +47,7 @@ class BaseApplication(AcceleratorModel):
                               related_name='applications',
                               on_delete=models.CASCADE)
     startup = models.ForeignKey(
-        swapper.get_model_name('accelerator', 'Startup'),
+        "mc.Startup",
         on_delete=models.CASCADE)
     application_type = models.ForeignKey(swapper.get_model_name(
         'accelerator', 'ApplicationType'),

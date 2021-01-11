@@ -17,7 +17,7 @@ class BaseObserver(AcceleratorModel):
     title = models.CharField(max_length=50, blank=True)
     company = models.CharField(max_length=50, blank=True)
     newsletter_cc_roles = models.ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'ProgramRole'),
+        "mc.ProgramRole",
         blank=True)
     newsletter_sender = models.BooleanField(default=False)
 

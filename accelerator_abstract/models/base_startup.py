@@ -43,11 +43,11 @@ class BaseStartup(AcceleratorModel):
         help_text=('Startup Profiles will be published to external websites '
                    'through the the API.'))
     primary_industry = models.ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Industry'),
+        "mc.Industry",
         verbose_name='Primary Industry categorization',
         related_name='startups', on_delete=models.CASCADE)
     additional_industries = models.ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Industry'),
+        "mc.Industry",
         verbose_name='Additional Industries',
         related_name='secondary_startups',
         db_table="accelerator_startup_related_industry",

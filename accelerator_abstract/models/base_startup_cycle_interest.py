@@ -20,7 +20,7 @@ class BaseStartupCycleInterest(AcceleratorModel):
         "mc.Startup",
         on_delete=CASCADE)
     interested_programs = ManyToManyField(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Program'),
+        "mc.Program",
         through=swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                        'StartupProgramInterest'))
 
