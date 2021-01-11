@@ -23,11 +23,9 @@ TEXT_LIMIT_UNITS = ((CHARACTERS_UNIT_NAME.lower(), CHARACTERS_UNIT_NAME),
 
 @python_2_unicode_compatible
 class BaseApplicationQuestion(AcceleratorModel):
-    application_type = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "ApplicationType"),
+    application_type = models.ForeignKey("mc.ApplicationType"),
         on_delete=models.CASCADE)
-    program = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "Program"),
+    program = models.ForeignKey("mc.Program"),
         blank=True,
         null=True,
         on_delete=models.CASCADE)
@@ -64,8 +62,7 @@ class BaseApplicationQuestion(AcceleratorModel):
         choices=CHOICE_LAYOUTS,
         blank=True,
     )
-    question = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "Question"),
+    question = models.ForeignKey("mc.Question"),
         blank=True,
         null=True,
         on_delete=models.CASCADE)

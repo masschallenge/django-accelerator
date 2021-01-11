@@ -29,8 +29,7 @@ class BaseJudgeAvailability(AcceleratorModel):
         blank=True,
         null=True,
         on_delete=models.CASCADE)
-    panel_time = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "PanelTime"),
+    panel_time = models.ForeignKey("mc.PanelTime"),
         blank=True,
         null=True,
         on_delete=models.CASCADE)

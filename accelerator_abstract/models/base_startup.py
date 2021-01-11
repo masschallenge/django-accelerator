@@ -33,8 +33,7 @@ DISPLAY_STARTUP_STATUS = "{status} {year} ({program_family_slug})"
 
 @python_2_unicode_compatible
 class BaseStartup(AcceleratorModel):
-    organization = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, 'Organization'), blank=True,
+    organization = models.ForeignKey("mc.Organization"), blank=True,
         null=True, related_name='startups', on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
@@ -118,8 +117,7 @@ class BaseStartup(AcceleratorModel):
         validators=[RegexValidator('^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|)$',
                                    'Color must be 3 or 6-digit hexecimal '
                                    'number, such as FF0000 for red.'), ])
-    currency = models.ForeignKey(swapper.get_model_name(
-        'accelerator', 'Currency'), blank=True,
+    currency = models.ForeignKey("mc.Currency"), blank=True,
         null=True, on_delete=models.CASCADE)
 
     location_national = models.CharField(

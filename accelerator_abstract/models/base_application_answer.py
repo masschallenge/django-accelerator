@@ -11,11 +11,9 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 @python_2_unicode_compatible
 class BaseApplicationAnswer(AcceleratorModel):
-    application = models.ForeignKey(to=swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, "Application"),
+    application = models.ForeignKey(to="mc.Application"),
         on_delete=models.CASCADE)
-    application_question = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, 'ApplicationQuestion'),
+    application_question = models.ForeignKey("mc.ApplicationQuestion"),
         on_delete=models.CASCADE)
     answer_text = models.TextField(blank=True)
 

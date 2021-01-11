@@ -13,8 +13,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 class BasePanelLocation(AcceleratorModel):
     location = models.CharField(max_length=225, primary_key=True)
     description = models.CharField(max_length=225)
-    judging_round = models.ForeignKey(swapper.get_model_name(
-        AcceleratorModel.Meta.app_label, 'JudgingRound'),
+    judging_round = models.ForeignKey("mc.JudgingRound"),
         blank=True,
         null=True,
         on_delete=models.CASCADE
