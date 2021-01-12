@@ -10,9 +10,6 @@ from django.contrib.auth.models import BaseUserManager
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 
-from accelerator_abstract.models import BaseUserRole
-from accelerator_abstract.models.base_base_profile import EXPERT_USER_TYPE
-
 
 MAX_USERNAME_LENGTH = 30
 
@@ -156,6 +153,8 @@ class User(AbstractUser):
 
     def finalist_user_roles(self):
         if not self.user_finalist_roles:
+            # Circular import prevention
+            from accelerator_abstract.models import BaseUserRole
             finalist_roles = BaseUserRole.FINALIST_USER_ROLES
             self.user_finalist_roles = self.programrolegrant_set.filter(
                 program_role__user_role__name__in=finalist_roles
@@ -198,5 +197,7 @@ class User(AbstractUser):
         return len(self.finalist_user_roles()) > 0
 
     def _is_expert(self):
+        # Circular import prevention
+        from accelerator_abstract.models.base_base_profile import EXPERT_USER_TYPE
         profile = self._get_profile()
         return profile.user_type == EXPERT_USER_TYPE.lower()

@@ -8,7 +8,6 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-from accelerator.models import ExpertProfile
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
@@ -17,6 +16,8 @@ def is_expert_validator(value):
 
     id must identify a User who has an ExpertProfile
     """
+    # Circular import prevention
+    from accelerator.models import ExpertProfile
     if not ExpertProfile.objects.filter(user_id__exact=value).exists():
         raise ValidationError("User must be an expert")
 

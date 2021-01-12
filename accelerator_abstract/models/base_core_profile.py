@@ -10,11 +10,6 @@ from django.db import models
 from django.db.models import Q
 from sorl.thumbnail import ImageField
 
-from accelerator.models import (
-    JudgingRound,
-    PartnerTeamMember,
-    UserRole,
-)
 from accelerator.utils import bullet_train_has_feature
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_user_role import (
@@ -185,10 +180,14 @@ class BaseCoreProfile(AcceleratorModel):
             BaseUserRole.OFFICE_HOUR_ROLES)) > 0
 
     def is_partner(self):
+        # Circular import prevention
+        from accelerator.models import PartnerTeamMember
         return PartnerTeamMember.objects.filter(
             team_member=self.user).exists()
 
     def is_partner_admin(self):
+        # Circular import prevention
+        from accelerator.models import PartnerTeamMember
         return PartnerTeamMember.objects.filter(
             team_member=self.user,
             partner_administrator=True).exists()
@@ -207,6 +206,8 @@ class BaseCoreProfile(AcceleratorModel):
             return '/staff'
 
     def role_based_landing_page(self, exclude_role_names=[]):
+        # Circular import prevention
+        from accelerator.models import JudgingRound, UserRole
         if bullet_train_has_feature(EXPERT_NAVIGATION_EPIC):
             if self.user_type.upper() == EXPERT_USER_TYPE:
                 return "/dashboard/expert/overview/"
