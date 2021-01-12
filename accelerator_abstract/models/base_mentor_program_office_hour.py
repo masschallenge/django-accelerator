@@ -50,6 +50,7 @@ class BaseMentorProgramOfficeHour(AcceleratorModel):
     notify_reservation = models.BooleanField(default=True)
     topics = models.CharField(max_length=2000, blank=True, default="")
     meeting_info = models.CharField(max_length=256, blank=True, default="")
+    test_field = models.CharField(max_length=256, blank=True, default="")
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_mentorprogramofficehour'
