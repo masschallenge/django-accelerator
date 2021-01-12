@@ -5,7 +5,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0032_add_ethno_racial_identity_data'),
+        ('accelerator', '0033_add_ethno_racial_identity_data'),
     ]
 
     operations = [

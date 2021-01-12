@@ -21,7 +21,7 @@ def add_ethno_racial_identity_data(*args, **kwargs):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0031_add_ethno_racial_identity_model'),
+        ('accelerator', '0032_add_ethno_racial_identity_model'),
     ]
 
     operations = [

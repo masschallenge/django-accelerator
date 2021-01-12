@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0027_add_birth_year_to_core_profile'),
+        ('accelerator', '0028_add_birth_year_to_core_profile'),
     ]
 
     operations = [

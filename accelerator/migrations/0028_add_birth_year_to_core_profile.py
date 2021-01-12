@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0026_remove_character_limit_to_application_answer'),
+        ('accelerator', '0027_set_swappable_to_none'),
     ]
 
     operations = [
