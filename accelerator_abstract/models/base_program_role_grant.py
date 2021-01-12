@@ -15,7 +15,7 @@ class BaseProgramRoleGrant(AcceleratorModel):
     person = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE)
     program_role = models.ForeignKey(
-        "mc.ProgramRole",
+        "ProgramRole",
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):

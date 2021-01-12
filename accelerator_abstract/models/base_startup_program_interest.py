@@ -29,13 +29,13 @@ PROGRAM_INTEREST_DOWN = 'down'
 @python_2_unicode_compatible
 class BaseStartupProgramInterest(OrderedModel, AcceleratorModel):
     program = models.ForeignKey(
-        "mc.Program",
+        "Program",
         on_delete=models.CASCADE)
     startup = models.ForeignKey(
-        "mc.Startup",
+        "Startup",
         on_delete=models.CASCADE)
     startup_cycle_interest = models.ForeignKey(
-        "mc.StartupCycleInterest",
+        "StartupCycleInterest",
         blank=True,
         null=True,
         on_delete=models.CASCADE)

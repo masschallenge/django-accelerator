@@ -40,15 +40,15 @@ REFUND_STATUSES = ((NOT_ELIGIBLE_STATUS, "Not Eligible For Refund"),
 
 @python_2_unicode_compatible
 class BaseApplication(AcceleratorModel):
-    cycle = models.ForeignKey('mc.ProgramCycle',
+    cycle = models.ForeignKey('ProgramCycle',
                               blank=True,
                               null=True,
                               related_name='applications',
                               on_delete=models.CASCADE)
     startup = models.ForeignKey(
-        "mc.Startup", on_delete=models.CASCADE)
+        "Startup", on_delete=models.CASCADE)
     application_type = models.ForeignKey(
-        "mc.ApplicationType", on_delete=models.CASCADE)
+        "ApplicationType", on_delete=models.CASCADE)
     application_status = models.CharField(
         blank=True,
         null=True,

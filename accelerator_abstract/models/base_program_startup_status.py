@@ -24,12 +24,12 @@ STARTUP_BADGE_DISPLAY_VALUES = (
 @python_2_unicode_compatible
 class BaseProgramStartupStatus(AcceleratorModel):
     program = models.ForeignKey(
-        "mc.Program",
+        "Program",
         on_delete=models.CASCADE)
     startup_status = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True, null=True)
     startup_role = models.ForeignKey(
-        "mc.StartupRole",
+        "StartupRole",
         null=True,
         blank=True,
         on_delete=models.CASCADE)

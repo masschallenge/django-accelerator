@@ -14,7 +14,7 @@ DEFAULT_PANEL_SIZE = 10
 class BaseScenario(AcceleratorModel):
     name = models.CharField(max_length=40)
     judging_round = models.ForeignKey(
-        "mc.JudgingRound", blank=True, null=True,
+        "JudgingRound", blank=True, null=True,
         on_delete=models.CASCADE)
     description = models.TextField(max_length=512, blank=True)
     judges = models.ManyToManyField(
@@ -22,7 +22,7 @@ class BaseScenario(AcceleratorModel):
         related_name="scenarios",
         through="ScenarioJudge")
     applications = models.ManyToManyField(
-        "mc.Application",
+        "Application",
         related_name="scenarios",
         through="ScenarioApplication")
     # Default False and set True when selected. Only one may be True.

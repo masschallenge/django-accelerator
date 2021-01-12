@@ -21,7 +21,7 @@ class BaseCriterionOptionSpec(AcceleratorModel):
     option = CharField(max_length=64, blank=True)
     count = IntegerField(default=DEFAULT_COUNT)
     weight = FloatField(default=DEFAULT_WEIGHT)
-    criterion = ForeignKey("mc.Criterion", on_delete=CASCADE)
+    criterion = ForeignKey("Criterion", on_delete=CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         abstract = True

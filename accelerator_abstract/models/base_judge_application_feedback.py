@@ -35,15 +35,15 @@ JUDGING_STATUS_ENUM = (
 @python_2_unicode_compatible
 class BaseJudgeApplicationFeedback(AcceleratorModel):
     application = models.ForeignKey(
-        "mc.Application",
+        "Application",
         on_delete=models.CASCADE)
     form_type = models.ForeignKey(
-        "mc.JudgingForm",
+        "JudgingForm",
         on_delete=models.CASCADE)
     judge = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE)
     panel = models.ForeignKey(
-        "mc.Panel",
+        "Panel",
         on_delete=models.CASCADE)
     judging_status = models.IntegerField(
         null=True,

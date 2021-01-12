@@ -12,10 +12,10 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseStartupOverrideGrant(AcceleratorModel):
     startup = models.ForeignKey(
-        "mc.Startup",
+        "Startup",
         on_delete=models.CASCADE)
     program_override = models.ForeignKey(
-        "mc.ProgramOverride",
+        "ProgramOverride",
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):

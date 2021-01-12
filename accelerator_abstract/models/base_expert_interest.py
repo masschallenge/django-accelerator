@@ -36,12 +36,12 @@ class BaseExpertInterest(AcceleratorModel):
         on_delete=models.CASCADE
     )
     program_family = models.ForeignKey(
-        "mc.ProgramFamily",
+        "ProgramFamily",
         related_name="interested_experts",
         on_delete=models.CASCADE
     )
     interest_type = models.ForeignKey(
-        "mc.ExpertInterestType",
+        "ExpertInterestType",
         related_name="interested_experts",
         on_delete=models.CASCADE
     )

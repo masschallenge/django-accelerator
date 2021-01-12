@@ -16,7 +16,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 class BaseRefundCode(AcceleratorModel):
     unique_code = models.CharField(max_length=100, unique=True)
     programs = models.ManyToManyField(
-        "mc.Program",
+        "Program",
         help_text=("Which programs is this refund code valid for? "
                    "If no programs are given, then this code can be "
                    "applied to any program."),
@@ -24,7 +24,7 @@ class BaseRefundCode(AcceleratorModel):
         blank=True
     )
     issued_to = models.ForeignKey(
-        "mc.Partner",
+        "Partner",
         blank=True, null=True, on_delete=models.CASCADE)
     discount = models.IntegerField(default=0)
     maximum_uses = models.PositiveIntegerField(

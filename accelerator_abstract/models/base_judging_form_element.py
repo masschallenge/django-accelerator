@@ -79,7 +79,7 @@ FORM_ELEM_FEEDBACK_TO_MC = 'FEEDBACK_TO_MC'
 @python_2_unicode_compatible
 class BaseJudgingFormElement(AcceleratorModel):
     form_type = models.ForeignKey(
-        "mc.JudgingForm",
+        "JudgingForm",
         on_delete=models.CASCADE)
     element_number = models.IntegerField()
     element_name = models.CharField(max_length=50, blank=True)
@@ -132,7 +132,7 @@ class BaseJudgingFormElement(AcceleratorModel):
         blank=True,
     )
     application_question = models.ForeignKey(
-        "mc.ApplicationQuestion",
+        "ApplicationQuestion",
         blank=True,
         null=True,
         on_delete=models.CASCADE)

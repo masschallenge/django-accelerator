@@ -38,12 +38,12 @@ class BaseProgram(AcceleratorModel):
     """An Accelerator program"""
     name = models.CharField(max_length=50)
     program_family = models.ForeignKey(
-        "mc.ProgramFamily",
+        "ProgramFamily",
         related_name="programs",
         on_delete=models.CASCADE
     )
     cycle = models.ForeignKey(
-        "mc.ProgramCycle",
+        "ProgramCycle",
         null=True,
         related_name="programs",
         on_delete=models.CASCADE)
@@ -117,7 +117,7 @@ class BaseProgram(AcceleratorModel):
     )
     accepting_mentors_and_goals = models.BooleanField(default=False)
     mentor_program_group = models.ForeignKey(
-        "mc.NamedGroup",
+        "NamedGroup",
         blank=True,
         null=True,
         on_delete=models.CASCADE)

@@ -13,7 +13,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BasePartner(AcceleratorModel):
     organization = models.ForeignKey(
-        "mc.Organization", null=True, blank=True,
+        "Organization", null=True, blank=True,
         on_delete=models.CASCADE)
     description = models.TextField(
         max_length=1000,

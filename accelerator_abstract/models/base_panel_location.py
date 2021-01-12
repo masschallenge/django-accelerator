@@ -14,7 +14,7 @@ class BasePanelLocation(AcceleratorModel):
     location = models.CharField(max_length=225, primary_key=True)
     description = models.CharField(max_length=225)
     judging_round = models.ForeignKey(
-        "mc.JudgingRound", blank=True, null=True, on_delete=models.CASCADE)
+        "JudgingRound", blank=True, null=True, on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Panel Locations'

@@ -21,14 +21,14 @@ class BaseSection(AcceleratorModel):
     heading = models.CharField(max_length=255, blank=True)
     body = models.TextField(blank=True)
     interest_categories = models.ManyToManyField(
-        "mc.InterestCategory",
+        "InterestCategory",
         blank=True)
     include_for = models.CharField(
         max_length=32,
         choices=INCLUDE_FOR_CHOICES,
         default='EVERYONE')
     newsletter = models.ForeignKey(
-        "mc.Newsletter",
+        "Newsletter",
         related_name='sections', on_delete=models.CASCADE)
     sequence = models.PositiveIntegerField(help_text=SECTION_SEQUENCE_HELP)
 

@@ -24,12 +24,12 @@ class BaseProgramCycle(AcceleratorModel):
     advertised_final_deadline = models.DateTimeField()
     accepting_references = models.BooleanField(default=False)
     default_application_type = models.ForeignKey(
-        "mc.ApplicationType",
+        "ApplicationType",
         null=True,
         related_name="application_type_for",
         on_delete=models.CASCADE)
     default_overview_application_type = models.ForeignKey(
-        "mc.ApplicationType",
+        "ApplicationType",
         null=True,
         blank=True,
         related_name="default_overview_application_type_for",

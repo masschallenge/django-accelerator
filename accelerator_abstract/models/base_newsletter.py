@@ -25,16 +25,16 @@ class BaseNewsletter(AcceleratorModel):
         blank=True,
         null=True)
     recipient_roles = models.ManyToManyField(
-        "mc.ProgramRole",
+        "ProgramRole",
         limit_choices_to={
             'newsletter_recipient': True,
         },
         blank=True)
     program = models.ForeignKey(
-        "mc.Program",
+        "Program",
         on_delete=models.CASCADE)
     judging_round = models.ForeignKey(
-        "mc.JudgingRound",
+        "JudgingRound",
         null=True,
         blank=True,
         on_delete=models.CASCADE)

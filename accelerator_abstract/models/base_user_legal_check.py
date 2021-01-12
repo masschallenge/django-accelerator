@@ -19,7 +19,7 @@ class BaseUserLegalCheck(AcceleratorModel):
         related_name='legalcheck_set',
         on_delete=models.CASCADE)
     legal_check = models.ForeignKey(
-        to="mc.LegalCheck",
+        to="LegalCheck",
         related_name='user_set',
         on_delete=models.CASCADE)
     accepted = models.BooleanField(default=False)

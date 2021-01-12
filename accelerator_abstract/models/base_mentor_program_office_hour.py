@@ -18,7 +18,7 @@ HOUR_OWNED_BY_ANOTHER_MESSAGE = "This office hour is owned by another user"
 @python_2_unicode_compatible
 class BaseMentorProgramOfficeHour(AcceleratorModel):
     program = models.ForeignKey(
-        "mc.Program",
+        "Program",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -33,7 +33,7 @@ class BaseMentorProgramOfficeHour(AcceleratorModel):
                                  related_name='finalist_officehours',
                                  on_delete=models.CASCADE)
     startup = models.ForeignKey(
-        "mc.Startup",
+        "Startup",
         blank=True,
         null=True,
         related_name='startup_officehours',
@@ -42,7 +42,7 @@ class BaseMentorProgramOfficeHour(AcceleratorModel):
     end_date_time = models.DateTimeField(db_index=True)
     description = models.TextField(blank=True)
     location = models.ForeignKey(
-        "mc.Location",
+        "Location",
         null=True,
         blank=True,
         on_delete=models.CASCADE)

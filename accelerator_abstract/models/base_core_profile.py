@@ -95,17 +95,17 @@ class BaseCoreProfile(AcceleratorModel):
     drupal_creation_date = models.DateTimeField(blank=True, null=True)
     drupal_last_login = models.DateTimeField(blank=True, null=True)
     interest_categories = models.ManyToManyField(
-        to="mc.InterestCategory",
+        to="InterestCategory",
         blank=True)
     users_last_activity = models.DateTimeField(blank=True, null=True)
     current_program = models.ForeignKey(
-        "mc.Program",
+        "Program",
         blank=True,
         null=True,
         on_delete=models.CASCADE,
     )
     program_families = models.ManyToManyField(
-        "mc.ProgramFamily",
+        "ProgramFamily",
         help_text="Which of our Program Families would you like to be "
                   "involved with?",
         related_name="interested_%(class)s",

@@ -12,10 +12,10 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseScenarioApplication(AcceleratorModel):
     application = models.ForeignKey(
-        "mc.Application",
+        "Application",
         on_delete=models.CASCADE)
     scenario = models.ForeignKey(
-        "mc.Scenario",
+        "Scenario",
         on_delete=models.CASCADE)
     # default 1. How much do we want this application assigned now?
     # Set higher for foreign and early bird.

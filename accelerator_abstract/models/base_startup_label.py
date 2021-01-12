@@ -13,7 +13,7 @@ from accelerator_abstract.models.label_model import LabelModel
 class BaseStartupLabel(LabelModel):
     label = models.CharField(max_length=LabelModel.LABEL_LENGTH)
     startups = models.ManyToManyField(
-        "mc.Startup",
+        "Startup",
         blank=True)
 
     class Meta(LabelModel.Meta):

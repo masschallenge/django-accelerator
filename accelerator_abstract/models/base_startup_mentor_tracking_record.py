@@ -27,10 +27,10 @@ PROGRAM_GOALS_HELP = ("Submit the three goals you plan to work on "
 @python_2_unicode_compatible
 class BaseStartupMentorTrackingRecord(AcceleratorModel):
     startup = models.ForeignKey(
-        "mc.Startup",
+        "Startup",
         on_delete=models.CASCADE)
     program = models.ForeignKey(
-        "mc.Program",
+        "Program",
         on_delete=models.CASCADE)
     mentors = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                      verbose_name="Registered Mentors",

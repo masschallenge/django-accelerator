@@ -12,10 +12,10 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseSiteProgramAuthorization(AcceleratorModel):
     site = models.ForeignKey(
-        "mc.Site",
+        "Site",
         on_delete=models.CASCADE)
     program = models.ForeignKey(
-        "mc.Program",
+        "Program",
         on_delete=models.CASCADE)
     startup_profile_base_url = models.URLField()
     sponsor_profile_base_url = models.URLField()

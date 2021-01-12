@@ -14,13 +14,13 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 class BaseNodeSubNavAssociation(AcceleratorModel):
     node = models.ForeignKey(UrlNode, on_delete=models.CASCADE)
     sub_nav = models.ForeignKey(
-        "mc.NavTree",
+        "NavTree",
         help_text=(
             'This is the sub navigation tree that this page is tied to'),
         on_delete=models.CASCADE
     )
     sub_nav_item = models.ForeignKey(
-        "mc.NavTreeItem",
+        "NavTreeItem",
         null=True,
         help_text=(
             'This is the sub navigation item that this page is tied to'),

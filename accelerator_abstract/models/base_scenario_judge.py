@@ -15,7 +15,7 @@ class BaseScenarioJudge(AcceleratorModel):
     judge = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE)
     scenario = models.ForeignKey(
-        "mc.Scenario",
+        "Scenario",
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):

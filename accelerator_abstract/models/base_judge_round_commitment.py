@@ -22,7 +22,7 @@ class BaseJudgeRoundCommitment(AcceleratorModel):
     judge = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE)
     judging_round = models.ForeignKey(
-        "mc.JudgingRound",
+        "JudgingRound",
         on_delete=models.CASCADE)
     commitment_state = models.BooleanField(default=True)
     capacity = models.IntegerField(default=0)

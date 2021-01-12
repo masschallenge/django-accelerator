@@ -13,14 +13,14 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
 class BaseStartupCycleInterest(AcceleratorModel):
-    cycle = ForeignKey("mc.ProgramCycle",
+    cycle = ForeignKey("ProgramCycle",
                        on_delete=CASCADE)
     startup = ForeignKey(
-        "mc.Startup",
+        "Startup",
         on_delete=CASCADE)
     interested_programs = ManyToManyField(
-        "mc.Program",
-        through="mc.StartupProgramInterest")
+        "Program",
+        through="StartupProgramInterest")
 
     class Meta(AcceleratorModel.Meta):
         unique_together = ('cycle', 'startup')

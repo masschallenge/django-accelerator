@@ -54,18 +54,18 @@ class BaseBucketState(AcceleratorModel):
                              default="Other")
     sort_order = models.PositiveIntegerField()
     cycle = models.ForeignKey(
-        "mc.ProgramCycle",
+        "ProgramCycle",
         blank=True,
         null=True,
         on_delete=models.CASCADE)
     program = models.ForeignKey(
-        "mc.Program",
+        "Program",
         blank=True,
         null=True,
         on_delete=models.CASCADE)
     last_update = models.DateTimeField()
     program_role = models.ForeignKey(
-        "mc.ProgramRole",
+        "ProgramRole",
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):

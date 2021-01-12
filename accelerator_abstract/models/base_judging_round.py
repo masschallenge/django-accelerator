@@ -102,7 +102,7 @@ COLLISION_DETECTION_CHOICES = (
 @python_2_unicode_compatible
 class BaseJudgingRound(AcceleratorModel):
     program = ForeignKey(
-        "mc.Program",
+        "Program",
         on_delete=CASCADE)
     cycle_based_round = BooleanField(
         default=False,
@@ -120,7 +120,7 @@ class BaseJudgingRound(AcceleratorModel):
         help_text=("Check this button to allow judges to get new applications "
                    "without manual allocation by staff."))
     application_type = ForeignKey(
-        "mc.ApplicationType",
+        "ApplicationType",
         blank=True,
         null=True,
         on_delete=CASCADE)
@@ -129,7 +129,7 @@ class BaseJudgingRound(AcceleratorModel):
         default=30,
         help_text='Choose a time in increments of 15 minutes.')
     judging_form = ForeignKey(
-        "mc.JudgingForm",
+        "JudgingForm",
         blank=True, null=True, on_delete=CASCADE)
     recruit_judges = CharField(
         max_length=16,
@@ -165,7 +165,7 @@ class BaseJudgingRound(AcceleratorModel):
         default=FEEDBACK_DISPLAY_DISABLED,
         max_length=10)
     feedback_merge_with = ForeignKey(
-        "mc.JudgingRound",
+        "JudgingRound",
         blank=True,
         null=True,
         help_text='Optional: merge the display of this feedback with '
@@ -202,20 +202,20 @@ class BaseJudgingRound(AcceleratorModel):
         help_text=('Number of breaks the judges will be given '
                    'during a judging panel'))
     startup_label = ForeignKey(
-        "mc.StartupLabel",
+        "StartupLabel",
         blank=True,
         null=True,
         help_text='Label for Startups',
         on_delete=CASCADE)
     desired_judge_label = ForeignKey(
-        "mc.UserLabel",
+        "UserLabel",
         blank=True,
         null=True,
         help_text='Label for Desired Judges',
         related_name='rounds_desired_for',
         on_delete=CASCADE)
     confirmed_judge_label = ForeignKey(
-        "mc.UserLabel",
+        "UserLabel",
         blank=True,
         null=True,
         help_text='Label for Confirmed Judges',

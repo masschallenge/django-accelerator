@@ -12,9 +12,9 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 @python_2_unicode_compatible
 class BaseApplicationAnswer(AcceleratorModel):
     application = models.ForeignKey(
-        to="mc.Application", on_delete=models.CASCADE)
+        to="Application", on_delete=models.CASCADE)
     application_question = models.ForeignKey(
-        "mc.ApplicationQuestion",
+        "ApplicationQuestion",
         on_delete=models.CASCADE)
     answer_text = models.TextField(blank=True)
 

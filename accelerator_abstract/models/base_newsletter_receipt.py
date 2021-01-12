@@ -17,7 +17,7 @@ logger = logging.getLogger(__file__)
 @python_2_unicode_compatible
 class BaseNewsletterReceipt(AcceleratorModel):
     newsletter = models.ForeignKey(
-        "mc.Newsletter",
+        "Newsletter",
         on_delete=models.CASCADE)
     recipient = models.ForeignKey(settings.AUTH_USER_MODEL,
                                   on_delete=models.CASCADE)

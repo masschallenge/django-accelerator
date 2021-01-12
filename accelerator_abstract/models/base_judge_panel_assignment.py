@@ -23,10 +23,10 @@ class BaseJudgePanelAssignment(AcceleratorModel):
     judge = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE)
     panel = models.ForeignKey(
-        "mc.Panel",
+        "Panel",
         on_delete=models.CASCADE)
     scenario = models.ForeignKey(
-        "mc.Scenario",
+        "Scenario",
         related_name='judge_assignments',
         on_delete=models.CASCADE)
     assignment_status = models.CharField(

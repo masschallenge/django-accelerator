@@ -14,7 +14,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 # PayPal in CamelCase and paypal in snake_case.@python_2_unicode_compatible
 class BasePayPalRefund(AcceleratorModel):
     payment = models.ForeignKey(
-        "mc.PayPalPayment",
+        "PayPalPayment",
         on_delete=models.CASCADE)
     status = models.CharField(max_length=100, blank=True)
     transaction = models.CharField(max_length=100, blank=True)

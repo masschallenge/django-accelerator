@@ -18,14 +18,14 @@ CREDIT_CODE_NOT_AVAILABLE = ("Apologies, credit code %s "
 @python_2_unicode_compatible
 class BaseRefundCodeRedemption(AcceleratorModel):
     refund_code = models.ForeignKey(
-        "mc.RefundCode",
+        "RefundCode",
         related_name="redemptions", on_delete=models.CASCADE)
 
     cycle = models.ForeignKey(
-        "mc.ProgramCycle",
+        "ProgramCycle",
         on_delete=models.CASCADE)
     startup = models.ForeignKey(
-        "mc.Startup",
+        "Startup",
         blank=True, null=True, on_delete=models.CASCADE)
     refund_status = models.CharField(
         max_length=32,
