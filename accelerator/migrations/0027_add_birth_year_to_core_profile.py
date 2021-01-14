@@ -5,8 +5,9 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    # Dependency updated after shipping AC-8424
     dependencies = [
-        ('accelerator', '0026_remove_character_limit_to_application_answer'),
+        ('accelerator', '0027_set_swappable_to_none'),
     ]
 
     operations = [
