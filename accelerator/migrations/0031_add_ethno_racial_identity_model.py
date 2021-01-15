@@ -29,7 +29,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_ethnoracialidentity',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_ETHNORACIALIDENTITY_MODEL',
             },
         ),
         migrations.AddField(
