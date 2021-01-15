@@ -28,7 +28,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_genderchoices',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_GENDERCHOICES_MODEL',
             },
         ),
     ]
