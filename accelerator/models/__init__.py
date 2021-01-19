@@ -318,3 +318,5 @@ from accelerator_abstract.models.base_nav_tree import (
 from .nav_tree_item import NavTreeItem
 from .location import Location
 from .program_family_location import ProgramFamilyLocation
+from .gender_choices import GenderChoices
+from .ethno_racial_identity import EthnoRacialIdentity
