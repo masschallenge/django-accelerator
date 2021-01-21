@@ -4,6 +4,9 @@
 import os
 import sys
 import logging
+from django.db.backends.mysql.base import DatabaseWrapper
+
+DatabaseWrapper.data_types['DateTimeField'] = 'datetime'
 
 if len(sys.argv) > 1 and sys.argv[1] == 'test':
     logging.disable(logging.WARNING)
@@ -108,7 +111,6 @@ ACCELERATOR_PAYPALPAYMENT_MODEL = "accelerator.PayPalPayment"
 ACCELERATOR_LEGALCHECK_MODEL = "accelerator.LegalCheck"
 ACCELERATOR_USERLEGALCHECK_MODEL = "accelerator.UserLegalCheck"
 ACCELERATOR_GENDERCHOICES_MODEL = "accelerator.GenderChoices"
-ACCELERATOR_ETHNORACIALIDENTITY_MODEL = "accelerator.EthnoRacialIdentity"
 
 PAYPAL_WPP_USER = ""
 PAYPAL_WPP_PASSWORD = ""
