@@ -11,7 +11,7 @@ from django.db import models
 from django.db.models import Q
 from sorl.thumbnail import ImageField
 
-from accelerator.utils import bullet_train_has_feature
+from accelerator.utils import flag_smith_has_feature
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_user_role import (
     BaseUserRole,
@@ -226,7 +226,7 @@ class BaseCoreProfile(AcceleratorModel):
             return '/staff'
 
     def role_based_landing_page(self, exclude_role_names=[]):
-        if bullet_train_has_feature(EXPERT_NAVIGATION_EPIC):
+        if flag_smith_has_feature(EXPERT_NAVIGATION_EPIC):
             if self.user_type.upper() == EXPERT_USER_TYPE:
                 return "/dashboard/expert/overview/"
         JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
