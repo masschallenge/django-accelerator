@@ -10,6 +10,7 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models import Q
 from sorl.thumbnail import ImageField
+from django.utils.safestring import mark_safe
 
 from accelerator.utils import bullet_train_has_feature
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
@@ -62,6 +63,10 @@ class BaseCoreProfile(AcceleratorModel):
     gender_identity = models.ManyToManyField(
         swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'GenderChoices'),
+        help_text=(mark_safe(
+            'Select as many options as you feel best represent your identity. '
+            'Please press and hold Control (CTRL) on PCs or '
+            'Command (&#8984;) on Macs to select multiple options')),
         blank=True
     )
     gender_self_description = models.TextField(blank=True, default="")
@@ -131,6 +136,10 @@ class BaseCoreProfile(AcceleratorModel):
             AcceleratorModel.Meta.app_label, 'EthnoRacialIdentity'
         ),
         blank=True,
+        help_text=(mark_safe(
+            'Select as many options as you feel best represent your identity. '
+            'Please press and hold Control (CTRL) on PCs or '
+            'Command (&#8984;) on Macs to select multiple options')),
     )
     authorization_to_share_ethno_racial_identity = models.BooleanField(
         default=False,
