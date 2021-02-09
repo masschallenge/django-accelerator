@@ -34,6 +34,11 @@ GENDER_OTHER_CHOICE = ('o', 'Other')
 GENDER_PREFER_NOT_TO_STATE_CHOICE = ('p', 'Prefer Not To State')
 GENDER_UNKNOWN_CHOICE = ('', 'Unknown')
 
+IDENTITY_HELP_TEXT_VALUE = (mark_safe(
+            'Select as many options as you feel best represent your identity. '
+            'Please press and hold Control (CTRL) on PCs or '
+            'Command (&#8984;) on Macs to select multiple options'))
+
 GENDER_CHOICES = (
     GENDER_FEMALE_CHOICE,
     GENDER_MALE_CHOICE,
@@ -63,10 +68,7 @@ class BaseCoreProfile(AcceleratorModel):
     gender_identity = models.ManyToManyField(
         swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'GenderChoices'),
-        help_text=(mark_safe(
-            'Select as many options as you feel best represent your identity. '
-            'Please press and hold Control (CTRL) on PCs or '
-            'Command (&#8984;) on Macs to select multiple options')),
+        help_text=IDENTITY_HELP_TEXT_VALUE,
         blank=True
     )
     gender_self_description = models.TextField(blank=True, default="")
@@ -136,10 +138,7 @@ class BaseCoreProfile(AcceleratorModel):
             AcceleratorModel.Meta.app_label, 'EthnoRacialIdentity'
         ),
         blank=True,
-        help_text=(mark_safe(
-            'Select as many options as you feel best represent your identity. '
-            'Please press and hold Control (CTRL) on PCs or '
-            'Command (&#8984;) on Macs to select multiple options')),
+        help_text=IDENTITY_HELP_TEXT_VALUE
     )
     authorization_to_share_ethno_racial_identity = models.BooleanField(
         default=False,
