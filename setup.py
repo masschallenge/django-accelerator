@@ -28,7 +28,7 @@ INSTALL_REQUIRES = [
     "django-fluent-pages==2.0.6",
     "django-polymorphic",
     "django-sitetree",
-    "flag-smith",
+    "bullet-train",
     "mysqlclient",
 ]
 
