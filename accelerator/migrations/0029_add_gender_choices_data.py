@@ -34,7 +34,7 @@ def add_gender_choices(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0001_initial'),
+        ('accelerator', '0028_add_gender_choices_object'),
     ]
 
     operations = [
