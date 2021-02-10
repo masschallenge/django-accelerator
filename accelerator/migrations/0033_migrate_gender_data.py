@@ -55,7 +55,7 @@ def migrate_gender_data_to_gender_identity(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("accelerator", "0001_initial"),
+        ("accelerator", "0032_add_ethno_racial_identity_data"),
     ]
 
     operations = [
