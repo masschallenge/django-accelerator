@@ -13,7 +13,6 @@ from django.db.models import (
     TextField,
     CASCADE,
 )
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.utils import validate_capacity_options
@@ -100,7 +99,6 @@ COLLISION_DETECTION_CHOICES = (
 )
 
 
-@python_2_unicode_compatible
 class BaseJudgingRound(AcceleratorModel):
     program = ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Program'),

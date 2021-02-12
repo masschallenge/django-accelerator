@@ -9,7 +9,6 @@ import swapper
 from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from embed_video.fields import EmbedVideoField
 from sorl.thumbnail import ImageField
@@ -32,7 +31,6 @@ STARTUP_NO_ORG_WARNING_MSG = "Startup {} has no organization"
 DISPLAY_STARTUP_STATUS = "{status} {year} ({program_family_slug})"
 
 
-@python_2_unicode_compatible
 class BaseStartup(AcceleratorModel):
     organization = models.ForeignKey(swapper.get_model_name(
         AcceleratorModel.Meta.app_label, 'Organization'), blank=True,

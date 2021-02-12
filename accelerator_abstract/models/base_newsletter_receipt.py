@@ -8,14 +8,12 @@ import logging
 import swapper
 from django.conf import settings
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 logger = logging.getLogger(__file__)
 
 
-@python_2_unicode_compatible
 class BaseNewsletterReceipt(AcceleratorModel):
     newsletter = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Newsletter'),
