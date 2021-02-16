@@ -12,7 +12,8 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
 # Conforming to the django-paypal convention of using
-# PayPal in CamelCase and paypal in snake_case.class BasePayPalPayment(AcceleratorModel):
+# PayPal in CamelCase and paypal in snake_case.
+class BasePayPalPayment(AcceleratorModel):
     startup = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"),
         on_delete=models.CASCADE)
