@@ -33,7 +33,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_allocator',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_ALLOCATOR_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -51,7 +50,6 @@ class Migration(migrations.Migration):
                 'ordering': ['startup'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_APPLICATION_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -67,7 +65,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_applicationanswer',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_APPLICATIONANSWER_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -86,7 +83,6 @@ class Migration(migrations.Migration):
                 'ordering': ('panel_slot_number',),
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_APPLICATIONPANELASSIGNMENT_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -110,7 +106,6 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_APPLICATIONQUESTION_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -125,7 +120,6 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_APPLICATIONTYPE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -140,7 +134,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_baseprofile',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_BASEPROFILE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -160,7 +153,6 @@ class Migration(migrations.Migration):
                 'ordering': ['sort_order'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_BUCKETSTATE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -175,7 +167,6 @@ class Migration(migrations.Migration):
                 'db_table': 'pagetype_accelerator_categoryheaderpage',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_CATEGORYHEADERPAGE_MODEL',
             },
             bases=('fluent_pages.page',),
         ),
@@ -191,7 +182,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_clearance',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_CLEARANCE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -209,7 +199,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_criterion',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_CRITERION_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -227,7 +216,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_criterionoptionspec',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_CRITERIONOPTIONSPEC_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -244,7 +232,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_currency',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_CURRENCY_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -275,7 +262,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_entrepreneurprofile',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_ENTREPRENEURPROFILE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -290,7 +276,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_ethnoracialidentity',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_ETHNORACIALIDENTITY_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -308,7 +293,6 @@ class Migration(migrations.Migration):
                 'ordering': ['name'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_EXPERTCATEGORY_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -324,7 +308,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_expertinterest',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_EXPERTINTEREST_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -341,7 +324,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_expertinteresttype',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_EXPERTINTERESTTYPE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -394,7 +376,6 @@ class Migration(migrations.Migration):
                 'permissions': (('change_password', 'Can change users passwords directly'),),
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_EXPERTPROFILE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -410,7 +391,6 @@ class Migration(migrations.Migration):
                 'db_table': 'pagetype_accelerator_filepage',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_FILEPAGE_MODEL',
             },
             bases=('fluent_pages.page',),
         ),
@@ -430,7 +410,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_functionalexpertise',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'MPTT_SWAPPABLE_FUNCTIONALEXPERTISE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -448,7 +427,6 @@ class Migration(migrations.Migration):
                 'ordering': ['name'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_GENDERCHOICES_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -465,7 +443,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_interestcategory',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_INTERESTCATEGORY_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -486,7 +463,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_jobposting',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_JOBPOSTING_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -503,7 +479,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_judgeapplicationfeedback',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_JUDGEAPPLICATIONFEEDBACK_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -520,7 +495,6 @@ class Migration(migrations.Migration):
                 'ordering': ['panel_time__start_date_time', 'panel_type__panel_type', 'panel_location__location'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_JUDGEAVAILABILITY_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -537,7 +511,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_judgefeedbackcomponent',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_JUDGEFEEDBACKCOMPONENT_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -554,7 +527,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_judgepanelassignment',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_JUDGEPANELASSIGNMENT_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -572,7 +544,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_judgeroundcommitment',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_JUDGEROUNDCOMMITMENT_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -589,7 +560,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_judgingform',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_JUDGINGFORM_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -624,7 +594,6 @@ class Migration(migrations.Migration):
                 'ordering': ['form_type', 'element_number'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_JUDGINGFORMELEMENT_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -665,7 +634,6 @@ class Migration(migrations.Migration):
                 'ordering': ['program__program_status', '-program__end_date', '-end_date_time', 'name'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_JUDGINGROUND_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -684,7 +652,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_legalcheck',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_LEGALCHECK_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -708,7 +675,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_location',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_LOCATION_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -738,7 +704,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_memberprofile',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_MEMBERPROFILE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -756,7 +721,6 @@ class Migration(migrations.Migration):
                 'ordering': ['name'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_MENTORINGSPECIALTIES_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -778,7 +742,6 @@ class Migration(migrations.Migration):
                 'ordering': ['start_date_time'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_MENTORPROGRAMOFFICEHOUR_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -794,7 +757,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_modelchange',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_MODELCHANGE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -810,7 +772,6 @@ class Migration(migrations.Migration):
                 'ordering': ['name'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_NAMEDGROUP_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -827,7 +788,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_navtree',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_NAVTREE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -860,7 +820,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_navtreeitem',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_NAVTREEITEM_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -880,7 +839,6 @@ class Migration(migrations.Migration):
                 'ordering': ('-created_at', 'name'),
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_NEWSLETTER_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -894,7 +852,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_newsletterreceipt',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_NEWSLETTERRECEIPT_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -910,7 +867,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_nodepublishedfor',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_NODEPUBLISHEDFOR_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -926,7 +882,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_nodesubnavassociation',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_NODESUBNAVASSOCIATION_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -949,7 +904,6 @@ class Migration(migrations.Migration):
                 'ordering': ['last_name', 'first_name'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_OBSERVER_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -970,7 +924,6 @@ class Migration(migrations.Migration):
                 'ordering': ['name'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_ORGANIZATION_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -987,7 +940,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_panel',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PANEL_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1004,7 +956,6 @@ class Migration(migrations.Migration):
                 'ordering': ['judging_round', 'description'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PANELLOCATION_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1024,7 +975,6 @@ class Migration(migrations.Migration):
                 'ordering': ['judging_round', 'start_date_time'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PANELTIME_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1041,7 +991,6 @@ class Migration(migrations.Migration):
                 'ordering': ['judging_round', 'description'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PANELTYPE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1059,7 +1008,6 @@ class Migration(migrations.Migration):
                 'ordering': ['organization__name'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PARTNER_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1076,7 +1024,6 @@ class Migration(migrations.Migration):
                 'ordering': ['team_member__last_name', 'team_member__first_name'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PARTNERTEAMMEMBER_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1095,7 +1042,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_paypalpayment',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PAYPALPAYMENT_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1113,7 +1059,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_paypalrefund',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PAYPALREFUND_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1156,7 +1101,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_program',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PROGRAM_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1180,7 +1124,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_programcycle',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PROGRAMCYCLE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1204,7 +1147,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_programfamily',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PROGRAMFAMILY_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1221,7 +1163,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_programfamilylocation',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PROGRAMFAMILYLOCATION_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1243,7 +1184,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_programoverride',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PROGRAMOVERRIDE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1260,7 +1200,6 @@ class Migration(migrations.Migration):
                 'ordering': ['program__name', 'partner_type__sort_order', 'partner'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PROGRAMPARTNER_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1282,7 +1221,6 @@ class Migration(migrations.Migration):
                 'ordering': ['program', 'sort_order'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PROGRAMPARTNERTYPE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1302,7 +1240,6 @@ class Migration(migrations.Migration):
                 'ordering': ['name'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PROGRAMROLE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1318,7 +1255,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_programrolegrant',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PROGRAMROLEGRANT_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1341,7 +1277,6 @@ class Migration(migrations.Migration):
                 'ordering': ['program', 'attribute_label'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PROGRAMSTARTUPATTRIBUTE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1369,7 +1304,6 @@ class Migration(migrations.Migration):
                 'ordering': ['program', 'sort_order', 'startup_status'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PROGRAMSTARTUPSTATUS_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1387,7 +1321,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_question',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_QUESTION_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1415,7 +1348,6 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_REFERENCE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1435,7 +1367,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_refundcode',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_REFUNDCODE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1452,7 +1383,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_refundcoderedemption',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_REFUNDCODEREDEMPTION_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1473,7 +1403,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_scenario',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_SCENARIO_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1489,7 +1418,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_scenarioapplication',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_SCENARIOAPPLICATION_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1504,7 +1432,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_scenariojudge',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_SCENARIOJUDGE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1524,7 +1451,6 @@ class Migration(migrations.Migration):
                 'ordering': ['priority'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_SCENARIOPREFERENCE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1543,7 +1469,6 @@ class Migration(migrations.Migration):
                 'ordering': ('newsletter', 'sequence'),
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_SECTION_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1561,7 +1486,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_site',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_SITE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1588,7 +1512,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_siteprogramauthorization',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_SITEPROGRAMAUTHORIZATION_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1603,7 +1526,6 @@ class Migration(migrations.Migration):
                 'db_table': 'pagetype_accelerator_siteredirectpage',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_SITEREDIRECTPAGE_MODEL',
             },
             bases=('fluent_pages.page',),
         ),
@@ -1639,7 +1561,6 @@ class Migration(migrations.Migration):
                 'ordering': ['organization__name'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_STARTUP_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1655,7 +1576,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_startupattribute',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_STARTUPATTRIBUTE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1669,7 +1589,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_startupcycleinterest',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_STARTUPCYCLEINTEREST_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1683,7 +1602,6 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_STARTUPLABEL_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1700,7 +1618,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_startupmentorrelationship',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_STARTUPMENTORRELATIONSHIP_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1718,7 +1635,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_startupmentortrackingrecord',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_STARTUPMENTORTRACKINGRECORD_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1733,7 +1649,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_startupoverridegrant',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_STARTUPOVERRIDEGRANT_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1751,7 +1666,6 @@ class Migration(migrations.Migration):
                 'ordering': ['order'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_STARTUPPROGRAMINTEREST_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1766,7 +1680,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_startuprole',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_STARTUPROLE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1781,7 +1694,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_startupstatus',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_STARTUPSTATUS_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1808,7 +1720,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_startupteammember',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_STARTUPTEAMMEMBER_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1824,7 +1735,6 @@ class Migration(migrations.Migration):
                 'ordering': ['label'],
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_USERLABEL_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1840,7 +1750,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_userlegalcheck',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_USERLEGALCHECK_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1856,7 +1765,6 @@ class Migration(migrations.Migration):
                 'db_table': 'accelerator_userrole',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_USERROLE_MODEL',
             },
         ),
         migrations.CreateModel(
@@ -1871,7 +1779,6 @@ class Migration(migrations.Migration):
                 'db_table': 'pagetype_accelerator_userrolemenu',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_USERROLEMENU_MODEL',
             },
             bases=('fluent_pages.page',),
         ),
@@ -1893,7 +1800,6 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'Industries',
                 'db_table': 'accelerator_industry',
                 'abstract': False,
-                'swappable': 'MPTT_SWAPPABLE_INDUSTRY_MODEL',
             },
         ),
     ]
