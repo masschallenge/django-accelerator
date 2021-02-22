@@ -44,8 +44,8 @@ SITE_ID = 1
 
 ROOT_URLCONF = "accelerator.tests.urls"
 
-BULLET_TRAIN_API_KEY = os.environ.get(
-    "BULLET_TRAIN_API_KEY", 'aX45EUqSsAqhTvv5nW7WEL')
+FLAG_SMITH_API_KEY = os.environ.get(
+    "FLAG_SMITH_API_KEY", 'aX45EUqSsAqhTvv5nW7WEL')
 
 SECRET_KEY = "notasecret"
 
