@@ -18,12 +18,12 @@ def create_mc_permission(permission):
         user.user_permissions.add(new_perm)
 
 
-def bullet_train_has_feature(feature_name):
-    if settings.BULLET_TRAIN_API_KEY:
-        bullet_tran_key = settings.BULLET_TRAIN_API_KEY.strip('"')
+def flag_smith_has_feature(feature_name):
+    if settings.FLAG_SMITH_API_KEY:
+        flag_smith_key = settings.FLAG_SMITH_API_KEY.strip('"')
     else:
-        bullet_tran_key = ''
-    bt = BulletTrain(environment_id=bullet_tran_key)
+        flag_smith_key = ''
+    bt = BulletTrain(environment_id=flag_smith_key)
     if bt:
         if bt.has_feature(feature_name):
             return bt.feature_enabled(feature_name)
