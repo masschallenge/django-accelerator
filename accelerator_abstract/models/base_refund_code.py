@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -13,7 +12,6 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 # DO NOT DELETE NEXT LINE:
 # It is necessary to be able to mock out PayPalWPP
 
-@python_2_unicode_compatible
 class BaseRefundCode(AcceleratorModel):
     unique_code = models.CharField(max_length=100, unique=True)
     programs = models.ManyToManyField(

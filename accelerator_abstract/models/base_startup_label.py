@@ -5,12 +5,10 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.label_model import LabelModel
 
 
-@python_2_unicode_compatible
 class BaseStartupLabel(LabelModel):
     label = models.CharField(max_length=LabelModel.LABEL_LENGTH)
     startups = models.ManyToManyField(

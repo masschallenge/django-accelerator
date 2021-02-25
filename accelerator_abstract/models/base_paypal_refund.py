@@ -12,7 +12,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
 # Conforming to the django-paypal convention of using
-# PayPal in CamelCase and paypal in snake_case.@python_2_unicode_compatible
+# PayPal in CamelCase and paypal in snake_case.
 class BasePayPalRefund(AcceleratorModel):
     payment = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
