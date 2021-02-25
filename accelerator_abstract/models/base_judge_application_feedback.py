@@ -8,7 +8,6 @@ import logging
 import swapper
 from django.conf import settings
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -33,7 +32,6 @@ JUDGING_STATUS_ENUM = (
     (JUDGING_STATUS_OTHER, 'Not Judged - Other (eg., no show)'),)
 
 
-@python_2_unicode_compatible
 class BaseJudgeApplicationFeedback(AcceleratorModel):
     application = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Application"),

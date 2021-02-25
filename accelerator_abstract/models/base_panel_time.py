@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.utils import (
@@ -14,7 +13,6 @@ from accelerator_abstract.utils import (
 )
 
 
-@python_2_unicode_compatible
 class BasePanelTime(AcceleratorModel):
     day = models.CharField(max_length=255)
     time = models.CharField(max_length=255)

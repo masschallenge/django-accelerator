@@ -8,12 +8,10 @@ from __future__ import unicode_literals
 import swapper
 from django.conf import settings
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
 class BaseUserLegalCheck(AcceleratorModel):
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL,

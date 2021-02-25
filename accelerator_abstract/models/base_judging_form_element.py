@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import (
     AcceleratorModel,
@@ -77,7 +76,6 @@ FORM_ELEM_FEEDBACK_TO_STARTUP = "FEEDBACK_TO_STARTUP"
 FORM_ELEM_FEEDBACK_TO_MC = 'FEEDBACK_TO_MC'
 
 
-@python_2_unicode_compatible
 class BaseJudgingFormElement(AcceleratorModel):
     form_type = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "JudgingForm"),
