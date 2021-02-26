@@ -320,3 +320,4 @@ from .location import Location
 from .program_family_location import ProgramFamilyLocation
 from .gender_choices import GenderChoices
 from .ethno_racial_identity import EthnoRacialIdentity
+from .deferrable_modal import DeferrableModal
