@@ -5,7 +5,6 @@ from datetime import (
 )
 from factory import (
     Sequence,
-    SubFactory,
     post_generation,
 )
 from factory.django import DjangoModelFactory
