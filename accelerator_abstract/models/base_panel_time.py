@@ -35,7 +35,7 @@ class BasePanelTime(AcceleratorModel):
         return self.create_time_frame(self.start_date_time)
 
     def create_time_frame(self, start_time):
-        return u"%s, %s-%s" % (
+        return "%s, %s-%s" % (
             self.day,
             local_time(start_time).strftime(HOUR_FORMAT),
             local_time(self.end_date_time).strftime(HOUR_FORMAT))

@@ -82,7 +82,7 @@ class User(AbstractUser):
         fn = self.first_name
         ln = self.last_name
         if fn and ln:
-            name = u"%s %s" % (fn, ln)
+            name = "%s %s" % (fn, ln)
         else:
             name = str(self.email)
         return name

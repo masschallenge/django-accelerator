@@ -15,5 +15,5 @@ class TestApplicationPanelAssignment(TestCase):
         self.apa = ApplicationPanelAssignmentFactory()
 
     def test_str(self):
-        expected = u"{} -> {}".format(self.apa.application, self.apa.panel)
+        expected = "{} -> {}".format(self.apa.application, self.apa.panel)
         self.assertEqual(str(self.apa), expected)

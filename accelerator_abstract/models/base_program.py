@@ -111,8 +111,8 @@ class BaseProgram(AcceleratorModel):
     many_codes_per_partner = models.BooleanField(
         default=False,
         verbose_name="Allow multiple refund codes per partner",
-        help_text=u"If true, then a given application may apply more than one "
-                  u"refund code from the same partner for this program"
+        help_text="If true, then a given application may apply more than one "
+                  "refund code from the same partner for this program"
     )
     url_slug = models.CharField(
         max_length=30,
