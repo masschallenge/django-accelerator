@@ -4,12 +4,10 @@
 from __future__ import unicode_literals
 
 from django.db.models import CharField
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
 class BaseStartupRole(AcceleratorModel):
     # Known Startup Roles
     FINALIST = "Finalist"

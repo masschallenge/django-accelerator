@@ -8,7 +8,6 @@ import logging
 import swapper
 from django.conf import settings
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -18,7 +17,6 @@ NOT_AVAILABLE_MSG = ("You have indicated that you are not available for "
                      "this round.")
 
 
-@python_2_unicode_compatible
 class BaseJudgeRoundCommitment(AcceleratorModel):
     judge = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE)

@@ -7,7 +7,6 @@ import logging
 import swapper
 from django.conf import settings
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -86,7 +85,6 @@ def _level_rank(user, level, program_family=None):
     return level_rank
 
 
-@python_2_unicode_compatible
 class BaseClearance(AcceleratorModel):
     objects = ClearanceManager()
     user = models.ForeignKey(settings.AUTH_USER_MODEL,

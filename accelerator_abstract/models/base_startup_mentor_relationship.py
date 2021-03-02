@@ -6,7 +6,6 @@ from __future__ import unicode_literals
 import swapper
 from django.conf import settings
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -18,7 +17,6 @@ RELATIONSHIP_CHOICES = ((CONFIRMED_RELATIONSHIP, CONFIRMED_RELATIONSHIP),
                         (DESIRED_RELATIONSHIP, DESIRED_RELATIONSHIP))
 
 
-@python_2_unicode_compatible
 class BaseStartupMentorRelationship(AcceleratorModel):
     startup_mentor_tracking = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
