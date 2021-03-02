@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0033_migrate_gender_data'),
+        ('accelerator', '0034_remove_use_site_tree_side_nav'),
     ]
 
     operations = [
