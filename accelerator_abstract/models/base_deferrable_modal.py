@@ -29,7 +29,7 @@ class BaseDeferrableModal(AcceleratorModel):
         help_text='Deferment button text')
     content = models.TextField(
         default='',
-        help_text='Deferrable modal content. Use HTML for links.')
+        help_text='Modal popup content can accept HTML')
     duration = models.DurationField(
         blank=True,
         null=True,
@@ -53,6 +53,10 @@ class BaseDeferrableModal(AcceleratorModel):
         blank=True, )
     active_program = models.BooleanField(default=False)
     published = models.BooleanField(default=False)
+    redirect_url = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,)
 
     class Meta(AcceleratorModel.Meta):
         abstract = True

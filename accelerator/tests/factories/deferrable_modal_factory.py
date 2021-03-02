@@ -24,6 +24,7 @@ class DeferrableModalFactory(DjangoModelFactory):
     submit_button = Sequence(lambda n: "Submit button text {0}".format(n))
     defer_button = Sequence(lambda n: "Deferment button text {0}".format(n))
     content = Sequence(lambda n: "Deferment button content {0}".format(n))
+    redirect_url = Sequence(lambda n: "/test-url-{0}".format(n))
     duration = timedelta(days=1)
     user_type = FuzzyChoice([type[0] for type in USER_TYPES])
     active_program = False
