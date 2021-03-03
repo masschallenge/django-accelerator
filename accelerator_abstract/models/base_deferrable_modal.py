@@ -39,15 +39,15 @@ class BaseDeferrableModal(AcceleratorModel):
         choices=USER_TYPES,
         blank=True,
         null=True, )
-    user_role = models.ManyToManyField(
+    user_roles = models.ManyToManyField(
         to=swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'UserRole'),
         blank=True, )
-    program = models.ManyToManyField(
+    programs = models.ManyToManyField(
         to=swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'Program'),
         blank=True, )
-    program_family = models.ManyToManyField(
+    program_families = models.ManyToManyField(
         to=swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'ProgramFamily'),
         blank=True, )
