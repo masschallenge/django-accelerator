@@ -31,7 +31,7 @@ class DeferrableModalFactory(DjangoModelFactory):
     published = False
 
     @post_generation
-    def user_role(self, create, extracted, **kwargs):
+    def user_roles(self, create, extracted, **kwargs):
         if not create:
             return
         if extracted:
@@ -39,7 +39,7 @@ class DeferrableModalFactory(DjangoModelFactory):
                 self.user_role.add(user_role)
 
     @post_generation
-    def program(self, create, extracted, **kwargs):
+    def programs(self, create, extracted, **kwargs):
         if not create:
             return
         if extracted:
@@ -47,7 +47,7 @@ class DeferrableModalFactory(DjangoModelFactory):
                 self.program.add(program)
 
     @post_generation
-    def program_family(self, create, extracted, **kwargs):
+    def program_families(self, create, extracted, **kwargs):
         if not create:
             return
         if extracted:
