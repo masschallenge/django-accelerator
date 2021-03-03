@@ -20,5 +20,3 @@ class UserDeferrableModalFactory(DjangoModelFactory):
     deferrable_modal = SubFactory(DeferrableModalFactory)
     is_deferred = False
     deferred_to = datetime.now() + timedelta(days=1)
-
-
