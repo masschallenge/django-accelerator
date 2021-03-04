@@ -21,6 +21,6 @@ class BaseUserDeferrableModal(AcceleratorModel):
         abstract = True
         verbose_name = 'User Deferrable Modal'
 
-    def __str__(self):
+    def __repr__(self):
         return 'User Deferrable Modal: {}'.format(
             self.deferrable_modal.name)
