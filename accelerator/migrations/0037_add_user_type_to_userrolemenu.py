@@ -15,7 +15,10 @@ class Migration(migrations.Migration):
             name='user_type',
             field=models.CharField(
                 blank=True,
-                choices=[('EXPERT', 'Expert'), ('ENTREPRENEUR', 'Entrepreneur')],
+                choices=[
+                    ('EXPERT', 'Expert'),
+                    ('ENTREPRENEUR', 'Entrepreneur')
+                ],
                 max_length=12),
         ),
     ]
