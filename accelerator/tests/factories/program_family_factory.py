@@ -21,4 +21,3 @@ class ProgramFamilyFactory(DjangoModelFactory):
     phone_number = "617-555-1212"
     is_open_for_startups = True
     is_open_for_experts = True
-    use_site_tree_side_nav = False
