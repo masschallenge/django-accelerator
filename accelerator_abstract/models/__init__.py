@@ -323,3 +323,4 @@ from .base_nav_tree_item import BaseNavTreeItem
 from .base_fluent_sub_nav_association import BaseNodeSubNavAssociation
 from .base_ethno_racial_identity import BaseEthnoRacialIdentity
 from .base_deferrable_modal import BaseDeferrableModal
+from .base_user_deferrable_modal import BaseUserDeferrableModal
