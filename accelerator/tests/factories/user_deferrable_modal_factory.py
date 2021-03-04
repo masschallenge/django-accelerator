@@ -14,6 +14,7 @@ UserDeferrableModal = swapper.load_model('accelerator', 'UserDeferrableModal')
 
 class UserDeferrableModalFactory(DjangoModelFactory):
     class Meta:
+        django_get_or_create = ('deferrable_modal', 'user',)
         model = UserDeferrableModal
 
     user = SubFactory(UserFactory)
