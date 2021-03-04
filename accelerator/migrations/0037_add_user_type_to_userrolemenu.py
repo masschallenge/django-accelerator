@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0035_add_deferrable_modal_model'),
+        ('accelerator', '0036_add_user_deferrable_modal'),
     ]
 
     operations = [
