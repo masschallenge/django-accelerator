@@ -10,7 +10,6 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.models import (
     CAPTURE_AVAILABILITY_DISABLED,
     FEEDBACK_DISPLAY_DISABLED,
@@ -34,7 +33,7 @@ from accelerator_abstract.models.base_judging_round import (
     SCENARIO_DETECTION,
 )
 
-JudgingRound = swapper.load_model(AcceleratorConfig.name, 'JudgingRound')
+JudgingRound = swapper.load_model('accelerator', 'JudgingRound')
 
 
 class JudgingRoundFactory(DjangoModelFactory):

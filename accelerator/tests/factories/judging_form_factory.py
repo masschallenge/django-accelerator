@@ -7,9 +7,7 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
-
-JudgingForm = swapper.load_model(AcceleratorConfig.name, 'JudgingForm')
+JudgingForm = swapper.load_model('accelerator', 'JudgingForm')
 
 
 class JudgingFormFactory(DjangoModelFactory):

@@ -7,13 +7,12 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories import (
     ProgramOverrideFactory,
     StartupFactory,
 )
 
-StartupOverrideGrant = swapper.load_model(AcceleratorConfig.name,
+StartupOverrideGrant = swapper.load_model('accelerator',
                                           'StartupOverrideGrant')
 
 

@@ -6,7 +6,6 @@ from __future__ import unicode_literals
 import swapper
 from django.conf import settings
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -25,7 +24,6 @@ PROGRAM_GOALS_HELP = ("Submit the three goals you plan to work on "
                       "with your mentors during the accelerator program.")
 
 
-@python_2_unicode_compatible
 class BaseStartupMentorTrackingRecord(AcceleratorModel):
     startup = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"),
@@ -49,8 +47,7 @@ class BaseStartupMentorTrackingRecord(AcceleratorModel):
         null=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_startupmentortrackingrecord'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_startupmentortrackingrecord'
         abstract = True
         verbose_name = "Mentor Tracking Record"
         verbose_name_plural = "Mentor Tracking Records"

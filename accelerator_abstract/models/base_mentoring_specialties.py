@@ -12,8 +12,7 @@ class BaseMentoringSpecialties(AcceleratorModel):
     name = models.CharField(max_length=255, unique=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_mentoringspecialties'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_mentoringspecialties'
         abstract = True
         ordering = ['name', ]
         verbose_name = "Mentoring Specialty"

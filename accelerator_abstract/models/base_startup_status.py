@@ -5,12 +5,10 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
 class BaseStartupStatus(AcceleratorModel):
     startup = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"),
@@ -21,8 +19,7 @@ class BaseStartupStatus(AcceleratorModel):
         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_startupstatus'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_startupstatus'
         abstract = True
         verbose_name_plural = 'Startup Statuses'
         unique_together = ('startup', 'program_startup_status')

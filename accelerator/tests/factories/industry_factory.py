@@ -7,9 +7,7 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
-
-Industry = swapper.load_model(AcceleratorConfig.name, 'Industry')
+Industry = swapper.load_model('accelerator', 'Industry')
 
 
 class IndustryFactory(DjangoModelFactory):

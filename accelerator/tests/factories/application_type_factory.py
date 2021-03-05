@@ -10,12 +10,11 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.startup_label_factory import (
     StartupLabelFactory
 )
 
-ApplicationType = swapper.load_model(AcceleratorConfig.name, 'ApplicationType')
+ApplicationType = swapper.load_model('accelerator', 'ApplicationType')
 
 
 class ApplicationTypeFactory(DjangoModelFactory):

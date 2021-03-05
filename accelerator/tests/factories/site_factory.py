@@ -7,9 +7,7 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
-
-Site = swapper.load_model(AcceleratorConfig.name, 'Site')
+Site = swapper.load_model('accelerator', 'Site')
 
 
 class SiteFactory(DjangoModelFactory):

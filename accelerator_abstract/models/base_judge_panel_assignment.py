@@ -6,7 +6,6 @@ from __future__ import unicode_literals
 import swapper
 from django.conf import settings
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -19,7 +18,6 @@ JUDGE_PANEL_ASSIGNMENT_STATUS_ENUM = (
 )
 
 
-@python_2_unicode_compatible
 class BaseJudgePanelAssignment(AcceleratorModel):
     judge = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE)
@@ -42,8 +40,7 @@ class BaseJudgePanelAssignment(AcceleratorModel):
         null=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_judgepanelassignment'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_judgepanelassignment'
         abstract = True
         verbose_name_plural = "assignments of judge to panel"
         unique_together = ('judge', 'panel', 'scenario')

@@ -10,7 +10,6 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.models import (
     JUDGING_FEEDBACK_STATUS_INCOMPLETE,
     JUDGING_STATUS_NO_CONFLICT,
@@ -20,7 +19,7 @@ from accelerator.tests.factories.expert_factory import ExpertFactory
 from accelerator.tests.factories.judging_form_factory import JudgingFormFactory
 from accelerator.tests.factories.panel_factory import PanelFactory
 
-JudgeApplicationFeedback = swapper.load_model(AcceleratorConfig.name,
+JudgeApplicationFeedback = swapper.load_model('accelerator',
                                               'JudgeApplicationFeedback')
 
 

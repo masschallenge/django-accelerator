@@ -5,12 +5,10 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
 class BaseApplicationPanelAssignment(AcceleratorModel):
     application = models.ForeignKey(swapper.get_model_name(
         AcceleratorModel.Meta.app_label, "Application"),
@@ -31,8 +29,7 @@ class BaseApplicationPanelAssignment(AcceleratorModel):
         verbose_name_plural = "assignments of startup applications to panel"
         unique_together = ("application", "panel", "scenario")
         ordering = ('panel_slot_number',)
-        db_table = '{}_applicationpanelassignment'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_applicationpanelassignment'
         abstract = True
 
     def __str__(self):

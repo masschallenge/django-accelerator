@@ -10,7 +10,6 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.models import (
     JUDGE_ENTITY,
     JUDGE_IS_FEMALE,
@@ -18,8 +17,7 @@ from accelerator.models import (
 )
 from accelerator.tests.factories.scenario_factory import ScenarioFactory
 
-ScenarioPreference = swapper.load_model(AcceleratorConfig.name,
-                                        'ScenarioPreference')
+ScenarioPreference = swapper.load_model('accelerator', 'ScenarioPreference')
 
 
 class ScenarioPreferenceFactory(DjangoModelFactory):

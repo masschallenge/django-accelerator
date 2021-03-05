@@ -8,7 +8,6 @@ import logging
 import swapper
 from django.conf import settings
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -33,7 +32,6 @@ JUDGING_STATUS_ENUM = (
     (JUDGING_STATUS_OTHER, 'Not Judged - Other (eg., no show)'),)
 
 
-@python_2_unicode_compatible
 class BaseJudgeApplicationFeedback(AcceleratorModel):
     application = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Application"),
@@ -57,16 +55,17 @@ class BaseJudgeApplicationFeedback(AcceleratorModel):
     viewers = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name="viewed_feedback",
-        db_table="{}_judgeapplicationfeedback_viewers".format(
-            AcceleratorModel.Meta.app_label))
+        db_table="accelerator_judgeapplicationfeedback_viewers")
 
     MANDATORY_MESSAGE = 'The question "%s" is mandatory.'
     REQUIRED_MINIMUM_MESSAGE = 'The question "%s" requires a minimum of %s %s.'
     STR_FORMAT = 'Feedback to Application %s by Judge %s'
+    REQUIRED_MAXIMUM_MESSAGE = 'The question "%s" requires a maximum of %s %s.'
+    REQUIRED_CHARACTER_SET_MESSAGE = ('The question "%s" must be in English'
+                                      ' text')
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_judgeapplicationfeedback'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_judgeapplicationfeedback'
         abstract = True
         verbose_name_plural = 'Judge Application Feedback'
         unique_together = ('application', 'judge', 'panel')

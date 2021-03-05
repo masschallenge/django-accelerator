@@ -7,12 +7,10 @@ import swapper
 from django.conf import settings
 from django.core.validators import EmailValidator
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
 class BaseReference(AcceleratorModel):
     application = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Application"),
@@ -38,8 +36,7 @@ class BaseReference(AcceleratorModel):
                                         on_delete=models.CASCADE)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_reference'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_reference'
         abstract = True
 
     def __str__(self):

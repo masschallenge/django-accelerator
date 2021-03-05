@@ -7,9 +7,7 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
-
-MentoringSpecialties = swapper.load_model(AcceleratorConfig.name,
+MentoringSpecialties = swapper.load_model('accelerator',
                                           'MentoringSpecialties')
 
 

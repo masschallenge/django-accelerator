@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import (
     AcceleratorModel,
@@ -22,7 +21,6 @@ TEXT_LIMIT_UNITS = ((CHARACTERS_UNIT_NAME.lower(), CHARACTERS_UNIT_NAME),
                     (WORDS_UNIT_NAME.lower(), WORDS_UNIT_NAME))
 
 
-@python_2_unicode_compatible
 class BaseApplicationQuestion(AcceleratorModel):
     application_type = models.ForeignKey(swapper.get_model_name(
         AcceleratorModel.Meta.app_label, "ApplicationType"),
@@ -73,8 +71,7 @@ class BaseApplicationQuestion(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         abstract = True
-        db_table = '{}_applicationquestion'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_applicationquestion'
         ordering = ["application_type", "question_number", ]
         verbose_name_plural = "Application Questions"
 

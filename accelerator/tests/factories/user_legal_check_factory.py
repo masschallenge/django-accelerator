@@ -7,13 +7,12 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.legal_check_factory import (
     LegalCheckFactory
 )
 from simpleuser.tests.factories.user_factory import UserFactory
 
-UserLegalCheck = swapper.load_model(AcceleratorConfig.name, 'UserLegalCheck')
+UserLegalCheck = swapper.load_model('accelerator', 'UserLegalCheck')
 
 
 class UserLegalCheckFactory(DjangoModelFactory):

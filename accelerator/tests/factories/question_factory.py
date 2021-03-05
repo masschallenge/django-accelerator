@@ -7,13 +7,12 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.models import (
     CHOICE_LAYOUT_HORIZONTAL,
     QUESTION_TYPE_MULTILINE,
 )
 
-Question = swapper.load_model(AcceleratorConfig.name, 'Question')
+Question = swapper.load_model('accelerator', 'Question')
 
 
 class QuestionFactory(DjangoModelFactory):

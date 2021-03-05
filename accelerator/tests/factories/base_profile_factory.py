@@ -6,10 +6,9 @@ from __future__ import unicode_literals
 import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
-from accelerator.apps import AcceleratorConfig
 from simpleuser.tests.factories.user_factory import UserFactory
 
-BaseProfile = swapper.load_model(AcceleratorConfig.name, 'BaseProfile')
+BaseProfile = swapper.load_model('accelerator', 'BaseProfile')
 
 
 class BaseProfileFactory(DjangoModelFactory):

@@ -52,11 +52,8 @@ class BaseProgramFamily(AcceleratorModel):
         help_text="Whether this ProgramFamily should be available to"
                   " experts"
     )
-    use_site_tree_side_nav = BooleanField(
-        default=False,
-        help_text="Show the new-style side navigation")
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = "program families"
-        db_table = '{}_programfamily'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_programfamily'
         abstract = True

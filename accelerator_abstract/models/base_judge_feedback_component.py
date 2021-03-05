@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -37,7 +36,6 @@ LINEAR_SCORES = {
 }
 
 
-@python_2_unicode_compatible
 class BaseJudgeFeedbackComponent(AcceleratorModel):
     judge_feedback = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
@@ -51,8 +49,7 @@ class BaseJudgeFeedbackComponent(AcceleratorModel):
     original_answer_text = models.TextField(blank=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_judgefeedbackcomponent'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_judgefeedbackcomponent'
         abstract = True
         verbose_name_plural = 'Feedback Components'
         unique_together = ('judge_feedback', 'feedback_element')

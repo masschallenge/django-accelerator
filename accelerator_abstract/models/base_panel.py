@@ -11,7 +11,6 @@ from django.db.models import (
     ManyToManyField,
     CASCADE,
 )
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -29,7 +28,6 @@ PANEL_AVAILABILITY_KEYWORD_SLOTS = {'time': 'panel_time',
                                     'location': 'location'}
 
 
-@python_2_unicode_compatible
 class BasePanel(AcceleratorModel):
     judges = ManyToManyField(
         settings.AUTH_USER_MODEL,
@@ -56,8 +54,7 @@ class BasePanel(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Panels'
-        db_table = '{}_panel'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_panel'
         abstract = True
 
     def __str__(self):

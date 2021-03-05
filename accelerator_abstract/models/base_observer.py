@@ -5,12 +5,10 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
 class BaseObserver(AcceleratorModel):
     first_name = models.CharField(max_length=50, blank=True, null=True)
     last_name = models.CharField(max_length=50)
@@ -23,8 +21,7 @@ class BaseObserver(AcceleratorModel):
     newsletter_sender = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_observer'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_observer'
         abstract = True
         ordering = ['last_name', 'first_name']
         verbose_name = "Observer"

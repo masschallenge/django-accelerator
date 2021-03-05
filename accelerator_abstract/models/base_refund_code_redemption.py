@@ -7,7 +7,6 @@ import decimal
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_application import REFUND_STATUSES
@@ -16,7 +15,6 @@ CREDIT_CODE_NOT_AVAILABLE = ("Apologies, credit code %s "
                              "is no longer available")
 
 
-@python_2_unicode_compatible
 class BaseRefundCodeRedemption(AcceleratorModel):
     refund_code = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "RefundCode"),
@@ -45,8 +43,7 @@ class BaseRefundCodeRedemption(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         unique_together = ("startup", "refund_code", "cycle")
-        db_table = "{}_refundcoderedemption".format(
-            AcceleratorModel.Meta.app_label)
+        db_table = "accelerator_refundcoderedemption"
         abstract = True
 
     def __str__(self):

@@ -10,9 +10,7 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
-
-FunctionalExpertise = swapper.load_model(AcceleratorConfig.name,
+FunctionalExpertise = swapper.load_model('accelerator',
                                          'FunctionalExpertise')
 
 

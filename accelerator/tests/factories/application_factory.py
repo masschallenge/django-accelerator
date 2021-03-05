@@ -13,7 +13,6 @@ from factory import SubFactory
 from factory.django import DjangoModelFactory
 from pytz import utc
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.application_type_factory import (
     ApplicationTypeFactory
 )
@@ -25,8 +24,7 @@ from accelerator_abstract.models.base_application import (
     INCOMPLETE_APP_STATUS,
 )
 
-Application = swapper.load_model(AcceleratorConfig.name,
-                                 'Application')
+Application = swapper.load_model('accelerator', 'Application')
 
 
 class ApplicationFactory(DjangoModelFactory):

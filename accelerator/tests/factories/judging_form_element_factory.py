@@ -10,13 +10,12 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.application_question_factory import (
     ApplicationQuestionFactory
 )
 from accelerator.tests.factories.judging_form_factory import JudgingFormFactory
 
-JudgingFormElement = swapper.load_model(AcceleratorConfig.name,
+JudgingFormElement = swapper.load_model('accelerator',
                                         'JudgingFormElement')
 
 

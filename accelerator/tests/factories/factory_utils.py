@@ -3,6 +3,9 @@
 
 from __future__ import unicode_literals
 
+from accelerator.tests.factories.ethno_racial_identity_factory import (
+    EthnoRacialIdentityFactory,
+)
 from accelerator.tests.factories.expert_category_factory import (
     ExpertCategoryFactory
 )
@@ -29,4 +32,5 @@ def expert_data(user, password="password"):
         "username": user.username,
         "password": password,
         "date_joined": user.date_joined.date(),
+        "ethno_racial_identification": [EthnoRacialIdentityFactory().id],
     }

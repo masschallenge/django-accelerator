@@ -50,7 +50,7 @@ class BaseLocation(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = "locations"
-        db_table = '{}_location'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_location'
         abstract = True
 
     def __str__(self):

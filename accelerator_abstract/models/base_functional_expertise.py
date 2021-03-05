@@ -4,7 +4,6 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from mptt.models import (
     MPTTModel,
     TreeForeignKey,
@@ -13,7 +12,6 @@ from mptt.models import (
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
 class BaseFunctionalExpertise(MPTTModel, AcceleratorModel):
     name = models.CharField(max_length=255)
     parent = TreeForeignKey('self',
@@ -26,8 +24,7 @@ class BaseFunctionalExpertise(MPTTModel, AcceleratorModel):
         order_insertion_by = ['name', ]
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_functionalexpertise'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_functionalexpertise'
         abstract = True
 
     def __str__(self):

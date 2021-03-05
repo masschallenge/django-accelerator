@@ -25,7 +25,8 @@ class NavTreeContext(object):
                  display_single_item=False,
                  program_role_user_role=UserRole.STAFF,
                  default_sidenav=False,
-                 add_default_item=True):
+                 add_default_item=True,
+                 user_type=''):
 
         self.display_single_item = display_single_item
         if default_sidenav:
@@ -55,6 +56,7 @@ class NavTreeContext(object):
         self.program_role_grant = ProgramRoleGrantFactory(
             person=self.user,
             program_role=self.program_role)
+        self.user_type = user_type
 
     def update_item_title(self, tree_item, title):
         tree_item.title = title
@@ -70,7 +72,8 @@ class NavTreeContext(object):
         else:
             item = NavTreeItemFactory(
                 tree=self.tree,
-                display_single_item=self.display_single_item)
+                display_single_item=self.display_single_item,
+                user_type=self.user_type)
 
         for user_role in user_roles:
             item.user_role.add(user_role)

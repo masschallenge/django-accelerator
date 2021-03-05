@@ -4,6 +4,9 @@
 import os
 import sys
 import logging
+from django.db.backends.mysql.base import DatabaseWrapper
+
+DatabaseWrapper.data_types['DateTimeField'] = 'datetime'
 
 if len(sys.argv) > 1 and sys.argv[1] == 'test':
     logging.disable(logging.WARNING)
@@ -40,6 +43,9 @@ DATABASES = {
 SITE_ID = 1
 
 ROOT_URLCONF = "accelerator.tests.urls"
+
+FLAG_SMITH_API_KEY = os.environ.get(
+    "FLAG_SMITH_API_KEY", 'aX45EUqSsAqhTvv5nW7WEL')
 
 SECRET_KEY = "notasecret"
 
@@ -104,6 +110,9 @@ ACCELERATOR_STARTUPATTRIBUTE_MODEL = "accelerator.StartupAttribute"
 ACCELERATOR_PAYPALPAYMENT_MODEL = "accelerator.PayPalPayment"
 ACCELERATOR_LEGALCHECK_MODEL = "accelerator.LegalCheck"
 ACCELERATOR_USERLEGALCHECK_MODEL = "accelerator.UserLegalCheck"
+ACCELERATOR_GENDERCHOICES_MODEL = "accelerator.GenderChoices"
+ACCELERATOR_DEFERRABLEMODAL_MODEL = "accelerator.DeferrableModal"
+ACCELERATOR_USERDEFERRABLEMODAL_MODEL = "accelerator.UserDeferrableModal"
 
 PAYPAL_WPP_USER = ""
 PAYPAL_WPP_PASSWORD = ""

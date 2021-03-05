@@ -8,7 +8,6 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import BaseUserManager
 from django.utils import timezone
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models import BaseUserRole
 from accelerator_abstract.models.base_base_profile import EXPERT_USER_TYPE
@@ -56,7 +55,6 @@ class UserManager(BaseUserManager):
                                  **extra_fields)
 
 
-@python_2_unicode_compatible
 class User(AbstractUser):
     # Override the parent email field to add uniqueness constraint
     email = models.EmailField(blank=True, unique=True)

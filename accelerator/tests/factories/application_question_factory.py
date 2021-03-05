@@ -10,13 +10,12 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.application_type_factory import (
     ApplicationTypeFactory
 )
 from accelerator.tests.factories.question_factory import QuestionFactory
 
-ApplicationQuestion = swapper.load_model(AcceleratorConfig.name,
+ApplicationQuestion = swapper.load_model('accelerator',
                                          'ApplicationQuestion')
 
 

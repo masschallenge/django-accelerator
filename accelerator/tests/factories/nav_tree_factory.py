@@ -7,10 +7,7 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
-
-NavTree = swapper.load_model(
-    AcceleratorConfig.name, 'NavTree')
+NavTree = swapper.load_model('accelerator', 'NavTree')
 
 
 class NavTreeFactory(DjangoModelFactory):

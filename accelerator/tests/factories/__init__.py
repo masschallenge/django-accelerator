@@ -110,3 +110,7 @@ from .nav_tree_factory import NavTreeFactory
 from .nav_tree_item_factory import NavTreeItemFactory
 from .subnav_association_factory import NodeSubNavAssociationFactory
 from .program_family_location_factory import ProgramFamilyLocationFactory
+from .gender_choices_factory import GenderChoicesFactory
+from .ethno_racial_identity_factory import EthnoRacialIdentityFactory
+from .deferrable_modal_factory import DeferrableModalFactory
+from .user_deferrable_modal_factory import UserDeferrableModalFactory

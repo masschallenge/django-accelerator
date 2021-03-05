@@ -10,12 +10,11 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.judging_round_factory import (
     JudgingRoundFactory
 )
 
-PanelLocation = swapper.load_model(AcceleratorConfig.name, 'PanelLocation')
+PanelLocation = swapper.load_model('accelerator', 'PanelLocation')
 
 
 class PanelLocationFactory(DjangoModelFactory):

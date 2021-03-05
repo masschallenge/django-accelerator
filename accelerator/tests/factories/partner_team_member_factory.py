@@ -7,12 +7,10 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from .entrepreneur_factory import EntrepreneurFactory
 from .partner_factory import PartnerFactory
 
-PartnerTeamMember = swapper.load_model(AcceleratorConfig.name,
-                                       'PartnerTeamMember')
+PartnerTeamMember = swapper.load_model('accelerator', 'PartnerTeamMember')
 
 
 class PartnerTeamMemberFactory(DjangoModelFactory):

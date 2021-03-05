@@ -5,13 +5,11 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from fluent_pages.models import UrlNode
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
 class BaseNodeSubNavAssociation(AcceleratorModel):
     node = models.ForeignKey(UrlNode, on_delete=models.CASCADE)
     sub_nav = models.ForeignKey(swapper.get_model_name(
@@ -32,8 +30,7 @@ class BaseNodeSubNavAssociation(AcceleratorModel):
     )
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_nodesubnavassociation'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_nodesubnavassociation'
         abstract = True
         verbose_name = "Node Sub Navigation Association"
         verbose_name_plural = "Node Sub Navigation Associations"

@@ -7,7 +7,6 @@ import logging
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -39,7 +38,6 @@ REFUND_STATUSES = ((NOT_ELIGIBLE_STATUS, "Not Eligible For Refund"),
                    (FAILED_STATUS, "Refund Failed"))
 
 
-@python_2_unicode_compatible
 class BaseApplication(AcceleratorModel):
     cycle = models.ForeignKey(swapper.get_model_name('accelerator',
                                                      'ProgramCycle'),
@@ -64,7 +62,7 @@ class BaseApplication(AcceleratorModel):
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Applications'
         ordering = ['startup']
-        db_table = '{}_application'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_application'
         abstract = True
 
     def __str__(self):

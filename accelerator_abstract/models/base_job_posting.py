@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -17,7 +16,6 @@ JOB_TYPE_VALUES = (('NONE', 'None'),
                    ('FULL_TIME_CONTRACT', 'A full-time contract position'))
 
 
-@python_2_unicode_compatible
 class BaseJobPosting(AcceleratorModel):
     startup = models.ForeignKey(swapper.get_model_name(
         "accelerator", "Startup"),
@@ -33,7 +31,7 @@ class BaseJobPosting(AcceleratorModel):
     more_info_url = models.URLField(max_length=100, null=True, blank=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_jobposting'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_jobposting'
         verbose_name_plural = 'Job postings for startups'
         abstract = True
 

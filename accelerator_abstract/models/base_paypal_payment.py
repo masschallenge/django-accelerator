@@ -12,7 +12,7 @@ from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
 # Conforming to the django-paypal convention of using
-# PayPal in CamelCase and paypal in snake_case.@python_2_unicode_compatible
+# PayPal in CamelCase and paypal in snake_case.
 class BasePayPalPayment(AcceleratorModel):
     startup = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Startup"),
@@ -30,6 +30,5 @@ class BasePayPalPayment(AcceleratorModel):
     refundable = models.BooleanField(default=True)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_paypalpayment'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_paypalpayment'
         abstract = True

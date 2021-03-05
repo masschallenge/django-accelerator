@@ -4,7 +4,6 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -23,7 +22,6 @@ MODEL_CHANGE_STATUSES = [
 MODEL_CHANGE_STATUS_CHOICES = [(x, x) for x in MODEL_CHANGE_STATUSES]
 
 
-@python_2_unicode_compatible
 class BaseModelChange(AcceleratorModel):
     name = models.CharField(max_length=128, unique=True)
     status = models.CharField(max_length=64,
@@ -31,7 +29,7 @@ class BaseModelChange(AcceleratorModel):
                               default=MIGRATION_STATUS_OLD)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_modelchange'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_modelchange'
         abstract = True
 
     def __str__(self):

@@ -14,13 +14,12 @@ from factory.django import DjangoModelFactory
 
 from pytz import utc
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.program_cycle_factory import (
     ProgramCycleFactory
 )
 from accelerator.tests.factories.program_factory import ProgramFactory
 
-ProgramOverride = swapper.load_model(AcceleratorConfig.name, 'ProgramOverride')
+ProgramOverride = swapper.load_model('accelerator', 'ProgramOverride')
 
 
 class ProgramOverrideFactory(DjangoModelFactory):

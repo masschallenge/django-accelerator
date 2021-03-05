@@ -10,13 +10,12 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from accelerator.tests.factories.application_type_factory import (
     ApplicationTypeFactory
 )
 from accelerator.tests.utils import months_from_now
 
-ProgramCycle = swapper.load_model(AcceleratorConfig.name, 'ProgramCycle')
+ProgramCycle = swapper.load_model('accelerator', 'ProgramCycle')
 
 
 class ProgramCycleFactory(DjangoModelFactory):

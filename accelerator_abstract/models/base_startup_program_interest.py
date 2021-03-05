@@ -7,7 +7,6 @@ import logging
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from ordered_model.models import OrderedModel
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
@@ -27,7 +26,6 @@ PROGRAM_INTEREST_UP = 'up'
 PROGRAM_INTEREST_DOWN = 'down'
 
 
-@python_2_unicode_compatible
 class BaseStartupProgramInterest(OrderedModel, AcceleratorModel):
     program = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
@@ -53,8 +51,7 @@ class BaseStartupProgramInterest(OrderedModel, AcceleratorModel):
     class Meta(OrderedModel.Meta, AcceleratorModel.Meta):
         ordering = ['order']
         abstract = True
-        db_table = '{}_startupprograminterest'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_startupprograminterest'
 
     def __str__(self):
         return "{startup}-{program}, Applying:{applying}".format(

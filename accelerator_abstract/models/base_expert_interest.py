@@ -7,7 +7,6 @@ import swapper
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -23,7 +22,6 @@ def is_expert_validator(value):
         raise ValidationError("User must be an expert")
 
 
-@python_2_unicode_compatible
 class BaseExpertInterest(AcceleratorModel):
     """Relates a specific user, program family, and expert interest type
 
@@ -54,8 +52,7 @@ class BaseExpertInterest(AcceleratorModel):
     )
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_expertinterest'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_expertinterest'
         abstract = True
         verbose_name_plural = "Expert Interests"
 

@@ -10,12 +10,15 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models import Q
 from sorl.thumbnail import ImageField
+from django.utils.safestring import mark_safe
 
-from accelerator.apps import AcceleratorConfig
-
+from accelerator.utils import flag_smith_has_feature
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_user_role import (
     BaseUserRole,
+)
+from accelerator_abstract.models.base_base_profile import (
+    EXPERT_USER_TYPE,
 )
 from accelerator_abstract.models.base_user_utils import (
     has_staff_clearance,
@@ -30,6 +33,11 @@ GENDER_FEMALE_CHOICE = ('f', 'Female')
 GENDER_OTHER_CHOICE = ('o', 'Other')
 GENDER_PREFER_NOT_TO_STATE_CHOICE = ('p', 'Prefer Not To State')
 GENDER_UNKNOWN_CHOICE = ('', 'Unknown')
+
+IDENTITY_HELP_TEXT_VALUE = (mark_safe(
+            'Select as many options as you feel best represent your identity. '
+            'Please press and hold Control (CTRL) on PCs or '
+            'Command (&#8984;) on Macs to select multiple options'))
 
 GENDER_CHOICES = (
     GENDER_FEMALE_CHOICE,
@@ -47,6 +55,7 @@ UI_GENDER_CHOICES = (
 )
 JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
                           'confirmed_judge_label': 'Judge'}
+EXPERT_NAVIGATION_EPIC = "expert_navigation"
 
 
 class BaseCoreProfile(AcceleratorModel):
@@ -56,6 +65,13 @@ class BaseCoreProfile(AcceleratorModel):
         max_length=1,
         choices=GENDER_CHOICES,
         default='')
+    gender_identity = models.ManyToManyField(
+        swapper.get_model_name(
+            AcceleratorModel.Meta.app_label, 'GenderChoices'),
+        help_text=IDENTITY_HELP_TEXT_VALUE,
+        blank=True
+    )
+    gender_self_description = models.TextField(blank=True, default="")
     phone = models.CharField(
         verbose_name="Phone",
         max_length=20,
@@ -116,10 +132,20 @@ class BaseCoreProfile(AcceleratorModel):
     user_type = None
     default_page = "member_homepage"
     newsletter_sender = models.BooleanField(default=False)
+    birth_year = models.DateField(blank=True, null=True)
+    ethno_racial_identification = models.ManyToManyField(
+        swapper.get_model_name(
+            AcceleratorModel.Meta.app_label, 'EthnoRacialIdentity'
+        ),
+        blank=True,
+        help_text=IDENTITY_HELP_TEXT_VALUE
+    )
+    authorization_to_share_ethno_racial_identity = models.BooleanField(
+        default=False,
+    )
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_coreprofile'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_coreprofile'
         abstract = True
 
     def __str__(self):
@@ -183,13 +209,13 @@ class BaseCoreProfile(AcceleratorModel):
 
     def is_partner(self):
         PartnerTeamMember = swapper.load_model(
-            AcceleratorConfig.name, 'PartnerTeamMember')
+            'accelerator', 'PartnerTeamMember')
         return PartnerTeamMember.objects.filter(
             team_member=self.user).exists()
 
     def is_partner_admin(self):
         PartnerTeamMember = swapper.load_model(
-            AcceleratorConfig.name, 'PartnerTeamMember')
+            'accelerator', 'PartnerTeamMember')
         return PartnerTeamMember.objects.filter(
             team_member=self.user,
             partner_administrator=True).exists()
@@ -208,10 +234,13 @@ class BaseCoreProfile(AcceleratorModel):
             return '/staff'
 
     def role_based_landing_page(self, exclude_role_names=[]):
+        if flag_smith_has_feature(EXPERT_NAVIGATION_EPIC):
+            if self.user_type.upper() == EXPERT_USER_TYPE:
+                return "/dashboard/expert/overview/"
         JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
-                                          'JudgingRound')
+                                          "JudgingRound")
         UserRole = swapper.load_model(
-            AcceleratorConfig.name, 'UserRole')
+            'accelerator', 'UserRole')
         now = utc.localize(datetime.now())
         active_judging_round_labels = JudgingRound.objects.filter(
             end_date_time__gt=now,
@@ -241,7 +270,6 @@ class BaseCoreProfile(AcceleratorModel):
             program_role__user_role__name__in=REMAINING_ROLES,
             program_role__user_role__isnull=False,
             program_role__landing_page__isnull=False)
-
         query = self.user.programrolegrant_set.filter(
             active_judge_grants |
             desired_judge_grants |

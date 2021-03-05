@@ -9,6 +9,6 @@ MC_SIDE_NAV_TREE_ALIAS = 'mc_side_nav_tree'
 
 class BaseNavTree(TreeBase, AcceleratorModel):
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_navtree'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_navtree'
         verbose_name_plural = "NavTrees"
         abstract = True

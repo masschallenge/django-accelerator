@@ -8,12 +8,10 @@ from django.contrib.contenttypes.models import ContentType
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
-
 
 class ContentTypeFactory(DjangoModelFactory):
     class Meta:
         model = ContentType
 
-    app_label = AcceleratorConfig.name
+    app_label = 'accelerator'
     model = Sequence(lambda n: "test_contenttypemodel{0}".format(n))

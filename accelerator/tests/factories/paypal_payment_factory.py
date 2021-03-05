@@ -10,11 +10,10 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
 from .program_cycle_factory import ProgramCycleFactory
 from .startup_factory import StartupFactory
 
-PayPalPayment = swapper.load_model(AcceleratorConfig.name, 'PayPalPayment')
+PayPalPayment = swapper.load_model('accelerator', 'PayPalPayment')
 
 
 class PayPalPaymentFactory(DjangoModelFactory):

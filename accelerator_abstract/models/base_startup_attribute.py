@@ -23,7 +23,6 @@ class BaseStartupAttribute(AcceleratorModel):
         help_text='Stored text representation of the value')
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_startupattribute'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_startupattribute'
         abstract = True
         verbose_name_plural = 'Startup Attributes'

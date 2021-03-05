@@ -6,12 +6,10 @@ from __future__ import unicode_literals
 import swapper
 from django.conf import settings
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
 class BasePartnerTeamMember(AcceleratorModel):
     partner = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Partner"),
@@ -21,8 +19,7 @@ class BasePartnerTeamMember(AcceleratorModel):
     partner_administrator = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_partnerteammember'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_partnerteammember'
         abstract = True
         verbose_name_plural = 'Partner Team Members'
         ordering = ['team_member__last_name', 'team_member__first_name', ]

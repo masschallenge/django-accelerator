@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 from django.conf import settings
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
@@ -21,7 +20,6 @@ TWITTER_HANDLE_MAX_LENGTH = 16
 PHONE_MAX_LENGTH = 20
 
 
-@python_2_unicode_compatible
 class BaseBaseProfile(AcceleratorModel):
     """pivot class that returns an appropriate profile based on user_type
 
@@ -33,8 +31,7 @@ class BaseBaseProfile(AcceleratorModel):
     user_type = models.CharField(max_length=16, choices=USER_TYPES)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_baseprofile'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_baseprofile'
         abstract = True
 
     def __str__(self):

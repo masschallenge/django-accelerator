@@ -35,8 +35,7 @@ class BaseProgramRole(LabelModel):
         on_delete=models.CASCADE)
 
     class Meta(LabelModel.Meta):
-        db_table = '{}_programrole'.format(
-            LabelModel.Meta.app_label)
+        db_table = 'accelerator_programrole'
         abstract = True
         ordering = ['name', ]
         verbose_name = "Program Role"

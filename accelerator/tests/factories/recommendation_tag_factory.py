@@ -7,10 +7,7 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
-
-RecommendationTag = swapper.load_model(AcceleratorConfig.name,
-                                       'RecommendationTag')
+RecommendationTag = swapper.load_model('accelerator', 'RecommendationTag')
 
 
 class RecommendationTagFactory(DjangoModelFactory):

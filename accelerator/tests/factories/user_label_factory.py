@@ -10,9 +10,7 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.apps import AcceleratorConfig
-
-UserLabel = swapper.load_model(AcceleratorConfig.name, 'UserLabel')
+UserLabel = swapper.load_model('accelerator', 'UserLabel')
 
 
 class UserLabelFactory(DjangoModelFactory):

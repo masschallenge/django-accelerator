@@ -148,7 +148,7 @@ class BaseProgram(AcceleratorModel):
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Programs'
         abstract = True
-        db_table = '{}_program'.format(AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_program'
 
     def family_abbr(self):
         return self.program_family.url_slug.upper()

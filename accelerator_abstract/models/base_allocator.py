@@ -8,11 +8,9 @@ from django.db.models import (
     CASCADE,
     OneToOneField,
 )
-from django.utils.encoding import python_2_unicode_compatible
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-@python_2_unicode_compatible
 class BaseAllocator(AcceleratorModel):
     judging_round = OneToOneField(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
@@ -24,8 +22,7 @@ class BaseAllocator(AcceleratorModel):
         on_delete=CASCADE)
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_allocator'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_allocator'
         abstract = True
         verbose_name_plural = 'Allocators'
 

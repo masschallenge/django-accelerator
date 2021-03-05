@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 
 import swapper
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from sorl.thumbnail import ImageField
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
@@ -22,7 +21,6 @@ STARTUP_BADGE_DISPLAY_VALUES = (
     (BADGE_STARTUP_LIST_AND_PROFILE, 'Startup list and profile'))
 
 
-@python_2_unicode_compatible
 class BaseProgramStartupStatus(AcceleratorModel):
     program = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, "Program"),
@@ -66,8 +64,7 @@ class BaseProgramStartupStatus(AcceleratorModel):
         help_text="Order")
 
     class Meta(AcceleratorModel.Meta):
-        db_table = '{}_programstartupstatus'.format(
-            AcceleratorModel.Meta.app_label)
+        db_table = 'accelerator_programstartupstatus'
         abstract = True
         verbose_name_plural = 'Program Startup Statuses'
         ordering = ['program', 'sort_order', 'startup_status']

@@ -156,6 +156,7 @@ from .base_judging_round import (
 from .base_member_profile import BaseMemberProfile
 from .base_mentor_program_office_hour import BaseMentorProgramOfficeHour
 from .base_mentoring_specialties import BaseMentoringSpecialties
+from .base_gender_choices import BaseGenderChoices
 from .base_model_change import (
     BaseModelChange,
     MIGRATION_STATUS_DONE,
@@ -320,3 +321,6 @@ from .base_nav_tree import BaseNavTree
 from .base_nav_tree_item import BaseNavTreeItem
 
 from .base_fluent_sub_nav_association import BaseNodeSubNavAssociation
+from .base_ethno_racial_identity import BaseEthnoRacialIdentity
+from .base_deferrable_modal import BaseDeferrableModal
+from .base_user_deferrable_modal import BaseUserDeferrableModal

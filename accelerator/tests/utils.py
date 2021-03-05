@@ -10,8 +10,21 @@ from datetime import (
 
 from django.urls import reverse
 from pytz import utc
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 TEST_PASSWORD = 'simplepass1'
+
+
+def get_app_name():
+    try:
+        from mc.apps import MCAppConfig
+        return MCAppConfig.name
+    except ImportError as error:
+        logger.warning(error)
+        return 'accelerator'
 
 
 def login_as_user(test, user):
