@@ -8,6 +8,7 @@ from django.db import models
 from fluent_pages.models import Page
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from accelerator_abstract.models.base_nav_tree_item import NAV_TREE_USER_TYPES
 from accelerator_abstract.models.base_program import PROGRAM_STATUSES
 
 
@@ -35,6 +36,11 @@ class BaseUserRoleMenu(Page):
         max_length=64,
         choices=PROGRAM_STATUSES,
         null=True,
+        blank=True,
+    )
+    user_type = models.CharField(
+        max_length=12,
+        choices=NAV_TREE_USER_TYPES,
         blank=True,
     )
 
