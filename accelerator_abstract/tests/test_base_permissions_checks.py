@@ -1,10 +1,10 @@
 from django.test import TestCase
 
 from accelerator.tests.utils import login_as_new_user, login_as_user
-from accelerator_abstract.models.base_startup_role import (
+from .base_startup_role import (
     BaseStartupRole
 )
-from accelerator_abstract.models.base_user_role import (
+from .base_user_role import (
     BaseUserRole
 )
 from accelerator.tests.contexts import (
@@ -14,7 +14,7 @@ from accelerator.tests.factories import (
     StartupRoleFactory,
     UserFactory
 )
-from accelerator_abstract.models.base_permission_checks import (
+from .base_permission_checks import (
     _see_active_pages,
     _see_employee_pages,
     _see_finalist_pages,

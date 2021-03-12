@@ -13,8 +13,8 @@ from django.db import models
 from embed_video.fields import EmbedVideoField
 from sorl.thumbnail import ImageField
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from accelerator_abstract.models.base_startup_role import BaseStartupRole
+from .accelerator_model import AcceleratorModel
+from .base_startup_role import BaseStartupRole
 
 logger = logging.getLogger(__name__)
 

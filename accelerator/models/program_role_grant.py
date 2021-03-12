@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from accelerator_abstract.models.base_program_role_grant import (
+from ...accelerator_abstract.models.base_program_role_grant import (
     BaseProgramRoleGrant
 )
 

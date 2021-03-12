@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.test import TestCase
 
-from accelerator_abstract.utils import (
+from ..utils import (
     local_time,
     validate_capacity_options,
 )

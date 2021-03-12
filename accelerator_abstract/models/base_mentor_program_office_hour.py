@@ -7,7 +7,7 @@ import swapper
 from django.conf import settings
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from .accelerator_model import AcceleratorModel
 
 HOUR_IS_PAST_MESSAGE = "This office hour is in the past"
 HOUR_HAS_BEEN_CANCELED_MESSAGE = "This office hour has been canceled"

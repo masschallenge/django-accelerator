@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from accelerator_abstract.models.base_core_profile import BaseCoreProfile
+from .base_core_profile import BaseCoreProfile
 
 
 class BaseEntrepreneurProfile(BaseCoreProfile):

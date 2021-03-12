@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from .accelerator_model import AcceleratorModel
 
 
 class BaseMentoringSpecialties(AcceleratorModel):

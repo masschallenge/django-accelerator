@@ -7,7 +7,7 @@ import swapper
 from django.db import models
 from sorl.thumbnail import ImageField
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from .accelerator_model import AcceleratorModel
 
 PARTNER_BADGE_DISPLAY_VALUES = (
     ('NONE', 'None'),

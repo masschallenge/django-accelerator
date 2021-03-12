@@ -6,12 +6,12 @@ from simpleuser.models import User
 from .allocator import Allocator
 from .startup_role import StartupRole
 from .user_role import UserRole
-from accelerator_abstract.models.base_user_role import has_user_role_base
+from ...accelerator_abstract.models.base_user_role import has_user_role_base
 
 from .user_role_menu import UserRoleMenu
 from .program_cycle import ProgramCycle
 from .base_profile import BaseProfile
-from accelerator_abstract.models.base_base_profile import (
+from ...accelerator_abstract.models.base_base_profile import (
     PHONE_MAX_LENGTH,
     TWITTER_HANDLE_MAX_LENGTH,
     USER_TYPES,
@@ -23,7 +23,7 @@ from .criterion import Criterion
 from .criterion_option_spec import CriterionOptionSpec
 from .currency import Currency
 from .program import Program
-from accelerator_abstract.models.base_program import (
+from ...accelerator_abstract.models.base_program import (
     ACTIVE_PROGRAM_STATUS,
     CURRENT_STATUSES,
     ENDED_PROGRAM_STATUS,
@@ -32,19 +32,19 @@ from accelerator_abstract.models.base_program import (
 )
 
 from .model_change import ModelChange
-from accelerator_abstract.models.base_model_change import (
+from ...accelerator_abstract.models.base_model_change import (
     MIGRATION_STATUS_DONE,
     MIGRATION_STATUS_ERROR,
     MIGRATION_STATUS_MIGRATING,
     MIGRATION_STATUS_OLD,
 )
 from .program_startup_status import ProgramStartupStatus
-from accelerator_abstract.models.base_program_startup_status import (
+from ...accelerator_abstract.models.base_program_startup_status import (
     STARTUP_BADGE_DISPLAY_VALUES
 )
 
 from .startup_program_interest import StartupProgramInterest
-from accelerator_abstract.models.base_startup_program_interest import (
+from ...accelerator_abstract.models.base_startup_program_interest import (
     INTEREST_CHOICES
 )
 from .startup_cycle_interest import StartupCycleInterest
@@ -59,27 +59,27 @@ from .observer import Observer
 from .program_family import ProgramFamily
 from .entrepreneur_profile import EntrepreneurProfile
 from .expert_profile import ExpertProfile
-from accelerator_abstract.models.base_expert_profile import BIO_MAX_LENGTH
+from ...accelerator_abstract.models.base_expert_profile import BIO_MAX_LENGTH
 from .functional_expertise import FunctionalExpertise
 from .industry import Industry
 from .member_profile import MemberProfile
 from .named_group import NamedGroup
 from .organization import Organization
-from accelerator_abstract.models.base_organization import slug_from_instance
+from ...accelerator_abstract.models.base_organization import slug_from_instance
 from .partner import Partner
 from .partner_team_member import PartnerTeamMember
 from .program_role import ProgramRole
 from .program_role_grant import ProgramRoleGrant
 from .expert_interest import ExpertInterest
 from .startup import Startup
-from accelerator_abstract.models.base_startup import (
+from ...accelerator_abstract.models.base_startup import (
     STARTUP_COMMUNITIES,
     DEFAULT_PROFILE_BACKGROUND_COLOR,
     DEFAULT_PROFILE_TEXT_COLOR,
 )
 from .application_type import ApplicationType
 from .question import Question
-from accelerator_abstract.models.base_question import (
+from ...accelerator_abstract.models.base_question import (
     CHOICE_LAYOUT_HORIZONTAL,
     CHOICE_LAYOUT_VERTICAL,
     CHOICE_LAYOUT_DROPDOWN,
@@ -90,12 +90,12 @@ from accelerator_abstract.models.base_question import (
     QUESTION_TYPES,
 )
 from .application_question import ApplicationQuestion
-from accelerator_abstract.models.base_application_question import (
+from ...accelerator_abstract.models.base_application_question import (
     TEXT_LIMIT_UNITS,
 )
 from .application_answer import ApplicationAnswer
 from .application import Application
-from accelerator_abstract.models.base_application import (
+from ...accelerator_abstract.models.base_application import (
     APPLICATION_STATUSES,
     COMPLETE_APP_STATUS,
     DELAYED_STATUS,
@@ -113,7 +113,7 @@ from accelerator_abstract.models.base_application import (
 )
 
 from .clearance import Clearance
-from accelerator_abstract.models.base_clearance import (
+from ...accelerator_abstract.models.base_clearance import (
     CLEARANCE_LEVEL_EXEC_MD,
     CLEARANCE_LEVEL_GLOBAL_MANAGER,
     CLEARANCE_LEVEL_POM,
@@ -132,7 +132,7 @@ from .startup_mentor_tracking_record import (
     StartupMentorTrackingRecord,
 )
 from .startup_mentor_relationship import StartupMentorRelationship
-from accelerator_abstract.models.base_startup_mentor_relationship import (
+from ...accelerator_abstract.models.base_startup_mentor_relationship import (
     CONFIRMED_RELATIONSHIP,
     DESIRED_RELATIONSHIP,
     DISCUSSING_RELATIONSHIP,
@@ -140,26 +140,26 @@ from accelerator_abstract.models.base_startup_mentor_relationship import (
 )
 from .interest_category import InterestCategory
 from .expert_category import ExpertCategory
-from accelerator_abstract.models.base_expert_category import (
+from ...accelerator_abstract.models.base_expert_category import (
     VALID_EXPERT_CATEGORIES
 )
 from .expert_interest_type import ExpertInterestType
 from .job_posting import JobPosting
-from accelerator_abstract.models.base_job_posting import JOB_TYPE_VALUES
+from ...accelerator_abstract.models.base_job_posting import JOB_TYPE_VALUES
 from .newsletter_receipt import NewsletterReceipt
 from .newsletter import Newsletter
 from .section import Section
-from accelerator_abstract.models.base_section import INCLUDE_FOR_CHOICES
+from ...accelerator_abstract.models.base_section import INCLUDE_FOR_CHOICES
 from .program_partner import ProgramPartner
 from .program_partner_type import ProgramPartnerType
-from accelerator_abstract.models.base_program_partner_type import (
+from ...accelerator_abstract.models.base_program_partner_type import (
     PARTNER_BADGE_DISPLAY_VALUES
 )
 from .site import Site
 from .judging_form import JudgingForm
 
 from .judge_application_feedback import JudgeApplicationFeedback
-from accelerator_abstract.models.base_judge_application_feedback import (
+from ...accelerator_abstract.models.base_judge_application_feedback import (
     JUDGING_FEEDBACK_STATUS_COMPLETE,
     JUDGING_FEEDBACK_STATUS_CONFLICT,
     JUDGING_FEEDBACK_STATUS_ENUM,
@@ -171,19 +171,19 @@ from accelerator_abstract.models.base_judge_application_feedback import (
     JUDGING_STATUS_OTHER,
 )
 from .judge_availability import JudgeAvailability
-from accelerator_abstract.models.base_judge_availability import (
+from ...accelerator_abstract.models.base_judge_availability import (
     JUDGE_AVAILABILITY_AVAILABLE,
     JUDGE_AVAILABILITY_NOT_AVAILABLE,
     JUDGE_AVAILABILITY_PREFERRED,
 )
 from .judge_panel_assignment import JudgePanelAssignment
-from accelerator_abstract.models.base_judge_panel_assignment import (
+from ...accelerator_abstract.models.base_judge_panel_assignment import (
     ASSIGNED_PANEL_ASSIGNMENT_STATUS,
     COMPLETE_PANEL_ASSIGNMENT_STATUS,
 )
 from .judge_round_commitment import JudgeRoundCommitment
 from .judging_form_element import JudgingFormElement
-from accelerator_abstract.models.base_judging_form_element import (
+from ...accelerator_abstract.models.base_judging_form_element import (
     FEEDBACK_ERROR,
     FEEDBACK_QUESTION,
     FORM_ELEM_COMPETITORS,
@@ -201,7 +201,7 @@ from accelerator_abstract.models.base_judging_form_element import (
     FORM_ELEM_FEEDBACK_TO_MC,
 )
 from .judging_round import JudgingRound
-from accelerator_abstract.models.base_judging_round import (
+from ...accelerator_abstract.models.base_judging_round import (
     CAPTURE_AVAILABILITY_DISABLED,
     CAPTURE_AVAILABILITY_TIME,
     DEFAULT_BUFFER_BEFORE_EVENT,
@@ -217,9 +217,9 @@ from accelerator_abstract.models.base_judging_round import (
 )
 
 from .scenario import Scenario
-from accelerator_abstract.models.base_scenario import DEFAULT_PANEL_SIZE
+from ...accelerator_abstract.models.base_scenario import DEFAULT_PANEL_SIZE
 from .scenario_preference import ScenarioPreference
-from accelerator_abstract.models.base_scenario_preference import (
+from ...accelerator_abstract.models.base_scenario_preference import (
     ALL_JUDGES,
     APPLICATION_ENTITY,
     ENTITY_TYPES,
@@ -254,7 +254,7 @@ from .scenario_application import ScenarioApplication
 from .scenario_judge import ScenarioJudge
 from .mentoring_specialties import MentoringSpecialties
 from .panel import Panel
-from accelerator_abstract.models.base_panel import (
+from ...accelerator_abstract.models.base_panel import (
     ACTIVE_PANEL_STATUS,
     COMPLETED_PANEL_STATUS,
     DEFAULT_PANEL_STATUS,
@@ -262,7 +262,7 @@ from accelerator_abstract.models.base_panel import (
     PREVIEW_PANEL_STATUS,
 )
 from .judge_feedback_component import JudgeFeedbackComponent
-from accelerator_abstract.models.base_judge_feedback_component import (
+from ...accelerator_abstract.models.base_judge_feedback_component import (
     DEFINITELY_DONT_RECOMMEND,
     DEFINITELY_RECOMMEND,
     DONT_RECOMMEND,
@@ -284,13 +284,13 @@ from .paypal_payment import PayPalPayment
 from .paypal_refund import PayPalRefund
 from .startup_label import StartupLabel
 from .user_label import UserLabel
-from accelerator_abstract.models.base_user_label import (
+from ...accelerator_abstract.models.base_user_label import (
     CONFIRMED_JUDGE_STATE,
     DESIRED_JUDGE_STATE,
     JUDGING_ROUND_FORMAT,
 )
 from .bucket_state import BucketState
-from accelerator_abstract.models.base_bucket_state import (
+from ...accelerator_abstract.models.base_bucket_state import (
     BaseBucketState,
     BUCKET_TYPES,
     FRESH_LEADS_GROUP,
@@ -312,7 +312,7 @@ from .legal_check import LegalCheck
 from .user_legal_check import UserLegalCheck
 
 from .nav_tree import NavTree
-from accelerator_abstract.models.base_nav_tree import (
+from ...accelerator_abstract.models.base_nav_tree import (
     MC_SIDE_NAV_TREE_ALIAS,
 )
 from .nav_tree_item import NavTreeItem

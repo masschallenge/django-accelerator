@@ -28,7 +28,7 @@ from accelerator.tests.factories.startup_label_factory import (
 )
 from accelerator.tests.factories.user_label_factory import UserLabelFactory
 from accelerator.tests.utils import months_from_now
-from accelerator_abstract.models.base_judging_round import (
+from .base_judging_round import (
     DEFAULT_BUFFER_BEFORE_EVENT,
     SCENARIO_DETECTION,
 )

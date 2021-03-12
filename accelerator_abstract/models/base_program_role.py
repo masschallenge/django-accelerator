@@ -6,8 +6,8 @@ from __future__ import unicode_literals
 import swapper
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from accelerator_abstract.models.label_model import LabelModel
+from .accelerator_model import AcceleratorModel
+from .label_model import LabelModel
 
 
 class BaseProgramRole(LabelModel):

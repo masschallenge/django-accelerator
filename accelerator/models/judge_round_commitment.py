@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from accelerator_abstract.models import BaseJudgeRoundCommitment
+from ...accelerator_abstract.models import BaseJudgeRoundCommitment
 
 
 class JudgeRoundCommitment(BaseJudgeRoundCommitment):

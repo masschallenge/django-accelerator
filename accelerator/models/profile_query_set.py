@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.query import QuerySet
 
-from accelerator_abstract.models.base_base_profile import (
+from ...accelerator_abstract.models.base_base_profile import (
     ENTREPRENEUR_USER_TYPE,
     EXPERT_USER_TYPE,
     MEMBER_USER_TYPE,

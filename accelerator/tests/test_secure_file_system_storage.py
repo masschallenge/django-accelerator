@@ -4,7 +4,7 @@ try:
 except ImportError:
     from mock import patch
 
-from accelerator_abstract.models.secure_file_system_storage import (
+from .secure_file_system_storage import (
     SecureFileSystemStorage
 )
 

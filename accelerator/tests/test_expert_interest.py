@@ -10,7 +10,7 @@ from accelerator.tests.factories import (
     EntrepreneurFactory,
     ExpertInterestFactory,
 )
-from accelerator_abstract.models.base_expert_interest import (
+from .base_expert_interest import (
     is_expert_validator,
 )
 

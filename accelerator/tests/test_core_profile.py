@@ -28,7 +28,7 @@ from accelerator.tests.contexts import (
     StartupTeamMemberContext,
     UserRoleContext,
 )
-from accelerator_abstract.models.base_clearance import (
+from .base_clearance import (
     CLEARANCE_LEVEL_STAFF,
 )
 

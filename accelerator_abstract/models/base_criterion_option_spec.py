@@ -12,7 +12,7 @@ from django.db.models import (
     CASCADE,
 )
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from .accelerator_model import AcceleratorModel
 
 
 class BaseCriterionOptionSpec(AcceleratorModel):

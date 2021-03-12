@@ -3,7 +3,7 @@
 
 from __future__ import unicode_literals
 
-from accelerator_abstract.models.base_core_profile import BaseCoreProfile
+from .base_core_profile import BaseCoreProfile
 
 
 class BaseMemberProfile(BaseCoreProfile):

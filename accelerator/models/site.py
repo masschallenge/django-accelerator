@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from accelerator_abstract.models.base_site import BaseSite
+from ...accelerator_abstract.models.base_site import BaseSite
 
 
 class Site(BaseSite):

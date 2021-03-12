@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from accelerator_abstract.models import BaseMentoringSpecialties
+from ...accelerator_abstract.models import BaseMentoringSpecialties
 
 
 class MentoringSpecialties(BaseMentoringSpecialties):

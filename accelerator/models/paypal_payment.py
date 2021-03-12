@@ -3,7 +3,7 @@
 
 from __future__ import unicode_literals
 
-from accelerator_abstract.models import BasePayPalPayment
+from ...accelerator_abstract.models import BasePayPalPayment
 import swapper
 
 

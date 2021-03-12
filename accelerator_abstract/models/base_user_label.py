@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.db import models
 
-from accelerator_abstract.models.label_model import LabelModel
+from .label_model import LabelModel
 
 JUDGING_ROUND_FORMAT = "{judging_round} {state} Judge"
 DESIRED_JUDGE_STATE = "Desired"

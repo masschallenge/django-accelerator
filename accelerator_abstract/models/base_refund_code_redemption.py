@@ -8,8 +8,8 @@ import decimal
 import swapper
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from accelerator_abstract.models.base_application import REFUND_STATUSES
+from .accelerator_model import AcceleratorModel
+from .base_application import REFUND_STATUSES
 
 CREDIT_CODE_NOT_AVAILABLE = ("Apologies, credit code %s "
                              "is no longer available")

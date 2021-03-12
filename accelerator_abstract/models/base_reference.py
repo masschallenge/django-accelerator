@@ -8,7 +8,7 @@ from django.conf import settings
 from django.core.validators import EmailValidator
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from .accelerator_model import AcceleratorModel
 
 
 class BaseReference(AcceleratorModel):

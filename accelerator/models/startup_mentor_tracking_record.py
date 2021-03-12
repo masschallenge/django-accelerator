@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from accelerator_abstract.models.base_startup_mentor_tracking_record import (
+from ...accelerator_abstract.models.base_startup_mentor_tracking_record import (
     BaseStartupMentorTrackingRecord
 )
 

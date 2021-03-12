@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from .accelerator_model import AcceleratorModel
 
 ENTREPRENEUR_USER_TYPE = 'ENTREPRENEUR'
 EXPERT_USER_TYPE = 'EXPERT'

@@ -12,18 +12,12 @@ from django.db.models import Q
 from sorl.thumbnail import ImageField
 from django.utils.safestring import mark_safe
 
-from accelerator.utils import flag_smith_has_feature
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from accelerator_abstract.models.base_user_role import (
-    BaseUserRole,
-)
-from accelerator_abstract.models.base_base_profile import (
-    EXPERT_USER_TYPE,
-)
-from accelerator_abstract.models.base_user_utils import (
-    has_staff_clearance,
-)
-from accelerator_abstract.models.base_program import (
+from ...accelerator.utils import flag_smith_has_feature
+from .accelerator_model import AcceleratorModel
+from .base_user_role import BaseUserRole
+from .base_base_profile import EXPERT_USER_TYPE
+from .base_user_utils import has_staff_clearance
+from .base_program import (
     ACTIVE_PROGRAM_STATUS,
     ENDED_PROGRAM_STATUS,
 )

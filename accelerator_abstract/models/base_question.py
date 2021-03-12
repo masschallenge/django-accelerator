@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import (
+from .accelerator_model import (
     AcceleratorModel,
     CHOICE_OPTION_HELP_TEXT
 )

@@ -8,7 +8,7 @@ import decimal
 import swapper
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from .accelerator_model import AcceleratorModel
 
 
 # Conforming to the django-paypal convention of using

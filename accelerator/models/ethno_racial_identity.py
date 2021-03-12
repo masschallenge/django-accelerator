@@ -1,5 +1,5 @@
 import swapper
-from accelerator_abstract.models.base_ethno_racial_identity import (
+from ...accelerator_abstract.models.base_ethno_racial_identity import (
     BaseEthnoRacialIdentity,
 )
 

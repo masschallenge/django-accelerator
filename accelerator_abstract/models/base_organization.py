@@ -7,7 +7,7 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.template.defaultfilters import slugify
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from .accelerator_model import AcceleratorModel
 
 STARTUP_TYPE = "startup"
 PARTNER_TYPE = "partner"

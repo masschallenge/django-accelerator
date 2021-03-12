@@ -7,7 +7,7 @@ import swapper
 from django.conf import settings
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from .accelerator_model import AcceleratorModel
 
 ASSIGNED_PANEL_ASSIGNMENT_STATUS = "ASSIGNED"
 COMPLETE_PANEL_ASSIGNMENT_STATUS = "COMPLETE"

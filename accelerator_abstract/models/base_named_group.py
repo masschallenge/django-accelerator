@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from accelerator_abstract.models.label_model import LabelModel
+from .label_model import LabelModel
 
 
 class BaseNamedGroup(LabelModel):

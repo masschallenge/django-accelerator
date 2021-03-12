@@ -1,5 +1,5 @@
 import swapper
-from accelerator_abstract.models import (
+from ...accelerator_abstract.models import (
     BaseDeferrableModal,
 )
 

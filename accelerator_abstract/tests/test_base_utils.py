@@ -1,9 +1,9 @@
 from django.test import TestCase
 
-from accelerator_abstract.models.base_utils import (
+from .base_utils import (
     finalist_startup_member
 )
-from accelerator_abstract.models.base_startup_role import (
+from .base_startup_role import (
     BaseStartupRole
 )
 from accelerator.tests.contexts import (

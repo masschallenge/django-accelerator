@@ -9,7 +9,7 @@ from mptt.models import (
     TreeForeignKey,
 )
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from .accelerator_model import AcceleratorModel
 
 
 class BaseFunctionalExpertise(MPTTModel, AcceleratorModel):

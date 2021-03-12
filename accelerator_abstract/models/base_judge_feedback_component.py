@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 import swapper
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from .accelerator_model import AcceleratorModel
 
 JUDGE_FEEDBACK_REVIEWER = "_RESTRICTED_: Judge Feedback Reviewer"
 JUDGE_FEEDBACK_SANITIZER = "_CAUTION_: Judge Feedback Sanitizer"

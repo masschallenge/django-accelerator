@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from accelerator_abstract.models.base_judge_feedback_component import (
+from ...accelerator_abstract.models.base_judge_feedback_component import (
     BaseJudgeFeedbackComponent
 )
 

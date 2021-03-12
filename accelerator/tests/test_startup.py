@@ -11,10 +11,10 @@ from accelerator.tests.factories import (
     StartupFactory,
     StartupRoleFactory
 )
-from accelerator_abstract.models.base_startup_role import (
+from .base_startup_role import (
     BaseStartupRole
 )
-from accelerator_abstract.models.base_startup import (
+from .base_startup import (
     DISPLAY_STARTUP_STATUS
 )
 from accelerator.tests.contexts import (

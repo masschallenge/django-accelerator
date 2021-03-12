@@ -6,11 +6,11 @@ from __future__ import unicode_literals
 import swapper
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import (
+from .accelerator_model import (
     AcceleratorModel,
     CHOICE_OPTION_HELP_TEXT
 )
-from accelerator_abstract.models.base_question import (
+from .base_question import (
     CHOICE_LAYOUTS,
     QUESTION_TYPES,
 )

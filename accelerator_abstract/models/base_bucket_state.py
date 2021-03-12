@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 import swapper
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from .accelerator_model import AcceleratorModel
 
 NEW_ENTREPRENEURS_BUCKET_TYPE = "new_entrepreneurs"
 STALE_NOSTARTUP_BUCKET_TYPE = "stale_nostartup"

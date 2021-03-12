@@ -4,8 +4,8 @@ import swapper
 from django.db import models
 from sitetree.models import TreeItemBase
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from accelerator_abstract.models.base_base_profile import (
+from .accelerator_model import AcceleratorModel
+from .base_base_profile import (
     EXPERT_USER_TYPE,
     ENTREPRENEUR_USER_TYPE
 )

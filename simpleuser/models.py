@@ -10,7 +10,7 @@ from django.contrib.auth.models import BaseUserManager
 from django.utils import timezone
 
 from accelerator_abstract.models import BaseUserRole
-from accelerator_abstract.models.base_base_profile import EXPERT_USER_TYPE
+from .base_base_profile import EXPERT_USER_TYPE
 
 
 MAX_USERNAME_LENGTH = 30

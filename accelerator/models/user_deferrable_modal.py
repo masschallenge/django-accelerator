@@ -1,6 +1,6 @@
 import swapper
 
-from accelerator_abstract.models import BaseUserDeferrableModal
+from ...accelerator_abstract.models import BaseUserDeferrableModal
 
 
 class UserDeferrableModal(BaseUserDeferrableModal):

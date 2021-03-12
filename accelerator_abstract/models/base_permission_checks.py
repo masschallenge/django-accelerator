@@ -1,10 +1,10 @@
-from accelerator_abstract.models.base_user_utils import (
+from .base_user_utils import (
     is_employee,
 )
-from accelerator_abstract.models.base_utils import (
+from .base_utils import (
     finalist_startup_member
 )
-from accelerator_abstract.models.base_user_role import (
+from .base_user_role import (
     is_finalist_user
 )
 

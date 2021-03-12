@@ -7,7 +7,7 @@ import swapper
 from django.core.exceptions import ValidationError
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from .accelerator_model import AcceleratorModel
 
 NAME_AS_PROGRAM_FAMILIES_AND_YEAR = "{relevant_program_families} {year}"
 

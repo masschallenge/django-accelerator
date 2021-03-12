@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from accelerator_abstract.models.base_bucket_state import BaseBucketState
+from ...accelerator_abstract.models.base_bucket_state import BaseBucketState
 
 
 class BucketState(BaseBucketState):

@@ -6,8 +6,8 @@ from __future__ import unicode_literals
 import swapper
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from accelerator_abstract.utils import (
+from .accelerator_model import AcceleratorModel
+from ..utils import (
     HOUR_FORMAT,
     local_time,
 )

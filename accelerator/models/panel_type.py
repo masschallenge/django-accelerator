@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from accelerator_abstract.models.base_panel_type import BasePanelType
+from ...accelerator_abstract.models.base_panel_type import BasePanelType
 
 
 class PanelType(BasePanelType):

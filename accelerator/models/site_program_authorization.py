@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from accelerator_abstract.models.base_site_program_authorization import (
+from ...accelerator_abstract.models.base_site_program_authorization import (
     BaseSiteProgramAuthorization
 )
 

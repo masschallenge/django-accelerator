@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from accelerator_abstract.models.base_scenario_judge import BaseScenarioJudge
+from ...accelerator_abstract.models.base_scenario_judge import BaseScenarioJudge
 
 
 class ScenarioJudge(BaseScenarioJudge):

@@ -9,7 +9,7 @@ from accelerator.tests.factories import (
     UserRoleFactory,
     ProgramFactory
 )
-from accelerator_abstract.models.base_user_role import (
+from .base_user_role import (
     BaseUserRole,
     is_finalist_user,
     is_judge,

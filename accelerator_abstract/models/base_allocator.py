@@ -8,7 +8,7 @@ from django.db.models import (
     CASCADE,
     OneToOneField,
 )
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from .accelerator_model import AcceleratorModel
 
 
 class BaseAllocator(AcceleratorModel):

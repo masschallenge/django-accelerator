@@ -7,9 +7,9 @@ import swapper
 from django.db import models
 from fluent_pages.models import Page
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from accelerator_abstract.models.base_nav_tree_item import NAV_TREE_USER_TYPES
-from accelerator_abstract.models.base_program import PROGRAM_STATUSES
+from .accelerator_model import AcceleratorModel
+from .base_nav_tree_item import NAV_TREE_USER_TYPES
+from .base_program import PROGRAM_STATUSES
 
 
 class BaseUserRoleMenu(Page):

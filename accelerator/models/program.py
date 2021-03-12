@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from accelerator_abstract.models import BaseProgram
+from ...accelerator_abstract.models import BaseProgram
 
 
 class Program(BaseProgram):

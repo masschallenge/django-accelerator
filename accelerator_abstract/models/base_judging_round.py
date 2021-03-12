@@ -14,8 +14,8 @@ from django.db.models import (
     CASCADE,
 )
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
-from accelerator_abstract.utils import validate_capacity_options
+from .accelerator_model import AcceleratorModel
+from ..utils import validate_capacity_options
 
 ONLINE_JUDGING_ROUND_TYPE = 'Online'
 IN_PERSON_JUDGING_ROUND_TYPE = 'In-Person'

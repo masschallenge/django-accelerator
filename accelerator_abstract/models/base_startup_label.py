@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 import swapper
 from django.db import models
 
-from accelerator_abstract.models.label_model import LabelModel
+from .label_model import LabelModel
 
 
 class BaseStartupLabel(LabelModel):

@@ -20,7 +20,7 @@ from accelerator.tests.factories.program_cycle_factory import (
     ProgramCycleFactory
 )
 from accelerator.tests.factories.startup_factory import StartupFactory
-from accelerator_abstract.models.base_application import (
+from .base_application import (
     INCOMPLETE_APP_STATUS,
 )
 

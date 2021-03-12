@@ -10,7 +10,7 @@ from accelerator.tests.factories.member_profile_factory import (
     MemberProfileFactory
 )
 from simpleuser.tests.factories.user_factory import UserFactory
-from accelerator_abstract.models.base_base_profile import MEMBER_USER_TYPE
+from .base_base_profile import MEMBER_USER_TYPE
 
 
 class MemberFactory(UserFactory):
