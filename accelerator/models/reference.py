@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 import swapper
 
 from ...accelerator_abstract.models import BaseReference
-from .accelerator_model import AcceleratorModel
+from ...accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
 class Reference(BaseReference):

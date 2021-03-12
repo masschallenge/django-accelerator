@@ -1,11 +1,12 @@
 # MIT License
 # Copyright (c) 2017 MassChallenge, Inc.
 
-from __future__ import unicode_literals
+import swapper
 
 from ...accelerator_abstract.models import BaseIndustry
 
 
 class Industry(BaseIndustry):
     class Meta(BaseIndustry.Meta):
-        swappable = 'MPTT_SWAPPABLE_INDUSTRY_MODEL'
+        app_label = "accelerator"
+        swappable = swapper.swappable_setting("accelerator", "Industry")
