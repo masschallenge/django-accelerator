@@ -10,7 +10,7 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.tests.factories.content_type_factory import ContentTypeFactory
+from accelerator.accelerator.tests.factories.content_type_factory import ContentTypeFactory
 
 
 class PermissionFactory(DjangoModelFactory):

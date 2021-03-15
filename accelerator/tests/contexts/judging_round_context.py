@@ -1,4 +1,4 @@
-from accelerator.tests.factories import (
+from accelerator.accelerator.tests.factories import (
     JudgingFormFactory,
     JudgingFormElementFactory,
     JudgingRoundFactory,

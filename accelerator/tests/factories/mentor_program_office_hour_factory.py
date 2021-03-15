@@ -18,13 +18,13 @@ from factory.django import DjangoModelFactory
 
 from pytz import utc
 
-from accelerator.tests.factories import (
+from accelerator.accelerator.tests.factories import (
     EntrepreneurFactory,
     ExpertFactory,
 )
-from accelerator.tests.factories.location_factory import LocationFactory
-from accelerator.tests.factories.program_factory import ProgramFactory
-from accelerator.tests.factories.startup_factory import StartupFactory
+from accelerator.accelerator.tests.factories.location_factory import LocationFactory
+from accelerator.accelerator.tests.factories.program_factory import ProgramFactory
+from accelerator.accelerator.tests.factories.startup_factory import StartupFactory
 
 MentorProgramOfficeHour = swapper.load_model('accelerator',
                                              'MentorProgramOfficeHour')

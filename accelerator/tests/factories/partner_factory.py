@@ -10,7 +10,7 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.tests.factories.organization_factory import (
+from accelerator.accelerator.tests.factories.organization_factory import (
     OrganizationFactory
 )
 

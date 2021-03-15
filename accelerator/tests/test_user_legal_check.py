@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from accelerator.tests.factories import UserLegalCheckFactory
+from accelerator.accelerator.tests.factories import UserLegalCheckFactory
 
 
 class TestUserLegalCheck(TestCase):

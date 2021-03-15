@@ -10,7 +10,7 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.tests.factories import ProgramFactory
+from accelerator.accelerator.tests.factories import ProgramFactory
 
 ProgramPartnerType = swapper.load_model('accelerator', 'ProgramPartnerType')
 

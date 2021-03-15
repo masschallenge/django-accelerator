@@ -1,17 +1,17 @@
-from accelerator.tests.factories import (
+from accelerator.accelerator.tests.factories import (
     CriterionFactory,
     CriterionOptionSpecFactory,
 )
-from accelerator.models import (
+from accelerator.accelerator.models import (
     FEEDBACK_DISPLAY_ENABLED,
     ONLINE_JUDGING_ROUND_TYPE,
     SUBMITTED_APP_STATUS,
 )
-from accelerator.tests.factories import (
+from accelerator.accelerator.tests.factories import (
     ApplicationFactory,
     ProgramCycleFactory,
 )
-from accelerator.tests.contexts import JudgingRoundContext
+from accelerator.accelerator.tests.contexts import JudgingRoundContext
 
 
 class CriterionOptionSpecContext:

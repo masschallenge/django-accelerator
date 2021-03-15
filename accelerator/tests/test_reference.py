@@ -5,8 +5,8 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
-from accelerator.tests.factories import ReferenceFactory
-from accelerator.tests.utils import days_from_now
+from accelerator.accelerator.tests.factories import ReferenceFactory
+from accelerator.accelerator.tests.utils import days_from_now
 
 
 class TestReference(TestCase):

@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from accelerator.tests.factories.core_profile_factory import CoreProfileFactory
+from accelerator.accelerator.tests.factories.core_profile_factory import CoreProfileFactory
 
 EntrepreneurProfile = swapper.load_model('accelerator', 'EntrepreneurProfile')
 

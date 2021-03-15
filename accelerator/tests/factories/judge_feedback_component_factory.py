@@ -10,10 +10,10 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.tests.factories.judge_application_feedback_factory import (
+from accelerator.accelerator.tests.factories.judge_application_feedback_factory import (
     JudgeApplicationFeedbackFactory,
 )
-from accelerator.tests.factories.judging_form_element_factory import (
+from accelerator.accelerator.tests.factories.judging_form_element_factory import (
     JudgingFormElementFactory
 )
 

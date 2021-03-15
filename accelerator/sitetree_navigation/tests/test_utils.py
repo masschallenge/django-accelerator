@@ -1,10 +1,10 @@
 from django.test import TestCase
 
-from accelerator.models import (
+from accelerator.accelerator.models import (
     NavTree,
     NavTreeItem
 )
-from accelerator.tests.factories import (
+from accelerator.accelerator.tests.factories import (
     UserRoleFactory,
     ProgramFactory,
     ProgramFamilyFactory

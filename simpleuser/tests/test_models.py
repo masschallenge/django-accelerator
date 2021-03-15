@@ -11,7 +11,7 @@ from django.test import TestCase
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 from .factories.user_factory import UserFactory
-from accelerator.tests.factories import (
+from accelerator.accelerator.tests.factories import (
     EntrepreneurFactory,
     ExpertFactory,
     IndustryFactory,
@@ -24,7 +24,7 @@ from accelerator.tests.factories import (
     UserRoleFactory,
     StartupTeamMemberFactory,
 )
-from accelerator.tests.contexts import (
+from accelerator.accelerator.tests.contexts import (
     StartupTeamMemberContext
 )
 from simpleuser.models import User

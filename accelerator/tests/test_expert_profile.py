@@ -5,18 +5,18 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
-from accelerator.models import (
+from accelerator.accelerator.models import (
     ExpertCategory,
     Industry,
 )
-from accelerator.tests.factories.expert_profile_factory import (
+from accelerator.accelerator.tests.factories.expert_profile_factory import (
     ExpertProfileFactory
 )
-from accelerator.tests.factories.functional_expertise_factory import (
+from accelerator.accelerator.tests.factories.functional_expertise_factory import (
     FunctionalExpertiseFactory
 )
-from accelerator.tests.factories.industry_factory import IndustryFactory
-from accelerator.tests.factories.mentoring_specialties_factory import (
+from accelerator.accelerator.tests.factories.industry_factory import IndustryFactory
+from accelerator.accelerator.tests.factories.mentoring_specialties_factory import (
     MentoringSpecialtiesFactory,
 )
 

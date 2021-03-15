@@ -6,7 +6,7 @@ import swapper
 from factory import Iterator
 from factory.django import DjangoModelFactory
 
-from accelerator.models import VALID_EXPERT_CATEGORIES
+from accelerator.accelerator.models import VALID_EXPERT_CATEGORIES
 
 # The import of VALID_EXPERT_CATEGORIES is indicative of a deeper problem with
 # how ExpertCategorys are currently used.  See AC-5022 for the underlying

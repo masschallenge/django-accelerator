@@ -1,11 +1,11 @@
-from accelerator.tests.factories import (
+from accelerator.accelerator.tests.factories import (
     CriterionFactory,
     CriterionOptionSpecFactory,
 )
-from accelerator.tests.contexts.judge_feedback_context import (
+from accelerator.accelerator.tests.contexts.judge_feedback_context import (
     JudgeFeedbackContext,
 )
-from accelerator.models import JUDGING_FEEDBACK_STATUS_COMPLETE
+from accelerator.accelerator.models import JUDGING_FEEDBACK_STATUS_COMPLETE
 
 import swapper
 

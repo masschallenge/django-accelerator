@@ -1,4 +1,4 @@
-FROM accelerator_tests:latest
+from accelerator.accelerator.tests:latest
 
 WORKDIR /srv/www/mc/current
 

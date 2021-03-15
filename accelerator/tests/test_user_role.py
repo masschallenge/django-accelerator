@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
-from accelerator.tests.factories import (
+from accelerator.accelerator.tests.factories import (
     UserRoleFactory,
     ProgramFactory
 )
@@ -15,7 +15,7 @@ from .base_user_role import (
     is_judge,
     is_mentor,
 )
-from accelerator.tests.test_core_profile import expert
+from accelerator.accelerator.tests.test_core_profile import expert
 
 
 class TestUserRole(TestCase):

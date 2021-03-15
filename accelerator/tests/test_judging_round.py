@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 from django.test import TestCase
 from django.utils import timezone
 
-from accelerator.tests.factories import (
+from accelerator.accelerator.tests.factories import (
     JudgingRoundFactory,
     ProgramFactory,
 )

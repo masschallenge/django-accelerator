@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
-from accelerator.tests.factories import (
+from accelerator.accelerator.tests.factories import (
     OrganizationFactory,
     ProgramFactory,
     StartupFactory,
@@ -17,7 +17,7 @@ from .base_startup_role import (
 from .base_startup import (
     DISPLAY_STARTUP_STATUS
 )
-from accelerator.tests.contexts import (
+from accelerator.accelerator.tests.contexts import (
     StartupTeamMemberContext
 )
 

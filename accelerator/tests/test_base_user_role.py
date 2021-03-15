@@ -3,12 +3,12 @@
 
 from django.test import TestCase
 
-from accelerator.tests.contexts import (
+from accelerator.accelerator.tests.contexts import (
     JudgeFeedbackContext,
     UserRoleContext,
 )
 from .base_user_role import has_user_roles
-from accelerator.models import (
+from accelerator.accelerator.models import (
     has_user_role_base,
     UserRole,
 )

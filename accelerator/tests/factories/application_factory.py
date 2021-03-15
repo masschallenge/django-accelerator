@@ -13,13 +13,13 @@ from factory import SubFactory
 from factory.django import DjangoModelFactory
 from pytz import utc
 
-from accelerator.tests.factories.application_type_factory import (
+from accelerator.accelerator.tests.factories.application_type_factory import (
     ApplicationTypeFactory
 )
-from accelerator.tests.factories.program_cycle_factory import (
+from accelerator.accelerator.tests.factories.program_cycle_factory import (
     ProgramCycleFactory
 )
-from accelerator.tests.factories.startup_factory import StartupFactory
+from accelerator.accelerator.tests.factories.startup_factory import StartupFactory
 from .base_application import (
     INCOMPLETE_APP_STATUS,
 )

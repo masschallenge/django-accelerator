@@ -11,7 +11,7 @@ from factory import (
 from factory.django import DjangoModelFactory
 
 
-from accelerator.tests.factories.program_factory import ProgramFactory
+from accelerator.accelerator.tests.factories.program_factory import ProgramFactory
 
 InterestCategory = swapper.load_model('accelerator', 'InterestCategory')
 

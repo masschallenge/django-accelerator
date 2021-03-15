@@ -3,14 +3,14 @@
 
 from __future__ import unicode_literals
 
-from accelerator.tests.factories.ethno_racial_identity_factory import (
+from accelerator.accelerator.tests.factories.ethno_racial_identity_factory import (
     EthnoRacialIdentityFactory,
 )
-from accelerator.tests.factories.expert_category_factory import (
+from accelerator.accelerator.tests.factories.expert_category_factory import (
     ExpertCategoryFactory
 )
-from accelerator.tests.factories.industry_factory import IndustryFactory
-from accelerator.tests.factories.program_factory import ProgramFactory
+from accelerator.accelerator.tests.factories.industry_factory import IndustryFactory
+from accelerator.accelerator.tests.factories.program_factory import ProgramFactory
 
 
 def expert_data(user, password="password"):

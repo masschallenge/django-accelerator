@@ -1,4 +1,4 @@
-from accelerator.tests.factories import UserRoleFactory
+from accelerator.accelerator.tests.factories import UserRoleFactory
 from django.conf import settings
 import swapper
 

@@ -10,12 +10,12 @@ from factory import (
     post_generation,
 )
 
-from accelerator.tests.factories.core_profile_factory import CoreProfileFactory
-from accelerator.tests.factories.expert_category_factory import (
+from accelerator.accelerator.tests.factories.core_profile_factory import CoreProfileFactory
+from accelerator.accelerator.tests.factories.expert_category_factory import (
     ExpertCategoryFactory
 )
-from accelerator.tests.factories.industry_factory import IndustryFactory
-from accelerator.tests.factories.program_family_factory import (
+from accelerator.accelerator.tests.factories.industry_factory import IndustryFactory
+from accelerator.accelerator.tests.factories.program_family_factory import (
     ProgramFamilyFactory
 )
 

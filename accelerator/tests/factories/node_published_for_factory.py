@@ -7,8 +7,8 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.tests.factories.program_role_factory import ProgramRoleFactory
-from accelerator.tests.factories.url_node_factory import UrlNodeFactory
+from accelerator.accelerator.tests.factories.program_role_factory import ProgramRoleFactory
+from accelerator.accelerator.tests.factories.url_node_factory import UrlNodeFactory
 
 NodePublishedFor = swapper.load_model('accelerator', 'NodePublishedFor')
 

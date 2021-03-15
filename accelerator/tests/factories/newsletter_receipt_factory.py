@@ -8,10 +8,10 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.tests.factories.entrepreneur_factory import (
+from accelerator.accelerator.tests.factories.entrepreneur_factory import (
     EntrepreneurFactory
 )
-from accelerator.tests.factories.newsletter_factory import NewsletterFactory
+from accelerator.accelerator.tests.factories.newsletter_factory import NewsletterFactory
 
 NewsletterReceipt = swapper.load_model('accelerator', 'NewsletterReceipt')
 

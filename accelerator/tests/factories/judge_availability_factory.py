@@ -7,14 +7,14 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.tests.factories.judge_round_commitment_factory import (
+from accelerator.accelerator.tests.factories.judge_round_commitment_factory import (
     JudgeRoundCommitmentFactory,
 )
-from accelerator.tests.factories.panel_location_factory import (
+from accelerator.accelerator.tests.factories.panel_location_factory import (
     PanelLocationFactory
 )
-from accelerator.tests.factories.panel_time_factory import PanelTimeFactory
-from accelerator.tests.factories.panel_type_factory import PanelTypeFactory
+from accelerator.accelerator.tests.factories.panel_time_factory import PanelTimeFactory
+from accelerator.accelerator.tests.factories.panel_type_factory import PanelTypeFactory
 
 JudgeAvailability = swapper.load_model('accelerator', 'JudgeAvailability')
 

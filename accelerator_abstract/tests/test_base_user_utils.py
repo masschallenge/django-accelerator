@@ -3,8 +3,8 @@ from django.contrib.auth.models import AnonymousUser
 from .base_user_utils import (
     is_employee
 )
-from accelerator.tests.utils import login_as_new_user
-from accelerator.tests.factories import (
+from accelerator.accelerator.tests.utils import login_as_new_user
+from accelerator.accelerator.tests.factories import (
     ClearanceFactory,
     UserFactory,
 )

@@ -10,24 +10,24 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.models import (
+from accelerator.accelerator.models import (
     CAPTURE_AVAILABILITY_DISABLED,
     FEEDBACK_DISPLAY_DISABLED,
     IN_PERSON_JUDGING_ROUND_TYPE,
     RECRUIT_NONE,
 )
-from accelerator.tests.factories.application_type_factory import (
+from accelerator.accelerator.tests.factories.application_type_factory import (
     ApplicationTypeFactory
 )
-from accelerator.tests.factories.judging_form_factory import (
+from accelerator.accelerator.tests.factories.judging_form_factory import (
     JudgingFormFactory
 )
-from accelerator.tests.factories.program_factory import ProgramFactory
-from accelerator.tests.factories.startup_label_factory import (
+from accelerator.accelerator.tests.factories.program_factory import ProgramFactory
+from accelerator.accelerator.tests.factories.startup_label_factory import (
     StartupLabelFactory
 )
-from accelerator.tests.factories.user_label_factory import UserLabelFactory
-from accelerator.tests.utils import months_from_now
+from accelerator.accelerator.tests.factories.user_label_factory import UserLabelFactory
+from accelerator.accelerator.tests.utils import months_from_now
 from .base_judging_round import (
     DEFAULT_BUFFER_BEFORE_EVENT,
     SCENARIO_DETECTION,

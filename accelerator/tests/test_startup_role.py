@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
-from accelerator.tests.factories import StartupRoleFactory
+from accelerator.accelerator.tests.factories import StartupRoleFactory
 
 
 class TestStartupRole(TestCase):

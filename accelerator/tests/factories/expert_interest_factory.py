@@ -10,13 +10,13 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.tests.factories import (
+from accelerator.accelerator.tests.factories import (
     ExpertFactory,
 )
-from accelerator.tests.factories.expert_interest_type_factory import (
+from accelerator.accelerator.tests.factories.expert_interest_type_factory import (
     ExpertInterestTypeFactory
 )
-from accelerator.tests.factories.program_family_factory import (
+from accelerator.accelerator.tests.factories.program_family_factory import (
     ProgramFamilyFactory
 )
 

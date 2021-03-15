@@ -7,7 +7,7 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.models import MIGRATION_STATUS_OLD
+from accelerator.accelerator.models import MIGRATION_STATUS_OLD
 
 ModelChange = swapper.load_model('accelerator', 'ModelChange')
 

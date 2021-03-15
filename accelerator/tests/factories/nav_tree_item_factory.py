@@ -10,7 +10,7 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.tests.factories import NavTreeFactory
+from accelerator.accelerator.tests.factories import NavTreeFactory
 
 NavTreeItem = swapper.load_model('accelerator', 'NavTreeItem')
 

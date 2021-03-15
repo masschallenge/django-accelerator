@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
-from accelerator.tests.factories.member_factory import MemberFactory
+from accelerator.accelerator.tests.factories.member_factory import MemberFactory
 from .base_user_utils import (
     is_entrepreneur,
     is_expert,

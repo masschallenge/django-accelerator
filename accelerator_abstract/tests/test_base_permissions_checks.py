@@ -1,16 +1,16 @@
 from django.test import TestCase
 
-from accelerator.tests.utils import login_as_new_user, login_as_user
+from accelerator.accelerator.tests.utils import login_as_new_user, login_as_user
 from .base_startup_role import (
     BaseStartupRole
 )
 from .base_user_role import (
     BaseUserRole
 )
-from accelerator.tests.contexts import (
+from accelerator.accelerator.tests.contexts import (
     StartupTeamMemberContext
 )
-from accelerator.tests.factories import (
+from accelerator.accelerator.tests.factories import (
     StartupRoleFactory,
     UserFactory
 )
@@ -21,7 +21,7 @@ from .base_permission_checks import (
     base_accelerator_check
 )
 from accelerator_abstract.models import ENDED_PROGRAM_STATUS
-from accelerator.tests.test_core_profile import expert
+from accelerator.accelerator.tests.test_core_profile import expert
 
 
 class TestBasePermissionsChecks(TestCase):

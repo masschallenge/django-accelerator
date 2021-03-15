@@ -17,8 +17,8 @@ from factory.django import DjangoModelFactory
 
 from pytz import utc
 
-from accelerator.models.core_profile import CoreProfile
-from accelerator.tests.factories.program_factory import ProgramFactory
+from accelerator.accelerator.models.core_profile import CoreProfile
+from accelerator.accelerator.tests.factories.program_factory import ProgramFactory
 from simpleuser.tests.factories.user_factory import UserFactory
 
 

@@ -10,8 +10,8 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.tests.factories.application_factory import ApplicationFactory
-from accelerator.tests.factories.application_question_factory import (
+from accelerator.accelerator.tests.factories.application_factory import ApplicationFactory
+from accelerator.accelerator.tests.factories.application_question_factory import (
     ApplicationQuestionFactory
 )
 

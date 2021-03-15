@@ -1,11 +1,11 @@
-from accelerator.tests.factories import (
+from accelerator.accelerator.tests.factories import (
     ExpertFactory,
     ProgramFactory,
     ProgramRoleFactory,
     ProgramRoleGrantFactory,
     UserLabelFactory,
 )
-from accelerator.tests.contexts.context_utils import get_user_role_by_name
+from accelerator.accelerator.tests.contexts.context_utils import get_user_role_by_name
 
 
 class UserRoleContext:

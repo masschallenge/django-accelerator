@@ -7,8 +7,8 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.tests.factories.expert_factory import ExpertFactory
-from accelerator.tests.factories.startup_mentor_tracking_record_factory \
+from accelerator.accelerator.tests.factories.expert_factory import ExpertFactory
+from accelerator.accelerator.tests.factories.startup_mentor_tracking_record_factory \
     import StartupMentorTrackingRecordFactory
 from .base_startup_mentor_relationship import (
     CONFIRMED_RELATIONSHIP,
