@@ -36,7 +36,6 @@ from accelerator_abstract.models.base_clearance import (
 def expert(role):
     user = ExpertFactory()
     profile = user.get_profile()
-    profile.gender = 'm'
     profile.save()
     ur = UserRoleFactory(name=role)
     pr = ProgramRoleFactory.create(user_role=ur)
@@ -103,11 +102,6 @@ class TestCoreProfile(TestCase):
     def test_first_startup_is_false_by_default(self):
         user = expert(BaseUserRole.FINALIST)
         self.assertFalse(user.get_profile().first_startup())
-
-    def test_gender_value_is_male(self):
-        user = expert(BaseUserRole.FINALIST)
-        profile = user.get_profile()
-        self.assertTrue(profile.gender_value() == "Male")
 
     def test_program_family_names(self):
         user = expert(BaseUserRole.FINALIST)
