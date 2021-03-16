@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from ...accelerator_abstract.models import BaseJudgeApplicationFeedback
+from accelerator_abstract.models import BaseJudgeApplicationFeedback
 
 
 class JudgeApplicationFeedback(BaseJudgeApplicationFeedback):

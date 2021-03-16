@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from ...accelerator_abstract.models.base_startup_cycle_interest import (
+from accelerator_abstract.models.base_startup_cycle_interest import (
     BaseStartupCycleInterest
 )
 

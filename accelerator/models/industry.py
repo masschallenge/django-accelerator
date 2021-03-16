@@ -3,7 +3,7 @@
 
 import swapper
 
-from ...accelerator_abstract.models import BaseIndustry
+from accelerator_abstract.models import BaseIndustry
 
 
 class Industry(BaseIndustry):

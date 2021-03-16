@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from ...accelerator_abstract.models.base_mentor_program_office_hour import (
+from accelerator_abstract.models.base_mentor_program_office_hour import (
     BaseMentorProgramOfficeHour,
 )
 

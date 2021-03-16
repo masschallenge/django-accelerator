@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from ...accelerator_abstract.models.base_application_panel_assignment import (
+from accelerator_abstract.models.base_application_panel_assignment import (
     BaseApplicationPanelAssignment
 )
 

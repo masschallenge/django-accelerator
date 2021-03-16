@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from ...accelerator_abstract.models.base_panel_time import BasePanelTime
+from accelerator_abstract.models.base_panel_time import BasePanelTime
 
 
 class PanelTime(BasePanelTime):

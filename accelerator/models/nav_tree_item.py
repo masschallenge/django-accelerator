@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from ...accelerator_abstract.models.base_nav_tree_item import BaseNavTreeItem
+from accelerator_abstract.models.base_nav_tree_item import BaseNavTreeItem
 
 
 class NavTreeItem(BaseNavTreeItem):

@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from ...accelerator_abstract.models.base_currency import BaseCurrency
+from accelerator_abstract.models.base_currency import BaseCurrency
 
 
 class Currency(BaseCurrency):

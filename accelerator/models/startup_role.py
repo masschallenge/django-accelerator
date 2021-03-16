@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from ...accelerator_abstract.models.base_startup_role import BaseStartupRole
+from accelerator_abstract.models.base_startup_role import BaseStartupRole
 
 
 class StartupRole(BaseStartupRole):

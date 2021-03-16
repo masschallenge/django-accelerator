@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from ...accelerator_abstract.models.base_criterion import BaseCriterion
+from accelerator_abstract.models.base_criterion import BaseCriterion
 
 
 class Criterion(BaseCriterion):

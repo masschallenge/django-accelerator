@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from ...accelerator_abstract.models.base_refund_code_redemption import (
+from accelerator_abstract.models.base_refund_code_redemption import (
     BaseRefundCodeRedemption
 )
 

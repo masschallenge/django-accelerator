@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import swapper
 
-from ...accelerator_abstract.models.base_judging_round import BaseJudgingRound
+from accelerator_abstract.models.base_judging_round import BaseJudgingRound
 
 
 class JudgingRound(BaseJudgingRound):
