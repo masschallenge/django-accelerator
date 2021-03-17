@@ -6,10 +6,10 @@ from .base_utils import (
 from .base_startup_role import (
     BaseStartupRole
 )
-from accelerator.accelerator.tests.contexts import (
+from accelerator.tests.contexts import (
     StartupTeamMemberContext
 )
-from accelerator.accelerator.tests.factories import StartupRoleFactory
+from accelerator.tests.factories import StartupRoleFactory
 
 
 class TestBaseUtils(TestCase):

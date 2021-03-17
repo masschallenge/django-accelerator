@@ -1,4 +1,4 @@
-from accelerator.accelerator.models import (
+from accelerator.models import (
     NavTree,
     NavTreeItem,
     UserRole,

@@ -11,7 +11,7 @@ from django.db import models
 from django.core.validators import MaxLengthValidator
 from django.utils.safestring import mark_safe
 
-from .base_core_profile import BaseCoreProfile
+from accelerator_abstract.models.base_core_profile import BaseCoreProfile
 
 PRIVACY_CHOICES = (("staff", "MC Staff Only"),
                    ("finalists and staff", "Finalists and MC Staff"),

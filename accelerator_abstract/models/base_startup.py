@@ -217,7 +217,7 @@ class BaseStartup(AcceleratorModel):
         return ""
 
     def program_startup_statuses(self):
-        from accelerator.accelerator.models.program_startup_status import (
+        from accelerator.models.program_startup_status import (
             ProgramStartupStatus
         )
         return ProgramStartupStatus.objects.filter(

@@ -59,7 +59,7 @@ from .base_clearance import (
     CLEARANCE_LOGGER_SUCCESS_MSG,
     NO_CLEARANCE_ERROR_MSG,
 )
-from .base_core_profile import BaseCoreProfile
+from accelerator_abstract.models.base_core_profile import BaseCoreProfile
 from .base_criterion import BaseCriterion
 from .base_criterion_option_spec import BaseCriterionOptionSpec
 from .base_currency import BaseCurrency
