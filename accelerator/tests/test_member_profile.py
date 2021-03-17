@@ -5,8 +5,8 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
-from accelerator.accelerator.tests.factories.member_factory import MemberFactory
-from .base_user_utils import (
+from accelerator.tests.factories.member_factory import MemberFactory
+from accelerator_abstract.models.base_user_utils import (
     is_entrepreneur,
     is_expert,
     is_member,

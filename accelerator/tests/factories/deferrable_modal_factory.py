@@ -9,7 +9,7 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 from factory.fuzzy import FuzzyChoice
-from .base_base_profile import USER_TYPES
+from accelerator_abstract.models.base_base_profile import USER_TYPES
 
 DeferrableModal = swapper.load_model('accelerator', 'DeferrableModal')
 

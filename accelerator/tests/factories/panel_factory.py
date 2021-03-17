@@ -10,12 +10,12 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.models import PREVIEW_PANEL_STATUS
-from accelerator.accelerator.tests.factories.panel_location_factory import (
+from accelerator.models import PREVIEW_PANEL_STATUS
+from accelerator.tests.factories.panel_location_factory import (
     PanelLocationFactory
 )
-from accelerator.accelerator.tests.factories.panel_time_factory import PanelTimeFactory
-from accelerator.accelerator.tests.factories.panel_type_factory import PanelTypeFactory
+from accelerator.tests.factories.panel_time_factory import PanelTimeFactory
+from accelerator.tests.factories.panel_type_factory import PanelTypeFactory
 
 Panel = swapper.load_model('accelerator', 'Panel')
 

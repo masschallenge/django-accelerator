@@ -9,10 +9,10 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.tests.factories.judging_round_factory import (
+from accelerator.tests.factories.judging_round_factory import (
     JudgingRoundFactory
 )
-from accelerator.accelerator.tests.utils import months_from_now
+from accelerator.tests.utils import months_from_now
 
 PanelTime = swapper.load_model('accelerator', 'PanelTime')
 

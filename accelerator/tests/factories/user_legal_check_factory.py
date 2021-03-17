@@ -7,7 +7,7 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.tests.factories.legal_check_factory import (
+from accelerator.tests.factories.legal_check_factory import (
     LegalCheckFactory
 )
 from simpleuser.tests.factories.user_factory import UserFactory

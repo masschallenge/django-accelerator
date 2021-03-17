@@ -7,8 +7,8 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.tests.factories.application_factory import ApplicationFactory
-from accelerator.accelerator.tests.factories.scenario_factory import ScenarioFactory
+from accelerator.tests.factories.application_factory import ApplicationFactory
+from accelerator.tests.factories.scenario_factory import ScenarioFactory
 
 ScenarioApplication = swapper.load_model('accelerator',
                                          'ScenarioApplication')

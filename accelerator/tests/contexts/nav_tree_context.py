@@ -1,5 +1,5 @@
-from accelerator.accelerator.tests.contexts.context_utils import get_user_role_by_name
-from accelerator.accelerator.tests.factories import (
+from accelerator.tests.contexts.context_utils import get_user_role_by_name
+from accelerator.tests.factories import (
     ExpertFactory,
     NavTreeFactory,
     NavTreeItemFactory,
@@ -10,7 +10,7 @@ from accelerator.accelerator.tests.factories import (
     UserRoleFactory,
 )
 
-from accelerator.accelerator.models import (
+from accelerator.models import (
     MC_SIDE_NAV_TREE_ALIAS,
     UserRole,
 )

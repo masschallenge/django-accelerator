@@ -10,10 +10,10 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.tests.factories.application_type_factory import (
+from accelerator.tests.factories.application_type_factory import (
     ApplicationTypeFactory
 )
-from accelerator.accelerator.tests.utils import months_from_now
+from accelerator.tests.utils import months_from_now
 
 ProgramCycle = swapper.load_model('accelerator', 'ProgramCycle')
 

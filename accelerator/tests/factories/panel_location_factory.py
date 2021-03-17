@@ -10,7 +10,7 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.tests.factories.judging_round_factory import (
+from accelerator.tests.factories.judging_round_factory import (
     JudgingRoundFactory
 )
 

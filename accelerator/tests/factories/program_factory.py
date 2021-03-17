@@ -12,14 +12,14 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.models import ACTIVE_PROGRAM_STATUS
-from accelerator.accelerator.tests.factories.program_cycle_factory import (
+from accelerator.models import ACTIVE_PROGRAM_STATUS
+from accelerator.tests.factories.program_cycle_factory import (
     ProgramCycleFactory
 )
-from accelerator.accelerator.tests.factories.program_family_factory import (
+from accelerator.tests.factories.program_family_factory import (
     ProgramFamilyFactory
 )
-from accelerator.accelerator.tests.utils import months_from_now
+from accelerator.tests.utils import months_from_now
 
 Program = swapper.load_model('accelerator', 'Program')
 

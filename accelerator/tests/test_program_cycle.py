@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from accelerator.accelerator.tests.factories import ProgramCycleFactory
+from accelerator.tests.factories import ProgramCycleFactory
 
 
 class TestProgramCycle(TestCase):

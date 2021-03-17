@@ -11,7 +11,7 @@ try:
 except ImportError:
     from mock import patch
 
-from accelerator.accelerator.models import (
+from accelerator.models import (
     BaseProfile,
     ENTREPRENEUR_USER_TYPE,
     EXPERT_USER_TYPE,
@@ -20,12 +20,12 @@ from accelerator.accelerator.models import (
     MEMBER_USER_TYPE,
     MemberProfile,
 )
-from accelerator.accelerator.models.profile_query_set import (
+from accelerator.models.profile_query_set import (
     INCORRECT_USER_TYPE_TEMPLATE,
     MISSING_BASE_PROFILE_TEMPLATE,
     MISSING_PROFILE_TEMPLATE,
 )
-from accelerator.accelerator.tests.factories import (
+from accelerator.tests.factories import (
     EntrepreneurFactory,
     ExpertFactory,
     MemberFactory,

@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
-from accelerator.accelerator.tests.factories import ProgramOverrideFactory
+from accelerator.tests.factories import ProgramOverrideFactory
 
 
 class TestProgramOverride(TestCase):

@@ -10,7 +10,7 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.tests.factories.startup_label_factory import (
+from accelerator.tests.factories.startup_label_factory import (
     StartupLabelFactory
 )
 

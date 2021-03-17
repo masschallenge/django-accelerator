@@ -6,13 +6,11 @@ from __future__ import unicode_literals
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from accelerator.accelerator.tests.factories import (
+from accelerator.tests.factories import (
     EntrepreneurFactory,
     ExpertInterestFactory,
 )
-from .base_expert_interest import (
-    is_expert_validator,
-)
+from accelerator_abstract.models.base_expert_interest import is_expert_validator
 
 
 class TestExpertInterest(TestCase):

@@ -10,8 +10,8 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.tests.factories.program_factory import ProgramFactory
-from accelerator.accelerator.tests.factories.startup_role_factory import StartupRoleFactory
+from accelerator.tests.factories.program_factory import ProgramFactory
+from accelerator.tests.factories.startup_role_factory import StartupRoleFactory
 
 ProgramStartupStatus = swapper.load_model('accelerator',
                                           'ProgramStartupStatus')

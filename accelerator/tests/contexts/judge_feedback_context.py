@@ -4,7 +4,7 @@ from accelerator_abstract.models import (
     FORM_ELEM_OVERALL_RECOMMENDATION,
 )
 
-from accelerator.accelerator.models import (
+from accelerator.models import (
     ACTIVE_PROGRAM_STATUS,
     ASSIGNED_PANEL_ASSIGNMENT_STATUS,
     COMPLETE_PANEL_ASSIGNMENT_STATUS,
@@ -17,7 +17,7 @@ from accelerator.accelerator.models import (
     SUBMITTED_APP_STATUS,
     UserRole,
 )
-from accelerator.accelerator.tests.factories import (
+from accelerator.tests.factories import (
     ApplicationAnswerFactory,
     ApplicationFactory,
     ApplicationPanelAssignmentFactory,
@@ -35,7 +35,7 @@ from accelerator.accelerator.tests.factories import (
     StartupCycleInterestFactory,
     StartupProgramInterestFactory,
 )
-from accelerator.accelerator.tests.contexts.context_utils import get_user_role_by_name
+from accelerator.tests.contexts.context_utils import get_user_role_by_name
 from .judging_round_context import JudgingRoundContext
 ELEMENT_NAMES = [
     FORM_ELEM_OVERALL_RECOMMENDATION,

@@ -10,10 +10,10 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.tests.factories.application_type_factory import (
+from accelerator.tests.factories.application_type_factory import (
     ApplicationTypeFactory
 )
-from accelerator.accelerator.tests.factories.question_factory import QuestionFactory
+from accelerator.tests.factories.question_factory import QuestionFactory
 
 ApplicationQuestion = swapper.load_model('accelerator',
                                          'ApplicationQuestion')

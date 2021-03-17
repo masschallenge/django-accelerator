@@ -5,21 +5,15 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
-from accelerator.accelerator.tests.factories import (
+from accelerator.tests.factories import (
     OrganizationFactory,
     ProgramFactory,
     StartupFactory,
     StartupRoleFactory
 )
-from .base_startup_role import (
-    BaseStartupRole
-)
-from .base_startup import (
-    DISPLAY_STARTUP_STATUS
-)
-from accelerator.accelerator.tests.contexts import (
-    StartupTeamMemberContext
-)
+from accelerator_abstract.models.base_startup_role import BaseStartupRole
+from accelerator_abstract.models.base_startup import DISPLAY_STARTUP_STATUS
+from accelerator.tests.contexts import StartupTeamMemberContext
 
 
 class TestStartup(TestCase):

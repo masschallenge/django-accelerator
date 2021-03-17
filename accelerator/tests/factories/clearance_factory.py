@@ -8,8 +8,8 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.models import CLEARANCE_LEVEL_POM
-from accelerator.accelerator.tests.factories.program_family_factory import (
+from accelerator.models import CLEARANCE_LEVEL_POM
+from accelerator.tests.factories.program_family_factory import (
     ProgramFamilyFactory
 )
 from simpleuser.tests.factories.user_factory import UserFactory

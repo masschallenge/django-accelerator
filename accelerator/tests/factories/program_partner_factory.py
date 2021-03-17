@@ -10,9 +10,9 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.tests.factories.partner_factory import PartnerFactory
-from accelerator.accelerator.tests.factories.program_factory import ProgramFactory
-from accelerator.accelerator.tests.factories.program_partner_type_factory import (
+from accelerator.tests.factories.partner_factory import PartnerFactory
+from accelerator.tests.factories.program_factory import ProgramFactory
+from accelerator.tests.factories.program_partner_type_factory import (
     ProgramPartnerTypeFactory
 )
 

@@ -3,7 +3,7 @@
 
 from django.test import TestCase
 
-from accelerator.accelerator.models import Currency
+from accelerator.models import Currency
 from .factories.currency_factory import CurrencyFactory
 
 

@@ -11,7 +11,7 @@ from factory.django import DjangoModelFactory
 
 from fluent_pages.models import UrlNode
 
-from accelerator.accelerator.tests.factories import (
+from accelerator.tests.factories import (
     MemberFactory,
 )
 

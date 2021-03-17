@@ -5,12 +5,12 @@ from __future__ import unicode_literals
 
 from factory import RelatedFactory
 
-from accelerator.accelerator.tests.factories.base_profile_factory import BaseProfileFactory
-from accelerator.accelerator.tests.factories.member_profile_factory import (
+from accelerator.tests.factories.base_profile_factory import BaseProfileFactory
+from accelerator.tests.factories.member_profile_factory import (
     MemberProfileFactory
 )
 from simpleuser.tests.factories.user_factory import UserFactory
-from .base_base_profile import MEMBER_USER_TYPE
+from accelerator_abstract.models.base_base_profile import MEMBER_USER_TYPE
 
 
 class MemberFactory(UserFactory):

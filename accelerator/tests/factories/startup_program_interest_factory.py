@@ -10,11 +10,11 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.tests.factories.program_factory import ProgramFactory
-from accelerator.accelerator.tests.factories.startup_cycle_interest_factory import (
+from accelerator.tests.factories.program_factory import ProgramFactory
+from accelerator.tests.factories.startup_cycle_interest_factory import (
     StartupCycleInterestFactory,
 )
-from accelerator.accelerator.tests.factories.startup_factory import StartupFactory
+from accelerator.tests.factories.startup_factory import StartupFactory
 
 StartupProgramInterest = swapper.load_model('accelerator',
                                             'StartupProgramInterest')

@@ -7,7 +7,7 @@ import swapper
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.tests.factories import (
+from accelerator.tests.factories import (
     ProgramOverrideFactory,
     StartupFactory,
 )

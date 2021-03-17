@@ -10,12 +10,12 @@ from factory import (
 )
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.models import (
+from accelerator.models import (
     JUDGE_ENTITY,
     JUDGE_IS_FEMALE,
     MIN_PREFERENCE,
 )
-from accelerator.accelerator.tests.factories.scenario_factory import ScenarioFactory
+from accelerator.tests.factories.scenario_factory import ScenarioFactory
 
 ScenarioPreference = swapper.load_model('accelerator', 'ScenarioPreference')
 

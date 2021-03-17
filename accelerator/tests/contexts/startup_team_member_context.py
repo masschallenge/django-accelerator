@@ -3,7 +3,7 @@ from datetime import (
     timedelta,
 )
 
-from accelerator.accelerator.tests.factories import (
+from accelerator.tests.factories import (
     EntrepreneurFactory,
     ProgramCycleFactory,
     ProgramFactory,

@@ -7,7 +7,7 @@ import swapper
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
-from accelerator.accelerator.models import (
+from accelerator.models import (
     CHOICE_LAYOUT_HORIZONTAL,
     QUESTION_TYPE_MULTILINE,
 )
