@@ -18,7 +18,6 @@ def expert_data(user, password="password"):
         "email": user.email,
         "first_name": user.first_name,
         "last_name": user.last_name,
-        "gender": "p",
         "title": "Some Title",
         "company": "Company",
         "expert_category": ExpertCategoryFactory().id,
