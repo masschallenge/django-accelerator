@@ -3,7 +3,7 @@ import swapper
 from django.db import models
 
 from .accelerator_model import AcceleratorModel
-from .base_base_profile import USER_TYPES
+from accelerator_abstract.models.base_base_profile import USER_TYPES
 
 DURATION_HELP_TEXT = ('Default deferment duration. Format: '
                       'days hours:minutes:seconds e.g 1 00:00:00')

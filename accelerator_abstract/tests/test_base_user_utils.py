@@ -1,15 +1,16 @@
 from django.test import TestCase
 from django.contrib.auth.models import AnonymousUser
-from .base_user_utils import (
+
+from accelerator_abstract.models.base_clearance import (
+    CLEARANCE_LEVEL_STAFF,
+)
+from accelerator_abstract.models.base_user_utils import (
     is_employee
 )
 from accelerator.tests.utils import login_as_new_user
 from accelerator.tests.factories import (
     ClearanceFactory,
     UserFactory,
-)
-from .base_clearance import (
-    CLEARANCE_LEVEL_STAFF,
 )
 
 

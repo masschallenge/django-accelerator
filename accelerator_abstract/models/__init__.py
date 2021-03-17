@@ -26,7 +26,7 @@ from .base_application_question import (
     TEXT_LIMIT_UNITS,
 )
 from .base_application_type import BaseApplicationType
-from .base_base_profile import (
+from accelerator_abstract.models.base_base_profile import (
     BaseBaseProfile,
     ENTREPRENEUR_USER_TYPE,
     EXPERT_USER_TYPE,
@@ -46,7 +46,7 @@ from .base_bucket_state import (
     UNSUBMITTED_BUCKET_TYPE,
 )
 from .base_category_header_page import BaseCategoryHeaderPage
-from .base_clearance import (
+from accelerator_abstract.models.base_clearance import (
     BaseClearance,
     CLEARANCE_LEVEL_EXEC_MD,
     CLEARANCE_LEVEL_GLOBAL_MANAGER,

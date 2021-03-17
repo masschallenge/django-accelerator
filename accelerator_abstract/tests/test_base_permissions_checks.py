@@ -14,7 +14,7 @@ from accelerator.tests.factories import (
     StartupRoleFactory,
     UserFactory
 )
-from .base_permission_checks import (
+from accelerator_abstract.models.base_permission_checks import (
     _see_active_pages,
     _see_employee_pages,
     _see_finalist_pages,

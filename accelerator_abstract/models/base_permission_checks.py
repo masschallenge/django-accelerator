@@ -1,4 +1,4 @@
-from .base_user_utils import (
+from accelerator_abstract.models.base_user_utils import (
     is_employee,
 )
 from .base_utils import (
