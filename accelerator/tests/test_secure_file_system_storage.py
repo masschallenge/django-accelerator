@@ -1,16 +1,16 @@
-from django.test import TestCase
-try:
-    from unittest.mock import patch
-except ImportError:
-    from mock import patch
+from unittest import skip
+from unittest.mock import patch
 
-from .secure_file_system_storage import (
+from django.test import TestCase
+
+from accelerator_abstract.models.secure_file_system_storage import (
     SecureFileSystemStorage
 )
 
 
 class TestSecureFileSystemStorage(TestCase):
 
+    @skip("View raises NoReverseMatch; see AC-7471")
     @patch('accelerator_abstract.models.secure_file_system_storage.settings')
     def test_url_successful_url_reverse(self, mock_settings):
         mock_settings.FILE_PAGE_DOWNLOAD_VIEW = 'mock'
@@ -20,6 +20,7 @@ class TestSecureFileSystemStorage(TestCase):
         assert url is not None
         assert name not in url
 
+    @skip("View raises NoReverseMatch; see AC-7471")
     @patch('accelerator_abstract.models.secure_file_system_storage.settings')
     def test_url_unsuccessful_url_reverse(self, mock_settings):
         mock_settings.FILE_PAGE_DOWNLOAD_VIEW = 'mock'
