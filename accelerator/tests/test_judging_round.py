@@ -1,7 +1,4 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
-from __future__ import unicode_literals
+from datetime import timedelta
 
 from django.test import TestCase
 from django.utils import timezone
@@ -21,8 +18,9 @@ class TestJudgingRound(TestCase):
         now = timezone.now()
         program_family_slug = 'Foo'
         judging_round = JudgingRoundFactory(
+            end_date_time=now,
             program__program_family__url_slug=program_family_slug,
-            end_date_time=now
+            start_date_time=now - timedelta(days=1),
         )
         short_name = judging_round.short_name()
         assert str(now.date().year) in short_name
@@ -34,9 +32,10 @@ class TestJudgingRound(TestCase):
         now = timezone.now()
         program_family_slug = 'Foo'
         judging_round = JudgingRoundFactory(
-            program__program_family__url_slug=program_family_slug,
-            end_date_time=now,
             cycle_based_round=True,
+            end_date_time=now,
+            program__program_family__url_slug=program_family_slug,
+            start_date_time=now - timedelta(days=1),
         )
         short_name = judging_round.short_name()
         assert str(now.date().year) in short_name
@@ -48,9 +47,11 @@ class TestJudgingRound(TestCase):
         now = timezone.now()
         program_family_slug = 'Foo'
         judging_round = JudgingRoundFactory(
-            program__program_family__url_slug=program_family_slug,
+            cycle_based_round=True,
             end_date_time=now,
-            cycle_based_round=True, )
+            program__program_family__url_slug=program_family_slug,
+            start_date_time=now - timedelta(days=1),
+            )
         second_slug = "Bar"
         second_program = ProgramFactory(cycle=judging_round.program.cycle,
                                         program_family__url_slug=second_slug)
