@@ -11,7 +11,7 @@ try:
 except ImportError:
     from mock import patch
 
-from accelerator.models import (
+from mc.models import (
     BaseProfile,
     ENTREPRENEUR_USER_TYPE,
     EXPERT_USER_TYPE,
