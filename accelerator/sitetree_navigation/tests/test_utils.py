@@ -1,9 +1,8 @@
 from django.test import TestCase
 
-from accelerator.models import (
-    NavTree,
-    NavTreeItem
-)
+NavTree = swapper.load_model('accelerator', 'NavTree')
+NavTreeItem = swapper.load_model('accelerator', 'NavTreeItem')
+
 from accelerator.tests.factories import (
     UserRoleFactory,
     ProgramFactory,
