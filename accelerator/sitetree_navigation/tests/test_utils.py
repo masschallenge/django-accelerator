@@ -1,3 +1,5 @@
+import swapper
+
 from django.test import TestCase
 
 NavTree = swapper.load_model('accelerator', 'NavTree')

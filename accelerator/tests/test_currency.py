@@ -1,9 +1,8 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
+import swapper
 
 from django.test import TestCase
 
-from accelerator.models import Currency
+Currency = swapper.load_model('accelerator', 'Currency')
 from .factories.currency_factory import CurrencyFactory
 
 

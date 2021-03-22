@@ -1,14 +1,10 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
-from __future__ import unicode_literals
+import swapper
 
 from django.test import TestCase
 
-from accelerator.models import (
-    ExpertCategory,
-    Industry,
-)
+ExpertCategory = swapper.load_model('accelerator', 'ExpertCategory')
+Industry = swapper.load_model('accelerator', 'Industry')
+
 from accelerator.tests.factories.expert_profile_factory import (
     ExpertProfileFactory
 )

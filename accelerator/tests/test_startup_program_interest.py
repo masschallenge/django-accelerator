@@ -1,11 +1,8 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
-from __future__ import unicode_literals
+import swapper
 
 from django.test import TestCase
 
-from accelerator.models import StartupProgramInterest
+StartupProgramInterest = swapper.load_model('accelerator', 'StartupProgramInterest')
 from accelerator.tests.factories import StartupProgramInterestFactory
 
 

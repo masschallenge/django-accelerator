@@ -1,10 +1,10 @@
-from accelerator.models import (
-    NavTree,
-    NavTreeItem,
-    UserRole,
-    Program,
-    ProgramFamily,
-)
+import swapper
+
+NavTree = swapper.load_model('accelerator', 'NavTree')
+NavTreeItem = swapper.load_model('accelerator', 'NavTreeItem')
+UserRole = swapper.load_model('accelerator', 'UserRole')
+Program = swapper.load_model('accelerator', 'Program')
+ProgramFamily = swapper.load_model('accelerator', 'ProgramFamily')
 
 
 FLUENT_REDIRECT_URL = '/nav/fluent-redirect'
