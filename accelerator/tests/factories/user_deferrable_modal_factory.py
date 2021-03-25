@@ -6,6 +6,8 @@ from datetime import (
 )
 from factory import SubFactory
 from factory.django import DjangoModelFactory
+from pytz import utc
+
 from simpleuser.tests.factories.user_factory import UserFactory
 from .deferrable_modal_factory import DeferrableModalFactory
 
@@ -20,4 +22,4 @@ class UserDeferrableModalFactory(DjangoModelFactory):
     user = SubFactory(UserFactory)
     deferrable_modal = SubFactory(DeferrableModalFactory)
     is_deferred = False
-    deferred_to = datetime.now() + timedelta(days=1)
+    deferred_to = utc.localize(datetime.now()) + timedelta(days=1)
