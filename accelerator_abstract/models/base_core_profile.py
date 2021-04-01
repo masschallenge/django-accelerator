@@ -34,7 +34,6 @@ IDENTITY_HELP_TEXT_VALUE = (mark_safe(
             'Command (&#8984;) on Macs to select multiple options'))
 
 
-
 JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
                           'confirmed_judge_label': 'Judge'}
 
