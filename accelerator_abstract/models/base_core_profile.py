@@ -12,7 +12,6 @@ from django.db.models import Q
 from sorl.thumbnail import ImageField
 from django.utils.safestring import mark_safe
 
-from accelerator.utils import flag_smith_has_feature
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_user_role import (
     BaseUserRole,
@@ -55,7 +54,6 @@ UI_GENDER_CHOICES = (
 )
 JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
                           'confirmed_judge_label': 'Judge'}
-EXPERT_NAVIGATION_EPIC = "expert_navigation"
 
 
 class BaseCoreProfile(AcceleratorModel):
@@ -234,9 +232,8 @@ class BaseCoreProfile(AcceleratorModel):
             return '/staff'
 
     def role_based_landing_page(self, exclude_role_names=[]):
-        if flag_smith_has_feature(EXPERT_NAVIGATION_EPIC):
-            if self.user_type.upper() == EXPERT_USER_TYPE:
-                return "/dashboard/expert/overview/"
+        if self.user_type.upper() == EXPERT_USER_TYPE:
+            return "/dashboard/expert/overview/"
         JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
                                           "JudgingRound")
         UserRole = swapper.load_model(
