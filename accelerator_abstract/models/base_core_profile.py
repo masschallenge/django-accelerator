@@ -62,7 +62,8 @@ class BaseCoreProfile(AcceleratorModel):
     gender = models.CharField(
         max_length=1,
         choices=GENDER_CHOICES,
-        default='')
+        default='',
+        blank=True)
     gender_identity = models.ManyToManyField(
         swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'GenderChoices'),
