@@ -26,7 +26,6 @@ def _see_active_pages(user):
     profile = user.get_profile()
     return (_see_finalist_pages(user) or
             profile.is_mentor() or
-            profile.is_office_hour_holder() or
             profile.is_alum_in_residence())
 
 

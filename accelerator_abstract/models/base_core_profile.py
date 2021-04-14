@@ -200,11 +200,6 @@ class BaseCoreProfile(AcceleratorModel):
                     for prg in self.user.programrolegrant_set.all()
                     if prg.program_role.user_role is not None])
 
-    def is_office_hour_holder(self):
-        user_role_names = set([ur.name for ur in self.user_roles()])
-        return len(user_role_names.intersection(
-            BaseUserRole.OFFICE_HOUR_ROLES)) > 0
-
     def is_partner(self):
         PartnerTeamMember = swapper.load_model(
             'accelerator', 'PartnerTeamMember')

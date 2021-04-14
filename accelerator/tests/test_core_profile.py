@@ -54,22 +54,6 @@ class TestCoreProfile(TestCase):
         profile = user.get_profile()
         self.assertTrue(profile.full_name() in str(profile))
 
-    def test_mentor_is_office_hour_holder(self):
-        user = expert(BaseUserRole.MENTOR)
-        self.assertTrue(user.get_profile().is_office_hour_holder())
-
-    def test_partner_is_office_hour_holder(self):
-        user = expert(BaseUserRole.PARTNER)
-        self.assertTrue(user.get_profile().is_office_hour_holder())
-
-    def test_partner_admin_is_office_hour_holder(self):
-        user = expert(BaseUserRole.PARTNER_ADMIN)
-        self.assertTrue(user.get_profile().is_office_hour_holder())
-
-    def test_alumni_in_residence_is_office_hour_holder(self):
-        user = expert(BaseUserRole.AIR)
-        self.assertTrue(user.get_profile().is_office_hour_holder())
-
     def test_user_roles(self):
         user = ExpertFactory()
         user_role_names = [BaseUserRole.MENTOR,
