@@ -66,11 +66,6 @@ class TestBasePermissionsChecks(TestCase):
         login_as_user(self, user)
         self.assertTrue(_see_active_pages(user))
 
-    def test_office_hour_holder_can_see_active_pages(self):
-        user = expert(BaseUserRole.OFFICE_HOUR_HOLDER)
-        login_as_user(self, user)
-        self.assertTrue(_see_active_pages(user))
-
     def test_alumni_in_residence_can_see_active_pages(self):
         user = expert(BaseUserRole.AIR)
         login_as_user(self, user)
