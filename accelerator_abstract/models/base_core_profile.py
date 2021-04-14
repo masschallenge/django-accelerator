@@ -27,6 +27,11 @@ from accelerator_abstract.models.base_program import (
     ENDED_PROGRAM_STATUS,
 )
 
+GENDER_MALE_CHOICE = ('m', 'Male')
+GENDER_FEMALE_CHOICE = ('f', 'Female')
+GENDER_OTHER_CHOICE = ('o', 'Other')
+GENDER_PREFER_NOT_TO_STATE_CHOICE = ('p', 'Prefer Not To State')
+GENDER_UNKNOWN_CHOICE = ('', 'Unknown')
 
 IDENTITY_HELP_TEXT_VALUE = (mark_safe(
             'Select as many options as you feel best represent your identity. '
@@ -37,11 +42,29 @@ IDENTITY_HELP_TEXT_VALUE = (mark_safe(
 JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
                           'confirmed_judge_label': 'Judge'}
 
+GENDER_CHOICES = (
+    GENDER_FEMALE_CHOICE,
+    GENDER_MALE_CHOICE,
+    GENDER_PREFER_NOT_TO_STATE_CHOICE,
+    GENDER_OTHER_CHOICE,
+    GENDER_UNKNOWN_CHOICE,
+)
+UI_GENDER_CHOICES = (
+    GENDER_FEMALE_CHOICE,
+    GENDER_MALE_CHOICE,
+    GENDER_PREFER_NOT_TO_STATE_CHOICE,
+    GENDER_OTHER_CHOICE,
+)
 
 class BaseCoreProfile(AcceleratorModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE)
-
+    gender = models.CharField(
+        max_length=1,
+        choices=GENDER_CHOICES,
+        default='',
+        blank=True,
+        null=True)
     gender_identity = models.ManyToManyField(
         swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'GenderChoices'),
