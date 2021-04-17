@@ -25,7 +25,7 @@ INSTALL_REQUIRES = [
     "swapper",
     "django-ordered-model",
     "django-paypal==1.0.0",
-    "django-fluent-pages==2.0.6",
+    "django-fluent-pages",
     "django-polymorphic",
     "django-sitetree",
     "bullet-train",
