@@ -17,7 +17,7 @@ if "DJANGO_VERSION" in os.environ:
 
 INSTALL_REQUIRES = [
     "django{}".format(DJANGO_SPEC),
-    "django-mptt==0.10.0",
+    "django-mptt",
     "sorl-thumbnail",
     "django-embed-video",
     "pillow",
@@ -25,7 +25,7 @@ INSTALL_REQUIRES = [
     "swapper",
     "django-ordered-model",
     "django-paypal==1.0.0",
-    "django-fluent-pages==2.0.6",
+    "django-fluent-pages",
     "django-polymorphic",
     "django-sitetree",
     "bullet-train",
