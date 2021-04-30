@@ -6,7 +6,10 @@ from pytz import utc
 
 import swapper
 from django.conf import settings
-from django.core.validators import RegexValidator
+from django.core.validators import (
+    RegexValidator,
+    MaxLengthValidator,
+)
 from django.db import models
 from django.db.models import Q
 from sorl.thumbnail import ImageField
@@ -54,6 +57,7 @@ UI_GENDER_CHOICES = (
 )
 JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
                           'confirmed_judge_label': 'Judge'}
+BIO_MAX_LENGTH = 7500
 
 
 class BaseCoreProfile(AcceleratorModel):
@@ -143,6 +147,9 @@ class BaseCoreProfile(AcceleratorModel):
     authorization_to_share_ethno_racial_identity = models.BooleanField(
         default=False,
     )
+    bio = models.TextField(blank=True,
+                           default="",
+                           validators=[MaxLengthValidator(BIO_MAX_LENGTH)])
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_coreprofile'
