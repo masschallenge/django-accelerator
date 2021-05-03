@@ -8,7 +8,6 @@ import decimal
 import swapper
 from django.conf import settings
 from django.db import models
-from django.core.validators import MaxLengthValidator
 from django.utils.safestring import mark_safe
 
 from accelerator_abstract.models.base_core_profile import BaseCoreProfile
@@ -201,10 +200,6 @@ class BaseExpertProfile(BaseCoreProfile):
         blank=True,
         help_text="Internal notes only for use by MassChallenge Staff "
                   "(not visible to Expert)")
-
-    bio = models.TextField(blank=True,
-                           default="",
-                           validators=[MaxLengthValidator(BIO_MAX_LENGTH)])
     home_program_family = models.ForeignKey(
         swapper.get_model_name(BaseCoreProfile.Meta.app_label,
                                "ProgramFamily"),
