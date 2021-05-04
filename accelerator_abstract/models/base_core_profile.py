@@ -187,10 +187,17 @@ class BaseCoreProfile(AcceleratorModel):
             qs = qs.filter(program_role__program=program)
         return qs.exists()
 
-    def is_alum_in_residence(self):
-        return self.user.programrolegrant_set.filter(
-            program_role__user_role__name=BaseUserRole.AIR
-        ).exists()
+    def is_alum_in_residence(self, program=None):
+        if self.user_type == EXPERT_USER_TYPE:
+            return self.user.programrolegrant_set.filter(
+                program_role__user_role__name=BaseUserRole.AIR
+            ).exists()
+        qs = self.user.programrolegrant_set.filter(
+            program_role__user_role__name=BaseUserRole.AIR,
+            program_role__program__exact=self.current_program)
+        if program:
+            qs = qs.filter(program_role__program=program)
+        return qs.exists()
 
     def is_mentor(self, program=None):
         """If program is specified, is the expert a mentor in that program.
@@ -228,13 +235,9 @@ class BaseCoreProfile(AcceleratorModel):
             partner_administrator=True).exists()
 
     def get_active_alerts(self, page=None):
-        """Return any active alerts for the user, that are relevant for
-        the current 'page' of the application.
-        May be overridden by subclasses (e.g., ExpertProfile,
-        EntrepreneurProfile, etc.)
+        """no op
         """
-        alerts = []
-        return alerts
+        return []
 
     def _get_staff_landing_page(self):
         if has_staff_clearance(self.user):
@@ -306,7 +309,15 @@ class BaseCoreProfile(AcceleratorModel):
         return page
 
     def first_startup(self, statuses=[]):
-        return None
+        startup_memberships = self.user.startupteammember_set.order_by(
+            '-startup__created_datetime')
+        if statuses:
+            startup_memberships = startup_memberships.filter(
+                startup__startupstatus__program_startup_status__in=statuses)
+        if startup_memberships:
+            return startup_memberships.first().startup
+        else:
+            return None
 
     def interest_category_names(self):
         return [interest.name for interest in self.interest_categories.all()]
