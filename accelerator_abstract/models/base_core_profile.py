@@ -20,6 +20,7 @@ from accelerator_abstract.models.base_user_role import (
     BaseUserRole,
 )
 from accelerator_abstract.models.base_base_profile import (
+    ENTREPRENEUR_USER_TYPE,
     EXPERT_USER_TYPE,
 )
 from accelerator_abstract.models.base_user_utils import (
@@ -188,16 +189,17 @@ class BaseCoreProfile(AcceleratorModel):
         return qs.exists()
 
     def is_alum_in_residence(self, program=None):
-        if self.user_type == EXPERT_USER_TYPE:
+        if self.user_type == ENTREPRENEUR_USER_TYPE:
+            qs = self.user.programrolegrant_set.filter(
+                program_role__user_role__name=BaseUserRole.AIR,
+                program_role__program__exact=self.current_program)
+            if program:
+                qs = qs.filter(program_role__program=program)
+            return qs.exists()
+        else:
             return self.user.programrolegrant_set.filter(
                 program_role__user_role__name=BaseUserRole.AIR
             ).exists()
-        qs = self.user.programrolegrant_set.filter(
-            program_role__user_role__name=BaseUserRole.AIR,
-            program_role__program__exact=self.current_program)
-        if program:
-            qs = qs.filter(program_role__program=program)
-        return qs.exists()
 
     def is_mentor(self, program=None):
         """If program is specified, is the expert a mentor in that program.
