@@ -253,3 +253,28 @@ class TestCoreProfile(TestCase):
         user_profile = EntrepreneurProfileFactory(landing_page="/")
         landing_page = user_profile.check_landing_page()
         self.assertEqual(landing_page, user_profile.default_page)
+
+    def test_is_alum_in_residence(self):
+        self.assertTrue(_user_is_alum_in_residence())
+
+    def test_is_alum_in_residence_returns_true_if_in_program(self):
+        air_program = ProgramFactory()
+        self.assertTrue(_user_is_alum_in_residence(air_program))
+
+    def test_is_alum_in_residence_returns_false_if_not_in_program(self):
+        air_program = ProgramFactory()
+        non_air_program = ProgramFactory()
+        self.assertFalse(_user_is_alum_in_residence(
+            air_program, non_air_program))
+
+
+def _user_is_alum_in_residence(air_program=None, non_air_program=None):
+    user = EntrepreneurFactory()
+    if air_program:
+        user = EntrepreneurFactory(profile__current_program=air_program)
+    context = UserRoleContext(BaseUserRole.AIR, user=user)
+    user_profile = context.user.get_profile()
+    program_of_interest = non_air_program or air_program
+    if program_of_interest:
+        return user_profile.is_alum_in_residence(program_of_interest)
+    return user_profile.is_alum_in_residence()

@@ -189,7 +189,7 @@ class BaseCoreProfile(AcceleratorModel):
         return qs.exists()
 
     def is_alum_in_residence(self, program=None):
-        if self.user_type == ENTREPRENEUR_USER_TYPE:
+        if self.user_type == ENTREPRENEUR_USER_TYPE.lower():
             qs = self.user.programrolegrant_set.filter(
                 program_role__user_role__name=BaseUserRole.AIR,
                 program_role__program__exact=self.current_program)
