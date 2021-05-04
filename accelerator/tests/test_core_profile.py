@@ -124,7 +124,7 @@ class TestCoreProfile(TestCase):
         self.assertTrue(
             profile.interest_category_names() == [interest_category.name])
 
-    def test_is_alum_in_residence(self):
+    def test_expert_is_alum_in_residence(self):
         user = expert(BaseUserRole.AIR)
         profile = user.get_profile()
         self.assertTrue(profile.is_alum_in_residence())
