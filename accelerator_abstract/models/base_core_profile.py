@@ -311,8 +311,7 @@ class BaseCoreProfile(AcceleratorModel):
                 startup__startupstatus__program_startup_status__in=statuses)
         if startup_memberships:
             return startup_memberships.first().startup
-        else:
-            return None
+        return None
 
     def interest_category_names(self):
         return [interest.name for interest in self.interest_categories.all()]
