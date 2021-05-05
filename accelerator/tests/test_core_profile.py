@@ -270,9 +270,8 @@ class TestCoreProfile(TestCase):
 
 def _user_is_alum_in_residence(air_program=None, non_air_program=None):
     user = EntrepreneurFactory()
-    if air_program:
-        user = EntrepreneurFactory(profile__current_program=air_program)
-    context = UserRoleContext(BaseUserRole.AIR, user=user)
+    context = UserRoleContext(
+        BaseUserRole.AIR, user=user, program=air_program)
     user_profile = context.user.get_profile()
     program_of_interest = non_air_program or air_program
     if program_of_interest:
