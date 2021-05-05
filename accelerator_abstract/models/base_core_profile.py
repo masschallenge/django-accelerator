@@ -20,7 +20,6 @@ from accelerator_abstract.models.base_user_role import (
     BaseUserRole,
 )
 from accelerator_abstract.models.base_base_profile import (
-    ENTREPRENEUR_USER_TYPE,
     EXPERT_USER_TYPE,
 )
 from accelerator_abstract.models.base_user_utils import (
