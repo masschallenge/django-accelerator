@@ -148,7 +148,8 @@ class Migration(migrations.Migration):
                 ('bio', models.TextField(
                     blank=True,
                     default='',
-                    validators=[django.core.validators.MaxLengthValidator(7500)])),
+                    validators=[
+                        django.core.validators.MaxLengthValidator(7500)])),
                 ('current_program', models.ForeignKey(
                     blank=True,
                     null=True,
