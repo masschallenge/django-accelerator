@@ -12,4 +12,3 @@ class CoreProfile(BaseCoreProfile):
     class Meta(BaseCoreProfile.Meta):
         swappable = swapper.swappable_setting(
             BaseCoreProfile.Meta.app_label, "CoreProfile")
-        abstract = True
