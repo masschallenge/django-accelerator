@@ -11,7 +11,7 @@ CALIFONIA_DATA_LIST = [
     'MASSACHUSETTS (MA)', 'Massachussetts ', 'MA', 'Ma.'
 ]
 
-def update_accelerator_startup_data():
+def update_accelerator_startup_data(apps, schema_editor):
     StartUp = apps.get_model('accelerator', 'Startup')
     StartUp.objects.filter(location_regional__in=CALIFONIA_DATA_LIST).update(
         location_regional=MASSACHUSETTS)
