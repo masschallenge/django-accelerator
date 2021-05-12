@@ -4,17 +4,17 @@ from django.db import migrations
 
 
 MASSACHUSETTS = 'Massachusetts'
-CALIFONIA = 'California'
+CALIFORNIA = 'California'
 NEW_YORK = 'New York'
 RHODE_ISLAND = 'Rhode Island'
-CALIFONIA_DATA_LIST = [
+MASSACHUSETTS_DATA_LIST = [
     'MASSACHUSETTS (MA)', 'Massachussetts ', 'MA', 'Ma.'
 ]
 
 
 def update_accelerator_startup_data(apps, schema_editor):
     StartUp = apps.get_model('accelerator', 'Startup')
-    StartUp.objects.filter(location_regional__in=CALIFONIA_DATA_LIST).update(
+    StartUp.objects.filter(location_regional__in=MASSACHUSETTS_DATA_LIST).update(
         location_regional=MASSACHUSETTS)
 
     StartUp.objects.filter(location_regional='CA').update(
