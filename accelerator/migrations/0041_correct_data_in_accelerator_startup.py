@@ -14,11 +14,12 @@ MASSACHUSETTS_DATA_LIST = [
 
 def update_accelerator_startup_data(apps, schema_editor):
     StartUp = apps.get_model('accelerator', 'Startup')
-    StartUp.objects.filter(location_regional__in=MASSACHUSETTS_DATA_LIST).update(
-        location_regional=MASSACHUSETTS)
+    StartUp.objects.filter(
+        location_regional__in=MASSACHUSETTS_DATA_LIST
+    ).update(location_regional=MASSACHUSETTS)
 
     StartUp.objects.filter(location_regional='CA').update(
-        location_regional=CALIFONIA)
+        location_regional=CALIFORNIA)
     StartUp.objects.filter(location_regional='NY').update(
         location_regional=NEW_YORK)
     StartUp.objects.filter(location_regional='RI').update(
