@@ -9,30 +9,39 @@ PRIVACY_CHOICES = [
     ('finalists and staff', 'Finalists and MC Staff'),
     ('public', 'All Users')]
 
-JUDGE_INTEREST_HELP_TEXT = 'I would like to participate in MassChallenge as a Judge'
-MENTOR_INTEREST_HELP_TEXT = 'I would like to participate in MassChallenge as a Mentor'
-SPEAKER_INTEREST_HELP_TEXT = 'I would like to participate in MassChallenge as a Speaker'
-SPEAKER_TOPICS_HELP_TEXT = ('Please describe the topic(s) you would be available '
-                            'to speak about')
-OFFICE_HOURS_INTEREST_HELP_TEXT = ('I would like to participate in MassChallenge by '
-                                   'holding Office Hours')
-OFFICE_HOURS_TOPICS_HELP_TEXT = ('Please describe the topic(s) you would be available '
-                                 'to speak to Finalists about during Office Hours')
-REFERRED_BY_HELP_TEXT = ('If someone referred you to MassChallenge, please provide '
-                         'their name (and organization if relevant). Otherwise, please'
-                         ' indicate how you learned about the opportunity to participate'
-                         ' at MassChallenge (helps us understand the effectiveness of '
-                         'our outreach programs).')
-ADDITIONAL_INDUSTRIES_HELP_TEXT = ('You may select up to 5 related industries. To '
-                                   'select multiple industries, please press and hold'
-                                   ' Control (CTRL) on PCs or Command (&#8984;) on Macs.')
-POTENTIAL_EXPERTS_HELP_TEXT = ("We're always looking for more great experts to join "
-                               "the MassChallenge community and program. We welcome "
-                               "the names and contact info (email) of individuals you "
-                               "think could be great additions to the program, as well "
-                               "as how you think they might want to be involved "
-                               "(Judge, Mentor, etc.) Also, please encourage these"
-                               " individuals to fill out their own Expert Profile.")
+JUDGE_INTEREST_HELP_TEXT = (
+    'I would like to participate in MassChallenge as a Judge')
+MENTOR_INTEREST_HELP_TEXT = (
+    'I would like to participate in MassChallenge as a Mentor')
+SPEAKER_INTEREST_HELP_TEXT = (
+    'I would like to participate in MassChallenge as a Speaker')
+SPEAKER_TOPICS_HELP_TEXT = (
+    'Please describe the topic(s) you would be available '
+    'to speak about')
+OFFICE_HOURS_INTEREST_HELP_TEXT = (
+    'I would like to participate in MassChallenge by '
+    'holding Office Hours')
+OFFICE_HOURS_TOPICS_HELP_TEXT = (
+    'Please describe the topic(s) you would be available '
+    'to speak to Finalists about during Office Hours')
+REFERRED_BY_HELP_TEXT = (
+    'If someone referred you to MassChallenge, please provide '
+    'their name (and organization if relevant). Otherwise, please'
+    ' indicate how you learned about the opportunity to participate'
+    ' at MassChallenge (helps us understand the effectiveness of '
+    'our outreach programs).')
+ADDITIONAL_INDUSTRIES_HELP_TEXT = (
+    'You may select up to 5 related industries. To '
+    'select multiple industries, please press and hold'
+    ' Control (CTRL) on PCs or Command (&#8984;) on Macs.')
+POTENTIAL_EXPERTS_HELP_TEXT = (
+    "We're always looking for more great experts to join "
+    "the MassChallenge community and program. We welcome "
+    "the names and contact info (email) of individuals you "
+    "think could be great additions to the program, as well "
+    "as how you think they might want to be involved "
+    "(Judge, Mentor, etc.) Also, please encourage these"
+    " individuals to fill out their own Expert Profile.")
 
 
 class Migration(migrations.Migration):
@@ -215,7 +224,8 @@ class Migration(migrations.Migration):
             model_name='entrepreneurprofile',
             name='expert_category',
             field=models.ForeignKey(
-                blank=True, null=True, on_delete=django.db.models.deletion.CASCADE,
+                blank=True, null=True,
+                on_delete=django.db.models.deletion.CASCADE,
                 related_name='entrepreneurprofile_experts',
                 to=settings.ACCELERATOR_EXPERTCATEGORY_MODEL,
                 verbose_name='I primarily consider myself a(n)'),
@@ -232,7 +242,8 @@ class Migration(migrations.Migration):
             model_name='entrepreneurprofile',
             name='home_program_family',
             field=models.ForeignKey(
-                blank=True, null=True, on_delete=django.db.models.deletion.CASCADE,
+                blank=True, null=True,
+                on_delete=django.db.models.deletion.CASCADE,
                 to=settings.ACCELERATOR_PROGRAMFAMILY_MODEL,
                 verbose_name='Home Program Family'),
         ),
@@ -360,7 +371,8 @@ class Migration(migrations.Migration):
             model_name='memberprofile',
             name='expert_category',
             field=models.ForeignKey(
-                blank=True, null=True, on_delete=django.db.models.deletion.CASCADE,
+                blank=True, null=True,
+                on_delete=django.db.models.deletion.CASCADE,
                 related_name='memberprofile_experts',
                 to=settings.ACCELERATOR_EXPERTCATEGORY_MODEL,
                 verbose_name='I primarily consider myself a(n)'),
@@ -506,8 +518,10 @@ class Migration(migrations.Migration):
             model_name='expertprofile',
             name='expert_category',
             field=models.ForeignKey(
-                blank=True, null=True, on_delete=django.db.models.deletion.CASCADE,
-                related_name='expertprofile_experts', to=settings.ACCELERATOR_EXPERTCATEGORY_MODEL,
+                blank=True, null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name='expertprofile_experts',
+                to=settings.ACCELERATOR_EXPERTCATEGORY_MODEL,
                 verbose_name='I primarily consider myself a(n)'),
         ),
         migrations.AlterField(
