@@ -29,7 +29,6 @@ class CoreProfileFactory(DjangoModelFactory):
 
     user = SubFactory(UserFactory)
     users_last_activity = utc.localize(datetime.now() + timedelta(-1))
-    gender = "p"
     gender_self_description = ""
     phone = "+1-555-555-5555"
     linked_in_url = Sequence(lambda n: "http://www.linkedin.com/{0}".format(n))

@@ -36,7 +36,6 @@ from accelerator_abstract.models.base_clearance import (
 def expert(role):
     user = ExpertFactory()
     profile = user.get_profile()
-    profile.gender = 'm'
     profile.save()
     ur = UserRoleFactory(name=role)
     pr = ProgramRoleFactory.create(user_role=ur)
@@ -104,11 +103,6 @@ class TestCoreProfile(TestCase):
         user = expert(BaseUserRole.FINALIST)
         self.assertFalse(user.get_profile().first_startup())
 
-    def test_gender_value_is_male(self):
-        user = expert(BaseUserRole.FINALIST)
-        profile = user.get_profile()
-        self.assertTrue(profile.gender_value() == "Male")
-
     def test_program_family_names(self):
         user = expert(BaseUserRole.FINALIST)
         profile = user.get_profile()
@@ -124,7 +118,7 @@ class TestCoreProfile(TestCase):
         self.assertTrue(
             profile.interest_category_names() == [interest_category.name])
 
-    def test_is_alum_in_residence(self):
+    def test_expert_is_alum_in_residence(self):
         user = expert(BaseUserRole.AIR)
         profile = user.get_profile()
         self.assertTrue(profile.is_alum_in_residence())
@@ -253,3 +247,27 @@ class TestCoreProfile(TestCase):
         user_profile = EntrepreneurProfileFactory(landing_page="/")
         landing_page = user_profile.check_landing_page()
         self.assertEqual(landing_page, user_profile.default_page)
+
+    def test_is_alum_in_residence(self):
+        self.assertTrue(_user_is_alum_in_residence())
+
+    def test_is_alum_in_residence_returns_true_if_in_program(self):
+        air_program = ProgramFactory()
+        self.assertTrue(_user_is_alum_in_residence(air_program))
+
+    def test_is_alum_in_residence_returns_false_if_not_in_program(self):
+        air_program = ProgramFactory()
+        non_air_program = ProgramFactory()
+        self.assertFalse(_user_is_alum_in_residence(
+            air_program, non_air_program))
+
+
+def _user_is_alum_in_residence(air_program=None, non_air_program=None):
+    user = EntrepreneurFactory()
+    context = UserRoleContext(
+        BaseUserRole.AIR, user=user, program=air_program)
+    user_profile = context.user.get_profile()
+    program_of_interest = non_air_program or air_program
+    if program_of_interest:
+        return user_profile.is_alum_in_residence(program_of_interest)
+    return user_profile.is_alum_in_residence()

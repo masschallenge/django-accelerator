@@ -6,7 +6,10 @@ from pytz import utc
 
 import swapper
 from django.conf import settings
-from django.core.validators import RegexValidator
+from django.core.validators import (
+    RegexValidator,
+    MaxLengthValidator,
+)
 from django.db import models
 from django.db.models import Q
 from sorl.thumbnail import ImageField
@@ -27,44 +30,21 @@ from accelerator_abstract.models.base_program import (
     ENDED_PROGRAM_STATUS,
 )
 
-GENDER_MALE_CHOICE = ('m', 'Male')
-GENDER_FEMALE_CHOICE = ('f', 'Female')
-GENDER_OTHER_CHOICE = ('o', 'Other')
-GENDER_PREFER_NOT_TO_STATE_CHOICE = ('p', 'Prefer Not To State')
-GENDER_UNKNOWN_CHOICE = ('', 'Unknown')
 
 IDENTITY_HELP_TEXT_VALUE = (mark_safe(
             'Select as many options as you feel best represent your identity. '
             'Please press and hold Control (CTRL) on PCs or '
             'Command (&#8984;) on Macs to select multiple options'))
 
-GENDER_CHOICES = (
-    GENDER_FEMALE_CHOICE,
-    GENDER_MALE_CHOICE,
-    GENDER_PREFER_NOT_TO_STATE_CHOICE,
-    GENDER_OTHER_CHOICE,
-    GENDER_UNKNOWN_CHOICE,
-)
 
-UI_GENDER_CHOICES = (
-    GENDER_FEMALE_CHOICE,
-    GENDER_MALE_CHOICE,
-    GENDER_PREFER_NOT_TO_STATE_CHOICE,
-    GENDER_OTHER_CHOICE,
-)
 JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
                           'confirmed_judge_label': 'Judge'}
+BIO_MAX_LENGTH = 7500
 
 
 class BaseCoreProfile(AcceleratorModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE)
-    gender = models.CharField(
-        max_length=1,
-        choices=GENDER_CHOICES,
-        default='',
-        blank=True,
-        null=True)
     gender_identity = models.ManyToManyField(
         swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'GenderChoices'),
@@ -143,6 +123,9 @@ class BaseCoreProfile(AcceleratorModel):
     authorization_to_share_ethno_racial_identity = models.BooleanField(
         default=False,
     )
+    bio = models.TextField(blank=True,
+                           default="",
+                           validators=[MaxLengthValidator(BIO_MAX_LENGTH)])
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_coreprofile'
@@ -180,10 +163,12 @@ class BaseCoreProfile(AcceleratorModel):
             qs = qs.filter(program_role__program=program)
         return qs.exists()
 
-    def is_alum_in_residence(self):
-        return self.user.programrolegrant_set.filter(
-            program_role__user_role__name=BaseUserRole.AIR
-        ).exists()
+    def is_alum_in_residence(self, program=None):
+        qs = self.user.programrolegrant_set.filter(
+            program_role__user_role__name=BaseUserRole.AIR)
+        if program:
+            qs = qs.filter(program_role__program=program)
+        return qs.exists()
 
     def is_mentor(self, program=None):
         """If program is specified, is the expert a mentor in that program.
@@ -221,13 +206,9 @@ class BaseCoreProfile(AcceleratorModel):
             partner_administrator=True).exists()
 
     def get_active_alerts(self, page=None):
-        """Return any active alerts for the user, that are relevant for
-        the current 'page' of the application.
-        May be overridden by subclasses (e.g., ExpertProfile,
-        EntrepreneurProfile, etc.)
+        """no op
         """
-        alerts = []
-        return alerts
+        return []
 
     def _get_staff_landing_page(self):
         if has_staff_clearance(self.user):
@@ -299,6 +280,13 @@ class BaseCoreProfile(AcceleratorModel):
         return page
 
     def first_startup(self, statuses=[]):
+        startup_memberships = self.user.startupteammember_set.order_by(
+            '-startup__created_datetime')
+        if statuses:
+            startup_memberships = startup_memberships.filter(
+                startup__startupstatus__program_startup_status__in=statuses)
+        if startup_memberships:
+            return startup_memberships.first().startup
         return None
 
     def interest_category_names(self):
@@ -306,10 +294,6 @@ class BaseCoreProfile(AcceleratorModel):
 
     def program_family_names(self):
         return [pf.name for pf in self.program_families.all()]
-
-    def gender_value(self):
-        gender_dict = dict(GENDER_CHOICES)
-        return gender_dict[self.gender.lower()]
 
     def confirmed_mentor_programs(self):
         return list(self.user.programrolegrant_set.filter(
