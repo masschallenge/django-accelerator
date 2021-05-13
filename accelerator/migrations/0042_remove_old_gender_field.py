@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0040_create_core_profile_table'),
+        ('accelerator', '0041_correct_data_in_accelerator_startup'),
     ]
 
     operations = [
