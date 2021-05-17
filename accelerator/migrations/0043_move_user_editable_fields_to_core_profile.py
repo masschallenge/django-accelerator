@@ -46,7 +46,7 @@ POTENTIAL_EXPERTS_HELP_TEXT = (
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0041_correct_data_in_accelerator_startup'),
+        ('accelerator', '0042_remove_old_gender_field'),
     ]
 
     operations = [
