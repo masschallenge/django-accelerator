@@ -12,3 +12,4 @@ mock
 factory-boy
 swapper
 mysqlclient
+django-polymorphic
