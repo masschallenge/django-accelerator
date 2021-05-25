@@ -2,7 +2,13 @@ import swapper
 from django.db import models
 
 from accelerator.models import CoreProfile
-
+"""
+Plan:
+add new model EntrepreneurProfile1(inheriting from coreprofile) while keeping EntrepreneurProfile and make migrations
+add data migrations to copy data from EntrepreneurProfile to EntrepreneurProfile1
+delete  EntrepreneurProfile  and make migrations
+Rename EntrepreneurProfile1 to EntrepreneurProfile and make migrations
+"""
 
 class CoreProfilePtrModel(models.Model):
     coreprofile_ptr = models.OneToOneField(
