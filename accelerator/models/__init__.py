@@ -322,4 +322,3 @@ from .gender_choices import GenderChoices
 from .ethno_racial_identity import EthnoRacialIdentity
 from .deferrable_modal import DeferrableModal
 from .user_deferrable_modal import UserDeferrableModal
-from .entrepreneurprofile1 import EntrepreneurProfile1
