@@ -21,6 +21,7 @@ MULTI_SELECT_HELP_TEXT = ('Hold down "Control", or "Command" on a Mac,to '
 INTERNAL_NOTES_HELP_TEXT = ('Internal notes only for use by MassChallenge '
                             'Staff (not visible to Expert)')
 
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -193,8 +194,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='memberprofile',
             name='public_website_consent_checked',
-            field=models.BooleanField(default=False,
-                                      verbose_name='Public Website Consent Check'),
+            field=models.BooleanField(
+                default=False,
+                verbose_name='Public Website Consent Check'),
         ),
         migrations.AddField(
             model_name='memberprofile',
