@@ -2,6 +2,7 @@
 # Copyright (c) 2017 MassChallenge, Inc.
 
 from datetime import datetime
+from decimal import Decimal
 from pytz import utc
 
 import swapper
@@ -29,6 +30,37 @@ from accelerator_abstract.models.base_program import (
     ACTIVE_PROGRAM_STATUS,
     ENDED_PROGRAM_STATUS,
 )
+
+INVITED_JUDGE_ALERT = (
+    "<h4>{first_name}, we would like to invite you to be a judge at "
+    "MassChallenge!</h4>"
+    "<p>&nbsp;</p>"
+    "<p>{round_name} judging occurs from {start_date} to {end_date}! "
+    "Of all our potential judges, we would like you, {first_name}, "
+    "to take part."
+    "</p><p>&nbsp;</p>"
+    '<p><a class="btn btn-primary" href="/expert/commitments/">Click '
+    "here to tell us your availability"
+    "</a></p> <p>&nbsp;</p>"
+)
+
+MENTOR_TYPE_HELPTEXT = (
+    "Allowed Values: "
+    "F - Functional Expert, "
+    "P - Partner, "
+    "T - Technical, "
+    "E - Entrepreneur, "
+    "N - Once accepted, now rejected, "
+    "X - Not Accepted as a Mentor (may still be a judge)")
+
+JUDGE_TYPE_HELPTEXT = (
+    "Allowed Values: "
+    "1 - Round 1 Judge, "
+    "2 - Round 2 Judge, "
+    "3 - Pre-final Judge, "
+    "4 - Final Judge, "
+    "0 - Once Accepted, now rejected, "
+    "X - Not Accepted as a Judge (May still be a mentor)")
 
 IDENTITY_HELP_TEXT_VALUE = (mark_safe(
             'Select as many options as you feel best represent your identity. '
@@ -246,6 +278,48 @@ class BaseCoreProfile(AcceleratorModel):
         max_length=500,
         blank=True,
         help_text=OTHER_EXPERTS_TEXT)
+    salutation = models.CharField(
+        max_length=255,
+        blank=True)
+    mentor_type = models.CharField(
+        max_length=1,
+        blank=True,
+        help_text=MENTOR_TYPE_HELPTEXT,
+        verbose_name="Mentor Type")
+    judge_type = models.CharField(
+        max_length=1,
+        blank=True,
+        help_text=JUDGE_TYPE_HELPTEXT,
+        verbose_name="Judge Type")
+    public_website_consent_checked = models.BooleanField(
+        verbose_name="Public Website Consent Check",
+        blank=False,
+        null=False,
+        default=False)
+    mentoring_specialties = models.ManyToManyField(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+                               'MentoringSpecialties'),
+        verbose_name="Mentoring Specialties",
+        help_text='Hold down "Control", or "Command" on a Mac,'
+                  'to select more than one.',
+#        db_table="accelerator_coreprofile_related_mentoringspecialty",
+        related_name="%(class)s_experts",
+        blank=True)
+    expert_group = models.CharField(
+        verbose_name="Expert Group",
+        max_length=10,
+        blank=True)
+    reliability = models.DecimalField(
+        max_digits=3,
+        decimal_places=2,
+        default=Decimal("1.00"),
+        blank=True,
+        null=True)
+    internal_notes = models.TextField(
+        max_length=500,
+        blank=True,
+        help_text="Internal notes only for use by MassChallenge Staff "
+                  "(not visible to Expert)")
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_coreprofile'
