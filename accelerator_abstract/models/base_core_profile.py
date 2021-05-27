@@ -302,7 +302,6 @@ class BaseCoreProfile(AcceleratorModel):
         verbose_name="Mentoring Specialties",
         help_text='Hold down "Control", or "Command" on a Mac,'
                   'to select more than one.',
-#        db_table="accelerator_coreprofile_related_mentoringspecialty",
         related_name="%(class)s_experts",
         blank=True)
     expert_group = models.CharField(
