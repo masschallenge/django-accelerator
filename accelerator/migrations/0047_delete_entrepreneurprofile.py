@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0047_update_polymorphic_ctype'),
+        ('accelerator', '0046_update_polymorphic_ctype'),
     ]
 
     operations = [
