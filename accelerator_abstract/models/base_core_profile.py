@@ -30,16 +30,34 @@ from accelerator_abstract.models.base_program import (
     ENDED_PROGRAM_STATUS,
 )
 
-
 IDENTITY_HELP_TEXT_VALUE = (mark_safe(
             'Select as many options as you feel best represent your identity. '
             'Please press and hold Control (CTRL) on PCs or '
             'Command (&#8984;) on Macs to select multiple options'))
 
-
 JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
                           'confirmed_judge_label': 'Judge'}
 BIO_MAX_LENGTH = 7500
+
+PRIVACY_CHOICES = (("staff", "MC Staff Only"),
+                   ("finalists and staff", "Finalists and MC Staff"),
+                   ("public", "All Users"),)
+BASE_INTEREST = "I would like to participate in MassChallenge %s"
+BASE_TOPIC = ("Please describe the topic(s) you would be available "
+              "to speak%s about%s")
+
+REF_BY_TEXT = ("If someone referred you to MassChallenge, please provide "
+               "their name (and organization if relevant). Otherwise, please "
+               "indicate how you learned about the opportunity to participate "
+               "at MassChallenge (helps us understand the effectiveness of "
+               "our outreach programs).")
+OTHER_EXPERTS_TEXT = ("We're always looking for more great experts to join "
+                      "the MassChallenge community and program. We welcome "
+                      "the names and contact info (email) of individuals you "
+                      "think could be great additions to the program, as well "
+                      "as how you think they might want to be involved "
+                      "(Judge, Mentor, etc.) Also, please encourage these "
+                      "individuals to fill out their own Expert Profile.")
 
 
 class BaseCoreProfile(AcceleratorModel):
@@ -126,6 +144,108 @@ class BaseCoreProfile(AcceleratorModel):
     bio = models.TextField(blank=True,
                            default="",
                            validators=[MaxLengthValidator(BIO_MAX_LENGTH)])
+
+    title = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name="Professional Title")
+    company = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name="Company Name")
+    expert_category = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+                               "ExpertCategory"),
+        verbose_name="I primarily consider myself a(n)",
+        related_name="%(class)s_experts",
+        blank=True, null=True,  # added
+        on_delete=models.CASCADE)
+    primary_industry = models.ForeignKey(
+        settings.MPTT_SWAPPABLE_INDUSTRY_MODEL,
+        verbose_name="Primary Industry",
+        related_name="%(class)s_experts",
+        limit_choices_to={'level__exact': 0},
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE)
+    additional_industries = models.ManyToManyField(
+        settings.MPTT_SWAPPABLE_INDUSTRY_MODEL,
+        verbose_name="Additional Industries",
+        help_text=(mark_safe(
+            'You may select up to 5 related industries. To select multiple '
+            'industries, please press and hold Control (CTRL) on PCs or '
+            'Command (&#8984;) on Macs.')),
+        related_name="%(class)s_secondary_experts",
+        blank=True,
+    )
+    functional_expertise = models.ManyToManyField(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+                               'FunctionalExpertise'),
+        verbose_name="Functional Expertise",
+        related_name="%(class)s_experts",
+        blank=True)
+    public_website_consent = models.BooleanField(
+        verbose_name="Public Website Consent",
+        blank=False,
+        null=False,
+        default=False)
+    privacy_email = models.CharField(
+        max_length=64,
+        verbose_name="Privacy - Email",
+        choices=PRIVACY_CHOICES,
+        blank=True,
+        default=PRIVACY_CHOICES[1][0])
+    privacy_phone = models.CharField(
+        max_length=64,
+        verbose_name="Privacy - Phone",
+        choices=PRIVACY_CHOICES,
+        blank=True,
+        default=PRIVACY_CHOICES[1][0])
+    privacy_web = models.CharField(
+        max_length=64,
+        verbose_name="Privacy - Web",
+        choices=PRIVACY_CHOICES,
+        blank=True,
+        default=PRIVACY_CHOICES[1][0])
+    home_program_family = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+                               "ProgramFamily"),
+        verbose_name="Home Program Family",
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE)
+    judge_interest = models.BooleanField(
+        verbose_name="Judge",
+        help_text=BASE_INTEREST % 'as a Judge',
+        default=False)
+    mentor_interest = models.BooleanField(
+        verbose_name="Mentor",
+        help_text=BASE_INTEREST % 'as a Mentor',
+        default=False)
+    speaker_interest = models.BooleanField(
+        verbose_name="Speaker",
+        help_text=BASE_INTEREST % 'as a Speaker',
+        default=False)
+    speaker_topics = models.TextField(
+        verbose_name="Speaker Topics",
+        help_text=BASE_TOPIC % ('', ''),
+        blank=True)
+    office_hours_interest = models.BooleanField(
+        verbose_name="Office Hours",
+        help_text=BASE_INTEREST % 'by holding Office Hours',
+        default=False)
+    office_hours_topics = models.TextField(
+        verbose_name="Office Hour Topics",
+        help_text=BASE_TOPIC % (' to Finalists', ' during Office Hours'),
+        blank=True)
+    referred_by = models.TextField(
+        max_length=500,
+        blank=True,
+        help_text=REF_BY_TEXT)
+    other_potential_experts = models.TextField(
+        max_length=500,
+        blank=True,
+        help_text=OTHER_EXPERTS_TEXT)
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_coreprofile'

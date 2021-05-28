@@ -58,7 +58,7 @@ from .refund_code import RefundCode
 from .observer import Observer
 from .program_family import ProgramFamily
 from .expert_profile import ExpertProfile
-from accelerator_abstract.models.base_expert_profile import BIO_MAX_LENGTH
+from accelerator_abstract.models.base_core_profile import BIO_MAX_LENGTH
 from .functional_expertise import FunctionalExpertise
 from .industry import Industry
 from .member_profile import MemberProfile

@@ -59,7 +59,10 @@ from .base_clearance import (
     CLEARANCE_LOGGER_SUCCESS_MSG,
     NO_CLEARANCE_ERROR_MSG,
 )
-from .base_core_profile import BaseCoreProfile
+from .base_core_profile import (
+    BIO_MAX_LENGTH,
+    BaseCoreProfile,
+)
 from .base_criterion import BaseCriterion
 from .base_criterion_option_spec import BaseCriterionOptionSpec
 from .base_currency import BaseCurrency
@@ -71,7 +74,6 @@ from .base_expert_interest import BaseExpertInterest
 from .base_expert_interest_type import BaseExpertInterestType
 from .base_expert_profile import (
     BaseExpertProfile,
-    BIO_MAX_LENGTH,
 )
 from .base_file_page import BaseFilePage
 from .base_functional_expertise import BaseFunctionalExpertise
