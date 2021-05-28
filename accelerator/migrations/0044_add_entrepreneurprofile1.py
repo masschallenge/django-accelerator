@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
     dependencies = [
         ('contenttypes', '0002_remove_content_type_name'),
-        ('accelerator', '0042_remove_old_gender_field'),
+        ('accelerator', '0043_move_user_editable_fields_to_core_profile'),
     ]
 
     operations = [

@@ -14,7 +14,7 @@ def migrate_entrepreneur_profile_data(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0043_add_entrepreneurprofile1'),
+        ('accelerator', '0044_add_entrepreneurprofile1'),
     ]
 
     operations = [
