@@ -12,10 +12,8 @@ PROGRAM_ROLE_IDS = [1434, 2012, 2011, 2184, 2008, 2004, 2005, 2009, 1960, 2061,
 
 def update_program_roles(apps, schema_editor):
     ProgramRole = apps.get_model('accelerator', 'ProgramRole')
-    program_roles = ProgramRole.objects.exclude(id__in=PROGRAM_ROLE_IDS)
-    for program_role in program_roles:
-        program_role.landing_page = ""
-        program_role.save()
+    ProgramRole.objects.exclude(
+        id__in=PROGRAM_ROLE_IDS).update(landing_page="")
 
 
 class Migration(migrations.Migration):
