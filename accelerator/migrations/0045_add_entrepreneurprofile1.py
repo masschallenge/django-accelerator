@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
     dependencies = [
         ('contenttypes', '0002_remove_content_type_name'),
-        ('accelerator', '0043_move_user_editable_fields_to_core_profile'),
+        ('accelerator', '0044_move_all_fields_from_expert_to_coreprofile'),
     ]
 
     operations = [
@@ -16,8 +16,12 @@ class Migration(migrations.Migration):
             fields=[
                 ('coreprofile_ptr',
                  models.OneToOneField(
-                     auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True,
-                     primary_key=True, serialize=False, to='accelerator.CoreProfile')),
+                     auto_created=True,
+                     on_delete=django.db.models.deletion.CASCADE,
+                     parent_link=True,
+                     primary_key=True,
+                     serialize=False,
+                     to='accelerator.CoreProfile')),
             ],
             options={
                 'db_table': 'accelerator_entrepreneurprofile1',
@@ -28,7 +32,9 @@ class Migration(migrations.Migration):
             model_name='coreprofile',
             name='polymorphic_ctype',
             field=models.ForeignKey(
-                editable=False, null=True, on_delete=django.db.models.deletion.CASCADE,
+                editable=False,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
                 related_name='polymorphic_accelerator.coreprofile_set+',
                 to='contenttypes.ContentType'),
         ),

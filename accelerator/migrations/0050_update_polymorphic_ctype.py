@@ -12,7 +12,7 @@ def update_polymorphic_ctype(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0048_rename_entrepreneurprofile1'),
+        ('accelerator', '0049_rename_entrepreneurprofile1'),
     ]
 
     operations = [

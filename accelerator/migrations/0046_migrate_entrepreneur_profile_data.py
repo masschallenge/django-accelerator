@@ -5,16 +5,18 @@ from django.db import migrations
 
 def migrate_entrepreneur_profile_data(apps, schema_editor):
     EntrepreneurProfile = apps.get_model('accelerator', 'EntrepreneurProfile')
-    EntrepreneurProfile1 = apps.get_model('accelerator', 'EntrepreneurProfile1')
+    EntrepreneurProfile1 = apps.get_model(
+        'accelerator', 'EntrepreneurProfile1')
     for profile in EntrepreneurProfile.objects.all():
         profile_dict = profile.__dict__.copy()
         profile_dict.pop("_state")
+        profile_dict.pop("id")
         EntrepreneurProfile1.objects.create(**profile_dict)
 
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0044_add_entrepreneurprofile1'),
+        ('accelerator', '0045_add_entrepreneurprofile1'),
     ]
 
     operations = [
