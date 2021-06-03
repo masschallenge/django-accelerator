@@ -289,8 +289,8 @@ class ExpertProfile(CoreProfile):
         ).values_list("latest_program", flat=True))
 
     def _program_family__program_subquery(self):
-        ProgramFamily = swapper.load_model('accelerator', 'ProgramFamily')
-        return ProgramFamily.objects.filter(
+        Program = swapper.load_model('accelerator', 'Program')
+        return Program.objects.filter(
             program_family=OuterRef('pk'),
             program_status__in=[ACTIVE_PROGRAM_STATUS, ENDED_PROGRAM_STATUS]
         ).order_by("-created_at").values('pk')[:1]

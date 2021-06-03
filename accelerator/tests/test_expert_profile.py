@@ -26,7 +26,9 @@ from accelerator.tests.factories import (
 )
 
 from accelerator_abstract.models import (
+    ACTIVE_PROGRAM_STATUS,
     BIO_MAX_LENGTH,
+    ENDED_PROGRAM_STATUS,
     UPCOMING_PROGRAM_STATUS,
 )
 
@@ -200,6 +202,32 @@ class TestExpertProfile(TestCase):
         program_year = desired_mentor_profile.latest_active_program_year()
 
         self.assertIsNone(program_year)
+
+    def test_confirmed_mentor_program_families(self):
+        confirmed_mentor = _user_grant_program(ACTIVE_PROGRAM_STATUS,
+                                               "active_program_family")
+        _user_grant_program(ENDED_PROGRAM_STATUS,
+                            "ended_program_family",
+                            confirmed_mentor)
+        _user_grant_program(UPCOMING_PROGRAM_STATUS,
+                            "upcoming_program_family",
+                            confirmed_mentor)
+        mentor_profile = confirmed_mentor.get_profile()
+        program_families = mentor_profile.confirmed_mentor_program_families()
+        self.assertEqual(['active_program_family', 'ended_program_family'],
+                         program_families)
+
+    def test_only_recent_program_program_families_are_returned(self):
+        program_family = ProgramFamilyFactory(name="shared_program_family")
+        confirmed_mentor = _user_grant_program(ENDED_PROGRAM_STATUS,
+                                               program_family=program_family)
+        mentor_profile = confirmed_mentor.get_profile()
+        program_families = mentor_profile.confirmed_mentor_program_families()
+        self.assertIn('shared_program_family', program_families)
+
+        ProgramFactory(program_family=program_family)
+        program_families = mentor_profile.confirmed_mentor_program_families()
+        self.assertNotIn('shared_program_family', program_families)
 
 
 def _user_grant_program(program_status, program_family_name=None,
