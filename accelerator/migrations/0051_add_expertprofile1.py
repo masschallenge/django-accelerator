@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'accelerator_expertprofile1',
                 'permissions': (
-                    ('change_password', 'Can change users passwords directly')
+                    ('change_password', 'Can change users passwords directly'),
                 ),
             },
             bases=('accelerator.coreprofile',),
