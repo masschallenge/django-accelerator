@@ -28,3 +28,9 @@ def flag_smith_has_feature(feature_name):
         if bt.has_feature(feature_name):
             return bt.feature_enabled(feature_name)
     return False
+
+
+class UserAlert(object):
+    alert_type = ''  # identifies the type/class of an alert
+    alert_style = 'info'  # info, error, success, warning
+    message = ''  # message to be displayed to the user (can be HTML)
