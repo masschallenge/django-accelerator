@@ -19,7 +19,7 @@ def update_program_roles(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0043_move_user_editable_fields_to_core_profile'),
+        ('accelerator', '0044_move_all_fields_from_expert_to_coreprofile'),
     ]
 
     operations = [
