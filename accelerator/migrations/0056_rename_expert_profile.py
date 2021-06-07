@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0054_delete_expert_profile'),
+        ('accelerator', '0055_delete_expert_profile'),
     ]
 
     operations = [

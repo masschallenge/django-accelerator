@@ -17,7 +17,7 @@ def migrate_expert_profile_data(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0051_add_expertprofile1'),
+        ('accelerator', '0052_add_expertprofile1'),
     ]
 
     operations = [

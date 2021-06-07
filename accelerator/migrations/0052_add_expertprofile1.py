@@ -9,7 +9,7 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0050_update_polymorphic_ctype'),
+        ('accelerator', '0051_update_polymorphic_ctype'),
     ]
 
     operations = [
