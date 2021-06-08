@@ -60,7 +60,6 @@ from .program_family import ProgramFamily
 from accelerator_abstract.models.base_core_profile import BIO_MAX_LENGTH
 from .functional_expertise import FunctionalExpertise
 from .industry import Industry
-from .member_profile import MemberProfile
 from .named_group import NamedGroup
 from .organization import Organization
 from accelerator_abstract.models.base_organization import slug_from_instance
@@ -322,3 +321,4 @@ from .deferrable_modal import DeferrableModal
 from .user_deferrable_modal import UserDeferrableModal
 from .entrepreneur_profile import EntrepreneurProfile
 from .expert_profile import ExpertProfile
+from .member_profile import MemberProfile
