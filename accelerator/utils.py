@@ -34,3 +34,9 @@ class UserAlert(object):
     alert_type = ''  # identifies the type/class of an alert
     alert_style = 'info'  # info, error, success, warning
     message = ''  # message to be displayed to the user (can be HTML)
+
+
+def copy_m2m_fields(old_obj, new_obj, m2m_fields):
+    for field in m2m_fields:
+        field_pk = set(getattr(old_obj, field).all().values_list('pk', flat=True))
+        getattr(new_obj, field).add(*field_pk)
