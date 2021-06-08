@@ -12,7 +12,15 @@ def migrate_expert_profile_data(apps, schema_editor):
         profile_dict = profile.__dict__.copy()
         profile_dict.pop("_state")
         profile_dict.pop("id")
-        ExpertProfile1.objects.create(**profile_dict)
+        ep1 = ExpertProfile1.objects.create(**profile_dict)
+        for choice in profile.gender_identity.all():
+            ep1.gender_identity.add(choice)
+        for industry in profile.additional_industries.all():
+            ep1.additional_industries.add(industry)
+        for identity in profile.ethno_racial_identification.all():
+            ep1.ethno_racial_identification.add(identity)
+        
+        
 
 
 class Migration(migrations.Migration):
