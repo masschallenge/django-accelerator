@@ -9,7 +9,8 @@ def update_polymorphic_ctype(apps, schema_editor):
     ExpertProfile = apps.get_model('accelerator', 'ExpertProfile')
     EntrepreneurProfile = apps.get_model('accelerator', 'EntrepreneurProfile')
     MemberProfile1 = apps.get_model('accelerator', 'MemberProfile1')
-    reset_polymorphic_ctype(CoreProfile, EntrepreneurProfile, ExpertProfile, MemberProfile1)
+    reset_polymorphic_ctype(
+        CoreProfile, EntrepreneurProfile, ExpertProfile, MemberProfile1)
 
 
 class Migration(migrations.Migration):
