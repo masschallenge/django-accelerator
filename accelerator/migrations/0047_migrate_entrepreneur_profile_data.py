@@ -2,22 +2,22 @@
 
 from django.db import migrations
 
+from accelerator.utils import copy_m2m_fields
+
 
 def migrate_entrepreneur_profile_data(apps, schema_editor):
     EntrepreneurProfile = apps.get_model('accelerator', 'EntrepreneurProfile')
     EntrepreneurProfile1 = apps.get_model(
         'accelerator', 'EntrepreneurProfile1')
+    m2m_fields = ['gender_identity', 'interest_categories', 'program_families',
+                  'ethno_racial_identification', 'additional_industries',
+                  'functional_expertise', 'mentoring_specialties']
     for profile in EntrepreneurProfile.objects.all():
         profile_dict = profile.__dict__.copy()
         profile_dict.pop("_state")
         profile_dict.pop("id")
-        ep1 = EntrepreneurProfile1.objects.create(**profile_dict)
-        for choice in profile.gender_identity.all():
-            ep1.gender_identity.add(choice)
-        for industry in profile.additional_industries.all():
-            ep1.additional_industries.add(industry)
-        for identity in profile.ethno_racial_identification.all():
-            ep1.ethno_racial_identification.add(identity)
+        new_profile = EntrepreneurProfile1.objects.create(**profile_dict)
+        copy_m2m_fields(profile, new_profile, m2m_fields)
 
 
 class Migration(migrations.Migration):
