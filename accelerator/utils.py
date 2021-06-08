@@ -38,5 +38,6 @@ class UserAlert(object):
 
 def copy_m2m_fields(old_obj, new_obj, m2m_fields):
     for field in m2m_fields:
-        field_pk = set(getattr(old_obj, field).all().values_list('pk', flat=True))
+        field_pk = set(
+            getattr(old_obj, field).all().values_list('pk', flat=True))
         getattr(new_obj, field).add(*field_pk)
