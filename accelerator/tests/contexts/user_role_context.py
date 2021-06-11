@@ -15,12 +15,8 @@ class UserRoleContext:
                  user=None,
                  landing_page=None,
                  user_label=None):
-        if user and not program:
-            self.program = user.get_profile().current_program
-        else:
-            self.program = program or ProgramFactory()
-        self.user = (user or
-                     ExpertFactory(profile__current_program=self.program))
+        self.program = program or ProgramFactory()
+        self.user = user or ExpertFactory()
         self.user_role = get_user_role_by_name(user_role_name)
         user_label = user_label or UserLabelFactory()
         self.program_role = ProgramRoleFactory(user_role=self.user_role,
