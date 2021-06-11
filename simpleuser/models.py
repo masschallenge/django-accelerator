@@ -40,8 +40,11 @@ class UserManager(BaseUserManager):
             # be unique.
             extra_fields["username"] = str(uuid.uuid4())[:MAX_USERNAME_LENGTH]
         user = self.model(email=email,
-                          is_staff=is_staff, is_superuser=is_superuser,
-                          last_login=now, date_joined=now, **extra_fields)
+                          is_staff=is_staff,
+                          is_superuser=is_superuser,
+                          last_login=None,
+                          date_joined=now,
+                          **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
