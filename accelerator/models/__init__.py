@@ -57,12 +57,9 @@ from .program_override import ProgramOverride
 from .refund_code import RefundCode
 from .observer import Observer
 from .program_family import ProgramFamily
-from .entrepreneur_profile import EntrepreneurProfile
-from .expert_profile import ExpertProfile
 from accelerator_abstract.models.base_core_profile import BIO_MAX_LENGTH
 from .functional_expertise import FunctionalExpertise
 from .industry import Industry
-from .member_profile import MemberProfile
 from .named_group import NamedGroup
 from .organization import Organization
 from accelerator_abstract.models.base_organization import slug_from_instance
@@ -322,3 +319,6 @@ from .gender_choices import GenderChoices
 from .ethno_racial_identity import EthnoRacialIdentity
 from .deferrable_modal import DeferrableModal
 from .user_deferrable_modal import UserDeferrableModal
+from .entrepreneur_profile import EntrepreneurProfile
+from .expert_profile import ExpertProfile
+from .member_profile import MemberProfile

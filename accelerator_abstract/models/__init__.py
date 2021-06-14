@@ -66,16 +66,12 @@ from .base_core_profile import (
 from .base_criterion import BaseCriterion
 from .base_criterion_option_spec import BaseCriterionOptionSpec
 from .base_currency import BaseCurrency
-from .base_entrepreneur_profile import BaseEntrepreneurProfile
 from .base_expert_category import (
     BaseExpertCategory,
     VALID_EXPERT_CATEGORIES,
 )
 from .base_expert_interest import BaseExpertInterest
 from .base_expert_interest_type import BaseExpertInterestType
-from .base_expert_profile import (
-    BaseExpertProfile,
-)
 from .base_file_page import BaseFilePage
 from .base_functional_expertise import BaseFunctionalExpertise
 from .base_industry import BaseIndustry

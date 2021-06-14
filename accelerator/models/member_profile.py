@@ -1,14 +1,12 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
-from __future__ import unicode_literals
-
-import swapper
-
-from accelerator_abstract.models import BaseMemberProfile
+from accelerator.managers.member_profile_manager import MemberProfileManager
+from accelerator.models import CoreProfile
 
 
-class MemberProfile(BaseMemberProfile):
-    class Meta(BaseMemberProfile.Meta):
-        swappable = swapper.swappable_setting(
-            BaseMemberProfile.Meta.app_label, "MemberProfile")
+class MemberProfile(CoreProfile):
+    user_type = 'member'
+    default_page = "member_homepage"
+
+    objects = MemberProfileManager()
+
+    class Meta:
+        db_table = 'accelerator_memberprofile'
