@@ -46,8 +46,7 @@ class StartupTeamMemberContext(object):
         self.program = program or ProgramFactory(cycle=self.cycle,
                                                  program_status=program_status,
                                                  start_date=tomorrow)
-        self.user = user or EntrepreneurFactory(
-            profile__current_program=self.program)
+        self.user = user or EntrepreneurFactory()
         if primary_contact:
             self.startup = startup or StartupFactory(user=self.user)
             self.member = self.startup.primary_contact()
