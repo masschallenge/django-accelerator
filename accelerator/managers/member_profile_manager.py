@@ -1,6 +1,6 @@
 import logging
 
-from django.db import models
+from polymorphic.models import PolymorphicManager
 
 
 logger = logging.getLogger(__file__)
@@ -10,7 +10,7 @@ MEMBER_PROFILE_RECREATION_WARNING = (
 )
 
 
-class MemberProfileManager(models.Manager):
+class MemberProfileManager(PolymorphicManager):
 
     def create(self, *args, **kwargs):
         self.filter(user=kwargs['user']).delete()

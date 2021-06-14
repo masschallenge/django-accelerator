@@ -30,6 +30,7 @@ INSTALL_REQUIRES = [
     "django-sitetree",
     "bullet-train",
     "mysqlclient",
+    "django-polymorphic",
 ]
 
 setup(
