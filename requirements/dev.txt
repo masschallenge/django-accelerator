@@ -11,5 +11,5 @@ tox
 mock
 factory-boy
 swapper
-mysqlclient
+#mysqlclient
 django-polymorphic
