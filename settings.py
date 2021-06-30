@@ -4,9 +4,9 @@
 import os
 import sys
 import logging
-# from django.db.backends.mysql.base import DatabaseWrapper
+from django.db.backends.mysql.base import DatabaseWrapper
 
-# DatabaseWrapper.data_types['DateTimeField'] = 'datetime'
+DatabaseWrapper.data_types['DateTimeField'] = 'datetime'
 
 if len(sys.argv) > 1 and sys.argv[1] == 'test':
     logging.disable(logging.WARNING)
