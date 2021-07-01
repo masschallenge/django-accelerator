@@ -15,4 +15,4 @@ class NoteFactory(DjangoModelFactory):
 
     user = SubFactory(UserFactory)
     manager = SubFactory(UserFactory)
-    note_content = Sequence(lambda n: "User staff note {0}".format(n))
+    note_content = Sequence(lambda n: "User note {0}".format(n))
