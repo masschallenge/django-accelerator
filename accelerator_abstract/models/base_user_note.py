@@ -17,7 +17,7 @@ class BaseUserNote(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         abstract = True
-        verbose_name = 'Staff Notes'
+        verbose_name = 'User note'
 
     def __str__(self):
         return 'User note for: {}'.format(self.user.email)

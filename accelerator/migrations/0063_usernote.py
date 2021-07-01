@@ -36,10 +36,9 @@ class Migration(migrations.Migration):
                                    to=settings.AUTH_USER_MODEL)),
             ],
             options={
-                'verbose_name': 'Staff Notes',
+                'verbose_name': 'User note',
                 'abstract': False,
-                'managed': True,
-                'swappable': 'ACCELERATOR_NOTE_MODEL',
+                'managed': True
             },
         ),
     ]
