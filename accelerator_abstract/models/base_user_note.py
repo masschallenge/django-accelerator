@@ -1,12 +1,11 @@
 from django.conf import settings
-import swapper
 
 from django.db import models
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-class BaseNote(AcceleratorModel):
+class BaseUserNote(AcceleratorModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              related_name="user_notes",
                              on_delete=models.CASCADE)
@@ -21,4 +20,4 @@ class BaseNote(AcceleratorModel):
         verbose_name = 'Staff Notes'
 
     def __str__(self):
-        return 'Note for: {}'.format(self.user.email)
+        return 'User note for: {}'.format(self.user.email)

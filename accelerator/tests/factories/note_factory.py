@@ -1,13 +1,12 @@
 import swapper
 
 from factory import Sequence, SubFactory
-    
+
 from factory.django import DjangoModelFactory
-from pytz import utc
 
 from simpleuser.tests.factories.user_factory import UserFactory
 
-Note = swapper.load_model('accelerator', 'Note')
+Note = swapper.load_model('accelerator', 'UserNote')
 
 
 class NoteFactory(DjangoModelFactory):
@@ -16,4 +15,4 @@ class NoteFactory(DjangoModelFactory):
 
     user = SubFactory(UserFactory)
     manager = SubFactory(UserFactory)
-    note_content = Sequence(lambda n: "staff note {0}".format(n))
+    note_content = Sequence(lambda n: "User staff note {0}".format(n))

@@ -322,4 +322,4 @@ from .user_deferrable_modal import UserDeferrableModal
 from .entrepreneur_profile import EntrepreneurProfile
 from .expert_profile import ExpertProfile
 from .member_profile import MemberProfile
-from .note import Note
+from .user_note import UserNote
