@@ -32,8 +32,8 @@ class Migration(migrations.Migration):
                                    to=settings.AUTH_USER_MODEL)),
                 ('user',
                  models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
-                                    related_name='user_notes',
-                                    to=settings.AUTH_USER_MODEL)),
+                                   related_name='user_notes',
+                                   to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name': 'Staff Notes',
