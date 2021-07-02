@@ -9,7 +9,7 @@ from simpleuser.tests.factories.user_factory import UserFactory
 Note = swapper.load_model('accelerator', 'UserNote')
 
 
-class NoteFactory(DjangoModelFactory):
+class UserNoteFactory(DjangoModelFactory):
     class Meta:
         model = Note
 
