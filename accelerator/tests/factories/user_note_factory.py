@@ -6,13 +6,13 @@ from factory.django import DjangoModelFactory
 
 from simpleuser.tests.factories.user_factory import UserFactory
 
-Note = swapper.load_model('accelerator', 'UserNote')
+UserNote = swapper.load_model('accelerator', 'UserNote')
 
 
 class UserNoteFactory(DjangoModelFactory):
     class Meta:
-        model = Note
+        model = UserNote
 
     user = SubFactory(UserFactory)
-    manager = SubFactory(UserFactory)
+    author = SubFactory(UserFactory)
     note_content = Sequence(lambda n: "User note {0}".format(n))

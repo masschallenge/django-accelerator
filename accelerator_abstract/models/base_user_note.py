@@ -9,7 +9,7 @@ class BaseUserNote(AcceleratorModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              related_name="user_notes",
                              on_delete=models.CASCADE)
-    manager = models.ForeignKey(settings.AUTH_USER_MODEL,
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                 related_name="manager_notes",
                                 on_delete=models.CASCADE)
     note_content = models.TextField(default='',

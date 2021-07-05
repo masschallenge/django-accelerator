@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                                                     null=True)),
                 ('note_content', models.TextField(default='',
                                                   help_text='Note contents')),
-                ('manager',
+                ('author',
                  models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
                                    related_name='manager_notes',
                                    to=settings.AUTH_USER_MODEL)),
