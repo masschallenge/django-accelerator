@@ -10,8 +10,8 @@ class BaseUserNote(AcceleratorModel):
                              related_name="user_notes",
                              on_delete=models.CASCADE)
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
-                                related_name="manager_notes",
-                                on_delete=models.CASCADE)
+                               related_name="manager_notes",
+                               on_delete=models.CASCADE)
     note_content = models.TextField(default='',
                                     help_text='Note contents')
 
