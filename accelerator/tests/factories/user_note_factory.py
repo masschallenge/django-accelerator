@@ -1,5 +1,5 @@
 from factory import (
-    Sequence, 
+    Sequence,
     SubFactory,
 )
 from factory.django import DjangoModelFactory
