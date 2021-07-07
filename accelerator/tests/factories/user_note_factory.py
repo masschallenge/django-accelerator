@@ -1,12 +1,10 @@
-import swapper
-
-from factory import Sequence, SubFactory
-
+from factory import (
+    Sequence, 
+    SubFactory,
+)
 from factory.django import DjangoModelFactory
-
 from simpleuser.tests.factories.user_factory import UserFactory
-
-UserNote = swapper.load_model('accelerator', 'UserNote')
+from accelerator.models import UserNote
 
 
 class UserNoteFactory(DjangoModelFactory):
