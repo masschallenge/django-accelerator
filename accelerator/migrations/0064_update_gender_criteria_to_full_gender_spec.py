@@ -20,7 +20,7 @@ def reverse_update(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0062_update_polymorphic_ctype'),
+        ('accelerator', '0063_usernote'),
     ]
 
     operations = [
