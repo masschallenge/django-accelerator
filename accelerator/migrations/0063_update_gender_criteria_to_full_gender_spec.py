@@ -11,8 +11,7 @@ def update_criterion_specs(apps, schema_editor):
 
 
 def reverse_update(apps, schema_editor):
-    CriterionOptionSpec = apps.get_model("CriterionOptionSpec",
-                                         "accelerator")
+    CriterionOptionSpec = apps.get_model("accelerator", "CriterionOptionSpec")
     CriterionOptionSpec.objects.filter(option="Male").update(option="m")
     CriterionOptionSpec.objects.filter(option="Female").update(option="f")    
 
