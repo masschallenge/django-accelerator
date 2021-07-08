@@ -4,19 +4,17 @@ from django.db import migrations
 
 
 def update_criterion_specs(apps, schema_editor):
-    CriterionOptionSpec = apps.get_model("accelerator","CriterionOptionSpec")
-                                         
+    CriterionOptionSpec = apps.get_model("accelerator", "CriterionOptionSpec")
     CriterionOptionSpec.objects.filter(option="m").update(option="Male")
-    CriterionOptionSpec.objects.filter(option="f").update(option="Female")    
+    CriterionOptionSpec.objects.filter(option="f").update(option="Female")
 
 
 def reverse_update(apps, schema_editor):
     CriterionOptionSpec = apps.get_model("accelerator", "CriterionOptionSpec")
     CriterionOptionSpec.objects.filter(option="Male").update(option="m")
-    CriterionOptionSpec.objects.filter(option="Female").update(option="f")    
+    CriterionOptionSpec.objects.filter(option="Female").update(option="f")
 
-    
-    
+
 class Migration(migrations.Migration):
 
     dependencies = [
