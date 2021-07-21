@@ -16,8 +16,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='usernote',
             name='author',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
-                                    to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL),
         ),
         migrations.CreateModel(
             name='OrganizationNote',
@@ -35,10 +36,10 @@ class Migration(migrations.Migration):
                 ('author',
                  models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
                                    to=settings.AUTH_USER_MODEL)),
-                ('organization',
-                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
-                                   related_name='organisation_notes',
-                                   to=settings.ACCELERATOR_ORGANIZATION_MODEL)),
+                ('organization', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='organisation_notes',
+                    to=settings.ACCELERATOR_ORGANIZATION_MODEL)),
             ],
             options={
                 'verbose_name': 'Organization note',

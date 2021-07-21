@@ -9,6 +9,7 @@ class BaseUserNote(BaseNote):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              related_name="user_notes",
                              on_delete=models.CASCADE)
+
     class Meta(BaseNote.Meta):
         abstract = True
         verbose_name = 'User note'
