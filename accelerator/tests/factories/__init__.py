@@ -115,3 +115,4 @@ from .ethno_racial_identity_factory import EthnoRacialIdentityFactory
 from .deferrable_modal_factory import DeferrableModalFactory
 from .user_deferrable_modal_factory import UserDeferrableModalFactory
 from .user_note_factory import UserNoteFactory
+from .organization_note_factory import OrganizationNoteFactory
