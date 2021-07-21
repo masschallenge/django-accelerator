@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
                                    to=settings.AUTH_USER_MODEL)),
                 ('organization',
                  models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
-                                   related_name='organisation_notes',
+                                   related_name='organization_notes',
                                    to=settings.ACCELERATOR_ORGANIZATION_MODEL)),
             ],
             options={

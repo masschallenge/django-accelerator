@@ -7,7 +7,7 @@ from accelerator_abstract.models.base_note import BaseNote
 class BaseOrganizationNote(BaseNote):
     organization = models.ForeignKey(
         swapper.get_model_name(BaseNote.Meta.app_label, 'Organization'),
-        related_name="organisation_notes",
+        related_name="organization_notes",
         on_delete=models.CASCADE)
 
     class Meta(BaseNote.Meta):
