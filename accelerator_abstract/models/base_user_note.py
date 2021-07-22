@@ -2,20 +2,15 @@ from django.conf import settings
 
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from accelerator_abstract.models.base_note import BaseNote
 
 
-class BaseUserNote(AcceleratorModel):
+class BaseUserNote(BaseNote):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              related_name="user_notes",
                              on_delete=models.CASCADE)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL,
-                               related_name="manager_notes",
-                               on_delete=models.CASCADE)
-    note_content = models.TextField(default='',
-                                    help_text='Note contents')
 
-    class Meta(AcceleratorModel.Meta):
+    class Meta(BaseNote.Meta):
         abstract = True
         verbose_name = 'User note'
 
