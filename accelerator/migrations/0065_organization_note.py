@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='OrganizationNote',
             fields=[
-                ('id', models.AutoField(auto_created=True, 
+                ('id', models.AutoField(auto_created=True,
                                         primary_key=True,
                                         serialize=False,
                                         verbose_name='ID')),
@@ -39,9 +39,10 @@ class Migration(migrations.Migration):
                                    related_name='organizationnote_notes',
                                    to=settings.AUTH_USER_MODEL)),
                 ('organization',
-                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
-                                   related_name='organization_notes',
-                                   to=settings.ACCELERATOR_ORGANIZATION_MODEL)),
+                 models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='organization_notes',
+                    to=settings.ACCELERATOR_ORGANIZATION_MODEL)),
             ],
             options={
                 'verbose_name': 'Organization note',
