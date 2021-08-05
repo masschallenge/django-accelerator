@@ -1,14 +1,21 @@
 import swapper
-from django.db.models import OuterRef, Q, Subquery
+from django.db.models import (
+    OuterRef,
+    Q,
+    Subquery,
+)
 from django.urls import reverse
 from django.utils import timezone
 from polymorphic.models import PolymorphicModel
 
 from accelerator.models import UserRole
-from accelerator_abstract.models import (ACTIVE_PROGRAM_STATUS, BIO_MAX_LENGTH,
-                                         ENDED_PROGRAM_STATUS,
-                                         HIDDEN_PROGRAM_STATUS,
-                                         UPCOMING_PROGRAM_STATUS)
+from accelerator_abstract.models import (
+    ACTIVE_PROGRAM_STATUS,
+    BIO_MAX_LENGTH,
+    ENDED_PROGRAM_STATUS,
+    HIDDEN_PROGRAM_STATUS,
+    UPCOMING_PROGRAM_STATUS,
+)
 from accelerator_abstract.models.base_core_profile import BaseCoreProfile
 
 SHORT_BIO_MAX_LENGTH = 140
@@ -142,6 +149,13 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
         if has_available_office_hours:
             return list(_get_office_hour_holder_active_programs(self.user))
         return []
+
+    def program_participation(self):
+        participation_roles = [UserRole.MENTOR, UserRole.FINALIST]
+        return self.user.programrolegrant_set.filter(
+            Q(program_role__user_role__name__in=participation_roles)
+            & ACTIVE_PROGRAM).values_list(
+            'program_role__program__name', flat=True).distinct()
 
     def _trimmed_bio(self, max_chars):
         bio = self.bio or ''

@@ -261,6 +261,31 @@ class TestCoreProfile(TestCase):
         self.assertFalse(_user_is_alum_in_residence(
             air_program, non_air_program))
 
+    def test_finalist_profile_program_participation(self):
+        expected_programs = ['program0']
+        user = _user_with_role(
+            EntrepreneurFactory(), BaseUserRole.MENTOR, 'program0')
+        self.assertEqual(
+            list(user.coreprofile.program_participation()), expected_programs)
+
+    def test_mentor_profile_program_participation(self):
+        expected_programs = ['program1']
+        user = _user_with_role(
+            ExpertFactory(), BaseUserRole.MENTOR, 'program1')
+        self.assertEqual(
+            list(user.coreprofile.program_participation()), expected_programs)
+
+
+def _user_with_role(user, role_name, program_name):
+    role = UserRoleFactory(name=role_name)
+    program_role = ProgramRoleFactory.create(
+        user_role=role,
+        program=ProgramFactory(name=program_name))
+    ProgramRoleGrantFactory.create(
+        person=user,
+        program_role=program_role)
+    return user
+
 
 def _user_is_alum_in_residence(air_program=None, non_air_program=None):
     user = EntrepreneurFactory()

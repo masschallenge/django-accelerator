@@ -12,7 +12,9 @@ from accelerator.utils import UserAlert
 from accelerator_abstract.models import (
     ACTIVE_PANEL_STATUS,
     CAPTURE_AVAILABILITY_DISABLED)
-from accelerator_abstract.models.base_judging_round import ONLINE_JUDGING_ROUND_TYPE
+from accelerator_abstract.models.base_judging_round import (
+    ONLINE_JUDGING_ROUND_TYPE,
+)
 
 CONFIRMED_FOR_MESSAGE = "<h4>%s, you are confirmed for %s:</h4>"
 EXPECTING_TO_SEE_YOU_MESSAGE = ("<p>&nbsp;</p><h4>We are expecting "
@@ -43,6 +45,7 @@ UPDATE_JUDGE_COMMITMENTS_NOTIFICATION = (
     'Update your judging commitments</a></b>'
     '<p>&nbsp;</p>'
 )
+SHORT_BIO_MAX_LENGTH = 140
 
 
 class ExpertProfile(CoreProfile):
@@ -191,7 +194,6 @@ class ExpertProfile(CoreProfile):
         else:
             return "N/A"
 
-
     @classmethod
     def mentors(cls, program):
         role_name = UserRole.MENTOR
@@ -275,4 +277,3 @@ def _recruiting_judges():
     availability = ~Q(capture_availability=CAPTURE_AVAILABILITY_DISABLED)
     return swapper.load_model('accelerator', 'JudgingRound').objects.filter(
         capacity | availability).exists()
-
