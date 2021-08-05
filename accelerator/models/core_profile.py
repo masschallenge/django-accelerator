@@ -17,6 +17,7 @@ from accelerator_abstract.models import (
     UPCOMING_PROGRAM_STATUS,
 )
 from accelerator_abstract.models.base_core_profile import BaseCoreProfile
+from accelerator_abstract.models.base_user_utils import is_employee
 
 SHORT_BIO_MAX_LENGTH = 140
 OFFICE_HOUR_HOLDER_ROLES = [UserRole.MENTOR, UserRole.AIR]
@@ -150,12 +151,22 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
             return list(_get_office_hour_holder_active_programs(self.user))
         return []
 
+    def roles(self):
+        user_roles = [UserRole.MENTOR, UserRole.FINALIST, UserRole.ALUM]
+        roles_list = []
+        if is_employee(self.user):
+            roles_list.append(UserRole.STAFF)
+        roles_list += list(self.user.programrolegrant_set.filter(
+            program_role__user_role__name__in=user_roles).values_list(
+            'program_role__user_role__name', flat=True).distinct())
+        return roles_list
+
     def program_participation(self):
         participation_roles = [UserRole.MENTOR, UserRole.FINALIST]
-        return self.user.programrolegrant_set.filter(
+        return list(self.user.programrolegrant_set.filter(
             Q(program_role__user_role__name__in=participation_roles)
             & ACTIVE_PROGRAM).values_list(
-            'program_role__program__name', flat=True).distinct()
+            'program_role__program__name', flat=True).distinct())
 
     def _trimmed_bio(self, max_chars):
         bio = self.bio or ''

@@ -266,14 +266,20 @@ class TestCoreProfile(TestCase):
         user = _user_with_role(
             EntrepreneurFactory(), BaseUserRole.MENTOR, 'program0')
         self.assertEqual(
-            list(user.coreprofile.program_participation()), expected_programs)
+            user.coreprofile.program_participation(), expected_programs)
 
     def test_mentor_profile_program_participation(self):
         expected_programs = ['program1']
         user = _user_with_role(
             ExpertFactory(), BaseUserRole.MENTOR, 'program1')
         self.assertEqual(
-            list(user.coreprofile.program_participation()), expected_programs)
+            user.coreprofile.program_participation(), expected_programs)
+
+    def test_roles_function_returns_user_roles(self):
+        expected = [BaseUserRole.STAFF, BaseUserRole.ALUM]
+        user = _user_with_role(ExpertFactory(), BaseUserRole.ALUM, 'program2')
+        ClearanceFactory(user=user)
+        self.assertEqual(user.coreprofile.roles(), expected)
 
 
 def _user_with_role(user, role_name, program_name):
