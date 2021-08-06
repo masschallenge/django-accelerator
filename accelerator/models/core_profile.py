@@ -49,7 +49,7 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
         return self.user.startup_industry()
 
     def startup_status_names(self):
-        self.user.startup_status_names()
+        return self.user.startup_status_names()
 
     def location(self):
         return self.user.location()
