@@ -145,8 +145,7 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
         # having open office hours
         has_available_office_hours = self.user.mentor_officehours.filter(
             finalist__isnull=True,
-            start_date_time__gte=timezone.now()
-        ).exists()
+            start_date_time__gte=timezone.now()).exists()
         if has_available_office_hours:
             return list(_get_office_hour_holder_active_programs(self.user))
         return []
@@ -183,8 +182,7 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
                 UPCOMING_PROGRAM_STATUS]
         ).prefetch_related(
             'program_role__program',
-            'program_role__program__program_family'
-        )
+            'program_role__program__program_family')
 
     def _latest_program_id_foreach_program_family(self):
         ProgramFamily = swapper.load_model('accelerator', 'ProgramFamily')
@@ -208,8 +206,7 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
 def _get_office_hour_holder_active_programs(user):
     Clearance = swapper.load_model('accelerator', 'Clearance')
     clearances = Clearance.objects.clearances_for_user(user).filter(
-        program_family__programs__program_status=ACTIVE_PROGRAM_STATUS
-    )
+        program_family__programs__program_status=ACTIVE_PROGRAM_STATUS)
     active_program_ids = set()
     active_program_ids.update(list(clearances.values_list(
         'program_family__programs__id', flat=True
