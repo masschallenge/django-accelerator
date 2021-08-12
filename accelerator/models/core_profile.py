@@ -23,7 +23,8 @@ SHORT_BIO_MAX_LENGTH = 140
 OFFICE_HOUR_HOLDER_ROLES = [UserRole.MENTOR, UserRole.AIR]
 OFFICE_HOURS_HOLDER = Q(
     program_role__user_role__name__in=OFFICE_HOUR_HOLDER_ROLES)
-ACTIVE_PROGRAM = Q(program_role__program__program_status='active')
+HAS_ACTIVE_PROGRAM_STATUS = Q(
+    program_role__program__program_status=ACTIVE_PROGRAM_STATUS)
 
 
 class CoreProfile(BaseCoreProfile, PolymorphicModel):
@@ -164,7 +165,7 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
         participation_roles = [UserRole.MENTOR, UserRole.FINALIST]
         return list(self.user.programrolegrant_set.filter(
             Q(program_role__user_role__name__in=participation_roles)
-            & ACTIVE_PROGRAM).values_list(
+            & HAS_ACTIVE_PROGRAM_STATUS).values_list(
             'program_role__program__name', flat=True).distinct())
 
     def _trimmed_bio(self, max_chars):
@@ -212,6 +213,6 @@ def _get_office_hour_holder_active_programs(user):
         'program_family__programs__id', flat=True
     ).distinct()))
     active_program_ids.update(list(user.programrolegrant_set.filter(
-        OFFICE_HOURS_HOLDER & ACTIVE_PROGRAM
+        OFFICE_HOURS_HOLDER & HAS_ACTIVE_PROGRAM_STATUS
     ).values_list('program_role__program__id', flat=True).distinct()))
     return active_program_ids

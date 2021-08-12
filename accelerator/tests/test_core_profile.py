@@ -327,10 +327,10 @@ class TestCoreProfile(TestCase):
 
 def _user_with_role(user, role_name, program_name):
     role = UserRoleFactory(name=role_name)
-    program_role = ProgramRoleFactory.create(
+    program_role = ProgramRoleFactory(
         user_role=role,
         program=ProgramFactory(name=program_name))
-    ProgramRoleGrantFactory.create(
+    ProgramRoleGrantFactory(
         person=user,
         program_role=program_role)
     return user
