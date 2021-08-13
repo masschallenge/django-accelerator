@@ -1,36 +1,35 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
-from __future__ import unicode_literals
-
 from django.test import TestCase
 
-from accelerator.tests.factories import (
-    ClearanceFactory,
-    ExpertFactory,
-    EntrepreneurFactory,
-    EntrepreneurProfileFactory,
-    InterestCategoryFactory,
-    MemberFactory,
-    ProgramFactory,
-    ProgramRoleFactory,
-    ProgramRoleGrantFactory,
-    UserFactory,
-    UserRoleFactory,
-    ProgramFamilyFactory,
-    PartnerTeamMemberFactory,
-)
-from accelerator_abstract.models import (
-    BaseUserRole,
-    ENDED_PROGRAM_STATUS,
-)
 from accelerator.tests.contexts import (
     StartupTeamMemberContext,
     UserRoleContext,
 )
-from accelerator_abstract.models.base_clearance import (
-    CLEARANCE_LEVEL_STAFF,
+from accelerator.tests.factories import (
+    ClearanceFactory,
+    EntrepreneurFactory,
+    EntrepreneurProfileFactory,
+    ExpertFactory,
+    ExpertProfileFactory,
+    IndustryFactory,
+    InterestCategoryFactory,
+    MemberFactory,
+    MentorProgramOfficeHourFactory,
+    PartnerTeamMemberFactory,
+    ProgramFactory,
+    ProgramFamilyFactory,
+    ProgramRoleFactory,
+    ProgramRoleGrantFactory,
+    ProgramStartupStatusFactory,
+    StartupFactory,
+    StartupStatusFactory,
+    UserFactory,
+    UserRoleFactory,
 )
+from accelerator_abstract.models import (
+    ENDED_PROGRAM_STATUS,
+    BaseUserRole,
+)
+from accelerator_abstract.models.base_clearance import CLEARANCE_LEVEL_STAFF
 
 
 def expert(role):
@@ -261,6 +260,81 @@ class TestCoreProfile(TestCase):
         self.assertFalse(_user_is_alum_in_residence(
             air_program, non_air_program))
 
+    def test_finalist_profile_program_participation(self):
+        expected_programs = ['program0']
+        user = _user_with_role(
+            EntrepreneurFactory(), BaseUserRole.MENTOR, 'program0')
+        self.assertEqual(
+            user.coreprofile.program_participation(), expected_programs)
+
+    def test_mentor_profile_program_participation(self):
+        expected_programs = ['program1']
+        user = _user_with_role(
+            ExpertFactory(), BaseUserRole.MENTOR, 'program1')
+        self.assertEqual(
+            user.coreprofile.program_participation(), expected_programs)
+
+    def test_roles_function_returns_user_roles(self):
+        expected = [BaseUserRole.STAFF, BaseUserRole.ALUM]
+        user = _user_with_role(ExpertFactory(), BaseUserRole.ALUM, 'program2')
+        ClearanceFactory(user=user)
+        self.assertEqual(user.coreprofile.roles(), expected)
+
+    def test_startup_name_function_returns_correct_value(self):
+        user = EntrepreneurFactory()
+        startup = _get_user_startup(user)
+        self.assertEqual(startup.name, user.coreprofile.startup_name())
+
+    def test_startup_industry_function_returns_correct_value(self):
+        user = EntrepreneurFactory()
+        startup = _get_user_startup(user)
+        self.assertEqual(
+            startup.primary_industry, user.coreprofile.startup_industry())
+
+    def test_startup_status_names_returns_correct_value(self):
+        user = EntrepreneurFactory()
+        status = ProgramStartupStatusFactory()
+        StartupStatusFactory(startup=_get_user_startup(user),
+                             program_startup_status=status)
+        self.assertEqual(
+            [status.startup_status], user.coreprofile.startup_status_names())
+
+    def test_top_level_startup_industry(self):
+        startup = StartupFactory(
+            primary_industry=IndustryFactory(parent=IndustryFactory()))
+        profile = StartupTeamMemberContext(
+            primary_contact=False, startup=startup).user.coreprofile
+        industry = startup.primary_industry
+        self.assertEqual(industry.parent,
+                         profile.top_level_startup_industry())
+
+    def test_office_hour_holder_in_active_gets_office_hour_programs(self):
+        program = ProgramFactory()
+        profile = ExpertProfileFactory()
+        UserRoleContext(
+            BaseUserRole.MENTOR, user=profile.user, program=program)
+        _create_office_hour(profile.user, program)
+        self.assertEqual([program.id], profile.office_hour_programs())
+
+    def test_non_office_hour_holder_gets_no_office_hour_programs(self):
+        profile = ExpertProfileFactory()
+        self.assertEqual([], profile.office_hour_programs())
+
+    def test_is_active_returns_correct_value(self):
+        profile = ExpertProfileFactory()
+        self.assertEqual(profile.is_active(), True)
+
+
+def _user_with_role(user, role_name, program_name):
+    role = UserRoleFactory(name=role_name)
+    program_role = ProgramRoleFactory(
+        user_role=role,
+        program=ProgramFactory(name=program_name))
+    ProgramRoleGrantFactory(
+        person=user,
+        program_role=program_role)
+    return user
+
 
 def _user_is_alum_in_residence(air_program=None, non_air_program=None):
     user = EntrepreneurFactory()
@@ -271,3 +345,12 @@ def _user_is_alum_in_residence(air_program=None, non_air_program=None):
     if program_of_interest:
         return user_profile.is_alum_in_residence(program_of_interest)
     return user_profile.is_alum_in_residence()
+
+
+def _create_office_hour(mentor, program):
+    MentorProgramOfficeHourFactory(
+        mentor=mentor, finalist=None, program=program)
+
+
+def _get_user_startup(user):
+    return StartupTeamMemberContext(user=user, primary_contact=False).startup
