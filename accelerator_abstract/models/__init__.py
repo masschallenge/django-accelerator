@@ -185,6 +185,9 @@ from .base_panel_location import BasePanelLocation
 from .base_panel_time import BasePanelTime
 from .base_panel_type import BasePanelType
 from .base_partner import BasePartner
+from .base_partner_judging_round_challenge import (
+    BasePartnerJudgingRoundChallenge,
+)
 from .base_partner_team_member import BasePartnerTeamMember
 from .base_paypal_payment import BasePayPalPayment
 from .base_paypal_refund import BasePayPalRefund
