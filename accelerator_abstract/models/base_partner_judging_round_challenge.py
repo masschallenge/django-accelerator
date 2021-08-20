@@ -19,9 +19,6 @@ class BasePartnerJudgingRoundChallenge(AcceleratorModel):
         on_delete=CASCADE)
     text = TextField(blank=True,
                      null=True)
-                                
 
     class Meta(AcceleratorModel.Meta):
         abstract = True
-        verbose_name_plural = 'Partner Judging Round Challenges'
-    
