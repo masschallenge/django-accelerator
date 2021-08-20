@@ -7,7 +7,7 @@ from accelerator_abstract.models import BasePartnerJudgingRoundChallenge
 
 
 class PartnerJudgingRoundChallenge(BasePartnerJudgingRoundChallenge):
-    class Meta(BaseJudgingRoundChallenge.Meta):
+    class Meta(BasePartnerJudgingRoundChallenge.Meta):
         swappable = swapper.swappable_setting(
-            BaseClearance.Meta.app_label, "PartnerJudgingRoundChallenge")
+            BasePartnerJudgingRoundChallenge.Meta.app_label, "PartnerJudgingRoundChallenge")
 
