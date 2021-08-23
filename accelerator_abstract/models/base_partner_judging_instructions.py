@@ -1,18 +1,15 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
-from __future__ import unicode_literals
-
 import swapper
 from django.conf import settings
 from django.db import models
 
-from accelerator_abstract.models.accelerator_model import AcceleratorModel
+from .accelerator_model import AcceleratorModel
 
 
 class BasePartnerJudgingInstructions(AcceleratorModel):
-    partner = models.ForeignKey(settings.AUTH_USER_MODEL,
-                              on_delete=models.CASCADE)
+    partner = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+                               "Partner"),
+        on_delete=models.CASCADE)
     judging_round = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "JudgingRound"),

@@ -17,11 +17,10 @@ from accelerator.tests.factories.judging_round_factory import (
     JudgingRoundFactory
 )
 
-PartnerJudgingInstruction = swapper.load_model('accelerator',
-                                          'PartnerJudgingInstruction')
+from accelerator.models import PartnerJudgingInstructions
 
 
-class PartnerJudgingRoundFactory(DjangoModelFactory):
+class PartnerJudgingInstructionsFactory(DjangoModelFactory):
     class Meta:
         model = PartnerJudgingInstruction
 
