@@ -324,4 +324,4 @@ from .expert_profile import ExpertProfile
 from .member_profile import MemberProfile
 from .user_note import UserNote
 from .organization_note import OrganizationNote
-from .partner_judging_instruction import PartnerJudgingInstructions
+from .partner_judging_instructions import PartnerJudgingInstructions

@@ -20,7 +20,6 @@ class BasePartnerJudgingInstructions(AcceleratorModel):
         help_text='Partner Judging instructions to guide teams in 500 characters or less.')
 
     class Meta(AcceleratorModel.Meta):
-        db_table = 'accelerator_partnerjudginginstructions'
         abstract = True
         verbose_name_plural = "instructions from a partner to guide teams in evaluating startups"
         unique_together = ('partner', 'judging_round')

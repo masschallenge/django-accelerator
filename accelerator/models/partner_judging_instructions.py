@@ -12,4 +12,4 @@ class PartnerJudgingInstructions(BasePartnerJudgingInstructions):
     class Meta(BasePartnerJudgingInstructions.Meta):
         swappable = swapper.swappable_setting(
             BasePartnerJudgingInstructions.Meta.app_label, 
-            "PartnerJudgingInstruction")
+            "PartnerJudgingInstructions")

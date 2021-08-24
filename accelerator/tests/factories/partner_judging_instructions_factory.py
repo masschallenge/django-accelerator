@@ -22,7 +22,7 @@ from accelerator.models import PartnerJudgingInstructions
 
 class PartnerJudgingInstructionsFactory(DjangoModelFactory):
     class Meta:
-        model = PartnerJudgingInstruction
+        model = PartnerJudgingInstructions
 
     partner = SubFactory(PartnerFactory)
     judging_round = SubFactory(JudgingRoundFactory)
