@@ -15,12 +15,17 @@ class Migration(migrations.Migration):
             name='PartnerLabel',
             fields=[
                 ('id', models.AutoField(auto_created=True,
-                    primary_key=True, serialize=False, verbose_name='ID')),
+                                        primary_key=True, 
+                                        serialize=False, 
+                                        verbose_name='ID')),
                 ('created_at', models.DateTimeField(auto_now_add=True,
-                null=True)),
-                ('updated_at', models.DateTimeField(auto_now=True, null=True)),
+                                                    null=True)),
+                ('updated_at', models.DateTimeField(auto_now=True, 
+                                                    null=True)),
                 ('label', models.CharField(max_length=255)),
-                ('partners', models.ManyToManyField(blank=True,
+                ('partners', 
+                models.ManyToManyField(
+                    blank=True,
                     to=settings.ACCELERATOR_PARTNER_MODEL)),
             ],
             options={
