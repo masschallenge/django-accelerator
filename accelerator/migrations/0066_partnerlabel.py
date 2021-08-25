@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True,
                                                     null=True)),
                 ('label', models.CharField(max_length=255)),
-                ('partners', 
+                ('partners',
                  models.ManyToManyField(
                     blank=True,
                     to=settings.ACCELERATOR_PARTNER_MODEL)),
