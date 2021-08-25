@@ -15,12 +15,23 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PartnerStartupInterest',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True, null=True)),
-                ('updated_at', models.DateTimeField(auto_now=True, null=True)),
-                ('judging_round', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.ACCELERATOR_JUDGINGROUND_MODEL)),
-                ('partner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.ACCELERATOR_PARTNER_MODEL)),
-                ('startup', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.ACCELERATOR_STARTUP_MODEL)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
+                ('created_at', models.DateTimeField(auto_now_add=True,
+                                                    null=True)),
+                ('updated_at', models.DateTimeField(auto_now=True,
+                                                    null=True)),
+                ('judging_round', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.ACCELERATOR_JUDGINGROUND_MODEL)),
+                ('partner', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.ACCELERATOR_PARTNER_MODEL)),
+                ('startup', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.ACCELERATOR_STARTUP_MODEL)),
             ],
             options={
                 'db_table': 'accelerator_partnerstartupinterest',

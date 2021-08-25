@@ -9,5 +9,6 @@ from accelerator_abstract.models import BasePartnerStartupInterest
 class PartnerStartupInterest(BasePartnerStartupInterest):
     class Meta(BasePartnerStartupInterest.Meta):
         swappable = swapper.swappable_setting(
-            BasePartnerStartupInterest.Meta.app_label, "PartnerStartupInterest")
+            BasePartnerStartupInterest.Meta.app_label,
+            "PartnerStartupInterest")
 

@@ -3,10 +3,10 @@ from swapper import get_model_name
 from django.db.models import (
     CASCADE,
     ForeignKey,
-    TextField,
 )
 
 from .accelerator_model import AcceleratorModel
+
 
 class BasePartnerStartupInterest(AcceleratorModel):
     partner = ForeignKey(
