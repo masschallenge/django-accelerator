@@ -17,6 +17,7 @@ from accelerator.tests.factories import (
 
 FILLER_TEXT = "partner judging round challenge text {}"
 
+
 class PartnerJudgingRoundChallengeFactory(DjangoModelFactory):
     class Meta:
         model = PartnerJudgingRoundChallenge
