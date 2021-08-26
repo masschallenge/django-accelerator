@@ -325,3 +325,5 @@ from .member_profile import MemberProfile
 from .user_note import UserNote
 from .organization_note import OrganizationNote
 from .partner_judging_round_challenge import PartnerJudgingRoundChallenge
+from .partner_label import PartnerLabel
+
