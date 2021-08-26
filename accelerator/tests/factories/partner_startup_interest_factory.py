@@ -23,3 +23,4 @@ class PartnerJudgingRoundChallengeFactory(DjangoModelFactory):
     judging_round = SubFactory(JudgingRoundFactory)
     partner = SubFactory(PartnerFactory)
     startup = SubFactory(StartupFactory)
+    advance_to_next_round = False
