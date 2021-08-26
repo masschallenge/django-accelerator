@@ -325,3 +325,4 @@ from .base_user_deferrable_modal import BaseUserDeferrableModal
 from .base_user_note import BaseUserNote
 from .base_organization_note import BaseOrganizationNote
 from .base_partner_startup_interest import BasePartnerStartupInterest
+from .base_partner_label import BasePartnerLabel
