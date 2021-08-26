@@ -15,6 +15,7 @@ from accelerator.tests.factories import (
     PartnerFactory,
 )
 
+FILLER_TEXT = "partner judging round challenge text {}"
 
 class PartnerJudgingRoundChallengeFactory(DjangoModelFactory):
     class Meta:
@@ -22,4 +23,4 @@ class PartnerJudgingRoundChallengeFactory(DjangoModelFactory):
 
     judging_round = SubFactory(JudgingRoundFactory)
     partner = SubFactory(PartnerFactory)
-    text = Sequence(lambda n: "partner judging round challenge text {}".format(n))
+    text = Sequence(lambda n: FILLER_TEXT.format(n))

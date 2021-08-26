@@ -5,8 +5,8 @@ from django.db.models import (
     ForeignKey,
     TextField,
 )
-
 from .accelerator_model import AcceleratorModel
+
 
 class BasePartnerJudgingRoundChallenge(AcceleratorModel):
     partner = ForeignKey(
@@ -19,7 +19,7 @@ class BasePartnerJudgingRoundChallenge(AcceleratorModel):
         on_delete=CASCADE)
     text = TextField(blank=True,
                      null=True)
-                                
+
 
     class Meta(AcceleratorModel.Meta):
         abstract = True
