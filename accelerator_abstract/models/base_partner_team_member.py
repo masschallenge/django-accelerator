@@ -17,7 +17,7 @@ class BasePartnerTeamMember(AcceleratorModel):
     team_member = models.ForeignKey(settings.AUTH_USER_MODEL,
                                     on_delete=models.CASCADE)
     partner_administrator = models.BooleanField(default=False)
-    champion_admin= models.BooleanField(default=False)    
+    champion_admin = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_partnerteammember'
