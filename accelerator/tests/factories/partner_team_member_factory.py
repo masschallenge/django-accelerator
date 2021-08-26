@@ -20,3 +20,4 @@ class PartnerTeamMemberFactory(DjangoModelFactory):
     partner = SubFactory(PartnerFactory)
     team_member = SubFactory(EntrepreneurFactory)
     partner_administrator = False
+    champion_admin = False
