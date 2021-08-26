@@ -8,19 +8,28 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0065_organization_note'),
+        ('accelerator', '0066_partnerlabel'),
     ]
 
     operations = [
         migrations.CreateModel(
             name='PartnerJudgingRoundChallenge',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True, null=True)),
-                ('updated_at', models.DateTimeField(auto_now=True, null=True)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
+                ('created_at', models.DateTimeField(auto_now_add=True,
+                                                    null=True)),
+                ('updated_at', models.DateTimeField(auto_now=True,
+                                                    null=True)),
                 ('text', models.TextField(blank=True, null=True)),
-                ('judging_round', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.ACCELERATOR_JUDGINGROUND_MODEL)),
-                ('partner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.ACCELERATOR_PARTNER_MODEL)),
+                ('judging_round', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.ACCELERATOR_JUDGINGROUND_MODEL)),
+                ('partner', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.ACCELERATOR_PARTNER_MODEL)),
             ],
             options={
                 'verbose_name_plural': 'Partner Judging Round Challenges',
