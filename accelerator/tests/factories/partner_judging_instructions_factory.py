@@ -3,8 +3,6 @@
 
 from __future__ import unicode_literals
 
-import swapper
-
 from factory import (
     Sequence,
     SubFactory,
@@ -26,4 +24,4 @@ class PartnerJudgingInstructionsFactory(DjangoModelFactory):
 
     partner = SubFactory(PartnerFactory)
     judging_round = SubFactory(JudgingRoundFactory)
-    instruction = Sequence(lambda n: "Instruction of Partner {0}".format(n))
+    instructions = Sequence(lambda n: "Instructions of Partner {0}".format(n))

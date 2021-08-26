@@ -1,5 +1,4 @@
 import swapper
-from django.conf import settings
 from django.db import models
 
 from .accelerator_model import AcceleratorModel
@@ -15,14 +14,15 @@ class BasePartnerJudgingInstructions(AcceleratorModel):
                                "JudgingRound"),
         on_delete=models.CASCADE)
     instructions = models.TextField(
-        max_length=500,
+        max_length=1000,
         blank=False,
-        help_text='Partner Judging instructions to guide teams in 500 characters or less.')
+        help_text='Partner Judging instructions for judging rounds')
 
     class Meta(AcceleratorModel.Meta):
         abstract = True
-        verbose_name_plural = "instructions from a partner to guide teams in evaluating startups"
+        verbose_name_plural = "instructions from a partner"
         unique_together = ('partner', 'judging_round')
 
     def __str__(self):
-        return "%s added an instruction to %s judging round" % (self.partner, self.judging_round)
+        return "%s added instruction %s for %s " % (
+            self.partner, self.instructions, self.judging_round)

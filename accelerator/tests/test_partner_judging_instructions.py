@@ -14,4 +14,4 @@ class TestPartnerJudgingInstructions(TestCase):
         partner_judging_instruction = str(obj)
         assert str(obj.judging_round) in partner_judging_instruction
         assert str(obj.partner) in partner_judging_instruction
-        assert str(obj.instruction) in partner_judging_instruction
+        assert str(obj.instructions) in partner_judging_instruction
