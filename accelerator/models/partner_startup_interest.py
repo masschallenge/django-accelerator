@@ -11,4 +11,3 @@ class PartnerStartupInterest(BasePartnerStartupInterest):
         swappable = swapper.swappable_setting(
             BasePartnerStartupInterest.Meta.app_label,
             "PartnerStartupInterest")
-
