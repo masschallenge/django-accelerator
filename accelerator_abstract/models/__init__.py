@@ -328,3 +328,4 @@ from .base_partner_judging_round_challenge import (
     BasePartnerJudgingRoundChallenge,
 )
 from .base_partner_label import BasePartnerLabel
+from .base_partner_judging_instructions import BasePartnerJudgingInstructions
