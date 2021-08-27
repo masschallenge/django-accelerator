@@ -19,5 +19,6 @@ class BasePartnerJudgingInstructions(AcceleratorModel):
 
     class Meta(AcceleratorModel.Meta):
         abstract = True
-        verbose_name_plural = "instructions from a partner"
+        verbose_name_plural = "Partner judging Round instructions"
         unique_together = ('partner', 'judging_round')
+        db_table = 'accelerator_partnerjudginginstructions'
