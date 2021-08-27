@@ -15,7 +15,7 @@ class BasePartnerJudgingInstructions(AcceleratorModel):
         on_delete=models.CASCADE)
     instructions = models.TextField(
         blank=False,
-        help_text='Partner Judging instructions for judging rounds')
+        help_text='Partner Judging instructions')
 
     class Meta(AcceleratorModel.Meta):
         abstract = True
