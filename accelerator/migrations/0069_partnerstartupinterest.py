@@ -8,7 +8,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0066_partnerlabel'),
+        ('accelerator', '0068_partnerjudginginstructions'),
     ]
 
     operations = [
