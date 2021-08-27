@@ -117,3 +117,6 @@ from .user_deferrable_modal_factory import UserDeferrableModalFactory
 from .user_note_factory import UserNoteFactory
 from .organization_note_factory import OrganizationNoteFactory
 from .partner_label_factory import PartnerLabelFactory
+from .partner_judging_instructions_factory import (
+    PartnerJudgingInstructionsFactory,
+)
