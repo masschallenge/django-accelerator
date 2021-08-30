@@ -328,5 +328,5 @@ from .base_partner_startup_interest import BasePartnerStartupInterest
 from .base_partner_judging_round_challenge import (
     BasePartnerJudgingRoundChallenge,
 )
-rom .base_partner_label import BasePartnerLabel
+from .base_partner_label import BasePartnerLabel
 from .base_partner_judging_instructions import BasePartnerJudgingInstructions
