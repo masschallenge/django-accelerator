@@ -18,7 +18,6 @@ from accelerator.tests.factories import (
 class PartnerJudgingRoundChallengeFactory(DjangoModelFactory):
     class Meta:
         model = PartnerJudgingRoundChallenge
-        abstract = True
 
     judging_round = SubFactory(JudgingRoundFactory)
     partner = SubFactory(PartnerFactory)
