@@ -23,7 +23,7 @@ class BasePartnerStartupInterest(AcceleratorModel):
                        "Startup"),
         on_delete=CASCADE)
     advance_to_next_round = BooleanField(default=False)
-    
+
     class Meta(AcceleratorModel.Meta):
         abstract = True
         db_table = 'accelerator_partnerstartupinterest'
