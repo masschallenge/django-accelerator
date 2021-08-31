@@ -324,6 +324,7 @@ from .expert_profile import ExpertProfile
 from .member_profile import MemberProfile
 from .user_note import UserNote
 from .organization_note import OrganizationNote
+from .partner_startup_interest import PartnerStartupInterest
 from .partner_judging_round_challenge import PartnerJudgingRoundChallenge
 from .partner_label import PartnerLabel
 from .partner_judging_instructions import PartnerJudgingInstructions
