@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0070_judginground_champion_partner_label.py')
+        ('accelerator', '0070_judginground_champion_partner_label')
     ]
 
     operations = [
