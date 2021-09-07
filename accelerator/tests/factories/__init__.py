@@ -120,3 +120,6 @@ from .partner_label_factory import PartnerLabelFactory
 from .partner_judging_instructions_factory import (
     PartnerJudgingInstructionsFactory,
 )
+from .partner_judge_application_assignment_factory import (
+    PartnerJudgeApplicationAssignmentFactory,
+)
