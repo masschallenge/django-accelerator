@@ -328,3 +328,6 @@ from .partner_startup_interest import PartnerStartupInterest
 from .partner_judging_round_challenge import PartnerJudgingRoundChallenge
 from .partner_label import PartnerLabel
 from .partner_judging_instructions import PartnerJudgingInstructions
+from .partner_judge_application_assignment import (
+    PartnerJudgeApplicationAssignment,
+)

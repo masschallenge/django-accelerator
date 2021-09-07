@@ -330,3 +330,6 @@ from .base_partner_judging_round_challenge import (
 )
 from .base_partner_label import BasePartnerLabel
 from .base_partner_judging_instructions import BasePartnerJudgingInstructions
+from .base_partner_judge_application_assignment import (
+    BasePartnerJudgeApplicationAssignment,
+)
