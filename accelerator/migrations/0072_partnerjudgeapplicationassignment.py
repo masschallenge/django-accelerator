@@ -5,6 +5,7 @@ from django.db import migrations, models
 import django.db.models.deletion
 
 
+MODEL_LABEL = 'ACCELERATOR_PARTNERJUDGEAPPLICATIONASSIGNMENT_MODEL'
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -16,19 +17,31 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PartnerJudgeApplicationAssignment',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True, null=True)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
+                ('created_at', models.DateTimeField(auto_now_add=True,
+                                                    null=True)),
                 ('updated_at', models.DateTimeField(auto_now=True, null=True)),
-                ('application', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.ACCELERATOR_APPLICATION_MODEL)),
-                ('judge', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('judging_round', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.ACCELERATOR_JUDGINGROUND_MODEL)),
-                ('partner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.ACCELERATOR_PARTNER_MODEL)),
+                ('application', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.ACCELERATOR_APPLICATION_MODEL)),
+                ('judge', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.AUTH_USER_MODEL)),
+                ('judging_round', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.ACCELERATOR_JUDGINGROUND_MODEL)),
+                ('partner', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.ACCELERATOR_PARTNER_MODEL)),
             ],
             options={
                 'db_table': 'accelerator_partnerjudgeapplicationassignment',
                 'abstract': False,
                 'managed': True,
-                'swappable': 'ACCELERATOR_PARTNERJUDGEAPPLICATIONASSIGNMENT_MODEL',
+                'swappable': MODEL_LABEL,
             },
         ),
     ]
