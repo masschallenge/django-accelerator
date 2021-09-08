@@ -13,7 +13,7 @@ from accelerator.tests.factories import (
 from accelerator.models import PartnerJudgeApplicationAssignment
 
 
-class PartnerJudgeApplicationAssignment(DjangoModelFactory):
+class PartnerJudgeApplicationAssignmentFactory(DjangoModelFactory):
     judge = SubFactory(UserFactory)
     application = SubFactory(ApplicationFactory)
     judging_round = SubFactory(JudgingRoundFactory)
