@@ -12,7 +12,7 @@ from .accelerator_model import AcceleratorModel
 
 class BasePartnerJudgeApplicationAssignment(AcceleratorModel):
     judge = ForeignKey(settings.AUTH_USER_MODEL,
-                              on_delete=CASCADE)
+                       on_delete=CASCADE)
     application = ForeignKey(
         to=swapper.get_model_name(
             AcceleratorModel.Meta.app_label, "Application"),
