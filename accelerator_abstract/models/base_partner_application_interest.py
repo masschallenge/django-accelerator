@@ -9,7 +9,7 @@ from django.db.models import (
 from .accelerator_model import AcceleratorModel
 
 
-class BasePartnerStartupInterest(AcceleratorModel):
+class BasePartnerApplicationInterest(AcceleratorModel):
     partner = ForeignKey(
         get_model_name(AcceleratorModel.Meta.app_label,
                        "Partner"),
@@ -18,12 +18,12 @@ class BasePartnerStartupInterest(AcceleratorModel):
         get_model_name(AcceleratorModel.Meta.app_label,
                        "JudgingRound"),
         on_delete=CASCADE)
-    startup = ForeignKey(
+    application = ForeignKey(
         get_model_name(AcceleratorModel.Meta.app_label,
-                       "Startup"),
+                       "Application"),
         on_delete=CASCADE)
     advance_to_next_round = BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
         abstract = True
-        db_table = 'accelerator_partnerstartupinterest'
+        db_table = 'accelerator_partnerapplicationinterest'
