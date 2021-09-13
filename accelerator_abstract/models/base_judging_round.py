@@ -228,6 +228,13 @@ class BaseJudgingRound(AcceleratorModel):
         blank=False,
         default=SCENARIO_DETECTION,
         choices=COLLISION_DETECTION_CHOICES)
+    champion_partner_label = ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+                               'PartnerLabel'),
+        blank=True,
+        null=True,
+        help_text='Partner Label',
+        on_delete=CASCADE)
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_judginground'
