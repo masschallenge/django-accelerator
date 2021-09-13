@@ -19,20 +19,20 @@ class Migration(migrations.Migration):
                                       primary_key=True,
                                       serialize=False,
                                       verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True,
-                                                    null=True)),
-                ('updated_at', models.DateTimeField(auto_now=True, null=True)),
-                ('advance_to_next_round', models.BooleanField(default=False)),
-                ('application', models.ForeignKey(
-                    on_delete=django.db.models.deletion.CASCADE,
-                    to=settings.ACCELERATOR_APPLICATION_MODEL)),
-                ('judging_round', models.ForeignKey(
-                    on_delete=django.db.models.deletion.CASCADE,
-                    to=settings.ACCELERATOR_JUDGINGROUND_MODEL)),
-                ('partner', models.ForeignKey(
-                    on_delete=django.db.models.deletion.CASCADE,
-                    to=settings.ACCELERATOR_PARTNER_MODEL)),
-            ],
+                    ('created_at', models.DateTimeField(auto_now_add=True,
+                                                        null=True)),
+                    ('updated_at', models.DateTimeField(auto_now=True, null=True)),
+                    ('advance_to_next_round', models.BooleanField(default=False)),
+                    ('application', models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.ACCELERATOR_APPLICATION_MODEL)),
+                    ('judging_round', models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.ACCELERATOR_JUDGINGROUND_MODEL)),
+                    ('partner', models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.ACCELERATOR_PARTNER_MODEL)),
+                    ],
             options={
                 'db_table': 'accelerator_partnerapplicationinterest',
                 'abstract': False,
