@@ -21,8 +21,10 @@ class Migration(migrations.Migration):
                                       verbose_name='ID')),
                     ('created_at', models.DateTimeField(auto_now_add=True,
                                                         null=True)),
-                    ('updated_at', models.DateTimeField(auto_now=True, null=True)),
-                    ('advance_to_next_round', models.BooleanField(default=False)),
+                    ('updated_at', models.DateTimeField(auto_now=True,
+                                                        null=True)),
+                    ('advance_to_next_round', models.BooleanField(
+                        default=False)),
                     ('application', models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         to=settings.ACCELERATOR_APPLICATION_MODEL)),
