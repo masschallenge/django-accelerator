@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 import swapper
 from django.db.models import (
     OuterRef,
@@ -12,6 +14,8 @@ from accelerator.models import UserRole
 from accelerator_abstract.models import (
     ACTIVE_PROGRAM_STATUS,
     BIO_MAX_LENGTH,
+    CLEARANCE_LEVEL_ORDER,
+    CLEARANCE_LEVEL_STAFF,
     ENDED_PROGRAM_STATUS,
     HIDDEN_PROGRAM_STATUS,
     UPCOMING_PROGRAM_STATUS,
@@ -167,6 +171,34 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
             Q(program_role__user_role__name__in=participation_roles)
             & ACTIVE_PROGRAM).values_list(
             'program_role__program__name', flat=True).distinct())
+
+    def is_staff_in_active_program(self):
+        Clearance = swapper.load_model('accelerator', 'Clearance')
+        filter_kwargs = {
+            'user': self.user,
+            'order__lte': CLEARANCE_LEVEL_ORDER.get(CLEARANCE_LEVEL_STAFF),
+            'program_family__programs__program_status': ACTIVE_PROGRAM_STATUS
+        }
+        return Clearance.objects.filter(**filter_kwargs).exists()
+
+    def is_mentor_in_active_program(self):
+        return self.user.programrolegrant_set.filter(
+            program_role__user_role__name=UserRole.MENTOR,
+            program_role__program__program_status=ACTIVE_PROGRAM_STATUS
+        ).exists()
+
+    def is_mentor_in_upcoming_program(self):
+        return self.user.programrolegrant_set.filter(
+            program_role__user_role__name=UserRole.MENTOR,
+            program_role__program__program_status=UPCOMING_PROGRAM_STATUS
+        ).exists()
+
+    def was_mentor_in_last_12_months(self):
+        year_ago = timezone.now() - timedelta(days=365)
+        return self.user.programrolegrant_set.filter(
+            program_role__user_role__name=UserRole.MENTOR,
+            program_role__program__program_status=ENDED_PROGRAM_STATUS,
+            program_role__program__end_date__gte=year_ago).exists()
 
     def _trimmed_bio(self, max_chars):
         bio = self.bio or ''
