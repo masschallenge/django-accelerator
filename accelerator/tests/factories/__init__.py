@@ -123,3 +123,6 @@ from .partner_judging_instructions_factory import (
 from .partner_judge_application_assignment_factory import (
     PartnerJudgeApplicationAssignmentFactory,
 )
+from .partner_application_interest_factory import (
+    PartnerApplicationInterestFactory,
+)
