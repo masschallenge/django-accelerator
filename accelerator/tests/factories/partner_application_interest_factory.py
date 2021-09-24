@@ -7,6 +7,7 @@ from accelerator.tests.factories import (
     PartnerFactory,
 )
 
+
 class PartnerApplicationInterestFactory(DjangoModelFactory):
     partner = SubFactory(PartnerFactory)
     application = SubFactory(ApplicationFactory)
