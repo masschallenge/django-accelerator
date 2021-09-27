@@ -25,8 +25,11 @@ from accelerator.tests.factories import (
     UserFactory,
     UserRoleFactory,
 )
+from accelerator.tests.utils import months_from_now
 from accelerator_abstract.models import (
+    ACTIVE_PROGRAM_STATUS,
     ENDED_PROGRAM_STATUS,
+    UPCOMING_PROGRAM_STATUS,
     BaseUserRole,
 )
 from accelerator_abstract.models.base_clearance import CLEARANCE_LEVEL_STAFF
@@ -324,12 +327,40 @@ class TestCoreProfile(TestCase):
         profile = ExpertProfileFactory()
         self.assertEqual(profile.is_active(), True)
 
+    def test_is_staff_in_active_program(self):
+        profile = ExpertProfileFactory()
+        program_family = ProgramFactory(
+            program_status=ACTIVE_PROGRAM_STATUS).program_family
+        ClearanceFactory(program_family=program_family,
+                         user=profile.user,
+                         level=CLEARANCE_LEVEL_STAFF)
+        self.assertTrue(profile.is_staff_in_active_program())
 
-def _user_with_role(user, role_name, program_name):
+    def test_is_mentor_in_active_program(self):
+        profile = ExpertProfileFactory()
+        program = ProgramFactory(program_status=ACTIVE_PROGRAM_STATUS)
+        _user_with_role(profile.user, BaseUserRole.MENTOR, program=program)
+        self.assertTrue(profile.is_mentor_in_active_program())
+
+    def test_is_mentor_in_upcoming_program(self):
+        profile = ExpertProfileFactory()
+        program = ProgramFactory(program_status=UPCOMING_PROGRAM_STATUS)
+        _user_with_role(profile.user, BaseUserRole.MENTOR, program=program)
+        self.assertTrue(profile.is_mentor_in_upcoming_program())
+
+    def was_mentor_in_last_12_months(self):
+        profile = ExpertProfileFactory()
+        program = ProgramFactory(program_status=ENDED_PROGRAM_STATUS,
+                                 end_date=months_from_now(-12))
+        _user_with_role(profile.user, BaseUserRole.MENTOR, program=program)
+        self.assertTrue(profile.was_mentor_in_last_12_months())
+
+
+def _user_with_role(user, role_name, program_name='program0', program=None):
     role = UserRoleFactory(name=role_name)
     program_role = ProgramRoleFactory(
         user_role=role,
-        program=ProgramFactory(name=program_name))
+        program=program or ProgramFactory(name=program_name))
     ProgramRoleGrantFactory(
         person=user,
         program_role=program_role)
