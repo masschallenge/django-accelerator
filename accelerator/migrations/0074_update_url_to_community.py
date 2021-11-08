@@ -5,12 +5,13 @@ from django.db.models.query_utils import Q
 
 
 def update_url_to_community(apps, schema_editor):
-  people_url = "/people"
-  mentor_url = "/directory"
-  community_url = "/community"
-  SiteRedirectPage = apps.get_model('accelerator', 'SiteRedirectPage')
-  SiteRedirectPage.objects.filter(Q(new_url=people_url)| Q(new_url=mentor_url)).update(new_url=community_url)
-        
+    people_url = "/people"
+    mentor_url = "/directory"
+    community_url = "/community"
+    SiteRedirectPage = apps.get_model('accelerator', 'SiteRedirectPage')
+    SiteRedirectPage.objects.filter(Q(new_url = people_url)| Q(new_url = mentor_url)).update(new_url = community_url)
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
