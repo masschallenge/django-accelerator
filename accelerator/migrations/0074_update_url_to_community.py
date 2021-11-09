@@ -10,7 +10,8 @@ def update_url_to_community(apps, schema_editor):
     community_url = "/community"
     SiteRedirectPage = apps.get_model('accelerator', 'SiteRedirectPage')
     SiteRedirectPage.objects.filter(
-      Q(new_url=people_url) | Q(new_url=mentor_url)).update(new_url=community_url)
+      Q(new_url=people_url)| Q(new_url=mentor_url)
+      ).update(new_url=community_url)
 
 
 class Migration(migrations.Migration):
