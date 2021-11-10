@@ -17,8 +17,7 @@ def update_url_to_community(apps, schema_editor):
       ).update(new_url=community_url)
 
     if mentor_refinement_url:
-      SiteRedirectPage.objects.filter(
-      mentor_refinement_url
+      SiteRedirectPage.objects.filter(mentor_refinement_url
       ).update(community_refinement_url)
 
 
