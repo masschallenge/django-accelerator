@@ -7,19 +7,16 @@ from django.db.models.query_utils import Q
 def update_url_to_community(apps, schema_editor):
     people_url = ["/people", "/people/"]
     mentor_url = "/directory"
-    mentor_refinement_url =
-    "/directory/?refinementList%5Bhome_program_family%5D%5B0%5D=Israel"
     community_url = "/community"
-    community_refinement_url =
-    "/community/?refinementList%5Bprogram_family_names%5D%5B0%5D=Israel"
+    mentor_refinement_url = "/directory/?refinementList%5Bhome_program_family%5D%5B0%5D=Israel"
+    community_refinement_url = "/community/?refinementList%5Bprogram_family_names%5D%5B0%5D=Israel"
 
     SiteRedirectPage = apps.get_model('accelerator', 'SiteRedirectPage')
     SiteRedirectPage.objects.filter(
       Q(new_url__in=people_url) | Q(new_url=mentor_url)
       ).update(new_url=community_url)
 
-    SiteRedirectPage.objects.filter(
-      new_url=mentor_refinement_url
+    SiteRedirectPage.objects.filter(new_url=mentor_refinement_url
       ).update(new_url=community_refinement_url)
 
 
