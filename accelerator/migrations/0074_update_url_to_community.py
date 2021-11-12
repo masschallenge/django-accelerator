@@ -9,9 +9,9 @@ def update_url_to_community(apps, schema_editor):
     mentor_url = "/directory"
     community_url = "/community"
     mentor_refinement_url = ("/directory/?refinementList%5B"
-    "home_program_family%5D%5B0%5D=Israel")
+      "home_program_family%5D%5B0%5D=Israel")
     community_refinement_url = ("/community/?refinementList%5B"
-    "program_family_names%5D%5B0%5D=Israel")
+      "program_family_names%5D%5B0%5D=Israel")
 
     SiteRedirectPage = apps.get_model('accelerator', 'SiteRedirectPage')
     SiteRedirectPage.objects.filter(
@@ -21,6 +21,7 @@ def update_url_to_community(apps, schema_editor):
     SiteRedirectPage.objects.filter(
       new_url=mentor_refinement_url
       ).update(new_url=community_refinement_url)
+
 
 class Migration(migrations.Migration):
 
