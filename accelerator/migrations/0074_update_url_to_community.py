@@ -2,7 +2,6 @@
 
 from django.db import migrations
 from django.db.models.query_utils import Q
-from itertools import chain
 
 
 def update_url_to_community(apps, schema_editor):
