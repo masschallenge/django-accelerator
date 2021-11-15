@@ -18,6 +18,7 @@ def remove_finalist_role_from_staff(apps, schema_editor):
     for role_id in staff_finalist_role:
         ProgramRoleGrant.objects.get(id=role_id).delete()
 
+
 class Migration(migrations.Migration):
 
     dependencies = [
