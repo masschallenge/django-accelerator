@@ -15,6 +15,7 @@ def remove_finalist_role_from_staff(apps, schema_editor):
                 person_id__in=staff_ids).delete()
 
 
+
 class Migration(migrations.Migration):
 
     dependencies = [
