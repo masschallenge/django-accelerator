@@ -15,9 +15,8 @@ def remove_finalist_role_from_staff(apps, schema_editor):
                 person_id__in=staff_ids).values_list(
                     'id', flat=True)
 
-    for role in staff_finalist_role:
-        role.delete()
-
+    for role_id in staff_finalist_role:
+        ProgramRoleGrant.objects.get(id=role_id).delete()
 
 class Migration(migrations.Migration):
 
