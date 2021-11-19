@@ -10,7 +10,6 @@ def remove_finalist_role_from_staff(apps, schema_editor):
     staff_ids = set(Clearance.objects.all().values_list(
         'user__pk', flat=True)).union(set(User.objects.filter(
             is_superuser=True).values_list('pk', flat=True)))
-
     ProgramRoleGrant.objects.filter(
                 program_role__user_role__name='Finalist',
                 person_id__in=staff_ids).delete()
