@@ -2,18 +2,14 @@
 
 from django.db import migrations
 from simpleuser.models import User
-from accelerator_abstract.models.base_user_utils import is_employee
 
 
 def remove_finalist_role_from_staff(apps, schema_editor):
     ProgramRoleGrant = apps.get_model("accelerator", "ProgramRoleGrant")
-    staff_ids = []
-    finalist_users = User.objects.filter(
-              programrolegrant__program_role__user_role__name='Finalist')
-
-    for user in finalist_users:
-        if is_employee(user):
-            staff_ids.append(user.id)
+    Clearance = apps.get_model("accelerator", "Clearance")
+    staff_ids = set(Clearance.objects.all().values_list(
+        'user__pk', flat=True)).union(set(User.objects.filter(
+            is_superuser=True).values_list('pk', flat=True)))
 
     ProgramRoleGrant.objects.filter(
                 program_role__user_role__name='Finalist',
