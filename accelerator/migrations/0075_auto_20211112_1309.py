@@ -2,6 +2,7 @@
 
 from django.db import migrations
 from simpleuser.models import User
+from accelerator_abstract.models.base_user_utils import is_employee
 
 
 def remove_finalist_role_from_staff(apps, schema_editor):
@@ -14,6 +15,9 @@ def remove_finalist_role_from_staff(apps, schema_editor):
                 program_role__user_role__name='Finalist',
                 person_id__in=staff_ids).delete()
 
+    ProgramRoleGrant.objects.filter(
+                program_role__user_role__name='Finalist',
+                person_id__in=staff_ids).delete()
 
 
 class Migration(migrations.Migration):
