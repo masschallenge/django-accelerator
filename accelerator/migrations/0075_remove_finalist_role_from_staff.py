@@ -2,6 +2,7 @@
 
 from django.db import migrations
 from simpleuser.models import User
+from accelerator_abstract.models.base_user_utils import is_employee
 
 
 def remove_finalist_role_from_staff(apps, schema_editor):
