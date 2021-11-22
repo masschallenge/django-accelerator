@@ -6,17 +6,13 @@ from simpleuser.models import User
 
 def remove_finalist_role_from_staff(apps, schema_editor):
     ProgramRoleGrant = apps.get_model("accelerator", "ProgramRoleGrant")
-    staff_ids = User.objects.filter(
-        programrolegrant__program_role__user_role__name='Finalist',
-        is_staff=True).values_list('id', flat=True)
-
-    staff_finalist_role = ProgramRoleGrant.objects.filter(
+    Clearance = apps.get_model("accelerator", "Clearance")
+    staff_ids = set(Clearance.objects.all().values_list(
+        'user__pk', flat=True)).union(set(User.objects.filter(
+            is_superuser=True).values_list('pk', flat=True)))
+    ProgramRoleGrant.objects.filter(
                 program_role__user_role__name='Finalist',
-                person_id__in=staff_ids).values_list(
-                    'id', flat=True)
-
-    for role in staff_finalist_role:
-        role.delete()
+                person_id__in=staff_ids).delete()
 
 
 class Migration(migrations.Migration):
