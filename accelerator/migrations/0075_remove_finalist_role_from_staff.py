@@ -7,6 +7,7 @@ from simpleuser.models import User
 def remove_finalist_role_from_staff(apps, schema_editor):
     ProgramRoleGrant = apps.get_model("accelerator", "ProgramRoleGrant")
     Clearance = apps.get_model("accelerator", "Clearance")
+
     staff_ids = set(Clearance.objects.all().values_list(
         'user__pk', flat=True)).union(set(User.objects.filter(
             is_superuser=True).values_list('pk', flat=True)))
