@@ -97,7 +97,7 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
     @property
     def mentor_profile_url(self):
         if self.is_mentor():
-            return reverse('mentor_view', args=(self.user.id,))
+            return reverse('mentor_id_view', args=(self.user.id,))
 
     def is_confirmed_mentor(self):
         return self.user.programrolegrant_set.filter(
