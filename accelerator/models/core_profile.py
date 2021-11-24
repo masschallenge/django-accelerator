@@ -366,9 +366,9 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
             applications = panel.applications.all()
             forms = panel.get_feedback_forms_for_user(user)
             for application in applications:
-                app_count, completed_count = _increment_assignment_counts(
-                    forms, app_count, completed_count, assignment_completed,
-                    application)
+                app_count += 1
+                completed_count = _get_completed_application_count(
+                    forms, completed_count, assignment_completed, application)
         return app_count, completed_count
 
     def is_judge(self, program=None, state=None):
@@ -400,11 +400,10 @@ def _get_office_hour_holder_active_programs(user):
     return active_program_ids
 
 
-def _increment_assignment_counts(
-        forms, app_count, completed_count, assignment_completed, application):
-    app_count += 1
+def _get_completed_application_count(
+        forms, completed_count, assignment_completed, application):
     if assignment_completed:
         form = forms.get(str(application.pk), None)
         if form and form.feedback_status != 'INCOMPLETE':
             completed_count += 1
-    return app_count, completed_count
+    return completed_count
