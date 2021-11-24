@@ -29,6 +29,7 @@ from accelerator_abstract.models.base_user_utils import (
 from accelerator_abstract.models.base_program import (
     ACTIVE_PROGRAM_STATUS,
     ENDED_PROGRAM_STATUS,
+    UPCOMING_PROGRAM_STATUS
 )
 
 INVITED_JUDGE_ALERT = (
@@ -486,7 +487,13 @@ class BaseCoreProfile(AcceleratorModel):
         return [interest.name for interest in self.interest_categories.all()]
 
     def program_family_names(self):
-        return [pf.name for pf in self.program_families.all()]
+        return self.user.programrolegrant_set.filter(
+            program_role__program__program_status__in=[
+                ACTIVE_PROGRAM_STATUS,
+                UPCOMING_PROGRAM_STATUS
+            ]
+        ).values_list(
+        'program_role__program__program_family__name')
 
     def confirmed_mentor_programs(self):
         return list(self.user.programrolegrant_set.filter(
