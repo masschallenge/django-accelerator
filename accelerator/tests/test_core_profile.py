@@ -106,11 +106,15 @@ class TestCoreProfile(TestCase):
         self.assertFalse(user.get_profile().first_startup())
 
     def test_program_family_names(self):
-        user = expert(BaseUserRole.FINALIST)
+        user = ExpertFactory()
         profile = user.get_profile()
-        family = ProgramFamilyFactory()
-        profile.program_families.add(family)
-        self.assertTrue(profile.program_family_names() == [family.name])
+        user_role = UserRoleFactory(name=BaseUserRole.FINALIST)
+        program_role = ProgramRoleFactory.create(name=BaseUserRole.FINALIST,
+                                            user_role=user_role)
+        ProgramRoleGrantFactory.create(person=user,
+                                               program_role=program_role)
+        name = program_role.program.program_family.name
+        self.assertTrue(profile.program_family_names() == [name])
 
     def test_interest_category_names(self):
         user = expert(BaseUserRole.FINALIST)
