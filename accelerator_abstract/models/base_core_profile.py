@@ -493,7 +493,7 @@ class BaseCoreProfile(AcceleratorModel):
                 UPCOMING_PROGRAM_STATUS
             ]
         ).values_list(
-        'program_role__program__program_family__name')
+        'program_role__program__program_family__name', flat=True)
 
     def confirmed_mentor_programs(self):
         return list(self.user.programrolegrant_set.filter(
