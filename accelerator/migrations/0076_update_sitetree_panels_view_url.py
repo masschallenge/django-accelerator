@@ -5,7 +5,7 @@ from django.db import migrations
 
 def update_panels_url(apps, schema_editor):
     NavTreeItem = apps.get_model('accelerator', 'NavTreeItem')
-    NavTreeItem.objects.filter(url='/panels/').update(url='/judging/panels/')
+    NavTreeItem.objects.filter(url='/panels/').update(url='/judging/panel/')
 
 
 class Migration(migrations.Migration):
