@@ -488,9 +488,10 @@ class BaseCoreProfile(AcceleratorModel):
 
     def program_family_names(self):
         return self.user.programrolegrant_set.filter(
-            program_role__program__program_status__in=[
-                ACTIVE_PROGRAM_STATUS,
-                UPCOMING_PROGRAM_STATUS
+            program_role__user_role__name__in=[
+                BaseUserRole.FINALIST,
+                BaseUserRole.ALUM,
+                BaseUserRole.MENTOR
             ]
         ).values_list('program_role__program__program_family__name',
                       flat=True)
