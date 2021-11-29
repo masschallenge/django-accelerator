@@ -29,7 +29,6 @@ from accelerator_abstract.models.base_user_utils import (
 from accelerator_abstract.models.base_program import (
     ACTIVE_PROGRAM_STATUS,
     ENDED_PROGRAM_STATUS,
-    UPCOMING_PROGRAM_STATUS
 )
 
 INVITED_JUDGE_ALERT = (
