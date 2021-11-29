@@ -106,8 +106,11 @@ class TestCoreProfile(TestCase):
 
     def test_program_family_names(self):
         user = expert(BaseUserRole.FINALIST)
-        name = 'program0'
-        user = _user_with_role(user, BaseUserRole.FINALIST, name)
+        program = ProgramFactory()
+        UserRoleContext(BaseUserRole.FINALIST,
+                        program=program,
+                        user=user)
+        name = program.program_family.name
         profile = user.get_profile()
         self.assertIn(name, profile.program_family_names())
 
