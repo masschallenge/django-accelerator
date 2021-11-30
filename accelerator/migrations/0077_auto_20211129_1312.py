@@ -15,16 +15,25 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='partnerapplicationinterest',
             name='application',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.ACCELERATOR_APPLICATION_MODEL, unique=True),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.ACCELERATOR_APPLICATION_MODEL,
+                unique=True),
         ),
         migrations.AlterField(
             model_name='partnerapplicationinterest',
             name='judging_round',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.ACCELERATOR_JUDGINGROUND_MODEL, unique=True),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.ACCELERATOR_JUDGINGROUND_MODEL,
+                unique=True),
         ),
         migrations.AlterField(
             model_name='partnerapplicationinterest',
             name='partner',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.ACCELERATOR_PARTNER_MODEL, unique=True),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.ACCELERATOR_PARTNER_MODEL,
+                unique=True),
         ),
     ]

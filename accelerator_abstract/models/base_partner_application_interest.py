@@ -33,7 +33,7 @@ class BasePartnerApplicationInterest(AcceleratorModel):
 
     def __repr__(self):
         return "PartnerApplicationInterest {} - {} - {}".format(
-            self.partner.organization.name, 
+            self.partner.organization.name,
             self.application.startup.organization.name,
             self.judging_round.name
             )
