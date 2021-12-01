@@ -486,7 +486,13 @@ class BaseCoreProfile(AcceleratorModel):
         return [interest.name for interest in self.interest_categories.all()]
 
     def program_family_names(self):
-        return [pf.name for pf in self.program_families.all()]
+        program_roles = self.user.programrolegrant_set.filter(
+            program_role__user_role__name__in=[BaseUserRole.FINALIST,
+                                               BaseUserRole.ALUM,
+                                               BaseUserRole.MENTOR])
+        return list(program_roles.values_list(
+            'program_role__program__program_family__name',
+            flat=True).distinct())
 
     def confirmed_mentor_programs(self):
         return list(self.user.programrolegrant_set.filter(
