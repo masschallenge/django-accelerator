@@ -103,7 +103,7 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
     @property
     def mentor_profile_url(self):
         if self.is_mentor():
-            return reverse('mentor_view', args=(self.user.id,))
+            return reverse('people_directory_redirect_view') + f"people/{self.user.id}"
 
     @property
     def active_round(self):
