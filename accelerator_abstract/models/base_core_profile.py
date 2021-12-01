@@ -491,7 +491,7 @@ class BaseCoreProfile(AcceleratorModel):
                                                BaseUserRole.ALUM,
                                                BaseUserRole.MENTOR])
         return list(program_roles.values_list(
-            'program_role__program__program_family__name', flat=True)).distinct()
+            'program_role__program__program_family__name', flat=True).distinct())
 
     def confirmed_mentor_programs(self):
         return list(self.user.programrolegrant_set.filter(
