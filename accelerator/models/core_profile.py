@@ -103,7 +103,8 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
     @property
     def mentor_profile_url(self):
         if self.is_mentor():
-            return reverse('community_profile', kwargs={'user_id': self.user.id})
+            return reverse('community_profile',
+                           kwargs={'user_id': self.user.id})
 
     @property
     def active_round(self):
