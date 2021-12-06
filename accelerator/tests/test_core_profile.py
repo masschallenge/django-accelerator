@@ -16,7 +16,6 @@ from accelerator.tests.factories import (
     MentorProgramOfficeHourFactory,
     PartnerTeamMemberFactory,
     ProgramFactory,
-    ProgramFamilyFactory,
     ProgramRoleFactory,
     ProgramRoleGrantFactory,
     ProgramStartupStatusFactory,
@@ -107,10 +106,13 @@ class TestCoreProfile(TestCase):
 
     def test_program_family_names(self):
         user = expert(BaseUserRole.FINALIST)
+        program = ProgramFactory()
+        UserRoleContext(BaseUserRole.FINALIST,
+                        program=program,
+                        user=user)
+        name = program.program_family.name
         profile = user.get_profile()
-        family = ProgramFamilyFactory()
-        profile.program_families.add(family)
-        self.assertTrue(profile.program_family_names() == [family.name])
+        self.assertIn(name, profile.program_family_names())
 
     def test_interest_category_names(self):
         user = expert(BaseUserRole.FINALIST)
