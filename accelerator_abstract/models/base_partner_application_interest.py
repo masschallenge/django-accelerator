@@ -27,3 +27,12 @@ class BasePartnerApplicationInterest(AcceleratorModel):
     class Meta(AcceleratorModel.Meta):
         abstract = True
         db_table = 'accelerator_partnerapplicationinterest'
+        unique_together = (('partner', 'judging_round',
+                            'application'),)
+
+    def __repr__(self):
+        return "PartnerApplicationInterest {} - {} - {}".format(
+            self.partner.organization.name,
+            self.application.startup.organization.name,
+            self.judging_round.name
+            )
