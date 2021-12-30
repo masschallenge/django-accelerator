@@ -1,6 +1,3 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
 from datetime import datetime
 from decimal import Decimal
 from pytz import utc

@@ -1,6 +1,3 @@
-# MIT License
-# Copyright (c) 2018 MassChallenge, Inc.
-
 from __future__ import unicode_literals
 
 import logging

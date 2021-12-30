@@ -1,6 +1,3 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 from accelerator.tests.factories import (
