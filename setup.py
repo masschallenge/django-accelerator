@@ -1,6 +1,3 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
 import os
 
 from setuptools import find_packages, setup

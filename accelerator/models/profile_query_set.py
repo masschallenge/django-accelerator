@@ -1,5 +1,3 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
 import logging
 
 from django.contrib.auth import get_user_model

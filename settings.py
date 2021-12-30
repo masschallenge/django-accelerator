@@ -1,6 +1,3 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
 import os
 import sys
 import logging

@@ -1,5 +1,3 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
 from datetime import timedelta
 from time import sleep
 
