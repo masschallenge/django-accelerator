@@ -1,6 +1,3 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
 from django.utils.six import StringIO
 
 from datetime import datetime

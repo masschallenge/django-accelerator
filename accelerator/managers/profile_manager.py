@@ -1,6 +1,3 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
 import logging
 
 from django.db import models

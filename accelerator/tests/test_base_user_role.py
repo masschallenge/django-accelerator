@@ -1,6 +1,3 @@
-# MIT License
-# Copyright (c) 2019 MassChallenge, Inc.
-
 from django.test import TestCase
 
 from accelerator.tests.contexts import (

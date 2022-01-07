@@ -1,6 +1,3 @@
-# MIT License
-# Copyright (c) 2017 MassChallenge, Inc.
-
 from .allocator_factory import AllocatorFactory
 from .application_answer_factory import ApplicationAnswerFactory
 from .application_factory import ApplicationFactory
