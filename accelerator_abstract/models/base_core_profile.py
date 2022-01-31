@@ -368,12 +368,11 @@ class BaseCoreProfile(AcceleratorModel):
     shared_demographic_data = models.BooleanField(
         verbose_name="Permission To Shared Demographic Data",
         default=False)
-    location = models.OneToOneField(
+    user_location = models.OneToOneField(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                'Location'),
-        verbose_name="Location",
-        related_name="%(class)s_location",
         on_delete=models.CASCADE,
+        null=True,
         blank=True)
     reliability = models.DecimalField(
         max_digits=3,
