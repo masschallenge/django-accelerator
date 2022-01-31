@@ -2,33 +2,46 @@
 
 from django.db import migrations
 
-judge_description = ("Judges help evaluate startups as part of our Accelerator Programs. "
-                     "Judges are selected based on their relevant background and expertise."
-                     " By offering your judging services you agree to share your profile data"
-                     " with Mass Challenge staff in order to match you with appropriate startups."
-                     " For more information, read about Judging at Mass Challenge.")
-mentor_description = ("Mentors volunteer to advise a startup for the duration of a Mass Challenge "
-                      "Program, although many stay engaged for much longer. By offering your mentoring"
-                      " services you make your profile available to startups looking for expert advice "
-                      "on a long-term basis. Read more about Mentoring at Mass Challenge.")
-speaker_description = ("Speakers offer their expertise to the Mass Challenge community in the form of "
-                       "in-person and virtual presentations. Volunteer speakers may be contacted by "
-                       "Mass Challenge staff to arrange for possible speaking opportunities. Read more "
-                       "about Speaking  at Mass Challenge.")
-advisor_description = ("Advisors offer their expertise to the Mass Challenge community by holding office "
-                       "hours, scheduled based on your availability, for which community members may "
-                       "schedule appointments. Advisors are listed in our Directory and may be contacted "
-                       "by community members for appointments. Read more about Office Hours  at Mass Challenge.")
-entrepreneur_description = ("Entrepreneurs are involved in founding or working for a startup company. "
-                            "If you’ve been involved with an early-stage company in the past, are currently"
-                            " running one, or intend to do so in the future,  you’re welcome at Mass Challenge!"
-                            " Read more about being an Entrepreneur  at Mass Challenge.")
-enterprise_description = ("Enterprise employees are associated with corporations interesting in partnering with "
-                          "the Mass Challenge innovation ecosystem as part of their company’s strategy and "
-                          "operations.")
-investor_description = ("Investor. Individuals currently or previously involved in placing investments with early"
-                        " stage companies are welcome to indicate the role of investor. Investors are included in"
-                        " our community-based investor directories and may receive outreach from community members.")
+judge_description = (
+    "Judges help evaluate startups as part of our Accelerator"
+    " Programs. Judges are selected based on their relevant "
+    "background and expertise. By offering your judging services"
+    " you agree to share your profile data with Mass Challenge"
+    " staff in order to match you with appropriate startups."
+    " For more information, read about Judging at Mass Challenge.")
+mentor_description = (
+    "Mentors volunteer to advise a startup for the duration of a "
+    "Mass Challenge Program, although many stay engaged for much longer."
+    " By offering your mentoring services you make your profile available"
+    " to startups looking for expert advice on a long-term basis. "
+    "Read more about Mentoring at Mass Challenge.")
+speaker_description = (
+    "Speakers offer their expertise to the Mass Challenge community"
+    " in the form of in-person and virtual presentations. Volunteer"
+    " speakers may be contacted by Mass Challenge staff to arrange"
+    " for possible speaking opportunities. Read more about Speaking"
+    "  at Mass Challenge.")
+advisor_description = (
+    "Advisors offer their expertise to the Mass Challenge community by"
+    " holding office hours, scheduled based on your availability, for "
+    "which community members may schedule appointments. Advisors are "
+    "listed in our Directory and may be contacted by community members"
+    " for appointments. Read more about Office Hours  at Mass Challenge.")
+entrepreneur_description = (
+    "Entrepreneurs are involved in founding or working for a startup"
+    " company. If you’ve been involved with an early-stage company in"
+    " the past, are currently running one, or intend to do so in the "
+    "future,  you’re welcome at Mass Challenge! Read more about being"
+    " an Entrepreneur  at Mass Challenge.")
+enterprise_description = (
+    "Enterprise employees are associated with corporations interesting "
+    "in partnering with the Mass Challenge innovation ecosystem as part"
+    " of their company’s strategy and operations.")
+investor_description = (
+    "Investor. Individuals currently or previously involved in placing"
+    " investments with early stage companies are welcome to indicate the"
+    " role of investor. Investors are included in our community-based investor"
+    " directories and may receive outreach from community members.")
 
 PARTICIPATION_ROLE = 'PARTICIPATION_ROLE'
 ADVISING_STARTUP_BUSINESS_AREA = 'ADVISING_STARTUP_BUSINESS_AREA'
@@ -53,9 +66,10 @@ participation_data = [
     ['Legal, Compliance, and IP', '', ADVISING_STARTUP_BUSINESS_AREA],
     ['Systems & Technology', '', ADVISING_STARTUP_BUSINESS_AREA],
     ['Industry-specific Expertise', '', ADVISING_STARTUP_SUPPORT_BELIEVE],
-    ['General Functional Expertise (Marketing, Organizational Design, Sales, etc.)',
+    [('General Functional Expertise (Marketing, Organizational Design,'
+      ' Sales, etc.)'), '', ADVISING_STARTUP_SUPPORT_BELIEVE],
+    ['Sounding Board / Feedback / Deck Development',
      '', ADVISING_STARTUP_SUPPORT_BELIEVE],
-    ['Sounding Board / Feedback / Deck Development', '', ADVISING_STARTUP_SUPPORT_BELIEVE],
     ['Work / Personal Life Balance', '', ADVISING_STARTUP_SUPPORT_BELIEVE],
     ['Managing a Scale-Up Organization', '', ADVISING_STARTUP_SUPPORT_BELIEVE],
     ['Company Culture', '', ADVISING_STARTUP_SUPPORT_BELIEVE],
@@ -65,11 +79,13 @@ participation_data = [
 
 
 def add_community_participation_data(apps, schema_editor):
-    CommunityParticipation = apps.get_model('accelerator', 'CommunityParticipation')
+    CommunityParticipation = apps.get_model(
+        'accelerator', 'CommunityParticipation')
     CommunityParticipation.objects.bulk_create(
         [CommunityParticipation(
             name=name, sort_order=sort_order, description=desc, type=type)
-            for sort_order, (name, desc, type) in enumerate(participation_data, 1)])
+            for sort_order, (name, desc, type)
+            in enumerate(participation_data, 1)])
 
 
 class Migration(migrations.Migration):
