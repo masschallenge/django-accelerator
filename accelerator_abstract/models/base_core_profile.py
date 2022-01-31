@@ -316,6 +316,10 @@ class BaseCoreProfile(AcceleratorModel):
         blank=True,
         help_text="Internal notes only for use by MassChallenge Staff "
                   "(not visible to Expert)")
+    community_participation = models.ManyToManyField(
+        'CommunityParticipation',
+        blank=True,
+        related_name='profiles')
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_coreprofile'

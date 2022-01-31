@@ -328,3 +328,4 @@ from .partner_judging_instructions import PartnerJudgingInstructions
 from .partner_judge_application_assignment import (
     PartnerJudgeApplicationAssignment,
 )
+from .community_participation import CommunityParticipation
