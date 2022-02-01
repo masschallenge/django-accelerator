@@ -18,7 +18,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='coreprofile',
             name='education_level',
-            field=models.CharField(blank=True,
+            field=models.CharField(
+                blank=True,
                 choices=[('No formal schooling', 'No formal schooling'),
                          ('Completed high school', 'Completed high school'),
                          ('Associates degree (for example: AA, AS)',
@@ -45,7 +46,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='coreprofile',
             name='geographic_experience',
-            field=models.CharField(blank=True,
+            field=models.CharField(
+                blank=True,
                 choices=[('United States-Northeast',
                           'United States-Northeast'),
                          ('United States-Southeast',
@@ -80,7 +82,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='coreprofile',
             name='pronouns',
-            field=models.CharField(blank=True,
+            field=models.CharField(
+                blank=True,
                 choices=[('she, her, hers', 'She, Her, Hers'),
                          ('he, him, his', 'He, Him, His'),
                          ('they, them, theirs', 'They, Them, Theirs'),
@@ -91,20 +94,24 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='coreprofile',
             name='shared_demographic_data',
-            field=models.BooleanField(default=False,
+            field=models.BooleanField(
+                default=False,
                 verbose_name='Permission To Shared Demographic Data'),
         ),
         migrations.AddField(
             model_name='coreprofile',
             name='user_location',
-            field=models.OneToOneField(blank=True, null=True,
+            field=models.OneToOneField(
+                blank=True,
+                null=True,
                 on_delete=django.db.models.deletion.CASCADE,
                 to=settings.ACCELERATOR_LOCATION_MODEL),
         ),
         migrations.AddField(
             model_name='coreprofile',
             name='worldwide_participation_interest',
-            field=models.BooleanField(default=False,
-               verbose_name='World Wide Participation Interest'),
+            field=models.BooleanField(
+                default=False,
+                verbose_name='World Wide Participation Interest'),
         ),
     ]

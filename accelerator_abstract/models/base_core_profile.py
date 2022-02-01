@@ -115,10 +115,14 @@ GEOGRAPHIC_EXPERIENCE_CHOICES = (
 EDUCATIONAL_LEVEL_CHOICES = (
     ("No formal schooling", "No formal schooling"),
     ("Completed high school", "Completed high school"),
-    ("Associates degree (for example: AA, AS)", "Associates degree (for example: AA, AS)"),
-    ("Bachelor’s degree (for example: BA. BS)", "Bachelor’s degree (for example: BA. BS)"),
-    ("Professional degree (for example: MD, DDS, DVM, LLB, JD)", "Professional degree (for example: MD, DDS, DVM, LLB, JD)"),
-    ("Advanced degree (Masters or Doctoral)", "Advanced degree (Masters or Doctoral)"),)
+    ("Associates degree (for example: AA, AS)",
+     "Associates degree (for example: AA, AS)"),
+    ("Bachelor’s degree (for example: BA. BS)",
+     "Bachelor’s degree (for example: BA. BS)"),
+    ("Professional degree (for example: MD, DDS, DVM, LLB, JD)",
+     "Professional degree (for example: MD, DDS, DVM, LLB, JD)"),
+    ("Advanced degree (Masters or Doctoral)",
+     "Advanced degree (Masters or Doctoral)"),)
 
 
 class BaseCoreProfile(AcceleratorModel):
