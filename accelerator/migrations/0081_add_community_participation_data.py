@@ -90,7 +90,7 @@ def add_community_participation_data(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0081_community_participation_model'),
+        ('accelerator', '0080_community_participation_model'),
     ]
 
     operations = [
