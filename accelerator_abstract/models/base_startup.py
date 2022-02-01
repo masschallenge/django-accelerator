@@ -154,7 +154,6 @@ class BaseStartup(AcceleratorModel):
         db_table = 'accelerator_startup'
         abstract = True
         verbose_name_plural = 'Startups'
-        ordering = ['organization__name']
 
     def __str__(self):
         return self.name or ""
