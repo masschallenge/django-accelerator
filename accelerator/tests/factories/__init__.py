@@ -126,3 +126,4 @@ from .partner_application_interest_factory import (
 from .partner_judging_round_challenge_factory import (
     PartnerJudgingRoundChallengeFactory,
 )
+from .community_participation_factory import CommunityParticipation
