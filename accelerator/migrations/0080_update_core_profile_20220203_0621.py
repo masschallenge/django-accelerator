@@ -20,6 +20,7 @@ class Migration(migrations.Migration):
             name='education_level',
             field=models.CharField(
                 blank=True,
+                null=True,
                 choices=[('No formal schooling', 'No formal schooling'),
                          ('Completed high school', 'Completed high school'),
                          ('Associates degree (for example: AA, AS)',
@@ -29,18 +30,20 @@ class Migration(migrations.Migration):
                          (PROFESSIONAL_DEGREE, PROFESSIONAL_DEGREE),
                          ('Advanced degree (Masters or Doctoral)',
                           'Advanced degree (Masters or Doctoral)')],
-                max_length=200, verbose_name='Educational Level'),
+                max_length=200, verbose_name='Education Level'),
         ),
         migrations.AddField(
             model_name='coreprofile',
             name='entrepreneur_interest',
             field=models.BooleanField(default=False,
+                                      null=True,
                                       verbose_name='Enterpreneur Interest'),
         ),
         migrations.AddField(
             model_name='coreprofile',
             name='expert_interest',
             field=models.BooleanField(default=False,
+                                      null=True,
                                       verbose_name='Expert Interest'),
         ),
         migrations.AddField(
@@ -48,6 +51,7 @@ class Migration(migrations.Migration):
             name='geographic_experience',
             field=models.CharField(
                 blank=True,
+                null=True,
                 choices=[('United States-Northeast',
                           'United States-Northeast'),
                          ('United States-Southeast',
@@ -76,6 +80,7 @@ class Migration(migrations.Migration):
             model_name='coreprofile',
             name='preferred_name',
             field=models.CharField(blank=True,
+                                   null=True,
                                    max_length=32,
                                    verbose_name='Prefered Name'),
         ),
@@ -84,12 +89,13 @@ class Migration(migrations.Migration):
             name='pronouns',
             field=models.CharField(
                 blank=True,
+                null=True,
                 choices=[('she, her, hers', 'She, Her, Hers'),
                          ('he, him, his', 'He, Him, His'),
                          ('they, them, theirs', 'They, Them, Theirs'),
                          ('Just my name please!', 'Just my name please!'),
                          ('other', 'Other')],
-                max_length=32, verbose_name='Prefered Name'),
+                max_length=32, verbose_name="Pronouns"),
         ),
         migrations.AddField(
             model_name='coreprofile',
@@ -119,6 +125,7 @@ class Migration(migrations.Migration):
             name='here_about_us',
             field=models.CharField(
                 blank=True,
+                null=True,
                 choices=[('Advertising', 'Advertising'),
                          ('Email from MassChallenge',
                           'Email from MassChallenge'),

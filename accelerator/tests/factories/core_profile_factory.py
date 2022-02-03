@@ -17,7 +17,7 @@ from pytz import utc
 from accelerator.models.core_profile import CoreProfile
 from accelerator.tests.factories.program_factory import ProgramFactory
 from simpleuser.tests.factories.user_factory import UserFactory
-
+from accelerator.tests.factories.location_factory import LocationFactory
 
 class CoreProfileFactory(DjangoModelFactory):
     class Meta:
@@ -42,6 +42,7 @@ class CoreProfileFactory(DjangoModelFactory):
     newsletter_sender = False
     birth_year = None
     authorization_to_share_ethno_racial_identity = False
+    user_location = SubFactory(LocationFactory)
 
     @post_generation
     def program_families(self, create, extracted, **kwargs):
