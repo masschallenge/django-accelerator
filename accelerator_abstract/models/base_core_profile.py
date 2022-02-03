@@ -124,6 +124,19 @@ EDUCATIONAL_LEVEL_CHOICES = (
     ("Advanced degree (Masters or Doctoral)",
      "Advanced degree (Masters or Doctoral)"),)
 
+HERE_ABOUT_US_CHOICES = (
+    ("Advertising", "Advertising"),
+    ("Email from MassChallenge", "Email from MassChallenge"),
+    ("Search engine (Google, Yahoo, etc.)",
+     "Search engine (Google, Yahoo, etc.)"),
+    ("Recommended by friend or colleague",
+     "Recommended by friend or colleague"),
+    ("Recommended by a community organization",
+     "Recommended by a community organization"),
+    ("Social media", "Social media"),
+    ("Blog or publication", "Blog or publication"),
+    ("Other", "Other"),)
+
 
 class BaseCoreProfile(AcceleratorModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
@@ -354,6 +367,11 @@ class BaseCoreProfile(AcceleratorModel):
         verbose_name="Educational Level",
         max_length=200,
         choices=EDUCATIONAL_LEVEL_CHOICES,
+        blank=True)
+    here_about_us = models.CharField(
+        verbose_name="Where did you here about us",
+        max_length=100,
+        choices=HERE_ABOUT_US_CHOICES,
         blank=True)
     geographic_experience = models.CharField(
         verbose_name="Geographic Experience/Expertise",
