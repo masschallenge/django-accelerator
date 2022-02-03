@@ -369,6 +369,7 @@ class BaseCoreProfile(AcceleratorModel):
         verbose_name="Education Level",
         max_length=200,
         choices=EDUCATIONAL_LEVEL_CHOICES,
+        null=True,
         blank=True)
     here_about_us = models.CharField(
         verbose_name="Where did you here about us",
@@ -384,19 +385,15 @@ class BaseCoreProfile(AcceleratorModel):
         blank=True)
     expert_interest = models.BooleanField(
         verbose_name="Expert Interest",
-        null=True,
         default=False)
     entrepreneur_interest = models.BooleanField(
         verbose_name="Enterpreneur Interest",
-        null=True,
         default=False)
     worldwide_participation_interest = models.BooleanField(
         verbose_name="World Wide Participation Interest",
-        null=True,
         default=False)
     shared_demographic_data = models.BooleanField(
         verbose_name="Permission To Shared Demographic Data",
-        null=True,
         default=False)
     user_location = models.OneToOneField(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,

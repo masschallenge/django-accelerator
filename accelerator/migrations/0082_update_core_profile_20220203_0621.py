@@ -36,14 +36,12 @@ class Migration(migrations.Migration):
             model_name='coreprofile',
             name='entrepreneur_interest',
             field=models.BooleanField(default=False,
-                                      null=True,
                                       verbose_name='Enterpreneur Interest'),
         ),
         migrations.AddField(
             model_name='coreprofile',
             name='expert_interest',
             field=models.BooleanField(default=False,
-                                      null=True,
                                       verbose_name='Expert Interest'),
         ),
         migrations.AddField(
