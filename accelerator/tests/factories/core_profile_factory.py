@@ -75,3 +75,11 @@ class CoreProfileFactory(DjangoModelFactory):
         if extracted:
             for tag in extracted:
                 self.ethno_racial_identification.add(tag)
+
+    @post_generation
+    def community_participation(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for participation in extracted:
+                self.community_participation.add(participation)
