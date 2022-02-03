@@ -19,6 +19,7 @@ from accelerator.tests.factories.program_factory import ProgramFactory
 from simpleuser.tests.factories.user_factory import UserFactory
 from accelerator.tests.factories.location_factory import LocationFactory
 
+
 class CoreProfileFactory(DjangoModelFactory):
     class Meta:
         model = CoreProfile
