@@ -11,7 +11,7 @@ PROFESSIONAL_DEGREE = ('Professional degree '
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0079_remove_meta_ordering_on_startup_model'),
+        ('accelerator', '0081_add_community_participation_data'),
     ]
 
     operations = [
