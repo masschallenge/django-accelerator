@@ -19,6 +19,7 @@ from accelerator_abstract.models.base_user_role import (
 )
 from accelerator_abstract.models.base_base_profile import (
     EXPERT_USER_TYPE,
+    ENTREPRENEUR_USER_TYPE,
 )
 from accelerator_abstract.models.base_user_utils import (
     has_staff_clearance,
@@ -505,7 +506,7 @@ class BaseCoreProfile(AcceleratorModel):
             return '/staff'
 
     def role_based_landing_page(self, exclude_role_names=[]):
-        if self.user_type.upper() == EXPERT_USER_TYPE:
+        if self.participation.upper() == EXPERT_USER_TYPE:
             return "/dashboard/expert/overview/"
         JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
                                           "JudgingRound")
@@ -556,7 +557,7 @@ class BaseCoreProfile(AcceleratorModel):
                                ).first()
         if grant:
             return grant.program_role.landing_page
-        return self.default_page
+        return self.user_default_page
 
     def calc_landing_page(self):
         return (
@@ -566,7 +567,7 @@ class BaseCoreProfile(AcceleratorModel):
     def check_landing_page(self):
         page = self.landing_page or self.calc_landing_page()
         if page == "/":
-            return self.default_page
+            return self.user_default_page
         return page
 
     def first_startup(self, statuses=[]):
@@ -601,3 +602,28 @@ class BaseCoreProfile(AcceleratorModel):
             program_role__user_role__name=BaseUserRole.MENTOR).values_list(
                 "program_role__program__program_family__name", flat=True
         ).distinct())
+
+    @property
+    def participation(self):
+        """
+        returns the user type representation for users without user_type
+        profile objects
+        """
+        user_type_representation = self.user_type
+        if not self.user_type:
+            if self.expert_interest:
+                user_type_representation = EXPERT_USER_TYPE
+            if self.entrepreneur_interest:
+                user_type_representation = ENTREPRENEUR_USER_TYPE
+        return user_type_representation
+
+    @property
+    def user_default_page(self):
+        url_map = {
+            EXPERT_USER_TYPE: 'expert_homepage',
+            ENTREPRENEUR_USER_TYPE: 'applicant_homepage',
+        }
+        try:
+            return url_map[self.participation]
+        except KeyError:
+            return self.default_page
