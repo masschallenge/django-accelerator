@@ -87,6 +87,55 @@ OTHER_EXPERTS_TEXT = ("We're always looking for more great experts to join "
                       "as how you think they might want to be involved "
                       "(Judge, Mentor, etc.) Also, please encourage these "
                       "individuals to fill out their own Expert Profile.")
+PRONOUN_CHOICES = (
+    ('she, her, hers', 'She, Her, Hers'),
+    ("he, him, his", "He, Him, His"),
+    ("they, them, theirs", "They, Them, Theirs"),
+    ('Just my name please!', "Just my name please!"),
+    ("other", "Other"),)
+
+GEOGRAPHIC_EXPERIENCE_CHOICES = (
+    ("United States-Northeast", "United States-Northeast"),
+    ("United States-Southeast", "United States-Southeast"),
+    ("United States-Southwest", "United States-Southwest"),
+    ("United States-Northwest", "United States-Northwest"),
+    ("United States-West", "United States-West"),
+    ("United States-Midwest", "United States-Midwest"),
+    ("United States-Alaska and Hawaii", "United States-Alaska and Hawaii"),
+    ("Central America", "Central America"),
+    ("South America", "South America"),
+    ("Europe", "Europe"),
+    ("Middle East", "Middle East"),
+    ("Africa", "Africa"),
+    ("East Asia", "East Asia"),
+    ("South Asia", "South Asia"),
+    ("Central Asia", "Central Asia"),
+    ("Oceania", "Oceania"),)
+
+EDUCATIONAL_LEVEL_CHOICES = (
+    ("No formal schooling", "No formal schooling"),
+    ("Completed high school", "Completed high school"),
+    ("Associates degree (for example: AA, AS)",
+     "Associates degree (for example: AA, AS)"),
+    ("Bachelor’s degree (for example: BA. BS)",
+     "Bachelor’s degree (for example: BA. BS)"),
+    ("Professional degree (for example: MD, DDS, DVM, LLB, JD)",
+     "Professional degree (for example: MD, DDS, DVM, LLB, JD)"),
+    ("Advanced degree (Masters or Doctoral)",
+     "Advanced degree (Masters or Doctoral)"),)
+
+HERE_ABOUT_US_CHOICES = (
+    ("Advertising", "Advertising"),
+    ("Email from MassChallenge", "Email from MassChallenge"),
+    ("Search engine (Google, Yahoo, etc.)",
+     "Search engine (Google, Yahoo, etc.)"),
+    ("Recommended by friend or colleague",
+     "Recommended by friend or colleague"),
+    ("Recommended by a community organization",
+     "Recommended by a community organization"),
+    ("Social media", "Social media"),
+    ("Blog or publication", "Blog or publication"),
+    ("Other", "Other"),)
 
 
 class BaseCoreProfile(AcceleratorModel):
@@ -304,6 +353,53 @@ class BaseCoreProfile(AcceleratorModel):
     expert_group = models.CharField(
         verbose_name="Expert Group",
         max_length=10,
+        blank=True)
+    preferred_name = models.CharField(
+        verbose_name="Nickname / Preferred Name",
+        max_length=32,
+        null=True,
+        blank=True)
+    pronouns = models.CharField(
+        verbose_name="Pronouns",
+        max_length=32,
+        choices=PRONOUN_CHOICES,
+        null=True,
+        blank=True)
+    education_level = models.CharField(
+        verbose_name="Education Level",
+        max_length=200,
+        choices=EDUCATIONAL_LEVEL_CHOICES,
+        null=True,
+        blank=True)
+    here_about_us = models.CharField(
+        verbose_name="Where did you here about us",
+        max_length=100,
+        choices=HERE_ABOUT_US_CHOICES,
+        null=True,
+        blank=True)
+    geographic_experience = models.CharField(
+        verbose_name="Geographic Experience/Expertise",
+        max_length=100,
+        choices=GEOGRAPHIC_EXPERIENCE_CHOICES,
+        null=True,
+        blank=True)
+    expert_interest = models.BooleanField(
+        verbose_name="Expert Interest",
+        default=False)
+    entrepreneur_interest = models.BooleanField(
+        verbose_name="Enterpreneur Interest",
+        default=False)
+    worldwide_participation_interest = models.BooleanField(
+        verbose_name="World Wide Participation Interest",
+        default=False)
+    shared_demographic_data = models.BooleanField(
+        verbose_name="Permission To Shared Demographic Data",
+        default=False)
+    user_location = models.OneToOneField(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label,
+                               'Location'),
+        on_delete=models.CASCADE,
+        null=True,
         blank=True)
     reliability = models.DecimalField(
         max_digits=3,
