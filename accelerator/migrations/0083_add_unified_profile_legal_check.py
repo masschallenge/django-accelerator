@@ -3,8 +3,15 @@
 from django.db import migrations, models
 
 legal_check_description = (
-    'I agree to the <a href="https://masschallenge.org/competition-rules" target="_blank">Competition Rules</a>, <a href="https://masschallenge.org/anti-harassment-policies" target="_blank">Anti-Harassment Policies</a>, <a href="https://masschallenge.org/website-terms-of-use"target="_blank">Site Terms of Use</a> and the <a href="https://masschallenge.org/expert-agreement" target="_blank">Expert Agreement</a>.')
-
+    'I agree to the <a href="https://masschallenge.org/competition-rules" '
+    'target="_blank">Competition Rules</a>, <a href="https://masschallenge.'
+    'org/anti-harassment-policies" target="_blank">Anti-Harassment Policies'
+    '</a>, <a href="https://masschallenge.org/website-terms-of-use"target='
+    '"_blank">Site Terms of Use</a> and the <a href="https://masschallenge.org'
+    '/expert-agreement" target="_blank">Expert Agreement</a>.')
+legal_check_help_text = (
+    'This legal check is only available for users with unified profiles. '
+    '(Neither Experts nor Entrepreneurs)')
 legal_check_name = 'competition_anti_harassment_expert_and_site_rule'
 
 
@@ -36,9 +43,7 @@ class Migration(migrations.Migration):
             name='is_enabled_for_unified_profile',
             field=models.BooleanField(
                 default=False,
-                help_text='This legal check is only available for users '
-                          'with unified profiles. (Neither Experts nor Entrepreneurs)'),
-        ),
+                help_text=legal_check_help_text)),
         migrations.RunPython(add_unified_profile_legal_checks,
                              revert_unified_profile_legal_checks)
     ]
