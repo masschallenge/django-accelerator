@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.query import QuerySet
 
+from accelerator.models import CoreProfile
 from accelerator_abstract.models.base_base_profile import (
     ENTREPRENEUR_USER_TYPE,
     EXPERT_USER_TYPE,
@@ -90,13 +91,13 @@ class ProfileQuerySet(QuerySet):
         return member_profile
 
     def _get_profile_from_existing_profile_types(self):
+        profile = CoreProfile.objects.using(self._db).filter(
+            user=self.user).first()
         for kls, user_type in PROFILE_CLASSES_AND_TYPES:
-            profile = kls.objects.using(self._db).filter(
-                user=self.user).first()
-            if profile:
+            if profile and profile.__class__ == kls:
                 self._update_user_type(user_type)
-                return profile
-        return None
+                break
+        return profile
 
     def _update_user_type(self, user_type):
         logger.warning(INCORRECT_USER_TYPE_TEMPLATE.format(
