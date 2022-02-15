@@ -6,6 +6,7 @@ from accelerator.tests.contexts import (
 )
 from accelerator.tests.factories import (
     ClearanceFactory,
+    CoreProfileModelFactory,
     EntrepreneurFactory,
     EntrepreneurProfileFactory,
     ExpertFactory,
@@ -349,6 +350,16 @@ class TestCoreProfile(TestCase):
         program = ProgramFactory(program_status=UPCOMING_PROGRAM_STATUS)
         _user_with_role(profile.user, BaseUserRole.MENTOR, program=program)
         self.assertTrue(profile.is_mentor_in_upcoming_program())
+
+    def test_users_with_expert_interest_get_experts_landing_page(self):
+        profile = CoreProfileModelFactory(expert_interest=True)
+        expected = '/dashboard/expert/overview/'
+        self.assertEqual(profile.check_landing_page(), expected)
+
+    def test_users_with_entrepreneur_interest_get_startups_landing_page(self):
+        profile = CoreProfileModelFactory(entrepreneur_interest=True)
+        expected = 'applicant_homepage'
+        self.assertEqual(profile.check_landing_page(), expected)
 
     def was_mentor_in_last_12_months(self):
         profile = ExpertProfileFactory()

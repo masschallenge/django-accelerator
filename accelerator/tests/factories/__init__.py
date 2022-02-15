@@ -127,3 +127,4 @@ from .partner_judging_round_challenge_factory import (
     PartnerJudgingRoundChallengeFactory,
 )
 from .community_participation_factory import CommunityParticipation
+from .core_profile_model_factory import CoreProfileModelFactory
