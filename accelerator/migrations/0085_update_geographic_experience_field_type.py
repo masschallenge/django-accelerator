@@ -27,9 +27,11 @@ GEOGRAPHIC_EXPERIENCE_HELP_TEXT = (
 
 
 def add_geographic_experience_options(apps, schema_editor):
-    GeographicExperience = apps.get_model('accelerator', 'GeographicExperience')
+    GeographicExperience = apps.get_model(
+        'accelerator', 'GeographicExperience')
     GeographicExperience.objects.bulk_create(
-        [GeographicExperience(name=name) for name in GEOGRAPHIC_EXPERIENCE_CHOICES])
+        [GeographicExperience(name=name)
+         for name in GEOGRAPHIC_EXPERIENCE_CHOICES])
 
 
 class Migration(migrations.Migration):
@@ -46,7 +48,8 @@ class Migration(migrations.Migration):
                     primary_key=True,
                     serialize=False,
                     verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True, null=True)),
+                ('created_at', models.DateTimeField(
+                    auto_now_add=True, null=True)),
                 ('updated_at', models.DateTimeField(auto_now=True, null=True)),
                 ('name', models.CharField(max_length=255)),
             ],
