@@ -126,5 +126,6 @@ from .partner_application_interest_factory import (
 from .partner_judging_round_challenge_factory import (
     PartnerJudgingRoundChallengeFactory,
 )
-from .community_participation_factory import CommunityParticipation
+from .community_participation_factory import CommunityParticipationFactory
 from .core_profile_model_factory import CoreProfileModelFactory
+from .geographic_experience_factory import GeographicExperienceFactory
