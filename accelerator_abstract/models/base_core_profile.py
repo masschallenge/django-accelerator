@@ -19,6 +19,7 @@ from accelerator_abstract.models.base_user_role import (
 )
 from accelerator_abstract.models.base_base_profile import (
     EXPERT_USER_TYPE,
+    ENTREPRENEUR_USER_TYPE,
 )
 from accelerator_abstract.models.base_user_utils import (
     has_staff_clearance,
@@ -94,24 +95,6 @@ PRONOUN_CHOICES = (
     ('Just my name please!', "Just my name please!"),
     ("other", "Other"),)
 
-GEOGRAPHIC_EXPERIENCE_CHOICES = (
-    ("United States-Northeast", "United States-Northeast"),
-    ("United States-Southeast", "United States-Southeast"),
-    ("United States-Southwest", "United States-Southwest"),
-    ("United States-Northwest", "United States-Northwest"),
-    ("United States-West", "United States-West"),
-    ("United States-Midwest", "United States-Midwest"),
-    ("United States-Alaska and Hawaii", "United States-Alaska and Hawaii"),
-    ("Central America", "Central America"),
-    ("South America", "South America"),
-    ("Europe", "Europe"),
-    ("Middle East", "Middle East"),
-    ("Africa", "Africa"),
-    ("East Asia", "East Asia"),
-    ("South Asia", "South Asia"),
-    ("Central Asia", "Central Asia"),
-    ("Oceania", "Oceania"),)
-
 EDUCATIONAL_LEVEL_CHOICES = (
     ("No formal schooling", "No formal schooling"),
     ("Completed high school", "Completed high school"),
@@ -136,6 +119,11 @@ HERE_ABOUT_US_CHOICES = (
     ("Social media", "Social media"),
     ("Blog or publication", "Blog or publication"),
     ("Other", "Other"),)
+
+GEOGRAPHIC_EXPERIENCE_HELP_TEXT = (
+    mark_safe('You may select up to 5 regions. To select multiple '
+              'regions, please press and hold Control (CTRL) on PCs '
+              'or Command (&#8984;) on Macs'))
 
 
 class BaseCoreProfile(AcceleratorModel):
@@ -377,12 +365,6 @@ class BaseCoreProfile(AcceleratorModel):
         choices=HERE_ABOUT_US_CHOICES,
         null=True,
         blank=True)
-    geographic_experience = models.CharField(
-        verbose_name="Geographic Experience/Expertise",
-        max_length=100,
-        choices=GEOGRAPHIC_EXPERIENCE_CHOICES,
-        null=True,
-        blank=True)
     expert_interest = models.BooleanField(
         verbose_name="Expert Interest",
         default=False)
@@ -416,6 +398,17 @@ class BaseCoreProfile(AcceleratorModel):
         'CommunityParticipation',
         blank=True,
         related_name='profiles')
+    geographic_experience = models.ManyToManyField(
+        'GeographicExperience',
+        verbose_name="Geographic Experience/Expertise",
+        help_text=GEOGRAPHIC_EXPERIENCE_HELP_TEXT,
+        blank=True)
+    privacy_profile = models.CharField(
+        max_length=64,
+        verbose_name="Privacy - Profile",
+        choices=PRIVACY_CHOICES,
+        blank=True,
+        default=PRIVACY_CHOICES[1][0])
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_coreprofile'
@@ -505,7 +498,7 @@ class BaseCoreProfile(AcceleratorModel):
             return '/staff'
 
     def role_based_landing_page(self, exclude_role_names=[]):
-        if self.user_type.upper() == EXPERT_USER_TYPE:
+        if self.participation.upper() == EXPERT_USER_TYPE:
             return "/dashboard/expert/overview/"
         JudgingRound = swapper.load_model(AcceleratorModel.Meta.app_label,
                                           "JudgingRound")
@@ -556,7 +549,7 @@ class BaseCoreProfile(AcceleratorModel):
                                ).first()
         if grant:
             return grant.program_role.landing_page
-        return self.default_page
+        return self.user_default_page
 
     def calc_landing_page(self):
         return (
@@ -566,7 +559,7 @@ class BaseCoreProfile(AcceleratorModel):
     def check_landing_page(self):
         page = self.landing_page or self.calc_landing_page()
         if page == "/":
-            return self.default_page
+            return self.user_default_page
         return page
 
     def first_startup(self, statuses=[]):
@@ -601,3 +594,28 @@ class BaseCoreProfile(AcceleratorModel):
             program_role__user_role__name=BaseUserRole.MENTOR).values_list(
                 "program_role__program__program_family__name", flat=True
         ).distinct())
+
+    @property
+    def participation(self):
+        """
+        returns the user type representation for users without user_type
+        profile objects
+        """
+        user_type_representation = self.user_type
+        if not self.user_type:
+            if self.expert_interest:
+                user_type_representation = EXPERT_USER_TYPE
+            if self.entrepreneur_interest:
+                user_type_representation = ENTREPRENEUR_USER_TYPE
+        return user_type_representation
+
+    @property
+    def user_default_page(self):
+        url_map = {
+            EXPERT_USER_TYPE: 'expert_homepage',
+            ENTREPRENEUR_USER_TYPE: 'applicant_homepage',
+        }
+        try:
+            return url_map[self.participation]
+        except KeyError:
+            return self.default_page

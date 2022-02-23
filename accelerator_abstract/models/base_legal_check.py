@@ -21,6 +21,11 @@ class BaseLegalCheck(AcceleratorModel):
         default=True,
         help_text='This legal check is for Entrepreneurs (people with '
                   'Startups applying to MassChallenge)')
+    is_enabled_for_unified_profile = models.BooleanField(
+        default=False,
+        help_text='This legal check is only available for users with '
+                  'unified profiles. (Neither Experts nor Entrepreneurs)',
+    )
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_legalcheck'

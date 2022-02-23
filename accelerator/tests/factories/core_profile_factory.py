@@ -84,3 +84,11 @@ class CoreProfileFactory(DjangoModelFactory):
         if extracted:
             for participation in extracted:
                 self.community_participation.add(participation)
+
+    @post_generation
+    def geographic_experience(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for experience in extracted:
+                self.geographic_experience.add(experience)
