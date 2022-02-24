@@ -1,4 +1,5 @@
 import swapper
+from django.forms import model_to_dict
 from pytz import utc
 from datetime import (
     datetime,
@@ -14,6 +15,11 @@ from django.utils import timezone
 from polymorphic.models import PolymorphicModel
 
 from accelerator.models import UserRole
+from accelerator.models.community_participation import (
+    ADVISING_STARTUP_BUSINESS_AREA,
+    ADVISING_STARTUP_SUPPORT_BELIEVE,
+    PARTICIPATION_ROLE,
+)
 from accelerator_abstract.models import (
     ACTIVE_PROGRAM_STATUS,
     BIO_MAX_LENGTH,
@@ -386,6 +392,36 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
             return self.user.programrolegrant_set.filter(
                 program_role__user_role__name__in=roles).exists()
 
+    @property
+    def profile_completion_percentage(self):
+        completed_count = 0
+        profile_user_fields = ['first_name', 'last_name']
+        profile_fields = [
+            'shared_demographic_data', 'education_level',
+            'privacy_web', 'privacy_profile', 'primary_industry',
+            'functional_expertise', 'additional_industries',
+            'linked_in_url', 'geographic_experience', 'privacy_phone',
+            'privacy_email', 'authorization_to_share_ethno_racial_identity']
+        profile_location_fields = ['street_address', 'state', 'country']
+        community_participation_types = [
+            PARTICIPATION_ROLE, ADVISING_STARTUP_BUSINESS_AREA,
+            ADVISING_STARTUP_SUPPORT_BELIEVE]
+        profile_data_dict = model_to_dict(self, profile_fields)
+        user_data_dict = model_to_dict(self.user, profile_user_fields)
+        completed_participation_by_type = self.community_participation.filter(
+            type__in=community_participation_types).values_list(
+            'type', flat=True).distinct().count()
+        if self.user_location:
+            location_data_dict = model_to_dict(
+                self.user_location, profile_location_fields)
+            completed_count += _get_completed_fields_count(location_data_dict)
+        completed_count += _get_completed_fields_count(profile_data_dict)
+        completed_count += _get_completed_fields_count(user_data_dict)
+        completed_count += completed_participation_by_type
+        total = len(community_participation_types + profile_fields
+                    + profile_user_fields + profile_location_fields)
+        return completed_count / total * 100
+
 
 def _get_office_hour_holder_active_programs(user):
     Clearance = swapper.load_model('accelerator', 'Clearance')
@@ -406,5 +442,15 @@ def _get_completed_application_count(
     if assignment_completed:
         form = forms.get(str(application.pk), None)
         if form and form.feedback_status != 'INCOMPLETE':
+            completed_count += 1
+    return completed_count
+
+
+def _get_completed_fields_count(model_data_dict):
+    valid_negatives = (False,)
+    completed_count = 0
+    for field in model_data_dict:
+        data = model_data_dict[field]
+        if data or data in valid_negatives:
             completed_count += 1
     return completed_count
