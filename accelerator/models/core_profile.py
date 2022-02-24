@@ -397,12 +397,13 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
         completed_count = 0
         profile_user_fields = ['first_name', 'last_name']
         profile_fields = [
-            'shared_demographic_data', 'education_level',
+            'shared_demographic_data', 'education_level', 'privacy_email',
             'privacy_web', 'privacy_profile', 'primary_industry',
-            'functional_expertise', 'additional_industries',
-            'linked_in_url', 'geographic_experience', 'privacy_phone',
-            'privacy_email', 'authorization_to_share_ethno_racial_identity']
-        profile_location_fields = ['street_address', 'state', 'country']
+            'functional_expertise', 'additional_industries', 'privacy_phone',
+            'linked_in_url', 'geographic_experience', 'program_families',
+            'authorization_to_share_ethno_racial_identity']
+        profile_location_fields = [
+            'street_address', 'city', 'state', 'country']
         community_participation_types = [
             PARTICIPATION_ROLE, ADVISING_STARTUP_BUSINESS_AREA,
             ADVISING_STARTUP_SUPPORT_BELIEVE]
