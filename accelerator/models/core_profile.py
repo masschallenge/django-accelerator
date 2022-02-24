@@ -393,7 +393,7 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
                 program_role__user_role__name__in=roles).exists()
 
     @property
-    def profile_completion_percentage(self):
+    def percent_complete(self):
         completed_count = 0
         profile_user_fields = ['first_name', 'last_name']
         profile_fields = [

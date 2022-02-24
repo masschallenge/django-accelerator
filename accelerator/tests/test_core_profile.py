@@ -21,6 +21,7 @@ from accelerator.tests.factories import (
     MentorProgramOfficeHourFactory,
     PartnerTeamMemberFactory,
     ProgramFactory,
+    ProgramFamilyFactory,
     ProgramRoleFactory,
     ProgramRoleGrantFactory,
     ProgramStartupStatusFactory,
@@ -376,16 +377,17 @@ class TestCoreProfile(TestCase):
         self.assertTrue(profile.was_mentor_in_last_12_months())
 
     def test_completion_percentage_is_correct_for_completed_profile(self):
-        participations = [CommunityParticipationFactory(type=type[0])
-                          for type in PARTICIPATION_CHOICES]
+        participation = [CommunityParticipationFactory(type=type[0])
+                         for type in PARTICIPATION_CHOICES]
         profile = ExpertProfileFactory(
             education_level=EDUCATIONAL_LEVEL_CHOICES[-1][0],
             additional_industries=[IndustryFactory()],
             functional_expertise=[FunctionalExpertiseFactory()],
             geographic_experience=[GeographicExperienceFactory()],
+            program_families=[ProgramFamilyFactory()],
             primary_industry=IndustryFactory(),
-            community_participation=participations)
-        completion_percentage = profile.profile_completion_percentage
+            community_participation=participation)
+        completion_percentage = profile.percent_complete
         self.assertEqual(completion_percentage, 100.0)
 
 
