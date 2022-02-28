@@ -390,6 +390,13 @@ class TestCoreProfile(TestCase):
         completion_percentage = profile.percent_complete
         self.assertEqual(completion_percentage, 100.0)
 
+    def test_completion_percentage_is_correct_for_incomplete_profile(self):
+        # missing 7/22 fields used to calculate profile completion %
+        profile = ExpertProfileFactory(
+            program_families=[ProgramFamilyFactory()])
+        rounded_percent = round(profile.percent_complete, 2)
+        self.assertEqual(rounded_percent, 68.18)
+
 
 def _user_with_role(user, role_name, program_name='program0', program=None):
     role = UserRoleFactory(name=role_name)
