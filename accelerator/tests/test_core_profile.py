@@ -1,22 +1,27 @@
 from django.test import TestCase
 
+from accelerator.models.community_participation import PARTICIPATION_CHOICES
 from accelerator.tests.contexts import (
     StartupTeamMemberContext,
     UserRoleContext,
 )
 from accelerator.tests.factories import (
     ClearanceFactory,
+    CommunityParticipationFactory,
     CoreProfileModelFactory,
     EntrepreneurFactory,
     EntrepreneurProfileFactory,
     ExpertFactory,
     ExpertProfileFactory,
+    FunctionalExpertiseFactory,
+    GeographicExperienceFactory,
     IndustryFactory,
     InterestCategoryFactory,
     MemberFactory,
     MentorProgramOfficeHourFactory,
     PartnerTeamMemberFactory,
     ProgramFactory,
+    ProgramFamilyFactory,
     ProgramRoleFactory,
     ProgramRoleGrantFactory,
     ProgramStartupStatusFactory,
@@ -33,6 +38,9 @@ from accelerator_abstract.models import (
     BaseUserRole,
 )
 from accelerator_abstract.models.base_clearance import CLEARANCE_LEVEL_STAFF
+from accelerator_abstract.models.base_core_profile import (
+    EDUCATIONAL_LEVEL_CHOICES,
+)
 
 
 def expert(role):
@@ -367,6 +375,27 @@ class TestCoreProfile(TestCase):
                                  end_date=months_from_now(-12))
         _user_with_role(profile.user, BaseUserRole.MENTOR, program=program)
         self.assertTrue(profile.was_mentor_in_last_12_months())
+
+    def test_completion_percentage_is_correct_for_completed_profile(self):
+        participation = [CommunityParticipationFactory(type=type[0])
+                         for type in PARTICIPATION_CHOICES]
+        profile = ExpertProfileFactory(
+            education_level=EDUCATIONAL_LEVEL_CHOICES[-1][0],
+            additional_industries=[IndustryFactory()],
+            functional_expertise=[FunctionalExpertiseFactory()],
+            geographic_experience=[GeographicExperienceFactory()],
+            program_families=[ProgramFamilyFactory()],
+            primary_industry=IndustryFactory(),
+            community_participation=participation)
+        completion_percentage = profile.percent_complete
+        self.assertEqual(completion_percentage, 100.0)
+
+    def test_completion_percentage_is_correct_for_incomplete_profile(self):
+        # missing 7/22 fields used to calculate profile completion %
+        profile = ExpertProfileFactory(
+            program_families=[ProgramFamilyFactory()])
+        rounded_percent = round(profile.percent_complete, 2)
+        self.assertEqual(rounded_percent, 68.18)
 
 
 def _user_with_role(user, role_name, program_name='program0', program=None):
