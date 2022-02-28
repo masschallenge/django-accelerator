@@ -42,6 +42,19 @@ OFFICE_HOURS_HOLDER = Q(
 ACTIVE_PROGRAM = Q(
     program_role__program__program_status=ACTIVE_PROGRAM_STATUS)
 
+PROFILE_USER_FIELDS = ['first_name', 'last_name']
+PROFILE_FIELDS = [
+    'shared_demographic_data', 'education_level', 'privacy_email',
+    'privacy_web', 'privacy_profile', 'primary_industry',
+    'functional_expertise', 'additional_industries', 'privacy_phone',
+    'linked_in_url', 'geographic_experience', 'program_families',
+    'authorization_to_share_ethno_racial_identity']
+PROFILE_LOCATION_FIELDS = [
+    'street_address', 'city', 'state', 'country']
+COMMUNITY_PARTICIPATION_TYPES = [
+    PARTICIPATION_ROLE, ADVISING_STARTUP_BUSINESS_AREA,
+    ADVISING_STARTUP_SUPPORT_BELIEVE]
+
 
 class CoreProfile(BaseCoreProfile, PolymorphicModel):
     class Meta(BaseCoreProfile.Meta):
@@ -395,32 +408,20 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
     @property
     def percent_complete(self):
         completed_count = 0
-        profile_user_fields = ['first_name', 'last_name']
-        profile_fields = [
-            'shared_demographic_data', 'education_level', 'privacy_email',
-            'privacy_web', 'privacy_profile', 'primary_industry',
-            'functional_expertise', 'additional_industries', 'privacy_phone',
-            'linked_in_url', 'geographic_experience', 'program_families',
-            'authorization_to_share_ethno_racial_identity']
-        profile_location_fields = [
-            'street_address', 'city', 'state', 'country']
-        community_participation_types = [
-            PARTICIPATION_ROLE, ADVISING_STARTUP_BUSINESS_AREA,
-            ADVISING_STARTUP_SUPPORT_BELIEVE]
-        profile_data_dict = model_to_dict(self, profile_fields)
-        user_data_dict = model_to_dict(self.user, profile_user_fields)
+        profile_data_dict = model_to_dict(self, PROFILE_FIELDS)
+        user_data_dict = model_to_dict(self.user, PROFILE_USER_FIELDS)
         completed_participation_by_type = self.community_participation.filter(
-            type__in=community_participation_types).values_list(
+            type__in=COMMUNITY_PARTICIPATION_TYPES).values_list(
             'type', flat=True).distinct().count()
         if self.user_location:
             location_data_dict = model_to_dict(
-                self.user_location, profile_location_fields)
+                self.user_location, PROFILE_LOCATION_FIELDS)
             completed_count += _get_completed_fields_count(location_data_dict)
         completed_count += _get_completed_fields_count(profile_data_dict)
         completed_count += _get_completed_fields_count(user_data_dict)
         completed_count += completed_participation_by_type
-        total = len(community_participation_types + profile_fields
-                    + profile_user_fields + profile_location_fields)
+        total = len(COMMUNITY_PARTICIPATION_TYPES + PROFILE_FIELDS
+                    + PROFILE_USER_FIELDS + PROFILE_LOCATION_FIELDS)
         return completed_count / total * 100
 
 
