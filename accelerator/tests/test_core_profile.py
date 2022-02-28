@@ -31,7 +31,10 @@ from accelerator.tests.factories import (
     UserFactory,
     UserRoleFactory,
 )
-from accelerator.tests.utils import months_from_now
+from accelerator.tests.utils import (
+    fake_flag_smith_response,
+    months_from_now,
+)
 from accelerator_abstract.models import (
     ACTIVE_PROGRAM_STATUS,
     ENDED_PROGRAM_STATUS,
