@@ -377,8 +377,7 @@ class TestCoreProfile(TestCase):
         self.assertEqual(profile.check_landing_page(), expected)
         
     @patch("bullet_train.BulletTrain.feature_enabled", return_value=True)
-    @patch("bullet_train.BulletTrain.has_feature", return_value=False)    
-        'activate_unified_profile_views', True))
+    @patch("bullet_train.BulletTrain.has_feature", return_value=False)
     def test_users_with_entrepreneur_interest_get_profile_as_landing_page(self):
         profile = CoreProfileModelFactory(entrepreneur_interest=True)
         expected = 'profile'
