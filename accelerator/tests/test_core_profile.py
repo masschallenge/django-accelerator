@@ -35,6 +35,7 @@ from accelerator.tests.utils import (
     fake_flag_smith_response,
     months_from_now,
 )
+from accelerator.utils import flag_smith_has_feature
 from accelerator_abstract.models import (
     ACTIVE_PROGRAM_STATUS,
     ENDED_PROGRAM_STATUS,
