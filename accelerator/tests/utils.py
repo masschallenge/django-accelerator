@@ -96,3 +96,9 @@ def find_row(rows, header, value):
         if row[header] == value:
             return row
     return None
+
+def fake_flag_smith_response(feature_of_interest, feature_on):
+    def fake_feature_check(feature_to_check):
+        return feature_on == (feature_to_check == feature_of_interest)
+
+    return fake_feature_check
