@@ -368,15 +368,16 @@ class TestCoreProfile(TestCase):
         profile = CoreProfileModelFactory(expert_interest=True)
         expected = '/dashboard/expert/overview/'
         self.assertEqual(profile.check_landing_page(), expected)
-
-    @patch('flag_smith_has_feature', fake_flag_smith_response(
-        'activate_unified_profile_views', False))        
+        
+    @patch("bullet_train.BulletTrain.feature_enabled", return_value=False)
+    @patch("bullet_train.BulletTrain.has_feature", return_value=False)    
     def test_users_with_entrepreneur_interest_get_startups_landing_page(self):
         profile = CoreProfileModelFactory(entrepreneur_interest=True)
         expected = 'applicant_homepage'
         self.assertEqual(profile.check_landing_page(), expected)
         
-    @patch('flag_smith_has_feature', fake_flag_smith_response(
+    @patch("bullet_train.BulletTrain.feature_enabled", return_value=True)
+    @patch("bullet_train.BulletTrain.has_feature", return_value=False)    
         'activate_unified_profile_views', True))
     def test_users_with_entrepreneur_interest_get_profile_as_landing_page(self):
         profile = CoreProfileModelFactory(entrepreneur_interest=True)
