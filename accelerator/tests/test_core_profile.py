@@ -1,4 +1,5 @@
 from django.test import TestCase
+from mock import patch
 
 from accelerator.models.community_participation import PARTICIPATION_CHOICES
 from accelerator.tests.contexts import (
