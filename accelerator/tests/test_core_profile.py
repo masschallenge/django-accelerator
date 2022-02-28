@@ -364,9 +364,9 @@ class TestCoreProfile(TestCase):
         expected = '/dashboard/expert/overview/'
         self.assertEqual(profile.check_landing_page(), expected)
 
-    def test_users_with_entrepreneur_interest_get_startups_landing_page(self):
+    def test_users_with_entrepreneur_interest_get_profile_as_landing_page(self):
         profile = CoreProfileModelFactory(entrepreneur_interest=True)
-        expected = 'applicant_homepage'
+        expected = 'profile'
         self.assertEqual(profile.check_landing_page(), expected)
 
     def was_mentor_in_last_12_months(self):
