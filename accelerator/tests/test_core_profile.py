@@ -32,10 +32,8 @@ from accelerator.tests.factories import (
     UserRoleFactory,
 )
 from accelerator.tests.utils import (
-    fake_flag_smith_response,
     months_from_now,
 )
-from accelerator.utils import flag_smith_has_feature
 from accelerator_abstract.models import (
     ACTIVE_PROGRAM_STATUS,
     ENDED_PROGRAM_STATUS,
@@ -177,7 +175,9 @@ class TestCoreProfile(TestCase):
         profile = context.user.get_profile()
         self.assertTrue(profile.role_based_landing_page() == page)
 
-    def test_role_based_landing_page_excluding_roles(self):
+    @patch("bullet_train.BulletTrain.feature_enabled", return_value=False)
+    @patch("bullet_train.BulletTrain.has_feature", return_value=False)
+    def test_role_based_landing_page_excluding_roles(self, *args):
         page = "/asante"
         context = StartupTeamMemberContext(
             primary_contact=False)
@@ -261,7 +261,9 @@ class TestCoreProfile(TestCase):
         landing_page = user_profile.check_landing_page()
         self.assertEqual(landing_page, test_landing_page)
 
-    def test_landing_page_if_profile_landing_page_is_set_to_home(self):
+    @patch("bullet_train.BulletTrain.feature_enabled", return_value=False)
+    @patch("bullet_train.BulletTrain.has_feature", return_value=False)
+    def test_landing_page_if_profile_landing_page_is_set_to_home(self, *args):
         user_profile = EntrepreneurProfileFactory(landing_page="/")
         landing_page = user_profile.check_landing_page()
         self.assertEqual(landing_page, user_profile.default_page)
@@ -368,20 +370,22 @@ class TestCoreProfile(TestCase):
         profile = CoreProfileModelFactory(expert_interest=True)
         expected = '/dashboard/expert/overview/'
         self.assertEqual(profile.check_landing_page(), expected)
-        
+
     @patch("bullet_train.BulletTrain.feature_enabled", return_value=False)
-    @patch("bullet_train.BulletTrain.has_feature", return_value=False)    
-    def test_users_with_entrepreneur_interest_get_startups_landing_page(self):
+    @patch("bullet_train.BulletTrain.has_feature", return_value=False)
+    def test_user_with_entrepreneur_interest_get_startups_landing_page(self,
+                                                                       *args):
         profile = CoreProfileModelFactory(entrepreneur_interest=True)
         expected = 'applicant_homepage'
         self.assertEqual(profile.check_landing_page(), expected)
-        
+
     @patch("bullet_train.BulletTrain.feature_enabled", return_value=True)
-    @patch("bullet_train.BulletTrain.has_feature", return_value=False)
-    def test_users_with_entrepreneur_interest_get_profile_as_landing_page(self):
+    @patch("bullet_train.BulletTrain.has_feature", return_value=True)
+    def test_user_with_entrepreneur_interest_get_profile_landing_page(self,
+                                                                      *args):
         profile = CoreProfileModelFactory(entrepreneur_interest=True)
         expected = 'profile'
-        self.assertEqual(profile.check_landing_page(), expected)    
+        self.assertEqual(profile.check_landing_page(), expected)
 
     def was_mentor_in_last_12_months(self):
         profile = ExpertProfileFactory()
