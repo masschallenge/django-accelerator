@@ -28,6 +28,7 @@ from accelerator_abstract.models.base_program import (
     ACTIVE_PROGRAM_STATUS,
     ENDED_PROGRAM_STATUS,
 )
+from accelerator.utils import flag_smith_has_feature
 
 INVITED_JUDGE_ALERT = (
     "<h4>{first_name}, we would like to invite you to be a judge at "
@@ -124,6 +125,17 @@ GEOGRAPHIC_EXPERIENCE_HELP_TEXT = (
     mark_safe('You may select up to 5 regions. To select multiple '
               'regions, please press and hold Control (CTRL) on PCs '
               'or Command (&#8984;) on Macs'))
+
+
+# Delete when removing CAM V feature flag
+OLD_LANDING_PAGE_MAP = {
+    EXPERT_USER_TYPE: 'expert_homepage',
+    ENTREPRENEUR_USER_TYPE: 'applicant_homepage',
+}
+LANDING_PAGE_MAP = {
+    EXPERT_USER_TYPE: 'expert_homepage',
+    ENTREPRENEUR_USER_TYPE: 'profile',
+}
 
 
 class BaseCoreProfile(AcceleratorModel):
@@ -611,11 +623,11 @@ class BaseCoreProfile(AcceleratorModel):
 
     @property
     def user_default_page(self):
-        url_map = {
-            EXPERT_USER_TYPE: 'expert_homepage',
-            ENTREPRENEUR_USER_TYPE: 'applicant_homepage',
-        }
+        if flag_smith_has_feature('activate_unified_profile_views'):
+            url_map = LANDING_PAGE_MAP
+        else:
+            url_map = OLD_LANDING_PAGE_MAP
         try:
-            return url_map[self.participation]
+            return url_map[self.participation.upper()]
         except KeyError:
             return self.default_page
