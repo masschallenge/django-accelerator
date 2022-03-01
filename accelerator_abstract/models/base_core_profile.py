@@ -138,7 +138,6 @@ LANDING_PAGE_MAP = {
 }
 
 
-
 class BaseCoreProfile(AcceleratorModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE)
