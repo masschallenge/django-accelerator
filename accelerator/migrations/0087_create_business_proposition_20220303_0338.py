@@ -3,7 +3,7 @@
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-
+INVESTOR = 'Current or anticipated advisors or investors'
 
 class Migration(migrations.Migration):
 
@@ -79,7 +79,7 @@ class Migration(migrations.Migration):
                 ('investors', models.TextField(
                     blank=True,
                     null=True,
-                    verbose_name='Current or anticipated advisors or investors')),
+                    verbose_name=INVESTOR)),
                 ('validation', models.TextField(
                     blank=True,
                     null=True,

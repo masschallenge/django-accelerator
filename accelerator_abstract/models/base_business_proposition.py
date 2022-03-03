@@ -5,6 +5,8 @@ from django.db import models
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
+EXCLUDED_FIELDS = ['id', 'created_at', 'updated_at', 'startup']
+
 
 class BaseBusinessProposition(AcceleratorModel):
     startup = models.ForeignKey(
@@ -68,9 +70,8 @@ class BaseBusinessProposition(AcceleratorModel):
 
     def complete(self):
         fields = self._meta.get_fields(include_parents=False)
-        excluded_fields = ['id', 'created_at', 'updated_at', 'startup']
         for field in fields:
-            is_text_field = field.name not in excluded_fields
+            is_text_field = field.name not in EXCLUDED_FIELDS
             value = getattr(self, field.name)
             if is_text_field and (not value or len(value) < 20):
                 return False

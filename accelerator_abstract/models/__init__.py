@@ -330,4 +330,7 @@ from .base_partner_judging_instructions import BasePartnerJudgingInstructions
 from .base_partner_judge_application_assignment import (
     BasePartnerJudgeApplicationAssignment,
 )
-from .base_business_proposition import BaseBusinessProposition
+from .base_business_proposition import (
+    BaseBusinessProposition,
+    EXCLUDED_FIELDS
+)
