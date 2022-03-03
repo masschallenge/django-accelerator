@@ -64,7 +64,8 @@ class Migration(migrations.Migration):
                 ('product_complements', models.TextField(
                     blank=True,
                     null=True,
-                    verbose_name='Product Complements / Value Chain Partners')),
+                    verbose_name='Product Complements / Value Chain Partners')
+                ),
                 ('primary_advantages', models.TextField(
                     blank=True,
                     null=True,
