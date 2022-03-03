@@ -4,7 +4,7 @@ from accelerator.tests.factories import (
     BusinessPropositionFactory
 )
 from accelerator.models import BusinessProposition
-from accelerator.accelerator_abstract.models import EXCLUDED_FIELDS
+from accelerator_abstract.models import EXCLUDED_FIELDS
 
 
 class TestBussinessProposition(TestCase):
