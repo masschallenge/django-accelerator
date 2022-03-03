@@ -37,6 +37,14 @@ class BaseBusinessProposition(AcceleratorModel):
         blank=True,
         null=True,
         verbose_name='Current and Future Competitors')
+    product_complements = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name='Product Complements / Value Chain Partners')
+    primary_advantages = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name='Primary Advantages vs Competitors')
     drivers = models.TextField(
         blank=True,
         null=True,
