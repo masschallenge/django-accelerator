@@ -43,7 +43,8 @@ class Migration(migrations.Migration):
             field=models.CharField(
                 blank=True,
                 default='',
-                help_text='Please specify the street address for your main office (headquarters).', 
+                help_text='Please specify the street address'
+                          'for your main office (headquarters).',
                 max_length=100),
         ),
         migrations.AlterField(
