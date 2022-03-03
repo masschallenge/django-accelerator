@@ -22,6 +22,6 @@ class TestBussinessProposition(TestCase):
         return data
 
     def test_return_true_with_complete_text(self):
-        data = self.populate_data(bussiness_proposition)
+        data = self.populate_data()
         bussiness_proposition = BusinessPropositionFactory(**data)
         self.assertTrue(bussiness_proposition.complete())
