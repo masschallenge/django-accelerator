@@ -11,7 +11,7 @@ class TestBussinessProposition(TestCase):
     def test_return_false_with_incomplete_text(self):
         bussiness_proposition = BusinessPropositionFactory()
         self.assertFalse(bussiness_proposition.complete())
-    
+
     def populate_data(self):
         fields = BusinessProposition._meta.get_fields(include_parents=False)
         characters = 'This is a more than 20 character texts'

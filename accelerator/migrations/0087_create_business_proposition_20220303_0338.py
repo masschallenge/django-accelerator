@@ -5,6 +5,7 @@ from django.db import migrations, models
 import django.db.models.deletion
 INVESTOR = 'Current or anticipated advisors or investors'
 
+
 class Migration(migrations.Migration):
 
     dependencies = [
