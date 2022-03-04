@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
 INVESTOR = 'Current or anticipated advisors or investors'
+PRODUCT_COMPLEMENT = 'Product Complements / Value Chain Partners'
 
 
 class Migration(migrations.Migration):
@@ -55,8 +56,7 @@ class Migration(migrations.Migration):
                 ('product_complements', models.TextField(
                     blank=True,
                     null=True,
-                    verbose_name='Product Complements / Value Chain Partners')
-                ),
+                    verbose_name=PRODUCT_COMPLEMENT)),
                 ('primary_advantages', models.TextField(
                     blank=True,
                     null=True,
