@@ -60,9 +60,14 @@ class StartupFactory(DjangoModelFactory):
     location_regional = "Massachusetts"
     location_city = "Boston"
     location_postcode = "02210"
+    location_street_address = "212 Mckinnon Rd"
     date_founded = "01/2010"
     landing_page = None
     acknowledgement = True
+    is_startup = False
+    bipoc_founder = False
+    female_or_transgender_founder = False
+    first_time_founder = False
 
     @post_generation
     def additional_industries(self, create, extracted, **kwargs):

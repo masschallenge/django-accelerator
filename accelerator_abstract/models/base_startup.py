@@ -49,9 +49,7 @@ class BaseStartup(AcceleratorModel):
         db_table="accelerator_startup_related_industry",
         blank=True,
         help_text=(
-            'You may select up to 5 related industries.'
-        ),
-    )
+            'You may select up to 5 related industries.'),)
     short_pitch = models.CharField(
         max_length=140,
         blank=False,
@@ -77,17 +75,12 @@ class BaseStartup(AcceleratorModel):
         blank=True,
         help_text=(
             'Upload your 1-3 minute video pitch to Vimeo or Youtube. '
-            'Paste the shared link here.')
-    )
-
+            'Paste the shared link here.'))
     acknowledgement = models.BooleanField(
         default=False,
         help_text=(
             'I understand that my Startup Profile is a pre-requisite '
-            'for applying to any MassChallenge Program'
-        )
-    )
-
+            'for applying to any MassChallenge Program'))
     created_datetime = models.DateTimeField(blank=True, null=True)
     last_updated_datetime = models.DateTimeField(blank=True, null=True)
     community = models.CharField(
@@ -95,10 +88,8 @@ class BaseStartup(AcceleratorModel):
         choices=STARTUP_COMMUNITIES,
         blank=True,
     )
-
     # profile color fields are deprecated - do not delete until we know
     # what the marketing site is doing with startup display
-
     profile_background_color = models.CharField(
         max_length=7,
         blank=True,
@@ -117,7 +108,6 @@ class BaseStartup(AcceleratorModel):
     currency = models.ForeignKey(swapper.get_model_name(
         'accelerator', 'Currency'), blank=True,
         null=True, on_delete=models.CASCADE)
-
     location_national = models.CharField(
         max_length=100,
         blank=True,
@@ -143,12 +133,28 @@ class BaseStartup(AcceleratorModel):
         help_text=('Please specify the postal code for your main office '
                    '(headquarters). (ZIP code, Postcode, codigo postal, '
                    'etc.)'))
+    location_street_address = models.CharField(
+        max_length=100,
+        blank=True,
+        default='',
+        help_text=('Please specify the street address for your main office '
+                   '(headquarters).'))
     date_founded = models.CharField(
         max_length=100,
         blank=True,
-        help_text='Month and Year when your startup was founded.'
-    )
+        help_text='Month and Year when your startup was founded.')
     landing_page = models.CharField(max_length=255, null=True, blank=True)
+    is_startup = models.BooleanField(
+        default=False)
+    bipoc_founder = models.BooleanField(
+        default=False,
+        verbose_name='BIPOC Founder')
+    first_time_founder = models.BooleanField(
+        default=False,
+        verbose_name='First-time Founder')
+    female_or_transgender_founder = models.BooleanField(
+        default=False,
+        verbose_name='Female or Transgender Founder')
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_startup'
