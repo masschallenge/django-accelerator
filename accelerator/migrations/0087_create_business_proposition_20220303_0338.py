@@ -13,15 +13,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='coreprofile',
-            name='preferred_name',
-            field=models.CharField(
-                blank=True,
-                max_length=32,
-                null=True,
-                verbose_name='Nickname / Preferred Name'),
-        ),
         migrations.CreateModel(
             name='BusinessProposition',
             fields=[
