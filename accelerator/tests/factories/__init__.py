@@ -129,3 +129,4 @@ from .partner_judging_round_challenge_factory import (
 from .community_participation_factory import CommunityParticipationFactory
 from .core_profile_model_factory import CoreProfileModelFactory
 from .geographic_experience_factory import GeographicExperienceFactory
+from .business_proposition_factory import BusinessPropositionFactory
