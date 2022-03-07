@@ -7,10 +7,10 @@ from accelerator.models import BusinessProposition
 from accelerator_abstract.models import EXCLUDED_FIELDS
 
 
-class TestBussinessProposition(TestCase):
+class TestBusinessProposition(TestCase):
     def test_return_false_with_incomplete_text(self):
-        bussiness_proposition = BusinessPropositionFactory()
-        self.assertFalse(bussiness_proposition.complete())
+        business_proposition = BusinessPropositionFactory()
+        self.assertFalse(business_proposition.complete())
 
     def populate_data(self):
         fields = BusinessProposition._meta.get_fields(include_parents=False)
