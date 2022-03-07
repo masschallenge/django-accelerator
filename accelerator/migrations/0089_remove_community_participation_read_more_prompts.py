@@ -31,7 +31,7 @@ def remove_community_participation_read_more_prompts(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0087_update_startup_profile'),
+        ('accelerator', '0088_create_business_proposition_20220303_0338'),
     ]
 
     operations = [
