@@ -10,7 +10,7 @@ PRODUCT_COMPLEMENT = 'Product Complements / Value Chain Partners'
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0086_alter_founder_field'),
+        ('accelerator', '0087_update_startup_profile'),
     ]
 
     operations = [
