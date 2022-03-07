@@ -18,13 +18,14 @@ def remove_community_participation_read_more_prompts(apps, schema_editor):
     for participation in CommunityParticipation.objects.all():
         # remove prompts starting with "Read more about"
         description = participation.description
-        participation.description = re.sub(
+        description = re.sub(
             r' Read more about[a-zA-Z ]*.$', '', description)
         # remove prompts starting with "For more information"
-        participation.description = re.sub(
+        description = re.sub(
             r' For more information[a-zA-Z, ]*.$', '', description)
         # replace non-ascii char "’" with "'"
-        participation.description = description.replace('\u2019', "'")
+        description = description.replace('\u2019', "'")
+        participation.description = description
         participation.save()
 
 
