@@ -14,7 +14,8 @@ def add_expert_categories(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0088_create_business_proposition_20220303_0338'),
+        ('accelerator',
+         '0089_remove_community_participation_read_more_prompts'),
     ]
 
     operations = [
