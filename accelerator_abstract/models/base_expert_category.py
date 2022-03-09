@@ -9,7 +9,7 @@ VALID_EXPERT_CATEGORIES = [
     "Investor",
     "Lawyer",
     "Entrepreneur",
-    "Subject Matter Expert",    
+    "Subject Matter Expert",
     "Other",
 ]
 
