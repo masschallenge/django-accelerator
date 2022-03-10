@@ -234,13 +234,13 @@ class BaseCoreProfile(AcceleratorModel):
     expert_category = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "ExpertCategory"),
-        verbose_name="I primarily consider myself a(n)",
+        verbose_name="My background is primarily as a(n)",
         related_name="%(class)s_experts",
         blank=True, null=True,  # added
         on_delete=models.CASCADE)
     primary_industry = models.ForeignKey(
         settings.MPTT_SWAPPABLE_INDUSTRY_MODEL,
-        verbose_name="Primary Industry",
+        verbose_name="Primary Industry/Experience",
         related_name="%(class)s_experts",
         limit_choices_to={'level__exact': 0},
         null=True,
