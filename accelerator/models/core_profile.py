@@ -405,7 +405,6 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
             return self.user.programrolegrant_set.filter(
                 program_role__user_role__name__in=roles).exists()
 
-    @property
     def percent_complete(self):
         completed_count = 0
         profile_data_dict = model_to_dict(self, PROFILE_FIELDS)
@@ -422,7 +421,7 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
         completed_count += completed_participation_by_type
         total = len(COMMUNITY_PARTICIPATION_TYPES + PROFILE_FIELDS
                     + PROFILE_USER_FIELDS + PROFILE_LOCATION_FIELDS)
-        return completed_count / total * 100
+        return round(completed_count / total, 2)
 
 
 def _get_office_hour_holder_active_programs(user):
