@@ -10,7 +10,7 @@ PAIN_POINT_HELP_TEXT = ('Please describe what '
 SOLUTION_HELP_TEXT = ('What is innovative about '
                       'your solution, technology, business model etc?')
 IMPACT_HELP_TEXT = ('Define the 1 year and 5 '
-                   'year impact that you hope to accomplish')
+                    'year impact that you hope to accomplish')
 MARKET_HELP_TEXT = ('How would you define your potential market '
                     'and what is the total addressable market size?')
 VALUE_PROPOSITION_HELP_TEXT = ('What will be your messaging to users & '
@@ -90,7 +90,7 @@ class BaseBusinessProposition(AcceleratorModel):
     drivers = models.TextField(
         blank=True,
         null=True,
-         help_text=DRIVER_HELP_TEXT,
+        help_text=DRIVER_HELP_TEXT,
         verbose_name='Key Drivers of Business Economics')
     intellectual_property = models.TextField(
         blank=True,
