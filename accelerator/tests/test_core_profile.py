@@ -1,22 +1,28 @@
 from django.test import TestCase
+from mock import patch
 
+from accelerator.models.community_participation import PARTICIPATION_CHOICES
 from accelerator.tests.contexts import (
     StartupTeamMemberContext,
     UserRoleContext,
 )
 from accelerator.tests.factories import (
     ClearanceFactory,
+    CommunityParticipationFactory,
     CoreProfileModelFactory,
     EntrepreneurFactory,
     EntrepreneurProfileFactory,
     ExpertFactory,
     ExpertProfileFactory,
+    FunctionalExpertiseFactory,
+    GeographicExperienceFactory,
     IndustryFactory,
     InterestCategoryFactory,
     MemberFactory,
     MentorProgramOfficeHourFactory,
     PartnerTeamMemberFactory,
     ProgramFactory,
+    ProgramFamilyFactory,
     ProgramRoleFactory,
     ProgramRoleGrantFactory,
     ProgramStartupStatusFactory,
@@ -25,7 +31,9 @@ from accelerator.tests.factories import (
     UserFactory,
     UserRoleFactory,
 )
-from accelerator.tests.utils import months_from_now
+from accelerator.tests.utils import (
+    months_from_now,
+)
 from accelerator_abstract.models import (
     ACTIVE_PROGRAM_STATUS,
     ENDED_PROGRAM_STATUS,
@@ -33,6 +41,9 @@ from accelerator_abstract.models import (
     BaseUserRole,
 )
 from accelerator_abstract.models.base_clearance import CLEARANCE_LEVEL_STAFF
+from accelerator_abstract.models.base_core_profile import (
+    EDUCATIONAL_LEVEL_CHOICES,
+)
 
 
 def expert(role):
@@ -164,7 +175,9 @@ class TestCoreProfile(TestCase):
         profile = context.user.get_profile()
         self.assertTrue(profile.role_based_landing_page() == page)
 
-    def test_role_based_landing_page_excluding_roles(self):
+    @patch("bullet_train.BulletTrain.feature_enabled", return_value=False)
+    @patch("bullet_train.BulletTrain.has_feature", return_value=False)
+    def test_role_based_landing_page_excluding_roles(self, *args):
         page = "/asante"
         context = StartupTeamMemberContext(
             primary_contact=False)
@@ -248,7 +261,9 @@ class TestCoreProfile(TestCase):
         landing_page = user_profile.check_landing_page()
         self.assertEqual(landing_page, test_landing_page)
 
-    def test_landing_page_if_profile_landing_page_is_set_to_home(self):
+    @patch("bullet_train.BulletTrain.feature_enabled", return_value=False)
+    @patch("bullet_train.BulletTrain.has_feature", return_value=False)
+    def test_landing_page_if_profile_landing_page_is_set_to_home(self, *args):
         user_profile = EntrepreneurProfileFactory(landing_page="/")
         landing_page = user_profile.check_landing_page()
         self.assertEqual(landing_page, user_profile.default_page)
@@ -356,9 +371,20 @@ class TestCoreProfile(TestCase):
         expected = '/dashboard/expert/overview/'
         self.assertEqual(profile.check_landing_page(), expected)
 
-    def test_users_with_entrepreneur_interest_get_startups_landing_page(self):
+    @patch("bullet_train.BulletTrain.feature_enabled", return_value=False)
+    @patch("bullet_train.BulletTrain.has_feature", return_value=False)
+    def test_user_with_entrepreneur_interest_get_startups_landing_page(self,
+                                                                       *args):
         profile = CoreProfileModelFactory(entrepreneur_interest=True)
         expected = 'applicant_homepage'
+        self.assertEqual(profile.check_landing_page(), expected)
+
+    @patch("bullet_train.BulletTrain.feature_enabled", return_value=True)
+    @patch("bullet_train.BulletTrain.has_feature", return_value=True)
+    def test_user_with_entrepreneur_interest_get_profile_landing_page(self,
+                                                                      *args):
+        profile = CoreProfileModelFactory(entrepreneur_interest=True)
+        expected = 'profile'
         self.assertEqual(profile.check_landing_page(), expected)
 
     def was_mentor_in_last_12_months(self):
@@ -367,6 +393,26 @@ class TestCoreProfile(TestCase):
                                  end_date=months_from_now(-12))
         _user_with_role(profile.user, BaseUserRole.MENTOR, program=program)
         self.assertTrue(profile.was_mentor_in_last_12_months())
+
+    def test_completion_percentage_is_correct_for_completed_profile(self):
+        participation = [CommunityParticipationFactory(type=type[0])
+                         for type in PARTICIPATION_CHOICES]
+        profile = ExpertProfileFactory(
+            education_level=EDUCATIONAL_LEVEL_CHOICES[-1][0],
+            additional_industries=[IndustryFactory()],
+            functional_expertise=[FunctionalExpertiseFactory()],
+            geographic_experience=[GeographicExperienceFactory()],
+            program_families=[ProgramFamilyFactory()],
+            primary_industry=IndustryFactory(),
+            community_participation=participation)
+        completion_percentage = profile.percent_complete()
+        self.assertEqual(completion_percentage, 1)
+
+    def test_completion_percentage_is_correct_for_incomplete_profile(self):
+        # missing 7/22 fields used to calculate profile completion %
+        profile = ExpertProfileFactory(
+            program_families=[ProgramFamilyFactory()])
+        self.assertEqual(profile.percent_complete(), 0.68)
 
 
 def _user_with_role(user, role_name, program_name='program0', program=None):

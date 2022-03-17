@@ -29,6 +29,7 @@ class StartupTeamMemberContext(object):
                  upcoming=False,
                  startup_administrator=False,
                  primary_contact=True,
+                 founder=False,
                  program_status=ACTIVE_PROGRAM_STATUS):
         applications_open = False
         if upcoming:
@@ -55,6 +56,7 @@ class StartupTeamMemberContext(object):
             self.member = StartupTeamMemberFactory(
                 startup=self.startup,
                 startup_administrator=startup_administrator,
+                founder=founder,
                 user=self.user)
         self.startup_statuses = []
         self.program_startup_statuses = []

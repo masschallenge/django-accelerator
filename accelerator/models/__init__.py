@@ -329,3 +329,5 @@ from .partner_judge_application_assignment import (
     PartnerJudgeApplicationAssignment,
 )
 from .community_participation import CommunityParticipation
+from .geographic_experience import GeographicExperience
+from .business_proposition import BusinessProposition

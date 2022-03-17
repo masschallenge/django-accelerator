@@ -29,7 +29,7 @@ class BaseStartupTeamMember(AcceleratorModel):
     product_contact = models.BooleanField(default=False)
     design_contact = models.BooleanField(default=False)
     display_on_public_profile = models.BooleanField(default=True)
-    founder = models.NullBooleanField(default=False, null=True)
+    founder = models.BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_startupteammember'

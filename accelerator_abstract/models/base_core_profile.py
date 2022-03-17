@@ -28,6 +28,7 @@ from accelerator_abstract.models.base_program import (
     ACTIVE_PROGRAM_STATUS,
     ENDED_PROGRAM_STATUS,
 )
+from accelerator.utils import flag_smith_has_feature
 
 INVITED_JUDGE_ALERT = (
     "<h4>{first_name}, we would like to invite you to be a judge at "
@@ -95,24 +96,6 @@ PRONOUN_CHOICES = (
     ('Just my name please!', "Just my name please!"),
     ("other", "Other"),)
 
-GEOGRAPHIC_EXPERIENCE_CHOICES = (
-    ("United States-Northeast", "United States-Northeast"),
-    ("United States-Southeast", "United States-Southeast"),
-    ("United States-Southwest", "United States-Southwest"),
-    ("United States-Northwest", "United States-Northwest"),
-    ("United States-West", "United States-West"),
-    ("United States-Midwest", "United States-Midwest"),
-    ("United States-Alaska and Hawaii", "United States-Alaska and Hawaii"),
-    ("Central America", "Central America"),
-    ("South America", "South America"),
-    ("Europe", "Europe"),
-    ("Middle East", "Middle East"),
-    ("Africa", "Africa"),
-    ("East Asia", "East Asia"),
-    ("South Asia", "South Asia"),
-    ("Central Asia", "Central Asia"),
-    ("Oceania", "Oceania"),)
-
 EDUCATIONAL_LEVEL_CHOICES = (
     ("No formal schooling", "No formal schooling"),
     ("Completed high school", "Completed high school"),
@@ -137,6 +120,22 @@ HERE_ABOUT_US_CHOICES = (
     ("Social media", "Social media"),
     ("Blog or publication", "Blog or publication"),
     ("Other", "Other"),)
+
+GEOGRAPHIC_EXPERIENCE_HELP_TEXT = (
+    mark_safe('You may select up to 5 regions. To select multiple '
+              'regions, please press and hold Control (CTRL) on PCs '
+              'or Command (&#8984;) on Macs'))
+
+
+# Delete when removing CAM V feature flag
+OLD_LANDING_PAGE_MAP = {
+    EXPERT_USER_TYPE: 'expert_homepage',
+    ENTREPRENEUR_USER_TYPE: 'applicant_homepage',
+}
+LANDING_PAGE_MAP = {
+    EXPERT_USER_TYPE: 'expert_homepage',
+    ENTREPRENEUR_USER_TYPE: 'profile',
+}
 
 
 class BaseCoreProfile(AcceleratorModel):
@@ -235,13 +234,13 @@ class BaseCoreProfile(AcceleratorModel):
     expert_category = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                "ExpertCategory"),
-        verbose_name="I primarily consider myself a(n)",
+        verbose_name="My background is primarily as a(n)",
         related_name="%(class)s_experts",
         blank=True, null=True,  # added
         on_delete=models.CASCADE)
     primary_industry = models.ForeignKey(
         settings.MPTT_SWAPPABLE_INDUSTRY_MODEL,
-        verbose_name="Primary Industry",
+        verbose_name="Primary Industry/Experience",
         related_name="%(class)s_experts",
         limit_choices_to={'level__exact': 0},
         null=True,
@@ -378,12 +377,6 @@ class BaseCoreProfile(AcceleratorModel):
         choices=HERE_ABOUT_US_CHOICES,
         null=True,
         blank=True)
-    geographic_experience = models.CharField(
-        verbose_name="Geographic Experience/Expertise",
-        max_length=100,
-        choices=GEOGRAPHIC_EXPERIENCE_CHOICES,
-        null=True,
-        blank=True)
     expert_interest = models.BooleanField(
         verbose_name="Expert Interest",
         default=False)
@@ -417,6 +410,17 @@ class BaseCoreProfile(AcceleratorModel):
         'CommunityParticipation',
         blank=True,
         related_name='profiles')
+    geographic_experience = models.ManyToManyField(
+        'GeographicExperience',
+        verbose_name="Geographic Experience/Expertise",
+        help_text=GEOGRAPHIC_EXPERIENCE_HELP_TEXT,
+        blank=True)
+    privacy_profile = models.CharField(
+        max_length=64,
+        verbose_name="Privacy - Profile",
+        choices=PRIVACY_CHOICES,
+        blank=True,
+        default=PRIVACY_CHOICES[1][0])
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_coreprofile'
@@ -619,11 +623,11 @@ class BaseCoreProfile(AcceleratorModel):
 
     @property
     def user_default_page(self):
-        url_map = {
-            EXPERT_USER_TYPE: 'expert_homepage',
-            ENTREPRENEUR_USER_TYPE: 'applicant_homepage',
-        }
+        if flag_smith_has_feature('activate_unified_profile_views'):
+            url_map = LANDING_PAGE_MAP
+        else:
+            url_map = OLD_LANDING_PAGE_MAP
         try:
-            return url_map[self.participation]
+            return url_map[self.participation.upper()]
         except KeyError:
             return self.default_page
