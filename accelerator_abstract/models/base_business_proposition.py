@@ -16,16 +16,18 @@ MARKET_HELP_TEXT = ('How would you define your potential market '
 VALUE_PROPOSITION_HELP_TEXT = ('What will be your messaging to users & '
                                'customers and how do you plan to spread'
                                ' that message?')
-SALES_HELP_TEXT = ('How will you reach your customers? via which '
-                   'channels will you likely reach your customers/users?')
+SALES_HELP_TEXT = ('Which channels will you likely reach '
+                   'your customers/users through?')
 COMPETITORS_HELP_TEXT = ('Which organizations compete with'
                          ' your current value offering and who might '
                          'do so in the future?')
-PRODUCT_COMPLEMENT_HELP_TEXT = ('Which organizations compete with your '
-                                'current value offering and who might'
-                                ' do so in the future?')
-PRIMARY_ADVANTAGE_HELP_TEXT = ('What are the primary advantages'
-                               ' over competitors')
+PRODUCT_COMPLEMENT_HELP_TEXT = ('Which organizations and/or products'
+                                ' complement your offering in the'
+                                ' market? Do you know of and/or '
+                                'anticipate any value chain partners?')
+PRIMARY_ADVANTAGE_HELP_TEXT = ('What are your primary advantages'
+                               ' relative to existing or potential'
+                               ' competitors? Why will you win?')
 DRIVER_HELP_TEXT = ('What are the key drivers of '
                     'business economics (price points, margins, etc)?')
 INTELLECTUAL_PROPERTY_HELP_TEXT = ('What IP (Intellectual Property) exist'
@@ -56,7 +58,7 @@ class BaseBusinessProposition(AcceleratorModel):
     impact = models.TextField(blank=True,
                               null=True,
                               help_text=IMPACT_HELP_TEXT,
-                              verbose_name='One-Year / Five-Year Impact (?)')
+                              verbose_name='One-Year / Five-Year Impact')
     market = models.TextField(
         blank=True,
         null=True,
