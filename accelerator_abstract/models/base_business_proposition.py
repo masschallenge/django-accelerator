@@ -56,7 +56,7 @@ class BaseBusinessProposition(AcceleratorModel):
     impact = models.TextField(blank=True,
                               null=True,
                               help_text=IMPACT_HELP_TEXT,
-                              verbose_name='One-Year / Five-Year Impact (?)')
+                              verbose_name='One-Year / Five-Year Impact')
     market = models.TextField(
         blank=True,
         null=True,

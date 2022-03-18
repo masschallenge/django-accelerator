@@ -2,6 +2,7 @@
 
 from django.db import migrations, models
 from accelerator_abstract.models.base_business_proposition import (
+    IMPACT_HELP_TEXT,
     PRODUCT_COMPLEMENT_HELP_TEXT,
     PRIMARY_ADVANTAGE_HELP_TEXT,
     SALES_HELP_TEXT,
@@ -41,5 +42,14 @@ class Migration(migrations.Migration):
                 help_text=SALES_HELP_TEXT,
                 null=True,
                 verbose_name='Sales and Distribution / Channels'),
+        ),
+        migrations.AlterField(
+            model_name='businessproposition',
+            name='impact',
+            field=models.TextField(
+                blank=True,
+                help_text=IMPACT_HELP_TEXT,
+                null=True,
+                verbose_name='One-Year / Five-Year Impact'),
         ),
     ]
