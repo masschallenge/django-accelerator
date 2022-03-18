@@ -21,11 +21,13 @@ SALES_HELP_TEXT = ('Which channels will you likely reach '
 COMPETITORS_HELP_TEXT = ('Which organizations compete with'
                          ' your current value offering and who might '
                          'do so in the future?')
-PRODUCT_COMPLEMENT_HELP_TEXT = ('Which organizations and/or product complement '
-                                'your offering in the market? Do you know of '
-                                'and/or anticipate any value chain partners?')
-PRIMARY_ADVANTAGE_HELP_TEXT = ('What are your primary advantages relative to '
-                               'existing or potential competitors? Why will you win?')
+PRODUCT_COMPLEMENT_HELP_TEXT = ('Which organizations and/or product'
+                                ' complement your offering in the'
+                                ' market? Do you know of and/or '
+                                'anticipate any value chain partners?')
+PRIMARY_ADVANTAGE_HELP_TEXT = ('What are your primary advantages'
+                               ' relative to existing or potential'
+                               ' competitors? Why will you win?')
 DRIVER_HELP_TEXT = ('What are the key drivers of '
                     'business economics (price points, margins, etc)?')
 INTELLECTUAL_PROPERTY_HELP_TEXT = ('What IP (Intellectual Property) exist'
