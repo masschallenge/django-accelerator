@@ -21,7 +21,7 @@ SALES_HELP_TEXT = ('Which channels will you likely reach '
 COMPETITORS_HELP_TEXT = ('Which organizations compete with'
                          ' your current value offering and who might '
                          'do so in the future?')
-PRODUCT_COMPLEMENT_HELP_TEXT = ('Which organizations and/or product'
+PRODUCT_COMPLEMENT_HELP_TEXT = ('Which organizations and/or products'
                                 ' complement your offering in the'
                                 ' market? Do you know of and/or '
                                 'anticipate any value chain partners?')
