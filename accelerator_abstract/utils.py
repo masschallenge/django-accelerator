@@ -38,6 +38,7 @@ def _calc_progress(total, progress_num, **kwargs):
             'profile-complete': kwargs.get('is_profile_complete'),
             'bus-prop-complete': kwargs.get('is_bus_prop_complete')}
 
+
 def _get_model_fields(model, excluded_fields):
     return [
         field.name for field in

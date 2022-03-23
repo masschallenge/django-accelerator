@@ -320,18 +320,17 @@ class BaseStartup(AcceleratorModel):
 
             total_fields += len(STARTUP_COMPLETE_FIELDS)
             return _calc_progress(total_fields,
-                                       progress,
-                                       milestone=milestone,
-                                       is_bus_prop_complete=bus_p,
-                                       is_profile_complete=profile)
+                                  progress,
+                                  milestone=milestone,
+                                  is_bus_prop_complete=bus_p,
+                                  is_profile_complete=profile)
         else:
             progress = bus_p_progress_num + prof_progress_num
             return _calc_progress(total_fields,
-                                       progress,
-                                       milestone=milestone,
-                                       is_bus_prop_complete=bus_p,
-                                       is_profile_complete=profile)
-
+                                  progress,
+                                  milestone=milestone,
+                                  is_bus_prop_complete=bus_p,
+                                  is_profile_complete=profile)
 
     def _field_to_data(self, instance, fields):
         progress_num = 0
