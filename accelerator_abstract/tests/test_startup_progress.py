@@ -69,4 +69,4 @@ class TestStartupProgress(TestCase):
         self.assertEqual(progress['milestone'], PROFILE_COMPLETE)
         self.assertTrue(progress['bus-prop-complete'])
         self.assertTrue(progress['profile-complete'])
-        self.assertGreater(1, 1)
+        self.assertEqual(1, progress['progress'])
