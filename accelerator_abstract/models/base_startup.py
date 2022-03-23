@@ -12,6 +12,10 @@ from sorl.thumbnail import ImageField
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_startup_role import BaseStartupRole
+from accelerator_abstract.models.base_business_proposition import BaseBusinessProposition
+from accelerator_abstract.models.base_business_proposition import (
+    EXCLUDED_FIELDS
+)
 
 logger = logging.getLogger(__name__)
 
@@ -26,6 +30,19 @@ STARTUP_COMMUNITIES = (
 )
 STARTUP_NO_ORG_WARNING_MSG = "Startup {} has no organization"
 DISPLAY_STARTUP_STATUS = "{status} {year} ({program_family_slug})"
+STARTUP_FIELDS = [
+   'primary_industry', 'name',
+    'date_founded', 'location_street_address',
+    'location_city', 'location_regional', 'location_national',
+    'short_pitch', 'full_elevator_pitch', 'video_elevator_pitch_url',
+    'is_visible', 'website_url', 'public_inquiry_email',
+]
+STARTUP_COMPLETE_FIELDS = [
+    'twitter_handle', 'linked_in_url', 'image_url'
+]
+
+APPLICATION_READY = 'application-ready'
+PROFILE_COMPLETE = 'complete-profile'
 
 
 class BaseStartup(AcceleratorModel):
@@ -272,3 +289,69 @@ class BaseStartup(AcceleratorModel):
         ).exists()
 
     is_finalist.boolean = True
+
+    def progress_complete(self):
+        milestone = APPLICATION_READY
+
+        instance = self.business_propositions.order_by('created_at').last()
+        bus_prop_fields = self._get_business_proposition_fields()
+        total_fields = len(STARTUP_FIELDS) + len(bus_prop_fields)
+
+        prof_progress_num, prof_milestone, profile = self._field_to_data(
+            self,
+            STARTUP_FIELDS)
+        bus_p_progress_num, bus_p_milestone, bus_p = self._field_to_data(
+            instance,
+            bus_prop_fields)
+    
+        if (bus_p_milestone == PROFILE_COMPLETE and
+                prof_milestone == PROFILE_COMPLETE):
+            milestone = PROFILE_COMPLETE
+            progress = bus_p_progress_num + prof_progress_num
+
+            progress_num, _, profile = self._field_to_data(
+            self,
+            STARTUP_COMPLETE_FIELDS)
+            progress += progress_num
+
+            total_fields += len(STARTUP_COMPLETE_FIELDS)
+            return self._calc_progress(total_fields,
+                                       progress,
+                                       milestone=milestone,
+                                       is_bus_prop_complete=bus_p,
+                                       is_profile_complete=profile)
+        else:
+            progress = bus_p_progress_num + prof_progress_num
+            return self._calc_progress(total_fields,
+                                       progress,
+                                       milestone=milestone,
+                                       is_bus_prop_complete=bus_p,
+                                       is_profile_complete=profile)
+
+    def _get_business_proposition_fields(self):
+        return [
+            field.name for field in
+            self.business_propositions.model._meta.get_fields(
+                include_parents=False)
+            if field.name not in EXCLUDED_FIELDS
+        ]
+
+    def _calc_progress(self, total, progress_num, **kwargs):
+        return {'progress': round(progress_num/total, 2),
+                'milestone': kwargs.get('milestone'),
+                'profile-complete': kwargs.get('is_profile_complete'),
+                'bus-prop-complete': kwargs.get('is_bus_prop_complete')}
+
+    def _field_to_data(self, instance, fields):
+        progress_num = 0
+        milestone = PROFILE_COMPLETE
+        attr_complete = True
+        if not instance:
+            return progress_num, APPLICATION_READY, False
+        for field in fields:
+            if getattr(instance, field):
+                progress_num += 1
+            else:
+                milestone = APPLICATION_READY
+                attr_complete = False
+        return progress_num, milestone, attr_complete

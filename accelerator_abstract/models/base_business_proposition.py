@@ -46,6 +46,7 @@ VALIDATION_HELP_TEXT = ('What traction have you made to '
 class BaseBusinessProposition(AcceleratorModel):
     startup = models.ForeignKey(
         swapper.get_model_name('accelerator', 'Startup'),
+        related_name='business_propositions',
         on_delete=models.CASCADE)
     pain_point = models.TextField(blank=True,
                                   null=True,
