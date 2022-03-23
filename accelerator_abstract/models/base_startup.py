@@ -297,7 +297,8 @@ class BaseStartup(AcceleratorModel):
         milestone = APPLICATION_READY
 
         instance = self.business_propositions.order_by('created_at').last()
-        bus_prop_fields = _get_model_fields(self.business_propositions.model)
+        bus_prop_fields = _get_model_fields(self.business_propositions.model,
+                                            EXCLUDED_FIELDS)
         total_fields = len(STARTUP_FIELDS) + len(bus_prop_fields)
 
         prof_progress_num, prof_milestone, profile = self._field_to_data(
