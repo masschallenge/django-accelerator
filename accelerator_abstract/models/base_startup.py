@@ -15,6 +15,10 @@ from accelerator_abstract.models.base_startup_role import BaseStartupRole
 from accelerator_abstract.models.base_business_proposition import (
     EXCLUDED_FIELDS
 )
+from accelerator_abstract.utils import (
+    _calc_progress,
+    _get_model_fields
+)
 
 logger = logging.getLogger(__name__)
 
@@ -293,7 +297,7 @@ class BaseStartup(AcceleratorModel):
         milestone = APPLICATION_READY
 
         instance = self.business_propositions.order_by('created_at').last()
-        bus_prop_fields = self._get_business_proposition_fields()
+        bus_prop_fields = _get_model_fields(self.business_propositions.model)
         total_fields = len(STARTUP_FIELDS) + len(bus_prop_fields)
 
         prof_progress_num, prof_milestone, profile = self._field_to_data(
@@ -314,32 +318,19 @@ class BaseStartup(AcceleratorModel):
             progress += progress_num
 
             total_fields += len(STARTUP_COMPLETE_FIELDS)
-            return self._calc_progress(total_fields,
+            return _calc_progress(total_fields,
                                        progress,
                                        milestone=milestone,
                                        is_bus_prop_complete=bus_p,
                                        is_profile_complete=profile)
         else:
             progress = bus_p_progress_num + prof_progress_num
-            return self._calc_progress(total_fields,
+            return _calc_progress(total_fields,
                                        progress,
                                        milestone=milestone,
                                        is_bus_prop_complete=bus_p,
                                        is_profile_complete=profile)
 
-    def _get_business_proposition_fields(self):
-        return [
-            field.name for field in
-            self.business_propositions.model._meta.get_fields(
-                include_parents=False)
-            if field.name not in EXCLUDED_FIELDS
-        ]
-
-    def _calc_progress(self, total, progress_num, **kwargs):
-        return {'progress': round(progress_num/total, 2),
-                'milestone': kwargs.get('milestone'),
-                'profile-complete': kwargs.get('is_profile_complete'),
-                'bus-prop-complete': kwargs.get('is_bus_prop_complete')}
 
     def _field_to_data(self, instance, fields):
         progress_num = 0

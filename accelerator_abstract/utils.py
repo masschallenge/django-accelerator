@@ -32,4 +32,19 @@ def _error_msg(e):
     return msg
 
 
+def _calc_progress(total, progress_num, **kwargs):
+    return {'progress': round(progress_num/total, 2),
+            'milestone': kwargs.get('milestone'),
+            'profile-complete': kwargs.get('is_profile_complete'),
+            'bus-prop-complete': kwargs.get('is_bus_prop_complete')}
+
+def _get_model_fields(model, excluded_fields):
+    return [
+        field.name for field in
+        model._meta.get_fields(
+            include_parents=False)
+        if field.name not in excluded_fields
+    ]
+
+
 HOUR_FORMAT = "%I:%M %p"
