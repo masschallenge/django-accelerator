@@ -12,7 +12,6 @@ from sorl.thumbnail import ImageField
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 from accelerator_abstract.models.base_startup_role import BaseStartupRole
-from accelerator_abstract.models.base_business_proposition import BaseBusinessProposition
 from accelerator_abstract.models.base_business_proposition import (
     EXCLUDED_FIELDS
 )
@@ -31,7 +30,7 @@ STARTUP_COMMUNITIES = (
 STARTUP_NO_ORG_WARNING_MSG = "Startup {} has no organization"
 DISPLAY_STARTUP_STATUS = "{status} {year} ({program_family_slug})"
 STARTUP_FIELDS = [
-   'primary_industry', 'name',
+    'primary_industry', 'name',
     'date_founded', 'location_street_address',
     'location_city', 'location_regional', 'location_national',
     'short_pitch', 'full_elevator_pitch', 'video_elevator_pitch_url',
@@ -303,15 +302,15 @@ class BaseStartup(AcceleratorModel):
         bus_p_progress_num, bus_p_milestone, bus_p = self._field_to_data(
             instance,
             bus_prop_fields)
-    
+
         if (bus_p_milestone == PROFILE_COMPLETE and
                 prof_milestone == PROFILE_COMPLETE):
             milestone = PROFILE_COMPLETE
             progress = bus_p_progress_num + prof_progress_num
 
             progress_num, _, profile = self._field_to_data(
-            self,
-            STARTUP_COMPLETE_FIELDS)
+                self,
+                STARTUP_COMPLETE_FIELDS)
             progress += progress_num
 
             total_fields += len(STARTUP_COMPLETE_FIELDS)

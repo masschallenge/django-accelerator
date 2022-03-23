@@ -53,7 +53,8 @@ class TestStartupProgress(TestCase):
     def test_milestone_change_when_required_field_complete(self):
         business_proposition_data = self._business_proposition_data()
         startup = StartupFactory(video_elevator_pitch_url='https://video.com')
-        BusinessPropositionFactory(startup=startup, **business_proposition_data)
+        BusinessPropositionFactory(startup=startup,
+                                   **business_proposition_data)
         progress = startup.progress_complete()
         self.assertEqual(progress['milestone'], PROFILE_COMPLETE)
         self.assertTrue(progress['bus-prop-complete'])
@@ -64,7 +65,8 @@ class TestStartupProgress(TestCase):
         business_proposition_data = self._business_proposition_data()
         startup = StartupFactory(video_elevator_pitch_url='https://video.com',
                                  high_resolution_logo='logo.jpg')
-        BusinessPropositionFactory(startup=startup, **business_proposition_data)
+        BusinessPropositionFactory(startup=startup,
+                                   **business_proposition_data)
         progress = startup.progress_complete()
         self.assertEqual(progress['milestone'], PROFILE_COMPLETE)
         self.assertTrue(progress['bus-prop-complete'])
