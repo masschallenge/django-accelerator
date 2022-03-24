@@ -36,7 +36,7 @@ class BaseStartup(AcceleratorModel):
                              on_delete=models.CASCADE)
     is_visible = models.BooleanField(
         default=True,
-        blank=True, 
+        blank=True,
         null=True,
         help_text=('Startup Profiles will be published to external websites '
                    'through the the API.'))

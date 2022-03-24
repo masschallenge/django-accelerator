@@ -15,19 +15,32 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='allocator',
-            options={'managed': False, 'verbose_name_plural': 'Allocators'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Allocators'},
         ),
         migrations.AlterModelOptions(
             name='application',
-            options={'managed': False, 'ordering': ['startup'], 'verbose_name_plural': 'Applications'},
+            options={
+                'managed': False, 
+                'ordering': ['startup'], 
+                'verbose_name_plural': 
+                'Applications'},
         ),
         migrations.AlterModelOptions(
             name='applicationanswer',
-            options={'managed': False, 'verbose_name_plural': 'Application Answers'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 
+                'Application Answers'},
         ),
         migrations.AlterModelOptions(
             name='applicationpanelassignment',
-            options={'managed': False, 'ordering': ('panel_slot_number',), 'verbose_name_plural': 'assignments of startup applications to panel'},
+            options={
+                'managed': False, 
+                'ordering': ('panel_slot_number',), 
+                'verbose_name_plural': 
+                    'assignments of startup applications to panel'},
         ),
         migrations.AlterModelOptions(
             name='applicationquestion',
@@ -51,7 +64,10 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='categoryheaderpage',
-            options={'managed': False, 'verbose_name': 'Category Header', 'verbose_name_plural': 'Category Headers'},
+            options={
+                'managed': False, 
+                'verbose_name': 'Category Header', 
+                'verbose_name_plural': 'Category Headers'},
         ),
         migrations.AlterModelOptions(
             name='clearance',
@@ -67,11 +83,16 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='criterion',
-            options={'managed': False, 'verbose_name': 'Application Allocator Criterion', 'verbose_name_plural': 'Application Allocator Criteria'},
+            options={
+                'managed': False, 
+                'verbose_name': 'Application Allocator Criterion', 
+                'verbose_name_plural': 'Application Allocator Criteria'},
         ),
         migrations.AlterModelOptions(
             name='criterionoptionspec',
-            options={'managed': False, 'verbose_name': 'Application Allocator Criterion Option'},
+            options={
+                'managed': False, 
+                'verbose_name': 'Application Allocator Criterion Option'},
         ),
         migrations.AlterModelOptions(
             name='currency',
@@ -87,19 +108,30 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='expertcategory',
-            options={'managed': False, 'ordering': ['name'], 'verbose_name': 'Expert Category', 'verbose_name_plural': 'Expert Categories'},
+            options={
+                'managed': False, 
+                'ordering': ['name'], 
+                'verbose_name': 'Expert Category', 
+                'verbose_name_plural': 'Expert Categories'},
         ),
         migrations.AlterModelOptions(
             name='expertinterest',
-            options={'managed': False, 'verbose_name_plural': 'Expert Interests'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Expert Interests'},
         ),
         migrations.AlterModelOptions(
             name='expertinteresttype',
-            options={'managed': False, 'verbose_name_plural': 'Expert Interest Types'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Expert Interest Types'},
         ),
         migrations.AlterModelOptions(
             name='filepage',
-            options={'managed': False, 'verbose_name': 'File', 'verbose_name_plural': 'Files'},
+            options={
+                'managed': False, 
+                'verbose_name': 'File', 
+                'verbose_name_plural': 'Files'},
         ),
         migrations.AlterModelOptions(
             name='functionalexpertise',
@@ -107,7 +139,11 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='genderchoices',
-            options={'managed': False, 'ordering': ['name'], 'verbose_name': 'Gender Choice', 'verbose_name_plural': 'Gender Choices'},
+            options={
+                'managed': False, 
+                'ordering': ['name'], 
+                'verbose_name': 'Gender Choice', 
+                'verbose_name_plural': 'Gender Choices'},
         ),
         migrations.AlterModelOptions(
             name='geographicexperience',
@@ -115,43 +151,74 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='interestcategory',
-            options={'managed': False, 'verbose_name_plural': 'Interest Categories'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Interest Categories'},
         ),
         migrations.AlterModelOptions(
             name='jobposting',
-            options={'managed': False, 'verbose_name_plural': 'Job postings for startups'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Job postings for startups'},
         ),
         migrations.AlterModelOptions(
             name='judgeapplicationfeedback',
-            options={'managed': False, 'verbose_name_plural': 'Judge Application Feedback'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Judge Application Feedback'},
         ),
         migrations.AlterModelOptions(
             name='judgeavailability',
-            options={'managed': False, 'ordering': ['panel_time__start_date_time', 'panel_type__panel_type', 'panel_location__location'], 'verbose_name_plural': 'Judge availability for specific Panel types, times, locations'},
+            options={
+                'managed': False, 
+                'ordering': ['panel_time__start_date_time', 
+                             'panel_type__panel_type', 
+                             'panel_location__location'], 
+                'verbose_name_plural': 
+                    'Judge availability for specific Panel types,' 
+                    'times, locations'},
         ),
         migrations.AlterModelOptions(
             name='judgefeedbackcomponent',
-            options={'managed': False, 'verbose_name_plural': 'Feedback Components'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Feedback Components'},
         ),
         migrations.AlterModelOptions(
             name='judgepanelassignment',
-            options={'managed': False, 'verbose_name_plural': 'assignments of judge to panel'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 
+                'assignments of judge to panel'},
         ),
         migrations.AlterModelOptions(
             name='judgeroundcommitment',
-            options={'managed': False, 'verbose_name_plural': 'Judge commitment to participate in a Judging Round'},
+            options={
+                'managed': False, 
+                'verbose_name_plural':
+                    'Judge commitment to participate in a Judging Round'},
         ),
         migrations.AlterModelOptions(
             name='judgingform',
-            options={'managed': False, 'verbose_name_plural': 'Judging Forms'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Judging Forms'},
         ),
         migrations.AlterModelOptions(
             name='judgingformelement',
-            options={'managed': False, 'ordering': ['form_type', 'element_number'], 'verbose_name_plural': 'Judging Form Elements'},
+            options={
+                'managed': False, 
+                'ordering': ['form_type', 'element_number'],
+                'verbose_name_plural': 'Judging Form Elements'},
         ),
         migrations.AlterModelOptions(
             name='judginground',
-            options={'managed': False, 'ordering': ['program__program_status', '-program__end_date', '-end_date_time', 'name'], 'verbose_name_plural': 'Judging Rounds'},
+            options={
+                'managed': False, 
+                'ordering': ['program__program_status', 
+                             '-program__end_date', 
+                             '-end_date_time', 'name'], 
+                'verbose_name_plural': 'Judging Rounds'},
         ),
         migrations.AlterModelOptions(
             name='legalcheck',
@@ -159,15 +226,24 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='location',
-            options={'managed': False, 'verbose_name_plural': 'locations'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'locations'},
         ),
         migrations.AlterModelOptions(
             name='mentoringspecialties',
-            options={'managed': False, 'ordering': ['name'], 'verbose_name': 'Mentoring Specialty', 'verbose_name_plural': 'Mentoring Specialties'},
+            options={
+                'managed': False, 
+                'ordering': ['name'], 
+                'verbose_name': 'Mentoring Specialty', 
+                'verbose_name_plural': 'Mentoring Specialties'},
         ),
         migrations.AlterModelOptions(
             name='mentorprogramofficehour',
-            options={'managed': False, 'ordering': ['start_date_time'], 'verbose_name': 'Office Hour'},
+            options={
+                'managed': False, 
+                'ordering': ['start_date_time'], 
+                'verbose_name': 'Office Hour'},
         ),
         migrations.AlterModelOptions(
             name='modelchange',
@@ -179,15 +255,21 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='navtree',
-            options={'managed': False, 'verbose_name_plural': 'NavTrees'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'NavTrees'},
         ),
         migrations.AlterModelOptions(
             name='navtreeitem',
-            options={'managed': False, 'verbose_name_plural': 'NavTreeItems'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'NavTreeItems'},
         ),
         migrations.AlterModelOptions(
             name='newsletter',
-            options={'managed': False, 'ordering': ('-created_at', 'name')},
+            options={
+                'managed': False, 
+                'ordering': ('-created_at', 'name')},
         ),
         migrations.AlterModelOptions(
             name='newsletterreceipt',
@@ -195,43 +277,73 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='nodepublishedfor',
-            options={'managed': False, 'verbose_name': 'Node is Published For', 'verbose_name_plural': 'Node is Published For'},
+            options={
+                'managed': False, 
+                'verbose_name': 'Node is Published For', 
+                'verbose_name_plural': 'Node is Published For'},
         ),
         migrations.AlterModelOptions(
             name='nodesubnavassociation',
-            options={'managed': False, 'verbose_name': 'Node Sub Navigation Association', 'verbose_name_plural': 'Node Sub Navigation Associations'},
+            options={
+                'managed': False, 
+                'verbose_name': 'Node Sub Navigation Association', 
+                'verbose_name_plural': 
+                    'Node Sub Navigation Associations'},
         ),
         migrations.AlterModelOptions(
             name='observer',
-            options={'managed': False, 'ordering': ['last_name', 'first_name'], 'verbose_name': 'Observer', 'verbose_name_plural': 'Observers'},
+            options={
+                'managed': False, 
+                'ordering': ['last_name', 'first_name'], 
+                'verbose_name': 'Observer', 
+                'verbose_name_plural': 'Observers'},
         ),
         migrations.AlterModelOptions(
             name='organization',
-            options={'managed': False, 'ordering': ['name'], 'verbose_name_plural': 'Organizations'},
+            options={
+                'managed': False, 
+                'ordering': ['name'], 
+                'verbose_name_plural': 'Organizations'},
         ),
         migrations.AlterModelOptions(
             name='organizationnote',
-            options={'managed': False, 'verbose_name': 'Organization note'},
+            options={
+                'managed': False, 
+                'verbose_name': 'Organization note'},
         ),
         migrations.AlterModelOptions(
             name='panel',
-            options={'managed': False, 'verbose_name_plural': 'Panels'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Panels'},
         ),
         migrations.AlterModelOptions(
             name='panellocation',
-            options={'managed': False, 'ordering': ['judging_round', 'description'], 'verbose_name_plural': 'Panel Locations'},
+            options={
+                'managed': False, 
+                'ordering': ['judging_round', 'description'], 
+                'verbose_name_plural': 'Panel Locations'},
         ),
         migrations.AlterModelOptions(
             name='paneltime',
-            options={'managed': False, 'ordering': ['judging_round', 'start_date_time'], 'verbose_name_plural': 'Panel Times'},
+            options={
+                'managed': False, 
+                'ordering': ['judging_round', 'start_date_time'], 
+                'verbose_name_plural': 'Panel Times'},
         ),
         migrations.AlterModelOptions(
             name='paneltype',
-            options={'managed': False, 'ordering': ['judging_round', 'description'], 'verbose_name_plural': 'Panel Types'},
+            options={
+                'managed': False, 
+                'ordering': ['judging_round', 'description'], 
+                'verbose_name_plural': 'Panel Types'},
         ),
         migrations.AlterModelOptions(
             name='partner',
-            options={'managed': False, 'ordering': ['organization__name'], 'verbose_name_plural': 'Partners'},
+            options={
+                'managed': False, 
+                'ordering': ['organization__name'], 
+                'verbose_name_plural': 'Partners'},
         ),
         migrations.AlterModelOptions(
             name='partnerapplicationinterest',
@@ -243,11 +355,17 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='partnerjudginginstructions',
-            options={'managed': False, 'verbose_name_plural': 'Partner judging Round instructions'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 
+                    'Partner judging Round instructions'},
         ),
         migrations.AlterModelOptions(
             name='partnerjudgingroundchallenge',
-            options={'managed': False, 'verbose_name_plural': 'Partner Judging Round Challenges'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 
+                    'Partner Judging Round Challenges'},
         ),
         migrations.AlterModelOptions(
             name='partnerlabel',
@@ -255,7 +373,11 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='partnerteammember',
-            options={'managed': False, 'ordering': ['team_member__last_name', 'team_member__first_name'], 'verbose_name_plural': 'Partner Team Members'},
+            options={
+                'managed': False, 
+                'ordering': ['team_member__last_name',
+                             'team_member__first_name'], 
+                'verbose_name_plural': 'Partner Team Members'},
         ),
         migrations.AlterModelOptions(
             name='paypalpayment',
@@ -267,47 +389,80 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='program',
-            options={'managed': False, 'verbose_name_plural': 'Programs'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Programs'},
         ),
         migrations.AlterModelOptions(
             name='programcycle',
-            options={'managed': False, 'verbose_name_plural': 'program cycles'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'program cycles'},
         ),
         migrations.AlterModelOptions(
             name='programfamily',
-            options={'managed': False, 'verbose_name_plural': 'program families'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'program families'},
         ),
         migrations.AlterModelOptions(
             name='programfamilylocation',
-            options={'managed': False, 'verbose_name': 'Program Family Location', 'verbose_name_plural': 'Program Family Locations'},
+            options={
+                'managed': False, 
+                'verbose_name': 'Program Family Location', 
+                'verbose_name_plural': 'Program Family Locations'},
         ),
         migrations.AlterModelOptions(
             name='programoverride',
-            options={'managed': False, 'verbose_name_plural': 'Program Overrides'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Program Overrides'},
         ),
         migrations.AlterModelOptions(
             name='programpartner',
-            options={'managed': False, 'ordering': ['program__name', 'partner_type__sort_order', 'partner'], 'verbose_name_plural': 'Program Partner'},
+            options={
+                'managed': False, 
+                'ordering': ['program__name', 
+                             'partner_type__sort_order', 
+                             'partner'], 
+                'verbose_name_plural': 'Program Partner'},
         ),
         migrations.AlterModelOptions(
             name='programpartnertype',
-            options={'managed': False, 'ordering': ['program', 'sort_order'], 'verbose_name_plural': 'Program Partner Types'},
+            options={
+                'managed': False, 
+                'ordering': ['program', 'sort_order'], 
+                'verbose_name_plural': 'Program Partner Types'},
         ),
         migrations.AlterModelOptions(
             name='programrole',
-            options={'managed': False, 'ordering': ['name'], 'verbose_name': 'Program Role', 'verbose_name_plural': 'Program Roles'},
+            options={
+                'managed': False, 
+                'ordering': ['name'], 
+                'verbose_name': 'Program Role', 
+                'verbose_name_plural': 'Program Roles'},
         ),
         migrations.AlterModelOptions(
             name='programrolegrant',
-            options={'managed': False, 'verbose_name': 'Program Role Grant', 'verbose_name_plural': 'Program Role Grants'},
+            options={
+                'managed': False, 
+                'verbose_name': 'Program Role Grant', 
+                'verbose_name_plural': 'Program Role Grants'},
         ),
         migrations.AlterModelOptions(
             name='programstartupattribute',
-            options={'managed': False, 'ordering': ['program', 'attribute_label']},
+            options={
+                'managed': False, 
+                'ordering': ['program', 'attribute_label']},
         ),
         migrations.AlterModelOptions(
             name='programstartupstatus',
-            options={'managed': False, 'ordering': ['program', 'sort_order', 'startup_status'], 'verbose_name_plural': 'Program Startup Statuses'},
+            options={
+                'managed': False, 
+                'ordering': ['program', 
+                             'sort_order', 
+                             'startup_status'], 
+                'verbose_name_plural': 'Program Startup Statuses'},
         ),
         migrations.AlterModelOptions(
             name='question',
@@ -319,7 +474,9 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='refundcode',
-            options={'managed': False, 'verbose_name_plural': 'Refund Codes'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Refund Codes'},
         ),
         migrations.AlterModelOptions(
             name='refundcoderedemption',
@@ -331,19 +488,27 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='scenarioapplication',
-            options={'managed': False, 'verbose_name_plural': 'Scenario Applications'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Scenario Applications'},
         ),
         migrations.AlterModelOptions(
             name='scenariojudge',
-            options={'managed': False, 'verbose_name_plural': 'Scenario Judges'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Scenario Judges'},
         ),
         migrations.AlterModelOptions(
             name='scenariopreference',
-            options={'managed': False, 'ordering': ['priority']},
+            options={
+                'managed': False, 
+                'ordering': ['priority']},
         ),
         migrations.AlterModelOptions(
             name='section',
-            options={'managed': False, 'ordering': ('newsletter', 'sequence')},
+            options={
+                'managed': False, 
+                'ordering': ('newsletter', 'sequence')},
         ),
         migrations.AlterModelOptions(
             name='site',
@@ -351,19 +516,28 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='siteprogramauthorization',
-            options={'managed': False, 'verbose_name_plural': 'Site Program Authorizations'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Site Program Authorizations'},
         ),
         migrations.AlterModelOptions(
             name='siteredirectpage',
-            options={'managed': False, 'verbose_name': 'Site Redirect', 'verbose_name_plural': 'Site Redirects'},
+            options={
+                'managed': False, 
+                'verbose_name': 'Site Redirect', 
+                'verbose_name_plural': 'Site Redirects'},
         ),
         migrations.AlterModelOptions(
             name='startup',
-            options={'managed': False, 'verbose_name_plural': 'Startups'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Startups'},
         ),
         migrations.AlterModelOptions(
             name='startupattribute',
-            options={'managed': False, 'verbose_name_plural': 'Startup Attributes'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Startup Attributes'},
         ),
         migrations.AlterModelOptions(
             name='startupcycleinterest',
@@ -375,15 +549,22 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='startupmentorrelationship',
-            options={'managed': False, 'verbose_name_plural': 'Startup Mentor Relationships'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Startup Mentor Relationships'},
         ),
         migrations.AlterModelOptions(
             name='startupmentortrackingrecord',
-            options={'managed': False, 'verbose_name': 'Mentor Tracking Record', 'verbose_name_plural': 'Mentor Tracking Records'},
+            options={
+                'managed': False, 
+                'verbose_name': 'Mentor Tracking Record', 
+                'verbose_name_plural': 'Mentor Tracking Records'},
         ),
         migrations.AlterModelOptions(
             name='startupoverridegrant',
-            options={'managed': False, 'verbose_name_plural': 'Startup Override Grants'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Startup Override Grants'},
         ),
         migrations.AlterModelOptions(
             name='startupprograminterest',
@@ -395,15 +576,21 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='startupstatus',
-            options={'managed': False, 'verbose_name_plural': 'Startup Statuses'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Startup Statuses'},
         ),
         migrations.AlterModelOptions(
             name='startupteammember',
-            options={'managed': False, 'verbose_name_plural': 'Startup Team Members'},
+            options={
+                'managed': False, 
+                'verbose_name_plural': 'Startup Team Members'},
         ),
         migrations.AlterModelOptions(
             name='userdeferrablemodal',
-            options={'managed': False, 'verbose_name': 'User Deferrable Modal'},
+            options={
+                'managed': False, 
+                'verbose_name': 'User Deferrable Modal'},
         ),
         migrations.AlterModelOptions(
             name='userlabel',
@@ -411,11 +598,15 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='userlegalcheck',
-            options={'managed': False, 'verbose_name': 'User Legal Check'},
+            options={
+                'managed': False, 
+                'verbose_name': 'User Legal Check'},
         ),
         migrations.AlterModelOptions(
             name='usernote',
-            options={'managed': False, 'verbose_name': 'User note'},
+            options={
+                'managed': False, 
+                'verbose_name': 'User note'},
         ),
         migrations.AlterModelOptions(
             name='userrole',
@@ -423,11 +614,19 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='userrolemenu',
-            options={'managed': False, 'verbose_name': 'User Role Menu', 'verbose_name_plural': 'User Role Menus'},
+            options={
+                'managed': False, 
+                'verbose_name': 'User Role Menu', 
+                'verbose_name_plural': 'User Role Menus'},
         ),
         migrations.AlterField(
             model_name='industry',
             name='parent',
-            field=mptt.fields.TreeForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='children', to=settings.MPTT_SWAPPABLE_INDUSTRY_MODEL),
+            field=mptt.fields.TreeForeignKey(
+                blank=True, 
+                null=True, 
+                on_delete=django.db.models.deletion.CASCADE, 
+                related_name='children', 
+                to=settings.MPTT_SWAPPABLE_INDUSTRY_MODEL),
         ),
     ]
