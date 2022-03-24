@@ -22,7 +22,7 @@ class TestStartupProgress(TestCase):
                 data[field.name] = characters
         return data
 
-    def test_appliocation_ready_milestone_with_incomplete_data(self):
+    def test_application_ready_milestone_with_incomplete_data(self):
         startup = StartupFactory()
         BusinessPropositionFactory(startup=startup)
         progress = startup.profile_status()

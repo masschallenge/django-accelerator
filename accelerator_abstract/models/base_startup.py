@@ -304,14 +304,14 @@ class BaseStartup(AcceleratorModel):
         prof_progress_num, prof_milestone, profile = self._field_to_data(
             self,
             STARTUP_FIELDS)
-        bus_p_progress_num, bus_p_milestone, bus_p = self._field_to_data(
-            instance,
-            bus_prop_fields)
+        (bus_prop_progress_num,
+            bus_prop_milestone,
+            bus_prop) = self._field_to_data(instance, bus_prop_fields)
 
-        if (bus_p_milestone == PROFILE_COMPLETE and
+        if (bus_prop_milestone == PROFILE_COMPLETE and
                 prof_milestone == PROFILE_COMPLETE):
             milestone = PROFILE_COMPLETE
-            progress = bus_p_progress_num + prof_progress_num
+            progress = bus_prop_progress_num + prof_progress_num
 
             progress_num, _, profile = self._field_to_data(
                 self,
@@ -322,14 +322,14 @@ class BaseStartup(AcceleratorModel):
             return _calc_progress(total_fields,
                                   progress,
                                   milestone=milestone,
-                                  is_bus_prop_complete=bus_p,
+                                  is_bus_prop_complete=bus_prop,
                                   is_profile_complete=profile)
         else:
-            progress = bus_p_progress_num + prof_progress_num
+            progress = bus_prop_progress_num + prof_progress_num
             return _calc_progress(total_fields,
                                   progress,
                                   milestone=milestone,
-                                  is_bus_prop_complete=bus_p,
+                                  is_bus_prop_complete=bus_prop,
                                   is_profile_complete=profile)
 
     def _field_to_data(self, instance, fields):
