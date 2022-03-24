@@ -99,9 +99,7 @@ class BaseStartup(AcceleratorModel):
     # profile color fields are deprecated - do not delete until we know
     # what the marketing site is doing with startup display
     profile_background_color = models.CharField(
-        max_length=7,
-        blank=True,
-        null=True,
+        max_length=7, blank=True, null=True,
         default=DEFAULT_PROFILE_BACKGROUND_COLOR,
         validators=[RegexValidator(
             '^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|)$',
@@ -109,8 +107,7 @@ class BaseStartup(AcceleratorModel):
             'such as FF0000 for red.'), ])
     profile_text_color = models.CharField(
         max_length=7,
-        blank=True,
-        null=True,
+        blank=True, null=True,
         default=DEFAULT_PROFILE_TEXT_COLOR,
         validators=[RegexValidator('^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|)$',
                                    'Color must be 3 or 6-digit hexecimal '
