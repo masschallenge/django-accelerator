@@ -25,7 +25,7 @@ class TestStartupProgress(TestCase):
     def test_appliocation_ready_milestone_with_incomplete_data(self):
         startup = StartupFactory()
         BusinessPropositionFactory(startup=startup)
-        progress = startup.progress_complete()
+        progress = startup.profile_status()
         self.assertEqual(progress['milestone'], APPLICATION_READY)
         self.assertFalse(progress['bus-prop-complete'])
         self.assertFalse(progress['profile-complete'])
@@ -35,7 +35,7 @@ class TestStartupProgress(TestCase):
         startup = StartupFactory()
         business_prop_data = self._business_proposition_data()
         BusinessPropositionFactory(startup=startup, **business_prop_data)
-        progress = startup.progress_complete()
+        progress = startup.profile_status()
         self.assertEqual(progress['milestone'], APPLICATION_READY)
         self.assertTrue(progress['bus-prop-complete'])
         self.assertFalse(progress['profile-complete'])
@@ -44,7 +44,7 @@ class TestStartupProgress(TestCase):
     def test_startup_profile_complete_business_prop_incomplete_(self):
         startup = StartupFactory(video_elevator_pitch_url='https://video.com')
         BusinessPropositionFactory(startup=startup)
-        progress = startup.progress_complete()
+        progress = startup.profile_status()
         self.assertEqual(progress['milestone'], APPLICATION_READY)
         self.assertFalse(progress['bus-prop-complete'])
         self.assertTrue(progress['profile-complete'])
@@ -55,7 +55,7 @@ class TestStartupProgress(TestCase):
         startup = StartupFactory(video_elevator_pitch_url='https://video.com')
         BusinessPropositionFactory(startup=startup,
                                    **business_proposition_data)
-        progress = startup.progress_complete()
+        progress = startup.profile_status()
         self.assertEqual(progress['milestone'], PROFILE_COMPLETE)
         self.assertTrue(progress['bus-prop-complete'])
         self.assertFalse(progress['profile-complete'])
@@ -67,7 +67,7 @@ class TestStartupProgress(TestCase):
                                  high_resolution_logo='logo.jpg')
         BusinessPropositionFactory(startup=startup,
                                    **business_proposition_data)
-        progress = startup.progress_complete()
+        progress = startup.profile_status()
         self.assertEqual(progress['milestone'], PROFILE_COMPLETE)
         self.assertTrue(progress['bus-prop-complete'])
         self.assertTrue(progress['profile-complete'])

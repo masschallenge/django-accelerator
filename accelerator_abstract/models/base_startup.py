@@ -293,7 +293,7 @@ class BaseStartup(AcceleratorModel):
 
     is_finalist.boolean = True
 
-    def progress_complete(self):
+    def profile_status(self):
         milestone = APPLICATION_READY
 
         instance = self.business_propositions.order_by('created_at').last()
