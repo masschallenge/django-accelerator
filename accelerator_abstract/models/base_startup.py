@@ -52,15 +52,17 @@ class BaseStartup(AcceleratorModel):
     organization = models.ForeignKey(swapper.get_model_name(
         AcceleratorModel.Meta.app_label, 'Organization'), blank=True,
         null=True, related_name='startups', on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
                              on_delete=models.CASCADE)
     is_visible = models.BooleanField(
         default=True,
+        blank=True,
+        null=True,
         help_text=('Startup Profiles will be published to external websites '
                    'through the the API.'))
     primary_industry = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Industry'),
-        verbose_name='Primary Industry categorization',
+        verbose_name='Primary Industry categorization', blank=True, null=True,
         related_name='startups', on_delete=models.CASCADE)
     additional_industries = models.ManyToManyField(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Industry'),
@@ -68,36 +70,42 @@ class BaseStartup(AcceleratorModel):
         related_name='secondary_startups',
         db_table="accelerator_startup_related_industry",
         blank=True,
+        null=True,
         help_text=(
             'You may select up to 5 related industries.'),)
     short_pitch = models.CharField(
         max_length=140,
-        blank=False,
+        blank=True,
+        null=True,
         help_text='Your startup in 140 characters or less.')
     full_elevator_pitch = models.TextField(
         max_length=500,
-        blank=False,
+        blank=True,
+        null=True,
         help_text='Your startup in 500 characters or less.')
     linked_in_url = models.URLField(
         blank=True,
+        null=True,
         max_length=100,
         verbose_name="LinkedIn profile URL")
     facebook_url = models.URLField(
         blank=True,
+        null=True,
         max_length=100,
         verbose_name="Facebook profile URL")
     high_resolution_logo = ImageField(
         upload_to='startup_pics',
         verbose_name='High Resolution Logo',
-        blank=True)
+        blank=True, null=True)
     video_elevator_pitch_url = EmbedVideoField(
         max_length=100,
-        blank=True,
+        blank=True, null=True,
         help_text=(
             'Upload your 1-3 minute video pitch to Vimeo or Youtube. '
             'Paste the shared link here.'))
     acknowledgement = models.BooleanField(
         default=False,
+        blank=True, null=True,
         help_text=(
             'I understand that my Startup Profile is a pre-requisite '
             'for applying to any MassChallenge Program'))
@@ -106,13 +114,12 @@ class BaseStartup(AcceleratorModel):
     community = models.CharField(
         max_length=64,
         choices=STARTUP_COMMUNITIES,
-        blank=True,
+        blank=True, null=True
     )
     # profile color fields are deprecated - do not delete until we know
     # what the marketing site is doing with startup display
     profile_background_color = models.CharField(
-        max_length=7,
-        blank=True,
+        max_length=7, blank=True, null=True,
         default=DEFAULT_PROFILE_BACKGROUND_COLOR,
         validators=[RegexValidator(
             '^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|)$',
@@ -120,7 +127,7 @@ class BaseStartup(AcceleratorModel):
             'such as FF0000 for red.'), ])
     profile_text_color = models.CharField(
         max_length=7,
-        blank=True,
+        blank=True, null=True,
         default=DEFAULT_PROFILE_TEXT_COLOR,
         validators=[RegexValidator('^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|)$',
                                    'Color must be 3 or 6-digit hexecimal '
@@ -131,24 +138,28 @@ class BaseStartup(AcceleratorModel):
     location_national = models.CharField(
         max_length=100,
         blank=True,
+        null=True,
         default='',
         help_text=('Please specify the country where your main office '
                    '(headquarters) is located'))
     location_regional = models.CharField(
         max_length=100,
         blank=True,
+        null=True,
         default='',
         help_text=('Please specify the state, region or province where your '
                    'main office (headquarters) is located (if applicable).'))
     location_city = models.CharField(
         max_length=100,
         blank=True,
+        null=True,
         default='',
         help_text=('Please specify the city where your main '
                    'office (headquarters) is located. (e.g. Boston)'))
     location_postcode = models.CharField(
         max_length=100,
         blank=True,
+        null=True,
         default='',
         help_text=('Please specify the postal code for your main office '
                    '(headquarters). (ZIP code, Postcode, codigo postal, '
@@ -156,24 +167,29 @@ class BaseStartup(AcceleratorModel):
     location_street_address = models.CharField(
         max_length=100,
         blank=True,
+        null=True,
         default='',
         help_text=('Please specify the street address for your main office '
                    '(headquarters).'))
     date_founded = models.CharField(
         max_length=100,
         blank=True,
+        null=True,
         help_text='Month and Year when your startup was founded.')
     landing_page = models.CharField(max_length=255, null=True, blank=True)
     is_startup = models.BooleanField(
-        default=False)
+        default=False, blank=True, null=True,)
     bipoc_founder = models.BooleanField(
         default=False,
+        blank=True, null=True,
         verbose_name='BIPOC Founder')
     first_time_founder = models.BooleanField(
         default=False,
+        blank=True, null=True,
         verbose_name='First-time Founder')
     female_or_transgender_founder = models.BooleanField(
         default=False,
+        blank=True, null=True,
         verbose_name='Female or Transgender Founder')
 
     class Meta(AcceleratorModel.Meta):
