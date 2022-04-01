@@ -57,7 +57,6 @@ class BaseStartup(AcceleratorModel):
     is_visible = models.BooleanField(
         default=True,
         blank=True,
-        null=True,
         help_text=('Startup Profiles will be published to external websites '
                    'through the the API.'))
     primary_industry = models.ForeignKey(
@@ -105,7 +104,7 @@ class BaseStartup(AcceleratorModel):
             'Paste the shared link here.'))
     acknowledgement = models.BooleanField(
         default=False,
-        blank=True, null=True,
+        blank=True,
         help_text=(
             'I understand that my Startup Profile is a pre-requisite '
             'for applying to any MassChallenge Program'))
@@ -177,19 +176,18 @@ class BaseStartup(AcceleratorModel):
         null=True,
         help_text='Month and Year when your startup was founded.')
     landing_page = models.CharField(max_length=255, null=True, blank=True)
-    is_startup = models.BooleanField(
-        default=False, blank=True, null=True,)
+    is_startup = models.BooleanField(default=False, blank=True)
     bipoc_founder = models.BooleanField(
         default=False,
-        blank=True, null=True,
+        blank=True,
         verbose_name='BIPOC Founder')
     first_time_founder = models.BooleanField(
         default=False,
-        blank=True, null=True,
+        blank=True,
         verbose_name='First-time Founder')
     female_or_transgender_founder = models.BooleanField(
         default=False,
-        blank=True, null=True,
+        blank=True,
         verbose_name='Female or Transgender Founder')
 
     class Meta(AcceleratorModel.Meta):
