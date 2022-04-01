@@ -15,18 +15,21 @@ class BaseOrganization(AcceleratorModel):
     website_url = models.URLField(
         max_length=100,
         blank=True,
+        null=True,
         verbose_name="Website URL")
     twitter_handle = models.CharField(
         max_length=40,
         blank=True,
+        null=True,
         help_text='Omit the "@". We\'ll add it.',
         verbose_name="Twitter handle")
     public_inquiry_email = models.EmailField(verbose_name="Email address",
                                              max_length=100,
-                                             blank=True)
+                                             blank=True, null=True)
     url_slug = models.CharField(
         max_length=64,
         blank=True,
+        null=True,
         default="",  # This actually gets replaced by a real slug.
         unique=True,
         validators=[
