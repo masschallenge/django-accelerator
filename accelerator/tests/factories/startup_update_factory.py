@@ -23,5 +23,5 @@ class StartupUpdateFactory(DjangoModelFactory):
     active_valuation = 2.8
     ipo_valuation = 1.6
     ipo_date = "01/2022"
-    acquired_valuation=9.0
+    acquired_valuation = 9.0
     acquired_date = "01/2022"
