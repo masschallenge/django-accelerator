@@ -334,3 +334,4 @@ from .base_business_proposition import (
     BaseBusinessProposition,
     EXCLUDED_FIELDS
 )
+from .base_startup_update import BaseStartupUpdate

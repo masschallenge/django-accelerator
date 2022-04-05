@@ -37,6 +37,15 @@ class BaseOrganization(AcceleratorModel):
                            message="Letters, numbers, and dashes only.")
         ]
     )
+    current_status_hiring = models.BooleanField(
+        verbose_name='Current status hiring',
+        default=False)
+    current_status_seeking_investors = models.BooleanField(
+        verbose_name='Current status seeeking investors',
+        default=False)
+    funding_disclosure_consent = models.BooleanField(
+        verbose_name='Funding disclosure consent',
+        default=False)
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_organization'
