@@ -17,6 +17,10 @@ COMPANY_DISPOSITION_CHOICES = (
     (DEPARTED_STAFF, DEPARTED_STAFF),
 )
 
+DISCLOSURE_CONSENT = (
+    'I consent to allow Mass Challenge'
+    ' to disclose current funding status')
+
 
 class BaseStartupUpdate(AcceleratorModel):
     startup = models.ForeignKey(
@@ -25,70 +29,92 @@ class BaseStartupUpdate(AcceleratorModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     current_status_hiring = models.BooleanField(
-        verbose_name='Current status hiring',
+        verbose_name='This company is currently hiring',
         default=False)
     current_status_seeking_investors = models.BooleanField(
-        verbose_name='Current status seeeking investors',
+        verbose_name='This company is currently seeking investors',
         default=False)
     funding_disclosure_consent = models.BooleanField(
-        verbose_name='Funding disclosure consent',
+        verbose_name=DISCLOSURE_CONSENT,
         default=False)
     current_status_name_change = models.BooleanField(
-        verbose_name='Current status name change',
+        verbose_name='This company has changed its name',
         default=False)
     current_status_new_name = models.TextField(
+        blank=True,
+        null=True,
         verbose_name='Current status name')
     company_disposition = models.CharField(
         max_length=100,
         verbose_name='Company disposition',
         choices=COMPANY_DISPOSITION_CHOICES)
     active_annualized_revenue = models.DecimalField(
-        verbose_name='Active annualized revenue',
+        verbose_name='Anualized revenue (in US dollars)',
         max_digits=13,
+        blank=True,
+        null=True,
         decimal_places=2)
     active_headcount = models.IntegerField(
-        verbose_name='Active headcount')
+        blank=True,
+        null=True,
+        verbose_name='Headcount (Full Time, Part-Time, and Volunteers)')
     active_total_funding = models.DecimalField(
-        verbose_name='Active total funding',
+        verbose_name='Total Funding Raised (in US dollars)',
+        blank=True,
+        null=True,
         max_digits=13,
         decimal_places=2)
     active_funding_source_founders = models.BooleanField(
-        verbose_name='Active funding source founders',
+        verbose_name='Founder',
         default=False)
     active_funding_source_friends = models.BooleanField(
-        verbose_name='Active funding source friends',
+        verbose_name='Friends and Family',
         default=False)
     active_funding_source_angel = models.BooleanField(
-        verbose_name='Active funding source angel',
+        verbose_name='Angel',
         default=False)
     active_funding_source_venture = models.BooleanField(
-        verbose_name='Active funding source venture',
+        verbose_name='Institutional VC',
         default=False)
     active_funding_source_private_equity = models.BooleanField(
-        verbose_name='Active funding source private equity',
+        verbose_name='Private Equity',
         default=False)
     active_funding_source_gifts_grants = models.BooleanField(
-        verbose_name='Active funding source gift grants',
+        verbose_name='Gifts',
         default=False)
     active_funding_source_other = models.BooleanField(
         verbose_name='Active funding source other',
         default=False)
     active_most_recent_investment_date = models.DateField(
-        verbose_name='Active most recent investment date')
+        blank=True,
+        null=True,
+        verbose_name='Date of most recent investment')
     active_valuation = models.DecimalField(
-        verbose_name='Active valuation',
+        blank=True,
+        null=True,
+        verbose_name='Valuation (in US dollars)',
         max_digits=13,
         decimal_places=2)
     ipo_valuation = models.DecimalField(
-        verbose_name='IPO valuation',
+        verbose_name='Valuation',
+        blank=True,
+        null=True,
         max_digits=13,
         decimal_places=2)
-    ipo_date = models.DateField(verbose_name='IPO date')
+    ipo_date = models.DateField(
+        blank=True,
+        null=True,
+        verbose_name='Date')
     acquired_valuation = models.DecimalField(
-        verbose_name='Acquired valuation',
+        verbose_name='Valuation',
+        blank=True,
+        null=True,
         max_digits=13,
         decimal_places=2)
-    acquired_date = models.DateField(verbose_name='Acquired date')
+    acquired_date = models.DateField(
+        blank=True,
+        null=True,
+        verbose_name='Date')
 
     class Meta(AcceleratorModel.Meta):
         abstract = True
