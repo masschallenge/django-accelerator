@@ -141,6 +141,11 @@ class BaseProgram(AcceleratorModel):
     show_all_masschallenge_events = models.BooleanField(
         default=False
         )
+    program_image = models.ImageField(
+        null=True,
+        blank=False
+        )
+    hubspot_url = models.URLField()
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Programs'
