@@ -154,7 +154,10 @@ class BaseProgram(AcceleratorModel):
         null=True,
         blank=False
         )
-    hubspot_url = models.URLField()
+    hubspot_url = models.URLField(
+        blank=True,
+        null=True,
+    )
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Programs'
