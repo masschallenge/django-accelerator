@@ -80,3 +80,4 @@ class ProgramFactory(DjangoModelFactory):
         if extracted:
             for cluster in extracted:
                 self.supported_industry_clusters.add(cluster)
+    
