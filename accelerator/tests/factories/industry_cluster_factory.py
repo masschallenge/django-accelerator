@@ -12,4 +12,5 @@ class IndustryClusterFactory(DjangoModelFactory):
     name = Sequence(lambda n: "Climate Cluster {0}".format(n))
     description = Sequence(
         lambda n: "Program interested in Climate {0}".format(n))
+    display_priority = Sequence(lambda n: n)
     image = None

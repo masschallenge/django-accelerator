@@ -1,12 +1,17 @@
-from __future__ import unicode_literals
+from sorl.thumbnail import ImageField
+from django.db.models import (
+    CharField,
+    TextField,
+    PositiveIntegerField,
+)
 
-import swapper
-
-from accelerator_abstract.models import BaseIndustryCluster
+from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
-class IndustryCluster(BaseIndustryCluster):
-    class Meta(BaseIndustryCluster.Meta):
-        swappable = swapper.swappable_setting(
-            BaseIndustryCluster.Meta.app_label,
-            "IndustryCluster")
+class IndustryCluster(AcceleratorModel):
+    name = CharField(max_length=255)
+    description = TextField()
+    image = ImageField(
+        upload_to='industry_cluster_images',
+        blank=True, null=True)
+    display_priority = PositiveIntegerField()
