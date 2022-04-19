@@ -61,6 +61,9 @@ class ProgramFactory(DjangoModelFactory):
     overview_start_date = None
     overview_deadline_date = None
     mentor_program_group = None
+    program_image = None
+    hubspot_url = Sequence(lambda n: 'http://example.com/{0}'.format(n))
+
 
     @post_generation
     def supported_innovation_stages(self, create, extracted, **kwargs):

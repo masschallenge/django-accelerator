@@ -150,6 +150,11 @@ class BaseProgram(AcceleratorModel):
         swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'IndustryCluster'),
         blank=True, related_name='programs')
+    program_image = models.ImageField(
+        null=True,
+        blank=False
+        )
+    hubspot_url = models.URLField()
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Programs'
