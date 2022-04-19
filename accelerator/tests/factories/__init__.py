@@ -112,7 +112,7 @@ from .ethno_racial_identity_factory import EthnoRacialIdentityFactory
 from .deferrable_modal_factory import DeferrableModalFactory
 from .user_deferrable_modal_factory import UserDeferrableModalFactory
 from .user_note_factory import UserNoteFactory
-from .organization_note_factory import OrganizationNoteFactory
+from .industry_cluster_factory import OrganizationNoteFactory
 from .partner_label_factory import PartnerLabelFactory
 from .partner_judging_instructions_factory import (
     PartnerJudgingInstructionsFactory,
