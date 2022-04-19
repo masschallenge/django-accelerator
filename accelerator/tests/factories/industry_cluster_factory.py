@@ -2,8 +2,6 @@ from factory import (
     Sequence,
 )
 from factory.django import DjangoModelFactory
-from simpleuser.tests.factories.user_factory import UserFactory
-from accelerator.tests.factories import OrganizationFactory
 from accelerator.models import IndustryCluster
 
 
