@@ -6,6 +6,7 @@ import swapper
 from factory import (
     Sequence,
     SubFactory,
+    post_generation,
 )
 from factory.django import DjangoModelFactory
 
@@ -60,3 +61,11 @@ class ProgramFactory(DjangoModelFactory):
     overview_start_date = None
     overview_deadline_date = None
     mentor_program_group = None
+
+    @post_generation
+    def supported_innovation_stages(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for stage in extracted:
+                self.supported_innovation_stages.add(stage)
