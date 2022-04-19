@@ -29,7 +29,9 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=255)),
                 ('description', models.TextField()),
                 ('image', sorl.thumbnail.fields.ImageField(
-                    blank=True, null=True, upload_to='industry_cluster_images')),
+                    blank=True,
+                    null=True,
+                    upload_to='industry_cluster_images')),
                 ('display_priority', models.PositiveIntegerField()),
             ],
             options={
