@@ -12,8 +12,8 @@ class BaseIndustryCluster(AcceleratorModel):
     description = TextField()
     image = ImageField(
         upload_to='industry_cluster_images',
-        blank=True, null=True)                            
-   
+        blank=True, null=True)
+
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Industry Clusters'
         db_table = 'accelerator_industrycluster'
