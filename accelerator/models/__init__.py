@@ -332,3 +332,4 @@ from .community_participation import CommunityParticipation
 from .geographic_experience import GeographicExperience
 from .business_proposition import BusinessProposition
 from .startup_update import StartupUpdate
+from .innovation_stage import InnovationStage

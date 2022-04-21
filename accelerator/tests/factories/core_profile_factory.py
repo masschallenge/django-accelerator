@@ -108,3 +108,11 @@ class CoreProfileFactory(DjangoModelFactory):
         if extracted:
             for program_interest in extracted:
                 self.program_interest.add(program_interest)
+
+    @post_generation
+    def innovation_stage_interest(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for stage in extracted:
+                self.innovation_stage_interest.add(stage)

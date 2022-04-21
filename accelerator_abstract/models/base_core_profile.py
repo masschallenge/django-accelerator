@@ -431,6 +431,11 @@ class BaseCoreProfile(AcceleratorModel):
             AcceleratorModel.Meta.app_label, 'Program'),
         blank=True,
         related_name='profiles')
+    innovation_stage_interest = models.ManyToManyField(
+        swapper.get_model_name(
+            AcceleratorModel.Meta.app_label, 'InnovationStage'),
+        blank=True,
+        related_name='profiles')
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_coreprofile'
