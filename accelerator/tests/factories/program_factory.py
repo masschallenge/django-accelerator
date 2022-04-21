@@ -69,6 +69,8 @@ class ProgramFactory(DjangoModelFactory):
         if extracted:
             for stage in extracted:
                 self.supported_innovation_stages.add(stage)
+
+    @post_generation
     def supported_industry_clusters(self, create, extracted, **kwargs):
         if not create:
             return
