@@ -10,7 +10,7 @@ from django.db import (
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0098_update_startup_update_20220408_0441'),
+        ('accelerator', '0099_program_interest_related_changes'),
     ]
 
     operations = [
