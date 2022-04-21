@@ -150,15 +150,6 @@ class BaseProgram(AcceleratorModel):
         swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'IndustryCluster'),
         blank=True, related_name='programs')
-    supported_innovation_stages = models.ManyToManyField(
-        swapper.get_model_name(
-            AcceleratorModel.Meta.app_label, 'InnovationStage'),
-        blank=True,
-        related_name='programs')
-    supported_industry_clusters = models.ManyToManyField(
-        to=swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                                  'IndustryCluster'),
-        blank=True, related_name='programs')
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Programs'
