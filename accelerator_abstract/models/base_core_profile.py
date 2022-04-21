@@ -437,8 +437,8 @@ class BaseCoreProfile(AcceleratorModel):
         blank=True,
         related_name='profiles')
     industry_cluster_interest = models.ManyToManyField(
-        to=swapper.get_model_name(AcceleratorModel.Meta.app_label,
-                                  'IndustryCluster'),
+        swapper.get_model_name(
+            AcceleratorModel.Meta.app_label, 'IndustryCluster'),
         blank=True, related_name='profiles')
 
     class Meta(AcceleratorModel.Meta):
