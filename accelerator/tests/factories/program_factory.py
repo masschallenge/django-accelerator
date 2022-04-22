@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from decimal import Decimal
+from django.core.files.base import ContentFile
 
 import swapper
 from factory import (
@@ -61,7 +62,13 @@ class ProgramFactory(DjangoModelFactory):
     overview_start_date = None
     overview_deadline_date = None
     mentor_program_group = None
-    program_image = None
+    program_image = factory.LazyAttribute(
+            lambda _: ContentFile(
+                factory.django.ImageField()._make_data(
+                    {'width': 600, 'height': 400}
+                ), 'example.jpg'
+            )
+        )
     hubspot_url = Sequence(lambda n: 'http://example.com/{0}'.format(n))
 
     @post_generation
