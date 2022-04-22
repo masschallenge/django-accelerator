@@ -4,6 +4,7 @@ from decimal import Decimal
 from django.core.files.base import ContentFile
 
 import swapper
+import factory
 from factory import (
     Sequence,
     SubFactory,
