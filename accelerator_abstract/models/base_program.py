@@ -141,6 +141,11 @@ class BaseProgram(AcceleratorModel):
     show_all_masschallenge_events = models.BooleanField(
         default=False
         )
+    supported_innovation_stages = models.ManyToManyField(
+        swapper.get_model_name(
+            AcceleratorModel.Meta.app_label, 'InnovationStage'),
+        blank=True,
+        related_name='programs')
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Programs'

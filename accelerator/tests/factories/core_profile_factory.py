@@ -92,3 +92,27 @@ class CoreProfileFactory(DjangoModelFactory):
         if extracted:
             for experience in extracted:
                 self.geographic_experience.add(experience)
+
+    @post_generation
+    def program_location_interest(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for location_interest in extracted:
+                self.program_location_interest.add(location_interest)
+
+    @post_generation
+    def program_interest(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for program_interest in extracted:
+                self.program_interest.add(program_interest)
+
+    @post_generation
+    def innovation_stage_interest(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for stage in extracted:
+                self.innovation_stage_interest.add(stage)

@@ -421,6 +421,21 @@ class BaseCoreProfile(AcceleratorModel):
         choices=PRIVACY_CHOICES,
         blank=True,
         default=PRIVACY_CHOICES[1][0])
+    program_location_interest = models.ManyToManyField(
+        swapper.get_model_name(
+            AcceleratorModel.Meta.app_label, 'ProgramFamilyLocation'),
+        blank=True,
+        related_name='profiles')
+    program_interest = models.ManyToManyField(
+        swapper.get_model_name(
+            AcceleratorModel.Meta.app_label, 'Program'),
+        blank=True,
+        related_name='profiles')
+    innovation_stage_interest = models.ManyToManyField(
+        swapper.get_model_name(
+            AcceleratorModel.Meta.app_label, 'InnovationStage'),
+        blank=True,
+        related_name='profiles')
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_coreprofile'
