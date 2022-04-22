@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
             name='program_image',
             field=sorl.thumbnail.fields.ImageField(
               blank=True,
-              null=True
+              null=True,
               upload_to='program_images'),
         ),
     ]
