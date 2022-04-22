@@ -10,7 +10,7 @@ from django.db import (
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0100_add_innovation_stage_model'),
+        ('accelerator', '0101_add_industry_cluster_20220422_0803'),
     ]
 
     operations = [
