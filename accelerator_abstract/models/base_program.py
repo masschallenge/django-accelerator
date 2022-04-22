@@ -147,6 +147,15 @@ class BaseProgram(AcceleratorModel):
             AcceleratorModel.Meta.app_label, 'InnovationStage'),
         blank=True,
         related_name='programs')
+    program_image = ImageField(
+        upload_to='program_images',
+        blank=False,
+        null=True
+        )
+    hubspot_url = models.URLField(
+        blank=True,
+        null=True
+    )
     supported_industry_clusters = models.ManyToManyField(
         swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'IndustryCluster'),
