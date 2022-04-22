@@ -64,7 +64,6 @@ class ProgramFactory(DjangoModelFactory):
     program_image = None
     hubspot_url = Sequence(lambda n: 'http://example.com/{0}'.format(n))
 
-
     @post_generation
     def supported_innovation_stages(self, create, extracted, **kwargs):
         if not create:
