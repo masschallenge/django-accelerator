@@ -1,8 +1,10 @@
 from __future__ import unicode_literals
 
 from decimal import Decimal
+from django.core.files.base import ContentFile
 
 import swapper
+import factory
 from factory import (
     Sequence,
     SubFactory,
@@ -61,6 +63,14 @@ class ProgramFactory(DjangoModelFactory):
     overview_start_date = None
     overview_deadline_date = None
     mentor_program_group = None
+    program_image = factory.LazyAttribute(
+            lambda _: ContentFile(
+                factory.django.ImageField()._make_data(
+                    {'width': 600, 'height': 400}
+                ), 'example.jpg'
+            )
+        )
+    hubspot_url = Sequence(lambda n: 'http://example.com/{0}'.format(n))
 
     @post_generation
     def supported_innovation_stages(self, create, extracted, **kwargs):
@@ -69,3 +79,11 @@ class ProgramFactory(DjangoModelFactory):
         if extracted:
             for stage in extracted:
                 self.supported_innovation_stages.add(stage)
+
+    @post_generation
+    def supported_industry_clusters(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for cluster in extracted:
+                self.supported_industry_clusters.add(cluster)

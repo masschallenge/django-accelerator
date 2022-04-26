@@ -116,3 +116,11 @@ class CoreProfileFactory(DjangoModelFactory):
         if extracted:
             for stage in extracted:
                 self.innovation_stage_interest.add(stage)
+
+    @post_generation
+    def industry_cluster_interest(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for cluster in extracted:
+                self.industry_cluster_interest.add(cluster)
