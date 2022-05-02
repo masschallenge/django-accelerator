@@ -70,9 +70,14 @@ JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
                           'confirmed_judge_label': 'Judge'}
 BIO_MAX_LENGTH = 7500
 
-PRIVACY_CHOICES = (("staff", "MC Staff Only"),
-                   ("finalists and staff", "Finalists and MC Staff"),
-                   ("public", "All Users"),)
+PRIVACY_KEY_STAFF = "staff"
+PRIVACY_KEY_FINALISTS_AND_STAFF = "finalists and staff"
+PRIVACY_KEY_PUBLIC = "public"
+
+PRIVACY_CHOICES = ((PRIVACY_KEY_STAFF, "MC Staff Only"),
+                   (PRIVACY_KEY_FINALISTS_AND_STAFF, "Finalists and MC Staff"),
+                   (PRIVACY_KEY_PUBLIC, "All Users"),)
+
 BASE_INTEREST = "I would like to participate in MassChallenge %s"
 BASE_TOPIC = ("Please describe the topic(s) you would be available "
               "to speak%s about%s")
