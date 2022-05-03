@@ -7,9 +7,10 @@ from accelerator.tests.factories.expert_category_factory import (
     ExpertCategoryFactory
 )
 
+
 class CoreProfileModelFactory(CoreProfileFactory):
     expert_category = SubFactory(ExpertCategoryFactory)
     primary_industry = SubFactory(IndustryFactory)
-    
+
     class Meta:
         model = CoreProfile
