@@ -394,7 +394,10 @@ class TestCoreProfile(TestCase):
         _user_with_role(profile.user, BaseUserRole.MENTOR, program=program)
         self.assertTrue(profile.was_mentor_in_last_12_months())
 
-    def test_completion_percentage_is_correct_for_completed_profile(self):
+    @patch("bullet_train.BulletTrain.feature_enabled", return_value=False)
+    @patch("bullet_train.BulletTrain.has_feature", return_value=False)
+    def test_completion_percentage_is_correct_for_completed_profile(self,
+                                                                    *args):
         participation = [CommunityParticipationFactory(type=type[0])
                          for type in PARTICIPATION_CHOICES]
         profile = ExpertProfileFactory(
@@ -408,11 +411,31 @@ class TestCoreProfile(TestCase):
         completion_percentage = profile.percent_complete()
         self.assertEqual(completion_percentage, 1)
 
-    def test_completion_percentage_is_correct_for_incomplete_profile(self):
+    @patch("bullet_train.BulletTrain.feature_enabled", return_value=True)
+    @patch("bullet_train.BulletTrain.has_feature", return_value=True)
+    def test_program_family_not_required_when_feature_flag_is_on(self,
+                                                                 *args):
+        participation = [CommunityParticipationFactory(type=type[0])
+                         for type in PARTICIPATION_CHOICES]
+        profile = ExpertProfileFactory(
+            education_level=EDUCATIONAL_LEVEL_CHOICES[-1][0],
+            additional_industries=[IndustryFactory()],
+            functional_expertise=[FunctionalExpertiseFactory()],
+            geographic_experience=[GeographicExperienceFactory()],
+            program_interest=[ProgramFactory()],
+            primary_industry=IndustryFactory(),
+            community_participation=participation)
+        completion_percentage = profile.percent_complete()
+        self.assertEqual(completion_percentage, 1)
+
+    @patch("bullet_train.BulletTrain.feature_enabled", return_value=False)
+    @patch("bullet_train.BulletTrain.has_feature", return_value=False)
+    def test_completion_percentage_is_correct_for_incomplete_profile(self,
+                                                                     *args):
         # missing 7/22 fields used to calculate profile completion %
         profile = ExpertProfileFactory(
             program_families=[ProgramFamilyFactory()])
-        self.assertEqual(profile.percent_complete(), 0.68)
+        self.assertEqual(profile.percent_complete(), 0.67)
 
 
 def _user_with_role(user, role_name, program_name='program0', program=None):

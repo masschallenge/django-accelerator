@@ -34,7 +34,9 @@ from accelerator_abstract.models.base_judging_round import (
     ONLINE_JUDGING_ROUND_TYPE,
 )
 from accelerator_abstract.models.base_user_utils import is_employee
+from accelerator.utils import flag_smith_has_feature
 
+PROGRAM_INTEREST_FLAG = 'show_revised_program_interest'
 SHORT_BIO_MAX_LENGTH = 140
 OFFICE_HOUR_HOLDER_ROLES = [UserRole.MENTOR, UserRole.AIR]
 OFFICE_HOURS_HOLDER = Q(
@@ -43,11 +45,13 @@ ACTIVE_PROGRAM = Q(
     program_role__program__program_status=ACTIVE_PROGRAM_STATUS)
 
 PROFILE_USER_FIELDS = ['first_name', 'last_name']
+PROGRAM_FAMILIES = 'program_families'
+PROGRAM_INTEREST = 'program_interest'
 PROFILE_FIELDS = [
     'shared_demographic_data', 'education_level', 'privacy_email',
     'privacy_web', 'privacy_profile', 'primary_industry',
     'functional_expertise', 'additional_industries', 'privacy_phone',
-    'linked_in_url', 'geographic_experience', 'program_families',
+    'linked_in_url', 'geographic_experience',
     'authorization_to_share_ethno_racial_identity']
 PROFILE_LOCATION_FIELDS = [
     'street_address', 'city', 'state', 'country']
@@ -407,6 +411,7 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
 
     def percent_complete(self):
         completed_count = 0
+        self.add_fields()
         profile_data_dict = model_to_dict(self, PROFILE_FIELDS)
         user_data_dict = model_to_dict(self.user, PROFILE_USER_FIELDS)
         completed_participation_by_type = self.community_participation.filter(
@@ -422,6 +427,18 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
         total = len(COMMUNITY_PARTICIPATION_TYPES + PROFILE_FIELDS
                     + PROFILE_USER_FIELDS + PROFILE_LOCATION_FIELDS)
         return round(completed_count / total, 2)
+
+    def add_fields(self):
+        if flag_smith_has_feature(PROGRAM_INTEREST_FLAG):
+            self.check_field(PROGRAM_INTEREST)
+        else:
+            self.check_field(PROGRAM_FAMILIES)
+
+    def check_field(self, item):
+        if(item not in PROFILE_FIELDS):
+            PROFILE_FIELDS.append(item)
+        else:
+            PROFILE_FIELDS.remove(item)
 
 
 def _get_office_hour_holder_active_programs(user):
