@@ -45,8 +45,6 @@ ACTIVE_PROGRAM = Q(
     program_role__program__program_status=ACTIVE_PROGRAM_STATUS)
 
 PROFILE_USER_FIELDS = ['first_name', 'last_name']
-PROGRAM_FAMILIES = 'program_families'
-PROGRAM_INTEREST = 'program_interest'
 PROFILE_FIELDS = [
     'shared_demographic_data', 'education_level', 'privacy_email',
     'privacy_web', 'privacy_profile', 'primary_industry',
@@ -411,8 +409,12 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
 
     def percent_complete(self):
         completed_count = 0
-        self.add_fields()
-        profile_data_dict = model_to_dict(self, PROFILE_FIELDS)
+        profile_fields = PROFILE_FIELDS.copy()
+        if flag_smith_has_feature(PROGRAM_INTEREST_FLAG):
+            profile_fields += ['program_interest']
+        else:
+            profile_fields += ['program_families']
+        profile_data_dict = model_to_dict(self, profile_fields)
         user_data_dict = model_to_dict(self.user, PROFILE_USER_FIELDS)
         completed_participation_by_type = self.community_participation.filter(
             type__in=COMMUNITY_PARTICIPATION_TYPES).values_list(
@@ -424,21 +426,9 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
         completed_count += _get_completed_fields_count(profile_data_dict)
         completed_count += _get_completed_fields_count(user_data_dict)
         completed_count += completed_participation_by_type
-        total = len(COMMUNITY_PARTICIPATION_TYPES + PROFILE_FIELDS
+        total = len(COMMUNITY_PARTICIPATION_TYPES + profile_fields
                     + PROFILE_USER_FIELDS + PROFILE_LOCATION_FIELDS)
         return round(completed_count / total, 2)
-
-    def add_fields(self):
-        if flag_smith_has_feature(PROGRAM_INTEREST_FLAG):
-            self.check_field(PROGRAM_INTEREST)
-        else:
-            self.check_field(PROGRAM_FAMILIES)
-
-    def check_field(self, item):
-        if(item not in PROFILE_FIELDS):
-            PROFILE_FIELDS.append(item)
-        else:
-            PROFILE_FIELDS.remove(item)
 
 
 def _get_office_hour_holder_active_programs(user):

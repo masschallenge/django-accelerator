@@ -395,7 +395,7 @@ class TestCoreProfile(TestCase):
         self.assertTrue(profile.was_mentor_in_last_12_months())
 
     @patch("bullet_train.BulletTrain.feature_enabled", return_value=False)
-    @patch("bullet_train.BulletTrain.has_feature", return_value=False)
+    @patch("bullet_train.BulletTrain.has_feature", return_value=True)
     def test_completion_percentage_is_correct_for_completed_profile(self,
                                                                     *args):
         participation = [CommunityParticipationFactory(type=type[0])
@@ -429,13 +429,13 @@ class TestCoreProfile(TestCase):
         self.assertEqual(completion_percentage, 1)
 
     @patch("bullet_train.BulletTrain.feature_enabled", return_value=False)
-    @patch("bullet_train.BulletTrain.has_feature", return_value=False)
+    @patch("bullet_train.BulletTrain.has_feature", return_value=True)
     def test_completion_percentage_is_correct_for_incomplete_profile(self,
                                                                      *args):
         # missing 7/22 fields used to calculate profile completion %
         profile = ExpertProfileFactory(
             program_families=[ProgramFamilyFactory()])
-        self.assertEqual(profile.percent_complete(), 0.67)
+        self.assertEqual(profile.percent_complete(), 0.68)
 
 
 def _user_with_role(user, role_name, program_name='program0', program=None):
