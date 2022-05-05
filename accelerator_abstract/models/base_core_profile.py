@@ -132,15 +132,9 @@ GEOGRAPHIC_EXPERIENCE_HELP_TEXT = (
               'or Command (&#8984;) on Macs'))
 
 
-# Delete when removing CAM V feature flag
-OLD_LANDING_PAGE_MAP = {
-    EXPERT_USER_TYPE: 'expert_homepage',
-    ENTREPRENEUR_USER_TYPE: 'applicant_homepage',
-}
 LANDING_PAGE_MAP = {
     EXPERT_USER_TYPE: 'expert_homepage',
-    ENTREPRENEUR_USER_TYPE: 'profile',
-}
+    ENTREPRENEUR_USER_TYPE: 'profile',}
 
 
 class BaseCoreProfile(AcceleratorModel):
@@ -150,8 +144,7 @@ class BaseCoreProfile(AcceleratorModel):
         swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'GenderChoices'),
         help_text=IDENTITY_HELP_TEXT_VALUE,
-        blank=True
-    )
+        blank=True)
     gender_self_description = models.TextField(blank=True, default="")
     phone = models.CharField(
         verbose_name="Phone",
@@ -647,10 +640,7 @@ class BaseCoreProfile(AcceleratorModel):
 
     @property
     def user_default_page(self):
-        if flag_smith_has_feature('activate_unified_profile_views'):
-            url_map = LANDING_PAGE_MAP
-        else:
-            url_map = OLD_LANDING_PAGE_MAP
+        url_map = LANDING_PAGE_MAP
         try:
             return url_map[self.participation.upper()]
         except KeyError:
