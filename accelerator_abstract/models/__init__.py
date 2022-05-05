@@ -58,7 +58,10 @@ from .base_clearance import (
 )
 from .base_core_profile import (
     BIO_MAX_LENGTH,
-    BaseCoreProfile,
+    BaseCoreProfile,    
+    PRIVACY_KEY_FINALISTS_AND_STAFF,
+    PRIVACY_KEY_PUBLIC,
+    PRIVACY_KEY_STAFF,
 )
 from .base_criterion import BaseCriterion
 from .base_criterion_option_spec import BaseCriterionOptionSpec
