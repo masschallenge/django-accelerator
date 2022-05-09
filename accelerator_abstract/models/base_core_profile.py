@@ -28,7 +28,6 @@ from accelerator_abstract.models.base_program import (
     ACTIVE_PROGRAM_STATUS,
     ENDED_PROGRAM_STATUS,
 )
-from accelerator.utils import flag_smith_has_feature
 
 INVITED_JUDGE_ALERT = (
     "<h4>{first_name}, we would like to invite you to be a judge at "
@@ -132,9 +131,8 @@ GEOGRAPHIC_EXPERIENCE_HELP_TEXT = (
               'or Command (&#8984;) on Macs'))
 
 
-LANDING_PAGE_MAP = {
-    EXPERT_USER_TYPE: 'expert_homepage',
-    ENTREPRENEUR_USER_TYPE: 'profile',}
+LANDING_PAGE_MAP = {EXPERT_USER_TYPE: 'expert_homepage',
+                    ENTREPRENEUR_USER_TYPE: 'profile'}
 
 
 class BaseCoreProfile(AcceleratorModel):
