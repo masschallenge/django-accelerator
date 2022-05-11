@@ -8,7 +8,24 @@ CLOSED_IPO = 'closed-ipo'
 CLOSED_ACQUISITION = 'closed-acquisition'
 CLOSED_INACTIVE = 'closed-inactive'
 DEPARTED_STAFF = 'departed-staff'
+USD = 'USD'
+GBP = 'GBP'
+EUR = 'EUR'
+JPY = 'JPY'
+AUD = 'AUD'
+CAD = 'CAD'
+CHF = 'CHF'
+NZD = 'NZD'
+NGN = 'NGN'
+MXN = 'MXN'
 
+CURRENCY_CHOICES = [
+    (USD, USD), (GBP, GBP),
+    (EUR, EUR), (JPY, JPY),
+    (AUD, AUD), (CAD, CAD),
+    (CHF, CHF), (NZD, NZD),
+    (NGN, NGN), (MXN, MXN),
+]
 COMPANY_DISPOSITION_CHOICES = (
     (ACTIVE, ACTIVE),
     (CLOSED_IPO, CLOSED_IPO),
@@ -49,7 +66,13 @@ class BaseStartupUpdate(AcceleratorModel):
         verbose_name='Company disposition',
         choices=COMPANY_DISPOSITION_CHOICES)
     active_annualized_revenue = models.DecimalField(
-        verbose_name='Anualized revenue (in US dollars)',
+        verbose_name='Annualized revenue',
+        max_digits=13,
+        blank=True,
+        null=True,
+        decimal_places=2)
+    active_annualized_revenue_usd = models.DecimalField(
+        verbose_name='Annualized revenue (in US dollars)',
         max_digits=13,
         blank=True,
         null=True,
@@ -59,6 +82,12 @@ class BaseStartupUpdate(AcceleratorModel):
         null=True,
         verbose_name='Headcount (Full Time, Part-Time, and Volunteers)')
     active_total_funding = models.DecimalField(
+        verbose_name='Total Funding Raised',
+        blank=True,
+        null=True,
+        max_digits=13,
+        decimal_places=2)
+    active_total_funding_usd = models.DecimalField(
         verbose_name='Total Funding Raised (in US dollars)',
         blank=True,
         null=True,
@@ -92,11 +121,23 @@ class BaseStartupUpdate(AcceleratorModel):
     active_valuation = models.DecimalField(
         blank=True,
         null=True,
+        verbose_name='Valuation',
+        max_digits=13,
+        decimal_places=2)
+    active_valuation_usd = models.DecimalField(
+        blank=True,
+        null=True,
         verbose_name='Valuation (in US dollars)',
         max_digits=13,
         decimal_places=2)
     ipo_valuation = models.DecimalField(
         verbose_name='Valuation',
+        blank=True,
+        null=True,
+        max_digits=13,
+        decimal_places=2)
+    ipo_valuation_usd = models.DecimalField(
+        verbose_name='Valuation (in US dollars)',
         blank=True,
         null=True,
         max_digits=13,
@@ -111,10 +152,21 @@ class BaseStartupUpdate(AcceleratorModel):
         null=True,
         max_digits=13,
         decimal_places=2)
+    acquired_valuation_usd = models.DecimalField(
+        verbose_name='Valuation (in US dollars)',
+        blank=True,
+        null=True,
+        max_digits=13,
+        decimal_places=2)
     acquired_date = models.DateField(
         blank=True,
         null=True,
         verbose_name='Date')
+    currency_type = models.CharField(
+        verbose_name='Status Currency',
+        max_length=5,
+        choices=CURRENCY_CHOICES,
+        default=USD)
 
     class Meta(AcceleratorModel.Meta):
         abstract = True
