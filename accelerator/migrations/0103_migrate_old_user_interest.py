@@ -26,7 +26,8 @@ def migrate_user_interest(apps, schema_editor):
     judge, mentor, speaker = CommunityParticipation.objects.filter(
         name__in=participations
     ).order_by(
-        Case(*[When(name=n, then=i) for i, n in enumerate(participations)],
+        Case(*[When(name=name, then=index)
+               for index, name in enumerate(participations)],
              output_field=IntegerField()))
     ThroughModel = CoreProfile.community_participation.through
 
