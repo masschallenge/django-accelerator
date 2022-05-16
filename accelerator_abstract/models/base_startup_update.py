@@ -164,7 +164,7 @@ class BaseStartupUpdate(AcceleratorModel):
         verbose_name='Date')
     currency_type = models.CharField(
         verbose_name='Status Currency',
-        max_length=5,
+        max_length=3,
         choices=CURRENCY_CHOICES,
         default=USD)
 

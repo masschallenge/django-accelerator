@@ -63,7 +63,7 @@ class Migration(migrations.Migration):
                     ('CHF', 'CHF'), ('NZD', 'NZD'),
                     ('NGN', 'NGN'), ('MXN', 'MXN')],
                 default='USD',
-                max_length=5,
+                max_length=3,
                 verbose_name='Status Currency'),
         ),
         migrations.AddField(
