@@ -60,6 +60,7 @@ class BaseApplication(AcceleratorModel):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
+        related_name='applications'
     )
 
     class Meta(AcceleratorModel.Meta):
