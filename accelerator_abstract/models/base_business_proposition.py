@@ -3,7 +3,7 @@ from django.db import models
 
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
-EXCLUDED_FIELDS = ['id', 'created_at', 'updated_at', 'startup']
+EXCLUDED_FIELDS = ['id', 'created_at', 'updated_at', 'startup', 'applications']
 
 PAIN_POINT_HELP_TEXT = ('Please describe what '
                         'problem you are trying to solve?')
