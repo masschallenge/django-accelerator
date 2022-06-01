@@ -4,6 +4,8 @@ import swapper
 from django.db import models
 from sorl.thumbnail import ImageField
 
+from embed_video.fields import EmbedVideoField
+
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 
 
@@ -21,6 +23,99 @@ class BasePartner(AcceleratorModel):
         upload_to='startup_pics',
         verbose_name="Partner Logo",
         blank=True)
+    primary_industry = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Industry'),
+        verbose_name='Primary Industry categorization', blank=True, null=True,
+        related_name='partners', on_delete=models.CASCADE)
+    additional_industries = models.ManyToManyField(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Industry'),
+        verbose_name='Additional Industries',
+        related_name='secondary_partners',
+        db_table="accelerator_partner_related_industry",
+        blank=True,
+        null=True,
+        help_text=(
+            'You may select up to 5 related industries.'),)
+    date_founded = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        help_text='Month and Year when your partner was founded.')
+    location_street_address = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        default='',
+        help_text=('Please specify the street address for your main office '
+                   '(headquarters).'))
+    location_city = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        default='',
+        help_text=('Please specify the city where your main '
+                   'office (headquarters) is located. (e.g. Boston)'))
+    location_regional = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        default='',
+        help_text=('Please specify the state, region or province where your '
+                   'main office (headquarters) is located (if applicable).'))
+    location_national = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        default='',
+        help_text=('Please specify the country where your main office '
+                   '(headquarters) is located'))
+    short_form = models.TextField(
+        max_length=140,
+        blank=True,
+        null=True,
+        help_text='Your enterprise in 140 characters or less.')
+    long_form = models.TextField(
+        max_length=500,
+        blank=True,
+        null=True,
+        help_text='Your enterprise in 140 characters or less.')
+    video_elevator_pitch_url = EmbedVideoField(
+        max_length=100,
+        blank=True, null=True,
+        help_text=(
+            'Upload your 1-3 minute video pitch to Vimeo or Youtube. '
+            'Paste the shared link here.'))
+    public_inquiry_email = models.URLField(
+        blank=True,
+        null=True,
+        max_length=100,
+        verbose_name="Public Inquiry email")
+    website_url = models.URLField(
+        blank=True,
+        null=True,
+        max_length=100,
+        verbose_name="Website URL")
+    twitter_handle = models.URLField(
+        blank=True,
+        null=True,
+        max_length=100,
+        verbose_name="Twitter profile URL")
+    linked_in_url = models.URLField(
+        blank=True,
+        null=True,
+        max_length=100,
+        verbose_name="LinkedIn profile URL")
+    facebook_url = models.URLField(
+        blank=True,
+        null=True,
+        max_length=100,
+        verbose_name="Facebook profile URL")
+    is_visible = models.BooleanField(
+        default=True,
+        blank=True,
+        help_text=('Partner Profiles will be published to external websites '
+                   'through the the API.'))
+
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_partner'
