@@ -317,11 +317,9 @@ class BaseStartup(AcceleratorModel):
         total_fields = application_ready_field_count + len(bus_prop_fields)
 
         prof_progress_num, prof_milestone, profile = self._field_to_data(
-            self,
-            STARTUP_FIELDS)
-        (bus_prop_progress_num,
-            bus_prop_milestone,
-            bus_prop) = self._field_to_data(bus_prop_obj, bus_prop_fields)
+            self, STARTUP_FIELDS)
+        bus_prop_progress_num, _, bus_prop = self._field_to_data(
+            bus_prop_obj, bus_prop_fields)
 
         if prof_milestone == PROFILE_COMPLETE:
             milestone = PROFILE_COMPLETE
