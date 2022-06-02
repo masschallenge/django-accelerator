@@ -32,7 +32,8 @@ class Migration(migrations.Migration):
             field=models.CharField(
                 blank=True,
                 help_text='Month and Year when your partner was founded.',
-                max_length=100,null=True),
+                max_length=100,
+                null=True),
         ),
         migrations.AddField(
             model_name='partner',
@@ -58,8 +59,8 @@ class Migration(migrations.Migration):
             field=models.BooleanField(
                 blank=True,
                 default=True,
-                help_text='Partner Profiles will be published to external websites'
-                            'through the the API.'),
+                help_text='Partner Profiles will be published to external'
+                          'websites through the the API.'),
         ),
         migrations.AddField(
             model_name='partner',
@@ -75,9 +76,9 @@ class Migration(migrations.Migration):
             name='location_city',
             field=models.CharField(
                 blank=True,
-                default='', 
-                help_text='Please specify the city where your main office (headquarters)'
-                            'is located. (e.g. Boston)',
+                default='',
+                help_text='Please specify the city where your main office'
+                          '(headquarters) is located. (e.g. Boston)',
                 max_length=100,
                 null=True),
         ),
@@ -88,7 +89,7 @@ class Migration(migrations.Migration):
                 blank=True,
                 default='',
                 help_text='Please specify the country where your main office'
-                            '(headquarters) is located',
+                          '(headquarters) is located',
                 max_length=100,
                 null=True),
         ),
@@ -99,7 +100,8 @@ class Migration(migrations.Migration):
                 blank=True,
                 default='',
                 help_text='Please specify the state, region or province where'
-                            'your main office (headquarters) is located (if applicable).',
+                          'your main office (headquarters) is located'
+                          '(if applicable).',
                 max_length=100,
                 null=True),
         ),
@@ -109,8 +111,8 @@ class Migration(migrations.Migration):
             field=models.CharField(
                 blank=True,
                 default='',
-                help_text='Please specify the street address for your main office'
-                            ' (headquarters).',
+                help_text='Please specify the street address for your'
+                          'main office (headquarters).',
                 max_length=100,
                 null=True),
         ),
@@ -139,8 +141,8 @@ class Migration(migrations.Migration):
             name='video_elevator_pitch_url',
             field=embed_video.fields.EmbedVideoField(
                 blank=True,
-                help_text='Upload your 1-3 minute video pitch to Vimeo or Youtube.'
-                            'Paste the shared link here.',
+                help_text='Upload your 1-3 minute video pitch to'
+                          'Vimeo or Youtube. Paste the shared link here.',
                 max_length=100,
                 null=True),
         ),
