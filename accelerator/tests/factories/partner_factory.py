@@ -38,7 +38,6 @@ class PartnerFactory(DjangoModelFactory):
     location_national = "United States"
     location_regional = "Massachusetts"
     location_city = "Boston"
-    location_postcode = "02210"
     location_street_address = "212 Mckinnon Rd"
     date_founded = "01/2022"
 
