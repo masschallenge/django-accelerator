@@ -69,12 +69,12 @@ class BasePartner(AcceleratorModel):
         default='',
         help_text=('Please specify the country where your main office '
                    '(headquarters) is located'))
-    short_form = models.TextField(
+    short_pitch = models.TextField(
         max_length=140,
         blank=True,
         null=True,
         help_text='Your enterprise in 140 characters or less.')
-    long_form = models.TextField(
+    full_elevator_pitch = models.TextField(
         max_length=500,
         blank=True,
         null=True,
@@ -115,7 +115,6 @@ class BasePartner(AcceleratorModel):
         blank=True,
         help_text=('Partner Profiles will be published to external websites '
                    'through the the API.'))
-
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_partner'
