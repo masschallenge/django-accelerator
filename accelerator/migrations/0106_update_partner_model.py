@@ -10,7 +10,8 @@ import embed_video.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0105_inclusion_of_business_proposition_model_changes'),
+        ('accelerator',
+            '0105_inclusion_of_business_proposition_model_changes'),
     ]
 
     operations = [
