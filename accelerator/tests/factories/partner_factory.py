@@ -49,3 +49,11 @@ def additional_industries(self, create, extracted, **kwargs):
     if extracted:
         for industry in extracted:
             self.additional_industries.add(industry)
+
+@post_generation
+def name(self, create, extracted, **kwargs):
+   if not create:
+        return
+   if extracted:
+            self.organization.name = extracted
+            self.organization.save()

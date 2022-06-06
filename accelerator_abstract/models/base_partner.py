@@ -85,21 +85,6 @@ class BasePartner(AcceleratorModel):
         help_text=(
             'Upload your 1-3 minute video pitch to Vimeo or Youtube. '
             'Paste the shared link here.'))
-    public_inquiry_email = models.URLField(
-        blank=True,
-        null=True,
-        max_length=100,
-        verbose_name="Public Inquiry email")
-    website_url = models.URLField(
-        blank=True,
-        null=True,
-        max_length=100,
-        verbose_name="Website URL")
-    twitter_handle = models.URLField(
-        blank=True,
-        null=True,
-        max_length=100,
-        verbose_name="Twitter profile URL")
     linked_in_url = models.URLField(
         blank=True,
         null=True,
