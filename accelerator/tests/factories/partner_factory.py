@@ -27,6 +27,7 @@ class PartnerFactory(DjangoModelFactory):
     twitter_handle = Sequence(lambda n: "partner{0}".format(n))
     public_inquiry_email = Sequence(
         lambda n: "contact@partner{0}.com".format(n))
+    primary_industry = SubFactory(IndustryFactory)
     short_pitch = name = Sequence(
         lambda n: "short_pitch Partner {0} Inc.".format(n))
     full_elevator_pitch = Sequence(
