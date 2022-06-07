@@ -41,7 +41,6 @@ class PartnerFactory(DjangoModelFactory):
     location_street_address = "212 Mckinnon Rd"
     date_founded = "01/2022"
 
-
     @post_generation
     def additional_industries(self, create, extracted, **kwargs):
         if not create:
@@ -49,7 +48,6 @@ class PartnerFactory(DjangoModelFactory):
         if extracted:
             for industry in extracted:
                 self.additional_industries.add(industry)
-
 
     @post_generation
     def name(self, create, extracted, **kwargs):
