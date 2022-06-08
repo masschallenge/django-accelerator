@@ -60,7 +60,7 @@ class Migration(migrations.Migration):
             field=models.BooleanField(
                 blank=True,
                 default=True,
-                help_text='Partner Profiles will be published to external'
+                help_text='Partner Profiles will be published to external '
                           'websites through the the API.'),
         ),
         migrations.AddField(
@@ -78,7 +78,7 @@ class Migration(migrations.Migration):
             field=models.CharField(
                 blank=True,
                 default='',
-                help_text='Please specify the city where your main office'
+                help_text='Please specify the city where your main office '
                           '(headquarters) is located. (e.g. Boston)',
                           max_length=100,
                           null=True),
@@ -89,7 +89,7 @@ class Migration(migrations.Migration):
             field=models.CharField(
                 blank=True,
                 default='',
-                help_text='Please specify the country where your main office'
+                help_text='Please specify the country where your main office '
                           '(headquarters) is located',
                 max_length=100,
                 null=True),
@@ -100,8 +100,8 @@ class Migration(migrations.Migration):
             field=models.CharField(
                 blank=True,
                 default='',
-                help_text='Please specify the state, region or province where'
-                          'your main office (headquarters) is located'
+                help_text='Please specify the state, region or province where '
+                          'your main office (headquarters) is located '
                           '(if applicable).',
                 max_length=100,
                 null=True),
@@ -112,7 +112,7 @@ class Migration(migrations.Migration):
             field=models.CharField(
                 blank=True,
                 default='',
-                help_text='Please specify the street address for your main'
+                help_text='Please specify the street address for your main '
                           'office (headquarters).',
                 max_length=100,
                 null=True),
@@ -142,7 +142,7 @@ class Migration(migrations.Migration):
             name='video_elevator_pitch_url',
             field=embed_video.fields.EmbedVideoField(
                 blank=True,
-                help_text='Upload your 1-3 minute video pitch to Vimeo or'
+                help_text='Upload your 1-3 minute video pitch to Vimeo or '
                           'Youtube. Paste the shared link here.',
                 max_length=100,
                 null=True),
