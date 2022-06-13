@@ -34,7 +34,9 @@ from accelerator_abstract.models.base_judging_round import (
     ONLINE_JUDGING_ROUND_TYPE,
 )
 from accelerator_abstract.models.base_user_utils import is_employee
+from accelerator.utils import flag_smith_has_feature
 
+PROGRAM_INTEREST_FLAG = 'show_revised_program_interest'
 SHORT_BIO_MAX_LENGTH = 140
 OFFICE_HOUR_HOLDER_ROLES = [UserRole.MENTOR, UserRole.AIR]
 OFFICE_HOURS_HOLDER = Q(
@@ -47,7 +49,7 @@ PROFILE_FIELDS = [
     'shared_demographic_data', 'education_level', 'privacy_email',
     'privacy_web', 'privacy_profile', 'primary_industry',
     'functional_expertise', 'additional_industries', 'privacy_phone',
-    'linked_in_url', 'geographic_experience', 'program_families',
+    'linked_in_url', 'geographic_experience',
     'authorization_to_share_ethno_racial_identity']
 PROFILE_LOCATION_FIELDS = [
     'street_address', 'city', 'state', 'country']
@@ -407,7 +409,12 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
 
     def percent_complete(self):
         completed_count = 0
-        profile_data_dict = model_to_dict(self, PROFILE_FIELDS)
+        profile_fields = PROFILE_FIELDS.copy()
+        if flag_smith_has_feature(PROGRAM_INTEREST_FLAG):
+            profile_fields += ['program_interest']
+        else:
+            profile_fields += ['program_families']
+        profile_data_dict = model_to_dict(self, profile_fields)
         user_data_dict = model_to_dict(self.user, PROFILE_USER_FIELDS)
         completed_participation_by_type = self.community_participation.filter(
             type__in=COMMUNITY_PARTICIPATION_TYPES).values_list(
@@ -419,7 +426,7 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
         completed_count += _get_completed_fields_count(profile_data_dict)
         completed_count += _get_completed_fields_count(user_data_dict)
         completed_count += completed_participation_by_type
-        total = len(COMMUNITY_PARTICIPATION_TYPES + PROFILE_FIELDS
+        total = len(COMMUNITY_PARTICIPATION_TYPES + profile_fields
                     + PROFILE_USER_FIELDS + PROFILE_LOCATION_FIELDS)
         return round(completed_count / total, 2)
 

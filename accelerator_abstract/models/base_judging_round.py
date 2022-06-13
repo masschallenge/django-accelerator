@@ -232,6 +232,7 @@ class BaseJudgingRound(AcceleratorModel):
         null=True,
         help_text='Partner Label',
         on_delete=CASCADE)
+    use_business_proposition = BooleanField(default=False)
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_judginground'

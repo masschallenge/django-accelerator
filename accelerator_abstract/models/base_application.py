@@ -55,6 +55,13 @@ class BaseApplication(AcceleratorModel):
         choices=APPLICATION_STATUSES
     )
     submission_datetime = models.DateTimeField(blank=True, null=True)
+    business_proposition = models.ForeignKey(
+        swapper.get_model_name('accelerator', 'BusinessProposition'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='applications'
+    )
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Applications'

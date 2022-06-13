@@ -18,10 +18,13 @@ BOILERPLATE_DB_VALUE = 'boilerplate'
 BOILERPLATE_DISPLAY = 'Boilerplate'
 FEEDBACK_DB_VALUE = 'feedback'
 FEEDBACK_DISPLAY = 'Feedback'
+BUSINESS_PROPOSITION_VALUE = 'business_proposition'
+BUSINESS_PROPOSITION_DISPLAY = 'Business Proposition'
 
 ELEMENT_TYPES = ((APPLICATION_ANSWER_DB_VALUE, APPLICATION_ANSWER_DISPLAY),
                  (BOILERPLATE_DB_VALUE, BOILERPLATE_DISPLAY),
-                 (FEEDBACK_DB_VALUE, FEEDBACK_DISPLAY))
+                 (FEEDBACK_DB_VALUE, FEEDBACK_DISPLAY),
+                 (BUSINESS_PROPOSITION_VALUE, BUSINESS_PROPOSITION_DISPLAY))
 MULTILINE_DB_VALUE = 'multiline'
 MULTILINE_DISPLAY = 'MultilineText'
 MULTIPLE_CHOICE_DB_VALUE = 'multichoice'
@@ -137,6 +140,10 @@ class BaseJudgingFormElement(AcceleratorModel):
         max_length=64,
         choices=SHARING_VALUES,
         blank=True,
+    )
+    business_proposition_section = models.TextField(
+        blank=True,
+        null=True
     )
 
     class Meta(AcceleratorModel.Meta):

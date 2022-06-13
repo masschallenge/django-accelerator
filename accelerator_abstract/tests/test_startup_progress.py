@@ -41,13 +41,13 @@ class TestStartupProgress(TestCase):
         self.assertFalse(progress['profile-complete'])
         self.assertGreater(1, progress['progress'])
 
-    def test_startup_profile_complete_business_prop_incomplete_(self):
+    def test_profile_application_field_complete_business_prop_incomplete(self):
         startup = StartupFactory(video_elevator_pitch_url='https://video.com')
         BusinessPropositionFactory(startup=startup)
         progress = startup.profile_status()
-        self.assertEqual(progress['milestone'], APPLICATION_READY)
+        self.assertEqual(progress['milestone'], PROFILE_COMPLETE)
         self.assertFalse(progress['bus-prop-complete'])
-        self.assertTrue(progress['profile-complete'])
+        self.assertFalse(progress['profile-complete'])
         self.assertGreater(1, progress['progress'])
 
     def test_milestone_change_when_required_field_complete(self):
