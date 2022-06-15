@@ -44,7 +44,7 @@ def add_startup_profile_top_nav(apps, schema_editor):
         NavTreeItem.objects.get_or_create(
             alias=item['alias'],
             url=item['url'],
-            tree__pk=nav_tree.id,
+            tree_id=nav_tree.id,
             defaults=defaults)
 
 class Migration(migrations.Migration):
