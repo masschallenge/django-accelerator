@@ -39,14 +39,16 @@ def add_startup_profile_top_nav(apps, schema_editor):
             alias='startup_profile_manager_subnav')
 
     for item in nav_items:
-        item['tree_id'] = nav_tree.id
-        nav_item = NavTreeItem.objects.filter(
+        defaults = {
+            'title': item['title']
+        }
+        if item['urlaspattern']:
+            defaults['urlaspattern'] = item['urlaspattern']
+        NavTreeItem.objects.get_or_create(
             alias=item['alias'],
             url=item['url'],
-            tree__pk=item['tree_id']).exists()
-        if not nav_item:
-            NavTreeItem.objects.create(**item)
-
+            tree__pk=nav_tree.id,
+            defaults=defaults)
 
 class Migration(migrations.Migration):
     dependencies = [
