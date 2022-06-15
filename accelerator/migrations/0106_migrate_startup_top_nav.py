@@ -33,7 +33,7 @@ def add_startup_profile_top_nav(apps, schema_editor):
     ]
     nav_tree, _ = NavTree.objects.get_or_create(
         alias='startup_profile_manager_subnav',
-        default={'title': 'Startup Profile Manager'})
+        defaults={'title': 'Startup Profile Manager'})
 
     for item in nav_items:
         defaults = {
