@@ -39,7 +39,7 @@ def add_startup_profile_top_nav(apps, schema_editor):
         defaults = {
             'title': item['title']
         }
-        if item['urlaspattern']:
+        if item.get('urlaspattern', False):
             defaults['urlaspattern'] = item['urlaspattern']
         NavTreeItem.objects.get_or_create(
             alias=item['alias'],
