@@ -11,7 +11,7 @@ def add_startup_profile_top_nav(apps, schema_editor):
          'alias': 'my_startup',
          'url': '/mystartups'},
         {"title": 'Dashboard',
-         'alias': 'dashbaord',
+         'alias': 'dashboard',
          'urlaspattern': True,
          'url': 'startup_dashboard startup.id'},
         {"title": 'Company Profile',
@@ -42,6 +42,7 @@ def add_startup_profile_top_nav(apps, schema_editor):
         item['tree_id'] = nav_tree.id
         nav_item = NavTreeItem.objects.filter(
             alias=item['alias'],
+            url=item['url'],
             tree__pk=item['tree_id']).exists()
         if not nav_item:
             NavTreeItem.objects.create(**item)
