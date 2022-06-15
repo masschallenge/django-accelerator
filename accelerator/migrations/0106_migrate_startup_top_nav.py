@@ -49,7 +49,8 @@ def add_startup_profile_top_nav(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0105_inclusion_of_business_proposition_model_changes'),
+        ('accelerator',
+         '0105_inclusion_of_business_proposition_model_changes'),
     ]
     operations = [
         migrations.RunPython(add_startup_profile_top_nav,
