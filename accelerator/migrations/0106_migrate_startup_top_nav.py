@@ -31,12 +31,9 @@ def add_startup_profile_top_nav(apps, schema_editor):
          'urlaspattern': True,
          'url': 'startup_team_view startup.id'},
     ]
-    nav_tree = NavTree.objects.filter(
-        alias='startup_profile_manager_subnav').first()
-    if not nav_tree:
-        nav_tree = NavTree.objects.create(
-            title='Startup Profile Manager',
-            alias='startup_profile_manager_subnav')
+    nav_tree, _ = NavTree.objects.get_or_create(
+        alias='startup_profile_manager_subnav',
+        default={'title': 'Startup Profile Manager'})
 
     for item in nav_items:
         defaults = {
