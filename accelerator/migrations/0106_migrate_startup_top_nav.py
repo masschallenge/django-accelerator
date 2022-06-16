@@ -47,6 +47,7 @@ def add_startup_profile_top_nav(apps, schema_editor):
             tree_id=nav_tree.id,
             defaults=defaults)
 
+
 class Migration(migrations.Migration):
     dependencies = [
         ('accelerator',
