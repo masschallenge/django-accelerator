@@ -310,20 +310,18 @@ class BaseStartup(AcceleratorModel):
     def profile_status(self):
         milestone = APPLICATION_READY
 
-        instance = self.business_propositions.order_by('created_at').last()
+        bus_prop_obj = self.business_propositions.order_by('created_at').last()
         bus_prop_fields = _get_model_fields(self.business_propositions.model,
                                             EXCLUDED_FIELDS)
-        total_fields = len(STARTUP_FIELDS) + len(bus_prop_fields)
+        application_ready_field_count = len(STARTUP_FIELDS)
+        total_fields = application_ready_field_count + len(bus_prop_fields)
 
         prof_progress_num, prof_milestone, profile = self._field_to_data(
-            self,
-            STARTUP_FIELDS)
-        (bus_prop_progress_num,
-            bus_prop_milestone,
-            bus_prop) = self._field_to_data(instance, bus_prop_fields)
+            self, STARTUP_FIELDS)
+        bus_prop_progress_num, _, bus_prop = self._field_to_data(
+            bus_prop_obj, bus_prop_fields)
 
-        if (bus_prop_milestone == PROFILE_COMPLETE and
-                prof_milestone == PROFILE_COMPLETE):
+        if prof_milestone == PROFILE_COMPLETE:
             milestone = PROFILE_COMPLETE
             progress = bus_prop_progress_num + prof_progress_num
 
@@ -339,9 +337,8 @@ class BaseStartup(AcceleratorModel):
                                   is_bus_prop_complete=bus_prop,
                                   is_profile_complete=profile)
         else:
-            progress = bus_prop_progress_num + prof_progress_num
-            return _calc_progress(total_fields,
-                                  progress,
+            return _calc_progress(application_ready_field_count,
+                                  prof_progress_num,
                                   milestone=milestone,
                                   is_bus_prop_complete=bus_prop,
                                   is_profile_complete=profile)
