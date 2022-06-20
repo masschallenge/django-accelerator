@@ -160,6 +160,10 @@ class BaseProgram(AcceleratorModel):
         swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'IndustryCluster'),
         blank=True, related_name='programs')
+    associated_industry = models.CharField(
+        max_length=20,
+        default="",
+    )
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Programs'
