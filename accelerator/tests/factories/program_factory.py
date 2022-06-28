@@ -63,6 +63,8 @@ class ProgramFactory(DjangoModelFactory):
     overview_start_date = None
     overview_deadline_date = None
     mentor_program_group = None
+    associated_industry = Sequence(
+        lambda n: "Health {0}".format(n))
     program_image = factory.LazyAttribute(
             lambda _: ContentFile(
                 factory.django.ImageField()._make_data(
