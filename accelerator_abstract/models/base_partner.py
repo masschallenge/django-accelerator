@@ -73,15 +73,18 @@ class BasePartner(AcceleratorModel):
         max_length=140,
         blank=True,
         null=True,
+        verbose_name='Short Summary',
         help_text='Your enterprise in 140 characters or less.')
     full_elevator_pitch = models.TextField(
         max_length=500,
         blank=True,
         null=True,
+        verbose_name="Detailed Summary",
         help_text='Your enterprise in 140 characters or less.')
     video_elevator_pitch_url = EmbedVideoField(
         max_length=100,
         blank=True, null=True,
+        verbose_name='Company Video URL',
         help_text=(
             'Upload your 1-3 minute video pitch to Vimeo or Youtube. '
             'Paste the shared link here.'))
