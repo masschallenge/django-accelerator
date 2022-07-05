@@ -33,9 +33,6 @@ class ExpertProfileFactory(CoreProfileFactory):
     privacy_web = "finalists and staff"
     public_website_consent = True
     public_website_consent_checked = True
-    judge_interest = False
-    mentor_interest = False
-    speaker_interest = False
     speaker_topics = ""
     office_hours_interest = False
     office_hours_topics = ""
