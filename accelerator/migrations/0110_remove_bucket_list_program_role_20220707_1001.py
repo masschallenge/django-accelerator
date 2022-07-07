@@ -8,7 +8,7 @@ def remove_bucket_list_program_roles(apps, schema_editor):
     NodePublishedFor = apps.get_model('accelerator', 'NodePublishedFor')
 
     program_role_ids = BucketState.objects.values_list('program_role_id',
-                                                        flat=True)
+                                                       flat=True)
     NodePublishedFor.objects.filter(
         published_for_id__in=program_role_ids).delete()
     ProgramRoleGrant.objects.filter(
