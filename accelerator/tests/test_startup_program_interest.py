@@ -2,8 +2,8 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
-from accelerator.models import StartupProgramInterest
 from accelerator.tests.factories import StartupProgramInterestFactory
+from mc.models import StartupProgramInterest
 
 
 class TestStartupProgramInterest(TestCase):

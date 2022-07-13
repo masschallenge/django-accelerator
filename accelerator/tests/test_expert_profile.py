@@ -3,7 +3,7 @@ from time import sleep
 
 from django.test import TestCase
 
-from accelerator.models import (
+from mc.models import (
     ExpertCategory,
     Industry,
     UserRole,

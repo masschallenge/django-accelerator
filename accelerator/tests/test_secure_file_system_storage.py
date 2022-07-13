@@ -1,14 +1,16 @@
-from django.test import TestCase
-try:
-    from unittest.mock import patch
-except ImportError:
-    from mock import patch
+from mock import patch
+
+from django.test import (
+    TestCase,
+    override_settings,
+)
 
 from accelerator_abstract.models.secure_file_system_storage import (
     SecureFileSystemStorage
 )
 
 
+@override_settings(ROOT_URLCONF='accelerator.tests.urls')
 class TestSecureFileSystemStorage(TestCase):
 
     @patch('accelerator_abstract.models.secure_file_system_storage.settings')

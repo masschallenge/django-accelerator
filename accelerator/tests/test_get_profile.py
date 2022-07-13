@@ -1,5 +1,3 @@
-from __future__ import unicode_literals
-
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.db import IntegrityError
@@ -9,7 +7,6 @@ except ImportError:
     from mock import patch
 
 from accelerator.models import (
-    BaseProfile,
     ENTREPRENEUR_USER_TYPE,
     EXPERT_USER_TYPE,
     EntrepreneurProfile,
@@ -27,6 +24,7 @@ from accelerator.tests.factories import (
     ExpertFactory,
     MemberFactory,
 )
+from mc.models import BaseProfile
 from simpleuser.tests.factories import UserFactory
 
 User = get_user_model()

@@ -1,13 +1,11 @@
-from __future__ import unicode_literals
-
 from django.db import IntegrityError
 from django.test import TestCase
 
-from accelerator.models import BaseProfile
 from accelerator.tests.factories import (
     CoreProfileModelFactory,
     MemberFactory,
 )
+from mc.models import BaseProfile
 
 
 class TestBaseProfile(TestCase):

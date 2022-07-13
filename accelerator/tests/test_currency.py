@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from accelerator.models import Currency
+from mc.models import Currency
 from .factories.currency_factory import CurrencyFactory
 
 

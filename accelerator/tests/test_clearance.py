@@ -1,11 +1,10 @@
 from django.test import TestCase
-
-from accelerator.models import (
+from accelerator.tests.factories import ClearanceFactory
+from mc.models import (
     Clearance,
     CLEARANCE_LEVEL_POM,
     CLEARANCE_LEVEL_GLOBAL_MANAGER
 )
-from accelerator.tests.factories import ClearanceFactory
 
 
 class TestClearance(TestCase):

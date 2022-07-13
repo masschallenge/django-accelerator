@@ -1,4 +1,4 @@
-from accelerator.models import (
+from mc.models import (
     NavTree,
     NavTreeItem,
     UserRole,

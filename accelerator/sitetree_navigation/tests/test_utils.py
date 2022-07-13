@@ -1,9 +1,5 @@
 from django.test import TestCase
 
-from accelerator.models import (
-    NavTree,
-    NavTreeItem
-)
 from accelerator.tests.factories import (
     UserRoleFactory,
     ProgramFactory,
@@ -16,8 +12,11 @@ from accelerator.sitetree_navigation.utils import (
     add_allowed_program_families_to_nav_items,
     delete_nav_tree
 )
-
 from accelerator_abstract.models import BaseUserRole
+from mc.models import (
+    NavTree,
+    NavTreeItem
+)
 
 FINALIST = BaseUserRole.FINALIST
 ALUMNI = BaseUserRole.ALUM

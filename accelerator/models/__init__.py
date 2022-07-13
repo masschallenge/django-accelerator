@@ -1,13 +1,13 @@
 from simpleuser.models import User
 
-from .allocator import Allocator
-from .startup_role import StartupRole
-from .user_role import UserRole
+from accelerator.models.allocator import Allocator
+from accelerator.models.startup_role import StartupRole
+from accelerator.models.user_role import UserRole
 from accelerator_abstract.models.base_user_role import has_user_role_base
 
-from .user_role_menu import UserRoleMenu
-from .program_cycle import ProgramCycle
-from .base_profile import BaseProfile
+from accelerator.models.user_role_menu import UserRoleMenu
+from accelerator.models.program_cycle import ProgramCycle
+from accelerator.models.base_profile import BaseProfile
 from accelerator_abstract.models.base_base_profile import (
     PHONE_MAX_LENGTH,
     TWITTER_HANDLE_MAX_LENGTH,
@@ -16,10 +16,10 @@ from accelerator_abstract.models.base_base_profile import (
     MEMBER_USER_TYPE,
     EXPERT_USER_TYPE,
 )
-from .criterion import Criterion
-from .criterion_option_spec import CriterionOptionSpec
-from .currency import Currency
-from .program import Program
+from accelerator.models.criterion import Criterion
+from accelerator.models.criterion_option_spec import CriterionOptionSpec
+from accelerator.models.currency import Currency
+from accelerator.models.program import Program
 from accelerator_abstract.models.base_program import (
     ACTIVE_PROGRAM_STATUS,
     CURRENT_STATUSES,
@@ -28,51 +28,51 @@ from accelerator_abstract.models.base_program import (
     UPCOMING_PROGRAM_STATUS,
 )
 
-from .model_change import ModelChange
+from accelerator.models.model_change import ModelChange
 from accelerator_abstract.models.base_model_change import (
     MIGRATION_STATUS_DONE,
     MIGRATION_STATUS_ERROR,
     MIGRATION_STATUS_MIGRATING,
     MIGRATION_STATUS_OLD,
 )
-from .program_startup_status import ProgramStartupStatus
+from accelerator.models.program_startup_status import ProgramStartupStatus
 from accelerator_abstract.models.base_program_startup_status import (
     STARTUP_BADGE_DISPLAY_VALUES
 )
 
-from .startup_program_interest import StartupProgramInterest
+from accelerator.models.startup_program_interest import StartupProgramInterest
 from accelerator_abstract.models.base_startup_program_interest import (
     INTEREST_CHOICES
 )
-from .startup_cycle_interest import StartupCycleInterest
+from accelerator.models.startup_cycle_interest import StartupCycleInterest
 
-from .site import Site
-from .site_program_authorization import SiteProgramAuthorization
-from .mentor_program_office_hour import MentorProgramOfficeHour
+from accelerator.models.site import Site
+from accelerator.models.site_program_authorization import SiteProgramAuthorization
+from accelerator.models.mentor_program_office_hour import MentorProgramOfficeHour
 
-from .program_override import ProgramOverride
-from .refund_code import RefundCode
-from .observer import Observer
-from .program_family import ProgramFamily
+from accelerator.models.program_override import ProgramOverride
+from accelerator.models.refund_code import RefundCode
+from accelerator.models.observer import Observer
+from accelerator.models.program_family import ProgramFamily
 from accelerator_abstract.models.base_core_profile import BIO_MAX_LENGTH
-from .functional_expertise import FunctionalExpertise
-from .industry import Industry
-from .named_group import NamedGroup
-from .organization import Organization
+from accelerator.models.functional_expertise import FunctionalExpertise
+from accelerator.models.industry import Industry
+from accelerator.models.named_group import NamedGroup
+from accelerator.models.organization import Organization
 from accelerator_abstract.models.base_organization import slug_from_instance
-from .partner import Partner
-from .partner_team_member import PartnerTeamMember
-from .program_role import ProgramRole
-from .program_role_grant import ProgramRoleGrant
-from .expert_interest import ExpertInterest
-from .startup import Startup
+from accelerator.models.partner import Partner
+from accelerator.models.partner_team_member import PartnerTeamMember
+from accelerator.models.program_role import ProgramRole
+from accelerator.models.program_role_grant import ProgramRoleGrant
+from accelerator.models.expert_interest import ExpertInterest
+from accelerator.models.startup import Startup
 from accelerator_abstract.models.base_startup import (
     STARTUP_COMMUNITIES,
     DEFAULT_PROFILE_BACKGROUND_COLOR,
     DEFAULT_PROFILE_TEXT_COLOR,
 )
-from .application_type import ApplicationType
-from .question import Question
+from accelerator.models.application_type import ApplicationType
+from accelerator.models.question import Question
 from accelerator_abstract.models.base_question import (
     CHOICE_LAYOUT_HORIZONTAL,
     CHOICE_LAYOUT_VERTICAL,
@@ -83,12 +83,12 @@ from accelerator_abstract.models.base_question import (
     QUESTION_TYPE_NUMBER,
     QUESTION_TYPES,
 )
-from .application_question import ApplicationQuestion
+from accelerator.models.application_question import ApplicationQuestion
 from accelerator_abstract.models.base_application_question import (
     TEXT_LIMIT_UNITS,
 )
-from .application_answer import ApplicationAnswer
-from .application import Application
+from accelerator.models.application_answer import ApplicationAnswer
+from accelerator.models.application import Application
 from accelerator_abstract.models.base_application import (
     APPLICATION_STATUSES,
     COMPLETE_APP_STATUS,
@@ -106,7 +106,7 @@ from accelerator_abstract.models.base_application import (
     UNPAID_PAYMENT_STATUS,
 )
 
-from .clearance import Clearance
+from accelerator.models.clearance import Clearance
 from accelerator_abstract.models.base_clearance import (
     CLEARANCE_LEVEL_EXEC_MD,
     CLEARANCE_LEVEL_GLOBAL_MANAGER,
@@ -114,45 +114,45 @@ from accelerator_abstract.models.base_clearance import (
     CLEARANCE_LEVELS,
 )
 
-from .refund_code_redemption import RefundCodeRedemption
-from .reference import Reference
-from .startup_team_member import StartupTeamMember
+from accelerator.models.refund_code_redemption import RefundCodeRedemption
+from accelerator.models.reference import Reference
+from accelerator.models.startup_team_member import StartupTeamMember
 
-from .program_startup_attribute import ProgramStartupAttribute
-from .startup_attribute import StartupAttribute
-from .startup_override_grant import StartupOverrideGrant
-from .startup_status import StartupStatus
-from .startup_mentor_tracking_record import (
+from accelerator.models.program_startup_attribute import ProgramStartupAttribute
+from accelerator.models.startup_attribute import StartupAttribute
+from accelerator.models.startup_override_grant import StartupOverrideGrant
+from accelerator.models.startup_status import StartupStatus
+from accelerator.models.startup_mentor_tracking_record import (
     StartupMentorTrackingRecord,
 )
-from .startup_mentor_relationship import StartupMentorRelationship
+from accelerator.models.startup_mentor_relationship import StartupMentorRelationship
 from accelerator_abstract.models.base_startup_mentor_relationship import (
     CONFIRMED_RELATIONSHIP,
     DESIRED_RELATIONSHIP,
     DISCUSSING_RELATIONSHIP,
     RELATIONSHIP_CHOICES,
 )
-from .interest_category import InterestCategory
-from .expert_category import ExpertCategory
+from accelerator.models.interest_category import InterestCategory
+from accelerator.models.expert_category import ExpertCategory
 from accelerator_abstract.models.base_expert_category import (
     VALID_EXPERT_CATEGORIES
 )
-from .expert_interest_type import ExpertInterestType
-from .job_posting import JobPosting
+from accelerator.models.expert_interest_type import ExpertInterestType
+from accelerator.models.job_posting import JobPosting
 from accelerator_abstract.models.base_job_posting import JOB_TYPE_VALUES
-from .newsletter_receipt import NewsletterReceipt
-from .newsletter import Newsletter
-from .section import Section
+from accelerator.models.newsletter_receipt import NewsletterReceipt
+from accelerator.models.newsletter import Newsletter
+from accelerator.models.section import Section
 from accelerator_abstract.models.base_section import INCLUDE_FOR_CHOICES
-from .program_partner import ProgramPartner
-from .program_partner_type import ProgramPartnerType
+from accelerator.models.program_partner import ProgramPartner
+from accelerator.models.program_partner_type import ProgramPartnerType
 from accelerator_abstract.models.base_program_partner_type import (
     PARTNER_BADGE_DISPLAY_VALUES
 )
-from .site import Site
-from .judging_form import JudgingForm
+from accelerator.models.site import Site
+from accelerator.models.judging_form import JudgingForm
 
-from .judge_application_feedback import JudgeApplicationFeedback
+from accelerator.models.judge_application_feedback import JudgeApplicationFeedback
 from accelerator_abstract.models.base_judge_application_feedback import (
     JUDGING_FEEDBACK_STATUS_COMPLETE,
     JUDGING_FEEDBACK_STATUS_CONFLICT,
@@ -164,19 +164,19 @@ from accelerator_abstract.models.base_judge_application_feedback import (
     JUDGING_STATUS_NO_CONFLICT,
     JUDGING_STATUS_OTHER,
 )
-from .judge_availability import JudgeAvailability
+from accelerator.models.judge_availability import JudgeAvailability
 from accelerator_abstract.models.base_judge_availability import (
     JUDGE_AVAILABILITY_AVAILABLE,
     JUDGE_AVAILABILITY_NOT_AVAILABLE,
     JUDGE_AVAILABILITY_PREFERRED,
 )
-from .judge_panel_assignment import JudgePanelAssignment
+from accelerator.models.judge_panel_assignment import JudgePanelAssignment
 from accelerator_abstract.models.base_judge_panel_assignment import (
     ASSIGNED_PANEL_ASSIGNMENT_STATUS,
     COMPLETE_PANEL_ASSIGNMENT_STATUS,
 )
-from .judge_round_commitment import JudgeRoundCommitment
-from .judging_form_element import JudgingFormElement
+from accelerator.models.judge_round_commitment import JudgeRoundCommitment
+from accelerator.models.judging_form_element import JudgingFormElement
 from accelerator_abstract.models.base_judging_form_element import (
     FEEDBACK_ERROR,
     FEEDBACK_QUESTION,
@@ -194,7 +194,7 @@ from accelerator_abstract.models.base_judging_form_element import (
     FORM_ELEM_FEEDBACK_TO_STARTUP,
     FORM_ELEM_FEEDBACK_TO_MC,
 )
-from .judging_round import JudgingRound
+from accelerator.models.judging_round import JudgingRound
 from accelerator_abstract.models.base_judging_round import (
     CAPTURE_AVAILABILITY_DISABLED,
     CAPTURE_AVAILABILITY_TIME,
@@ -210,9 +210,9 @@ from accelerator_abstract.models.base_judging_round import (
     FEEDBACK_DISPLAY_ENABLED,
 )
 
-from .scenario import Scenario
+from accelerator.models.scenario import Scenario
 from accelerator_abstract.models.base_scenario import DEFAULT_PANEL_SIZE
-from .scenario_preference import ScenarioPreference
+from accelerator.models.scenario_preference import ScenarioPreference
 from accelerator_abstract.models.base_scenario_preference import (
     ALL_JUDGES,
     APPLICATION_ENTITY,
@@ -244,10 +244,10 @@ from accelerator_abstract.models.base_scenario_preference import (
     SIMPLE_JUDGE_CATEGORIES,
     SPECIAL_JUDGE_CATEGORIES,
 )
-from .scenario_application import ScenarioApplication
-from .scenario_judge import ScenarioJudge
-from .mentoring_specialties import MentoringSpecialties
-from .panel import Panel
+from accelerator.models.scenario_application import ScenarioApplication
+from accelerator.models.scenario_judge import ScenarioJudge
+from accelerator.models.mentoring_specialties import MentoringSpecialties
+from accelerator.models.panel import Panel
 from accelerator_abstract.models.base_panel import (
     ACTIVE_PANEL_STATUS,
     COMPLETED_PANEL_STATUS,
@@ -255,7 +255,7 @@ from accelerator_abstract.models.base_panel import (
     PANEL_STATUS_ENUM,
     PREVIEW_PANEL_STATUS,
 )
-from .judge_feedback_component import JudgeFeedbackComponent
+from accelerator.models.judge_feedback_component import JudgeFeedbackComponent
 from accelerator_abstract.models.base_judge_feedback_component import (
     DEFINITELY_DONT_RECOMMEND,
     DEFINITELY_RECOMMEND,
@@ -269,21 +269,21 @@ from accelerator_abstract.models.base_judge_feedback_component import (
     WEIGHTED_SCORES,
 )
 
-from .panel_location import PanelLocation
-from .panel_time import PanelTime
-from .panel_type import PanelType
-from .application_panel_assignment import ApplicationPanelAssignment
+from accelerator.models.panel_location import PanelLocation
+from accelerator.models.panel_time import PanelTime
+from accelerator.models.panel_type import PanelType
+from accelerator.models.application_panel_assignment import ApplicationPanelAssignment
 
-from .paypal_payment import PayPalPayment
-from .paypal_refund import PayPalRefund
-from .startup_label import StartupLabel
-from .user_label import UserLabel
+from accelerator.models.paypal_payment import PayPalPayment
+from accelerator.models.paypal_refund import PayPalRefund
+from accelerator.models.startup_label import StartupLabel
+from accelerator.models.user_label import UserLabel
 from accelerator_abstract.models.base_user_label import (
     CONFIRMED_JUDGE_STATE,
     DESIRED_JUDGE_STATE,
     JUDGING_ROUND_FORMAT,
 )
-from .bucket_state import BucketState
+from accelerator.models.bucket_state import BucketState
 from accelerator_abstract.models.base_bucket_state import (
     BaseBucketState,
     BUCKET_TYPES,
@@ -296,41 +296,41 @@ from accelerator_abstract.models.base_bucket_state import (
     UNPAID_BUCKET_TYPE,
     UNSUBMITTED_BUCKET_TYPE,
 )
-from .file_page import FilePage
-from .category_header_page import CategoryHeaderPage
-from .core_profile import CoreProfile
-from .node_published_for import NodePublishedFor
-from .subnav_association import NodeSubNavAssociation
-from .site_redirect_page import SiteRedirectPage
-from .legal_check import LegalCheck
-from .user_legal_check import UserLegalCheck
+from accelerator.models.file_page import FilePage
+from accelerator.models.category_header_page import CategoryHeaderPage
+from accelerator.models.core_profile import CoreProfile
+from accelerator.models.node_published_for import NodePublishedFor
+from accelerator.models.subnav_association import NodeSubNavAssociation
+from accelerator.models.site_redirect_page import SiteRedirectPage
+from accelerator.models.legal_check import LegalCheck
+from accelerator.models.user_legal_check import UserLegalCheck
 
-from .nav_tree import NavTree
+from accelerator.models.nav_tree import NavTree
 from accelerator_abstract.models.base_nav_tree import (
     MC_SIDE_NAV_TREE_ALIAS,
 )
-from .nav_tree_item import NavTreeItem
-from .location import Location
-from .program_family_location import ProgramFamilyLocation
-from .gender_choices import GenderChoices
-from .ethno_racial_identity import EthnoRacialIdentity
-from .deferrable_modal import DeferrableModal
-from .user_deferrable_modal import UserDeferrableModal
-from .entrepreneur_profile import EntrepreneurProfile
-from .expert_profile import ExpertProfile
-from .member_profile import MemberProfile
-from .user_note import UserNote
-from .organization_note import OrganizationNote
-from .industry_cluster import IndustryCluster
-from .partner_application_interest import PartnerApplicationInterest
-from .partner_judging_round_challenge import PartnerJudgingRoundChallenge
-from .partner_label import PartnerLabel
-from .partner_judging_instructions import PartnerJudgingInstructions
-from .partner_judge_application_assignment import (
+from accelerator.models.nav_tree_item import NavTreeItem
+from accelerator.models.location import Location
+from accelerator.models.program_family_location import ProgramFamilyLocation
+from accelerator.models.gender_choices import GenderChoices
+from accelerator.models.ethno_racial_identity import EthnoRacialIdentity
+from accelerator.models.deferrable_modal import DeferrableModal
+from accelerator.models.user_deferrable_modal import UserDeferrableModal
+from accelerator.models.entrepreneur_profile import EntrepreneurProfile
+from accelerator.models.expert_profile import ExpertProfile
+from accelerator.models.member_profile import MemberProfile
+from accelerator.models.user_note import UserNote
+from accelerator.models.organization_note import OrganizationNote
+from accelerator.models.industry_cluster import IndustryCluster
+from accelerator.models.partner_application_interest import PartnerApplicationInterest
+from accelerator.models.partner_judging_round_challenge import PartnerJudgingRoundChallenge
+from accelerator.models.partner_label import PartnerLabel
+from accelerator.models.partner_judging_instructions import PartnerJudgingInstructions
+from accelerator.models.partner_judge_application_assignment import (
     PartnerJudgeApplicationAssignment,
 )
-from .community_participation import CommunityParticipation
-from .geographic_experience import GeographicExperience
-from .business_proposition import BusinessProposition
-from .startup_update import StartupUpdate
-from .innovation_stage import InnovationStage
+from accelerator.models.community_participation import CommunityParticipation
+from accelerator.models.geographic_experience import GeographicExperience
+from accelerator.models.business_proposition import BusinessProposition
+from accelerator.models.startup_update import StartupUpdate
+from accelerator.models.innovation_stage import InnovationStage
