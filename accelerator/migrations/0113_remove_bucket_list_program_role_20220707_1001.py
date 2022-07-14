@@ -19,7 +19,7 @@ def remove_bucket_list_program_roles(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('accelerator', '0109_remove_interest_fields_20220705_0425'),
+        ('accelerator', '0112_migrate_partner_manager_subnav'),
     ]
 
     operations = [
