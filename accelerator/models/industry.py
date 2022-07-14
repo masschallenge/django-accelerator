@@ -1,8 +1,8 @@
-from __future__ import unicode_literals
-
+import swapper
 from accelerator_abstract.models import BaseIndustry
 
 
 class Industry(BaseIndustry):
     class Meta(BaseIndustry.Meta):
-        swappable = 'MPTT_SWAPPABLE_INDUSTRY_MODEL'
+        swappable = swapper.swappable_setting(
+            BaseIndustry.Meta.app_label, 'Industry')

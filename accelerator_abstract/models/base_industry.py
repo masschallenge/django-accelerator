@@ -1,5 +1,3 @@
-from __future__ import unicode_literals
-
 from django.db import models
 from mptt.models import (
     MPTTModel,
@@ -26,6 +24,7 @@ class BaseIndustry(MPTTModel, AcceleratorModel):
         db_table = 'accelerator_industry'
         verbose_name_plural = "Industries"
         abstract = True
+        app_label = 'accelerator'
 
     def __str__(self):
         parent_name = ''

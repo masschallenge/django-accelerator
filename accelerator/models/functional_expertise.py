@@ -1,8 +1,9 @@
-from __future__ import unicode_literals
+import swapper
 
 from accelerator_abstract.models import BaseFunctionalExpertise
 
 
 class FunctionalExpertise(BaseFunctionalExpertise):
     class Meta(BaseFunctionalExpertise.Meta):
-        swappable = 'MPTT_SWAPPABLE_FUNCTIONALEXPERTISE_MODEL'
+        swappable = swapper.swappable_setting(
+            BaseFunctionalExpertise.Meta.app_label, 'FunctionalExpertise')

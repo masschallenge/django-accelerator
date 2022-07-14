@@ -1,5 +1,3 @@
-from __future__ import unicode_literals
-
 import swapper
 from django.conf import settings
 from django.db.models import (
@@ -37,13 +35,22 @@ class BasePanel(AcceleratorModel):
         through=swapper.get_model_name(AcceleratorModel.Meta.app_label,
                                        'ApplicationPanelAssignment')
     )
-    panel_time = ForeignKey('PanelTime', blank=True, null=True,
-                            on_delete=CASCADE)
-    panel_type = ForeignKey('PanelType', blank=True, null=True,
-                            on_delete=CASCADE)
+    panel_time = ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'PanelTime'),
+        blank=True,
+        null=True,
+        on_delete=CASCADE)
+    panel_type = ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'PanelType'),
+        blank=True,
+        null=True,
+        on_delete=CASCADE)
     description = CharField(max_length=30, blank=True)
-    location = ForeignKey('PanelLocation', blank=True, null=True,
-                          on_delete=CASCADE)
+    location = ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'PanelLocation'),
+        blank=True,
+        null=True,
+        on_delete=CASCADE)
     status = CharField(
         max_length=30,
         choices=PANEL_STATUS_ENUM,
