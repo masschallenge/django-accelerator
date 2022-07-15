@@ -11,8 +11,10 @@ SOLUTION_HELP_TEXT = ('What is innovative about '
                       'your solution, technology, business model etc?')
 IMPACT_HELP_TEXT = ('Define the 1 year and 5 '
                     'year impact that you hope to accomplish'
-                    ' including the benefit on society. What measures do you have - for example:'
-                    ' Revenue & Profit, and CO2/Emissions removed or lives saved.')
+                    ' including the benefit on society.'
+                    ' What measures do you have - for example:'
+                    ' Revenue & Profit, and CO2/Emissions'
+                    ' removed or lives saved.')
 MARKET_HELP_TEXT = ('How would you define your potential market '
                     'and what is the total addressable market size?')
 VALUE_PROPOSITION_HELP_TEXT = ('What will be your messaging to users & '
