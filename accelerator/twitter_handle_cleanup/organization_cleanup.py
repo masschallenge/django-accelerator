@@ -27,7 +27,7 @@ def clean_organization_twitter_handles(Organization):
                 org.twitter_handle)
             if match:
                 compilation = re.compile(
-                    '(\?lang)(=)?([a-zA-z]{1,2})?(-[a-zA-z]{1,2})?')
+                    '(\\?lang)(=)?([a-zA-z]{1,2})?(-[a-zA-z]{1,2})?')
                 found = compilation.findall(org.twitter_handle)
                 found_string = ''
                 for foundStr in list(found[0]):
