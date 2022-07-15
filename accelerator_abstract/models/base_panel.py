@@ -47,7 +47,8 @@ class BasePanel(AcceleratorModel):
         on_delete=CASCADE)
     description = CharField(max_length=30, blank=True)
     location = ForeignKey(
-        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'PanelLocation'),
+        swapper.get_model_name(
+            AcceleratorModel.Meta.app_label, 'PanelLocation'),
         blank=True,
         null=True,
         on_delete=CASCADE)

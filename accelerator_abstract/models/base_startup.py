@@ -274,8 +274,8 @@ class BaseStartup(AcceleratorModel):
             BaseStartupRole.WINNER_STARTUP_ROLES
         )
         statuses = self.program_startup_statuses().filter(
-                startup_role__name__in=roles_of_interest
-                    ).order_by("-created_at")
+            startup_role__name__in=roles_of_interest
+        ).order_by("-created_at")
         return statuses
 
     @property

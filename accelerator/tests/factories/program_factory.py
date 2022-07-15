@@ -66,12 +66,12 @@ class ProgramFactory(DjangoModelFactory):
     associated_industry = Sequence(
         lambda n: "Health {0}".format(n))
     program_image = factory.LazyAttribute(
-            lambda _: ContentFile(
-                factory.django.ImageField()._make_data(
-                    {'width': 600, 'height': 400}
-                ), 'example.jpg'
-            )
+        lambda _: ContentFile(
+            factory.django.ImageField()._make_data(
+                {'width': 600, 'height': 400}
+            ), 'example.jpg'
         )
+    )
     hubspot_url = Sequence(lambda n: 'http://example.com/{0}'.format(n))
 
     @post_generation

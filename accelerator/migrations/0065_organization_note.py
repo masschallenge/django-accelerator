@@ -6,7 +6,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('accelerator', '0064_update_gender_criteria_to_full_gender_spec'),
@@ -40,9 +39,9 @@ class Migration(migrations.Migration):
                                    to=settings.AUTH_USER_MODEL)),
                 ('organization',
                  models.ForeignKey(
-                    on_delete=django.db.models.deletion.CASCADE,
-                    related_name='organization_notes',
-                    to=settings.ACCELERATOR_ORGANIZATION_MODEL)),
+                     on_delete=django.db.models.deletion.CASCADE,
+                     related_name='organization_notes',
+                     to=settings.ACCELERATOR_ORGANIZATION_MODEL)),
             ],
             options={
                 'verbose_name': 'Organization note',

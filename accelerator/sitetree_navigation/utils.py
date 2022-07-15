@@ -6,7 +6,6 @@ from mc.models import (
     ProgramFamily,
 )
 
-
 FLUENT_REDIRECT_URL = '/nav/fluent-redirect'
 REGISTER_FOR_EVENTS_URL = '/events/'
 
@@ -64,7 +63,7 @@ def _add_allowed_program_families_to_item(item_props):
         return
 
     program_families = ProgramFamily.objects.filter(
-            id__in=allowed_program_families)
+        id__in=allowed_program_families)
     tree_item = NavTreeItem.objects.filter(alias=item_props["alias"]).first()
     tree_item.program_family.clear()
     for program_family in program_families:

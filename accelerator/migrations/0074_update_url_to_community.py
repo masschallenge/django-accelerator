@@ -15,16 +15,15 @@ def update_url_to_community(apps, schema_editor):
 
     SiteRedirectPage = apps.get_model('accelerator', 'SiteRedirectPage')
     SiteRedirectPage.objects.filter(
-      Q(new_url__in=people_url) | Q(new_url=mentor_url)
-      ).update(new_url=community_url)
+        Q(new_url__in=people_url) | Q(new_url=mentor_url)
+    ).update(new_url=community_url)
 
     SiteRedirectPage.objects.filter(
-      new_url=mentor_refinement_url
-      ).update(new_url=community_refinement_url)
+        new_url=mentor_refinement_url
+    ).update(new_url=community_refinement_url)
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('accelerator', '0073_auto_20210909_1706'),
     ]

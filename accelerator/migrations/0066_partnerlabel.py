@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('accelerator', '0065_organization_note'),
     ]
@@ -25,8 +24,8 @@ class Migration(migrations.Migration):
                 ('label', models.CharField(max_length=255)),
                 ('partners',
                  models.ManyToManyField(
-                    blank=True,
-                    to=settings.ACCELERATOR_PARTNER_MODEL)),
+                     blank=True,
+                     to=settings.ACCELERATOR_PARTNER_MODEL)),
             ],
             options={
                 'abstract': False,

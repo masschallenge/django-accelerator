@@ -35,4 +35,4 @@ class BasePartnerApplicationInterest(AcceleratorModel):
             self.partner.organization.name,
             self.application.startup.organization.name,
             self.judging_round.name
-            )
+        )

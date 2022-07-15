@@ -200,8 +200,8 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
     def program_participation(self):
         participation_roles = [UserRole.MENTOR, UserRole.FINALIST]
         return list(self.user.programrolegrant_set.filter(
-            Q(program_role__user_role__name__in=participation_roles)
-            & ACTIVE_PROGRAM).values_list(
+            Q(program_role__user_role__name__in=participation_roles) &
+            ACTIVE_PROGRAM).values_list(
             'program_role__program__name', flat=True).distinct())
 
     def is_staff_in_active_program(self):
@@ -426,8 +426,8 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
         completed_count += _get_completed_fields_count(profile_data_dict)
         completed_count += _get_completed_fields_count(user_data_dict)
         completed_count += completed_participation_by_type
-        total = len(COMMUNITY_PARTICIPATION_TYPES + profile_fields
-                    + PROFILE_USER_FIELDS + PROFILE_LOCATION_FIELDS)
+        total = len(COMMUNITY_PARTICIPATION_TYPES + profile_fields +
+                    PROFILE_USER_FIELDS + PROFILE_LOCATION_FIELDS)
         return round(completed_count / total, 2)
 
 

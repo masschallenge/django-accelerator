@@ -6,7 +6,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('accelerator', '0067_partnerjudgingroundchallenge'),
     ]
@@ -16,16 +15,16 @@ class Migration(migrations.Migration):
             name='PartnerJudgingInstructions',
             fields=[
                 ('id', models.AutoField(
-                                        auto_created=True,
-                                        primary_key=True,
-                                        serialize=False,
-                                        verbose_name='ID')),
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
                 ('created_at', models.DateTimeField(
-                                        auto_now_add=True,
-                                        null=True)),
+                    auto_now_add=True,
+                    null=True)),
                 ('updated_at', models.DateTimeField(
-                                        auto_now=True,
-                                        null=True)),
+                    auto_now=True,
+                    null=True)),
                 ('instructions', models.TextField(
                     help_text='Partner Judging instructions')),
                 ('judging_round', models.ForeignKey(

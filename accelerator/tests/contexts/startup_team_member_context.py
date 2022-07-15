@@ -66,9 +66,9 @@ class StartupTeamMemberContext(object):
 
     def create_startup_status(self, startup_role):
         startup_status = StartupStatusFactory(
-                program_startup_status__program=self.program,
-                program_startup_status__startup_role=startup_role,
-                startup=self.startup)
+            program_startup_status__program=self.program,
+            program_startup_status__startup_role=startup_role,
+            startup=self.startup)
         self.startup_statuses.append(startup_status)
         self.program_startup_statuses.append(
             startup_status.program_startup_status)

@@ -33,7 +33,7 @@ def _error_msg(e):
 
 
 def _calc_progress(total, progress_num, **kwargs):
-    return {'progress': round(progress_num/total, 2),
+    return {'progress': round(progress_num / total, 2),
             'milestone': kwargs.get('milestone'),
             'profile-complete': kwargs.get('is_profile_complete'),
             'bus-prop-complete': kwargs.get('is_bus_prop_complete')}

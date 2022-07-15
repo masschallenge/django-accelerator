@@ -13,8 +13,7 @@ class BaseNodeSubNavAssociation(AcceleratorModel):
         AcceleratorModel.Meta.app_label, "NavTree"),
         help_text=(
             'This is the sub navigation tree '
-            'that this page is tied to'
-        ),
+            'that this page is tied to'),
         on_delete=models.CASCADE
     )
     sub_nav_item = models.ForeignKey(swapper.get_model_name(

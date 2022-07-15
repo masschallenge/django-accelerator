@@ -61,9 +61,9 @@ JUDGE_TYPE_HELPTEXT = (
     "X - Not Accepted as a Judge (May still be a mentor)")
 
 IDENTITY_HELP_TEXT_VALUE = (mark_safe(
-            'Select as many options as you feel best represent your identity. '
-            'Please press and hold Control (CTRL) on PCs or '
-            'Command (&#8984;) on Macs to select multiple options'))
+    'Select as many options as you feel best represent your identity. '
+    'Please press and hold Control (CTRL) on PCs or '
+    'Command (&#8984;) on Macs to select multiple options'))
 
 JUDGE_FIELDS_TO_LABELS = {'desired_judge_label': 'Desired Judge',
                           'confirmed_judge_label': 'Judge'}

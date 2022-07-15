@@ -138,10 +138,10 @@ class BaseProgram(AcceleratorModel):
         max_length=255,
         help_text=('URL of the program overview page, '
                    'ex: https://masschallenge.org/programs-boston')
-        )
+    )
     show_all_masschallenge_events = models.BooleanField(
         default=False
-        )
+    )
     supported_innovation_stages = models.ManyToManyField(
         swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'InnovationStage'),
@@ -151,7 +151,7 @@ class BaseProgram(AcceleratorModel):
         upload_to='program_images',
         blank=False,
         null=True
-        )
+    )
     hubspot_url = models.URLField(
         blank=True,
         null=True

@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('accelerator', '0024_program_show_all_masschallenge_events'),
     ]
@@ -17,6 +16,6 @@ class Migration(migrations.Migration):
                 blank=True, choices=[
                     ('EXPERT', 'Expert'),
                     ('ENTREPRENEUR', 'Entrepreneur')
-                    ], max_length=12),
+                ], max_length=12),
         ),
     ]

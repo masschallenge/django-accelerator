@@ -8,7 +8,6 @@ from django.db import (
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('accelerator', '0101_add_industry_cluster_20220422_0803'),
     ]
@@ -23,8 +22,8 @@ class Migration(migrations.Migration):
             model_name='program',
             name='program_image',
             field=sorl.thumbnail.fields.ImageField(
-              blank=False,
-              null=True,
-              upload_to='program_images'),
+                blank=False,
+                null=True,
+                upload_to='program_images'),
         ),
     ]
