@@ -338,3 +338,4 @@ from .base_business_proposition import (
     EXCLUDED_FIELDS
 )
 from .base_startup_update import BaseStartupUpdate
+from .base_community import  BaseCommunity

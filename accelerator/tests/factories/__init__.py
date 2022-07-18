@@ -133,3 +133,4 @@ from .geographic_experience_factory import GeographicExperienceFactory
 from .business_proposition_factory import BusinessPropositionFactory
 from .startup_update_factory import StartupUpdateFactory
 from .innovation_stage_factory import InnovationStageFactory
+from .community_factory import CommunityFactory

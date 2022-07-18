@@ -172,6 +172,10 @@ class BaseCoreProfile(AcceleratorModel):
             "Must be a page within the site"), ],
         max_length=200,
         blank=True)
+    home_community = models.ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Community'),
+        verbose_name='home community', blank=True, null=True,
+        on_delete=models.CASCADE)
     image = ImageField(
         upload_to='profile_pics',
         verbose_name="Profile Picture",
