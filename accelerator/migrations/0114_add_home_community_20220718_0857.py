@@ -6,6 +6,7 @@ import django.db.models.deletion
 import sorl.thumbnail.fields
 HELP_TEXT = 'Any png or jpg upto to 2mb. Ideal dimensions: 600 x 400 pixels'
 
+
 class Migration(migrations.Migration):
 
     dependencies = [

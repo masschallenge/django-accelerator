@@ -8,7 +8,7 @@ from factory import (
 from factory.django import DjangoModelFactory
 
 ProgramFamily = swapper.load_model('accelerator', 'ProgramFamily')
-from accelerator.tests.factories import CommunityFactory
+from accelerator.tests.factories.community_factory import CommunityFactory
 
 
 class ProgramFamilyFactory(DjangoModelFactory):

@@ -3,6 +3,7 @@ from factory.django import DjangoModelFactory
 
 from accelerator.models import Community
 
+
 class CommunityFactory(DjangoModelFactory):
     class Meta:
         model = Community

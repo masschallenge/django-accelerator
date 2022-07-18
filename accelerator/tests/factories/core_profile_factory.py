@@ -18,7 +18,7 @@ from accelerator.models.core_profile import CoreProfile
 from accelerator.tests.factories.program_factory import ProgramFactory
 from simpleuser.tests.factories.user_factory import UserFactory
 from accelerator.tests.factories.location_factory import LocationFactory
-from accelerator.tests.factories import CommunityFactory
+from accelerator.tests.factories.community_factory import CommunityFactory
 
 
 class CoreProfileFactory(DjangoModelFactory):

@@ -3,6 +3,7 @@ from django.db import models
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 HELP_TEXT = 'Any png or jpg upto to 2mb. Ideal dimensions: 600 x 400 pixels'
 
+
 class BaseCommunity(AcceleratorModel):
     name = models.CharField(max_length=30, blank=False, null=False)
     email = models.EmailField(blank=False, null=False)
