@@ -6,9 +6,11 @@ from factory import (
     SubFactory
 )
 from factory.django import DjangoModelFactory
+from accelerator.tests.factories.community_factory import (
+    CommunityFactory,
+)
 
 ProgramFamily = swapper.load_model('accelerator', 'ProgramFamily')
-from accelerator.tests.factories.community_factory import CommunityFactory
 
 
 class ProgramFamilyFactory(DjangoModelFactory):
