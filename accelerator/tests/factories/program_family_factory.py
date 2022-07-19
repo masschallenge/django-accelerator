@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 import swapper
 from factory import (
     Sequence,
-    SubFactory
+    SubFactory,
 )
 from factory.django import DjangoModelFactory
 from accelerator.tests.factories.community_factory import (

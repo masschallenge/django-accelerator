@@ -175,7 +175,7 @@ class BaseCoreProfile(AcceleratorModel):
     home_community = models.ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Community'),
         verbose_name='home community', blank=True, null=True,
-        on_delete=models.CASCADE)
+        on_delete=models.SET_NULL)
     image = ImageField(
         upload_to='profile_pics',
         verbose_name="Profile Picture",

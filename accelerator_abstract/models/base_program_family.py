@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 import swapper
 from django.db.models import (
     BooleanField,
-    CASCADE,
+    SET_NULL,
     CharField,
     EmailField,
     ForeignKey,
@@ -37,7 +37,7 @@ class BaseProgramFamily(AcceleratorModel):
     home_community = ForeignKey(
         swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Community'),
         verbose_name='home community', blank=True, null=True,
-        on_delete=CASCADE)
+        on_delete=SET_NULL)
     office_hour_bcc = EmailField(
         max_length=100,
         blank=True,

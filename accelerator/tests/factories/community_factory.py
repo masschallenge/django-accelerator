@@ -10,5 +10,5 @@ class CommunityFactory(DjangoModelFactory):
     name = Sequence(lambda n: "name {0}".format(n))
     email = Sequence(lambda n: "user_{0}@example.com".format(n))
     logo = "logo.jpg"
-    image = "logo.jpg"
+    image = "image.jpg"
     assignment_order = 2
