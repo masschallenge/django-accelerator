@@ -4,7 +4,10 @@ import django.core.validators
 from django.db import migrations, models
 import django.db.models.deletion
 import sorl.thumbnail.fields
-HELP_TEXT = 'Any png or jpg upto to 2mb. Ideal dimensions: 600 x 400 pixels'
+IMAGE_HELP_TEXT = ('Any png or jpg up to '
+    '2MB.Ideal dimensions: 300 x 227 pixels')
+LOGO_HELP_TEXT = ('Any circle cropped png or jpg up '
+    'to 2MB.Ideal dimensions: 50 x 50 pixels')
 
 
 class Migration(migrations.Migration):
@@ -28,13 +31,13 @@ class Migration(migrations.Migration):
                                                     null=True)),
                 ('name', models.CharField(max_length=30)),
                 ('email', models.EmailField(max_length=254)),
-                ('logo',
-                 sorl.thumbnail.fields.ImageField(help_text=HELP_TEXT,
-                                                  upload_to='community_logo',
-                                                  verbose_name='Logo')),
+                ('icon',
+                 sorl.thumbnail.fields.ImageField(help_text=LOGO_HELP_TEXT,
+                                                  upload_to='community_icon',
+                                                  verbose_name='Icon')),
                 ('image',
                  sorl.thumbnail.fields.ImageField(
-                    help_text=HELP_TEXT,
+                    help_text=IMAGE_HELP_TEXT,
                     upload_to='community_image',
                     verbose_name='Image')),
                 ('assignment_order', models.PositiveIntegerField()),
