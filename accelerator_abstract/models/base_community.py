@@ -2,9 +2,9 @@ from sorl.thumbnail import ImageField
 from django.db import models
 from accelerator_abstract.models.accelerator_model import AcceleratorModel
 IMAGE_HELP_TEXT = ('Any png or jpg up to '
-    '2MB.Ideal dimensions: 300 x 227 pixels')
+                   '2MB.Ideal dimensions: 300 x 227 pixels')
 LOGO_HELP_TEXT = ('Any circle cropped png or jpg up '
-    'to 2MB.Ideal dimensions: 50 x 50 pixels')
+                  'to 2MB.Ideal dimensions: 50 x 50 pixels')
 
 
 class BaseCommunity(AcceleratorModel):
