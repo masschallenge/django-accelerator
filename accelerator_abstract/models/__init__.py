@@ -58,7 +58,7 @@ from .base_clearance import (
 )
 from .base_core_profile import (
     BIO_MAX_LENGTH,
-    BaseCoreProfile,    
+    BaseCoreProfile,
     PRIVACY_KEY_FINALISTS_AND_STAFF,
     PRIVACY_KEY_PUBLIC,
     PRIVACY_KEY_STAFF,
@@ -338,3 +338,4 @@ from .base_business_proposition import (
     EXCLUDED_FIELDS
 )
 from .base_startup_update import BaseStartupUpdate
+from .base_community import BaseCommunity
