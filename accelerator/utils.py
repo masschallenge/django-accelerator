@@ -1,4 +1,4 @@
-from bullet_train import BulletTrain
+from flagsmith import Flagsmith
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
 from django.conf import settings
@@ -23,10 +23,10 @@ def flag_smith_has_feature(feature_name):
         flag_smith_key = settings.FLAG_SMITH_API_KEY.strip('"')
     else:
         flag_smith_key = ''
-    bt = BulletTrain(environment_id=flag_smith_key)
-    if bt:
-        if bt.has_feature(feature_name):
-            return bt.feature_enabled(feature_name)
+    flag_smith = Flagsmith(environment_id=flag_smith_key)
+    if flag_smith:
+        if flag_smith.has_feature(feature_name):
+            return flag_smith.feature_enabled(feature_name)
     return False
 
 

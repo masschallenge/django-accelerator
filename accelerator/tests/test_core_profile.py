@@ -345,8 +345,8 @@ class TestCoreProfile(TestCase):
         expected = '/dashboard/expert/overview/'
         self.assertEqual(profile.check_landing_page(), expected)
 
-    @patch("bullet_train.BulletTrain.feature_enabled", return_value=True)
-    @patch("bullet_train.BulletTrain.has_feature", return_value=True)
+    @patch("flagsmith.Flagsmith.feature_enabled", return_value=True)
+    @patch("flagsmith.Flagsmith.has_feature", return_value=True)
     def test_user_with_entrepreneur_interest_get_profile_landing_page(self,
                                                                       *args):
         profile = CoreProfileModelFactory(entrepreneur_interest=True)
@@ -360,8 +360,8 @@ class TestCoreProfile(TestCase):
         _user_with_role(profile.user, BaseUserRole.MENTOR, program=program)
         self.assertTrue(profile.was_mentor_in_last_12_months())
 
-    @patch("bullet_train.BulletTrain.feature_enabled", return_value=False)
-    @patch("bullet_train.BulletTrain.has_feature", return_value=True)
+    @patch("flagsmith.Flagsmith.feature_enabled", return_value=False)
+    @patch("flagsmith.Flagsmith.has_feature", return_value=True)
     def test_completion_percentage_is_correct_for_completed_profile(self,
                                                                     *args):
         participation = [CommunityParticipationFactory(type=type[0])
@@ -377,8 +377,8 @@ class TestCoreProfile(TestCase):
         completion_percentage = profile.percent_complete()
         self.assertEqual(completion_percentage, 1)
 
-    @patch("bullet_train.BulletTrain.feature_enabled", return_value=True)
-    @patch("bullet_train.BulletTrain.has_feature", return_value=True)
+    @patch("flagsmith.Flagsmith.feature_enabled", return_value=True)
+    @patch("flagsmith.Flagsmith.has_feature", return_value=True)
     def test_program_family_not_required_when_feature_flag_is_on(self,
                                                                  *args):
         participation = [CommunityParticipationFactory(type=type[0])
@@ -394,8 +394,8 @@ class TestCoreProfile(TestCase):
         completion_percentage = profile.percent_complete()
         self.assertEqual(completion_percentage, 1)
 
-    @patch("bullet_train.BulletTrain.feature_enabled", return_value=False)
-    @patch("bullet_train.BulletTrain.has_feature", return_value=True)
+    @patch("flagsmith.Flagsmith.feature_enabled", return_value=False)
+    @patch("flagsmith.Flagsmith.has_feature", return_value=True)
     def test_completion_percentage_is_correct_for_incomplete_profile(self,
                                                                      *args):
         # missing 7/22 fields used to calculate profile completion %
