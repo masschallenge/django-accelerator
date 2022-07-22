@@ -164,6 +164,10 @@ class BaseProgram(AcceleratorModel):
         max_length=20,
         default="",
     )
+    supported_ecosystems = models.ManyToManyField(
+        swapper.get_model_name(
+            AcceleratorModel.Meta.app_label, 'Ecosystem'),
+        blank=True, related_name='programs')
 
     class Meta(AcceleratorModel.Meta):
         verbose_name_plural = 'Programs'

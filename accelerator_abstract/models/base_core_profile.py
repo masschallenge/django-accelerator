@@ -428,6 +428,11 @@ class BaseCoreProfile(AcceleratorModel):
         swapper.get_model_name(
             AcceleratorModel.Meta.app_label, 'IndustryCluster'),
         blank=True, related_name='profiles')
+    ecosystem_interest = models.ManyToManyField(
+        swapper.get_model_name(
+            AcceleratorModel.Meta.app_label, 'Ecosystem'),
+        blank=True,
+        related_name='profiles')
 
     class Meta(AcceleratorModel.Meta):
         db_table = 'accelerator_coreprofile'
