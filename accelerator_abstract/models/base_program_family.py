@@ -1,9 +1,11 @@
 from __future__ import unicode_literals
-
+import swapper
 from django.db.models import (
     BooleanField,
+    SET_NULL,
     CharField,
     EmailField,
+    ForeignKey,
     TextField,
 )
 
@@ -32,6 +34,10 @@ class BaseProgramFamily(AcceleratorModel):
         default="",
         help_text="Phone number for this program (local form)"
     )
+    home_community = ForeignKey(
+        swapper.get_model_name(AcceleratorModel.Meta.app_label, 'Community'),
+        verbose_name='home community', blank=True, null=True,
+        on_delete=SET_NULL)
     office_hour_bcc = EmailField(
         max_length=100,
         blank=True,
