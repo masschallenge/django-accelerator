@@ -334,3 +334,4 @@ from .geographic_experience import GeographicExperience
 from .business_proposition import BusinessProposition
 from .startup_update import StartupUpdate
 from .innovation_stage import InnovationStage
+from .community import Community
