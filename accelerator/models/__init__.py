@@ -335,3 +335,4 @@ from .business_proposition import BusinessProposition
 from .startup_update import StartupUpdate
 from .innovation_stage import InnovationStage
 from .community import Community
+from .ecosystem import Ecosystem
