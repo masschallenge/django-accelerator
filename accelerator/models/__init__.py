@@ -335,3 +335,4 @@ from accelerator.models.business_proposition import BusinessProposition
 from accelerator.models.startup_update import StartupUpdate
 from accelerator.models.innovation_stage import InnovationStage
 from accelerator.models.community import Community
+from accelerator.models.ecosystem import Ecosystem
