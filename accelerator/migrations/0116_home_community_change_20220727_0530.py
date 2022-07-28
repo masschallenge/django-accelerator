@@ -16,36 +16,32 @@ def set_home_community(apps, schema_editor):
              "image": ("https://home-community-image.s3"
                        ".amazonaws.com/mc_images/mc_swiss.jpg"),
              "icon": ("https://home-community-image.s3"
-                    ".amazonaws.com/icons/mc_swiss.png")
-            },{
-             "name": "MC Israel",
+                      ".amazonaws.com/icons/mc_swiss.png")},
+            {"name": "MC Israel",
              "email": "support.2622.5304df655bf8538a@helpscout.net",
              "is_default": False,
              "assignment_order": 2,
              "image": ("https://home-community-image.s3"
                        ".amazonaws.com/mc_images/mc_israel.jpg"),
              "icon": ("https://home-community-image.s3"
-                      ".amazonaws.com/icons/mc_israel.png")
-            },{
-             "name": "MC Mexico",
+                      ".amazonaws.com/icons/mc_israel.png")},
+            {"name": "MC Mexico",
              "email": "support.2622.5012bf8e0f9cb2f7@helpscout.net",
              "is_default": False,
              "assignment_order": 3,
              "image": ("https://home-community-image.s3"
                        ".amazonaws.com/mc_images/mc_mexico.jpg"),
              "icon": ("https://home-community-image.s3"
-                      ".amazonaws.com/icons/mc_mexico.png")
-            },{
-             'name': 'MC Bridge',
+                      ".amazonaws.com/icons/mc_mexico.png")},
+            {'name': 'MC Bridge',
              "email": 'support.2622.1347a3fe9de0848d@helpscout.net',
              "is_default": False,
              "assignment_order": 4,
              "image": ("https://home-community-image.s3"
                        ".amazonaws.com/mc_images/mc_bridge.jpg"),
              "icon": ("https://home-community-image.s3"
-                      ".amazonaws.com/icons/mc_bridge.png")
-            },{
-             "name": "MC United States",
+                      ".amazonaws.com/icons/mc_bridge.png")},
+            {"name": "MC United States",
              "email": "community@masschallenge.helpscoutapp.com",
              "is_default": False,
              "assignment_order": 5,
