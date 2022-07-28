@@ -6,8 +6,9 @@ from django.db import migrations
 def add_program_menu(apps, schema_editor):
     NavTreeItem = apps.get_model('accelerator', 'NavTreeItem')
     NavTree = swapper.load_model('accelerator', 'NavTree')
-    nav_tree = NavTree.objects.get(alias='mc_side_nav_tree')
-    sort_order = nav_tree.navtreeitem_set.all().last().sort_order
+    nav_tree, _ = NavTree.objects.get_or_create(alias='mc_side_nav_tree')
+    last_item = nav_tree.navtreeitem_set.all().last()
+    sort_order = last_item.sort_order if last_item else nav_tree.id*10
     sort_order += 1
     NavTreeItem.objects.filter(
         alias='program_interest',
