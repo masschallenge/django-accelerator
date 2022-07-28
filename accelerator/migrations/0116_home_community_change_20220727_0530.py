@@ -57,10 +57,8 @@ def set_home_community(apps, schema_editor):
     for item in data:
         image_name = urlparse(item['image']).path.split('/')[-1]
         image_tmpfile, _ = urllib.request.urlretrieve(item['image'])
-
         icon_name = urlparse(item['icon']).path.split('/')[-1]
         icon_tmpfile, _ = urllib.request.urlretrieve(item['icon'])
-
         community = Community()
         community.name = item['name']
         community.is_default = item['is_default']
@@ -83,7 +81,6 @@ def set_home_community(apps, schema_editor):
         if program_family:
             community_name = mapping["Home Community"]
             community = Community.objects.filter(name=community_name).first()
-            program_family = program_family
             program_family.home_community = community
             program_family.save()
 
