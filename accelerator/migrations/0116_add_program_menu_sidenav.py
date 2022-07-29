@@ -14,7 +14,7 @@ def add_program_menu(apps, schema_editor):
         alias='program_interest',
         url='/profile/programs/').delete()
     NavTreeItem.objects.get_or_create(
-            title='Program Menu',
+            title='Programs',
             alias='program_interest_manager',
             url='/programs',
             tree_id=nav_tree.id,
