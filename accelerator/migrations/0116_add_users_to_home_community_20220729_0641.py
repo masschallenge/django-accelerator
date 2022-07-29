@@ -26,7 +26,7 @@ def add_home_community_to_users(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accelerator', '0115_add_ecosystem_model'),
+        ('accelerator', '0116_add_program_menu_sidenav'),
     ]
 
     operations = [
