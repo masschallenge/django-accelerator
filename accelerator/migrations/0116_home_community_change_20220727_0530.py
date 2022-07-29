@@ -57,6 +57,7 @@ def set_home_community(apps, schema_editor):
         icon_tmpfile, _ = urllib.request.urlretrieve(item['icon'])
         community = Community()
         community.name = item['name']
+        community.email = item['email']
         community.is_default = item['is_default']
         community.is_visible = True
         community.assignment_order = item['assignment_order']
