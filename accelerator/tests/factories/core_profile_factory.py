@@ -18,6 +18,7 @@ from accelerator.models.core_profile import CoreProfile
 from accelerator.tests.factories.program_factory import ProgramFactory
 from simpleuser.tests.factories.user_factory import UserFactory
 from accelerator.tests.factories.location_factory import LocationFactory
+from accelerator.tests.factories.community_factory import CommunityFactory
 
 
 class CoreProfileFactory(DjangoModelFactory):
@@ -26,6 +27,7 @@ class CoreProfileFactory(DjangoModelFactory):
         abstract = True
 
     user = SubFactory(UserFactory)
+    home_community = SubFactory(CommunityFactory)
     users_last_activity = utc.localize(datetime.now() + timedelta(-1))
     gender_self_description = ""
     phone = "+1-555-555-5555"
