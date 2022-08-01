@@ -4,6 +4,9 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from urllib.parse import urlparse
 from django.db import migrations
 
+DATA_MAPPING_URL = ('https://home-community-image.'
+                    's3.amazonaws.com/mapping.json')
+
 
 def set_home_community(apps, schema_editor):
     ProgramFamily = apps.get_model('accelerator', 'ProgramFamily')
@@ -50,36 +53,40 @@ def set_home_community(apps, schema_editor):
              "icon": ("https://home-community-image.s3"
                       ".amazonaws.com/icons/mc_usa.png")}]
 
+    community_mapper = {}
+
     for item in data:
         image_name = urlparse(item['image']).path.split('/')[-1]
         image_tmpfile, _ = urllib.request.urlretrieve(item['image'])
         icon_name = urlparse(item['icon']).path.split('/')[-1]
         icon_tmpfile, _ = urllib.request.urlretrieve(item['icon'])
-        community = Community()
-        community.name = item['name']
-        community.email = item['email']
-        community.is_default = item['is_default']
-        community.is_visible = True
-        community.assignment_order = item['assignment_order']
-        community.image = SimpleUploadedFile(image_name,
-                                             open(image_tmpfile,
-                                                  "rb").read())
-        community.icon = SimpleUploadedFile(icon_name,
-                                            open(icon_tmpfile,
-                                                 "rb").read())
-        community.save()
-    response = urllib.request.urlopen(('https://home-community-image.'
-                                       's3.amazonaws.com/mapping.json'))
+        community_data = {'name': item['name'],
+                          'email': item['email'],
+                          'is_default': item['is_default'],
+                          'is_visible': True,
+                          'assignment_order': item['assignment_order'],
+                          'image': SimpleUploadedFile(image_name,
+                                                      open(image_tmpfile,
+                                                           "rb").read()),
+                          'icon': SimpleUploadedFile(icon_name,
+                                                     open(icon_tmpfile,
+                                                          "rb").read())}
+        community = Community.objects.create(**community_data)
+        community_mapper[item['name']] = community
+
+    response = urllib.request.urlopen(DATA_MAPPING_URL)
     mappings = json.loads(response.read())
+    program_family_data = []
     for mapping in mappings:
         family_name = mapping["Program Family"]
         program_family = ProgramFamily.objects.filter(name=family_name)
         program_family = program_family.first()
         if program_family:
             community_name = mapping["Home Community"]
-            community = Community.objects.filter(name=community_name).first()
+            community = community_mapper[community_name]
             program_family.home_community = community
-            program_family.save()
+            program_family_data.append(program_family)
+    ProgramFamily.objects.bulk_update(program_family_data, ['home_community'])
 
 
 class Migration(migrations.Migration):
