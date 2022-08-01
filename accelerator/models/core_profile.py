@@ -37,6 +37,7 @@ from accelerator_abstract.models.base_user_utils import is_employee
 from accelerator.utils import flag_smith_has_feature
 
 PROGRAM_INTEREST_FLAG = 'show_revised_program_interest'
+MODIFY_PROGRAM_INTEREST = 'modify_program_interest'
 SHORT_BIO_MAX_LENGTH = 140
 OFFICE_HOUR_HOLDER_ROLES = [UserRole.MENTOR, UserRole.AIR]
 OFFICE_HOURS_HOLDER = Q(
@@ -412,6 +413,8 @@ class CoreProfile(BaseCoreProfile, PolymorphicModel):
         profile_fields = PROFILE_FIELDS.copy()
         if flag_smith_has_feature(PROGRAM_INTEREST_FLAG):
             profile_fields += ['program_interest']
+            if flag_smith_has_feature(MODIFY_PROGRAM_INTEREST):
+                profile_fields.remove('program_interest')
         else:
             profile_fields += ['program_families']
         profile_data_dict = model_to_dict(self, profile_fields)
