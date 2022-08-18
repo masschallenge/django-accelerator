@@ -1,9 +1,13 @@
 # Django-Accelerator
-
  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/masschallenge/impact-api.svg?branch=development)](https://travis-ci.org/masschallenge/django-accelerator)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2636b03b81f405b133f5/test_coverage)](https://codeclimate.com/github/masschallenge/django-accelerator/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2636b03b81f405b133f5/maintainability)](https://codeclimate.com/github/masschallenge/django-accelerator/maintainability)
+
+## THIS REPOSITORY IS NOW DEPRECATED
+The code has been ported into the accelerate project; this repository 
+is no longer in use or receiving updates, and will be decomissioned 
+presently. 
 
 1. [Overview](#overview)
 2. [Quickstart](#quickstart)
